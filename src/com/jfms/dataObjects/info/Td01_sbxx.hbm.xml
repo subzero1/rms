@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.jfms.dataObjects.info.Td01_sbxx"
+        table="Td01_sbxx"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Td01_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Td01_sbxx.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="jfxx_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="jfxx_id"
+        />
+
+        <property
+            name="sbmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sbmc"
+        />
+
+        <property
+            name="sbxh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sbxh"
+        />
+        
+        <property
+            name="sbgg"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sbgg"
+        />
+
+        <property
+            name="jjcc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jjcc"
+        />
+
+        <property
+            name="cj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cj"
+        />
+
+        <property
+            name="gdfs"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="gdfs"
+        />
+
+        <property
+            name="sszy"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sszy"
+        />
+
+        <property
+            name="azwz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="azwz"
+        />
+
+        <property
+            name="jsxz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsxz"
+        />
+
+        <property
+            name="azrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="azrq"
+        />
+
+        <property
+            name="sgdw"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sgdw"
+        />
+
+        <property
+            name="fzr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fzr"
+        />
+
+        <property
+            name="lxdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lxdh"
+        />
+
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Td01_sbxx.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

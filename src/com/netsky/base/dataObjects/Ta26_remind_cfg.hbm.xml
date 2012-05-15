@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Ta26_remind_cfg"
+        table="Ta26_remind_cfg"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Ta26_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Ta26_remind_cfg.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="module_ids"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="module_ids"
+        />
+
+        <property
+            name="node_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="node_name"
+        />
+
+        <property
+            name="node_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="node_status"
+        />
+
+        <property
+            name="pre_days"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="pre_days"
+        />
+
+        <property
+            name="project_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="project_status"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Ta26_remind_cfg.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

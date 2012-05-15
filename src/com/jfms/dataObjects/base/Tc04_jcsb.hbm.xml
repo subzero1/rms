@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.jfms.dataObjects.base.Tc04_jcsb"
+        table="Tc04_jcsb"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tc04_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tc04_jcsb.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="sbmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sbmc"
+        />
+
+        <property
+            name="sbxh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sbxh"
+        />
+
+        <property
+            name="cj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cj"
+        />
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tc04_jcsb.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
