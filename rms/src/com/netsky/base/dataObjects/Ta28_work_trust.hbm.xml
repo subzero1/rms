@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Ta28_work_trust"
+        table="Ta28_work_trust"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Ta26_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Ta28_work_trust.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="from_userId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="from_userId"
+        />
+
+        <property
+            name="from_userName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="from_userName"
+        />
+
+        <property
+            name="to_userId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="to_userId"
+        />
+
+        <property
+            name="to_userName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="to_userName"
+        />
+
+        <property
+            name="start_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="start_time"
+        />
+
+        <property
+            name="end_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="end_time"
+        />
+
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="remark"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Ta28_work_trust.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

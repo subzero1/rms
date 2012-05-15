@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.jfms.dataObjects.info.Td00_jfxx"
+        table="Td00_jfxx"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Td00_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Td00_jfxx.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="jfmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jfmc"
+        />
+
+        <property
+            name="djbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="djbm"
+        />
+
+        <property
+            name="djrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="djrq"
+        />
+
+        <property
+            name="djry"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="djry"
+        />
+
+        <property
+            name="lxdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lxdh"
+        />
+
+        <property
+            name="jdmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jdmc"
+        />
+
+        <property
+            name="jdxz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jdxz"
+        />
+
+        <property
+            name="ssqy"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ssqy"
+        />
+
+        <property
+            name="zldd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zldd"
+        />
+
+        <property
+            name="jwd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jwd"
+        />
+
+        <property
+            name="jsrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="jsrq"
+        />
+
+        <property
+            name="jfmj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jfmj"
+        />
+
+        <property
+            name="jfszlc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jfszlc"
+        />
+
+        <property
+            name="jfyt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jfyt"
+        />
+
+        <property
+            name="glry"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="glry"
+        />
+
+        <property
+            name="glylxdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="glylxdh"
+        />
+
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
+        
+        <property
+            name="xzt_gxsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="xzt_gxsj"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Td00_jfxx.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
