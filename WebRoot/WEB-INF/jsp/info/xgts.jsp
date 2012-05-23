@@ -6,7 +6,7 @@
 <div class="page">
 	<div class="pageContent">
 	<form id="form1" name="form1" class="pageForm required-validate" action="save.do" method="post" onsubmit="return validateCallback(this, dialogAjaxDone);">
-		<input type="hidden" name="tableInfomation" value="noFatherTable:com.jfms.dataObjects.info.Td11_jfpmsq"/>
+		<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.info.Td11_jfpmsq"/>
 		<input type="hidden" name="slaveFatherTables" value="Td11_jfpmsq,ID,DOC_ID"/>
 		<input type="hidden" name="_callbackType" value=""/>
 		<input type="hidden" name="_forwardUrl" value=""/>

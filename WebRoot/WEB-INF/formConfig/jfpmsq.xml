@@ -3,7 +3,7 @@
 	<tables>
 		<fatherTable/>
 		<table>
-			<name>com.jfms.dataObjects.info.Td11_jfpmsq</name>
+			<name>com.rms.dataObjects.info.Td11_jfpmsq</name>
 		</table>
 	</tables>
 	<tables>
@@ -20,7 +20,7 @@
 			</table>
 		</fatherTable>
 		<table>
-			<name>com.jfms.dataObjects.info.Td12_gljf</name>
+			<name>com.rms.dataObjects.info.Td12_gljf</name>
 		</table>
 	</tables>
 	<dispath>

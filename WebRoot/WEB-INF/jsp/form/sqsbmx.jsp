@@ -7,7 +7,7 @@
 <div class="page">
 	<div class="pageContent">
 		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone);">
-			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.jfms.dataObjects.info.Td13_jfsbmx" />
+			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.info.Td13_jfsbmx" />
 			<input type="hidden" name="Td13_jfsbmx.ID" value="${td13.id}" />
 			<input type="hidden" name="Td13_jfsbmx.JFXX_ID" value="<c:out value="${td13.jfxx_id}" default="${param.jfxx_id }"/>" />
 			<input type="hidden" name="Td13_jfsbmx.PROJECT_ID" value="<c:out value="${td13.project_id}" default="${param.project_id }"/>" />

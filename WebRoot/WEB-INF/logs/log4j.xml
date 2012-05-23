@@ -10,7 +10,7 @@
   </appender> 
 
   <appender name="logfile" class="org.apache.log4j.RollingFileAppender"> 
-    <param name="File" value="${jfms.root}/WEB-INF/logs/jfms.log"/>
+    <param name="File" value="${rms.root}/WEB-INF/logs/rms.log"/>
     <param name="MaxFileSize" value="512K"/>
     <param name="MaxBackupIndex" value="3"/> 
     <layout class="org.apache.log4j.PatternLayout"> 

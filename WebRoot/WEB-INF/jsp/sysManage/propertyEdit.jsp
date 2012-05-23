@@ -5,7 +5,7 @@
 		<h1>基本属性</h1>
 		<div>
 		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
-			<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.jfms.dataObjects.base.Tc01_property" keep="true"/>
+			<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.base.Tc01_property" keep="true"/>
 			<input type="hidden" name="Tc01_property.ID" value="${property_type.id}" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="sysManage/propertySettingList.do?property_id=${property_type.id}" keep="true"/>

@@ -47,7 +47,7 @@ function saveJfxx(){
 	
 	<div class="pageContent">
 		<form id="jfxx_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
-			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.jfms.dataObjects.info.Td00_jfxx" />
+			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.info.Td00_jfxx" />
 			<input type="hidden" name="Td00_jfxx.ID" value="${Td00_jfxx.id}" />
 			<input type="hidden" name="_callbackType" value="forward"/>
 			<input type="hidden" name="_message" value="机房信息保存" />

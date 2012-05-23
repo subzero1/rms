@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="GBK"?>
 <root>
 	<!-- 默认路径 -->
-	<folder>jfms/default</folder>
+	<folder>rms/default</folder>
 	<!--  -->
 	<address>132.230.147.238</address>
 	<username>tomcat</username>

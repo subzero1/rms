@@ -18,7 +18,7 @@
 
 	<!-- 自动装载 javaBean -->
 	<context:component-scan
-		base-package="com.netsky.base.service.impl,com.jfms.service.impl,com.netsky.base.flow.component,com.netsky.base.flow.service.impl,com.jfms.thread" />
+		base-package="com.netsky.base.service.impl,com.rms.service.impl,com.netsky.base.flow.component,com.netsky.base.flow.service.impl,com.rms.thread" />
 
 
 	<!--
@@ -157,18 +157,18 @@
 				<value>com/netsky/base/dataObjects/Tz04_node_del.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz05_thread_queue.hbm.xml</value>
 				
-				<value>com/jfms/dataObjects/base/Tc01_property.hbm.xml</value>
-				<value>com/jfms/dataObjects/base/Tc02_bureau.hbm.xml</value>
-				<value>com/jfms/dataObjects/base/Tc03_area.hbm.xml</value>
-				<value>com/jfms/dataObjects/base/Tc04_jcsb.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc01_property.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc02_bureau.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc03_area.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc04_jcsb.hbm.xml</value>
 				
-				<value>com/jfms/dataObjects/info/Td00_jfxx.hbm.xml</value>
-				<value>com/jfms/dataObjects/info/Td01_sbxx.hbm.xml</value>
-				<value>com/jfms/dataObjects/info/Td11_jfpmsq.hbm.xml</value>
-				<value>com/jfms/dataObjects/info/Td12_gljf.hbm.xml</value>
-				<value>com/jfms/dataObjects/info/Td13_jfsbmx.hbm.xml</value>
-				<value>com/jfms/dataObjects/info/Td14_sqd_ry_sj.hbm.xml</value>
-				<value>com/jfms/dataObjects/info/Td21_jcsq.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td00_jfxx.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td01_sbxx.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td11_jfpmsq.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td12_gljf.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td13_jfsbmx.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td14_sqd_ry_sj.hbm.xml</value>
+				<value>com/rms/dataObjects/info/Td21_jcsq.hbm.xml</value>
 				
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
