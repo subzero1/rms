@@ -19,7 +19,7 @@ $(document).ready(function(){
 		<h1>局点信息</h1>
 		<div>
 		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
-			<input type="hidden" name="tableInfomation" value="noFatherTable:com.jfms.dataObjects.base.Tc02_bureau"/>
+			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.base.Tc02_bureau"/>
 			<input type="hidden" name="Tc02_bureau.ID" value="${bureauObj.id}"/>
 			<input type="hidden" name="_callbackType" value="forward"/>
 			<input type="hidden" name="_forwardUrl" value="sysManage/bureauList.do?bureau_id=${bureauObj.id}"/>

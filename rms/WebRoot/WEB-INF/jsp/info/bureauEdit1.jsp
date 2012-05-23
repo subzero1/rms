@@ -3,7 +3,7 @@
 <div class="page">
 	<div class="pageContent">
 		<form method="post" action="save.do" class="pageForm" onsubmit="return validateCallback(this,dialogAjaxDone);">
-			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.jfms.dataObjects.base.Tc02_bureau" />
+			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.base.Tc02_bureau" />
 			<input type="hidden" name="Tc02_bureau.ID" value="${td01.id}" />
 			<div class="pageFormContent" layoutH="56">
 				<p>

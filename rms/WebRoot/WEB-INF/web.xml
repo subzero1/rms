@@ -15,7 +15,7 @@
 	-->	
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>jfms.root</param-value>
+		<param-value>rms.root</param-value>
 	</context-param>
 	
 	<!--
@@ -91,7 +91,7 @@
 	</listener>
 	
 	<servlet>
-		<servlet-name>jfms</servlet-name>
+		<servlet-name>rms</servlet-name>
 		<servlet-class>
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -107,7 +107,7 @@
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>jfms</servlet-name>
+		<servlet-name>rms</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
@@ -140,7 +140,7 @@
   	
   	<!-- mq线程启动监听器 -->
 	<listener>  
-        <listener-class>com.jfms.listener.Thread_Listener</listener-class>   
+        <listener-class>com.rms.listener.Thread_Listener</listener-class>   
     </listener>
      
 </web-app>

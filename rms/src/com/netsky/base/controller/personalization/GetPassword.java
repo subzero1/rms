@@ -81,7 +81,7 @@ public class GetPassword{
 						 */
 						String phonenums[] = tel.split(";");
 						StringBuffer message_phone = new StringBuffer();
-						message_phone.append("发自："+"jfms【找回密码】");
+						message_phone.append("发自："+"rms【找回密码】");
 						message_phone.append("\n"); 
 						message_phone.append("用户名：");
 						message_phone.append(name);

@@ -10,7 +10,7 @@
 			<input type="hidden" name="_callbackType" value=""/>
 			<input type="hidden" name="_navTabId" value="jcsbList"/>
 			<input type="hidden" name="_forwardUrl" value=""/>
-			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.jfms.dataObjects.base.Tc04_jcsb" />
+			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.base.Tc04_jcsb" />
 			<input type="hidden" name="Tc04_jcsb.ID" value="${tc04.id}" />
 			<input type="hidden" name="_message" value="基础设备信息保存" />
 			<div class="pageFormContent" layoutH="56">
