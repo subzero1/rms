@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.rms.dataObjects.info.Td11_jfpmsq"
+        table="Td11_jfpmsq"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Td11_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Td11_jfpmsq.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="ref_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="ref_id"
+        />
+
+        <property
+            name="sjdw"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sjdw"
+        />
+
+        <property
+            name="sjry"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sjry"
+        />
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="fwbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fwbm"
+        />
+
+        <property
+            name="bdbh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bdbh"
+        />
+
+        <property
+            name="cjr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cjr"
+        />
+
+        <property
+            name="cjrdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cjrdh"
+        />
+
+        <property
+            name="cjrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="cjrq"
+        />
+
+        <property
+            name="xmmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xmmc"
+        />
+
+        <property
+            name="jsxz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsxz"
+        />
+
+        <property
+            name="sszy"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sszy"
+        />
+
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
+        
+        <property
+            name="sfzz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sfzz"
+        />
+
+        <property
+            name="sjsx"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="sjsx"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Td11_jfpmsq.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
