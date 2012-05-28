@@ -80,7 +80,7 @@ public class Personal {
 										+ user.getId() + ")"));
 		// 获取地区列表
 		modelMap.put("areaList", dao
-				.search("from Tc03_area where flag like'%1%' order by id"));
+				.search("from Tc02_area where flag like'%1%' order by id"));
 		return new ModelAndView("/WEB-INF/jsp/personalization/userInfo.jsp", modelMap);
 	}
 	
