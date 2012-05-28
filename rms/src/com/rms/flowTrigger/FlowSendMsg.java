@@ -5,7 +5,6 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.rms.dataObjects.info.Td11_jfpmsq;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.flow.utils.convertUtil;
@@ -74,12 +73,15 @@ public class FlowSendMsg extends com.netsky.base.flow.trigger.Trigger implements
 						else 
 							throw new Exception("MODULE_ID不是101或102");
 						sql = sql.delete(0, sql.length());
+						String xmmc = "";
+						/*
 						sql.append("select xmmc from Td11_jfpmsq where project_id="+project_id);
 						List tmpList2 = (List)queryService.searchList(sql.toString());
-						String xmmc = "";
+						
 						if (tmpList2!=null && tmpList2.size()!=0){
 							xmmc = (String)tmpList2.get(0);
 						}
+						*/
 						message_phone.append(sheetname);
 						message_phone.append("已发至您待办，请及时处理。项目名称：");
 						message_phone.append(xmmc);
