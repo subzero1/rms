@@ -3,11 +3,11 @@ package com.rms.dataObjects.base;
 /**
  * @description:
  * 局点信息
- * @class name:com.rms.dataObjects.base.Tc02_bureau
+ * @class name:com.rms.dataObjects.base.Tc02_area
  * @author Administrator Jul 26, 2011
- * @hibernate.class table="Tc02_bureau"
+ * @hibernate.class table="Tc02_area"
  */
-public class Tc02_bureau {
+public class Tc02_area {
 	/**
 	 *标识
 	 */
@@ -21,16 +21,12 @@ public class Tc02_bureau {
 	/**
 	 *局点性质
 	 */
-	private String type;
+	private String flag;
 
-	/**
-	 *所属地区
-	 */
-	private String p_area;
 
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Tc02_NUM"
+	 * @hibernate.generator-param name="sequence" value="Tc03_NUM"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -60,33 +56,19 @@ public class Tc02_bureau {
 	}
 
 	/**
-	 * @hibernate.property column="type"
-	 * @return Returns the type.
+	 * @hibernate.property column="flag"
+	 * @return Returns the flag.
 	 */
-	public String getType() {
-		return type;
+	public String getFlag() {
+		return flag;
 	}
 
 	/**
-	 * @param type The type to set.
+	 * @param flag The flag to set.
 	 */
-	public void setType(String type) {
-		this.type = type;
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 
-	/**
-	 * @hibernate.property column="p_area"
-	 * @return Returns the p_area.
-	 */
-	public String getP_area() {
-		return p_area;
-	}
-
-	/**
-	 * @param p_area The p_area to set.
-	 */
-	public void setP_area(String p_area) {
-		this.p_area = p_area;
-	}
-
+	
 }

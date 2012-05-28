@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rms.controller.sysManage.Dept;
-import com.rms.dataObjects.base.Tc03_area;
+import com.rms.dataObjects.base.Tc02_area;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
@@ -291,7 +291,7 @@ public class Message {
 			modelMap.put("user_dept_list", user_dept_list);
 
 			// 查询地区
-			queryBuilder = new HibernateQueryBuilder(Tc03_area.class);
+			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
 			queryBuilder.like("flag", "[1]", MatchMode.ANYWHERE);
 			List<?> areaList = queryService.searchList(queryBuilder);
 			modelMap.put("areaList", areaList);

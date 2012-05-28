@@ -81,10 +81,10 @@ public class KeySelect {
 				/*
 				 * 所属区域
 				 */
-				String HSql = "select tc03 from Tc03_area tc03 where flag like'%[2]%' order by id ";
+				String HSql = "select tc03 from Tc02_area tc02 where flag like'%[2]%' order by id ";
 				ResultObject ro = queryService.search(HSql);
 				while (ro.next()) {
-					result.add(PropertyInject.getProperty(ro.get("tc03"), "name") + "");
+					result.add(PropertyInject.getProperty(ro.get("tc02"), "name") + "");
 				}
 			}
 			else if(type.equals("dept")){

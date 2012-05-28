@@ -72,7 +72,7 @@ public class User {
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		List<Ta03_user> all_user_list = (List<Ta03_user>) queryService
-				.searchList("from Ta03_user user where area_name in (select area.name from Tc03_area area where area.flag like'%1%')order by area_name,id");
+				.searchList("from Ta03_user user where area_name in (select area.name from Tc02_area area where area.flag like'%1%')order by area_name,id");
 		List<Ta03_user> tmp_user_list = new ArrayList<Ta03_user>();
 		Map<String, List<Ta03_user>> user_map = new HashMap<String, List<Ta03_user>>();
 		String area_name = "地区";
@@ -91,7 +91,7 @@ public class User {
 			user_map.put(area_name, tmp_user_list);
 		}
 		modelMap.put("user_map", user_map);
-		modelMap.put("areaList", dao.search("from Tc03_area where flag like'%1%' order by id"));
+		modelMap.put("areaList", dao.search("from Tc02_area where flag like'%1%' order by id"));
 		return new ModelAndView("/WEB-INF/jsp/sysManage/userList.jsp", modelMap);
 	}
 
@@ -132,7 +132,7 @@ public class User {
 										+ id + ")"));
 		// 获取地区列表
 		modelMap.put("areaList", dao
-				.search("from Tc03_area where flag like'%1%' order by id"));
+				.search("from Tc02_area where flag like'%1%' order by id"));
 		modelMap.put("userObj", user);
 		StringBuffer group_rsql = new StringBuffer();
 		group_rsql

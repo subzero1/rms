@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rms.dataObjects.base.Tc03_area;
+import com.rms.dataObjects.base.Tc02_area;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.flow.utils.convertUtil;
