@@ -6,7 +6,7 @@
 
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
-		<title>中国电信无锡分公司机房平面管理系统</title>
+		<title>南京电信工程建设目标库管理系统</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
 		<link rel="stylesheet" media="screen,projection" type="text/css"
 			href="Images/index-images/style.css" />
@@ -116,11 +116,11 @@
 				<div class="login_middlecenter">
 					<form method="post" action="" class="login_form" onsubmit="javascript:logchk_onsubmit();return false;">
 						<div class="login_user">
-							<input type="text" id="login_id" name="login_id"
+							用户名&nbsp;&nbsp;<input type="text" id="login_id" name="login_id"
 								value="${param.login_id}" />
 						</div>
 						<div class="login_pass">
-							<input type="password" id="passwd" name="passwd" />
+							密   码&nbsp;&nbsp;<input type="password" id="passwd" name="passwd" />
 						</div>
 						<div class="clear"></div>
 						<div class="login_button">
@@ -142,7 +142,7 @@
 			</div>
 			<div class="login_bottom">
 				<div class="login_copyright">
-					研发单位：网天信息技术有限公司 | 服务热线：022-83946861/62  <a href="download.do?slave_id=827" target="_blank" style="color:red;font-weight:bold;">[ 下载 IE7 安装包 ]</a>
+					研发单位：网天信息技术有限公司 | 服务热线：022-83946861/62  <a href="download.do?slave_id=827" target="_blank" style="color:#c00;font-weight:bold;">[ 下载 IE7 安装包 ]</a>
 				</div>
 			</div>
 		</div>
