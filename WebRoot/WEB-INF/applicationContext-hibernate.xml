@@ -158,18 +158,7 @@
 				<value>com/netsky/base/dataObjects/Tz05_thread_queue.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/base/Tc01_property.hbm.xml</value>
-				<value>com/rms/dataObjects/base/Tc02_bureau.hbm.xml</value>
-				<value>com/rms/dataObjects/base/Tc03_area.hbm.xml</value>
-				<value>com/rms/dataObjects/base/Tc04_jcsb.hbm.xml</value>
-				
-				<value>com/rms/dataObjects/info/Td00_jfxx.hbm.xml</value>
-				<value>com/rms/dataObjects/info/Td01_sbxx.hbm.xml</value>
-				<value>com/rms/dataObjects/info/Td11_jfpmsq.hbm.xml</value>
-				<value>com/rms/dataObjects/info/Td12_gljf.hbm.xml</value>
-				<value>com/rms/dataObjects/info/Td13_jfsbmx.hbm.xml</value>
-				<value>com/rms/dataObjects/info/Td14_sqd_ry_sj.hbm.xml</value>
-				<value>com/rms/dataObjects/info/Td21_jcsq.hbm.xml</value>
-				
+								
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>
@@ -181,7 +170,6 @@
 				<value>com/netsky/base/flow/vo/WaitWork.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/ReplyWork.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/FormOperDatail.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/Tzsqqk.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
