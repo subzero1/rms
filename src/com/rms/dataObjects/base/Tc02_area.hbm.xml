@@ -7,8 +7,8 @@
 <hibernate-mapping
 >
     <class
-        name="com.rms.dataObjects.base.Tc03_area"
-        table="Tc03_area"
+        name="com.rms.dataObjects.base.Tc02_area"
+        table="Tc02_area"
     >
 
         <id
