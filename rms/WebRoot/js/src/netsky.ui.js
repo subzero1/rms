@@ -12,6 +12,7 @@ function netskyInitWeb(_box){
 	*/
 	$(".loadFileArea", $p).each(function(){
 		var $this = $(this);
+		if($this.attr("loadfile")=="") return;
 		var url = unescape($this.attr("loadfile")).replaceTmById($p);
 		DWZ.debug(url);
 		if (!url.isFinishedTm()) {
