@@ -14,19 +14,33 @@ public class Tc02_area {
 	private Long id;
 
 	/**
-	 *局点名称
+	 *地区编码
+	 */
+	private String code;
+	
+	/**
+	 *地区名称
 	 */
 	private String name;
 
 	/**
-	 *局点性质
+	 *地区子集
 	 */
-	private String flag;
-
+	private String inc_names;
+	
+	/**
+	 *功能类别[1][2][3]...
+	 */
+	private String type;
+	
+	/**
+	 *顺序
+	 */
+	private Integer seq;
 
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Tc03_NUM"
+	 * @hibernate.generator-param name="sequence" value="Tc02_NUM"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -56,19 +70,50 @@ public class Tc02_area {
 	}
 
 	/**
-	 * @hibernate.property column="flag"
-	 * @return Returns the flag.
+	 * @hibernate.property column="code"
+	 * @return Returns the code.
 	 */
-	public String getFlag() {
-		return flag;
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	/**
-	 * @param flag The flag to set.
+	 * @hibernate.property column="inc_names"
+	 * @return Returns the inc_names.
 	 */
-	public void setFlag(String flag) {
-		this.flag = flag;
+	public String getInc_names() {
+		return inc_names;
 	}
 
-	
+	public void setInc_names(String inc_names) {
+		this.inc_names = inc_names;
+	}
+
+	/**
+	 * @hibernate.property column="type"
+	 * @return Returns the type.
+	 */
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 * @hibernate.property column="seq"
+	 * @return Returns the seq.
+	 */
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 }
