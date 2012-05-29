@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+wtlx=${ wtlx}
 <script type="text/javascript">
 function phoneMsg(tel,name){
 	$.pdialog.open('MessageWrite.do?type=phone&phonenum='+tel+'&name='+encodeURI(encodeURI(name)), 'messageWrite', '手机短信',{data:{}, mask:true, width:670, height:350})
@@ -75,7 +76,7 @@ function phoneMsg(tel,name){
 				</c:if>
 				<c:if test="${delrole=='yes' && (wtlx=='15' || wtlx=='17' || wtlx=='601')}">
 					<li>
-						<a class="delete"	href="onlinedelajax.do?id={qa_id}" target="ajaxTodo" title="确认删除吗?"><span>删除</span></a>
+						<a class="delete"	href="onlinedelajax.do?wtlx=${wtlx}&id={qa_id}" target="ajaxTodo" title="确认删除吗?"><span>删除</span></a>
 					</li>
 					<li class="line">line</li>
 				</c:if>
@@ -87,13 +88,13 @@ function phoneMsg(tel,name){
 				</c:if>
 				<c:if test="${ggrole=='yes' && (wtlx=='15' || wtlx=='17' || wtlx=='601')}">
 					<li>
-						<a class="icon" href="onlinezdajax.do?id={qa_id}" target="ajaxTodo" title="确认进行反向置顶设置吗?' }" ><span>置顶反设</span></a>
+						<a class="icon" href="onlinezdajax.do?wtlx=${wtlx}&id={qa_id}" target="ajaxTodo" title="确认进行反向置顶设置吗?' " ><span>置顶反设</span></a>
 					</li>
 					<li class="line">line</li>
 				</c:if>
 				
 				<li>
-					<a class="edit"	href="OnLineanswer.do?aq_id={qa_id}" target="dialog" width="750" height="500" title="${web_title }"><span>查看</span></a>
+					<a class="edit"	href="OnLineanswer.do?wtlx=${wtlx}&aq_id={qa_id}" target="dialog" width="750" height="500" title="${web_title }"><span>查看</span></a>
 				</li>
 				<li class="line">line</li>
 			</ul>
