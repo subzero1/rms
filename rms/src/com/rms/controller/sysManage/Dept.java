@@ -86,7 +86,7 @@ public class Dept {
 		
 		deptListMap.put( area_name , tmpList);
 		modelMap.put("deptListMap",deptListMap);
-		modelMap.put("areaList", dao.search("  from Tc02_area order by id "));
+		modelMap.put("areaList", dao.search("  from Tc02_area where type like '%[3]%' order by id "));
 		return new ModelAndView("/WEB-INF/jsp/sysManage/deptList.jsp",modelMap);
 	}
 	
@@ -97,7 +97,7 @@ public class Dept {
 		
 		Ta01_dept dept = null;
 		//获取所属地区列表
-		modelMap.put("areaList", dao.search("from Tc02_area order by id"));
+		modelMap.put("areaList", dao.search("from Tc02_area where type like '%[3]%' order by id"));
 		
 		//获取部门对象
 		dept = (Ta01_dept) dao.getObject(Ta01_dept.class, id);

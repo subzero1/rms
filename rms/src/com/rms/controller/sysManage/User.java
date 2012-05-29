@@ -91,7 +91,7 @@ public class User {
 			user_map.put(area_name, tmp_user_list);
 		}
 		modelMap.put("user_map", user_map);
-		modelMap.put("areaList", dao.search("from Tc02_area order by id"));
+		modelMap.put("areaList", dao.search("from Tc02_area where type like '%[3]%' order by id"));
 		return new ModelAndView("/WEB-INF/jsp/sysManage/userList.jsp", modelMap);
 	}
 
@@ -132,7 +132,7 @@ public class User {
 										+ id + ")"));
 		// 获取地区列表
 		modelMap.put("areaList", dao
-				.search("from Tc02_area order by id"));
+				.search("from Tc02_area where type like '%[3]%' order by id"));
 		modelMap.put("userObj", user);
 		StringBuffer group_rsql = new StringBuffer();
 		group_rsql
