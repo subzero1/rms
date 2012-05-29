@@ -4,7 +4,7 @@
 
 <h2 class="contentTitle">基础属性维护</h2>
 <div style=" float:left; display:block; margin:10px; overflow:auto; width:25%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
-<ul class="tree expand">
+<ul class="tree">
 
 		<c:forEach var="property" items="${propertyList}">
 			<li>
