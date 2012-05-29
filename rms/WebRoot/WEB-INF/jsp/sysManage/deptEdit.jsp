@@ -47,9 +47,7 @@
 					<input type="radio" name="Ta01_dept.USEFLAG" <c:if test="${not empty deptObj && deptObj.useflag!=1 }">checked</c:if> value="0"/>无效
 				</p>
 				<div class="divider"></div>
-				<div class="remark">
-				【是否仓库】： 指当前部门是否可视为存储票据或设备的仓库部门；
-				</div>
+				<div class="remark">&nbsp;</div>
 			</div>
 			<div class="formBar">
 				<div  style="float:left;">
