@@ -44,11 +44,11 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="add" href="mbk/mbkEdit.do" target="navTab" rel="jfpm" title="机房平面信息"><span>添加</span></a></li>
+				<li><a class="add" href="mbk/mbkEdit.do" target="navTab" rel="jfpm" title="目标库信息"><span>添加</span></a></li>
 				<li class="line">line</li>
 				<li><a class="delete" href="mbk/ajaxMbkDel.do?id={mbk_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="mbk/mbkEdit.do?id={mbk_id}" target="navTab" rel="mbk" title="机房平面信息"><span>修改</span></a></li>
+				<li><a class="edit" href="mbk/mbkEdit.do?id={mbk_id}" target="navTab" rel="mbk" title="目标库信息"><span>修改</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
