@@ -17,10 +17,10 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Tc03_NUM</param>
+                <param name="sequence">Tc02_NUM</param>
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tc03_area.xml 
+                  hibernate-generator-params-Tc02_area.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
@@ -34,9 +34,41 @@
             column="name"
         />
 
+        <property
+            name="code"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="code"
+        />
+
+        <property
+            name="inc_names"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="inc_names"
+        />
+
+        <property
+            name="type"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="type"
+        />
+
+        <property
+            name="seq"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="seq"
+        />
+
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tc03_area.xml
+                hibernate-properties-Tc02_area.xml
             containing the additional properties and place it in your merge dir.
         -->
 
