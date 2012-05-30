@@ -100,7 +100,7 @@ public class Message {
 				message_title = "收件箱";
 				break;
 			case 2:
-				//hsql.append(" and te04.reader_id=ta03.id ");
+				hsql.append(" and te04.reader_id=ta03.id ");
 				hsql.append(" and send_flag=0 and sender_id=");
 				hsql.append(user_id);
 				message_title = "草稿箱";
