@@ -3,7 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-
+<script type="text/javascript">
+	$(function(){
+		$("#mc").keyup(function(e){
+			if(e.which == 13){
+				$("#searchbutton").click();
+			}
+		});
+	});
+</script>
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="mc" value="${param.mc}">
 	<input type="hidden" name="lb" value="${param.lb}">
@@ -21,14 +29,16 @@
 				<table class="searchContent">
 					<tr>
 						<td>类别：</td>
-						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="name" showForOption="name" value="${param.lb}" extend=""  extendPrefix="true" /></td>
+						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.lb}" extend="全部"  extendPrefix="true" /></td>
 						<td>单位名称：</td>
-						<td><input id="mc" name="mc" value="${param.dwmc}" type="text" size="25" /></td>
+						<td><input id="mc" name="mc" value="${param.mc}" type="text" size="25" />
+						<input type="text" style="display:none"/><!-- 防止回车键自动提交表单 -->
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'mbk/mbkList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button id="searchbutton" type="button" onClick="javascript:searchOrExcelExport(this,'wxdw/wxdwList.do',navTabSearch);">检 索</button></div></div></li>
 						<li><a class="button" href="mbk/advancedSearch.do" target="dialog" width="800" height="500" rel="advancedSearch" title="高级查询条件"><span>高级查询</span></a></li>
 					</ul>
 				</div>
@@ -50,7 +60,7 @@
 			<thead>
 				<tr>
 					<th style="width: 80px;" orderField="lb">类别</th>
-					<th orderField="dwmc">单位名称</th>
+					<th orderField="mc">单位名称</th>
 					<th style="width: 120px;" orderField="dwdz">地址</th>
 					<th style="width: 80px;" orderField="zt">状态</th>
 				</tr>
@@ -59,7 +69,7 @@
 				<c:forEach var="obj" items="${wxdwList}">
 					<tr target="wxdw_id" rel="${obj.id}">
 						<td>${obj.lb }</td>
-						<td>${obj.dwmc }</td>
+						<td>${obj.mc }</td>
 						<td>${obj.dwdz }</td>
 						<td>${obj.zt }</td>
 					</tr>
