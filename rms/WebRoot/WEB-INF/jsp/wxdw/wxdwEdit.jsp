@@ -6,24 +6,12 @@
 
 //计算页面上tab允许高度
 $(function(){
-	var bo = $("#business_oper");
-	if(bo){
-		var h = bo.height() - $("#enterprise_info").height() - 40;
-		$("#business_disp").css("height",h);
-	}
-	$("#serialInfoShow").click(
-	   function(){
-	      var tax_code="${d04.tax_code}";
-	      this.href="business/searialInfoShow.do?tax_code="+tax_code;
-	   }
-	);
-	$("#d04_form :input").change(function() {
-		$("#d04_form").data("changed",true);
-	});
+	var h = navTab._panelBox.height() - $("#wxdw_info").height();
+	$("#wxdwpz_disp").css("height",h);
 });
 </script>
 
-<div id="enterprise_info">
+<div id="wxdw_info">
 	<form id="wxdw_form" method="post" action="save.do"	class="pageForm required-validate"	onsubmit="return validateCallback(this,navTabAjaxDone);">
 		<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.wxdw.Tf01_wxdw" />
 		<input type="hidden" name="Tf01_wxdw.ID" value="${tf01.id}" />
@@ -82,7 +70,7 @@ $(function(){
 		<div class="tabsHeaderContent">
 			<ul>
 				<li class="selected">
-					<a href="javascript:void(0)"><span>用户</span> </a>
+					<a href="javascript:void(0)"><span>用 户</span> </a>
 				</li>
 				<li>
 					<a href="javascript:void(0)"><span>区域专业</span> </a>
@@ -102,23 +90,23 @@ $(function(){
 			</ul>
 		</div>
 	</div>
-	<div id="business_disp" class="tabsContent">
-		<div id="glyh_tab" class="loadFileArea"	loadfile="">
+	<div id="wxdwpz_disp" class="tabsContent">
+		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxdwUserEdit.do">
 
 		</div>
-		<div id="qyzy_tab" class="loadFileArea" loadfile="">
+		<div id="qyzy_tab" class="loadFileArea" loadfile="wxdw/qyZyEdit.do">
 
 		</div>
-		<div id="fezb_tab" class="loadFileArea" loadfile="">
+		<div id="fezb_tab" class="loadFileArea" loadfile="wxdw/fezbEdit.do">
 
 		</div>
-		<div id="zdgcs_tab" class="loadFileArea" loadfile="">
+		<div id="zdgcs_tab" class="loadFileArea" loadfile="wxdw/zjgcsEdit.do">
 
 		</div>
-		<div id="gljye_tab" class="loadFileArea" loadfile="">
+		<div id="gljye_tab" class="loadFileArea" loadfile="wxdw/gljyeEdit.do">
 
 		</div>
-		<div id="sgd_tab" class="loadFileArea" loadfile="">
+		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do">
 
 		</div>
 	</div>
