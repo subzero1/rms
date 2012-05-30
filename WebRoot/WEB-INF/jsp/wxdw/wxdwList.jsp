@@ -5,7 +5,7 @@
 
 
 <form id="pagerForm" method="post" action="">
-	<input type="hidden" name="dwmc" value="${param.dwmc}">
+	<input type="hidden" name="mc" value="${param.mc}">
 	<input type="hidden" name="lb" value="${param.lb}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -23,7 +23,7 @@
 						<td>类别：</td>
 						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="name" showForOption="name" value="${param.lb}" extend=""  extendPrefix="true" /></td>
 						<td>单位名称：</td>
-						<td><input id="dwmc" name="dwmc" value="${param.dwmc}" type="text" size="25" /></td>
+						<td><input id="mc" name="mc" value="${param.dwmc}" type="text" size="25" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
