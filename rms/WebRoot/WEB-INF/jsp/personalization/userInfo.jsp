@@ -85,7 +85,7 @@
 					<netsky:htmlSelect style="width:125" id="DEPT_ID"
 						name="Ta03_user.DEPT_ID" objectForOption="deptList"
 						valueForOption="id" showForOption="name"
-						value="${user.dept_id}" extend="" extendPrefix="true" />
+						value="${user.dept_id}" extend="" extendPrefix="true" htmlClass="required"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
