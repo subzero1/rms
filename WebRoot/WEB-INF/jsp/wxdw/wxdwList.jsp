@@ -66,7 +66,9 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${wxdwList}">
+				<c:set var="offset" value="${offset+1}"/>
 					<tr target="wxdw_id" rel="${obj.id}">
 						<td>${obj.lb }</td>
 						<td>${obj.mc }</td>
@@ -74,6 +76,16 @@
 						<td>${obj.zt }</td>
 					</tr>
 				</c:forEach>
+				<c:if test="${offset<numPerPage}">
+				<c:forEach begin="${offset}" end="${numPerPage-1}">
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<div class="panelBar">
