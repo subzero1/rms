@@ -55,5 +55,65 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwEdit.jsp", modelMap);
 	}
+	
+	/**
+	 *用户配置
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/wxdwUserEdit.do")
+	public ModelAndView wxdwUserEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwUserEdit.jsp", modelMap);
+	}
+	
+	/**
+	 * 区域专业
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/qyZyUserEdit .do")
+	public ModelAndView qyZyUserEdit (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/qyZyUserEdit .jsp", modelMap);
+	}
+	
+	/**
+	 * 份额占比
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/fezbEdit.do")
+	public ModelAndView fezbEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/fezbEdit.jsp", modelMap);
+	}
+	
+	/**
+	 * 最大在建工程数
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/zjgcsUserEdit .do")
+	public ModelAndView zjgcsUserEdit (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/zjgcsUserEdit .jsp", modelMap);
+	}
+	
+	/**
+	 * 关联交易额
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/gljyeEdit.do")
+	public ModelAndView gljyeEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/gljyeEdit.jsp", modelMap);
+	}
+	
+	/**
+	 * 施工队
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/sgdEdit.do")
+	public ModelAndView sgdEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/sgdEdit.jsp", modelMap);
+	}
 
 }
