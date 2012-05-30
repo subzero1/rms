@@ -70,10 +70,10 @@ public class Wxdw {
 	 * 区域专业
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/wxdw/qyZyUserEdit .do")
-	public ModelAndView qyZyUserEdit (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	@RequestMapping("/wxdw/qyZyEdit.do")
+	public ModelAndView qyZyEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/jsp/wxdw/qyZyUserEdit .jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/qyZyEdit.jsp", modelMap);
 	}
 	
 	/**
@@ -90,10 +90,10 @@ public class Wxdw {
 	 * 最大在建工程数
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/wxdw/zjgcsUserEdit .do")
-	public ModelAndView zjgcsUserEdit (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	@RequestMapping("/wxdw/zjgcsEdit.do")
+	public ModelAndView zjgcsEdit (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/jsp/wxdw/zjgcsUserEdit .jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/zjgcsEdit.jsp", modelMap);
 	}
 	
 	/**
