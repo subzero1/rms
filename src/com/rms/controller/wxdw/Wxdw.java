@@ -1,5 +1,9 @@
 package com.rms.controller.wxdw;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,11 +14,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
-
+import com.rms.dataObjects.wxdw.Tf01_wxdw;
 
 @Controller
 public class Wxdw {
@@ -42,10 +48,67 @@ public class Wxdw {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/wxdwList.do")
 	public ModelAndView wxdwList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		// 权限控制
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		if (rolesMap.containsKey("30101")) {
+			modelMap.put("canedit", "yes");
+		}
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "mc");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		// 查询条件
+		String mc = convertUtil.toString(request.getParameter("mc"));
+		String lb = convertUtil.toString(request.getParameter("lb"));
 
-		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwList.jsp");
+		StringBuffer hsql = new StringBuffer();
+		// Tf01_wxdw
+		hsql.append("select wxdw from Tf01_wxdw wxdw where 1=1");
+		// where条件
+		// 类别
+		if (!lb.equals("")) {
+			hsql.append(" and lb='" + lb.substring(0, 2) + "'");
+		}
+		// 名称
+		if (!mc.equals("")) {
+			hsql.append(" and mc like '%" + mc + "%'");
+		}
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Tf01_wxdw> wxdwList = new ArrayList<Tf01_wxdw>();
+		while (ro.next()) {
+			wxdwList.add((Tf01_wxdw) ro.get("wxdw"));
+		}
+		modelMap.put("wxdwList", wxdwList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		// 页面所需内容
+		// 类别
+		List<String> lbList = new ArrayList<String>();
+		lbList.add("设计单位");
+		lbList.add("施工单位");
+		lbList.add("监理单位");
+		lbList.add("审计单位");
+		modelMap.put("lbList", lbList);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwList.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 外协单位信息
 	 */
