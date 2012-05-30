@@ -45,7 +45,7 @@ function saveJfxx(){
 				</p>
 				<p>
 					<label>资源名称：</label>
-					<input type="text" id="master.dwz_devLooup.Td21_mbk.JYMC" style="width:380px;" name="Td21_mbk.JDMC" value="${Td21_mbk.zymc}" />
+					<input type="text" name="Td21_mbk.ZYMC" style="width:380px;" value="${Td21_mbk.zymc}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
