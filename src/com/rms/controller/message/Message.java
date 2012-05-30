@@ -292,7 +292,7 @@ public class Message {
 
 			// 查询地区
 			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
-			queryBuilder.like("flag", "[1]", MatchMode.ANYWHERE);
+			queryBuilder.like("type", "[3]", MatchMode.ANYWHERE);
 			List<?> areaList = queryService.searchList(queryBuilder);
 			modelMap.put("areaList", areaList);
 
