@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script language="javascript">
 
 //计算页面上tab允许高度
@@ -30,39 +31,41 @@ $(function(){
 			
 				<p>
 					<label>单位名称：</label>
-					<input type="text" id="master.dwz_devLooup.Td21_mbk.JYMC" style="width:380px;" name="Td21_mbk.JDMC" value="${Td21_mbk.zymc}" />
+					<input type="text" style="width:405px;" name="Tf01_wxdw.MC" value="${Tf01_wxdw.mc}" />
 				</p>
 				<p>
 					<label>营业执照号：</label>
-					<input readonly type="text" name="Td21_mbk.ZYBH" style="width:120px;" readonly value="${Td21_mbk.zybh}"/>
+					<input readonly type="text" name="Tf01_wxdw.YYZZH" style="width:120px;" readonly value="${Tf01_wxdw.yyzzh}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>单位地址：</label>
-					<input type="text" id="master.dwz_devLooup.Td21_mbk.JYMC" style="width:380px;" name="Td21_mbk.JDMC" value="${Td21_mbk.zymc}" />
-				</p>
-				<p>
-					<label width="90"> 法    人：</label>
-					<input type="text" name="Td21_mbk.FL" style="width:120px;" value="${Td21_mbk.fl}"/>
+					<input type="text" style="width:630px;" name="Tf01_wxdw.DWDZ" value="${Tf01_wxdw.dwdz}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
+					<label width="90"> 法    人：</label>
+					<input type="text" name="Tf01_wxdw.FR" style="width:150px;" value="${Tf01_wxdw.fr}"/>
+				</p>
+				<p>
 					<label>资质等级：</label>
-					<netsky:htmlSelect name="Td21_mbk.SSDQ" style="width:126px;" objectForOption="dqList" valueForOption="name" showForOption="name" value="${Td21_mbk.ssdq}" extend="" extendPrefix="true" />
+					<input type="text" name="Tf01_wxdw.ZZDJ" style="width:150px;" value="${Tf01_wxdw.zzdj}"/>
 				</p>
 				<p>
 					<label>状    态：</label>
-					<input type="text" name="Td21_mbk.ZLDD" style="width:150px;" value="${Td21_mbk.zldd}"/>
+					<input type="text" name="Tf01_wxdw.ZT" style="width:120px;" value="${Tf01_wxdw.zt}"/>
 				</p> 
 				<div style="height:0px;"></div>
 				<p>
 					<label>类    别：</label>
-					<input type="text" name="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
+					<input type="radio" name="Tf01_wxdw.LB" value="设计单位"/>设计单位
+					<input type="radio" name="Tf01_wxdw.LB" value="设计单位"/>施工单位
+					<input type="radio" name="Tf01_wxdw.LB" value="设计单位"/>监理单位
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>备    注：</label>
-					<textarea class="td-textarea" style="width:630px;height:40px;" type="text" name="Td21_mbk.BZ"/>${Td21_mbk.bz}</textarea>
+					<textarea class="td-textarea" style="width:630px;height:40px;" type="text" name="Tf01_wxdw.BZ"/>${Tf01_wxdw.bz}</textarea>
 				</p>
 		</div>
 		<div class="formBar">
