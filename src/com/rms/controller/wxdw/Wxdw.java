@@ -216,5 +216,12 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/sgdEdit.jsp", modelMap);
 	}
-
+	
+	/**
+	 * 施工队保存
+	 */
+	@RequestMapping("/wxdw/ajaxSaveSgd.do")
+	public void ajaxSaveSgd(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+	}
 }
