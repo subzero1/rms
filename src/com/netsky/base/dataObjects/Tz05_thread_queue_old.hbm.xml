@@ -7,8 +7,8 @@
 <hibernate-mapping
 >
     <class
-        name="com.netsky.base.dataObjects.Tz05_thread_queue"
-        table="tz05_thread_queue"
+        name="com.netsky.base.dataObjects.Tz05_thread_queue_old"
+        table="Tz05_thread_queue"
     >
 
         <id
@@ -17,53 +17,37 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">TZ05_NUM</param>
+                <param name="sequence">Tz05_NUM</param>
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tz05_thread_queue.xml 
+                  hibernate-generator-params-Tz05_thread_queue_old.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
         </id>
 
         <property
-            name="servicename"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="servicename"
-        />
-
-        <property
-            name="parameters"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="parameters"
-        />
-
-        <property
-            name="inserttime"
+            name="oper_date"
             type="java.util.Date"
             update="true"
             insert="true"
-            column="inserttime"
+            column="oper_date"
         />
 
         <property
-            name="handletime"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="handletime"
-        />
-
-        <property
-            name="batchno"
+            name="type"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="batchno"
+            column="type"
+        />
+
+        <property
+            name="paras"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="paras"
         />
 
         <property
@@ -75,11 +59,19 @@
         />
 
         <property
-            name="type"
+            name="insert_date"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="insert_date"
+        />
+
+        <property
+            name="oper_batchs"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="type"
+            column="oper_batchs"
         />
 
         <property
@@ -92,7 +84,7 @@
 
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tz05_thread_queue.xml
+                hibernate-properties-Tz05_thread_queue_old.xml
             containing the additional properties and place it in your merge dir.
         -->
 

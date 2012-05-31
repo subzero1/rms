@@ -60,7 +60,13 @@ public class Wxdw {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "mc");
+		if (orderField.equals("")) {
+			orderField = "mc";
+		}
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("orderField", orderField);
@@ -70,7 +76,6 @@ public class Wxdw {
 		String lb = convertUtil.toString(request.getParameter("lb"));
 
 		StringBuffer hsql = new StringBuffer();
-		// Tf01_wxdw
 		hsql.append("select wxdw from Tf01_wxdw wxdw where 1=1");
 		// where条件
 		// 类别
@@ -118,9 +123,9 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwEdit.jsp", modelMap);
 	}
-	
+
 	/**
-	 *用户配置
+	 * 用户配置
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/wxdwUserEdit.do")
@@ -128,7 +133,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwUserEdit.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 区域专业
 	 */
@@ -138,7 +143,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/qyZyEdit.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 份额占比
 	 */
@@ -148,17 +153,17 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/fezbEdit.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 最大在建工程数
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/zjgcsEdit.do")
-	public ModelAndView zjgcsEdit (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView zjgcsEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/zjgcsEdit.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 关联交易额
 	 */
@@ -168,7 +173,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/gljyeEdit.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 施工队
 	 */

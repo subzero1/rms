@@ -4,64 +4,33 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @description:
- * 操作日志表
- * @class name:com.netsky.base.dataObjects.Tz05_thread_queue
- * @hibernate.class table="Tz05_thread_queue"
- * @author lee~xiangyu Jan 16, 2012 
- * 
+ * @author zy 2012-5-30
+ * @hibernate.class table="tz05_thread_queue"
  */
-
-public class Tz05_thread_queue implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2004652965009073411L;
+public class Tz05_thread_queue implements Serializable {
 
 	/**
-	 * 标识
+	 * serialVersionUID
 	 */
+	private static final long serialVersionUID = 5550724252993706138L;
 	private Long id;
-	
-	/**
-	 * 操作人员工号
-	 */
-	private String type;
-	
-	/**
-	 * 操作人员姓名
-	 */
-	private String paras;
-	
-	/**
-	 * 操作人员IP
-	 */
+	private String servicename;
+	private String parameters;
+	private Date inserttime;
+	private Date handletime;
+	private String batchno;
 	private String status;
-	
-	/**
-	 * 操作时间
-	 */
-	private Date oper_date ;
-	
-	/**
-	 * 插入时间
-	 */
-	private Date insert_date ;
-	
-	/**
-	 * 执行批次（8位的随机数，防止同时起多个WEB服务的情况下多次处理）
-	 */
-	private String oper_batchs;
-	
-	/**
-	 * 备注
-	 */
+	private String type;
 	private String remark;
+
+	public Tz05_thread_queue() {
+		this.parameters = "{}";// JSON串
+		this.status = "未处理";
+	}
 
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Tz05_NUM"
+	 * @hibernate.generator-param name="sequence" value="TZ05_NUM"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -69,49 +38,91 @@ public class Tz05_thread_queue implements Serializable{
 	}
 
 	/**
-	 * @param id The id to set.
+	 * @param id
+	 *            The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @hibernate.property column="oper_date"
-	 * @return Returns the oper_date.
+	 * @hibernate.property column="servicename"
+	 * @return Returns the servicename.
 	 */
-	public Date getOper_date() {
-		return oper_date;
+	public String getServicename() {
+		return servicename;
 	}
 
 	/**
-	 * @param oper_date The oper_date to set.
+	 * @param servicename
+	 *            The servicename to set.
 	 */
-	public void setOper_date(Date oper_date) {
-		this.oper_date = oper_date;
+	public void setServicename(String servicename) {
+		this.servicename = servicename;
 	}
 
 	/**
-	 * @hibernate.property column="type"
-	 * @return Returns the type.
+	 * @hibernate.property column="parameters"
+	 * @return Returns the parameters.
 	 */
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public String getParameters() {
+		return parameters;
 	}
 
 	/**
-	 * @hibernate.property column="paras"
-	 * @return Returns the paras.
+	 * @param parameters
+	 *            The parameters to set.
 	 */
-	public String getParas() {
-		return paras;
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
 	}
 
-	public void setParas(String paras) {
-		this.paras = paras;
+	/**
+	 * @hibernate.property column="inserttime"
+	 * @return Returns the inserttime.
+	 */
+	public Date getInserttime() {
+		return inserttime;
+	}
+
+	/**
+	 * @param inserttime
+	 *            The inserttime to set.
+	 */
+	public void setInserttime(Date inserttime) {
+		this.inserttime = inserttime;
+	}
+
+	/**
+	 * @hibernate.property column="handletime"
+	 * @return Returns the handletime.
+	 */
+	public Date getHandletime() {
+		return handletime;
+	}
+
+	/**
+	 * @param handletime
+	 *            The handletime to set.
+	 */
+	public void setHandletime(Date handletime) {
+		this.handletime = handletime;
+	}
+
+	/**
+	 * @hibernate.property column="batchno"
+	 * @return Returns the batchno.
+	 */
+	public String getBatchno() {
+		return batchno;
+	}
+
+	/**
+	 * @param batchno
+	 *            The batchno to set.
+	 */
+	public void setBatchno(String batchno) {
+		this.batchno = batchno;
 	}
 
 	/**
@@ -122,32 +133,28 @@ public class Tz05_thread_queue implements Serializable{
 		return status;
 	}
 
+	/**
+	 * @param status
+	 *            The status to set.
+	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
 	/**
-	 * @hibernate.property column="insert_date"
-	 * @return Returns the insert_date.
+	 * @hibernate.property column="type"
+	 * @return Returns the type.
 	 */
-	public Date getInsert_date() {
-		return insert_date;
-	}
-
-	public void setInsert_date(Date insert_date) {
-		this.insert_date = insert_date;
+	public String getType() {
+		return type;
 	}
 
 	/**
-	 * @hibernate.property column="oper_batchs"
-	 * @return Returns the oper_batchs.
+	 * @param type
+	 *            The type to set.
 	 */
-	public String getOper_batchs() {
-		return oper_batchs;
-	}
-
-	public void setOper_batchs(String oper_batchs) {
-		this.oper_batchs = oper_batchs;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	/**
@@ -158,7 +165,12 @@ public class Tz05_thread_queue implements Serializable{
 		return remark;
 	}
 
+	/**
+	 * @param remark
+	 *            The remark to set.
+	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
 }

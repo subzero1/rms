@@ -138,9 +138,7 @@
  	  <url-pattern>/faceUpload.do</url-pattern>
   	</servlet-mapping>
   	
-  	<!-- mq线程启动监听器 -->
 	<listener>  
         <listener-class>com.rms.listener.Thread_Listener</listener-class>   
     </listener>
-     
 </web-app>
