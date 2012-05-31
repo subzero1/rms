@@ -218,10 +218,18 @@ public class Wxdw {
 	}
 	
 	/**
-	 * 施工队保存
+	 * 保存施工队
 	 */
 	@RequestMapping("/wxdw/ajaxSaveSgd.do")
 	public void ajaxSaveSgd(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+	}
+	
+	/**
+	 * 删除施工队
+	 */
+	@RequestMapping("/wxdw/ajaxDelSgd.do")
+	public void ajaxDelSgd(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 	}
 }
