@@ -51,7 +51,7 @@
 			<ul class="toolBar">
 				<li><a class="add" href="wxdw/wxdwEdit.do" target="navTab" rel="wxdw" title="外协单位维护"><span>添加</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="wxdw/wxdwEdit.do?id={wxdw_id}" target="navTab" rel="mbk" title="外协单位维护"><span>修改</span></a></li>
+				<li><a class="edit" href="wxdw/wxdwEdit.do?id={wxdw_id}" target="navTab" rel="wxdw" title="外协单位维护"><span>修改</span></a></li>
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/wxdwList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
