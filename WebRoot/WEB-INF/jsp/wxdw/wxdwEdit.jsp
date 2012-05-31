@@ -91,22 +91,22 @@ $(function(){
 		</div>
 	</div>
 	<div id="wxdwpz_disp" class="tabsContent">
-		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxdwUserEdit.do">
+		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
-		<div id="qyzy_tab" class="loadFileArea" loadfile="wxdw/qyZyEdit.do">
+		<div id="qyzy_tab" class="loadFileArea" loadfile="wxdw/qyZyEdit.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
-		<div id="fezb_tab" class="loadFileArea" loadfile="wxdw/fezbEdit.do">
+		<div id="fezb_tab" class="loadFileArea" loadfile="wxdw/fezbEdit.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
-		<div id="zdgcs_tab" class="loadFileArea" loadfile="wxdw/zjgcsEdit.do">
+		<div id="zdgcs_tab" class="loadFileArea" loadfile="wxdw/zjgcsEdit.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
-		<div id="gljye_tab" class="loadFileArea" loadfile="wxdw/gljyeEdit.do">
+		<div id="gljye_tab" class="loadFileArea" loadfile="wxdw/gljyeEdit.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
-		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do">
+		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
 	</div>

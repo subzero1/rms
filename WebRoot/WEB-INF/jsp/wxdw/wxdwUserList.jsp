@@ -6,13 +6,13 @@
 
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="add" href="wxdw/wxdwUserEdit.do" target="dialog" width="400" height="300" rel="wxdwUser" title="外协单位用户配置"><span>添加</span></a></li>
+				<li><a class="add" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }" target="dialog" width="500" height="260" rel="wxdwUser" title="外协单位用户配置"><span>添加</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="wxdw/wxdwUserEdit.do?id={user_id}" target="dialog" width="400" height="300" rel="wxdwUser" title="外协单位用户配置"><span>修改</span></a></li>
+				<li><a class="edit" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id={user_id}" target="dialog" width="400" height="300" rel="wxdwUser" title="外协单位用户配置"><span>修改</span></a></li>
 				<li class="line">line</li>
-				<li><a class="delete"	href="wxdwUserDelAjax.do?id={user_id}" target="ajaxTodo" title="确认删除吗?"><span>删除</span></a></li>
+				<li><a class="delete"	href="wxdwUserDelAjax.do?wxdw_id=${param.wxdw_id }&id={user_id}" target="ajaxTodo" title="确认删除吗?"><span>删除</span></a></li>
 				<li class="line">line</li>
-				<li><a class="exportexcel"	href="wxdw/wxdwUserList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
+				<li><a class="exportexcel"	href="wxdw/wxdwUserList.do?wxdw_id=${param.wxdw_id }&toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
