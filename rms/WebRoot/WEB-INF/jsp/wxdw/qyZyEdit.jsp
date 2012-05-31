@@ -51,7 +51,7 @@ function saveQyzyConfig(){
 		<input type="hidden" name="lb" value=""/>
 		<input type="hidden" name="wxdw_id" value="${param.wxdw_id }"/>
 	</form>
-	<table class="report" layouth="138" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 			<thead>
 				<tr>
 					<th style="width: 80px;">&nbsp;</th>
