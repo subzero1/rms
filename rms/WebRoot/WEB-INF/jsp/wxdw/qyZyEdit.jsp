@@ -48,7 +48,7 @@ function saveQyzyConfig(){
 		</ul>
 	</div>
 	<form id="qyzy_form" action="wxdw/ajaxSaveWxdwConfig.do">
-		<input type="hidden" name="lb" value=""/>
+		<input type="hidden" name="lb" value="${param.lb }"/>
 		<input type="hidden" name="wxdw_id" value="${param.wxdw_id }"/>
 	</form>
 	<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
