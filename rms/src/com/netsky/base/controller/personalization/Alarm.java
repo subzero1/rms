@@ -23,6 +23,7 @@ import com.netsky.base.dataObjects.Ta27_user_remind;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.convertUtil;
 
 @Controller("/alarm.do") 
 public class Alarm implements org.springframework.web.servlet.mvc.Controller{
@@ -101,34 +102,45 @@ public class Alarm implements org.springframework.web.servlet.mvc.Controller{
 		String message_flag1="";
 		String mobile_flag1="";
 		if(ro.next()){
-			message_flag1=ro.get("message_flag").toString();
-			mobile_flag1=ro.get("mobile_flag").toString();
-		
+			message_flag1=convertUtil.toString(ro.get("message_flag"));
+			mobile_flag1=convertUtil.toString(ro.get("mobile_flag"));
+		}
+		else{
+			message_flag1="1";
+			mobile_flag1="1";
+		}
 		request.setAttribute("message_flag1", message_flag1);
 		request.setAttribute("mobile_flag1", mobile_flag1);
-		}
 		
-	   sql1_ta27="select mobile_flag,message_flag from Ta27_user_remind where remind_type=2 and user_id="+user_id;
+	    sql1_ta27="select mobile_flag,message_flag from Ta27_user_remind where remind_type=2 and user_id="+user_id;
 		ro  =  queryService.search(sql1_ta27);
 		String message_flag2="";
 		String mobile_flag2="";
 		if(ro.next()){
-			message_flag2=ro.get("message_flag").toString();
-			mobile_flag2=ro.get("mobile_flag").toString();
-		
+			message_flag2=convertUtil.toString(ro.get("message_flag"));
+			mobile_flag2=convertUtil.toString(ro.get("mobile_flag"));
+		}
+		else{
+			message_flag2="1";
+			mobile_flag2="1";
+		}
 		request.setAttribute("message_flag2", message_flag2);
 		request.setAttribute("mobile_flag2", mobile_flag2);
-		}
+		
 		sql1_ta27="select mobile_flag,message_flag from Ta27_user_remind where remind_type=3 and user_id="+user_id;
 		ro  =  queryService.search(sql1_ta27);
 		String message_flag3="";
 		String mobile_flag3="";
 		if(ro.next()){
-			message_flag3=ro.get("message_flag").toString();
-			mobile_flag3=ro.get("mobile_flag").toString();
+			message_flag3=convertUtil.toString(ro.get("message_flag"));
+			mobile_flag3=convertUtil.toString(ro.get("mobile_flag"));
+		}
+		else{
+			message_flag3="1";
+			mobile_flag3="1";
+		}
 		request.setAttribute("message_flag3", message_flag3);
 		request.setAttribute("mobile_flag3", mobile_flag3);
-		}
 		
 		return  new ModelAndView("/WEB-INF/jsp/personalization/alarm.jsp");
 	}
