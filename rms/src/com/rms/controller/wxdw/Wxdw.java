@@ -1,5 +1,6 @@
 package com.rms.controller.wxdw;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netsky.base.baseObject.HibernateQueryBuilder;
+import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
+import com.netsky.base.dataObjects.Ta22_user_idea;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -125,7 +130,17 @@ public class Wxdw {
 	}
 
 	/**
-	 * 用户配置
+	 *用户配置列表
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/wxdwUserList.do")
+	public ModelAndView wxdwUserList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwUserList.jsp", modelMap);
+	}
+	
+	/**
+	 *用户配置
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/wxdwUserEdit.do")
@@ -134,6 +149,15 @@ public class Wxdw {
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwUserEdit.jsp", modelMap);
 	}
 
+	/**
+	 * 用户配置保存
+	 * 系统自动获得账号前缀，自动生成账号和密码，初始密码与账号相同，自动配置用户对应的岗位和所属部门
+	 */
+	@RequestMapping("/wxdw/ajaxSaveWxdwUser.do")
+	public void ajaxSaveWxdwUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+	}
+	
 	/**
 	 * 区域专业
 	 */
@@ -144,6 +168,15 @@ public class Wxdw {
 		return new ModelAndView("/WEB-INF/jsp/wxdw/qyZyEdit.jsp", modelMap);
 	}
 
+	/**
+	 * 配置保存
+	 * 区域专业\份额占比\最大在建工程数\关联交易额
+	 */
+	@RequestMapping("/wxdw/ajaxSaveWxdwConfig.do")
+	public void ajaxSaveWxdwConfig(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+	}
+	
 	/**
 	 * 份额占比
 	 */
