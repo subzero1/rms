@@ -6,7 +6,7 @@
 
 //计算页面上tab允许高度
 $(function(){
-	var h = navTab._panelBox.height() - $("#wxdw_info").height();
+	var h = navTab._panelBox.height() - $("#wxdw_info").height() - 25;
 	$("#wxdwpz_disp").css("height",h);
 });
 </script>

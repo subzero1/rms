@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=7" />
-		<title>无锡电信机房平面管理系统</title>
+		<title>南京电信工程建设目标库管理系统（RMS）</title>
 
 		<link href="themes/default/style.css" rel="stylesheet" type="text/css" />
 		<link href="themes/css/core.css" rel="stylesheet" type="text/css" />
