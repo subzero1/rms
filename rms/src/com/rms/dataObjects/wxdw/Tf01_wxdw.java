@@ -89,6 +89,11 @@ public class Tf01_wxdw implements Serializable {
 	private Double zdcjgr;
 
 	/**
+	 * 工号前三位
+	 */
+	private String no;
+
+	/**
 	 * @hibernate.id generator-class="sequence"
 	 * @hibernate.generator-param name="sequence" value="TF01_NUM"
 	 * @return Returns the id.
@@ -347,6 +352,22 @@ public class Tf01_wxdw implements Serializable {
 	 */
 	public void setRealname(String realname) {
 		this.realname = realname;
+	}
+
+	/**
+	 * @hibernate.property column="no"
+	 * @return Returns the no.
+	 */
+	public String getNo() {
+		return no;
+	}
+
+	/**
+	 * @param no
+	 *            The no to set.
+	 */
+	public void setNo(String no) {
+		this.no = no;
 	}
 
 }

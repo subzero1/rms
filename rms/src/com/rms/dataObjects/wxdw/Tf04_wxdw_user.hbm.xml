@@ -7,8 +7,8 @@
 <hibernate-mapping
 >
     <class
-        name="com.rms.dataObjects.base.Tc01_property"
-        table="Tc01_property"
+        name="com.rms.dataObjects.wxdw.Tf04_wxdw_user"
+        table="tf04_wxdw_user"
     >
 
         <id
@@ -17,42 +17,42 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Tc01_NUM</param>
+                <param name="sequence">TF04_NUM</param>
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tc01_property.xml 
+                  hibernate-generator-params-Tf04_wxdw_user.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
         </id>
 
         <property
-            name="name"
-            type="java.lang.String"
+            name="user_id"
+            type="java.lang.Long"
             update="true"
             insert="true"
-            column="name"
+            column="user_id"
         />
 
         <property
-            name="type"
-            type="java.lang.String"
+            name="wxdw_id"
+            type="java.lang.Long"
             update="true"
             insert="true"
-            column="type"
+            column="wxdw_id"
         />
 
         <property
-            name="flag"
+            name="area"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="flag"
+            column="area"
         />
 
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tc01_property.xml
+                hibernate-properties-Tf04_wxdw_user.xml
             containing the additional properties and place it in your merge dir.
         -->
 

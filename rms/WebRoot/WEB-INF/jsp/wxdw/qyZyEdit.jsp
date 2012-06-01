@@ -34,7 +34,10 @@ function saveQyzyConfig(){
 		data:$form.serializeArray(),
 		dataType:"json",
 		cache: false,
-		success: callback || DWZ.ajaxDone,
+		success: function(json){
+			DWZ.ajaxDone(json);
+			$("#qyzy_tab").loadUrl("wxdw/qyZyEdit.do?lb=qyzy&wxdw_id=${param.wxdw_id }");
+		},
 		error: DWZ.ajaxError
 	});
 }
@@ -55,40 +58,19 @@ function saveQyzyConfig(){
 			<thead>
 				<tr>
 					<th style="width: 80px;">&nbsp;</th>
-					<th style="width: 80px;">电缆</th>
-					<th style="width:80px;">光缆</th>
-					<th style="width: 80px;">移动</th>
-					<th style="width: 80px;">土建</th>
+					<c:forEach items="${qyList}" var="qy">
+						<th style="width: 80px;">${qy.name }</th>
+					</c:forEach>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${zyList}" var="zy">
 				<tr>
-					<td style="width: 80px;">白下区</td>
-					<td style="width: 80px;" class="qyzy selectArea" qy="白下区" zy="电缆">&nbsp;	</td>
-					<td style="width: 80px;" class="qyzy" qy="白下区" zy="光缆">&nbsp;</td>
-					<td style="width: 80px;" class="qyzy" qy="白下区" zy="移动">&nbsp;</td>
-					<td style="width: 80px;" class="qyzy" qy="白下区" zy="土建">&nbsp;</td>
+					<td style="width: 80px;">${zy.name }</td>
+					<c:forEach items="${qyList}" var="qy">
+						<td style="width: 80px;" class="qyzy <c:if test="${not empty dygxMap[zy.name][qy.name] }">selectArea</c:if>" qy="${qy.name }" zy="${zy.name }">&nbsp;</td>
+					</c:forEach>
 				</tr>
-				<tr>
-					<td>玄武区</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy selectArea" qy="玄武区" zy="土建">&nbsp;</td>
-				</tr>
-				<tr>
-					<td>秦淮区</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy selectArea" qy="秦淮区" zy="移动">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-				</tr>
-				<tr>
-					<td>……</td>
-					<td class="qyzy selectArea" qy="……" zy="电缆">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-					<td class="qyzy">&nbsp;</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
