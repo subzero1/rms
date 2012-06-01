@@ -156,6 +156,7 @@
 				<value>com/netsky/base/dataObjects/Tz03_login_log.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz04_node_del.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz05_thread_queue.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz07_dataobject_cfg.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/base/Tc01_property.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tc02_area.hbm.xml</value>
