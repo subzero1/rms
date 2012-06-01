@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.netsky.base.baseObject.SharedCfgData;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.baseDao.JdbcSupport;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.OperProperties;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
@@ -30,7 +31,7 @@ import com.netsky.base.baseObject.PropertyInject;
 
 /**
  * @author lee.xiangyu
- * @desc create dataObjects[java] from ta06,ta07
+ * @desc create dataObjects[java] from tz07
  * 		 create hibernate configure file[java.hbm] from dataObjects
  * 		 write [java.hbm] to applicationContext-hibernate.xml
  */
@@ -54,6 +55,9 @@ public class CreateDataObjectsServiceImpl {
 	@Autowired
 	private SaveService saveService;
 	
+	@Autowired
+	private JdbcSupport jdbcSupport;
+	
 	public void setQueryService(QueryService queryService) {
 		this.queryService = queryService;
 	}
@@ -62,9 +66,13 @@ public class CreateDataObjectsServiceImpl {
 		this.saveService = saveService;
 	}
 
+	public void setJdbcSupport(JdbcSupport jdbcSupport) {
+		this.jdbcSupport = jdbcSupport;
+	}
+
 	/**
 	 * @param paramMap
-	 * @desc create dataObjects[java] and hibernate *.hbm.xml from ta06,ta07
+	 * @desc create dataObjects[java] and hibernate *.hbm.xml from tz07
 	 */
 	public void createJavaAndXml(Map<String, Object> paramMap) throws Exception{
 		/*
