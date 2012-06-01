@@ -138,6 +138,14 @@
             column="realname"
         />
 
+        <property
+            name="no"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="no"
+        />
+
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Tf01_wxdw.xml

@@ -68,7 +68,7 @@
 
         <property
             name="content"
-            type="org.springframework.orm.hibernate3.support.ClobStringType"
+            type="java.lang.String"
             update="true"
             insert="true"
             column="content"

@@ -8,13 +8,45 @@
 $(function(){
 	var h = navTab._panelBox.height() - $("#wxdw_info").height() - 25;
 	$("#wxdwpz_disp").css("height",h);
+	
+	$("#submitbutton").click(function(){
+		var flag = false;
+	if ("${Tf01_wxdw.id}"==""){
+		alertMsg.confirm("您选择的该外协单位类别为"+$("input[name='Tf01_wxdw\\.LB']:checked").val()+"单位，确认保存吗？", {
+			okCall: function(){
+				$.ajax({
+					url:'wxdw/getWxdwNOAjax.do?lb='+encodeURI(encodeURI($("input[name='Tf01_wxdw\\.LB']:checked").val())),
+					type:'post',
+					success:function(msg){
+						msg = $.trim(msg);
+						$("#no").val(msg);
+						validateCallback($("#wxdw_form"),navTabAjaxDone);
+					}
+				});
+			}
+		});
+	} else if ("${Tf01_wxdw.lb}"!=$("input[name='Tf01_wxdw\\.LB']:checked").val()){
+		alertMsg.confirm("您更改了该外协单位的类别，确认保存吗？", {
+			okCall: function(){
+					validateCallback($("#wxdw_form"),navTabAjaxDone);
+			}
+		});
+	} else {
+		validateCallback($("#wxdw_form"),navTabAjaxDone);
+	}
+	});
 });
 </script>
 
 <div id="wxdw_info">
-	<form id="wxdw_form" method="post" action="save.do"	class="pageForm required-validate"	onsubmit="return validateCallback(this,navTabAjaxDone);">
+	<form id="wxdw_form" method="post" action="save.do"	class="pageForm required-validate">
 		<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.wxdw.Tf01_wxdw" />
-		<input type="hidden" name="Tf01_wxdw.ID" value="${tf01.id}" />
+		<input type="hidden" name="Tf01_wxdw.ID" value="${Tf01_wxdw.id}" />
+		<input type="hidden" name="perproty" value="id,Tf01_wxdw,id">
+		<input type="hidden" name="_forwardUrl" value="wxdw/wxdwEdit.do" />
+		<input type="hidden" name="_callbackType" value="forward" />
+		<input type="hidden" name="_navTabId" value="wxdwList" />
+		<input type="hidden" name="Tf01_wxdw.NO" id="no" value="${Tf01_wxdw.no }" />
 		<div class="pageFormContent">
 			
 				<p>
@@ -46,20 +78,20 @@ $(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>类    别：</label>
-					<input type="radio" name="Tf01_wxdw.LB" value="设计单位"/>设计单位
-					<input type="radio" name="Tf01_wxdw.LB" value="设计单位"/>施工单位
-					<input type="radio" name="Tf01_wxdw.LB" value="设计单位"/>监理单位
+					<input type="radio" name="Tf01_wxdw.LB" value="设计" checked="checked"/>设计单位
+					<input type="radio" name="Tf01_wxdw.LB" value="施工" <c:if test="${Tf01_wxdw.lb == '施工'}">checked="checked"</c:if>/>施工单位
+					<input type="radio" name="Tf01_wxdw.LB" value="监理" <c:if test="${Tf01_wxdw.lb == '监理'}">checked="checked"</c:if>/>监理单位
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>备    注：</label>
-					<textarea class="td-textarea" style="width:630px;height:40px;" type="text" name="Tf01_wxdw.BZ"/>${Tf01_wxdw.bz}</textarea>
+					<textarea class="td-textarea" style="width:630px;height:40px;" name="Tf01_wxdw.BZ">${Tf01_wxdw.bz}</textarea>
 				</p>
 		</div>
 		<div class="formBar">
 			<ul>
 				<li>
-					<div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div>
+					<div class="buttonActive"><div class="buttonContent"><button type="button" id="submitbutton">保 存</button></div></div>
 				</li>
 			</ul>
 		</div>

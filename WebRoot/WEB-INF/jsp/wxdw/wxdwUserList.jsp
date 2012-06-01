@@ -6,14 +6,14 @@
 
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="add" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }" target="dialog" width="500" height="260" rel="wxdwUser" title="外协单位用户配置"><span>添加</span></a></li>
-				<li class="line">line</li>
-				<li><a class="edit" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id={user_id}" target="dialog" width="400" height="300" rel="wxdwUser" title="外协单位用户配置"><span>修改</span></a></li>
-				<li class="line">line</li>
-				<li><a class="delete"	href="wxdwUserDelAjax.do?wxdw_id=${param.wxdw_id }&id={user_id}" target="ajaxTodo" title="确认删除吗?"><span>删除</span></a></li>
-				<li class="line">line</li>
-				<li><a class="exportexcel"	href="wxdw/wxdwUserList.do?wxdw_id=${param.wxdw_id }&toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
-				<li class="line">line</li>
+				<c:if test="${not empty param.wxdw_id }">
+					<li><a class="add" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }" target="dialog" width="500" height="260" rel="wxdwUser" title="外协单位用户配置"><span>添加</span></a></li>
+					<li class="line">line</li>
+					<li><a class="edit" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id={user_id}" target="dialog" width="500" height="260" rel="wxdwUser" title="外协单位用户配置"><span>修改</span></a></li>
+					<li class="line">line</li>
+					<li><a class="exportexcel"	href="wxdw/wxdwUserList.do?wxdw_id=${param.wxdw_id }&toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
+					<li class="line">line</li>
+				</c:if>
 			</ul>
 		</div>
 		
@@ -29,13 +29,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr target="wxdw_id" rel="${obj.id}">
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+				<c:forEach items="${wxdwUserList}" var="wxdwUser">
+					<tr target="user_id" rel="${wxdwUser.id}">
+						<td>${wxdwUser.login_id }</td>
+						<td>${wxdwUser.name }</td>
+						<td>${wxdwUser.mobile_tel }</td>
+						<td>${wxdwUser.sex }</td>
+						<td>${wxdwUser.email }</td>
+						<td>
+						<c:forEach items="${user_staMap[wxdwUser]}" var="ta02">
+							${ta02.name }&nbsp;&nbsp;
+						</c:forEach>
+						</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>

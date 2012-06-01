@@ -49,6 +49,7 @@
             insert="true"
             column="cj"
         />
+
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Tc04_jcsb.xml
