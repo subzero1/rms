@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.rms.dataObjects.wxdw.Tf05_wxdw_dygx"
-        table="tf05_wxdw_dygx"
-    >
+    <class name="Tf05_wxdw_dygx"  table="$table_name">
 
         <id
             name="id"
@@ -17,76 +14,66 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">TF05_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tf05_wxdw_dygx.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">tf05_num</param>
             </generator>
         </id>
 
-        <property
-            name="lb"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="lb"
-        />
+   <property
+  name="lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lb"
+  />
 
-        <property
-            name="wxdw_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="wxdw_id"
-        />
+  <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
 
-        <property
-            name="zy"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="zy"
-        />
+  <property
+  name="zy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zy"
+  />
 
-        <property
-            name="dq"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="dq"
-        />
+  <property
+  name="dq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dq"
+  />
 
-        <property
-            name="nd"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="nd"
-        />
+  <property
+  name="nd"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="nd"
+  />
 
-        <property
-            name="v1"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="v1"
-        />
+  <property
+  name="v1"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="v1"
+  />
 
-        <property
-            name="v2"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="v2"
-        />
+  <property
+  name="v2"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="v2"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tf05_wxdw_dygx.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 
