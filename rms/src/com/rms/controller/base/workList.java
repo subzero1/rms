@@ -152,7 +152,7 @@ public class workList {
 			/**
 			 * 判断当前人工作是否委托出去
 			 */
-			List tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userId = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
+			List tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userid = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
 			if(tmpList.size()>0){				
 				return new ModelAndView("/WEB-INF/" + loginClient+ "jsp/workList.jsp",modelMap);
 			}
@@ -359,7 +359,7 @@ public class workList {
 			/**
 			 * 判断当前人工作是否委托出去
 			 */
-			List tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userId = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
+			List tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userid = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
 			if(tmpList.size()>0){
 				return new ModelAndView("/WEB-INF/jsp/docListUI.jsp" ,modelMap);
 			}
