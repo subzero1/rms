@@ -106,7 +106,7 @@ public class WorkTust {
 		tmpList = queryService.searchList("select tc01.name as name,tc01.id as id from Tc01_area tc01 ");
 		modelMap.put("area_list", tmpList);
 		
-		tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userId = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
+		tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userid = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
 		if(tmpList.size()>0){
 			String warnMessage = "本人工作已委托出去，收回前不可以再次操作！";
 			modelMap.put("warnMessage", warnMessage);		
@@ -252,7 +252,7 @@ public class WorkTust {
 			Ta03_user user = (Ta03_user)session.getAttribute("user");
 			
 			hsql.append("select ta28 from Ta28_work_trust ta28,Ta03_user ta03,Ta01_dept ta01");
-			hsql.append("	where ta28.from_userId = ta03.id");
+			hsql.append("	where ta28.from_userid = ta03.id");
 			hsql.append("	and ta03.dept_id = ta01.id");
 			if(!"".equals(keyWord)){
 				hsql.append(" and (from_userName like '%" + keyWord + "%' or to_userName like '%" + keyWord + "%' )");
@@ -264,7 +264,7 @@ public class WorkTust {
 				hsql.append("and start_time < to_date('" + end_date + "','yyyy-mm-dd') + 1");
 			}
 			if(3 == user.getSearch_level()){
-				hsql.append(" and (from_userId =" + user.getId() + " or to_userId  =" +  user.getId() +")" );
+				hsql.append(" and (from_userid =" + user.getId() + " or to_userid  =" +  user.getId() +")" );
 			}
 			if(2 >= user.getSearch_level()){
 				if ("".equals(area_id)) {

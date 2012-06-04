@@ -110,9 +110,9 @@ public class LoadUserDataServiceImp implements LoadUserDataService {
 		 */
 		hsql.delete(0, hsql.length());
 		hsql.append("select ta03 from Ta28_work_trust ta28,Ta03_user ta03");
-		hsql.append(" where ta28.from_userId = ta03.id");
+		hsql.append(" where ta28.from_userid = ta03.id");
 		hsql.append(" and ta28.end_time is null");
-		hsql.append(" and ta28.to_userId = " );
+		hsql.append(" and ta28.to_userid = " );
 		hsql.append(user.getId());
 		List<Ta03_user> trustUserList = (List<Ta03_user>)queryService.searchList(hsql.toString());
 		if(trustUserList.size()>0){
