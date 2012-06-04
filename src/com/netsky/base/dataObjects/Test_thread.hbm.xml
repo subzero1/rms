@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tz01_exception"  table="$table_name">
+    <class name="Test_thread"  table="$table_name">
 
         <id
             name="id"
@@ -14,40 +14,56 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">tz01_num</param>
+                <param name="sequence">test_num</param>
             </generator>
         </id>
 
    <property
-  name="optime"
+  name="servicename"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="servicename"
+  />
+
+  <property
+  name="parameters"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="parameters"
+  />
+
+  <property
+  name="inserttime"
   type="java.util.Date"
   update="true"
   insert="true"
-  column="optime"
+  column="inserttime"
   />
 
   <property
-  name="opclass"
-  type="java.lang.String"
+  name="handletime"
+  type="java.util.Date"
   update="true"
   insert="true"
-  column="opclass"
+  column="handletime"
   />
 
   <property
-  name="name"
+  name="batchno"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="name"
+  column="batchno"
   />
 
   <property
-  name="stacktrace"
+  name="status"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="stacktrace"
+  column="status"
   />
 
 

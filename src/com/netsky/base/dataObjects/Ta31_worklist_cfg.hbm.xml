@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta31_worklist_cfg"
-        table="TA31_WORKLIST_CFG"
-    >
+    <class name="Ta31_worklist_cfg"  table="$table_name">
 
         <id
             name="id"
@@ -17,44 +14,34 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta31_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta31_worklist_cfg.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta31_num</param>
             </generator>
         </id>
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="field_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="field_id"
-        />
+  <property
+  name="field_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="field_id"
+  />
 
-        <property
-            name="ord"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="ord"
-        />
+  <property
+  name="ord"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ord"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta31_worklist_cfg.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

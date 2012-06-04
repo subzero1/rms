@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta30_template_list"
-        table="Ta30_template_list"
-    >
+    <class name="Ta30_template_list"  table="$table_name">
 
         <id
             name="id"
@@ -17,52 +14,42 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta30_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta30_template_list.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta30_num</param>
             </generator>
         </id>
 
-        <property
-            name="parent_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="parent_id"
-        />
+   <property
+  name="parent_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="parent_id"
+  />
 
-        <property
-            name="type"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="key"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="key"
-        />
+  <property
+  name="key"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="key"
+  />
 
-        <property
-            name="value"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="value"
-        />
+  <property
+  name="value"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="value"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta30_template_list.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

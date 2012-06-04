@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta18_phase"
-        table="Ta18_phase"
-    >
+    <class name="Ta18_phase"  table="$table_name">
 
         <id
             name="id"
@@ -17,52 +14,42 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta18_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta18_phase.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta18_num</param>
             </generator>
         </id>
 
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-        />
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
 
-        <property
-            name="seq"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="seq"
-        />
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
 
-        <property
-            name="module_ids"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="module_ids"
-        />
+  <property
+  name="module_ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="module_ids"
+  />
 
-        <property
-            name="node_names"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="node_names"
-        />
+  <property
+  name="node_names"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_names"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta18_phase.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

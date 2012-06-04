@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta27_user_remind"
-        table="Ta27_user_remind"
-    >
+    <class name="Ta27_user_remind"  table="$table_name">
 
         <id
             name="id"
@@ -17,52 +14,42 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta27_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta27_user_remind.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta27_num</param>
             </generator>
         </id>
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="remind_type"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="remind_type"
-        />
+  <property
+  name="remind_type"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="remind_type"
+  />
 
-        <property
-            name="mobile_flag"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="mobile_flag"
-        />
+  <property
+  name="mobile_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="mobile_flag"
+  />
 
-        <property
-            name="message_flag"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="message_flag"
-        />
+  <property
+  name="message_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="message_flag"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta27_user_remind.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

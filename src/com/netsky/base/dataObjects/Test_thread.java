@@ -5,15 +5,15 @@ import java.util.Date;
 
 /**
  * @author cmp_auto 2012-06-04
- * @hibernate.class table="Tz05_thread_queue"
+ * @hibernate.class table="Test_thread"
  */
 
-public class Tz05_thread_queue implements Serializable{
+public class Test_thread implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3616849167748182L;
+	private static final long serialVersionUID = 940438205578738304L;
 
 	/**
 	 * 标识
@@ -22,7 +22,7 @@ public class Tz05_thread_queue implements Serializable{
 	
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="tz05_num"
+	 * @hibernate.generator-param name="sequence" value="test_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -122,7 +122,7 @@ public class Tz05_thread_queue implements Serializable{
   }
 
  /**
- * 状态(0:未处理;1:已处理;2:处理失败)
+ * 状态(已处理,未处理,处理失败的原因)
  */
  private String status;
 
@@ -136,40 +136,6 @@ public class Tz05_thread_queue implements Serializable{
 
  public void setStatus(String status) {
     this.status = status;
-  }
-
- /**
- * 类别
- */
- private String type;
-
- /**
- * @hibernate.property column="type"
- * @return Returns the type.
- */
- public String getType() {
-    return type;
- }
-
- public void setType(String type) {
-    this.type = type;
-  }
-
- /**
- * 说明
- */
- private String remark;
-
- /**
- * @hibernate.property column="remark"
- * @return Returns the remark.
- */
- public String getRemark() {
-    return remark;
- }
-
- public void setRemark(String remark) {
-    this.remark = remark;
   }
 
 

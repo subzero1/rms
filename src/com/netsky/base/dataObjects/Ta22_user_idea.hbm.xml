@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta22_user_idea"
-        table="Ta22_user_idea"
-    >
+    <class name="Ta22_user_idea"  table="$table_name">
 
         <id
             name="id"
@@ -17,44 +14,34 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta22_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta22_user_idea.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta22_num</param>
             </generator>
         </id>
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="check_result"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="check_result"
-        />
+  <property
+  name="check_result"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="check_result"
+  />
 
-        <property
-            name="check_idea"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="check_idea"
-        />
+  <property
+  name="check_idea"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="check_idea"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta22_user_idea.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

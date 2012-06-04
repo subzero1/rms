@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta06_module"
-        table="Ta06_module"
-    >
+    <class name="Ta06_module"  table="$table_name">
 
         <id
             name="id"
@@ -17,100 +14,98 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta06_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta06_module.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta06_num</param>
             </generator>
         </id>
 
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-        />
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
 
-        <property
-            name="type"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="type"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="project_table"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="project_table"
-        />
+  <property
+  name="project_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="project_table"
+  />
 
-        <property
-            name="form_table"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="form_table"
-        />
+  <property
+  name="form_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_table"
+  />
 
-        <property
-            name="form_url"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="form_url"
-        />
+  <property
+  name="form_url"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_url"
+  />
 
-        <property
-            name="form_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="form_name"
-        />
+  <property
+  name="form_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_name"
+  />
 
-        <property
-            name="form_pic"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="form_pic"
-        />
+  <property
+  name="form_pic"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_pic"
+  />
 
-        <property
-            name="slave_module"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="slave_module"
-        />
+  <property
+  name="slave_module"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="slave_module"
+  />
 
-        <property
-            name="detail_table"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="detail_table"
-        />
+  <property
+  name="aux_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="aux_table"
+  />
 
-        <property
-            name="aux_table"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="aux_table"
-        />
+  <property
+  name="detail_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="detail_table"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta06_module.xml
-            containing the additional properties and place it in your merge dir.
-        -->
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
+
 
     </class>
 

@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta01_dept"
-        table="Ta01_dept"
-    >
+    <class name="Ta01_dept"  table="$table_name">
 
         <id
             name="id"
@@ -17,68 +14,58 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta01_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta01_dept.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta01_num</param>
             </generator>
         </id>
 
-        <property
-            name="up_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="up_id"
-        />
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
 
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-        />
+  <property
+  name="code"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="code"
+  />
 
-        <property
-            name="code"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="code"
-        />
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
 
-        <property
-            name="remark"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="remark"
-        />
+  <property
+  name="useflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="useflag"
+  />
 
-        <property
-            name="useflag"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="useflag"
-        />
+  <property
+  name="area_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="area_name"
+  />
 
-        <property
-            name="area_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="area_name"
-        />
+  <property
+  name="up_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="up_id"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta01_dept.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

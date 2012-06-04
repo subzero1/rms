@@ -4,63 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 操作日志表
- * 
- * @author Chiang
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Tz02_oper_log"
  */
+
 public class Tz02_oper_log implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6033441917721262348L;
-	/**
-	 * ID NUMBER(10),
-	 * 
-	 */
-	private Long id;
-	/**
-	 * 工号
-	 */
-	private String login_id;
-	/**
-	 * OPTIME DATE,
-	 * 
-	 */
-	private Date optime;
-	/**
-	 * 描述
-	 */
-	private String opdesc;
-	/**
-	 * OPUSER VARCHAR2(20),
-	 * 
-	 */
-	private String opuser;
-	/**
-	 * OPTYPE VARCHAR2(10),
-	 * 
-	 */
-	private String optype;
-	/**
-	 * OPTABLE VARCHAR2(100),
-	 * 
-	 */
-	private String optable;
-	/**
-	 * OLD_DATA VARCHAR2(4000),
-	 * 
-	 */
-	private String old_data;
-	/**
-	 * NEW_DATA VARCHAR2(4000)
-	 * 
-	 */
-	private String new_data;
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 659884191419985152L;
+
+	/**
+	 * 标识
+	 */
+	private Long id;
+	
+	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Tz02_NUM"
+	 * @hibernate.generator-param name="sequence" value="tz02_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -68,133 +30,147 @@ public class Tz02_oper_log implements Serializable{
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="optime"
-	 * @return the optime
-	 */
-	public Date getOptime() {
-		return optime;
-	}
+	 /**
+ * 
+ */
+ private String login_id;
 
-	/**
-	 * @param optime
-	 *            the optime to set
-	 */
-	public void setOptime(Date optime) {
-		this.optime = optime;
-	}
+ /**
+ * @hibernate.property column="login_id"
+ * @return Returns the login_id.
+ */
+ public String getLogin_id() {
+    return login_id;
+ }
 
-	/**
-	 * @hibernate.property column="opuser"
-	 * @return the opuser
-	 */
-	public String getOpuser() {
-		return opuser;
-	}
+ public void setLogin_id(String login_id) {
+    this.login_id = login_id;
+  }
 
-	/**
-	 * @param opuser
-	 *            the opuser to set
-	 */
-	public void setOpuser(String opuser) {
-		this.opuser = opuser;
-	}
+ /**
+ * 
+ */
+ private String opuser;
 
-	/**
-	 * @hibernate.property column="optype"
-	 * @return the optype
-	 */
-	public String getOptype() {
-		return optype;
-	}
+ /**
+ * @hibernate.property column="opuser"
+ * @return Returns the opuser.
+ */
+ public String getOpuser() {
+    return opuser;
+ }
 
-	/**
-	 * @param optype
-	 *            the optype to set
-	 */
-	public void setOptype(String optype) {
-		this.optype = optype;
-	}
+ public void setOpuser(String opuser) {
+    this.opuser = opuser;
+  }
 
-	/**
-	 * @hibernate.property column="optable"
-	 * @return the optable
-	 */
-	public String getOptable() {
-		return optable;
-	}
+ /**
+ * 
+ */
+ private Date optime;
 
-	/**
-	 * @param optable
-	 *            the optable to set
-	 */
-	public void setOptable(String optable) {
-		this.optable = optable;
-	}
+ /**
+ * @hibernate.property column="optime"
+ * @return Returns the optime.
+ */
+ public Date getOptime() {
+    return optime;
+ }
 
-	/**
-	 * @hibernate.property column="old_data"
-	 * @return the old_data
-	 */
-	public String getOld_data() {
-		return old_data;
-	}
+ public void setOptime(Date optime) {
+    this.optime = optime;
+  }
 
-	/**
-	 * @param old_data
-	 *            the old_data to set
-	 */
-	public void setOld_data(String old_data) {
-		this.old_data = old_data;
-	}
+ /**
+ * 
+ */
+ private String opdesc;
 
-	/**
-	 * @hibernate.property column="new_data"
-	 * @return the new_data
-	 */
-	public String getNew_data() {
-		return new_data;
-	}
+ /**
+ * @hibernate.property column="opdesc"
+ * @return Returns the opdesc.
+ */
+ public String getOpdesc() {
+    return opdesc;
+ }
 
-	/**
-	 * @param new_data
-	 *            the new_data to set
-	 */
-	public void setNew_data(String new_data) {
-		this.new_data = new_data;
-	}
-	/**
-	 * @hibernate.property column="login_id"
-	 * @return login_id
-	 */
-	public String getLogin_id() {
-		return login_id;
-	}
-	/**
-	 * @param login_id
-	 */
-	public void setLogin_id(String login_id) {
-		this.login_id = login_id;
-	}
-	/**
-	 * @hibernate.property column="opdesc"
-	 * @return opdesc
-	 */
-	public String getOpdesc() {
-		return opdesc;
-	}
-	/**
-	 * @param opdesc
-	 */
-	public void setOpdesc(String opdesc) {
-		this.opdesc = opdesc;
-	}
+ public void setOpdesc(String opdesc) {
+    this.opdesc = opdesc;
+  }
+
+ /**
+ * 
+ */
+ private String optype;
+
+ /**
+ * @hibernate.property column="optype"
+ * @return Returns the optype.
+ */
+ public String getOptype() {
+    return optype;
+ }
+
+ public void setOptype(String optype) {
+    this.optype = optype;
+  }
+
+ /**
+ * 
+ */
+ private String optable;
+
+ /**
+ * @hibernate.property column="optable"
+ * @return Returns the optable.
+ */
+ public String getOptable() {
+    return optable;
+ }
+
+ public void setOptable(String optable) {
+    this.optable = optable;
+  }
+
+ /**
+ * 
+ */
+ private String old_data;
+
+ /**
+ * @hibernate.property column="old_data"
+ * @return Returns the old_data.
+ */
+ public String getOld_data() {
+    return old_data;
+ }
+
+ public void setOld_data(String old_data) {
+    this.old_data = old_data;
+  }
+
+ /**
+ * 
+ */
+ private String new_data;
+
+ /**
+ * @hibernate.property column="new_data"
+ * @return Returns the new_data.
+ */
+ public String getNew_data() {
+    return new_data;
+ }
+
+ public void setNew_data(String new_data) {
+    this.new_data = new_data;
+  }
+
 
 }

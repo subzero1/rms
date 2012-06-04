@@ -1,53 +1,28 @@
 package com.netsky.base.dataObjects;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 附件表
- * 
- * @author mengying 2009-12-11
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Te08_message"
  */
-public class Te08_message {
+
+public class Te08_message implements Serializable{
 
 	/**
-	 * 主键
+	 * 
+	 */
+	private static final long serialVersionUID = 550556999673854400L;
+
+	/**
+	 * 标识
 	 */
 	private Long id;
-
-	/**
-	 * 发送人
-	 */
-	private String fsr;
-
-	/**
-	 * 接收人
-	 */
-	private String jsr;
 	
-	/**
-	 * 发送时间
-	 */
-	private Date fssj;
-	
-	/**
-	 * 标题
-	 */
-	private String title;
-
-	/**
-	 * 内容
-	 */
-	private String content;
-	
-	/**
-	 * 发送状态
-	 */
-	private String state;
-
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Te08_NUM"
+	 * @hibernate.generator-param name="sequence" value="te08_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -61,93 +36,107 @@ public class Te08_message {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="fsr"
-	 * @return the fsr
-	 */
-	public String getFsr() {
-		return fsr;
-	}
+	 /**
+ * 发送人
+ */
+ private String fsr;
 
-	/**
-	 * @param fsr The fsr to set.
-	 */
-	public void setFsr(String fsr) {
-		this.fsr = fsr;
-	}
+ /**
+ * @hibernate.property column="fsr"
+ * @return Returns the fsr.
+ */
+ public String getFsr() {
+    return fsr;
+ }
 
-	/**
-	 * @hibernate.property column="jsr"
-	 * @return the jsr
-	 */
-	public String getJsr() {
-		return jsr;
-	}
+ public void setFsr(String fsr) {
+    this.fsr = fsr;
+  }
 
-	/**
-	 * @param jsr The jsr to set.
-	 */
-	public void setJsr(String jsr) {
-		this.jsr = jsr;
-	}
+ /**
+ * 接收人
+ */
+ private String jsr;
 
-	/**
-	 * @hibernate.property column="fssj"
-	 * @return the fssj
-	 */
-	public Date getFssj() {
-		return fssj;
-	}
+ /**
+ * @hibernate.property column="jsr"
+ * @return Returns the jsr.
+ */
+ public String getJsr() {
+    return jsr;
+ }
 
-	/**
-	 * @param fssj The fssj to set.
-	 */
-	public void setFssj(Date fssj) {
-		this.fssj = fssj;
-	}
+ public void setJsr(String jsr) {
+    this.jsr = jsr;
+  }
 
-	/**
-	 * @hibernate.property column="title"
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
-	}
+ /**
+ * 发送时间
+ */
+ private Date fssj;
 
-	/**
-	 * @param title The title to set.
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
+ /**
+ * @hibernate.property column="fssj"
+ * @return Returns the fssj.
+ */
+ public Date getFssj() {
+    return fssj;
+ }
 
-	/**
-	 * @hibernate.property column="content"
-	 * @return the content
-	 */
-	public String getContent() {
-		return content;
-	}
+ public void setFssj(Date fssj) {
+    this.fssj = fssj;
+  }
 
-	/**
-	 * @param content The content to set.
-	 */
-	public void setContent(String content) {
-		this.content = content;
-	}
+ /**
+ * 标题
+ */
+ private String title;
 
-	/**
-	 * @hibernate.property column="state"
-	 * @return the state
-	 */
-	public String getState() {
-		return state;
-	}
+ /**
+ * @hibernate.property column="title"
+ * @return Returns the title.
+ */
+ public String getTitle() {
+    return title;
+ }
 
-	/**
-	 * @param state The state to set.
-	 */
-	public void setState(String state) {
-		this.state = state;
-	}
+ public void setTitle(String title) {
+    this.title = title;
+  }
+
+ /**
+ * 内容
+ */
+ private String content;
+
+ /**
+ * @hibernate.property column="content"
+ * @return Returns the content.
+ */
+ public String getContent() {
+    return content;
+ }
+
+ public void setContent(String content) {
+    this.content = content;
+  }
+
+ /**
+ * 发送状态
+ */
+ private String state;
+
+ /**
+ * @hibernate.property column="state"
+ * @return Returns the state.
+ */
+ public String getState() {
+    return state;
+ }
+
+ public void setState(String state) {
+    this.state = state;
+  }
+
+
 }

@@ -1,32 +1,28 @@
 package com.netsky.base.dataObjects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * @author lee.xiangyu 2009-12-11
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Ta24_phase_timelimit"
  */
 
-public class Ta24_phase_timelimit implements Serializable {
-	
+public class Ta24_phase_timelimit implements Serializable{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2437714947072675648L;
-
-	private Long id;
-	
-	private Long phase_id;
-	
-	private String phase_name;
-	
-	private String gclb;
-	
-	private Long timelimit;
+	private static final long serialVersionUID = 219205065736570048L;
 
 	/**
+	 * 标识
+	 */
+	private Long id;
+	
+	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Ta24_NUM"
+	 * @hibernate.generator-param name="sequence" value="ta24_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -34,71 +30,79 @@ public class Ta24_phase_timelimit implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="phase_name"
-	 * @return the phase_id
-	 */
-	public String getPhase_name() {
-		return phase_name;
-	}
+	 /**
+ * 阶段标识
+ */
+ private Long phase_id;
 
-	/**
-	 * @param relevance_table the phase_name to set
-	 */
-	public void setPhase_name(String phase_name) {
-		this.phase_name = phase_name;
-	}
+ /**
+ * @hibernate.property column="phase_id"
+ * @return Returns the phase_id.
+ */
+ public Long getPhase_id() {
+    return phase_id;
+ }
 
-	/**
-	 * @hibernate.property column="phase_id"
-	 * @return the phase_id
-	 */
-	public Long getPhase_id() {
-		return phase_id;
-	}
+ public void setPhase_id(Long phase_id) {
+    this.phase_id = phase_id;
+  }
 
-	/**
-	 * @param relevance_table the phase_id to set
-	 */
-	public void setPhase_id(Long phase_id) {
-		this.phase_id = phase_id;
-	}
+ /**
+ * 阶段名称
+ */
+ private String phase_name;
 
-	/**
-	 * @hibernate.property column="gclb"
-	 * @return the gclb
-	 */
-	public String getGclb() {
-		return gclb;
-	}
+ /**
+ * @hibernate.property column="phase_name"
+ * @return Returns the phase_name.
+ */
+ public String getPhase_name() {
+    return phase_name;
+ }
 
-	/**
-	 * @param relevance_table the gclb to set
-	 */
-	public void setGclb(String gclb) {
-		this.gclb = gclb;
-	}
+ public void setPhase_name(String phase_name) {
+    this.phase_name = phase_name;
+  }
 
-	/**
-	 * @hibernate.property column="timelimit"
-	 * @return the timelimit
-	 */
-	public Long getTimelimit() {
-		return timelimit;
-	}
+ /**
+ * 工程类别
+ */
+ private String gclb;
 
-	/**
-	 * @param relevance_table the timelimit to set
-	 */
-	public void setTimelimit(Long timelimit) {
-		this.timelimit = timelimit;
-	}
-	
+ /**
+ * @hibernate.property column="gclb"
+ * @return Returns the gclb.
+ */
+ public String getGclb() {
+    return gclb;
+ }
+
+ public void setGclb(String gclb) {
+    this.gclb = gclb;
+  }
+
+ /**
+ * 期限
+ */
+ private Long timelimit;
+
+ /**
+ * @hibernate.property column="timelimit"
+ * @return Returns the timelimit.
+ */
+ public Long getTimelimit() {
+    return timelimit;
+ }
+
+ public void setTimelimit(Long timelimit) {
+    this.timelimit = timelimit;
+  }
+
+
 }
-

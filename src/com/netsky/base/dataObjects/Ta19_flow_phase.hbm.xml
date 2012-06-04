@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta19_flow_phase"
-        table="Ta19_flow_phase"
-    >
+    <class name="Ta19_flow_phase"  table="$table_name">
 
         <id
             name="id"
@@ -17,44 +14,34 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta19_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta19_flow_phase.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta19_num</param>
             </generator>
         </id>
 
-        <property
-            name="flow_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="flow_id"
-        />
+   <property
+  name="flow_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="flow_id"
+  />
 
-        <property
-            name="phase_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="phase_id"
-        />
+  <property
+  name="phase_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="phase_id"
+  />
 
-        <property
-            name="isstart"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="isstart"
-        />
+  <property
+  name="isstart"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="isstart"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta19_flow_phase.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

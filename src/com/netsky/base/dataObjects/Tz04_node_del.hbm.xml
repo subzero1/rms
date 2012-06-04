@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Tz04_node_del"
-        table="Tz04_node_del"
-    >
+    <class name="Tz04_node_del"  table="$table_name">
 
         <id
             name="id"
@@ -17,92 +14,82 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Tz04_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tz04_node_del.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">tz04_num</param>
             </generator>
         </id>
 
-        <property
-            name="login_id"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="login_id"
-        />
+   <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
 
-        <property
-            name="user_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="user_name"
-        />
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
 
-        <property
-            name="oper_ip"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="oper_ip"
-        />
+  <property
+  name="oper_ip"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="oper_ip"
+  />
 
-        <property
-            name="oper_date"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="oper_date"
-        />
+  <property
+  name="oper_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="oper_date"
+  />
 
-        <property
-            name="gcbh"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="gcbh"
-        />
+  <property
+  name="gcbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcbh"
+  />
 
-        <property
-            name="gcmc"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="gcmc"
-        />
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
+  />
 
-        <property
-            name="action"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="action"
-        />
+  <property
+  name="action"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="action"
+  />
 
-        <property
-            name="node_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="node_id"
-        />
+  <property
+  name="node_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_id"
+  />
 
-        <property
-            name="node_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="node_name"
-        />
+  <property
+  name="node_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_name"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tz04_node_del.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

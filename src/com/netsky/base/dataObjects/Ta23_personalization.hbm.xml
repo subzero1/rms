@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta23_personalization"
-        table="Ta23_personalization"
-    >
+    <class name="Ta23_personalization"  table="$table_name">
 
         <id
             name="id"
@@ -17,44 +14,34 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta23_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta23_personalization.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta23_num</param>
             </generator>
         </id>
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="po_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="po_id"
-        />
+  <property
+  name="po_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="po_id"
+  />
 
-        <property
-            name="type"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="type"
+  type="java.lang.Integer"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta23_personalization.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

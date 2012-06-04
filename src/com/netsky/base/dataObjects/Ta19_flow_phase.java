@@ -1,30 +1,28 @@
 package com.netsky.base.dataObjects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * @author lee.xiangyu 2009-12-11
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Ta19_flow_phase"
  */
 
-public class Ta19_flow_phase implements Serializable {
-	
+public class Ta19_flow_phase implements Serializable{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -270060101445865679L;
-
-	private Long id;
-	
-	private Long flow_id;
-	
-	private Long phase_id;
-	
-	private String isstart;
+	private static final long serialVersionUID = 927659361499018240L;
 
 	/**
+	 * 标识
+	 */
+	private Long id;
+	
+	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Ta19_NUM"
+	 * @hibernate.generator-param name="sequence" value="ta19_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -32,57 +30,62 @@ public class Ta19_flow_phase implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="flow_id"
-	 * @return the flow_id
-	 */
-	public Long getFlow_id() {
-		return flow_id;
-	}
+	 /**
+ * 流程标识
+ */
+ private Long flow_id;
 
-	/**
-	 * @param relevance_table the flow_id to set
-	 */
-	public void setFlow_id(Long flow_id) {
-		this.flow_id = flow_id;
-	}
+ /**
+ * @hibernate.property column="flow_id"
+ * @return Returns the flow_id.
+ */
+ public Long getFlow_id() {
+    return flow_id;
+ }
 
-	/**
-	 * @hibernate.property column="phase_id"
-	 * @return the phase_id
-	 */
-	public Long getPhase_id() {
-		return phase_id;
-	}
+ public void setFlow_id(Long flow_id) {
+    this.flow_id = flow_id;
+  }
 
-	/**
-	 * @param relevance_table the phase_id to set
-	 */
-	public void setPhase_id(Long phase_id) {
-		this.phase_id = phase_id;
-	}
+ /**
+ * 项目进度标识
+ */
+ private Long phase_id;
 
-	/**
-	 * @hibernate.property column="isstart"
-	 * @return the isstart
-	 */
-	public String getIsstart() {
-		return isstart;
-	}
+ /**
+ * @hibernate.property column="phase_id"
+ * @return Returns the phase_id.
+ */
+ public Long getPhase_id() {
+    return phase_id;
+ }
 
-	/**
-	 * @param relevance_table the isstart to set
-	 */
-	public void setIsstart(String isstart) {
-		this.isstart = isstart;
-	}
-	
-	
+ public void setPhase_id(Long phase_id) {
+    this.phase_id = phase_id;
+  }
+
+ /**
+ * 是否当前流程的起始阶段
+ */
+ private String isstart;
+
+ /**
+ * @hibernate.property column="isstart"
+ * @return Returns the isstart.
+ */
+ public String getIsstart() {
+    return isstart;
+ }
+
+ public void setIsstart(String isstart) {
+    this.isstart = isstart;
+  }
+
+
 }
-
