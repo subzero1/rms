@@ -8,9 +8,12 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.IOException;
+import java.io.Writer;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
 import org.apache.log4j.Logger;
@@ -19,6 +22,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.netsky.base.service.QueryService;
+import com.netsky.base.service.SaveService;
 import com.netsky.base.baseDao.JdbcSupport;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.OperProperties;
@@ -44,6 +48,12 @@ public class CreateDataObjectsServiceImpl {
 	@Autowired
 	private QueryService queryService;
 	
+	/**
+	 * 数据库保存操作服务
+	 */
+	@Autowired
+	private SaveService saveService;
+	
 	@Autowired
 	private JdbcSupport jdbcSupport;
 	
@@ -64,11 +74,12 @@ public class CreateDataObjectsServiceImpl {
 		 *获得相关参数 
 		 */
 		String webPath = convertUtil.toString(paramMap.get("webPath"));
-		Long ta07_id =  convertUtil.toLong(paramMap.get("ta07_id"));
+		Long tz07_id =  convertUtil.toLong(paramMap.get("tz07_id"));
 		paramMap.put("webPath", webPath);
-		paramMap.put("ta07_id", ta07_id);
+		paramMap.put("tz07_id", tz07_id);
 		createDoJava(paramMap);
 		java2Xml(paramMap);
+		saveService.updateByHSql("update Tz07_dataobject_cfg set status = '已处理' where id = "+tz07_id);
 	}
 	/**
 	 * @param paramMap
@@ -78,7 +89,7 @@ public class CreateDataObjectsServiceImpl {
 		
 		OperProperties op = new OperProperties();
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
-		String webPath = (String)paramMap.get("webPath");
+		String appPath = (String)paramMap.get("appPath");
 		
 		Long tz07_id = (Long)paramMap.get("tz07_id");
 		if(tz07_id == null){
@@ -186,17 +197,18 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 * 生成文件
 		 */
-		if(t_modelContent == null || t_modelContent.trim().equals("")){
+		if(t_modelContent != null && !t_modelContent.trim().equals("")){
 			StringBuffer t_container  = new StringBuffer("");
 			t_container.delete(0, t_container.length());
-			t_container.append(webPath);
+			t_container.append(appPath);
 			t_container.append(System.getProperty("file.separator"));
 			t_container.append("src");
 			t_container.append(System.getProperty("file.separator"));
 			t_container.append(packageName.replaceAll("\\.", "/"));
 			t_container.append(System.getProperty("file.separator"));
 			t_container.append(tableName+".java");
-			FileWriter out = new FileWriter(t_container.toString());
+			FileOutputStream fout = new FileOutputStream(t_container.toString());
+			Writer out = new OutputStreamWriter(fout, "utf-8");
 			out.write(t_modelContent);
 			out.close();
 		}
@@ -209,7 +221,7 @@ public class CreateDataObjectsServiceImpl {
 		
 		OperProperties op = new OperProperties();
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
-		String webPath = (String)paramMap.get("webPath");
+		String appPath = (String)paramMap.get("appPath");
 		
 		Long tz07_id = (Long)paramMap.get("tz07_id");
 		if(tz07_id == null){
@@ -311,17 +323,18 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 * 生成文件
 		 */
-		if(t_modelContent == null || t_modelContent.trim().equals("")){
+		if(t_modelContent != null && !t_modelContent.trim().equals("")){
 			StringBuffer t_container  = new StringBuffer("");
 			t_container.delete(0, t_container.length());
-			t_container.append(webPath);
+			t_container.append(appPath);
 			t_container.append(System.getProperty("file.separator"));
 			t_container.append("src");
 			t_container.append(System.getProperty("file.separator"));
 			t_container.append(packageName.replaceAll("\\.", "/"));
 			t_container.append(System.getProperty("file.separator"));
 			t_container.append(tableName+".hbm.xml");
-			FileWriter out = new FileWriter(t_container.toString());
+			FileOutputStream fout = new FileOutputStream(t_container.toString());
+			Writer out = new OutputStreamWriter(fout, "utf-8");
 			out.write(t_modelContent);
 			out.close();
 		}
