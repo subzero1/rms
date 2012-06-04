@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf03_yhda"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf03_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
+
+  <property
+  name="xm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xm"
+  />
+
+  <property
+  name="xb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xb"
+  />
+
+  <property
+  name="mz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mz"
+  />
+
+  <property
+  name="jg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jg"
+  />
+
+  <property
+  name="csrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="csrq"
+  />
+
+  <property
+  name="jtzz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jtzz"
+  />
+
+  <property
+  name="sfzh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sfzh"
+  />
+
+  <property
+  name="xl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xl"
+  />
+
+  <property
+  name="lxdh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lxdh"
+  />
+
+  <property
+  name="gzjl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gzjl"
+  />
+
+  <property
+  name="zp"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zp"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="zt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zt"
+  />
+
+  <property
+  name="zynl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zynl"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

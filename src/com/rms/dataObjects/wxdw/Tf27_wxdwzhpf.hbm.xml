@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf27_wxdwzhpf"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf27_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
+
+  <property
+  name="wxdw_mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_mc"
+  />
+
+  <property
+  name="cjr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjr"
+  />
+
+  <property
+  name="cjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjrq"
+  />
+
+  <property
+  name="area_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="area_name"
+  />
+
+  <property
+  name="gsgmdf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="gsgmdf"
+  />
+
+  <property
+  name="glspdf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="glspdf"
+  />
+
+  <property
+  name="yjnldf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="yjnldf"
+  />
+
+  <property
+  name="gczldf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="gczldf"
+  />
+
+  <property
+  name="clgldf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="clgldf"
+  />
+
+  <property
+  name="zhdf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zhdf"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="wxdw_lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_lb"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

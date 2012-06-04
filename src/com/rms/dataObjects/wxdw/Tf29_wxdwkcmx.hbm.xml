@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf29_wxdwkcmx"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf29_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="tf28_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="tf28_id"
+  />
+
+  <property
+  name="ckr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ckr"
+  />
+
+  <property
+  name="cksl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="cksl"
+  />
+
+  <property
+  name="ckrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ckrq"
+  />
+
+  <property
+  name="sfdb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sfdb"
+  />
+
+  <property
+  name="xggc"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="xggc"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="dbkc_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dbkc_id"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

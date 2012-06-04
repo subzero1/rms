@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf06_clb"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf06_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="clmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clmc"
+  />
+
+  <property
+  name="dw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw"
+  />
+
+  <property
+  name="gg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gg"
+  />
+
+  <property
+  name="xh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xh"
+  />
+
+  <property
+  name="cllx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cllx"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
