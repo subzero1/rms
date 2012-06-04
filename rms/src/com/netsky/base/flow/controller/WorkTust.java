@@ -131,10 +131,10 @@ public class WorkTust {
 		try {
 			request.setCharacterEncoding("GBK");
 			Ta28_work_trust ta28 = new Ta28_work_trust();
-			ta28.setFrom_userId(convertUtil.toLong(request.getParameter("from_userId")));
-			ta28.setFrom_userName(convertUtil.toString(request.getParameter("from_userName")));
-			ta28.setTo_userId(convertUtil.toLong(request.getParameter("to_userId")));
-			ta28.setTo_userName(convertUtil.toString(request.getParameter("to_userName")));
+			ta28.setFrom_userid(convertUtil.toLong(request.getParameter("from_userId")));
+			ta28.setFrom_username(convertUtil.toString(request.getParameter("from_userName")));
+			ta28.setTo_userid(convertUtil.toLong(request.getParameter("to_userId")));
+			ta28.setTo_username(convertUtil.toString(request.getParameter("to_userName")));
 			ta28.setRemark(convertUtil.toString(request.getParameter("remark")));
 			ta28.setStart_time(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("start_time")));
 			
