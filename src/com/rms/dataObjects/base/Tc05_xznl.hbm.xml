@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tc02_area"  table="$table_name">
+    <class name="Tc05_xznl"  table="$table_name">
 
         <id
             name="id"
@@ -14,48 +14,64 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">tc02_num</param>
+                <param name="sequence">tc05_num</param>
             </generator>
         </id>
 
    <property
-  name="code"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="code"
-  />
-
-  <property
-  name="name"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="name"
-  />
-
-  <property
-  name="inc_names"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="inc_names"
-  />
-
-  <property
-  name="type"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="type"
-  />
-
-  <property
-  name="seq"
+  name="nd"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="seq"
+  column="nd"
+  />
+
+  <property
+  name="gczy_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="gczy_id"
+  />
+
+  <property
+  name="zyxx_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zyxx_id"
+  />
+
+  <property
+  name="xznl_mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xznl_mc"
+  />
+
+  <property
+  name="xznl_dw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xznl_dw"
+  />
+
+  <property
+  name="bzdwcb"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="bzdwcb"
+  />
+
+  <property
+  name="sfjsrl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sfjsrl"
   />
 
 

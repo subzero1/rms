@@ -1,46 +1,28 @@
 package com.rms.dataObjects.base;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * @description:
- * 局点信息
- * @class name:com.rms.dataObjects.base.Tc02_area
- * @author Administrator Jul 26, 2011
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Tc02_area"
  */
-public class Tc02_area {
+
+public class Tc02_area implements Serializable{
+
 	/**
-	 *标识
+	 * 
+	 */
+	private static final long serialVersionUID = 710733675998916608L;
+
+	/**
+	 * 标识
 	 */
 	private Long id;
-
-	/**
-	 *地区编码
-	 */
-	private String code;
 	
-	/**
-	 *地区名称
-	 */
-	private String name;
-
-	/**
-	 *地区子集
-	 */
-	private String inc_names;
-	
-	/**
-	 *功能类别[1][2][3]...
-	 */
-	private String type;
-	
-	/**
-	 *顺序
-	 */
-	private Integer seq;
-
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Tc02_NUM"
+	 * @hibernate.generator-param name="sequence" value="tc02_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -54,66 +36,90 @@ public class Tc02_area {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="name"
-	 * @return Returns the name.
-	 */
-	public String getName() {
-		return name;
-	}
+	 /**
+ * 地区编码
+ */
+ private String code;
 
-	/**
-	 * @param name The name to set.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+ /**
+ * @hibernate.property column="code"
+ * @return Returns the code.
+ */
+ public String getCode() {
+    return code;
+ }
 
-	/**
-	 * @hibernate.property column="code"
-	 * @return Returns the code.
-	 */
-	public String getCode() {
-		return code;
-	}
+ public void setCode(String code) {
+    this.code = code;
+  }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+ /**
+ * 地区名称
+ */
+ private String name;
 
-	/**
-	 * @hibernate.property column="inc_names"
-	 * @return Returns the inc_names.
-	 */
-	public String getInc_names() {
-		return inc_names;
-	}
+ /**
+ * @hibernate.property column="name"
+ * @return Returns the name.
+ */
+ public String getName() {
+    return name;
+ }
 
-	public void setInc_names(String inc_names) {
-		this.inc_names = inc_names;
-	}
+ public void setName(String name) {
+    this.name = name;
+  }
 
-	/**
-	 * @hibernate.property column="type"
-	 * @return Returns the type.
-	 */
-	public String getType() {
-		return type;
-	}
+ /**
+ * 子集：如古城区 6,7,8，吴中2
+ */
+ private String inc_names;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+ /**
+ * @hibernate.property column="inc_names"
+ * @return Returns the inc_names.
+ */
+ public String getInc_names() {
+    return inc_names;
+ }
 
-	/**
-	 * @hibernate.property column="seq"
-	 * @return Returns the seq.
-	 */
-	public Integer getSeq() {
-		return seq;
-	}
+ public void setInc_names(String inc_names) {
+    this.inc_names = inc_names;
+  }
 
-	public void setSeq(Integer seq) {
-		this.seq = seq;
-	}
+ /**
+ * 功能过虑：1 工程地区选择；2 外协单位作业区域（保证金、外协公告）；3 部门所在区域
+ */
+ private String type;
+
+ /**
+ * @hibernate.property column="type"
+ * @return Returns the type.
+ */
+ public String getType() {
+    return type;
+ }
+
+ public void setType(String type) {
+    this.type = type;
+  }
+
+ /**
+ * 顺序
+ */
+ private Long seq;
+
+ /**
+ * @hibernate.property column="seq"
+ * @return Returns the seq.
+ */
+ public Long getSeq() {
+    return seq;
+ }
+
+ public void setSeq(Long seq) {
+    this.seq = seq;
+  }
+
+
 }

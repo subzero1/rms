@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tc02_area"  table="$table_name">
+    <class name="Tc06_tzqk"  table="$table_name">
 
         <id
             name="id"
@@ -14,48 +14,40 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">tc02_num</param>
+                <param name="sequence">tc06_num</param>
             </generator>
         </id>
 
    <property
-  name="code"
+  name="bh"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="code"
+  column="bh"
   />
 
   <property
-  name="name"
+  name="qkmc"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="name"
+  column="qkmc"
   />
 
   <property
-  name="inc_names"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="inc_names"
-  />
-
-  <property
-  name="type"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="type"
-  />
-
-  <property
-  name="seq"
+  name="nd"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="seq"
+  column="nd"
+  />
+
+  <property
+  name="flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="flag"
   />
 
 
