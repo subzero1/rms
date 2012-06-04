@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Td22_mbk_lzjl"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td22_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="xgr_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="xgr_id"
+  />
+
+  <property
+  name="kssj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="kssj"
+  />
+
+  <property
+  name="jssj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jssj"
+  />
+
+  <property
+  name="xgr_bm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xgr_bm"
+  />
+
+  <property
+  name="xgr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xgr"
+  />
+
+  <property
+  name="sm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sm"
+  />
+
+  <property
+  name="mbk_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="mbk_id"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
