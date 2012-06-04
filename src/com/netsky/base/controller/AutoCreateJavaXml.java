@@ -34,7 +34,7 @@ public class AutoCreateJavaXml{
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("tz07_id", convertUtil.toLong(request.getParameter("tz07_id")));
-		paramMap.put("webName", request.getServerName());
+		paramMap.put("appPath", "D:\\workspace\\eclipseWorkspace\\rms");
 		createDoService.createJavaAndXml(paramMap);
 		return null;
 	}
@@ -50,7 +50,7 @@ public class AutoCreateJavaXml{
 			Tz07_dataobject_cfg tz07 = (Tz07_dataobject_cfg)ro.get("tz07");
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("tz07_id", tz07.getId());
-			paramMap.put("webName", request.getServerName());
+			paramMap.put("appPath", "D:\\workspace\\eclipseWorkspace\\rms");
 			createDoService.createJavaAndXml(paramMap);
 		}
 		return null;
