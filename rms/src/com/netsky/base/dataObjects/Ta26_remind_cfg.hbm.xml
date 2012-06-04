@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta26_remind_cfg"
-        table="Ta26_remind_cfg"
-    >
+    <class name="Ta26_remind_cfg"  table="$table_name">
 
         <id
             name="id"
@@ -17,60 +14,58 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta26_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta26_remind_cfg.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta26_num</param>
             </generator>
         </id>
 
-        <property
-            name="module_ids"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="module_ids"
-        />
+   <property
+  name="node_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_name"
+  />
 
-        <property
-            name="node_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="node_name"
-        />
+  <property
+  name="module_ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="module_ids"
+  />
 
-        <property
-            name="node_status"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="node_status"
-        />
+  <property
+  name="node_status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_status"
+  />
 
-        <property
-            name="pre_days"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="pre_days"
-        />
+  <property
+  name="pre_days"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="pre_days"
+  />
 
-        <property
-            name="project_status"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="project_status"
-        />
+  <property
+  name="project_status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="project_status"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta26_remind_cfg.xml
-            containing the additional properties and place it in your merge dir.
-        -->
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
+
 
     </class>
 

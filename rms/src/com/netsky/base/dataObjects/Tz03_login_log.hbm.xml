@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Tz03_login_log"
-        table="Tz03_login_log"
-    >
+    <class name="Tz03_login_log"  table="$table_name">
 
         <id
             name="id"
@@ -17,68 +14,58 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Tz03_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tz03_login_log.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">tz03_num</param>
             </generator>
         </id>
 
-        <property
-            name="systeminfo"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="systeminfo"
-        />
+   <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
 
-        <property
-            name="login_id"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="login_id"
-        />
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
 
-        <property
-            name="user_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="user_name"
-        />
+  <property
+  name="login_ip"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_ip"
+  />
 
-        <property
-            name="login_ip"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="login_ip"
-        />
+  <property
+  name="login_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="login_date"
+  />
 
-        <property
-            name="login_date"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="login_date"
-        />
+  <property
+  name="logout_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="logout_date"
+  />
 
-        <property
-            name="logout_date"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="logout_date"
-        />
+  <property
+  name="systeminfo"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="systeminfo"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tz03_login_log.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

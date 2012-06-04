@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta29_report_template"
-        table="Ta29_report_template"
-    >
+    <class name="Ta29_report_template"  table="$table_name">
 
         <id
             name="id"
@@ -17,60 +14,50 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta29_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta29_report_template.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta29_num</param>
             </generator>
         </id>
 
-        <property
-            name="type"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="type"
-        />
+   <property
+  name="type"
+  type="java.lang.Integer"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="user_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="user_name"
-        />
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
 
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-        />
+  <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
 
-        <property
-            name="module_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="module_id"
-        />
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta29_report_template.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

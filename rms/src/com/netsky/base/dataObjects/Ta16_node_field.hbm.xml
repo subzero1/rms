@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta16_node_field"
-        table="Ta16_node_field"
-    >
+    <class name="Ta16_node_field"  table="$table_name">
 
         <id
             name="id"
@@ -17,36 +14,26 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta16_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta16_node_field.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta16_num</param>
             </generator>
         </id>
 
-        <property
-            name="node_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="node_id"
-        />
+   <property
+  name="node_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_id"
+  />
 
-        <property
-            name="field_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="field_id"
-        />
+  <property
+  name="field_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="field_id"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta16_node_field.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Te05_task_remind"
-        table="Te05_task_remind"
-    >
+    <class name="Te05_task_remind"  table="$table_name">
 
         <id
             name="id"
@@ -17,132 +14,122 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Te05_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Te05_task_remind.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">te05_num</param>
             </generator>
         </id>
 
-        <property
-            name="uri"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="uri"
-        />
+   <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
 
-        <property
-            name="content"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="content"
-        />
+  <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
 
-        <property
-            name="time"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="time"
-        />
+  <property
+  name="uri"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="uri"
+  />
 
-        <property
-            name="next_time"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="next_time"
-        />
+  <property
+  name="time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="time"
+  />
 
-        <property
-            name="ids"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="ids"
-        />
+  <property
+  name="next_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="next_time"
+  />
 
-        <property
-            name="persons"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="persons"
-        />
+  <property
+  name="persons"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="persons"
+  />
 
-        <property
-            name="tels"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="tels"
-        />
+  <property
+  name="ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ids"
+  />
 
-        <property
-            name="type"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="tels"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="tels"
+  />
 
-        <property
-            name="frequence"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="frequence"
-        />
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="times"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="times"
-        />
+  <property
+  name="frequence"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="frequence"
+  />
 
-        <property
-            name="fact_times"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="fact_times"
-        />
+  <property
+  name="times"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="times"
+  />
 
-        <property
-            name="remind_key"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="remind_key"
-        />
+  <property
+  name="fact_times"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fact_times"
+  />
 
-        <property
-            name="ext_params"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="ext_params"
-        />
+  <property
+  name="remind_key"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remind_key"
+  />
 
-        <property
-            name="remark"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="remark"
-        />
+  <property
+  name="ext_params"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ext_params"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Te05_task_remind.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

@@ -1,54 +1,28 @@
 package com.netsky.base.dataObjects;
 
 import java.io.Serializable;
-
-import com.netsky.base.annotation.LogDiaryField;
-import com.netsky.base.annotation.LogDiaryType;
+import java.util.Date;
 
 /**
- * @author mengying 2009-12-11
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Ta05_group"
  */
-@LogDiaryType
+
 public class Ta05_group implements Serializable{
-	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5118851640493093244L;
+	private static final long serialVersionUID = 69204936920775560L;
 
 	/**
 	 * 标识
 	 */
-	@LogDiaryField
 	private Long id;
 	
 	/**
-	 * 群组级别
-	 */
-	@LogDiaryField
-	private Integer grade;
-	
-	/**
-	 * 群组名称
-	 */
-	@LogDiaryField
-	private String name;
-	
-	/**
-	 * 上一级标识
-	 */
-	@LogDiaryField
-	private Long up_id;
-	/**
-	 * 群组描述
-	 */
-	@LogDiaryField
-	private String dis;
-
-	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Ta05_NUM"
+	 * @hibernate.generator-param name="sequence" value="ta05_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -56,69 +30,79 @@ public class Ta05_group implements Serializable{
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="grade"
-	 * @return the grade
-	 */
-	public Integer getGrade() {
-		return grade;
-	}
+	 /**
+ * 群组级别
+ */
+ private Long grade;
 
-	/**
-	 * @param grade the grade to set
-	 */
-	public void setGrade(Integer grade) {
-		this.grade = grade;
-	}
+ /**
+ * @hibernate.property column="grade"
+ * @return Returns the grade.
+ */
+ public Long getGrade() {
+    return grade;
+ }
 
-	/**
-	 * @hibernate.property column="name"
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+ public void setGrade(Long grade) {
+    this.grade = grade;
+  }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+ /**
+ * 群组名称
+ */
+ private String name;
 
-	/**
-	 * @hibernate.property column="up_id"
-	 * @return the up_id
-	 */
-	public Long getUp_id() {
-		return up_id;
-	}
+ /**
+ * @hibernate.property column="name"
+ * @return Returns the name.
+ */
+ public String getName() {
+    return name;
+ }
 
-	/**
-	 * @param up_id the up_id to set
-	 */
-	public void setUp_id(Long up_id) {
-		this.up_id = up_id;
-	}
-	/**
-	 * @hibernate.property column="dis"
-	 * @return dis
-	 */
-	public String getDis() {
-		return dis;
-	}
-	/**
-	 * @param dis
-	 */
-	public void setDis(String dis) {
-		this.dis = dis;
-	}
-	
+ public void setName(String name) {
+    this.name = name;
+  }
+
+ /**
+ * 上一级标识
+ */
+ private Long up_id;
+
+ /**
+ * @hibernate.property column="up_id"
+ * @return Returns the up_id.
+ */
+ public Long getUp_id() {
+    return up_id;
+ }
+
+ public void setUp_id(Long up_id) {
+    this.up_id = up_id;
+  }
+
+ /**
+ * 群组描述
+ */
+ private String dis;
+
+ /**
+ * @hibernate.property column="dis"
+ * @return Returns the dis.
+ */
+ public String getDis() {
+    return dis;
+ }
+
+ public void setDis(String dis) {
+    this.dis = dis;
+  }
+
 
 }

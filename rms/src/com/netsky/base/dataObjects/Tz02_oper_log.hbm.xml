@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Tz02_oper_log"
-        table="Tz02_oper_log"
-    >
+    <class name="Tz02_oper_log"  table="$table_name">
 
         <id
             name="id"
@@ -17,84 +14,74 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Tz02_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tz02_oper_log.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">tz02_num</param>
             </generator>
         </id>
 
-        <property
-            name="optime"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="optime"
-        />
+   <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
 
-        <property
-            name="opuser"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="opuser"
-        />
+  <property
+  name="opuser"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="opuser"
+  />
 
-        <property
-            name="optype"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="optype"
-        />
+  <property
+  name="optime"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="optime"
+  />
 
-        <property
-            name="optable"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="optable"
-        />
+  <property
+  name="opdesc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="opdesc"
+  />
 
-        <property
-            name="old_data"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="old_data"
-        />
+  <property
+  name="optype"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="optype"
+  />
 
-        <property
-            name="new_data"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="new_data"
-        />
+  <property
+  name="optable"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="optable"
+  />
 
-        <property
-            name="login_id"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="login_id"
-        />
+  <property
+  name="old_data"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="old_data"
+  />
 
-        <property
-            name="opdesc"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="opdesc"
-        />
+  <property
+  name="new_data"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="new_data"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tz02_oper_log.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

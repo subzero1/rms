@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Te01_slave"
-        table="te01_slave"
-    >
+    <class name="Te01_slave"  table="$table_name">
 
         <id
             name="id"
@@ -17,108 +14,98 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Te01_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Te01_slave.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">te01_num</param>
             </generator>
         </id>
 
-        <property
-            name="remark"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="remark"
-        />
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
 
-        <property
-            name="project_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="project_id"
-        />
+  <property
+  name="doc_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="doc_id"
+  />
 
-        <property
-            name="doc_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="doc_id"
-        />
+  <property
+  name="slave_type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="slave_type"
+  />
 
-        <property
-            name="slave_type"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="slave_type"
-        />
+  <property
+  name="file_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="file_name"
+  />
 
-        <property
-            name="file_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="file_name"
-        />
+  <property
+  name="ext_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ext_name"
+  />
 
-        <property
-            name="ext_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="ext_name"
-        />
+  <property
+  name="ftp_url"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ftp_url"
+  />
 
-        <property
-            name="ftp_url"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="ftp_url"
-        />
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
 
-        <property
-            name="user_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="user_name"
-        />
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+  <property
+  name="ftp_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ftp_date"
+  />
 
-        <property
-            name="ftp_date"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="ftp_date"
-        />
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
 
-        <property
-            name="module_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="module_id"
-        />
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Te01_slave.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

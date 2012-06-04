@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Tz05_thread_queue"
-        table="tz05_thread_queue"
-    >
+    <class name="Tz05_thread_queue"  table="$table_name">
 
         <id
             name="id"
@@ -17,84 +14,74 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">TZ05_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tz05_thread_queue.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">tz05_num</param>
             </generator>
         </id>
 
-        <property
-            name="servicename"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="servicename"
-        />
+   <property
+  name="servicename"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="servicename"
+  />
 
-        <property
-            name="parameters"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="parameters"
-        />
+  <property
+  name="parameters"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="parameters"
+  />
 
-        <property
-            name="inserttime"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="inserttime"
-        />
+  <property
+  name="inserttime"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="inserttime"
+  />
 
-        <property
-            name="handletime"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="handletime"
-        />
+  <property
+  name="handletime"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="handletime"
+  />
 
-        <property
-            name="batchno"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="batchno"
-        />
+  <property
+  name="batchno"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="batchno"
+  />
 
-        <property
-            name="status"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="status"
-        />
+  <property
+  name="status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="status"
+  />
 
-        <property
-            name="type"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="remark"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="remark"
-        />
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tz05_thread_queue.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

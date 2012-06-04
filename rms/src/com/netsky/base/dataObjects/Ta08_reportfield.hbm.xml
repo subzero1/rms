@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta08_reportfield"
-        table="Ta08_reportfield"
-    >
+    <class name="Ta08_reportfield"  table="$table_name">
 
         <id
             name="id"
@@ -17,132 +14,122 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta08_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta08_reportfield.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta08_num</param>
             </generator>
         </id>
 
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-        />
+   <property
+  name="ord"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ord"
+  />
 
-        <property
-            name="comments"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="comments"
-        />
+  <property
+  name="showflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="showflag"
+  />
 
-        <property
-            name="datatype"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="datatype"
-        />
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
 
-        <property
-            name="object_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="object_name"
-        />
+  <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
 
-        <property
-            name="searchtype"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="searchtype"
-        />
+  <property
+  name="comments"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="comments"
+  />
 
-        <property
-            name="searchflag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="searchflag"
-        />
+  <property
+  name="datatype"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="datatype"
+  />
 
-        <property
-            name="reportflag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="reportflag"
-        />
+  <property
+  name="object_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_name"
+  />
 
-        <property
-            name="statisticflag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="statisticflag"
-        />
+  <property
+  name="searchtype"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="searchtype"
+  />
 
-        <property
-            name="selecturl"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="selecturl"
-        />
+  <property
+  name="searchflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="searchflag"
+  />
 
-        <property
-            name="width"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="width"
-        />
+  <property
+  name="reportflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="reportflag"
+  />
 
-        <property
-            name="align"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="align"
-        />
+  <property
+  name="statisticflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="statisticflag"
+  />
 
-        <property
-            name="ord"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="ord"
-        />
+  <property
+  name="selecturl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="selecturl"
+  />
 
-        <property
-            name="showflag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="showflag"
-        />
+  <property
+  name="width"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="width"
+  />
 
-        <property
-            name="module_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="module_id"
-        />
+  <property
+  name="align"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="align"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta08_reportfield.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Te02_jlfk"
-        table="Te02_jlfk"
-    >
+    <class name="Te02_jlfk"  table="$table_name">
 
         <id
             name="id"
@@ -17,76 +14,66 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Te02_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Te02_jlfk.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">te02_num</param>
             </generator>
         </id>
 
-        <property
-            name="project_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="project_id"
-        />
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
 
-        <property
-            name="module_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="module_id"
-        />
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
 
-        <property
-            name="yj"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="yj"
-        />
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="time"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="time"
-        />
+  <property
+  name="yj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="yj"
+  />
 
-        <property
-            name="document_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="document_id"
-        />
+  <property
+  name="time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="time"
+  />
 
-        <property
-            name="read_flag"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="read_flag"
-        />
+  <property
+  name="document_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="document_id"
+  />
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+  <property
+  name="read_flag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="read_flag"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Te02_jlfk.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

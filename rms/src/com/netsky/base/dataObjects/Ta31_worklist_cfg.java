@@ -1,86 +1,91 @@
 package com.netsky.base.dataObjects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * @author wangflan 2010-05-06
- * @hibernate.class table="TA31_WORKLIST_CFG"
+ * @author cmp_auto 2012-06-04
+ * @hibernate.class table="Ta31_worklist_cfg"
  */
 
-public class Ta31_worklist_cfg implements Serializable {
+public class Ta31_worklist_cfg implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8335678036204512826L;
+	private static final long serialVersionUID = 251043264883376928L;
 
 	/**
 	 * 标识
 	 */
 	private Long id;
-
-	/**
-	 * 用户ID
-	 */
-	private Long user_id;
-	
-	/**
-	 * TA07.ID
-	 */
-	private Long field_id;
-
-	/**
-	 * 显示顺序
-	 */
-	private Integer ord;
 	
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Ta31_NUM"
+	 * @hibernate.generator-param name="sequence" value="ta31_num"
 	 * @return Returns the id.
 	 */
-
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id The id to set.
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="user_id"
-	 * @return the user_id
-	 */
-	public Long getUser_id() {
-		return user_id;
-	}
+	 /**
+ * 用户标识ta03.id
+ */
+ private Long user_id;
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
+ /**
+ * @hibernate.property column="user_id"
+ * @return Returns the user_id.
+ */
+ public Long getUser_id() {
+    return user_id;
+ }
 
-	/**
-	 * @hibernate.property column="field_id"
-	 * @return the field_id
-	 */
-	public Long getField_id() {
-		return field_id;
-	}
+ public void setUser_id(Long user_id) {
+    this.user_id = user_id;
+  }
 
-	public void setField_id(Long field_id) {
-		this.field_id = field_id;
-	}
+ /**
+ * 字段标识 TA07.ID
+ */
+ private Long field_id;
 
-	/**
-	 * @hibernate.property column="ord"
-	 * @return the ord
-	 */
-	public Integer getOrd() {
-		return ord;
-	}
+ /**
+ * @hibernate.property column="field_id"
+ * @return Returns the field_id.
+ */
+ public Long getField_id() {
+    return field_id;
+ }
 
-	public void setOrd(Integer ord) {
-		this.ord = ord;
-	}
+ public void setField_id(Long field_id) {
+    this.field_id = field_id;
+  }
+
+ /**
+ * 排序号
+ */
+ private Integer ord;
+
+ /**
+ * @hibernate.property column="ord"
+ * @return Returns the ord.
+ */
+ public Integer getOrd() {
+    return ord;
+ }
+
+ public void setOrd(Integer ord) {
+    this.ord = ord;
+  }
+
+
 }

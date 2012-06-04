@@ -1,34 +1,28 @@
 package com.netsky.base.dataObjects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * 报表模板
- * 
- * @author Chiang
- * 
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Ta30_template_list"
  */
+
 public class Ta30_template_list implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2600317409846673279L;
-
-	private Long id;
-
-	private Long parent_id;
-
-	private String type;
-
-	private String key;
-
-	private String value;
+	private static final long serialVersionUID = 823594754250456448L;
 
 	/**
+	 * 标识
+	 */
+	private Long id;
+	
+	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Ta30_NUM"
+	 * @hibernate.generator-param name="sequence" value="ta30_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -36,70 +30,79 @@ public class Ta30_template_list implements Serializable{
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="parent_id"
-	 * @return the parent_id
-	 */
-	public Long getParent_id() {
-		return parent_id;
-	}
+	 /**
+ * 模板标识
+ */
+ private Long parent_id;
 
-	/**
-	 * @param parent_id the parent_id to set
-	 */
-	public void setParent_id(Long parent_id) {
-		this.parent_id = parent_id;
-	}
+ /**
+ * @hibernate.property column="parent_id"
+ * @return Returns the parent_id.
+ */
+ public Long getParent_id() {
+    return parent_id;
+ }
 
-	/**
-	 * @hibernate.property column="type"
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
+ public void setParent_id(Long parent_id) {
+    this.parent_id = parent_id;
+  }
 
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+ /**
+ * 类型(sum_field，xway，yway，select_field，key，interval)
+ */
+ private String type;
 
-	/**
-	 * @hibernate.property column="key"
-	 * @return the key
-	 */
-	public String getKey() {
-		return key;
-	}
+ /**
+ * @hibernate.property column="type"
+ * @return Returns the type.
+ */
+ public String getType() {
+    return type;
+ }
 
-	/**
-	 * @param key the key to set
-	 */
-	public void setKey(String key) {
-		this.key = key;
-	}
+ public void setType(String type) {
+    this.type = type;
+  }
 
-	/**
-	 * @hibernate.property column="value"
-	 * @return the value
-	 */
-	public String getValue() {
-		return value;
-	}
+ /**
+ * 关键字
+ */
+ private String key;
 
-	/**
-	 * @param value the value to set
-	 */
-	public void setValue(String value) {
-		this.value = value;
-	}
+ /**
+ * @hibernate.property column="key"
+ * @return Returns the key.
+ */
+ public String getKey() {
+    return key;
+ }
+
+ public void setKey(String key) {
+    this.key = key;
+  }
+
+ /**
+ * 值
+ */
+ private String value;
+
+ /**
+ * @hibernate.property column="value"
+ * @return Returns the value.
+ */
+ public String getValue() {
+    return value;
+ }
+
+ public void setValue(String value) {
+    this.value = value;
+  }
+
 
 }

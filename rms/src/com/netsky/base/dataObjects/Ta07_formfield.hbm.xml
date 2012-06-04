@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta07_formfield"
-        table="Ta07_formfield"
-    >
+    <class name="Ta07_formfield"  table="$table_name">
 
         <id
             name="id"
@@ -17,132 +14,130 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta07_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta07_formfield.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta07_num</param>
             </generator>
         </id>
 
-        <property
-            name="module_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="module_id"
-        />
+   <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
 
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-        />
+  <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
 
-        <property
-            name="comments"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="comments"
-        />
+  <property
+  name="comments"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="comments"
+  />
 
-        <property
-            name="datatype"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="datatype"
-        />
+  <property
+  name="datatype"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="datatype"
+  />
 
-        <property
-            name="datalength"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="datalength"
-        />
+  <property
+  name="datalength"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="datalength"
+  />
 
-        <property
-            name="nullable"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="nullable"
-        />
+  <property
+  name="nullable"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="nullable"
+  />
 
-        <property
-            name="object_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="object_name"
-        />
+  <property
+  name="object_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_name"
+  />
 
-        <property
-            name="width"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="width"
-        />
+  <property
+  name="width"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="width"
+  />
 
-        <property
-            name="align"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="align"
-        />
+  <property
+  name="align"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="align"
+  />
 
-        <property
-            name="show_flag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="show_flag"
-        />
+  <property
+  name="show_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="show_flag"
+  />
 
-        <property
-            name="search_flag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="search_flag"
-        />
+  <property
+  name="search_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="search_flag"
+  />
 
-        <property
-            name="order_flag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="order_flag"
-        />
+  <property
+  name="order_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="order_flag"
+  />
 
-        <property
-            name="ord"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="ord"
-        />
+  <property
+  name="ord"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ord"
+  />
 
-        <property
-            name="date_flag"
-            type="java.lang.Integer"
-            update="true"
-            insert="true"
-            column="date_flag"
-        />
+  <property
+  name="date_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="date_flag"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta07_formfield.xml
-            containing the additional properties and place it in your merge dir.
-        -->
+  <property
+  name="isdetail"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="isdetail"
+  />
+
 
     </class>
 

@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Te06_remind_queue"
-        table="Te06_remind_queue"
-    >
+    <class name="Te06_remind_queue"  table="$table_name">
 
         <id
             name="id"
@@ -17,92 +14,82 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Te06_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Te06_remind_queue.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">te06_num</param>
             </generator>
         </id>
 
-        <property
-            name="uri"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="uri"
-        />
+   <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
 
-        <property
-            name="content"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="content"
-        />
+  <property
+  name="time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="time"
+  />
 
-        <property
-            name="time"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="time"
-        />
+  <property
+  name="persons"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="persons"
+  />
 
-        <property
-            name="ids"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="ids"
-        />
+  <property
+  name="ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ids"
+  />
 
-        <property
-            name="persons"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="persons"
-        />
+  <property
+  name="tels"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="tels"
+  />
 
-        <property
-            name="tels"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="tels"
-        />
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="type"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="times"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="times"
+  />
 
-        <property
-            name="status"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="status"
-        />
+  <property
+  name="uri"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="uri"
+  />
 
-        <property
-            name="times"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="times"
-        />
+  <property
+  name="status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="status"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Te06_remind_queue.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

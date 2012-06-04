@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Te04_message"
-        table="Te04_message"
-    >
+    <class name="Te04_message"  table="$table_name">
 
         <id
             name="id"
@@ -17,108 +14,98 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Te04_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Te04_message.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">te04_num</param>
             </generator>
         </id>
 
-        <property
-            name="sender_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="sender_id"
-        />
+   <property
+  name="sender_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sender_id"
+  />
 
-        <property
-            name="title"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="title"
-        />
+  <property
+  name="title"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="title"
+  />
 
-        <property
-            name="content"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="content"
-        />
+  <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
 
-        <property
-            name="send_date"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="send_date"
-        />
+  <property
+  name="send_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="send_date"
+  />
 
-        <property
-            name="read_flag"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="read_flag"
-        />
+  <property
+  name="read_flag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="read_flag"
+  />
 
-        <property
-            name="reader_id"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="reader_id"
-        />
+  <property
+  name="reader_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="reader_id"
+  />
 
-        <property
-            name="repeat_flag"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="repeat_flag"
-        />
+  <property
+  name="repeat_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="repeat_flag"
+  />
 
-        <property
-            name="send_flag"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="send_flag"
-        />
+  <property
+  name="send_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="send_flag"
+  />
 
-        <property
-            name="receive_flag"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="receive_flag"
-        />
+  <property
+  name="receive_flag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="receive_flag"
+  />
 
-        <property
-            name="fujian_flag"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="fujian_flag"
-        />
+  <property
+  name="fujian_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fujian_flag"
+  />
 
-        <property
-            name="reader_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="reader_name"
-        />
+  <property
+  name="reader_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="reader_name"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Te04_message.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta21_user_ext"
-        table="Ta21_user_ext"
-    >
+    <class name="Ta21_user_ext"  table="$table_name">
 
         <id
             name="id"
@@ -17,84 +14,74 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta21_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta21_user_ext.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta21_num</param>
             </generator>
         </id>
 
-        <property
-            name="ui_style"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="ui_style"
-        />
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
 
-        <property
-            name="ui_m1"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ui_m1"
-        />
+  <property
+  name="ui_style"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ui_style"
+  />
 
-        <property
-            name="ui_m2"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ui_m2"
-        />
+  <property
+  name="ui_m1"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m1"
+  />
 
-        <property
-            name="ui_m3"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ui_m3"
-        />
+  <property
+  name="ui_m2"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m2"
+  />
 
-        <property
-            name="ui_m4"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ui_m4"
-        />
+  <property
+  name="ui_m3"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m3"
+  />
 
-        <property
-            name="ui_m5"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ui_m5"
-        />
+  <property
+  name="ui_m4"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m4"
+  />
 
-        <property
-            name="ui_m6"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ui_m6"
-        />
+  <property
+  name="ui_m5"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m5"
+  />
 
-        <property
-            name="user_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="user_id"
-        />
+  <property
+  name="ui_m6"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m6"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta21_user_ext.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

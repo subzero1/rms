@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Te07_qa"
-        table="Te07_qa"
-    >
+    <class name="Te07_qa"  table="$table_name">
 
         <id
             name="id"
@@ -17,60 +14,50 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Te07_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Te07_qa.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">te07_num</param>
             </generator>
         </id>
 
-        <property
-            name="question"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="question"
-        />
+   <property
+  name="question"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="question"
+  />
 
-        <property
-            name="answer"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="answer"
-        />
+  <property
+  name="answer"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="answer"
+  />
 
-        <property
-            name="ord"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="ord"
-        />
-        
-          <property
-            name="cjrq"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="cjrq"
-        />
-        
-          <property
-            name="dj"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="dj"
-        />
+  <property
+  name="ord"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ord"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Te07_qa.xml
-            containing the additional properties and place it in your merge dir.
-        -->
+  <property
+  name="cjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjrq"
+  />
+
+  <property
+  name="dj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dj"
+  />
+
 
     </class>
 

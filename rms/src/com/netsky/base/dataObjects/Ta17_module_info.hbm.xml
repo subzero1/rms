@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.netsky.base.dataObjects.Ta17_module_info"
-        table="Ta17_module_info"
-    >
+    <class name="Ta17_module_info"  table="$table_name">
 
         <id
             name="id"
@@ -17,76 +14,66 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Ta17_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Ta17_module_info.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">ta17_num</param>
             </generator>
         </id>
 
-        <property
-            name="module_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="module_id"
-        />
+   <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
 
-        <property
-            name="type"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="type"
-        />
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
 
-        <property
-            name="object_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="object_name"
-        />
+  <property
+  name="object_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_name"
+  />
 
-        <property
-            name="object_column"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="object_column"
-        />
+  <property
+  name="object_column"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_column"
+  />
 
-        <property
-            name="relevance_table"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="relevance_table"
-        />
+  <property
+  name="relevance_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="relevance_table"
+  />
 
-        <property
-            name="relevance_column"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="relevance_column"
-        />
+  <property
+  name="relevance_column"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="relevance_column"
+  />
 
-        <property
-            name="show_column"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="show_column"
-        />
+  <property
+  name="show_column"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="show_column"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Ta17_module_info.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

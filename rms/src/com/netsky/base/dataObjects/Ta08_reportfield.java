@@ -1,83 +1,28 @@
 package com.netsky.base.dataObjects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * @author Chiang
- * @hibernate.class table="Ta08_reportfield" 报表字段表
+ * @author cmp_auto 2012-06-04
+ * @hibernate.class table="Ta08_reportfield"
  */
-public class Ta08_reportfield implements Serializable {
+
+public class Ta08_reportfield implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1525477327960094330L;
+	private static final long serialVersionUID = 605437640639665152L;
+
 	/**
-	 * ID标识
+	 * 标识
 	 */
 	private Long id;
-	/**
-	 * 属性名称
-	 */
-	private String name;
-	/**
-	 * 属性注释
-	 */
-	private String comments;
-	/**
-	 * 属性数据类型
-	 */
-	private String datatype;
-	/**
-	 * 名称含包名
-	 */
-	private String object_name;
-	/**
-	 * 查询类型 1：关键字； 2：复选 ；3：金额 ；4：人员； 5：日期
-	 */
-	private Integer searchtype;
-	/**
-	 * 查询标志位 1：查询条件
-	 */
-	private Integer searchflag;
-	/**
-	 * 统计标志位 1：统计条件
-	 */
-	private Integer reportflag;
-	/**
-	 * 统计选择项 1：选择项
-	 */
-	private Integer statisticflag;
-	/**
-	 * 选择路径，当SEARCHTYPE＝2时有效
-	 */
-	private String selecturl;
-	/**
-	 * 综合报表查询列宽度
-	 */
-	private Integer width;
-	/**
-	 * 综合报表查询列对齐方式
-	 */
-	private String align;
-	/**
-	 * 字段显示顺序
-	 */
-	private Integer ord;
-
-	/**
-	 * 默认查询显示字段
-	 */
-	private Integer showflag;
-
-	/**
-	 * 类型
-	 */
-	private Long module_id;
-
+	
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Ta08_NUM"
+	 * @hibernate.generator-param name="sequence" value="ta08_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -85,235 +30,249 @@ public class Ta08_reportfield implements Serializable {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="name"
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+	 /**
+ * 字段显示顺序
+ */
+ private Long ord;
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+ /**
+ * @hibernate.property column="ord"
+ * @return Returns the ord.
+ */
+ public Long getOrd() {
+    return ord;
+ }
 
-	/**
-	 * @hibernate.property column="comments"
-	 * @return the comments
-	 */
-	public String getComments() {
-		return comments;
-	}
+ public void setOrd(Long ord) {
+    this.ord = ord;
+  }
 
-	/**
-	 * @param comments
-	 *            the comments to set
-	 */
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
+ /**
+ * 默认查询显示字段
+ */
+ private Long showflag;
 
-	/**
-	 * @hibernate.property column="datatype"
-	 * @return the datatype
-	 */
-	public String getDatatype() {
-		return datatype;
-	}
+ /**
+ * @hibernate.property column="showflag"
+ * @return Returns the showflag.
+ */
+ public Long getShowflag() {
+    return showflag;
+ }
 
-	/**
-	 * @param datatype
-	 *            the datatype to set
-	 */
-	public void setDatatype(String datatype) {
-		this.datatype = datatype;
-	}
+ public void setShowflag(Long showflag) {
+    this.showflag = showflag;
+  }
 
-	/**
-	 * @hibernate.property column="object_name"
-	 * @return the object_name
-	 */
-	public String getObject_name() {
-		return object_name;
-	}
+ /**
+ * 统计查询类别
+ */
+ private Long module_id;
 
-	/**
-	 * @param object_name
-	 *            the object_name to set
-	 */
-	public void setObject_name(String object_name) {
-		this.object_name = object_name;
-	}
+ /**
+ * @hibernate.property column="module_id"
+ * @return Returns the module_id.
+ */
+ public Long getModule_id() {
+    return module_id;
+ }
 
-	/**
-	 * @hibernate.property column="searchtype"
-	 * @return the searchtype
-	 */
-	public Integer getSearchtype() {
-		return searchtype;
-	}
+ public void setModule_id(Long module_id) {
+    this.module_id = module_id;
+  }
 
-	/**
-	 * @param searchtype
-	 *            the searchtype to set
-	 */
-	public void setSearchtype(Integer searchtype) {
-		this.searchtype = searchtype;
-	}
+ /**
+ * dataObject 属性名称
+ */
+ private String name;
 
-	/**
-	 * @hibernate.property column="searchflag"
-	 * @return the searchflag
-	 */
-	public Integer getSearchflag() {
-		return searchflag;
-	}
+ /**
+ * @hibernate.property column="name"
+ * @return Returns the name.
+ */
+ public String getName() {
+    return name;
+ }
 
-	/**
-	 * @param searchflag
-	 *            the searchflag to set
-	 */
-	public void setSearchflag(Integer searchflag) {
-		this.searchflag = searchflag;
-	}
+ public void setName(String name) {
+    this.name = name;
+  }
 
-	/**
-	 * @hibernate.property column="reportflag"
-	 * @return the reportflag
-	 */
-	public Integer getReportflag() {
-		return reportflag;
-	}
+ /**
+ * dataObject 属性注释
+ */
+ private String comments;
 
-	/**
-	 * @param reportflag
-	 *            the reportflag to set
-	 */
-	public void setReportflag(Integer reportflag) {
-		this.reportflag = reportflag;
-	}
+ /**
+ * @hibernate.property column="comments"
+ * @return Returns the comments.
+ */
+ public String getComments() {
+    return comments;
+ }
 
-	/**
-	 * @hibernate.property column="statisticflag"
-	 * @return the statisticflag
-	 */
-	public Integer getStatisticflag() {
-		return statisticflag;
-	}
+ public void setComments(String comments) {
+    this.comments = comments;
+  }
 
-	/**
-	 * @param statisticflag
-	 *            the statisticflag to set
-	 */
-	public void setStatisticflag(Integer statisticflag) {
-		this.statisticflag = statisticflag;
-	}
+ /**
+ * dataObject 属性数据类型
+ */
+ private String datatype;
 
-	/**
-	 * @hibernate.property column="selecturl"
-	 * @return the selecturl
-	 */
-	public String getSelecturl() {
-		return selecturl;
-	}
+ /**
+ * @hibernate.property column="datatype"
+ * @return Returns the datatype.
+ */
+ public String getDatatype() {
+    return datatype;
+ }
 
-	/**
-	 * @param selecturl
-	 *            the selecturl to set
-	 */
-	public void setSelecturl(String selecturl) {
-		this.selecturl = selecturl;
-	}
+ public void setDatatype(String datatype) {
+    this.datatype = datatype;
+  }
 
-	/**
-	 * @hibernate.property column="width"
-	 * @return the width
-	 */
-	public Integer getWidth() {
-		return width;
-	}
+ /**
+ * dataObject 名称含包名
+ */
+ private String object_name;
 
-	/**
-	 * @param width
-	 *            the width to set
-	 */
-	public void setWidth(Integer width) {
-		this.width = width;
-	}
+ /**
+ * @hibernate.property column="object_name"
+ * @return Returns the object_name.
+ */
+ public String getObject_name() {
+    return object_name;
+ }
 
-	/**
-	 * @hibernate.property column="align"
-	 * @return the align
-	 */
-	public String getAlign() {
-		return align;
-	}
+ public void setObject_name(String object_name) {
+    this.object_name = object_name;
+  }
 
-	/**
-	 * @param align
-	 *            the align to set
-	 */
-	public void setAlign(String align) {
-		this.align = align;
-	}
+ /**
+ * 查询类型 1：关键字； 2：复选 ；3：金额 ；4：人员； 5：日期
+ */
+ private Long searchtype;
 
-	/**
-	 * @hibernate.property column="ord"
-	 * @return the ord
-	 */
-	public Integer getOrd() {
-		return ord;
-	}
+ /**
+ * @hibernate.property column="searchtype"
+ * @return Returns the searchtype.
+ */
+ public Long getSearchtype() {
+    return searchtype;
+ }
 
-	/**
-	 * @param ord
-	 *            the ord to set
-	 */
-	public void setOrd(Integer ord) {
-		this.ord = ord;
-	}
+ public void setSearchtype(Long searchtype) {
+    this.searchtype = searchtype;
+  }
 
-	/**
-	 * @hibernate.property column="showflag"
-	 * @return the showflag
-	 */
-	public Integer getShowflag() {
-		return showflag;
-	}
+ /**
+ * 查询标志位  1：查询条件
+ */
+ private Long searchflag;
 
-	/**
-	 * @param showflag
-	 *            the showflag to set
-	 */
-	public void setShowflag(Integer showflag) {
-		this.showflag = showflag;
-	}
+ /**
+ * @hibernate.property column="searchflag"
+ * @return Returns the searchflag.
+ */
+ public Long getSearchflag() {
+    return searchflag;
+ }
 
-	/**
-	 * @hibernate.property column="module_id"
-	 * @return the module_id
-	 */
-	public Long getModule_id() {
-		return module_id;
-	}
+ public void setSearchflag(Long searchflag) {
+    this.searchflag = searchflag;
+  }
 
-	/**
-	 * @param module_id
-	 *            the module_id to set
-	 */
-	public void setModule_id(Long module_id) {
-		this.module_id = module_id;
-	}
+ /**
+ * 统计标志位  1：统计条件
+ */
+ private Long reportflag;
+
+ /**
+ * @hibernate.property column="reportflag"
+ * @return Returns the reportflag.
+ */
+ public Long getReportflag() {
+    return reportflag;
+ }
+
+ public void setReportflag(Long reportflag) {
+    this.reportflag = reportflag;
+  }
+
+ /**
+ * 统计选择项  1：选择项
+ */
+ private Long statisticflag;
+
+ /**
+ * @hibernate.property column="statisticflag"
+ * @return Returns the statisticflag.
+ */
+ public Long getStatisticflag() {
+    return statisticflag;
+ }
+
+ public void setStatisticflag(Long statisticflag) {
+    this.statisticflag = statisticflag;
+  }
+
+ /**
+ * 选择路径，当SEARCHTYPE＝2时有效
+ */
+ private String selecturl;
+
+ /**
+ * @hibernate.property column="selecturl"
+ * @return Returns the selecturl.
+ */
+ public String getSelecturl() {
+    return selecturl;
+ }
+
+ public void setSelecturl(String selecturl) {
+    this.selecturl = selecturl;
+  }
+
+ /**
+ * 综合报表查询列宽度
+ */
+ private Long width;
+
+ /**
+ * @hibernate.property column="width"
+ * @return Returns the width.
+ */
+ public Long getWidth() {
+    return width;
+ }
+
+ public void setWidth(Long width) {
+    this.width = width;
+  }
+
+ /**
+ * 综合报表查询列对齐方式
+ */
+ private String align;
+
+ /**
+ * @hibernate.property column="align"
+ * @return Returns the align.
+ */
+ public String getAlign() {
+    return align;
+ }
+
+ public void setAlign(String align) {
+    this.align = align;
+  }
+
 
 }
