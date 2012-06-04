@@ -13,7 +13,7 @@ public class Tf16_xmkhdf implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 236513341083814400L;
+	private static final long serialVersionUID = 997724612444671360L;
 
 	/**
 	 * 标识

@@ -13,7 +13,7 @@ public class Tf10_gzltb implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 40459702902327480L;
+	private static final long serialVersionUID = 417579416931116672L;
 
 	/**
 	 * 标识

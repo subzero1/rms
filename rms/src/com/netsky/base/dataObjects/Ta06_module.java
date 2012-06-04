@@ -13,7 +13,7 @@ public class Ta06_module implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 844145454291257728L;
+	private static final long serialVersionUID = 134986322280696736L;
 
 	/**
 	 * 标识

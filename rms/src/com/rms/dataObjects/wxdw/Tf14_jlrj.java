@@ -13,7 +13,7 @@ public class Tf14_jlrj implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 130477785783896016L;
+	private static final long serialVersionUID = 437237503692780672L;
 
 	/**
 	 * 标识

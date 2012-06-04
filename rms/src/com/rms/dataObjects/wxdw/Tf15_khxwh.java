@@ -13,7 +13,7 @@ public class Tf15_khxwh implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 775132191597806080L;
+	private static final long serialVersionUID = 736005671478879872L;
 
 	/**
 	 * 标识

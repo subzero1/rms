@@ -13,7 +13,7 @@ public class Tf07_kcb implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 959539949231126016L;
+	private static final long serialVersionUID = 432481037250412864L;
 
 	/**
 	 * 标识

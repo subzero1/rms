@@ -13,7 +13,7 @@ public class Tf09_wxgg implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 316419191338621056L;
+	private static final long serialVersionUID = 486727064246464384L;
 
 	/**
 	 * 标识

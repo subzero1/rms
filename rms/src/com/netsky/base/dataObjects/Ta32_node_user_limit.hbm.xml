@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta32_node_user_limit"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta32_node_user_limit"  table="Ta32_node_user_limit">
 
         <id
             name="id"

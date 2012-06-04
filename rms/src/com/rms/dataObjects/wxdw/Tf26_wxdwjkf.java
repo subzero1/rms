@@ -13,7 +13,7 @@ public class Tf26_wxdwjkf implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 125944736093922976L;
+	private static final long serialVersionUID = 974434974424451200L;
 
 	/**
 	 * 标识

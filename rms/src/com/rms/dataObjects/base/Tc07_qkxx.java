@@ -13,7 +13,7 @@ public class Tc07_qkxx implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 478101088722729280L;
+	private static final long serialVersionUID = 753169109790153216L;
 
 	/**
 	 * 标识

@@ -13,7 +13,7 @@ public class Tf04_wxdw_user implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 977528224991644032L;
+	private static final long serialVersionUID = 465847985648821568L;
 
 	/**
 	 * 标识

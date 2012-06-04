@@ -273,7 +273,8 @@ public class CreateDataObjectsServiceImpl {
 			tableName = tableName.toUpperCase().substring(0,1) + tableName.toLowerCase().substring(1,tableName.length());
 			String sequenceName = convertUtil.toString(p.getProperty("sequence"),tableName+"_num");
 			
-			t_modelContent = t_modelContent.replaceAll("\\$obj_name", tableName);
+			t_modelContent = t_modelContent.replaceAll("\\$obj_name", objectName);
+			t_modelContent = t_modelContent.replaceAll("\\$table_name", tableName);
 			t_modelContent = t_modelContent.replaceAll("\\$sequence", sequenceName);
 			t_modelContent = t_modelContent.replace("$package", packageName);
 		}

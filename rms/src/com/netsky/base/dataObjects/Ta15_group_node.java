@@ -13,7 +13,7 @@ public class Ta15_group_node implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 585585666951816192L;
+	private static final long serialVersionUID = 700619581193318016L;
 
 	/**
 	 * 标识

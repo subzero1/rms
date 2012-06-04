@@ -13,7 +13,7 @@ public class Ta33_tszf implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 525702371748770432L;
+	private static final long serialVersionUID = 346914153301338816L;
 
 	/**
 	 * 标识

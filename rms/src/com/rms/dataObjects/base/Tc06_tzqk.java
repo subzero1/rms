@@ -13,7 +13,7 @@ public class Tc06_tzqk implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 718705593683727488L;
+	private static final long serialVersionUID = 441300925590290560L;
 
 	/**
 	 * 标识

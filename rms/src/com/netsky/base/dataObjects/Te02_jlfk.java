@@ -13,7 +13,7 @@ public class Te02_jlfk implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 991798644832691072L;
+	private static final long serialVersionUID = 232616955044743904L;
 
 	/**
 	 * 标识

@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tz01_exception"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Tz01_exception"  table="Tz01_exception">
 
         <id
             name="id"

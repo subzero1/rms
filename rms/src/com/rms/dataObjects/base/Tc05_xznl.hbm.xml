@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tc05_xznl"  table="$table_name">
+    <class name="com.rms.dataObjects.base.Tc05_xznl"  table="Tc05_xznl">
 
         <id
             name="id"

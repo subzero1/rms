@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta27_user_remind"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta27_user_remind"  table="Ta27_user_remind">
 
         <id
             name="id"

@@ -13,7 +13,7 @@ public class Tz03_login_log implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 616990527055532800L;
+	private static final long serialVersionUID = 141658334607544960L;
 
 	/**
 	 * 标识

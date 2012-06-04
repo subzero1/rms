@@ -13,7 +13,7 @@ public class Ta04_role implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 476262217633974272L;
+	private static final long serialVersionUID = 99907625325647904L;
 
 	/**
 	 * 标识

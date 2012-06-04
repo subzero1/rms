@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta24_phase_timelimit"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta24_phase_timelimit"  table="Ta24_phase_timelimit">
 
         <id
             name="id"

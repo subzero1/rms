@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta04_role"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta04_role"  table="Ta04_role">
 
         <id
             name="id"

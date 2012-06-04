@@ -13,7 +13,7 @@ public class Ta28_work_trust implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 213119531221218176L;
+	private static final long serialVersionUID = 768078429684902912L;
 
 	/**
 	 * 标识

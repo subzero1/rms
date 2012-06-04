@@ -13,7 +13,7 @@ public class Tz02_oper_log implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 659884191419985152L;
+	private static final long serialVersionUID = 375131605705795200L;
 
 	/**
 	 * 标识

@@ -13,7 +13,7 @@ public class Ta16_node_field implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 721479727470893440L;
+	private static final long serialVersionUID = 687019384285182592L;
 
 	/**
 	 * 标识

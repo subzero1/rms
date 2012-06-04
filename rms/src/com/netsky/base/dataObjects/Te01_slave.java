@@ -13,7 +13,7 @@ public class Te01_slave implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 765497721799493888L;
+	private static final long serialVersionUID = 544675272876937088L;
 
 	/**
 	 * 标识

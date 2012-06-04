@@ -13,7 +13,7 @@ public class Ta08_reportfield implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 605437640639665152L;
+	private static final long serialVersionUID = 613628051129338624L;
 
 	/**
 	 * 标识

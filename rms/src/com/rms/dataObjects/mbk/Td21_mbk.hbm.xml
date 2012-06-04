@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Td21_mbk"  table="$table_name">
+    <class name="com.rms.dataObjects.mbk.Td21_mbk"  table="Td21_mbk">
 
         <id
             name="id"

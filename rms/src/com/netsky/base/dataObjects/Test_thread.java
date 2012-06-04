@@ -13,7 +13,7 @@ public class Test_thread implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 940438205578738304L;
+	private static final long serialVersionUID = 149564505616445184L;
 
 	/**
 	 * 标识

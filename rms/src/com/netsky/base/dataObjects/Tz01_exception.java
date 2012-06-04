@@ -13,7 +13,7 @@ public class Tz01_exception implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 60678192854216272L;
+	private static final long serialVersionUID = 765283360075834752L;
 
 	/**
 	 * 标识

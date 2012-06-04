@@ -13,7 +13,7 @@ public class Tf06_clb implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 277058332030702944L;
+	private static final long serialVersionUID = 538947671959887104L;
 
 	/**
 	 * 标识

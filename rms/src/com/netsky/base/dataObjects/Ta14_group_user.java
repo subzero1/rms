@@ -13,7 +13,7 @@ public class Ta14_group_user implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 231325480220046080L;
+	private static final long serialVersionUID = 846541992377129984L;
 
 	/**
 	 * 标识

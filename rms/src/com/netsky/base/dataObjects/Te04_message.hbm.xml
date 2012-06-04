@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Te04_message"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Te04_message"  table="Te04_message">
 
         <id
             name="id"

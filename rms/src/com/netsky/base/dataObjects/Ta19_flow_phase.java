@@ -13,7 +13,7 @@ public class Ta19_flow_phase implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 927659361499018240L;
+	private static final long serialVersionUID = 275923729753473472L;
 
 	/**
 	 * 标识

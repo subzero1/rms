@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Te02_jlfk"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Te02_jlfk"  table="Te02_jlfk">
 
         <id
             name="id"

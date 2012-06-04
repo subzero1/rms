@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta11_sta_user"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta11_sta_user"  table="Ta11_sta_user">
 
         <id
             name="id"

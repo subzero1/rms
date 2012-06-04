@@ -13,7 +13,7 @@ public class Te06_remind_queue implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 505143431758080512L;
+	private static final long serialVersionUID = 807532844746798336L;
 
 	/**
 	 * 标识

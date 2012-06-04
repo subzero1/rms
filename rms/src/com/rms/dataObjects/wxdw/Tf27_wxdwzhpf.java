@@ -13,7 +13,7 @@ public class Tf27_wxdwzhpf implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 68946134015930856L;
+	private static final long serialVersionUID = 847429790738750208L;
 
 	/**
 	 * 标识

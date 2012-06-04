@@ -13,7 +13,7 @@ public class Ta32_node_user_limit implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 986387894501081728L;
+	private static final long serialVersionUID = 640647761816820864L;
 
 	/**
 	 * 标识

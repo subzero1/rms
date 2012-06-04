@@ -13,7 +13,7 @@ public class Td22_mbk_lzjl implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 790358285921355776L;
+	private static final long serialVersionUID = 267716521146912576L;
 
 	/**
 	 * 标识

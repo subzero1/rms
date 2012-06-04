@@ -13,7 +13,7 @@ public class Tf28_wxdwkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 879856368850186368L;
+	private static final long serialVersionUID = 423489083942488192L;
 
 	/**
 	 * 标识

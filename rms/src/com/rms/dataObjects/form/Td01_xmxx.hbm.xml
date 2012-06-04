@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Td01_xmxx"  table="$table_name">
+    <class name="com.rms.dataObjects.form.Td01_xmxx"  table="Td01_xmxx">
 
         <id
             name="id"
@@ -120,6 +120,110 @@
   update="true"
   insert="true"
   column="sjfatgcs"
+  />
+
+  <property
+  name="xqbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xqbm"
+  />
+
+  <property
+  name="xmgly"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmgly"
+  />
+
+  <property
+  name="ysry"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ysry"
+  />
+
+  <property
+  name="yssj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="yssj"
+  />
+
+  <property
+  name="sjhtbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjhtbh"
+  />
+
+  <property
+  name="sjhtje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sjhtje"
+  />
+
+  <property
+  name="sjhtqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjhtqdrq"
+  />
+
+  <property
+  name="sghtbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sghtbh"
+  />
+
+  <property
+  name="sghtje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sghtje"
+  />
+
+  <property
+  name="sghtqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sghtqdrq"
+  />
+
+  <property
+  name="jlhtbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jlhtbh"
+  />
+
+  <property
+  name="jlhtje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jlhtje"
+  />
+
+  <property
+  name="jlhtqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jlhtqdrq"
   />
 
   <property

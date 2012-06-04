@@ -13,7 +13,7 @@ public class Td01_xmxx implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 333811677064548032L;
+	private static final long serialVersionUID = 442542370076445824L;
 
 	/**
 	 * 标识
@@ -255,6 +255,227 @@ public class Td01_xmxx implements Serializable{
 
  public void setSjfatgcs(Long sjfatgcs) {
     this.sjfatgcs = sjfatgcs;
+  }
+
+ /**
+ * 需求部门
+ */
+ private String xqbm;
+
+ /**
+ * @hibernate.property column="xqbm"
+ * @return Returns the xqbm.
+ */
+ public String getXqbm() {
+    return xqbm;
+ }
+
+ public void setXqbm(String xqbm) {
+    this.xqbm = xqbm;
+  }
+
+ /**
+ * 项目管理员
+ */
+ private String xmgly;
+
+ /**
+ * @hibernate.property column="xmgly"
+ * @return Returns the xmgly.
+ */
+ public String getXmgly() {
+    return xmgly;
+ }
+
+ public void setXmgly(String xmgly) {
+    this.xmgly = xmgly;
+  }
+
+ /**
+ * 验收人员
+ */
+ private String ysry;
+
+ /**
+ * @hibernate.property column="ysry"
+ * @return Returns the ysry.
+ */
+ public String getYsry() {
+    return ysry;
+ }
+
+ public void setYsry(String ysry) {
+    this.ysry = ysry;
+  }
+
+ /**
+ * 验收时间
+ */
+ private Date yssj;
+
+ /**
+ * @hibernate.property column="yssj"
+ * @return Returns the yssj.
+ */
+ public Date getYssj() {
+    return yssj;
+ }
+
+ public void setYssj(Date yssj) {
+    this.yssj = yssj;
+  }
+
+ /**
+ * 设计合同编号
+ */
+ private String sjhtbh;
+
+ /**
+ * @hibernate.property column="sjhtbh"
+ * @return Returns the sjhtbh.
+ */
+ public String getSjhtbh() {
+    return sjhtbh;
+ }
+
+ public void setSjhtbh(String sjhtbh) {
+    this.sjhtbh = sjhtbh;
+  }
+
+ /**
+ * 设计合同金额
+ */
+ private Long sjhtje;
+
+ /**
+ * @hibernate.property column="sjhtje"
+ * @return Returns the sjhtje.
+ */
+ public Long getSjhtje() {
+    return sjhtje;
+ }
+
+ public void setSjhtje(Long sjhtje) {
+    this.sjhtje = sjhtje;
+  }
+
+ /**
+ * 设计合同签订日期
+ */
+ private Date sjhtqdrq;
+
+ /**
+ * @hibernate.property column="sjhtqdrq"
+ * @return Returns the sjhtqdrq.
+ */
+ public Date getSjhtqdrq() {
+    return sjhtqdrq;
+ }
+
+ public void setSjhtqdrq(Date sjhtqdrq) {
+    this.sjhtqdrq = sjhtqdrq;
+  }
+
+ /**
+ * 施工合同编号
+ */
+ private String sghtbh;
+
+ /**
+ * @hibernate.property column="sghtbh"
+ * @return Returns the sghtbh.
+ */
+ public String getSghtbh() {
+    return sghtbh;
+ }
+
+ public void setSghtbh(String sghtbh) {
+    this.sghtbh = sghtbh;
+  }
+
+ /**
+ * 施工合同金额
+ */
+ private Long sghtje;
+
+ /**
+ * @hibernate.property column="sghtje"
+ * @return Returns the sghtje.
+ */
+ public Long getSghtje() {
+    return sghtje;
+ }
+
+ public void setSghtje(Long sghtje) {
+    this.sghtje = sghtje;
+  }
+
+ /**
+ * 施工合同签订日期
+ */
+ private Date sghtqdrq;
+
+ /**
+ * @hibernate.property column="sghtqdrq"
+ * @return Returns the sghtqdrq.
+ */
+ public Date getSghtqdrq() {
+    return sghtqdrq;
+ }
+
+ public void setSghtqdrq(Date sghtqdrq) {
+    this.sghtqdrq = sghtqdrq;
+  }
+
+ /**
+ * 监理合同编号
+ */
+ private String jlhtbh;
+
+ /**
+ * @hibernate.property column="jlhtbh"
+ * @return Returns the jlhtbh.
+ */
+ public String getJlhtbh() {
+    return jlhtbh;
+ }
+
+ public void setJlhtbh(String jlhtbh) {
+    this.jlhtbh = jlhtbh;
+  }
+
+ /**
+ * 监理合同金额
+ */
+ private Long jlhtje;
+
+ /**
+ * @hibernate.property column="jlhtje"
+ * @return Returns the jlhtje.
+ */
+ public Long getJlhtje() {
+    return jlhtje;
+ }
+
+ public void setJlhtje(Long jlhtje) {
+    this.jlhtje = jlhtje;
+  }
+
+ /**
+ * 监理合同签订日期
+ */
+ private Date jlhtqdrq;
+
+ /**
+ * @hibernate.property column="jlhtqdrq"
+ * @return Returns the jlhtqdrq.
+ */
+ public Date getJlhtqdrq() {
+    return jlhtqdrq;
+ }
+
+ public void setJlhtqdrq(Date jlhtqdrq) {
+    this.jlhtqdrq = jlhtqdrq;
   }
 
  /**

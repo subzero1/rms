@@ -13,7 +13,7 @@ public class Ta24_phase_timelimit implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 219205065736570048L;
+	private static final long serialVersionUID = 399174616277233152L;
 
 	/**
 	 * 标识

@@ -13,7 +13,7 @@ public class Ta31_worklist_cfg implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 251043264883376928L;
+	private static final long serialVersionUID = 887527504497236992L;
 
 	/**
 	 * 标识
