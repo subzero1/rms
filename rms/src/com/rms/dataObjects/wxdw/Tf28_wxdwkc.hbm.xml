@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf28_wxdwkc"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf28_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+
+  <property
+  name="clbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clbm"
+  />
+
+  <property
+  name="clmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clmc"
+  />
+
+  <property
+  name="xh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xh"
+  />
+
+  <property
+  name="gg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gg"
+  />
+
+  <property
+  name="dw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw"
+  />
+
+  <property
+  name="dj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dj"
+  />
+
+  <property
+  name="cfdd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cfdd"
+  />
+
+  <property
+  name="lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lb"
+  />
+
+  <property
+  name="lysl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="lysl"
+  />
+
+  <property
+  name="yysl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="yysl"
+  />
+
+  <property
+  name="sfdb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sfdb"
+  />
+
+  <property
+  name="sgdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sgdw_id"
+  />
+
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
+  />
+
+  <property
+  name="gcbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcbh"
+  />
+
+  <property
+  name="rksj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="rksj"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf09_wxgg"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf09_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="fbr_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fbr_id"
+  />
+
+  <property
+  name="fbr_mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fbr_mc"
+  />
+
+  <property
+  name="fbsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="fbsj"
+  />
+
+  <property
+  name="ggzt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ggzt"
+  />
+
+  <property
+  name="cdfw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cdfw"
+  />
+
+  <property
+  name="jjcd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jjcd"
+  />
+
+  <property
+  name="ggnr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ggnr"
+  />
+
+  <property
+  name="dqrjfze"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dqrjfze"
+  />
+
+  <property
+  name="mbdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mbdw"
+  />
+
+  <property
+  name="cydw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cydw"
+  />
+
+  <property
+  name="zt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zt"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="wxdw_lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_lb"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf16_xmkhdf"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf16_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="khx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khx"
+  />
+
+  <property
+  name="ms"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ms"
+  />
+
+  <property
+  name="zdfz"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zdfz"
+  />
+
+  <property
+  name="jgxx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jgxx"
+  />
+
+  <property
+  name="jgfz"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jgfz"
+  />
+
+  <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+
+  <property
+  name="pfry"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="pfry"
+  />
+
+  <property
+  name="pfsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="pfsj"
+  />
+
+  <property
+  name="jsfs"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsfs"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

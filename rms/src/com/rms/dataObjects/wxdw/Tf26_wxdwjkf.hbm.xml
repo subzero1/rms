@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf26_wxdwjkf"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf26_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="area_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="area_name"
+  />
+
+  <property
+  name="wxdw_lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_lb"
+  />
+
+  <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
+
+  <property
+  name="wxdw_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_name"
+  />
+
+  <property
+  name="cjr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjr"
+  />
+
+  <property
+  name="cjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjrq"
+  />
+
+  <property
+  name="jkf"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jkf"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

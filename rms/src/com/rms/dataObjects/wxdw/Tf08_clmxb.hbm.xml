@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf08_clmxb"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf08_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="clmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clmc"
+  />
+
+  <property
+  name="xh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xh"
+  />
+
+  <property
+  name="dw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw"
+  />
+
+  <property
+  name="gg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gg"
+  />
+
+  <property
+  name="sl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sl"
+  />
+
+  <property
+  name="zhxx_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zhxx_id"
+  />
+
+  <property
+  name="dz"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dz"
+  />
+
+  <property
+  name="flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="flag"
+  />
+
+  <property
+  name="czsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="czsj"
+  />
+
+  <property
+  name="czry"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="czry"
+  />
+
+  <property
+  name="sgdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sgdw_id"
+  />
+
+  <property
+  name="cllx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cllx"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

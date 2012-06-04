@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="Tf07_kcb"  table="$table_name">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf07_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="clmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clmc"
+  />
+
+  <property
+  name="xh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xh"
+  />
+
+  <property
+  name="dw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw"
+  />
+
+  <property
+  name="gg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gg"
+  />
+
+  <property
+  name="kcsl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kcsl"
+  />
+
+  <property
+  name="sgdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sgdw_id"
+  />
+
+  <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+
+  <property
+  name="cllx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cllx"
+  />
+
+  <property
+  name="rksl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="rksl"
+  />
+
+  <property
+  name="cksl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="cksl"
+  />
+
+  <property
+  name="jlsl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jlsl"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
