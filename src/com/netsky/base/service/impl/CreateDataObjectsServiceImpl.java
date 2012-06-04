@@ -63,8 +63,10 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 *获得相关参数 
 		 */
-		String t_webName = convertUtil.toString(paramMap.get("webName"));
-		paramMap.put("webName", t_webName);
+		String webPath = convertUtil.toString(paramMap.get("webPath"));
+		Long ta07_id =  convertUtil.toLong(paramMap.get("ta07_id"));
+		paramMap.put("webPath", webPath);
+		paramMap.put("ta07_id", ta07_id);
 		createDoJava(paramMap);
 		java2Xml(paramMap);
 	}
@@ -76,15 +78,7 @@ public class CreateDataObjectsServiceImpl {
 		
 		OperProperties op = new OperProperties();
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
-		String t_webName = (String)paramMap.get("webName");
-		
-		Process process = Runtime.getRuntime().exec("SET ECLIPSE_WORKSPACE");
-		InputStreamReader ir=new InputStreamReader(process.getInputStream());
-		LineNumberReader lr=new LineNumberReader(ir);
-		String eclipse_workspace = lr.readLine();
-		if(eclipse_workspace == null){
-			throw new Exception("not find ECLIPSE_WORKSPACE environment variable!!");
-		}
+		String webPath = (String)paramMap.get("webPath");
 		
 		Long tz07_id = (Long)paramMap.get("tz07_id");
 		if(tz07_id == null){
@@ -192,20 +186,20 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 * 生成文件
 		 */
-		StringBuffer t_container  = new StringBuffer("");
-		t_container.delete(0, t_container.length());
-		t_container.append(eclipse_workspace);
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append(t_webName);
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append("src");
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append(packageName.replaceAll("\\.", "/"));
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append(tableName+".java");
-		FileWriter out = new FileWriter(t_container.toString());
-		out.write(t_modelContent);
-		out.close();
+		if(t_modelContent == null || t_modelContent.trim().equals("")){
+			StringBuffer t_container  = new StringBuffer("");
+			t_container.delete(0, t_container.length());
+			t_container.append(webPath);
+			t_container.append(System.getProperty("file.separator"));
+			t_container.append("src");
+			t_container.append(System.getProperty("file.separator"));
+			t_container.append(packageName.replaceAll("\\.", "/"));
+			t_container.append(System.getProperty("file.separator"));
+			t_container.append(tableName+".java");
+			FileWriter out = new FileWriter(t_container.toString());
+			out.write(t_modelContent);
+			out.close();
+		}
 	}
 	
 	/**
@@ -215,15 +209,7 @@ public class CreateDataObjectsServiceImpl {
 		
 		OperProperties op = new OperProperties();
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
-		String t_webName = (String)paramMap.get("t_webName");
-		
-		Process process = Runtime.getRuntime().exec("SET ECLIPSE_WORKSPACE");
-		InputStreamReader ir=new InputStreamReader(process.getInputStream());
-		LineNumberReader lr=new LineNumberReader(ir);
-		String eclipse_workspace = lr.readLine();
-		if(eclipse_workspace == null){
-			throw new Exception("not find ECLIPSE_WORKSPACE environment variable!!");
-		}
+		String webPath = (String)paramMap.get("webPath");
 		
 		Long tz07_id = (Long)paramMap.get("tz07_id");
 		if(tz07_id == null){
@@ -325,20 +311,20 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 * 生成文件
 		 */
-		StringBuffer t_container  = new StringBuffer("");
-		t_container.delete(0, t_container.length());
-		t_container.append(eclipse_workspace);
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append(t_webName);
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append("src");
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append(packageName.replaceAll("\\.", "/"));
-		t_container.append(System.getProperty("file.separator"));
-		t_container.append(tableName+".hbm.xml");
-		FileWriter out = new FileWriter(t_container.toString());
-		out.write(t_modelContent);
-		out.close();
+		if(t_modelContent == null || t_modelContent.trim().equals("")){
+			StringBuffer t_container  = new StringBuffer("");
+			t_container.delete(0, t_container.length());
+			t_container.append(webPath);
+			t_container.append(System.getProperty("file.separator"));
+			t_container.append("src");
+			t_container.append(System.getProperty("file.separator"));
+			t_container.append(packageName.replaceAll("\\.", "/"));
+			t_container.append(System.getProperty("file.separator"));
+			t_container.append(tableName+".hbm.xml");
+			FileWriter out = new FileWriter(t_container.toString());
+			out.write(t_modelContent);
+			out.close();
+		}
 	}
 
 	public static String getModelContent(String pathname) {
