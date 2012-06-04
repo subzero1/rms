@@ -13,7 +13,7 @@ public class Ta21_user_ext implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 49877454069494728L;
+	private static final long serialVersionUID = 349839396551981056L;
 
 	/**
 	 * 标识

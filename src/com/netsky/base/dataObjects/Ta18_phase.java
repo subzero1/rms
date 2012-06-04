@@ -13,7 +13,7 @@ public class Ta18_phase implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 865581153791915008L;
+	private static final long serialVersionUID = 907404597692329216L;
 
 	/**
 	 * 标识

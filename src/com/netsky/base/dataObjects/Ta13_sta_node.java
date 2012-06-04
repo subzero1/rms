@@ -13,7 +13,7 @@ public class Ta13_sta_node implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 336147330309170112L;
+	private static final long serialVersionUID = 11957194630222712L;
 
 	/**
 	 * 标识

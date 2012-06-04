@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Td00_gcxx"  table="$table_name">
+    <class name="com.rms.dataObjects.form.Td00_gcxx"  table="Td00_gcxx">
 
         <id
             name="id"
@@ -59,6 +59,14 @@
   />
 
   <property
+  name="kcfksj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kcfksj"
+  />
+
+  <property
   name="gclb"
   type="java.lang.String"
   update="true"
@@ -83,6 +91,22 @@
   />
 
   <property
+  name="sjsx"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sjsx"
+  />
+
+  <property
+  name="jdtbzq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jdtbzq"
+  />
+
+  <property
   name="jsxz"
   type="java.lang.String"
   update="true"
@@ -104,6 +128,62 @@
   update="true"
   insert="true"
   column="yslx"
+  />
+
+  <property
+  name="rztbzq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="rztbzq"
+  />
+
+  <property
+  name="xmgly"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmgly"
+  />
+
+  <property
+  name="sjyq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjyq"
+  />
+
+  <property
+  name="sjfk"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjfk"
+  />
+
+  <property
+  name="sgyq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sgyq"
+  />
+
+  <property
+  name="sgfk"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sgfk"
+  />
+
+  <property
+  name="jlyq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jlyq"
   />
 
   <property
@@ -208,6 +288,14 @@
   update="true"
   insert="true"
   column="ys_sgf"
+  />
+
+  <property
+  name="jlfk"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jlfk"
   />
 
   <property

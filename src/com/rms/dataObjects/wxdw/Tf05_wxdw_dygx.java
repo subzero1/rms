@@ -13,7 +13,7 @@ public class Tf05_wxdw_dygx implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 446010405762996416L;
+	private static final long serialVersionUID = 183986414129541088L;
 
 	/**
 	 * 标识

@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tz04_node_del"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Tz04_node_del"  table="Tz04_node_del">
 
         <id
             name="id"

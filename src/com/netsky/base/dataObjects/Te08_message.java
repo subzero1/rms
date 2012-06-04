@@ -13,7 +13,7 @@ public class Te08_message implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 550556999673854400L;
+	private static final long serialVersionUID = 400609628639217920L;
 
 	/**
 	 * 标识

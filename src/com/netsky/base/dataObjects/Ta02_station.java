@@ -13,7 +13,7 @@ public class Ta02_station implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 250603192065059328L;
+	private static final long serialVersionUID = 135998653964642176L;
 
 	/**
 	 * 标识

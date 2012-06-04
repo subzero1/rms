@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tz03_login_log"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Tz03_login_log"  table="Tz03_login_log">
 
         <id
             name="id"

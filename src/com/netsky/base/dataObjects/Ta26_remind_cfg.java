@@ -13,7 +13,7 @@ public class Ta26_remind_cfg implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 803120224552348672L;
+	private static final long serialVersionUID = 215289995993310560L;
 
 	/**
 	 * 标识

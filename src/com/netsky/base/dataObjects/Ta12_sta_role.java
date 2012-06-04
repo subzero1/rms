@@ -13,7 +13,7 @@ public class Ta12_sta_role implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 321208272955584832L;
+	private static final long serialVersionUID = 893640635612827008L;
 
 	/**
 	 * 标识

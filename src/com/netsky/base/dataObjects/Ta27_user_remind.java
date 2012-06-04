@@ -13,7 +13,7 @@ public class Ta27_user_remind implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 229758059284500544L;
+	private static final long serialVersionUID = 513861851616831296L;
 
 	/**
 	 * 标识

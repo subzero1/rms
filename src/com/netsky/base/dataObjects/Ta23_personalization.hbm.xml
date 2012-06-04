@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta23_personalization"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta23_personalization"  table="Ta23_personalization">
 
         <id
             name="id"
@@ -36,7 +36,7 @@
 
   <property
   name="type"
-  type="java.lang.Integer"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="type"

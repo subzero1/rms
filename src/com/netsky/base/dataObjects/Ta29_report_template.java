@@ -13,7 +13,7 @@ public class Ta29_report_template implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 171038636778278688L;
+	private static final long serialVersionUID = 721255389073149440L;
 
 	/**
 	 * 标识

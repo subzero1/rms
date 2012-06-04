@@ -13,7 +13,7 @@ public class Te07_qa implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 599975487424721920L;
+	private static final long serialVersionUID = 958918964510726016L;
 
 	/**
 	 * 标识

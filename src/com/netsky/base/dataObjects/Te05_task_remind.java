@@ -13,7 +13,7 @@ public class Te05_task_remind implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 164788276920675648L;
+	private static final long serialVersionUID = 272352742652988160L;
 
 	/**
 	 * 标识

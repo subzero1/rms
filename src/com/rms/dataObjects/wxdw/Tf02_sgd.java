@@ -13,7 +13,7 @@ public class Tf02_sgd implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 533334846085598912L;
+	private static final long serialVersionUID = 732632588701686400L;
 
 	/**
 	 * 标识

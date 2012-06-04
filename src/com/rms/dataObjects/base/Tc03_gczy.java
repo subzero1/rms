@@ -13,7 +13,7 @@ public class Tc03_gczy implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 224065713589862368L;
+	private static final long serialVersionUID = 3231085917906329L;
 
 	/**
 	 * 标识

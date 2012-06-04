@@ -13,7 +13,7 @@ public class Ta25_face_module implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 621384349942143872L;
+	private static final long serialVersionUID = 447882378243191232L;
 
 	/**
 	 * 标识

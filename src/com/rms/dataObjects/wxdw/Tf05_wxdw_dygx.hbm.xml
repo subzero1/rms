@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tf05_wxdw_dygx"  table="$table_name">
+    <class name="com.rms.dataObjects.wxdw.Tf05_wxdw_dygx"  table="Tf05_wxdw_dygx">
 
         <id
             name="id"

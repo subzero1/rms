@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tf16_xmkhdf"  table="$table_name">
+    <class name="com.rms.dataObjects.wxdw.Tf16_xmkhdf"  table="Tf16_xmkhdf">
 
         <id
             name="id"

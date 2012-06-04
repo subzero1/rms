@@ -1,36 +1,28 @@
 package com.rms.dataObjects.base;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * @description:
- * 表单下拉选维护
- * @class name:com.rms.dataObjects.base.Tc01_property
- * @author Administrator Jul 26, 2011
+ * @author cmp_auto 2012-06-04
  * @hibernate.class table="Tc01_property"
  */
-public class Tc01_property {
+
+public class Tc01_property implements Serializable{
+
 	/**
-	 *标识
+	 * 
+	 */
+	private static final long serialVersionUID = 874553105124825088L;
+
+	/**
+	 * 标识
 	 */
 	private Long id;
-
-	/**
-	 *属性名称
-	 */
-	private String name;
-
-	/**
-	 *属性分类
-	 */
-	private String type;
 	
 	/**
-	 *标识
-	 */
-	private String flag;
-
-	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="Tc01_NUM"
+	 * @hibernate.generator-param name="sequence" value="tc01_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -44,46 +36,56 @@ public class Tc01_property {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="name"
-	 * @return Returns the name.
-	 */
-	public String getName() {
-		return name;
-	}
+	 /**
+ * 属性名称
+ */
+ private String name;
 
-	/**
-	 * @param name The name to set.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+ /**
+ * @hibernate.property column="name"
+ * @return Returns the name.
+ */
+ public String getName() {
+    return name;
+ }
 
-	/**
-	 * @hibernate.property column="type"
-	 * @return Returns the type.
-	 */
-	public String getType() {
-		return type;
-	}
+ public void setName(String name) {
+    this.name = name;
+  }
 
-	/**
-	 * @param type The type to set.
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+ /**
+ * 属性分类
+ */
+ private String type;
 
-	/**
-	 * @hibernate.property column="flag"
-	 * @return Returns the flag.
-	 */
-	public String getFlag() {
-		return flag;
-	}
+ /**
+ * @hibernate.property column="type"
+ * @return Returns the type.
+ */
+ public String getType() {
+    return type;
+ }
 
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-	
+ public void setType(String type) {
+    this.type = type;
+  }
+
+ /**
+ * 局点性质：[1]报规划岗
+ */
+ private String flag;
+
+ /**
+ * @hibernate.property column="flag"
+ * @return Returns the flag.
+ */
+ public String getFlag() {
+    return flag;
+ }
+
+ public void setFlag(String flag) {
+    this.flag = flag;
+  }
+
+
 }

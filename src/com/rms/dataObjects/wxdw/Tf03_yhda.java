@@ -13,7 +13,7 @@ public class Tf03_yhda implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 841725147268275968L;
+	private static final long serialVersionUID = 137640927340271664L;
 
 	/**
 	 * 标识

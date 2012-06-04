@@ -13,7 +13,7 @@ public class Ta30_template_list implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 823594754250456448L;
+	private static final long serialVersionUID = 898034170030750592L;
 
 	/**
 	 * 标识

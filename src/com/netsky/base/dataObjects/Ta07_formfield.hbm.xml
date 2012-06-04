@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta07_formfield"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta07_formfield"  table="Ta07_formfield">
 
         <id
             name="id"

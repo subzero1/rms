@@ -13,7 +13,7 @@ public class Ta20_phase_node implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 680798471849622784L;
+	private static final long serialVersionUID = 451142804696139968L;
 
 	/**
 	 * 标识

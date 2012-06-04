@@ -13,7 +13,7 @@ public class Ta11_sta_user implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 321656050531164992L;
+	private static final long serialVersionUID = 499619635675746496L;
 
 	/**
 	 * 标识

@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta20_phase_node"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta20_phase_node"  table="Ta20_phase_node">
 
         <id
             name="id"

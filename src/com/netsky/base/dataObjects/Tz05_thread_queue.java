@@ -13,7 +13,7 @@ public class Tz05_thread_queue implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3616849167748182L;
+	private static final long serialVersionUID = 539533357578907072L;
 
 	/**
 	 * 标识

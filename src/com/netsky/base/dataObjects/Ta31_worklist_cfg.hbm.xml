@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta31_worklist_cfg"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta31_worklist_cfg"  table="Ta31_worklist_cfg">
 
         <id
             name="id"

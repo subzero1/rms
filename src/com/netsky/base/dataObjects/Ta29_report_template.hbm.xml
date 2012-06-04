@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta29_report_template"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta29_report_template"  table="Ta29_report_template">
 
         <id
             name="id"
@@ -20,7 +20,7 @@
 
    <property
   name="type"
-  type="java.lang.Integer"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="type"

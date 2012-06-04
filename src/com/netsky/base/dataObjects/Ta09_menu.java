@@ -13,7 +13,7 @@ public class Ta09_menu implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 331029197813931136L;
+	private static final long serialVersionUID = 736990130568948864L;
 
 	/**
 	 * 标识

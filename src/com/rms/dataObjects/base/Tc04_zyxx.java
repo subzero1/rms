@@ -13,7 +13,7 @@ public class Tc04_zyxx implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 124978272603408992L;
+	private static final long serialVersionUID = 569600123831477184L;
 
 	/**
 	 * 标识

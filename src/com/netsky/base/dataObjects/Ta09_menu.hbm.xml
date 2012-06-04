@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta09_menu"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta09_menu"  table="Ta09_menu">
 
         <id
             name="id"

@@ -13,7 +13,7 @@ public class Tc02_area implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 710733675998916608L;
+	private static final long serialVersionUID = 371745309550857280L;
 
 	/**
 	 * 标识

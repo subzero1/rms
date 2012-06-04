@@ -1,373 +1,297 @@
 package com.rms.dataObjects.wxdw;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * @author mengying 2009-12-11
- * @hibernate.class table="tf01_wxdw"
+ * @author cmp_auto 2012-06-04
+ * @hibernate.class table="Tf01_wxdw"
  */
-public class Tf01_wxdw implements Serializable {
+
+public class Tf01_wxdw implements Serializable{
 
 	/**
-	 * 序列化
+	 * 
 	 */
-	private static final long serialVersionUID = 6958067704854242044L;
+	private static final long serialVersionUID = 597645138724158464L;
 
 	/**
 	 * 标识
 	 */
 	private Long id;
-
-	/**
-	 * 名称
-	 */
-	private String mc;
-
-	/**
-	 * real名称
-	 */
-	private String realname;
-
-	/**
-	 * 单位地址
-	 */
-	private String dwdz;
-
-	/**
-	 * 资质等级
-	 */
-	private String zzdj;
-
-	/**
-	 * 营业执照号
-	 */
-	private String yyzzh;
-
-	/**
-	 * 证书号
-	 */
-	private String zsh;
-
-	/**
-	 * 法人
-	 */
-	private String fr;
-
-	/**
-	 * 外协类别（设计，施工，监理，审计）
-	 */
-	private String lb;
-
-	/**
-	 * 承接区域（同td00_zhxx.ssdq,多选）
-	 */
-	private String qy;
-
-	/**
-	 * 承接专业(同td00_zhxx.gclb，多选)
-	 */
-	private String zy;
-
-	/**
-	 * 状态（是否使用）
-	 */
-	private String zt;
-
-	/**
-	 * 备注
-	 */
-	private String bz;
-
-	/**
-	 * 结算系数
-	 */
-	private Double jsxs;
-
-	/**
-	 * 最大承接工日
-	 */
-	private Double zdcjgr;
-
-	/**
-	 * 工号前三位
-	 */
-	private String no;
-
+	
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="TF01_NUM"
+	 * @hibernate.generator-param name="sequence" value="tf01_num"
 	 * @return Returns the id.
 	 */
-
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @hibernate.property column="mc"
-	 * @return the mc
-	 */
-	public String getMc() {
-		return mc;
-	}
+	 /**
+ * 工号前三位
+ */
+ private String no;
 
-	/**
-	 * @param mc
-	 *            the mc to set
-	 */
+ /**
+ * @hibernate.property column="no"
+ * @return Returns the no.
+ */
+ public String getNo() {
+    return no;
+ }
 
-	public void setMc(String mc) {
-		this.mc = mc;
-	}
+ public void setNo(String no) {
+    this.no = no;
+  }
 
-	/**
-	 * @hibernate.property column="dwdz"
-	 * @return the dwdz
-	 */
+ /**
+ * 名称
+ */
+ private String mc;
 
-	public String getDwdz() {
-		return dwdz;
-	}
+ /**
+ * @hibernate.property column="mc"
+ * @return Returns the mc.
+ */
+ public String getMc() {
+    return mc;
+ }
 
-	/**
-	 * @param dwdz
-	 *            the dwdz to set
-	 */
+ public void setMc(String mc) {
+    this.mc = mc;
+  }
 
-	public void setDwdz(String dwdz) {
-		this.dwdz = dwdz;
-	}
+ /**
+ * 单位地址
+ */
+ private String dwdz;
 
-	/**
-	 * @hibernate.property column="zzdj"
-	 * @return the zzdj
-	 */
+ /**
+ * @hibernate.property column="dwdz"
+ * @return Returns the dwdz.
+ */
+ public String getDwdz() {
+    return dwdz;
+ }
 
-	public String getZzdj() {
-		return zzdj;
-	}
+ public void setDwdz(String dwdz) {
+    this.dwdz = dwdz;
+  }
 
-	/**
-	 * @param zzdj
-	 *            the zzdj to set
-	 */
+ /**
+ * 资质等级
+ */
+ private String zzdj;
 
-	public void setZzdj(String zzdj) {
-		this.zzdj = zzdj;
-	}
+ /**
+ * @hibernate.property column="zzdj"
+ * @return Returns the zzdj.
+ */
+ public String getZzdj() {
+    return zzdj;
+ }
 
-	/**
-	 * @hibernate.property column="yyzzh"
-	 * @return the yyzzh
-	 */
+ public void setZzdj(String zzdj) {
+    this.zzdj = zzdj;
+  }
 
-	public String getYyzzh() {
-		return yyzzh;
-	}
+ /**
+ * 营业执照号
+ */
+ private String yyzzh;
 
-	/**
-	 * @param yyzzh
-	 *            the yyzzh to set
-	 */
+ /**
+ * @hibernate.property column="yyzzh"
+ * @return Returns the yyzzh.
+ */
+ public String getYyzzh() {
+    return yyzzh;
+ }
 
-	public void setYyzzh(String yyzzh) {
-		this.yyzzh = yyzzh;
-	}
+ public void setYyzzh(String yyzzh) {
+    this.yyzzh = yyzzh;
+  }
 
-	/**
-	 * @hibernate.property column="fr"
-	 * @return the fr
-	 */
+ /**
+ * 法人
+ */
+ private String fr;
 
-	public String getFr() {
-		return fr;
-	}
+ /**
+ * @hibernate.property column="fr"
+ * @return Returns the fr.
+ */
+ public String getFr() {
+    return fr;
+ }
 
-	/**
-	 * @param fr
-	 *            the fr to set
-	 */
+ public void setFr(String fr) {
+    this.fr = fr;
+  }
 
-	public void setFr(String fr) {
-		this.fr = fr;
-	}
+ /**
+ * 外协类别（设计，施工，监理，审计）
+ */
+ private String lb;
 
-	/**
-	 * @hibernate.property column="lb"
-	 * @return the lb
-	 */
+ /**
+ * @hibernate.property column="lb"
+ * @return Returns the lb.
+ */
+ public String getLb() {
+    return lb;
+ }
 
-	public String getLb() {
-		return lb;
-	}
+ public void setLb(String lb) {
+    this.lb = lb;
+  }
 
-	/**
-	 * @param lb
-	 *            the lb to set
-	 */
+ /**
+ * 承接区域（同
+td00_zhxx.ssdq,多选）	
+ */
+ private String qy;
 
-	public void setLb(String lb) {
-		this.lb = lb;
-	}
+ /**
+ * @hibernate.property column="qy"
+ * @return Returns the qy.
+ */
+ public String getQy() {
+    return qy;
+ }
 
-	/**
-	 * @hibernate.property column="qy"
-	 * @return the qy
-	 */
+ public void setQy(String qy) {
+    this.qy = qy;
+  }
 
-	public String getQy() {
-		return qy;
-	}
+ /**
+ * 承接专业(同
+td00_zhxx.gclb，多选)	
+ */
+ private String zy;
 
-	/**
-	 * @param qy
-	 *            the qy to set
-	 */
+ /**
+ * @hibernate.property column="zy"
+ * @return Returns the zy.
+ */
+ public String getZy() {
+    return zy;
+ }
 
-	public void setQy(String qy) {
-		this.qy = qy;
-	}
+ public void setZy(String zy) {
+    this.zy = zy;
+  }
 
-	/**
-	 * @hibernate.property column="zy"
-	 * @return the zy
-	 */
+ /**
+ * 备注
+ */
+ private String bz;
 
-	public String getZy() {
-		return zy;
-	}
+ /**
+ * @hibernate.property column="bz"
+ * @return Returns the bz.
+ */
+ public String getBz() {
+    return bz;
+ }
 
-	/**
-	 * @param zy
-	 *            the zy to set
-	 */
+ public void setBz(String bz) {
+    this.bz = bz;
+  }
 
-	public void setZy(String zy) {
-		this.zy = zy;
-	}
+ /**
+ * 状态（有效，无效）
+ */
+ private String zt;
 
-	/**
-	 * @hibernate.property column="zt"
-	 * @return the zt
-	 */
+ /**
+ * @hibernate.property column="zt"
+ * @return Returns the zt.
+ */
+ public String getZt() {
+    return zt;
+ }
 
-	public String getZt() {
-		return zt;
-	}
+ public void setZt(String zt) {
+    this.zt = zt;
+  }
 
-	/**
-	 * @param zt
-	 *            the zt to set
-	 */
+ /**
+ * 营业执照号
+ */
+ private String zsh;
 
-	public void setZt(String zt) {
-		this.zt = zt;
-	}
+ /**
+ * @hibernate.property column="zsh"
+ * @return Returns the zsh.
+ */
+ public String getZsh() {
+    return zsh;
+ }
 
-	/**
-	 * @hibernate.property column="bz"
-	 * @return the bz
-	 */
+ public void setZsh(String zsh) {
+    this.zsh = zsh;
+  }
 
-	public String getBz() {
-		return bz;
-	}
+ /**
+ * 结算系数
+ */
+ private Long jsxs;
 
-	/**
-	 * @param bz
-	 *            the bz to set
-	 */
+ /**
+ * @hibernate.property column="jsxs"
+ * @return Returns the jsxs.
+ */
+ public Long getJsxs() {
+    return jsxs;
+ }
 
-	public void setBz(String bz) {
-		this.bz = bz;
-	}
+ public void setJsxs(Long jsxs) {
+    this.jsxs = jsxs;
+  }
 
-	/**
-	 * @hibernate.property column="zsh"
-	 * @return Returns the zsh.
-	 */
-	public String getZsh() {
-		return zsh;
-	}
+ /**
+ * 最大承接工日
+ */
+ private Long zdcjgr;
 
-	/**
-	 * @param zsh
-	 *            The zsh to set.
-	 */
-	public void setZsh(String zsh) {
-		this.zsh = zsh;
-	}
+ /**
+ * @hibernate.property column="zdcjgr"
+ * @return Returns the zdcjgr.
+ */
+ public Long getZdcjgr() {
+    return zdcjgr;
+ }
 
-	/**
-	 * @hibernate.property column="jsxs"
-	 * @return Returns the jsxs.
-	 */
-	public Double getJsxs() {
-		return jsxs;
-	}
+ public void setZdcjgr(Long zdcjgr) {
+    this.zdcjgr = zdcjgr;
+  }
 
-	/**
-	 * @param jsxs
-	 *            The jsxs to set.
-	 */
-	public void setJsxs(Double jsxs) {
-		this.jsxs = jsxs;
-	}
+ /**
+ * 施工单位开票名称
+ */
+ private String realname;
 
-	/**
-	 * @hibernate.property column="zdcjgr"
-	 * @return Returns the zdcjgr.
-	 */
-	public Double getZdcjgr() {
-		return zdcjgr;
-	}
+ /**
+ * @hibernate.property column="realname"
+ * @return Returns the realname.
+ */
+ public String getRealname() {
+    return realname;
+ }
 
-	/**
-	 * @param zdcjgr
-	 *            The zdcjgr to set.
-	 */
-	public void setZdcjgr(Double zdcjgr) {
-		this.zdcjgr = zdcjgr;
-	}
+ public void setRealname(String realname) {
+    this.realname = realname;
+  }
 
-	/**
-	 * @hibernate.property column="realname"
-	 * @return Returns the realname.
-	 */
-	public String getRealname() {
-		return realname;
-	}
-
-	/**
-	 * @param realname
-	 *            The realname to set.
-	 */
-	public void setRealname(String realname) {
-		this.realname = realname;
-	}
-
-	/**
-	 * @hibernate.property column="no"
-	 * @return Returns the no.
-	 */
-	public String getNo() {
-		return no;
-	}
-
-	/**
-	 * @param no
-	 *            The no to set.
-	 */
-	public void setNo(String no) {
-		this.no = no;
-	}
 
 }

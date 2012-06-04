@@ -13,7 +13,7 @@ public class Ta01_dept implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 303340207063170880L;
+	private static final long serialVersionUID = 6302767897755412L;
 
 	/**
 	 * 标识

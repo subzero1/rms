@@ -13,7 +13,7 @@ public class Ta07_formfield implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 679683632390941824L;
+	private static final long serialVersionUID = 201275335985254496L;
 
 	/**
 	 * 标识

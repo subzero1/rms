@@ -6,10 +6,7 @@
 
 <hibernate-mapping
 >
-    <class
-        name="com.rms.dataObjects.wxdw.Tf01_wxdw"
-        table="tf01_wxdw"
-    >
+    <class name="com.rms.dataObjects.wxdw.Tf01_wxdw"  table="Tf01_wxdw">
 
         <id
             name="id"
@@ -17,140 +14,130 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">TF01_NUM</param>
-              <!--  
-                  To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tf01_wxdw.xml 
-                  containing the additional parameters and place it in your merge dir. 
-              --> 
+                <param name="sequence">tf01_num</param>
             </generator>
         </id>
 
-        <property
-            name="mc"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="mc"
-        />
+   <property
+  name="no"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="no"
+  />
 
-        <property
-            name="dwdz"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="dwdz"
-        />
+  <property
+  name="mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mc"
+  />
 
-        <property
-            name="zzdj"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="zzdj"
-        />
+  <property
+  name="dwdz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dwdz"
+  />
 
-        <property
-            name="yyzzh"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="yyzzh"
-        />
+  <property
+  name="zzdj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zzdj"
+  />
 
-        <property
-            name="fr"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="fr"
-        />
+  <property
+  name="yyzzh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="yyzzh"
+  />
 
-        <property
-            name="lb"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="lb"
-        />
+  <property
+  name="fr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fr"
+  />
 
-        <property
-            name="qy"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="qy"
-        />
+  <property
+  name="lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lb"
+  />
 
-        <property
-            name="zy"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="zy"
-        />
+  <property
+  name="qy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="qy"
+  />
 
-        <property
-            name="zt"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="zt"
-        />
+  <property
+  name="zy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zy"
+  />
 
-        <property
-            name="bz"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="bz"
-        />
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
 
-        <property
-            name="zsh"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="zsh"
-        />
+  <property
+  name="zt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zt"
+  />
 
-        <property
-            name="jsxs"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="jsxs"
-        />
+  <property
+  name="zsh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zsh"
+  />
 
-        <property
-            name="zdcjgr"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="zdcjgr"
-        />
+  <property
+  name="jsxs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jsxs"
+  />
 
-        <property
-            name="realname"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="realname"
-        />
+  <property
+  name="zdcjgr"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zdcjgr"
+  />
 
-        <property
-            name="no"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="no"
-        />
+  <property
+  name="realname"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="realname"
+  />
 
-        <!--
-            To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tf01_wxdw.xml
-            containing the additional properties and place it in your merge dir.
-        -->
 
     </class>
 

@@ -13,7 +13,7 @@ public class Tz04_node_del implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 560540940907149440L;
+	private static final long serialVersionUID = 397789023466151552L;
 
 	/**
 	 * 标识

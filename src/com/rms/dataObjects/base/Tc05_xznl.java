@@ -13,7 +13,7 @@ public class Tc05_xznl implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 143257429329493696L;
+	private static final long serialVersionUID = 859365617637408256L;
 
 	/**
 	 * 标识

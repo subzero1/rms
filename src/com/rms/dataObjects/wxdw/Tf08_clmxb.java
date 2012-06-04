@@ -13,7 +13,7 @@ public class Tf08_clmxb implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 448952009245157184L;
+	private static final long serialVersionUID = 582428008143496320L;
 
 	/**
 	 * 标识

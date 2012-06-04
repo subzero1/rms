@@ -13,7 +13,7 @@ public class Td21_mbk implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 116128148879971024L;
+	private static final long serialVersionUID = 510374883558675520L;
 
 	/**
 	 * 标识

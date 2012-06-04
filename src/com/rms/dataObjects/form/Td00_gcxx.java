@@ -13,7 +13,7 @@ public class Td00_gcxx implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 412694314721944832L;
+	private static final long serialVersionUID = 358619373513707456L;
 
 	/**
 	 * 标识
@@ -122,6 +122,23 @@ public class Td00_gcxx implements Serializable{
   }
 
  /**
+ * 勘察反馈时限
+ */
+ private Long kcfksj;
+
+ /**
+ * @hibernate.property column="kcfksj"
+ * @return Returns the kcfksj.
+ */
+ public Long getKcfksj() {
+    return kcfksj;
+ }
+
+ public void setKcfksj(Long kcfksj) {
+    this.kcfksj = kcfksj;
+  }
+
+ /**
  * 工程类别
  */
  private String gclb;
@@ -173,6 +190,40 @@ public class Td00_gcxx implements Serializable{
   }
 
  /**
+ * 设计时限
+ */
+ private Long sjsx;
+
+ /**
+ * @hibernate.property column="sjsx"
+ * @return Returns the sjsx.
+ */
+ public Long getSjsx() {
+    return sjsx;
+ }
+
+ public void setSjsx(Long sjsx) {
+    this.sjsx = sjsx;
+  }
+
+ /**
+ * 进度填报周期
+ */
+ private Long jdtbzq;
+
+ /**
+ * @hibernate.property column="jdtbzq"
+ * @return Returns the jdtbzq.
+ */
+ public Long getJdtbzq() {
+    return jdtbzq;
+ }
+
+ public void setJdtbzq(Long jdtbzq) {
+    this.jdtbzq = jdtbzq;
+  }
+
+ /**
  * 建设性质
  */
  private String jsxz;
@@ -221,6 +272,125 @@ public class Td00_gcxx implements Serializable{
 
  public void setYslx(String yslx) {
     this.yslx = yslx;
+  }
+
+ /**
+ * 日志填报周期
+ */
+ private Long rztbzq;
+
+ /**
+ * @hibernate.property column="rztbzq"
+ * @return Returns the rztbzq.
+ */
+ public Long getRztbzq() {
+    return rztbzq;
+ }
+
+ public void setRztbzq(Long rztbzq) {
+    this.rztbzq = rztbzq;
+  }
+
+ /**
+ * 项目管理员
+ */
+ private String xmgly;
+
+ /**
+ * @hibernate.property column="xmgly"
+ * @return Returns the xmgly.
+ */
+ public String getXmgly() {
+    return xmgly;
+ }
+
+ public void setXmgly(String xmgly) {
+    this.xmgly = xmgly;
+  }
+
+ /**
+ * 设计要求
+ */
+ private String sjyq;
+
+ /**
+ * @hibernate.property column="sjyq"
+ * @return Returns the sjyq.
+ */
+ public String getSjyq() {
+    return sjyq;
+ }
+
+ public void setSjyq(String sjyq) {
+    this.sjyq = sjyq;
+  }
+
+ /**
+ * 设计反馈
+ */
+ private String sjfk;
+
+ /**
+ * @hibernate.property column="sjfk"
+ * @return Returns the sjfk.
+ */
+ public String getSjfk() {
+    return sjfk;
+ }
+
+ public void setSjfk(String sjfk) {
+    this.sjfk = sjfk;
+  }
+
+ /**
+ * 施工要求
+ */
+ private String sgyq;
+
+ /**
+ * @hibernate.property column="sgyq"
+ * @return Returns the sgyq.
+ */
+ public String getSgyq() {
+    return sgyq;
+ }
+
+ public void setSgyq(String sgyq) {
+    this.sgyq = sgyq;
+  }
+
+ /**
+ * 施工反馈
+ */
+ private String sgfk;
+
+ /**
+ * @hibernate.property column="sgfk"
+ * @return Returns the sgfk.
+ */
+ public String getSgfk() {
+    return sgfk;
+ }
+
+ public void setSgfk(String sgfk) {
+    this.sgfk = sgfk;
+  }
+
+ /**
+ * 监理要求
+ */
+ private String jlyq;
+
+ /**
+ * @hibernate.property column="jlyq"
+ * @return Returns the jlyq.
+ */
+ public String getJlyq() {
+    return jlyq;
+ }
+
+ public void setJlyq(String jlyq) {
+    this.jlyq = jlyq;
   }
 
  /**
@@ -442,6 +612,23 @@ public class Td00_gcxx implements Serializable{
 
  public void setYs_sgf(Long ys_sgf) {
     this.ys_sgf = ys_sgf;
+  }
+
+ /**
+ * 监理反馈
+ */
+ private String jlfk;
+
+ /**
+ * @hibernate.property column="jlfk"
+ * @return Returns the jlfk.
+ */
+ public String getJlfk() {
+    return jlfk;
+ }
+
+ public void setJlfk(String jlfk) {
+    this.jlfk = jlfk;
   }
 
  /**

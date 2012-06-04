@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Tz05_thread_queue"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Tz05_thread_queue"  table="Tz05_thread_queue">
 
         <id
             name="id"

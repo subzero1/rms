@@ -13,7 +13,7 @@ public class Ta23_personalization implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4856470556427906L;
+	private static final long serialVersionUID = 348257816148884096L;
 
 	/**
 	 * 标识

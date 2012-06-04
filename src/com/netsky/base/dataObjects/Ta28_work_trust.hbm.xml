@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="Ta28_work_trust"  table="$table_name">
+    <class name="com.netsky.base.dataObjects.Ta28_work_trust"  table="Ta28_work_trust">
 
         <id
             name="id"
