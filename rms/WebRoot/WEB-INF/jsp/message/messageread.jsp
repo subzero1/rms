@@ -37,7 +37,7 @@
 					<c:when test="${messageState == 3}">
 						<tr>
 							<th width="70">发件人：</th>
-							<td width="100" class="t-left">${user.name}--${user.login_id}</td>
+							<td width="100" class="t-left">${user.name}</td>
 							<th width="80">电&nbsp;&nbsp;&nbsp;&nbsp;话：</th>
 							<td >${user.mobile_tel }</td>
 						</tr>
@@ -45,7 +45,7 @@
 					<c:otherwise>
 						<tr>
 							<th width="70">发件人：</th>
-							<td width="100">${singlemessage["ta03.name"]}--${singlemessage["ta03.login_id"]}</td>
+							<td width="100">${singlemessage["ta03.name"]}</td>
 							<th width="80">电&nbsp;&nbsp;&nbsp;&nbsp;话：</th>
 							<td>${singlemessage["ta03.mobile_tel"]}&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:if test="${singlemessage['te04.repeat_flag']==1}"><span style="color:red">【需要回复】</span></c:if>
