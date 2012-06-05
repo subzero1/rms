@@ -1,5 +1,6 @@
 package com.netsky.base.controller;
 
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,9 @@ public class ExportExcelController {
 		Map<String,String> sheetMap = (Map<String,String>) request.getAttribute("sheetMap");
 		
 		response.reset();
-		response.setContentType("application/vnd.ms-excel;charset=GBK;filename=" + fileName);
+		response.setHeader("Content-Disposition",
+				"attachment;filename="+URLEncoder.encode(fileName,"UTF-8"));
+//		response.setContentType("application/vnd.ms-excel;charset=GBK;filename=" + fileName);
 		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
 		Iterator itr = sheetMap.keySet().iterator();
 		int i = 0;
@@ -72,7 +75,10 @@ public class ExportExcelController {
 		Map<String,List> sheetMap = (Map<String,List>) request.getAttribute("sheetMap");
 		
 		response.reset();
-		response.setContentType("application/vnd.ms-excel;charset=GBK;filename=" + fileName);
+		response.setHeader("Content-Disposition",
+				"attachment;filename="+URLEncoder.encode(fileName,"UTF-8"));
+//		response.reset();
+//		response.setContentType("application/vnd.ms-excel;charset=GBK;filename=" + fileName);
 		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
 		Iterator itr = sheetMap.keySet().iterator();
 		int i = 0;
