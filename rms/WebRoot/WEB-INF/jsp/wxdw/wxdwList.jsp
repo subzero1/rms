@@ -72,7 +72,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="wxdw_id" rel="${obj.id}">
 						<td>${obj.lb }</td>
-						<td>${obj.mc }</td>
+						<td><a href="wxdw/wxdwEdit.do?id=${obj.id}" target="navTab" rel="wxdw" title="外协单位维护">${obj.mc }</a></td>
 						<td>${obj.dwdz }</td>
 						<td>${obj.zt }</td>
 					</tr>

@@ -51,11 +51,11 @@ $(function(){
 			
 				<p>
 					<label>单位名称：</label>
-					<input type="text" style="width:405px;" name="Tf01_wxdw.MC" value="${Tf01_wxdw.mc}" />
+					<input class="required" type="text" style="width:405px;" name="Tf01_wxdw.MC" value="${Tf01_wxdw.mc}" />
 				</p>
 				<p>
 					<label>营业执照号：</label>
-					<input readonly type="text" name="Tf01_wxdw.YYZZH" style="width:120px;" readonly value="${Tf01_wxdw.yyzzh}"/>
+					<input type="text" name="Tf01_wxdw.YYZZH" style="width:120px;" value="${Tf01_wxdw.yyzzh}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -73,12 +73,14 @@ $(function(){
 				</p>
 				<p>
 					<label>状    态：</label>
-					<input type="text" name="Tf01_wxdw.ZT" style="width:120px;" value="${Tf01_wxdw.zt}"/>
+					<input type="radio" name="Tf01_wxdw.ZT" value="正常" checked="checked"/>正常
+					<input type="radio" name="Tf01_wxdw.ZT" value="停工" <c:if test="${Tf01_wxdw.zt == '停工'}">checked="checked"</c:if>/>停工
+					
 				</p> 
 				<div style="height:0px;"></div>
 				<p>
 					<label>类    别：</label>
-					<input type="radio" name="Tf01_wxdw.LB" value="设计" checked="checked"/>设计单位
+					<input type="radio" name="Tf01_wxdw.LB" value="设计" <c:if test="${Tf01_wxdw.lb == '设计' || empty Tf01_wxdw.lb}checked="checked"</c:if>/>设计单位
 					<input type="radio" name="Tf01_wxdw.LB" value="施工" <c:if test="${Tf01_wxdw.lb == '施工'}">checked="checked"</c:if>/>施工单位
 					<input type="radio" name="Tf01_wxdw.LB" value="监理" <c:if test="${Tf01_wxdw.lb == '监理'}">checked="checked"</c:if>/>监理单位
 				</p>
