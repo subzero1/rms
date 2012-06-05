@@ -3,24 +3,7 @@
 	<tables>
 		<fatherTable/>
 		<table>
-			<name>com.rms.dataObjects.info.Td11_jfpmsq</name>
-		</table>
-	</tables>
-	<tables>
-		<fatherTable>
-			<table>
-				<name>Td11_jfpmsq</name>
-				<column>id</column>
-				<injectColumn>project_id</injectColumn>
-			</table>
-			<table>
-				<name>Td11_jfpmsq</name>
-				<column>id</column>
-				<injectColumn>parent_id</injectColumn>
-			</table>
-		</fatherTable>
-		<table>
-			<name>com.rms.dataObjects.info.Td12_gljf</name>
+			<name>com.rms.dataObjects.form.Td01_xmxx</name>
 		</table>
 	</tables>
 	<dispath>
@@ -28,7 +11,7 @@
 		<propertise>
 			<property>
 				<type>table</type>
-				<tableName>Td11_jfpmsq</tableName>
+				<tableName>Td01_xmxx</tableName>
 				<column>id</column>
 				<name>project_id</name>
 			</property>
@@ -46,7 +29,7 @@
 			</property>
 			<property>
 				<type>table</type>
-				<tableName>Td11_jfpmsq</tableName>
+				<tableName>Td01_xmxx</tableName>
 				<column>id</column>
 				<name>doc_id</name>
 			</property>
@@ -55,34 +38,17 @@
 	<beans>
 		<bean>
 			<type>service</type>
-			<beanName>saveFormCodeService</beanName>
-			<method>saveFormCode</method>
-			<propertise>
-				<property>
-					<type>request</type>
-					<tableName/>
-					<column>module_id</column>
-				</property>
-				<property>
-					<type>table</type>
-					<tableName>Td11_jfpmsq</tableName>
-					<column>id</column>
-				</property>
-			</propertise>
-		</bean>
-		<bean>
-			<type>service</type>
 			<beanName>flowServiceImpl</beanName>
 			<method>CreateFormByString</method>
 			<propertise>
 				<property>
 					<type>table</type>
-					<tableName>Td11_jfpmsq</tableName>
+					<tableName>Td01_xmxx</tableName>
 					<column>id</column>
 				</property>
 				<property>
 					<type>table</type>
-					<tableName>Td11_jfpmsq</tableName>
+					<tableName>Td01_xmxx</tableName>
 					<column>id</column>
 				</property>
 				<property>
