@@ -3,41 +3,7 @@
 	<tables>
 		<fatherTable/>
 		<table>
-			<name>com.rms.dataObjects.form.Td01_xmxx</name>
-		</table>
-	</tables>
-	<tables>
-		<fatherTable>
-			<table>
-				<name>Td23_gcbgd</name>
-				<column>project_id</column>
-				<injectColumn>project_id</injectColumn>
-			</table>
-			<table>
-				<name>Td23_gcbgd</name>
-				<column>id</column>
-				<injectColumn>parent_id</injectColumn>
-			</table>
-		</fatherTable>
-		<table>
-			<name>com.netsky.pss.dataObjects.form.Td24_bgd_gzlmx</name>
-		</table>
-	</tables>
-	<tables>
-		<fatherTable>
-			<table>
-				<name>Td23_gcbgd</name>
-				<column>project_id</column>
-				<injectColumn>project_id</injectColumn>
-			</table>
-			<table>
-				<name>Td23_gcbgd</name>
-				<column>id</column>
-				<injectColumn>parent_id</injectColumn>
-			</table>
-		</fatherTable>
-		<table>
-			<name>com.netsky.pss.dataObjects.form.Td25_bgd_clmx</name>
+			<name>com.rms.dataObjects.form.Td02_xmbgd</name>
 		</table>
 	</tables>
 	<dispath>
@@ -45,7 +11,7 @@
 		<propertise>
 			<property>
 				<type>table</type>
-				<tableName>Td23_gcbgd</tableName>
+				<tableName>Td02_xmbgd</tableName>
 				<column>project_id</column>
 				<name>project_id</name>
 			</property>
@@ -63,7 +29,7 @@
 			</property>
 			<property>
 				<type>table</type>
-				<tableName>Td23_gcbgd</tableName>
+				<tableName>Td02_xmbgd</tableName>
 				<column>id</column>
 				<name>doc_id</name>
 			</property>
@@ -82,7 +48,7 @@
 				</property>
 				<property>
 					<type>table</type>
-					<tableName>Td23_gcbgd</tableName>
+					<tableName>Td02_xmbgd</tableName>
 					<column>id</column>
 				</property>
 			</propertise>
@@ -94,12 +60,12 @@
 			<propertise>
 				<property>
 					<type>table</type>
-					<tableName>Td23_gcbgd</tableName>
+					<tableName>Td02_xmbgd</tableName>
 					<column>project_id</column>
 				</property>
 				<property>
 					<type>table</type>
-					<tableName>Td23_gcbgd</tableName>
+					<tableName>Td02_xmbgd</tableName>
 					<column>id</column>
 				</property>
 				<property>

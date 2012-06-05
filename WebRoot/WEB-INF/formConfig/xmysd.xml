@@ -3,24 +3,7 @@
 	<tables>
 		<fatherTable/>
 		<table>
-			<name>com.rms.dataObjects.form.Td00_gcxx</name>
-		</table>
-	</tables>
-	<tables>
-		<fatherTable>
-			<table>
-				<name>Td00_gcxx</name>
-				<column>id</column>
-				<injectColumn>project_id</injectColumn>
-			</table>
-			<table>
-				<name>Td00_gcxx</name>
-				<column>id</column>
-				<injectColumn>parent_id</injectColumn>
-			</table>
-		</fatherTable>
-		<table>
-			<name>com.rms.dataObjects.info.Td12_gljf</name>
+			<name>com.rms.dataObjects.form.Td04_xmysd</name>
 		</table>
 	</tables>
 	<dispath>
@@ -28,7 +11,7 @@
 		<propertise>
 			<property>
 				<type>table</type>
-				<tableName>Td11_jfpmsq</tableName>
+				<tableName>Td04_xmysd</tableName>
 				<column>id</column>
 				<name>project_id</name>
 			</property>
@@ -46,7 +29,7 @@
 			</property>
 			<property>
 				<type>table</type>
-				<tableName>Td11_jfpmsq</tableName>
+				<tableName>Td04_xmysd</tableName>
 				<column>id</column>
 				<name>doc_id</name>
 			</property>
@@ -65,7 +48,7 @@
 				</property>
 				<property>
 					<type>table</type>
-					<tableName>Td11_jfpmsq</tableName>
+					<tableName>Td04_xmysd</tableName>
 					<column>id</column>
 				</property>
 			</propertise>
@@ -77,12 +60,12 @@
 			<propertise>
 				<property>
 					<type>table</type>
-					<tableName>Td11_jfpmsq</tableName>
+					<tableName>Td04_xmysd</tableName>
 					<column>id</column>
 				</property>
 				<property>
 					<type>table</type>
-					<tableName>Td11_jfpmsq</tableName>
+					<tableName>Td04_xmysd</tableName>
 					<column>id</column>
 				</property>
 				<property>
