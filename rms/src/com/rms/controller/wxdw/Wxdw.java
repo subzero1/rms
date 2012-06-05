@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map;
@@ -29,6 +30,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta02_station;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
+import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.dataObjects.Ta22_user_idea;
 import com.netsky.base.flow.utils.convertUtil;
@@ -95,7 +97,7 @@ public class Wxdw {
 		String lb = convertUtil.toString(request.getParameter("lb"));
 
 		StringBuffer hsql = new StringBuffer();
-		hsql.append("select wxdw from Tf01_wxdw wxdw where 1=1");
+		hsql.append(" from Tf01_wxdw wxdw where 1=1");
 		// where条件
 		// 类别
 		if (!lb.equals("")) {
@@ -110,9 +112,42 @@ public class Wxdw {
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
+		if("yes".equals(request.getParameter("toExcel"))){
+			totalCount = convertUtil.toInteger(queryService.searchList(" select count(*) " + hsql.toString()).get(0));
+			numPerPage =totalCount == 0?1:totalCount;
+			pageNum = 1;
+		}
+		
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Tf01_wxdw> wxdwList = new ArrayList<Tf01_wxdw>();
+		// 导EXCEL
+		if("yes".equals(request.getParameter("toExcel"))){
+			Map<String,List> sheetMap = new HashMap<String,List>();
+			List sheetList = new LinkedList();
+			List titleList = new LinkedList();
+			String form_title = "外协单位信息.xls";
+			titleList.add("类别");
+			titleList.add("单位名称");
+			titleList.add("地址");
+			titleList.add("状态");
+			sheetList.add(titleList);
+			List<List> docList = new LinkedList<List>();
+			while (ro.next()) {
+				List row = new LinkedList();
+				Tf01_wxdw tf01 = (Tf01_wxdw)ro.get("wxdw");
+				row.add(tf01.getLb());
+				row.add(tf01.getMc());
+				row.add(tf01.getDwdz());
+				row.add(tf01.getZt());
+				docList.add(row);
+			}
+			sheetList.add(docList);
+			sheetMap.put(form_title, sheetList);
+			request.setAttribute("ExcelName", form_title );
+			request.setAttribute("sheetMap", sheetMap);
+			return new ModelAndView("/export/toExcelWhithList.do");
+		}
 		while (ro.next()) {
 			wxdwList.add((Tf01_wxdw) ro.get("wxdw"));
 		}
@@ -195,6 +230,41 @@ public class Wxdw {
 											+ ta03.getId() + ")"));
 		}
 		modelMap.put("user_staMap", user_staMap);
+		if("yes".equals(request.getParameter("toExcel"))){
+			Tf01_wxdw wxdw = (Tf01_wxdw)queryService.searchById(Tf01_wxdw.class, wxdw_id);
+			Map<String,List> sheetMap = new HashMap<String,List>();
+			List sheetList = new LinkedList();
+			List titleList = new LinkedList();
+			String form_title = wxdw.getMc()+"-用户信息.xls";
+			titleList.add("工号");
+			titleList.add("姓名");
+			titleList.add("移动电话");
+			titleList.add("性别");
+			titleList.add("邮箱");
+			titleList.add("相关岗位");
+			sheetList.add(titleList);
+			List<List> docList = new LinkedList<List>();
+			for (Ta03_user ta03 : wxdwUserList) {
+				List row = new LinkedList();
+				row.add(ta03.getLogin_id());
+				row.add(ta03.getName());
+				row.add(ta03.getMobile_tel());
+				row.add(ta03.getSex());
+				row.add(ta03.getEmail());
+				List<Ta02_station> staList = user_staMap.get(ta03);
+				String xggw = "";
+				for (Ta02_station ta02 : staList) {
+					xggw += " "+ta02.getName();
+				}
+				row.add(xggw.trim());
+				docList.add(row);
+			}
+			sheetList.add(docList);
+			sheetMap.put(form_title, sheetList);
+			request.setAttribute("ExcelName", form_title );
+			request.setAttribute("sheetMap", sheetMap);
+			return new ModelAndView("/export/toExcelWhithList.do");
+		}
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwUserList.jsp", modelMap);
 	}
 
