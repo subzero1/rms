@@ -162,6 +162,7 @@
 				<value>com/rms/dataObjects/base/Tc02_area.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/wxdw/Tf01_wxdw.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf02_sgd.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf04_wxdw_user.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf05_wxdw_dygx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>

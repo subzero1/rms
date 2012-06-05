@@ -25,7 +25,10 @@
 				data:$data.serializeArray(),
 				dataType:"json",
 				cache: false,
-				success: callback || DWZ.ajaxDone,
+				success: function(json){
+					DWZ.ajaxDone(json);
+					$("#sgd_tab").loadUrl("wxdw/sgdEdit.do?lb=sgd&wxdw_id=${param.wxdw_id }");
+				},
 				error: DWZ.ajaxError
 			});
 			
@@ -33,16 +36,25 @@
 		$(".preButt .del").click(function(){
 			var sgd_id = $(this).prev("input[name=id]");
 			if(sgd_id){
+			alertMsg.confirm("确认删除该施工队吗？", {
+			okCall: function(){
 				$.ajax({
-				type: 'POST',
-				url:"wxdw/ajaxDelSgd.do?sgd_id="+sgd_id.val(),
-				dataType:"json",
-				cache: false,
-				success: callback || DWZ.ajaxDone,
-				error: DWZ.ajaxError
-			});
-			
+						type: 'POST',
+						url:"wxdw/ajaxDelSgd.do?sgd_id="+sgd_id.val(),
+						dataType:"json",
+						cache: false,
+						success: function(json){
+							DWZ.ajaxDone(json);
+							$("#sgd_tab").loadUrl("wxdw/sgdEdit.do?lb=sgd&wxdw_id=${param.wxdw_id }");
+						},
+						error: DWZ.ajaxError
+					});
+				}
+				});
 			}
+			
+			
+			
 		});
 		
 	}); 	
@@ -60,30 +72,26 @@
 			<textarea style="width:100%;height:40px;" name="bz"></textarea>
 		</td>
 		<td>
-			<input type="checkbox" name="qyzyfp" value="苏州市—电缆"/>苏州市—电缆
-			<input type="checkbox" name="qyzyfp" value="苏州市—移动"/>苏州市—移动
-			<input type="checkbox" name="qyzyfp" value="相城区—移动"/>相城区—移动
-			<input type="checkbox" name="qyzyfp" value="苏州市—光缆"/>苏州市—光缆
-			<input type="checkbox" name="qyzyfp" value="张家港—移动"/>张家港—移动
+			<c:forEach items="${dygxList}" var="dygx">
+				<input type="checkbox" name="qyzyfp" value="${dygx.dq }-${dygx.zy }"/>${dygx.dq }-${dygx.zy }
+			</c:forEach>
 		</td>
 	</tr>
-	<c:forEach begin="1" end="20">
+	<c:forEach items="${sgdList}" var="sgd">
 	<tr>
 		<td class="preButt">
-			<input type="hidden" name="id" value=""/>
 			<a class="save" href="javascript:;" ><span>保存</span></a>&nbsp;&nbsp;
+			<input type="hidden" name="id" value="${sgd.id }"/>
 			<a class="del" href="javascript:;" ><span>删除</span></a>
 		</td>
 		<td style="width:180px;padding:10px;">
-			<input type="text" style="width:100%;" name="mc" value="施工单位名称"/>
-			<textarea style="width:100%;height:40px;" name="bz">施工单位备注信息</textarea>
+			<input type="text" style="width:100%;" name="mc" value="${sgd.mc }"/>
+			<textarea style="width:100%;height:40px;" name="bz">${sgd.bz }</textarea>
 		</td>
 		<td>
-			<input type="checkbox" name="qyzyfp" value="苏州市—电缆" checked/>苏州市—电缆
-			<input type="checkbox" name="qyzyfp" value="苏州市—移动"/>苏州市—移动
-			<input type="checkbox" name="qyzyfp" value="相城区—移动" checked/>相城区—移动
-			<input type="checkbox" name="qyzyfp" value="苏州市—光缆" checked/>苏州市—光缆
-			<input type="checkbox" name="qyzyfp" value="张家港—移动"/>张家港—移动
+			<c:forEach items="${dygxList}" var="dygx">
+				<input type="checkbox" name="qyzyfp" value="${dygx.dq }-${dygx.zy }" <c:if test="${not empty dygxMap[sgd][dygx.dq][dygx.zy]}">checked="checked"</c:if>/>${dygx.dq }-${dygx.zy }
+			</c:forEach>
 		</td>
 	</tr>
 	</c:forEach>

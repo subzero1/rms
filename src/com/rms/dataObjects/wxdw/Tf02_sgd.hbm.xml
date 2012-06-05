@@ -6,7 +6,10 @@
 
 <hibernate-mapping
 >
-    <class name="com.rms.dataObjects.wxdw.Tf02_sgd"  table="Tf02_sgd">
+    <class
+        name="com.rms.dataObjects.wxdw.Tf02_sgd"
+        table="tf02_sgd"
+    >
 
         <id
             name="id"
@@ -14,34 +17,44 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">tf02_num</param>
+                <param name="sequence">TF02_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tf02_sgd.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
             </generator>
         </id>
 
-   <property
-  name="sgdw_id"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="sgdw_id"
-  />
+        <property
+            name="mc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="mc"
+        />
 
-  <property
-  name="mc"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="mc"
-  />
+        <property
+            name="sgdw_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="sgdw_id"
+        />
 
-  <property
-  name="bz"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="bz"
-  />
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
 
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tf02_sgd.xml
+            containing the additional properties and place it in your merge dir.
+        -->
 
     </class>
 

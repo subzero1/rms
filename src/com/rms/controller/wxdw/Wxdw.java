@@ -3,8 +3,12 @@ package com.rms.controller.wxdw;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +37,7 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
+import com.rms.dataObjects.wxdw.Tf02_sgd;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
 
@@ -358,6 +363,9 @@ public class Wxdw {
 		String lb = convertUtil.toString(request.getParameter("lb"));
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		Long nd = convertUtil.toLong(request.getParameter("nd"), null);
+		String[] nds = request.getParameterValues("nds");
+		String[] v1 = request.getParameterValues("v1");
+		String[] v2 = request.getParameterValues("v2");
 		Session session = queryService.getHibernateTemplate().getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 		try {
@@ -375,6 +383,15 @@ public class Wxdw {
 						tf05.setDq(qy[i]);
 						tf05.setZy(zy[i]);
 						tf05.setNd(nd);
+						if (nds != null) {
+							tf05.setNd(convertUtil.toLong(nds[i]));
+						}
+						if (v1 != null) {
+							tf05.setV1(convertUtil.toDouble(v1[i]));
+						}
+						if (v2 != null) {
+							tf05.setV2(v2[i]);
+						}
 						session.save(tf05);
 					}
 				else {
@@ -404,6 +421,59 @@ public class Wxdw {
 	@RequestMapping("/wxdw/fezbEdit.do")
 	public ModelAndView fezbEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		int startyear = 2012;
+		Calendar now = Calendar.getInstance();
+		int currentyear = now.get(Calendar.YEAR);
+		List<String> years = new ArrayList<String>();
+		while (startyear <= currentyear) {
+			years.add("" + startyear++);
+		}
+		modelMap.put("years", years);
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear));
+		modelMap.put("nd", nd);
+		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
+		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
+
+		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
+				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id + " order by zy,dq");
+		String zy = "";
+		Map<String, Map<String, Tf05_wxdw_dygx>> dygxMap = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
+		Map<String, Tf05_wxdw_dygx> dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+		for (Tf05_wxdw_dygx tf05 : tf05List) {
+			if (!zy.equals(tf05.getZy())) {
+				if (!dqMap.isEmpty()) {
+					dygxMap.put(zy, dqMap);
+					dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+				}
+				zy = tf05.getZy();
+			}
+			dqMap.put(tf05.getDq(), tf05);
+		}
+		if (!dqMap.isEmpty()) {
+			dygxMap.put(zy, dqMap);
+		}
+		modelMap.put("dygxMap", dygxMap);
+
+		tf05List = (List<Tf05_wxdw_dygx>) queryService.searchList("from Tf05_wxdw_dygx where lb='fezb' and wxdw_id="
+				+ wxdw_id + " and nd=" + nd + " order by zy,dq");
+		zy = "";
+		Map<String, Map<String, Tf05_wxdw_dygx>> fezbMap = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
+		dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+		for (Tf05_wxdw_dygx tf05 : tf05List) {
+			if (!zy.equals(tf05.getZy())) {
+				if (!dqMap.isEmpty()) {
+					fezbMap.put(zy, dqMap);
+					dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+				}
+				zy = tf05.getZy();
+			}
+			dqMap.put(tf05.getDq(), tf05);
+		}
+		if (!dqMap.isEmpty()) {
+			fezbMap.put(zy, dqMap);
+		}
+		modelMap.put("fezbMap", fezbMap);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/fezbEdit.jsp", modelMap);
 	}
 
@@ -414,6 +484,25 @@ public class Wxdw {
 	@RequestMapping("/wxdw/zjgcsEdit.do")
 	public ModelAndView zjgcsEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
+		int startyear = 2012;
+		Calendar now = Calendar.getInstance();
+		int currentyear = now.get(Calendar.YEAR);
+		List<String> years = new ArrayList<String>();
+		while (startyear <= currentyear) {
+			years.add("" + startyear++);
+		}
+		modelMap.put("years", years);
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear));
+		modelMap.put("nd", nd);
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
+		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
+				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id=" + wxdw_id + " order by zy");
+		Map<String, Tf05_wxdw_dygx> zjgcsMap = new HashMap<String, Tf05_wxdw_dygx>();
+		for (Tf05_wxdw_dygx tf05 : tf05List) {
+			zjgcsMap.put(tf05.getZy(), tf05);
+		}
+		modelMap.put("zjgcsMap", zjgcsMap);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/zjgcsEdit.jsp", modelMap);
 	}
 
@@ -424,6 +513,22 @@ public class Wxdw {
 	@RequestMapping("/wxdw/gljyeEdit.do")
 	public ModelAndView gljyeEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
+		int startyear = 2012;
+		Calendar now = Calendar.getInstance();
+		int currentyear = now.get(Calendar.YEAR);
+		List<String> years = new ArrayList<String>();
+		while (startyear <= currentyear) {
+			years.add("" + startyear++);
+		}
+		modelMap.put("years", years);
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
+				.searchList("from Tf05_wxdw_dygx where lb='gljye' and wxdw_id=" + wxdw_id + " order by nd");
+		Map<String, Tf05_wxdw_dygx> gljyeMap = new HashMap<String, Tf05_wxdw_dygx>();
+		for (Tf05_wxdw_dygx tf05 : tf05List) {
+			gljyeMap.put(convertUtil.toString(tf05.getNd()), tf05);
+		}
+		modelMap.put("gljyeMap", gljyeMap);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/gljyeEdit.jsp", modelMap);
 	}
 
@@ -434,6 +539,43 @@ public class Wxdw {
 	@RequestMapping("/wxdw/sgdEdit.do")
 	public ModelAndView sgdEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		// 获得施工队LIST(TF02)
+		List<Tf02_sgd> sgdList = (List<Tf02_sgd>) queryService.searchList("from Tf02_sgd sgd where sgd.sgdw_id="
+				+ wxdw_id + " order by sgd.id");
+		modelMap.put("sgdList", sgdList);
+		Map<Tf02_sgd, Map<String, Map<String, Tf05_wxdw_dygx>>> dygxMap = null;
+		if (!sgdList.isEmpty()) {
+			// 获得关联关系LIST(TF05 order by 施工队id)
+			String glgxSql = "from Tf05_wxdw_dygx where lb='sgd' and wxdw_id in(select sgd.id from Tf02_sgd sgd where sgd.sgdw_id="
+					+ wxdw_id + ") order by wxdw_id";
+			List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService.searchList(glgxSql);
+			// 制造MAP<tf02,MAP<>>
+			dygxMap = new HashMap<Tf02_sgd, Map<String, Map<String, Tf05_wxdw_dygx>>>();
+			int i = 0;
+			Tf02_sgd tf02 = sgdList.get(i);
+			Map<String, Map<String, Tf05_wxdw_dygx>> tf05Map = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
+			for (Tf05_wxdw_dygx tf05 : tf05List) {
+				if (tf05.getWxdw_id().longValue() != tf02.getId()) {
+					if (!tf05Map.isEmpty()) {
+						dygxMap.put(tf02, tf05Map);
+						tf05Map = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
+						tf02 = sgdList.get(++i);
+					}
+				}
+				Map<String, Tf05_wxdw_dygx> tmpMap = new HashMap<String, Tf05_wxdw_dygx>();
+				tmpMap.put(tf05.getZy(), tf05);
+				tf05Map.put(tf05.getDq(), tmpMap);
+			}
+			if (!tf05Map.isEmpty()) {
+				dygxMap.put(tf02, tf05Map);
+			}
+		}
+		modelMap.put("dygxMap", dygxMap);
+		// 获得页面信息(该外协单位关联的业务类型)
+		List<Tf05_wxdw_dygx> dygxList = (List<Tf05_wxdw_dygx>) queryService
+				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id + " order by zy,dq");
+		modelMap.put("dygxList", dygxList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/sgdEdit.jsp", modelMap);
 	}
 
@@ -442,6 +584,51 @@ public class Wxdw {
 	 */
 	@RequestMapping("/wxdw/ajaxSaveSgd.do")
 	public void ajaxSaveSgd(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		String mc = convertUtil.toString(request.getParameter("mc"));
+		String bz = convertUtil.toString(request.getParameter("bz"));
+		Long id = convertUtil.toLong(request.getParameter("id"), null);
+		String[] fps = request.getParameterValues("qyzyfp");
+		Session session = queryService.getHibernateTemplate().getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			Tf02_sgd sgd = new Tf02_sgd();
+			sgd.setBz(bz);
+			sgd.setId(id);
+			sgd.setMc(mc);
+			sgd.setSgdw_id(wxdw_id);
+			session.saveOrUpdate(sgd);
+			if (id != null) {
+				session.createQuery("delete from Tf05_wxdw_dygx where lb='sgd' and wxdw_id=" + sgd.getId())
+						.executeUpdate();
+			}
+			if (fps != null) {
+				for (String string : fps) {
+					String[] strArr = string.split("-");
+					Tf05_wxdw_dygx tf05 = new Tf05_wxdw_dygx();
+					tf05.setDq(strArr[0]);
+					tf05.setZy(strArr[1]);
+					tf05.setWxdw_id(sgd.getId());
+					tf05.setLb("sgd");
+					session.saveOrUpdate(tf05);
+				}
+			}
+			session.flush();
+			tx.commit();
+			out
+					.print("{\"statusCode\":\"200\",\"message\":\"保存成功！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			out
+					.print("{\"statusCode\":\"300\",\"message\":\"保存失败！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
+
+		} finally {
+			session.close();
+		}
 
 	}
 
@@ -450,14 +637,30 @@ public class Wxdw {
 	 */
 	@RequestMapping("/wxdw/ajaxDelSgd.do")
 	public void ajaxDelSgd(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Long sgd_id = convertUtil.toLong(request.getParameter("sgd_id"));
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		Session session = queryService.getHibernateTemplate().getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.createQuery("delete from Tf02_sgd where id=" + sgd_id).executeUpdate();
+			session.createQuery("delete from Tf05_wxdw_dygx where lb='sgd' and wxdw_id=" + sgd_id).executeUpdate();
+			session.flush();
+			tx.commit();
+			out
+					.print("{\"statusCode\":\"200\",\"message\":\"删除成功！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			out
+					.print("{\"statusCode\":\"300\",\"message\":\"删除失败！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
 
+		} finally {
+			session.close();
+		}
 	}
 
 	public static void main(String[] args) {
-		String s = "001";
-		Long l = new Long(s);
-		System.out.println(l);
-		s = String.format("%03d", l++);
-		System.out.println(s);
 	}
 }
