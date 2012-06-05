@@ -19,6 +19,10 @@
 		
 		$(".preButt .save").click(function(){
 			var $data = $(this).closest("tr").find(":input");
+			if ($(this).closest("tr").find(":input[name=mc]").val()==""){
+				alertMsg.error('施工队名称不能为空！');
+				return false;
+			}
 			$.ajax({
 				type: 'POST',
 				url:"wxdw/ajaxSaveSgd.do?wxdw_id=${param.wxdw_id}",

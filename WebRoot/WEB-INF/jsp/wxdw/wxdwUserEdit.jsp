@@ -9,6 +9,8 @@
 			<input type="hidden" name="ID" value="${ta03.id}" />
 			<input type="hidden" name="WXDW_ID" value="${param.wxdw_id}" />
 			<input type="hidden" name="DEPT_ID" value="${dept_id}" />
+			<input type="hidden" name="AREA_NAME" value="${ta03.area_name}" />
+			<input type="hidden" name="USEFLAG" value="${ta03.useflag}" />
 			<div class="pageFormContent" layoutH="53">
 				<p>
 					<label>登&nbsp;&nbsp;录&nbsp;&nbsp;名：</label>
@@ -24,7 +26,7 @@
 				</p>				
 				<p>
 					<label>性&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
-					<input style="width: 30px" type="radio" name="SEX" checked="checked" value="男" />
+					<input style="width: 30px" type="radio" name="SEX" <c:if test="${ta03.sex == '男' || empty ta03.sex}">checked="checked"</c:if> value="男" />
 					男
 					<input style="width: 30px" type="radio" name="SEX" <c:if test="${ta03.sex == '女' }">checked="checked"</c:if> value="女"/>
 					女

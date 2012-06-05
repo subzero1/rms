@@ -70,11 +70,6 @@ public class Wxdw {
 	@RequestMapping("/wxdw/wxdwList.do")
 	public ModelAndView wxdwList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
-		// 权限控制
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
-		if (rolesMap.containsKey("30101")) {
-			modelMap.put("canedit", "yes");
-		}
 		// 分页
 		Integer totalPages = 1;
 		Integer totalCount = 0;
@@ -192,7 +187,16 @@ public class Wxdw {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String lb = convertUtil.toString(URLDecoder.decode(request.getParameter("lb"), "UTF-8"));
-		String no = convertUtil.toString(queryService.searchList("select max(no) from Tf01_wxdw where lb='" + lb + "'")
+		String no_start = "";
+		if (lb.equals("施工")) {
+			no_start = "8";
+		} else if (lb.equals("设计")) {
+			no_start = "7";
+		} else if (lb.equals("监理")) {
+			no_start = "9";
+		}
+		String no = convertUtil.toString(queryService.searchList(
+				"select max(no) from Tf01_wxdw where no like'" + no_start + "%'")
 				.get(0));
 		if (no.equals("")) {
 			if (lb.equals("施工")) {
@@ -327,7 +331,11 @@ public class Wxdw {
 			String sex = convertUtil.toString(request.getParameter("SEX"));
 			String fix_tel = convertUtil.toString(request.getParameter("FIX_TEL"));
 			String email = convertUtil.toString(request.getParameter("EMAIL"));
-
+			String area_name = convertUtil.toString(request.getParameter("AREA_NAME"),"南京市");
+			if (area_name.equals("")){
+				area_name = "南京市";
+			}
+			Long useflag = convertUtil.toLong(request.getParameter("USEFLAG"),1L);
 			String[] STATION_IDs = request.getParameterValues("STATION_ID");
 			// 保存用户表 TA03
 			Ta03_user ta03 = null;
@@ -357,6 +365,8 @@ public class Wxdw {
 			ta03.setSex(sex);
 			ta03.setFix_tel(fix_tel);
 			ta03.setEmail(email);
+			ta03.setUseflag(useflag);
+			ta03.setArea_name(area_name);
 			session.saveOrUpdate(ta03);
 			if (id == -1L) {
 				Tf04_wxdw_user tf04 = new Tf04_wxdw_user();
@@ -494,7 +504,7 @@ public class Wxdw {
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		int startyear = 2012;
 		Calendar now = Calendar.getInstance();
-		int currentyear = now.get(Calendar.YEAR);
+		int currentyear = now.get(Calendar.YEAR) + 1;
 		List<String> years = new ArrayList<String>();
 		while (startyear <= currentyear) {
 			years.add("" + startyear++);
@@ -556,7 +566,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		int startyear = 2012;
 		Calendar now = Calendar.getInstance();
-		int currentyear = now.get(Calendar.YEAR);
+		int currentyear = now.get(Calendar.YEAR) + 1;
 		List<String> years = new ArrayList<String>();
 		while (startyear <= currentyear) {
 			years.add("" + startyear++);
@@ -585,7 +595,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		int startyear = 2012;
 		Calendar now = Calendar.getInstance();
-		int currentyear = now.get(Calendar.YEAR);
+		int currentyear = now.get(Calendar.YEAR) + 1;
 		List<String> years = new ArrayList<String>();
 		while (startyear <= currentyear) {
 			years.add("" + startyear++);
