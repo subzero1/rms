@@ -3,43 +3,27 @@
 	<!-- 默认路径 -->
 	<folder>rms/default</folder>
 	<!--  -->
-	<address>132.230.147.238</address>
-	<username>tomcat</username>
+	<address>192.168.0.3</address>
+	<username>pubtools</username>
 	<password>netsky</password>
 	<typeFolder>
 		<type>普通附件</type>
-		<folder>dmsSlaveData/ptfj</folder>
+		<folder>rmsSlaveData/ptfj</folder>
 	</typeFolder>
 	<typeFolder>
 		<type>共享文档</type>
-		<folder>dmsSlaveData/wdgx</folder>
+		<folder>rmsSlaveData/wdgx</folder>
 	</typeFolder>	
 	<typeFolder>
 		<type>其他附件</type>
-		<folder>dmsSlaveData/qtfj</folder>
+		<folder>rmsSlaveData/qtfj</folder>
 	</typeFolder>
 	<typeFolder>
 		<type>用户头像</type>
-		<folder>dmsSlaveData/yhtx</folder>
-	</typeFolder>
-	<typeFolder>
-		<type>机房规划图</type>
-		<folder>dmsSlaveData/jftz</folder>
-	</typeFolder>
-	<typeFolder>
-		<type>机房现状图</type>
-		<folder>dmsSlaveData/jftz</folder>
-	</typeFolder>
-	<typeFolder>
-		<type>申请设计图</type>
-		<folder>dmsSlaveData/sqsj</folder>
-	</typeFolder>
-	<typeFolder>
-		<type>变更设计图</type>
-		<folder>dmsSlaveData/sqsj</folder>
+		<folder>rmsSlaveData/yhtx</folder>
 	</typeFolder>
 	<typeFolder>
 		<type>xhEditor上传</type>
-		<folder>dmsSlaveData/xhEditor</folder>
+		<folder>rmsSlaveData/xhEditor</folder>
 	</typeFolder>
 </root>
