@@ -165,6 +165,7 @@
 				<value>com/rms/dataObjects/wxdw/Tf02_sgd.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf04_wxdw_user.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf05_wxdw_dygx.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf06_clb.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>

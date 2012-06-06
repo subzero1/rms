@@ -42,6 +42,7 @@ import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf02_sgd;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
+import com.rms.dataObjects.wxdw.Tf06_clb;
 
 @Controller
 public class Wxdw {
@@ -746,7 +747,95 @@ public class Wxdw {
 	@RequestMapping("/wxdw/jcclList.do")
 	public ModelAndView jcclList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/wxdw/jcclList.jsp", modelMap);
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "clmc");
+		if (orderField.equals("")) {
+			orderField = "clmc";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		// 查询条件
+		String clmc = convertUtil.toString(request.getParameter("clmc"));
+		String cllx = convertUtil.toString(request.getParameter("cllx"));
+
+		StringBuffer hsql = new StringBuffer();
+		hsql.append(" from Tf06_clb clb where 1=1");
+		// where条件
+		// 类别
+		if (!cllx.equals("")) {
+			hsql.append(" and cllx='" + cllx + "'");
+		}
+		// 名称
+		if (!clmc.equals("")) {
+			hsql.append(" and clmc like '%" + clmc + "%'");
+		}
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			totalCount = convertUtil.toInteger(queryService.searchList(" select count(*) " + hsql.toString()).get(0));
+			numPerPage = totalCount == 0 ? 1 : totalCount;
+			pageNum = 1;
+		}
+
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Tf06_clb> clbList = new ArrayList<Tf06_clb>();
+		// 导EXCEL
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			Map<String, List> sheetMap = new HashMap<String, List>();
+			List sheetList = new LinkedList();
+			List titleList = new LinkedList();
+			String form_title = "基础材料信息.xls";
+			titleList.add("名称");
+			titleList.add("规格");
+			titleList.add("型号");
+			titleList.add("单位");
+			titleList.add("类别");
+			sheetList.add(titleList);
+			List<List> docList = new LinkedList<List>();
+			while (ro.next()) {
+				List row = new LinkedList();
+				Tf06_clb tf06 = (Tf06_clb) ro.get("clb");
+				row.add(tf06.getClmc());
+				row.add(tf06.getGg());
+				row.add(tf06.getXh());
+				row.add(tf06.getDw());
+				row.add(tf06.getCllx());
+				docList.add(row);
+			}
+			sheetList.add(docList);
+			sheetMap.put(form_title, sheetList);
+			request.setAttribute("ExcelName", form_title);
+			request.setAttribute("sheetMap", sheetMap);
+			return new ModelAndView("/export/toExcelWhithList.do");
+		}
+		while (ro.next()) {
+			clbList.add((Tf06_clb) ro.get("clb"));
+		}
+		modelMap.put("clbList", clbList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		// 页面所需内容
+		// 类别
+		List<String> cllxList = (List<String>)queryService.searchList("from Tc01_property where type='材料类型'");
+		modelMap.put("cllxList", cllxList);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jcclList.jsp", modelMap);
 	}
 
 	/**

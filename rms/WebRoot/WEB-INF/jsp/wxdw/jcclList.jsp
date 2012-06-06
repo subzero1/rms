@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 	$(function(){
-		$("#mc").keyup(function(e){
+		$("#clmc").keyup(function(e){
 			if (e.which == 13){
 				$("#searchButton").click();
 			}
@@ -14,8 +14,8 @@
 </script>
 
 <form id="pagerForm" method="post" action="">
-	<input type="hidden" name="mc" value="${param.mc}">
-	<input type="hidden" name="lb" value="${param.lb}">
+	<input type="hidden" name="clmc" value="${param.clmc}">
+	<input type="hidden" name="cllx" value="${param.cllx}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -24,22 +24,23 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="wxdw/wxdwList.do" method="post">
+		<form action="wxdw/jcclList.do" method="post">
 			<input type="hidden" id="selectedId_demo" />
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>类别：</td>
-						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="name" showForOption="name" value="${param.lb}" extend=""  extendPrefix="true" /></td>
-						<td>单位名称：</td>
-						<td><input id="mc" name="mc" value="${param.mc}" type="text" size="25" />
+						<td>名称：</td>
+						<td><input id="clmc" name="clmc" value="${param.clmc}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
+						<td>类别：</td>
+						<td><netsky:htmlSelect name="cllx" id="cllx" objectForOption="cllxList" valueForOption="name" showForOption="name" value="${param.cllx}" extend=""  extendPrefix="true" /></td>
+						
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'wxdw/wxdwList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'wxdw/jcclList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -48,37 +49,41 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="add" href="wxdw/wxdwEdit.do" target="navTab" rel="wxdw" title="外协单位维护"><span>添加</span></a></li>
+				<li><a class="add" href="wxdw/wxdwEdit.do" target="navTab" rel="wxdw" title="基础材料维护"><span>添加</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="wxdw/wxdwEdit.do?id={wxdw_id}" target="navTab" rel="wxdw" title="外协单位维护"><span>修改</span></a></li>
+				<li><a class="edit" href="wxdw/wxdwEdit.do?id={clb_id}" target="navTab" rel="wxdw" title="基础材料维护"><span>修改</span></a></li>
 				<li class="line">line</li>
-				<li><a class="exportexcel"	href="wxdw/wxdwList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
+				<li><a class="exportexcel"	href="wxdw/jcclList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width: 80px;" orderField="lb">类别</th>
-					<th orderField="mc">单位名称</th>
-					<th style="width: 120px;" orderField="dwdz">地址</th>
-					<th style="width: 80px;" orderField="zt">状态</th>
+					<th orderField="clmc">名称</th>
+					<th style="width: 250px;" orderField="gg">规格</th>
+					<th style="width: 100px;" orderField="xh">型号</th>
+					<th style="width: 100px;" orderField="dw">单位</th>
+					<th style="width: 150px;" orderField="cllx">类别</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:set var="offset" value="0"/>
-				<c:forEach var="obj" items="${wxdwList}">
+				<c:forEach var="obj" items="${clbList}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr target="wxdw_id" rel="${obj.id}">
-						<td>${obj.lb }</td>
-						<td><a href="wxdw/wxdwEdit.do?id=${obj.id}" target="navTab" rel="wxdw" title="外协单位维护">${obj.mc }</a></td>
-						<td>${obj.dwdz }</td>
-						<td>${obj.zt }</td>
+					<tr target="clb_id" rel="${obj.id}">
+						
+						<td><a href="wxdw/clbEdit.do?id=${obj.id}" target="navTab" rel="clb" title="基础材料维护">${obj.clmc }</a></td>
+						<td>${obj.gg }</td>
+						<td>${obj.xh }</td>
+						<td>${obj.dw }</td>
+						<td>${obj.cllx }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
