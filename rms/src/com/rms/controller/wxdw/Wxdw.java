@@ -107,18 +107,18 @@ public class Wxdw {
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
-		if("yes".equals(request.getParameter("toExcel"))){
+		if ("yes".equals(request.getParameter("toExcel"))) {
 			totalCount = convertUtil.toInteger(queryService.searchList(" select count(*) " + hsql.toString()).get(0));
-			numPerPage =totalCount == 0?1:totalCount;
+			numPerPage = totalCount == 0 ? 1 : totalCount;
 			pageNum = 1;
 		}
-		
+
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Tf01_wxdw> wxdwList = new ArrayList<Tf01_wxdw>();
 		// 导EXCEL
-		if("yes".equals(request.getParameter("toExcel"))){
-			Map<String,List> sheetMap = new HashMap<String,List>();
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			Map<String, List> sheetMap = new HashMap<String, List>();
 			List sheetList = new LinkedList();
 			List titleList = new LinkedList();
 			String form_title = "外协单位信息.xls";
@@ -130,7 +130,7 @@ public class Wxdw {
 			List<List> docList = new LinkedList<List>();
 			while (ro.next()) {
 				List row = new LinkedList();
-				Tf01_wxdw tf01 = (Tf01_wxdw)ro.get("wxdw");
+				Tf01_wxdw tf01 = (Tf01_wxdw) ro.get("wxdw");
 				row.add(tf01.getLb());
 				row.add(tf01.getMc());
 				row.add(tf01.getDwdz());
@@ -139,7 +139,7 @@ public class Wxdw {
 			}
 			sheetList.add(docList);
 			sheetMap.put(form_title, sheetList);
-			request.setAttribute("ExcelName", form_title );
+			request.setAttribute("ExcelName", form_title);
 			request.setAttribute("sheetMap", sheetMap);
 			return new ModelAndView("/export/toExcelWhithList.do");
 		}
@@ -196,8 +196,7 @@ public class Wxdw {
 			no_start = "9";
 		}
 		String no = convertUtil.toString(queryService.searchList(
-				"select max(no) from Tf01_wxdw where no like'" + no_start + "%'")
-				.get(0));
+				"select max(no) from Tf01_wxdw where no like'" + no_start + "%'").get(0));
 		if (no.equals("")) {
 			if (lb.equals("施工")) {
 				no = "801";
@@ -234,12 +233,12 @@ public class Wxdw {
 											+ ta03.getId() + ")"));
 		}
 		modelMap.put("user_staMap", user_staMap);
-		if("yes".equals(request.getParameter("toExcel"))){
-			Tf01_wxdw wxdw = (Tf01_wxdw)queryService.searchById(Tf01_wxdw.class, wxdw_id);
-			Map<String,List> sheetMap = new HashMap<String,List>();
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			Tf01_wxdw wxdw = (Tf01_wxdw) queryService.searchById(Tf01_wxdw.class, wxdw_id);
+			Map<String, List> sheetMap = new HashMap<String, List>();
 			List sheetList = new LinkedList();
 			List titleList = new LinkedList();
-			String form_title = wxdw.getMc()+"-用户信息.xls";
+			String form_title = wxdw.getMc() + "-用户信息.xls";
 			titleList.add("工号");
 			titleList.add("姓名");
 			titleList.add("移动电话");
@@ -258,14 +257,14 @@ public class Wxdw {
 				List<Ta02_station> staList = user_staMap.get(ta03);
 				String xggw = "";
 				for (Ta02_station ta02 : staList) {
-					xggw += " "+ta02.getName();
+					xggw += " " + ta02.getName();
 				}
 				row.add(xggw.trim());
 				docList.add(row);
 			}
 			sheetList.add(docList);
 			sheetMap.put(form_title, sheetList);
-			request.setAttribute("ExcelName", form_title );
+			request.setAttribute("ExcelName", form_title);
 			request.setAttribute("sheetMap", sheetMap);
 			return new ModelAndView("/export/toExcelWhithList.do");
 		}
@@ -331,11 +330,11 @@ public class Wxdw {
 			String sex = convertUtil.toString(request.getParameter("SEX"));
 			String fix_tel = convertUtil.toString(request.getParameter("FIX_TEL"));
 			String email = convertUtil.toString(request.getParameter("EMAIL"));
-			String area_name = convertUtil.toString(request.getParameter("AREA_NAME"),"南京市");
-			if (area_name.equals("")){
+			String area_name = convertUtil.toString(request.getParameter("AREA_NAME"), "南京市");
+			if (area_name.equals("")) {
 				area_name = "南京市";
 			}
-			Long useflag = convertUtil.toLong(request.getParameter("USEFLAG"),1L);
+			Long useflag = convertUtil.toLong(request.getParameter("USEFLAG"), 1L);
 			String[] STATION_IDs = request.getParameterValues("STATION_ID");
 			// 保存用户表 TA03
 			Ta03_user ta03 = null;
@@ -739,6 +738,60 @@ public class Wxdw {
 		} finally {
 			session.close();
 		}
+	}
+
+	/**
+	 * 基础材料列表
+	 */
+	@RequestMapping("/wxdw/jcclList.do")
+	public ModelAndView jcclList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/wxdw/jcclList.jsp", modelMap);
+	}
+
+	/**
+	 * 基础材料信息
+	 */
+	@RequestMapping("/wxdw/jcclEdit.do")
+	public ModelAndView jcclEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/wxdw/jcclEdit.jsp", modelMap);
+	}
+
+	/**
+	 * 工程材料出入库列表
+	 */
+	@RequestMapping("/wxdw/gcclList.do")
+	public ModelAndView crkList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/wxdw/crkList.jsp", modelMap);
+	}
+
+	/**
+	 * 工程材料入库/出库/缴料
+	 */
+	@RequestMapping("/wxdw/crkMxList.do")
+	public ModelAndView crkMxList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/wxdw/crkMxList.jsp", modelMap);
+	}
+
+	/**
+	 * 工程材料入库/出库/缴料明细
+	 */
+	@RequestMapping("/wxdw/crkEdit.do")
+	public ModelAndView crkEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/wxdw/crkEdit.jsp", modelMap);
+	}
+
+	/**
+	 * 材料信息
+	 */
+	@RequestMapping("/wxdw/gcKcList.do")
+	public ModelAndView gcKcList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/wxdw/gcKcList.jsp", modelMap);
 	}
 
 	public static void main(String[] args) {
