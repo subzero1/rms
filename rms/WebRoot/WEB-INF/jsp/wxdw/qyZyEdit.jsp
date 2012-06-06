@@ -36,7 +36,9 @@ function saveQyzyConfig(){
 		cache: false,
 		success: function(json){
 			DWZ.ajaxDone(json);
-			navTab.reload();
+			$("#sgd_tab").loadUrl("wxdw/sgdEdit.do?lb=sgd&wxdw_id=${param.wxdw_id }");
+			$("#fezb_tab").loadUrl("wxdw/fezbEdit.do?lb=fezb&wxdw_id=${param.wxdw_id }");
+			$("#qyzy_tab").loadUrl("wxdw/qyZyEdit.do?lb=qyzy&wxdw_id=${param.wxdw_id }");
 		},
 		error: DWZ.ajaxError
 	});

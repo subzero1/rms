@@ -35,6 +35,7 @@ $(function(){
 		validateCallback($("#wxdw_form"),navTabAjaxDone);
 	}
 	});
+	$("#aa").click();
 });
 </script>
 
@@ -80,7 +81,7 @@ $(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>类    别：</label>
-					<input type="radio" name="Tf01_wxdw.LB" value="设计" <c:if test="${Tf01_wxdw.lb == '设计' || empty Tf01_wxdw.lb}checked="checked"</c:if>/>设计单位
+					<input type="radio" name="Tf01_wxdw.LB" value="设计" <c:if test="${Tf01_wxdw.lb == '设计' || empty Tf01_wxdw.lb}">checked="checked"</c:if>/>设计单位
 					<input type="radio" name="Tf01_wxdw.LB" value="施工" <c:if test="${Tf01_wxdw.lb == '施工'}">checked="checked"</c:if>/>施工单位
 					<input type="radio" name="Tf01_wxdw.LB" value="监理" <c:if test="${Tf01_wxdw.lb == '监理'}">checked="checked"</c:if>/>监理单位
 				</p>
@@ -103,7 +104,7 @@ $(function(){
 	<div class="tabsHeader">
 		<div class="tabsHeaderContent">
 			<ul>
-				<li class="selected">
+				<li>
 					<a href="javascript:void(0)"><span>用 户</span> </a>
 				</li>
 				<li>
