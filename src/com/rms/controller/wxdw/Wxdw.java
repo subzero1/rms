@@ -844,7 +844,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/jcclEdit.do")
 	public ModelAndView jcclEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/wxdw/jcclEdit.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jcclEdit.jsp", modelMap);
 	}
 
 	/**
@@ -853,7 +853,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/gcclList.do")
 	public ModelAndView crkList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/wxdw/crkList.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/crkList.jsp", modelMap);
 	}
 
 	/**
@@ -862,7 +862,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/crkMxList.do")
 	public ModelAndView crkMxList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/wxdw/crkMxList.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/crkMxList.jsp", modelMap);
 	}
 
 	/**
@@ -871,7 +871,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/crkEdit.do")
 	public ModelAndView crkEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/wxdw/crkEdit.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/crkEdit.jsp", modelMap);
 	}
 
 	/**
@@ -880,7 +880,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/gcKcList.do")
 	public ModelAndView gcKcList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/wxdw/gcKcList.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/gcKcList.jsp", modelMap);
 	}
 
 	public static void main(String[] args) {
