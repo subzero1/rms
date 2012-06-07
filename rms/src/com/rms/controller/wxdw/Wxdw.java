@@ -984,11 +984,11 @@ public class Wxdw {
 	/**
 	 * 工程材料入库/出库/缴料
 	 */
-	@RequestMapping("/wxdw/crkList.do")
-	public ModelAndView crkList(HttpServletRequest request,
+	@RequestMapping("/wxdw/crkEdit.do")
+	public ModelAndView crkEdit(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		return new ModelAndView("/WEB-INF/jsp/wxdw/crkList.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/crkEdit.jsp", modelMap);
 	}
 
 	/**
