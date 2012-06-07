@@ -49,9 +49,9 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="add" href="wxdw/wxdwEdit.do" target="navTab" rel="wxdw" title="基础材料维护"><span>添加</span></a></li>
+				<li><a class="add" href="wxdw/jcclEdit.do" target="dialog" rel="jccl" width="500" height="200" title="基础材料维护"><span>添加</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="wxdw/wxdwEdit.do?id={clb_id}" target="navTab" rel="wxdw" title="基础材料维护"><span>修改</span></a></li>
+				<li><a class="edit" href="wxdw/jcclEdit.do?id={clb_id}" target="dialog" rel="jccl" width="500" height="200" title="基础材料维护"><span>修改</span></a></li>
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/jcclList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
@@ -73,7 +73,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="clb_id" rel="${obj.id}">
 						
-						<td><a href="wxdw/clbEdit.do?id=${obj.id}" target="navTab" rel="clb" title="基础材料维护">${obj.clmc }</a></td>
+						<td><a href="wxdw/jcclEdit.do?id=${obj.id}" target="dialog" rel="clb" width="500" height="200" title="基础材料维护">${obj.clmc }</a></td>
 						<td>${obj.gg }</td>
 						<td>${obj.xh }</td>
 						<td>${obj.dw }</td>

@@ -844,6 +844,10 @@ public class Wxdw {
 	@RequestMapping("/wxdw/jcclEdit.do")
 	public ModelAndView jcclEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		modelMap.put("tf06", queryService.searchById(Tf06_clb.class, id));
+		List<String> cllxList = (List<String>)queryService.searchList("from Tc01_property where type='材料类型'");
+		modelMap.put("cllxList", cllxList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jcclEdit.jsp", modelMap);
 	}
 
