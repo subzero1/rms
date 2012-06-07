@@ -33,11 +33,13 @@ import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.dataObjects.Ta22_user_idea;
+import com.netsky.base.dataObjects.Tb15_docflow;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.base.Tc02_area;
+import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf02_sgd;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
@@ -857,6 +859,50 @@ public class Wxdw {
 	@RequestMapping("/wxdw/gcclList.do")
 	public ModelAndView gcclList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		if (orderField.equals("")) {
+			orderField = "gcmc";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		// 查询条件
+		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select distinct(gcxx) as gcxx from Td00_gcxx gcxx where exists (select tb15 from Tb15_docflow tb15 where tb15.project_id=gcxx.id and tb15.user_id="+((Ta03_user)request.getSession().getAttribute("user")).getId()+")");
+		// where条件
+		// 名称
+		if (!gcmc.equals("")) {
+			hsql.append(" and gcxx.gcmc like '%" + gcmc + "%'");
+		}
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Td00_gcxx> gcxxList = new ArrayList<Td00_gcxx>();
+		while (ro.next()) {
+			gcxxList.add((Td00_gcxx) ro.get("gcxx"));
+		}
+		modelMap.put("gcxxList", gcxxList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/gcclList.jsp", modelMap);
 	}
 
