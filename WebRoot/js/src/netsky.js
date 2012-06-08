@@ -1,3 +1,4 @@
+
 /**
  * 普通ajax表单提交（不含校验）
  * @param {Object} form
@@ -260,7 +261,7 @@ function nextRecord(form_id,loadFileArea_id){
 }
 
 /**
- * 及连菜单
+ * 级联菜单
  * ver0.00
  * @param var0 填充的SELECT的ID(例:被填充的SELECT<select id="test"> 则var0='test')
  * @param var1 查询的类名.条件的方法名(例:'Ta03_user.id')
@@ -271,7 +272,7 @@ function nextRecord(form_id,loadFileArea_id){
  * 应如下调用该函数:jilian('selectB','Ta03_user.area_name','$('#selectA').val()','id','name'); 
  * 该函数只能用于selectA的option的value恰巧等于selectB所代表的持久化类中的某一字段 如上例中 selectA的option的value为areaname 而Ta03_user中也有areaname字段
  * 如果是selectA的option的value是一个id而非一个name 则暂不能用该函数解决 有待继续开发
- * ver0.01 允许多级菜单及连(例:参见messagewrite.jsp) 实现方式:async:false
+ * ver0.01 允许多级菜单级联(例:参见messagewrite.jsp) 实现方式:async:false
  */
 function jilian(var0, var1, var2, var3, var4) {
 	var params = "var1=" + var1 + "&var2=" + var2 + "&var3=" + var3 + "&var4=" + var4;
@@ -288,4 +289,16 @@ function jilian(var0, var1, var2, var3, var4) {
 */
 function showMsgBox(_msg,a,b,c){
 	alertMsg.warn(_msg);
+}
+
+/**
+* 级联 FOR 出入库材料信息
+*
+*/
+function getClmc(cllx,dz,obj) {
+var params = "cllx="+cllx+"&dz="+dz;
+	$.ajax({type:"post",async:false,url:"wxdw/getClmc.do",data:params, success:function (msg) {
+		$(obj).empty();
+		$(obj).append(msg);
+	}});
 }

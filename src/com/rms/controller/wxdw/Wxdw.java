@@ -1,5 +1,6 @@
 package com.rms.controller.wxdw;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
@@ -39,6 +40,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
@@ -46,6 +48,7 @@ import com.rms.dataObjects.wxdw.Tf02_sgd;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
 import com.rms.dataObjects.wxdw.Tf06_clb;
+import com.rms.dataObjects.wxdw.Tf07_kcb;
 import com.rms.dataObjects.wxdw.Tf08_clmxb;
 
 @Controller
@@ -988,6 +991,21 @@ public class Wxdw {
 	public ModelAndView crkEdit(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class,
+				project_id);
+		Long dz = convertUtil.toLong(request.getParameter("dz"));
+		String type = "";
+		if (dz == 0L) {
+			type = "入库";
+		} else if (dz == 1L) {
+			type = "出库";
+		} else if (dz == 2L) {
+			type = "缴料";
+		}
+		modelMap.put("type", type);
+		modelMap.put("dz", dz);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/crkEdit.jsp", modelMap);
 	}
 
@@ -1058,7 +1076,7 @@ public class Wxdw {
 			List sheetList = new LinkedList();
 			List titleList = new LinkedList();
 			String form_title = gcxx.getGcmc() + type + "明细.xls";
-			//材料类别	材料名称	规格	型号	单位	数量	操作时间
+			// 材料类别 材料名称 规格 型号 单位 数量 操作时间
 			titleList.add("材料类别");
 			titleList.add("材料名称");
 			titleList.add("规格");
@@ -1077,7 +1095,8 @@ public class Wxdw {
 				row.add(tf08.getXh());
 				row.add(tf08.getDw());
 				row.add(tf08.getSl());
-				row.add(new SimpleDateFormat("yyyy-MM-dd").format(tf08.getCzsj()));
+				row.add(new SimpleDateFormat("yyyy-MM-dd").format(tf08
+						.getCzsj()));
 				docList.add(row);
 			}
 			sheetList.add(docList);
@@ -1111,5 +1130,108 @@ public class Wxdw {
 	}
 
 	public static void main(String[] args) {
+	}
+
+	/**
+	 * 材料类型选项
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/cllxSelect.do")
+	public void cllxSelect(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		PrintWriter out = null;
+		response.setContentType("text/html");
+
+		// 获得参数
+		String type = convertUtil
+				.toString(request.getParameter("type"), "材料类型");
+		Long dz = convertUtil.toLong(request.getParameter("dz"));
+		String inputName = convertUtil.toString(request
+				.getParameter("inputName"));
+
+		StringBuffer printStr = new StringBuffer();
+		printStr
+				.append("<select name=\""
+						+ inputName
+						+ "\" onchange=\"getClmc($(this).val(),'"+dz+"',$(this).closest('tr').find('.clmc'))\" style=\"width:0px;\">");
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("select tc01 from Tc01_property tc01");
+			sql.append(" where type=? order by id");
+			List<Tc01_property> tmpList = (List<Tc01_property>) queryService
+					.searchList(sql.toString(),
+							new Object[] { type.toString() });
+			printStr.append("<option value=\"\"></option>");
+			for (Tc01_property tc01 : tmpList) {
+				printStr.append("<option value='" + tc01.getName() + "'>"
+						+ tc01.getName() + "</option>");
+			}
+
+			printStr.append("</select>");
+
+			out = response.getWriter();
+			out.print(printStr);
+
+		} catch (IOException e) {
+			exceptionService.exceptionControl(
+					"com.rms.controller.info.DetailSelect", "获取明细选项失败", e);
+		}
+
+	}
+
+	/**
+	 * 材料名称下拉选项
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/clmcSelect.do")
+	public void clmcSelect(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		PrintWriter out = null;
+		response.setContentType("text/html");
+
+		// 获得参数
+		String inputName = convertUtil.toString(request
+				.getParameter("inputName"));
+
+		StringBuffer printStr = new StringBuffer();
+		printStr.append("<select name=\"" + inputName
+				+ "\" class=\"clmc\" style=\"width:0px;\">");
+
+		printStr.append("</select>");
+
+		out = response.getWriter();
+		out.print(printStr);
+
+	}
+
+	@RequestMapping("/wxdw/getClmc.do")
+	public void getClmc(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		String s = "<option></option>";
+		String cllx = convertUtil.toString(request.getParameter("cllx"));
+		Long dz = convertUtil.toLong(request.getParameter("dz"));
+		if (dz == 0L) {//入库
+			List<Tf06_clb> clbList = (List<Tf06_clb>)queryService.searchList("from Tf06_clb where cllx='"+cllx+"'");
+			for (Tf06_clb clb : clbList) {
+				s+="<option value=\""+clb.getClmc()+"\">"+clb.getClmc()+"—"+convertUtil.toString(clb.getGg(),"（无规格说明）")+"—"+convertUtil.toString(clb.getXh(),"（无型号说明）")+"</option>";
+			}
+		}
+		
+		PrintWriter out = response.getWriter();
+		out.print(s);
+		out.flush();
+		out.close();
 	}
 }

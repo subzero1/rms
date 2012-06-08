@@ -5,10 +5,18 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
 
+<script type="text/javascript">
+$(function(){
+	
+});
+
+
+</script>
+
 <div class="page">
 	<div class="pageHeader">
 		<div class="searchBar">
-			<h1>工程材料入库/出库/缴料</h1>
+			<h1>工程材料${type }</h1>
 		</div>
 	</div>
 	
@@ -16,7 +24,7 @@
 		<ul class="toolBar" id="_flowButton">
 		 	<li><a class="save"	href="javascript:;"><span>保 存</span></a></li>
 			<li class="line">line</li>
-		 	<li><a class="icon"	href="javascript:;"><span>入 库/出 库/缴 料</span></a></li>
+		 	<li><a class="icon"	href="javascript:;"><span>${type }</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
@@ -41,13 +49,13 @@
 			</p>
 			
 			<div class="divider" style="height:1px;"></div>
-			<div style="text-align:left;color:blue;"><h3>待入库/出库/缴料材料&nbsp;</h3></div>
+			<div style="text-align:left;color:blue;"><h3>待${type }材料&nbsp;</h3></div>
 			<table width="100%" class="list" itemdetail="clDetail" width="100%">
 				<thead>
 					<tr>
-						<th type="enum" style="width:85px;" name="Tf08_clmxb.CLLX" enumName="cllx" enumUrl="info/propertySelect.do" enumData="{'type':'材料类别'}" hideName="Tf08_clmxb.ID">材料类别</th>
-						<th type="enum"  style="width:220px;"  name="Tf08_clmxb.CLMC" enumName="clmc" enumUrl="wxdw/clmcSelect.do" enumData="{'cllx':''}">材料名称</th>
-						<th type="text"  style="width:120px;" name="Tf08_clmxb.GG">规格</th>
+						<th type="enum" style="width:85px;" name="Tf08_clmxb.CLLX" enumName="cllx" enumUrl="wxdw/cllxSelect.do" enumData="{'type':'材料类型','dz':'${dz }'}" hideName="Tf08_clmxb.ID">材料类别</th>
+						<th type="enum" style="width:320px;"  name="Tf08_clmxb.CLMC" enumName="clmc" enumUrl="wxdw/clmcSelect.do">材料名称</th>
+						<th type="text" style="width:120px;" name="Tf08_clmxb.GG">规格</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.XH">型号</th>
 						<th type="text" style="width:60px;" name="Tf08_clmxb.DW">单位</th>
 						<th type="text" style="width:60px;" name="Tf08_clmxb.SL">数量</th>
@@ -59,7 +67,6 @@
 					<tr>
 						<td>
 							<input type="hidden" name="Tf08_clmxb.ID" value="${obj.id}"/>
-							<netsky:htmlSelect name="Tf08_clmxb.CLLX" objectForOption="cllxList" valueForOption="name" showForOption="name" value="${obj.cllx}" extend="" style="width:0px;"/>
 						</td>
 						<td>
 							<netsky:htmlSelect name="Tf08_clmxb.CLMC" objectForOption="clmcList" valueForOption="name" showForOption="name" value="${obj.clmc}" extend="" style="width:0px;"/>
@@ -73,36 +80,6 @@
 				</c:forEach>
 				</tbody>
 			</table>
-			<div class="divider" style="height:1px;"></div>
-			<div style="text-align:left;color:blue;"><h3>已入库/出库/缴料材料&nbsp;</h3></div>
-			<table width="100%" class="list nowrap">
-				<thead>
-					<tr>
-						<th style="width:85px;">材料类别</th>
-						<th  style="width:220px;">材料名称</th>
-						<th style="width:120px;">规格</th>
-						<th style="width:120px;">型号</th>
-						<th style="width:60px;">单位</th>
-						<th style="width:60px;">数量</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach var="obj" items="${wcclList}">
-					<tr>
-						<td>${obj.cllx}</td>
-						<td>${obj.clmc}</td>
-						<td>${obj.gg}</td>
-						<td>${obj.xh}</td>
-						<td>${obj.dw}</td>
-						<td>${obj.sl}</td>
-						<td>&nbsp;</td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
-			
-			</form>
 		</div>
 	</div>
 	
