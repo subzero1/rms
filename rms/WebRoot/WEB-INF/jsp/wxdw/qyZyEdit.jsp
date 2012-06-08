@@ -48,8 +48,10 @@ function saveQyzyConfig(){
 
 	<div class="panelBar">
 		<ul class="toolBar">
+		<c:if test="${not empty param.wxdw_id }">
 			<li><a class="save" href="javascript:saveQyzyConfig();" ><span>保 存</span></a></li>
 			<li class="line">line</li>
+			</c:if>
 		</ul>
 	</div>
 	<form id="qyzy_form" action="wxdw/ajaxSaveWxdwConfig.do">
