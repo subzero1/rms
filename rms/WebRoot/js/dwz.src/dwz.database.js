@@ -181,6 +181,7 @@
 						patternDate: $th.attr("format") || "yyyy-MM-dd",
 						name: $th.attr("name") || "",
 						id: $th.attr("id") || "",					//modify at 2011-08-10 表单主从结构中增加id属性
+						value: $th.attr("value") || "",				//modify at 2012-06-11 输入域增加value属性
 						hideName: $th.attr("hideName") || "",		//modify at 2011-08-08 表单主从结构中增加隐藏域
 						hideId: $th.attr("hideId") || "",			
 						size: $th.attr("size") || "",
@@ -280,12 +281,12 @@
 							suggestFrag = 'autocomplete="off" lookupGroup="'+itemDetail+'" lookupName="'+field.lookupName+'" index="#index#" suggestUrl="'+field.suggestUrl+'" suggestFields="'+field.suggestFields+'"';
 						}
 						
-						html = '<input type="text" id="' + lookupFieldId + '" name="'+lookupFieldName+'"'+suggestFrag+' size="'+field.size+'" style="width:0px;" class="' + field.fieldClass + '" comments="' + field.comments + '"/>'
+						html = '<input type="text" id="' + lookupFieldId + '" name="'+lookupFieldName+'"'+suggestFrag+' value="'+field.value+'" size="'+field.size+'" style="width:0px;" class="' + field.fieldClass + '" comments="' + field.comments + '"/>'
 							+ '<a class="btnLook" href="'+field.lookupUrl+'" lookupGroup="'+itemDetail+'" lookupName="'+field.lookupName+'" index="#index#" title="查找带回">查找带回</a>';
 						break;
 					case 'attach':
 						html = '<input type="hidden" name="'+itemDetail+'[#index#].'+field.lookupName+'.id"/>'
-							+ '<input type="text" id="' + fieldId + '" name="'+lookupFieldName+'" size="'+field.size+'" readonly="readonly" style="width:0px;" class="' + field.fieldClass + '" comments="' + field.comments + '"/>'
+							+ '<input type="text" id="' + fieldId + '" name="'+lookupFieldName+'" value="'+field.value+'" size="'+field.size+'" readonly="readonly" style="width:0px;" class="' + field.fieldClass + '" comments="' + field.comments + '"/>'
 							+ '<a class="btnAttach" href="'+field.lookupUrl+'" lookupGroup="'+itemDetail+'" lookupName="'+field.lookupName+'" index="#index#" width="560" height="300" title="查找带回">查找带回</a>';
 						break;
 					case 'enum':
@@ -302,18 +303,18 @@
 						});
 						break;
 					case 'date':
-						html = '<input type="text" id="' + fieldId + '" name="'+fieldName+'" class="date ' + field.fieldClass + '" pattern="'+field.patternDate+'" size="'+field.size+'" style="width:0px;" comments="' + field.comments + '"/>'
+						html = '<input type="text" id="' + fieldId + '" name="'+fieldName+'" class="date ' + field.fieldClass + '" pattern="'+field.patternDate+'" value="'+field.value+'" size="'+field.size+'" style="width:0px;" comments="' + field.comments + '"/>'
 							+'<a class="inputDateButton" href="javascript:void(0)">选择</a>';
 						break;
 					case 'datetime':
-						html = '<input type="text" id="' + fieldId + '" name="'+fieldName+'" class="date ' + field.fieldClass + '" pattern="'+field.patternDatetime+'" size="'+field.size+'" style="width:0px;" comments="' + field.comments + '"/>'
+						html = '<input type="text" id="' + fieldId + '" name="'+fieldName+'" class="date ' + field.fieldClass + '" pattern="'+field.patternDatetime+'" value="'+field.value+'" size="'+field.size+'" style="width:0px;" comments="' + field.comments + '"/>'
 							+'<a class="inputDateButton" href="javascript:void(0)">选择</a>';
 						break;
 					case 'textarea':
-						html = '<textarea id="' + fieldId + '" name="'+fieldName+'" size="'+field.size+'" style="border-width:0;width:0px;overflow-y:visible;" class="' + field.fieldClass + '" comments="' + field.comments + '"></textarea>';
+						html = '<textarea id="' + fieldId + '" name="'+fieldName+'" size="'+field.size+'" style="border-width:0;width:0px;overflow-y:visible;" class="' + field.fieldClass + '" comments="' + field.comments + '"> '+field.value+' </textarea>';
 						break;	
 					default:
-						html = '<input type="text" id="' + fieldId + '" name="'+fieldName+'" size="'+field.size+'" style="width:0px;" class="' + field.fieldClass + '" comments="' + field.comments + '"/>';
+						html = '<input type="text" id="' + fieldId + '" name="'+fieldName+'" value="'+field.value+'" size="'+field.size+'" style="width:0px;" class="' + field.fieldClass + '" comments="' + field.comments + '"/>';
 						break;
 				}
 				
