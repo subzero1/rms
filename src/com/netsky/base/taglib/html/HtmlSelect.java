@@ -411,7 +411,7 @@ public class HtmlSelect extends ChangeableWidget {
 					if (value_tmp.equals("-1"))
 						value_tmp = "";
 					sb_tmp.delete(0, sb_tmp.length());
-					sb_tmp.append("<option value=\"");
+					sb_tmp.append("<option  title=\""+value_tmp+"\" value=\"");
 					sb_tmp.append(value_tmp);
 					sb_tmp.append("\"");
 					if (value_selected.equals(value_tmp)
