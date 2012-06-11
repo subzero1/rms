@@ -183,6 +183,7 @@
 						id: $th.attr("id") || "",					//modify at 2011-08-10 表单主从结构中增加id属性
 						value: $th.attr("value") || "",				//modify at 2012-06-11 输入域增加value属性
 						hideName: $th.attr("hideName") || "",		//modify at 2011-08-08 表单主从结构中增加隐藏域
+						hideValue: $th.attr("hideValue") || "",		//modify at 2011-08-08 表单主从结构中增加隐藏域的值
 						hideId: $th.attr("hideId") || "",			
 						size: $th.attr("size") || "",
 						width: $th.width() || "",					//modify at 2011-09-21 增加宽度
@@ -318,7 +319,7 @@
 						break;
 				}
 				
-				if(field.hideName!="" || field.hideId!="" ) html = '<input type="hidden" id="' + field.hideId + '" name="' + field.hideName + '"/>' + html;	//modify at 2011-08-08 表单主从结构中增加隐藏域
+				if(field.hideName!="" || field.hideId!="" ) html = '<input type="hidden" id="' + field.hideId + '" name="' + field.hideName + '" value="'+field.hideValue+'"/>' + html;	//modify at 2011-08-08 表单主从结构中增加隐藏域
 				return '<td width="'+field.width+'">'+html+'</td>';
 			}
 			function trHtml(fields, itemDetail){
