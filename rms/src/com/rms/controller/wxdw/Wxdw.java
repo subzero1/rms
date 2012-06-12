@@ -929,7 +929,6 @@ public class Wxdw {
 			+ "\", \"forwardUrl\":\""
 			+ ""
 			+ "\", \"callbackType\":\"" + "" + "\"}";
-	try {
 		MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
 		Iterator<?> it = mrequest.getFileNames();
 		while (it.hasNext()) {
@@ -945,7 +944,7 @@ public class Wxdw {
 				Transaction transaction = session.beginTransaction();
 				transaction.begin();
 				try {
-					session.createQuery("delete from Tf06_clb where id>342").executeUpdate();
+					session.createQuery("delete from Tf06_clb").executeUpdate();
 					rowlist.remove(0);
 					for (List<String> row : rowlist) {
 						Tf06_clb tf06 = new Tf06_clb();
@@ -961,20 +960,18 @@ public class Wxdw {
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
+					json = "{\"statusCode\":\"300\", \"message\":\"导入失败\", \"navTabId\":\""
+						+ ""
+						+ "\", \"forwardUrl\":\""
+						+ ""
+						+ "\", \"callbackType\":\"" + "" + "\"}";
 					transaction.rollback();
 				} finally {
 					session.close();
 				}
 			}
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		json = "{\"statusCode\":\"300\", \"message\":\"导入失败\", \"navTabId\":\""
-				+ ""
-				+ "\", \"forwardUrl\":\""
-				+ ""
-				+ "\", \"callbackType\":\"" + "" + "\"}";
-	}
+	response.setContentType("text/html;charset=UTF-8");
 	response.getWriter().print(json);
 	}
 	/**

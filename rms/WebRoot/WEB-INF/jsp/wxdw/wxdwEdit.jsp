@@ -9,7 +9,7 @@ $(function(){
 	var h = navTab._panelBox.height() - $("#wxdw_info").height() - 25;
 	$("#wxdwpz_disp").css("height",h);
 	
-	$("#submitbutton").click(function(){
+	$("#submitbutton", navTab.getCurrentPanel()).click(function(){
 		var flag = false;
 	if ("${Tf01_wxdw.id}"==""){
 		alertMsg.confirm("您选择的该外协单位类别为"+$("input[name='Tf01_wxdw\\.LB']:checked").val()+"单位，确认保存吗？", {
@@ -35,7 +35,6 @@ $(function(){
 		validateCallback($("#wxdw_form"),navTabAjaxDone);
 	}
 	});
-	$("#aa").click();
 });
 </script>
 
