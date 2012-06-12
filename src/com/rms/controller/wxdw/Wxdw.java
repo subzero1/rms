@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.HibernateQueryBuilder;
@@ -40,6 +41,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.rms.controller.base.ExcelRead;
 import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.form.Td00_gcxx;
@@ -348,6 +350,7 @@ public class Wxdw {
 		Session session = queryService.getHibernateTemplate()
 				.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
+		tx.begin();
 		try {
 			Long id = convertUtil.toLong(request.getParameter("ID"));
 			Long wxdw_id = convertUtil.toLong(request.getParameter("WXDW_ID"));
@@ -486,6 +489,7 @@ public class Wxdw {
 		Session session = queryService.getHibernateTemplate()
 				.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
+		tx.begin();
 		try {
 			String delsql = "delete from Tf05_wxdw_dygx where lb='" + lb
 					+ "' and wxdw_id=" + wxdw_id;
@@ -730,6 +734,7 @@ public class Wxdw {
 		Session session = queryService.getHibernateTemplate()
 				.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
+		tx.begin();
 		try {
 			Tf02_sgd sgd = new Tf02_sgd();
 			sgd.setBz(bz);
@@ -782,6 +787,7 @@ public class Wxdw {
 		Session session = queryService.getHibernateTemplate()
 				.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
+		tx.begin();
 		try {
 			session.createQuery("delete from Tf02_sgd where id=" + sgd_id)
 					.executeUpdate();
@@ -875,15 +881,18 @@ public class Wxdw {
 			titleList.add("类别");
 			sheetList.add(titleList);
 			List<List> docList = new LinkedList<List>();
-			while (ro.next()) {
-				List row = new LinkedList();
-				Tf06_clb tf06 = (Tf06_clb) ro.get("clb");
-				row.add(tf06.getClmc());
-				row.add(tf06.getGg());
-				row.add(tf06.getXh());
-				row.add(tf06.getDw());
-				row.add(tf06.getCllx());
-				docList.add(row);
+			if (!"yes".equals(request.getParameter("model"))){
+				
+				while (ro.next()) {
+					List row = new LinkedList();
+					Tf06_clb tf06 = (Tf06_clb) ro.get("clb");
+					row.add(tf06.getClmc());
+					row.add(tf06.getGg());
+					row.add(tf06.getXh());
+					row.add(tf06.getDw());
+					row.add(tf06.getCllx());
+					docList.add(row);
+				}
 			}
 			sheetList.add(docList);
 			sheetMap.put(form_title, sheetList);
@@ -908,6 +917,66 @@ public class Wxdw {
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jcclList.jsp", modelMap);
 	}
 
+	
+	
+	/**
+	 * 基础材料导入
+	 */
+	@RequestMapping("/wxdw/jcclImport.do")
+	public void jcclImport(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String json = "{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\""
+			+ "jcclList"
+			+ "\", \"forwardUrl\":\""
+			+ ""
+			+ "\", \"callbackType\":\"" + "" + "\"}";
+	try {
+		MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
+		Iterator<?> it = mrequest.getFileNames();
+		while (it.hasNext()) {
+			String fileDispath = (String) it.next();
+			MultipartFile file = mrequest.getFile(fileDispath);
+			if (file.getName() != null && !file.getName().equals("")
+					&& file.getInputStream().available() > 0) {
+				List<List<String>> rowlist = (List<List<String>>) ExcelRead
+						.readEcelFilebyStream(file.getInputStream(), file
+								.getOriginalFilename(), 0, 1);
+				// 遍历全表
+				Session session = saveService.getHiberbateSession();
+				Transaction transaction = session.beginTransaction();
+				transaction.begin();
+				try {
+					session.createQuery("delete from Tf06_clb where id>342").executeUpdate();
+					rowlist.remove(0);
+					for (List<String> row : rowlist) {
+						Tf06_clb tf06 = new Tf06_clb();
+						tf06.setClmc(row.get(0));
+						tf06.setGg(row.get(1));
+						tf06.setXh(row.get(2));
+						tf06.setDw(row.get(3));
+						tf06.setCllx(row.get(4));
+						session.save(tf06);
+					}
+					session.flush();
+					transaction.commit();
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+					transaction.rollback();
+				} finally {
+					session.close();
+				}
+			}
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+		json = "{\"statusCode\":\"300\", \"message\":\"导入失败\", \"navTabId\":\""
+				+ ""
+				+ "\", \"forwardUrl\":\""
+				+ ""
+				+ "\", \"callbackType\":\"" + "" + "\"}";
+	}
+	response.getWriter().print(json);
+	}
 	/**
 	 * 基础材料信息
 	 */
@@ -922,7 +991,6 @@ public class Wxdw {
 		modelMap.put("cllxList", cllxList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jcclEdit.jsp", modelMap);
 	}
-
 	/**
 	 * 工程材料出入库列表
 	 */
