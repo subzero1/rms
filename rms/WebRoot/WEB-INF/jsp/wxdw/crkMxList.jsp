@@ -61,7 +61,7 @@
 						<td>${obj.xh }</td>
 						<td>${obj.dw }</td>
 						<td>${obj.sl }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj.dw }"/></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj.czsj }"/></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">

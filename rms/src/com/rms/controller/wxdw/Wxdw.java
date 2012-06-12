@@ -45,6 +45,7 @@ import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf02_sgd;
+import com.rms.dataObjects.wxdw.Tf03_yhda;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
 import com.rms.dataObjects.wxdw.Tf06_clb;
@@ -1006,6 +1007,46 @@ public class Wxdw {
 		}
 		modelMap.put("type", type);
 		modelMap.put("dz", dz);
+		modelMap.put("gcxx", gcxx);
+		List<Tf08_clmxb> tf08List = (List<Tf08_clmxb>) queryService
+				.searchList("from Tf08_clmxb where zhxx_id=" + project_id
+						+ " and dz=" + dz + " and (flag is null or flag<>1)");
+		modelMap.put("tf08List", tf08List);
+		List<String> cllxList = null;
+		if (dz == 0L) {
+			StringBuffer sql = new StringBuffer();
+			sql.append("select name from Tc01_property tc01");
+			sql.append(" where type='材料类型' order by id");
+			cllxList = (List<String>) queryService.searchList(sql.toString());
+		} else if (dz == 1L || dz == 2L) {
+			cllxList = (List<String>) queryService
+					.searchList("select distinct(cllx) as cllx from Tf07_kcb where project_id="
+							+ project_id + " and kcsl<>0");
+		}
+		modelMap.put("cllxList", cllxList);
+		List<List> clmcselectList = new ArrayList<List>();
+		for (Tf08_clmxb tf08 : tf08List) {
+			if (dz == 0L) {// 入库
+				List<Tf06_clb> clbList = (List<Tf06_clb>) queryService
+						.searchList("from Tf06_clb where cllx='"
+								+ tf08.getCllx() + "'");
+				clmcselectList.add(clbList);
+			} else if (dz == 1L || dz == 2L) {// 出库 缴料
+				List<Tf07_kcb> kcbList = (List<Tf07_kcb>) queryService
+						.searchList("from Tf07_kcb where cllx='"
+								+ tf08.getCllx() + "' and project_id="
+								+ project_id + " and kcsl<>0");
+				// for (Tf07_kcb kcb : kcbList) {
+				// s += "<option flag=\"" + kcb.getId() + "\" value=\""
+				// + kcb.getClmc() + "\">" + kcb.getClmc() + "—"
+				// + convertUtil.toString(kcb.getGg(), "（无规格说明）") + "—"
+				// + convertUtil.toString(kcb.getXh(), "（无型号说明）")
+				// + "</option>";
+				// }
+				clmcselectList.add(kcbList);
+			}
+		}
+		modelMap.put("clmcselectList", clmcselectList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/crkEdit.jsp", modelMap);
 	}
 
@@ -1148,32 +1189,39 @@ public class Wxdw {
 		response.setContentType("text/html");
 
 		// 获得参数
-		String type = convertUtil
-				.toString(request.getParameter("type"), "材料类型");
 		Long dz = convertUtil.toLong(request.getParameter("dz"));
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
 		String inputName = convertUtil.toString(request
 				.getParameter("inputName"));
 
 		StringBuffer printStr = new StringBuffer();
-		printStr
-				.append("<select name=\""
-						+ inputName
-						+ "\" onchange=\"getClmc($(this).val(),'"+dz+"',$(this).closest('tr').find('.clmc'))\" style=\"width:0px;\">");
+		printStr.append("<select name=\"" + inputName
+				+ "\" style=\"width:0px;\">");
 		try {
-			StringBuffer sql = new StringBuffer();
-			sql.append("select tc01 from Tc01_property tc01");
-			sql.append(" where type=? order by id");
-			List<Tc01_property> tmpList = (List<Tc01_property>) queryService
-					.searchList(sql.toString(),
-							new Object[] { type.toString() });
-			printStr.append("<option value=\"\"></option>");
-			for (Tc01_property tc01 : tmpList) {
-				printStr.append("<option value='" + tc01.getName() + "'>"
-						+ tc01.getName() + "</option>");
+			if (dz == 0L) {
+				StringBuffer sql = new StringBuffer();
+				sql.append("select tc01 from Tc01_property tc01");
+				sql.append(" where type='材料类型' order by id");
+				List<Tc01_property> tmpList = (List<Tc01_property>) queryService
+						.searchList(sql.toString());
+				printStr.append("<option value=\"\"></option>");
+				for (Tc01_property tc01 : tmpList) {
+					printStr.append("<option title=\"" + tc01.getName()
+							+ "\" value='" + tc01.getName() + "'>"
+							+ tc01.getName() + "</option>");
+				}
+
+			} else if (dz == 1L || dz == 2L) {
+				List<String> tmpList = (List<String>) queryService
+						.searchList("select distinct(cllx) as cllx from Tf07_kcb where project_id="
+								+ project_id + " and kcsl<>0");
+				for (String string : tmpList) {
+					printStr.append("<option value='" + string + "'>" + string
+							+ "</option>");
+				}
 			}
-
 			printStr.append("</select>");
-
 			out = response.getWriter();
 			out.print(printStr);
 
@@ -1198,20 +1246,17 @@ public class Wxdw {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		PrintWriter out = null;
 		response.setContentType("text/html");
-
+		Long dz = convertUtil.toLong(request.getParameter("dz"));
 		// 获得参数
 		String inputName = convertUtil.toString(request
 				.getParameter("inputName"));
 
 		StringBuffer printStr = new StringBuffer();
 		printStr.append("<select name=\"" + inputName
-				+ "\" class=\"clmc\" style=\"width:0px;\">");
-
+				+ "\"  class=\"clmc\" style=\"width:0px;\">");
 		printStr.append("</select>");
-
 		out = response.getWriter();
 		out.print(printStr);
-
 	}
 
 	@RequestMapping("/wxdw/getClmc.do")
@@ -1222,15 +1267,144 @@ public class Wxdw {
 		String s = "<option></option>";
 		String cllx = convertUtil.toString(request.getParameter("cllx"));
 		Long dz = convertUtil.toLong(request.getParameter("dz"));
-		if (dz == 0L) {//入库
-			List<Tf06_clb> clbList = (List<Tf06_clb>)queryService.searchList("from Tf06_clb where cllx='"+cllx+"'");
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+		if (dz == 0L) {// 入库
+			List<Tf06_clb> clbList = (List<Tf06_clb>) queryService
+					.searchList("from Tf06_clb where cllx='" + cllx + "'");
 			for (Tf06_clb clb : clbList) {
-				s+="<option value=\""+clb.getClmc()+"\">"+clb.getClmc()+"—"+convertUtil.toString(clb.getGg(),"（无规格说明）")+"—"+convertUtil.toString(clb.getXh(),"（无型号说明）")+"</option>";
+				s += "<option title=\"" + clb.getClmc() + "—"
+						+ convertUtil.toString(clb.getGg(), "（无规格说明）") + "—"
+						+ convertUtil.toString(clb.getXh(), "（无型号说明）")
+						+ "\" flag=\"" + clb.getId() + "\" value=\""
+						+ clb.getClmc() + "\">" + clb.getClmc() + "—"
+						+ convertUtil.toString(clb.getGg(), "（无规格说明）") + "—"
+						+ convertUtil.toString(clb.getXh(), "（无型号说明）")
+						+ "</option>";
+			}
+		} else if (dz == 1L || dz == 2L) {// 出库 缴料
+			List<Tf07_kcb> kcbList = (List<Tf07_kcb>) queryService
+					.searchList("from Tf07_kcb where cllx='" + cllx
+							+ "' and project_id=" + project_id + " and kcsl<>0");
+			for (Tf07_kcb kcb : kcbList) {
+				s += "<option flag=\"" + kcb.getId() + "\" value=\""
+						+ kcb.getClmc() + "\">" + kcb.getClmc() + "—"
+						+ convertUtil.toString(kcb.getGg(), "（无规格说明）") + "—"
+						+ convertUtil.toString(kcb.getXh(), "（无型号说明）")
+						+ "</option>";
 			}
 		}
-		
+
 		PrintWriter out = response.getWriter();
 		out.print(s);
+		out.flush();
+		out.close();
+	}
+
+	@RequestMapping("/wxdw/setClxx.do")
+	public void setClxx(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		Long dz = convertUtil.toLong(request.getParameter("dz"));
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		String s = "";
+		if (id != -1) {
+			if (dz == 0L) {// 入库
+				Tf06_clb clb = (Tf06_clb) queryService.searchById(
+						Tf06_clb.class, id);
+				s += convertUtil.toString(clb.getGg()) + "@#$"
+						+ convertUtil.toString(clb.getXh()) + "@#$"
+						+ convertUtil.toString(clb.getDw()) + "@#$";
+			} else if (dz == 1L || dz == 2L) {// 出库 缴料
+				Tf07_kcb kcb = (Tf07_kcb) queryService.searchById(
+						Tf07_kcb.class, id);
+				s += convertUtil.toString(kcb.getGg()) + "@#$"
+						+ convertUtil.toString(kcb.getXh()) + "@#$"
+						+ convertUtil.toString(kcb.getDw()) + "@#$"
+						+ convertUtil.toString(kcb.getKcsl());
+			}
+		} else {
+			s = "@#$@#$@#$";
+		}
+		PrintWriter out = response.getWriter();
+		out.print(s);
+		out.flush();
+		out.close();
+	}
+
+	@RequestMapping("/wxdw/crkEditAjax.do")
+	public void crkEditAjax(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		Long dz = convertUtil.toLong(request.getParameter("dz"));
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+		Session session = saveService.getHiberbateSession();
+		Transaction tx = session.beginTransaction();
+		PrintWriter out = response.getWriter();
+		try {
+			List<Tf08_clmxb> tf08List = (List<Tf08_clmxb>) queryService
+					.searchList("from Tf08_clmxb where zhxx_id=" + project_id
+							+ " and dz=" + dz
+							+ " and (flag is null or flag<>1)");
+			for (Tf08_clmxb tf08 : tf08List) {
+				List<Tf07_kcb> tmpList = (List<Tf07_kcb>) session.createQuery(
+						"from Tf07_kcb where cllx='" + tf08.getCllx()
+								+ "' and clmc='" + tf08.getClmc()
+								+ "' and dw='" + tf08.getDw() + "' and gg='"
+								+ tf08.getGg() + "' and xh='" + tf08.getXh()
+								+ "'").list();
+				Tf07_kcb tf07 = null;
+				if (tmpList.size() != 0) {
+					tf07 = tmpList.get(0);
+					tf07.setCksl(tf07.getCksl() + tf08.getSl());
+				} else {
+					tf07 = new Tf07_kcb();
+					tf07.setCllx(tf08.getCllx());
+					tf07.setClmc(tf08.getClmc());
+					tf07.setDw(tf08.getDw());
+					tf07.setGg(tf08.getGg());
+					tf07.setXh(tf08.getXh());
+					tf07.setCksl(0L);
+					tf07.setRksl(0L);
+					tf07.setJlsl(0L);
+					tf07.setKcsl(0L);
+					tf07.setProject_id(project_id);
+					Ta03_user user = (Ta03_user) request.getSession()
+							.getAttribute("user");
+					Tf04_wxdw_user tf04 = (Tf04_wxdw_user) queryService
+							.searchList(
+									"from Tf04_wxdw_user where user_id="
+											+ user.getId()).get(0);
+					tf07.setSgdw_id(tf04.getWxdw_id());
+				}
+				if (dz == 0L) {
+					tf07.setKcsl(tf07.getKcsl() + tf08.getSl());
+					tf07.setRksl(tf07.getRksl() + tf08.getSl());
+				} else if (dz == 1L) {
+					tf07.setKcsl(tf07.getKcsl() - tf08.getSl());
+					tf07.setCksl(tf07.getCksl() + tf08.getSl());
+				} else if (dz == 2L) {
+					tf07.setKcsl(tf07.getKcsl() - tf08.getSl());
+					tf07.setJlsl(tf07.getJlsl() + tf08.getSl());
+				}
+				session.saveOrUpdate(tf07);
+			}
+			session.createQuery("update Tf08_clmxb set flag=1 where zhxx_id=" + project_id
+							+ " and dz=" + dz
+							+ " and (flag is null or flag<>1)").executeUpdate();
+			session.flush();
+			tx.commit();
+			out.print("{\"statusCode\":\"200\",\"message\":\"保存成功！\"}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			out.print("{\"statusCode\":\"300\",\"message\":\"保存失败！\"}");
+		} finally {
+			session.close();
+		}
 		out.flush();
 		out.close();
 	}

@@ -291,14 +291,3 @@ function showMsgBox(_msg,a,b,c){
 	alertMsg.warn(_msg);
 }
 
-/**
-* 级联 FOR 出入库材料信息
-*
-*/
-function getClmc(cllx,dz,obj) {
-var params = "cllx="+cllx+"&dz="+dz;
-	$.ajax({type:"post",async:false,url:"wxdw/getClmc.do",data:params, success:function (msg) {
-		$(obj).empty();
-		$(obj).append(msg);
-	}});
-}
