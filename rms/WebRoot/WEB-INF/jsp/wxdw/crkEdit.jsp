@@ -30,14 +30,28 @@ function act(){
 }
 function checkandsave(){
 	var flag = true;
+	var flag1 = true;
+	var ids = [];
 	$("select[name=Tf08_clmxb.CLMC]").each(function(){
 		if ($(this).closest("tr").css("display") != "none" && $.trim($(this).val())==""){
 			flag = false;
 			return;
 		}
+		var id = $(this).attr("flag");
+		for(var i =0;i!=ids.length;i++){
+			if (id == ids[i]){
+				flag1 = false;
+				return;
+			}
+		}
+		ids.push(id);
 	});
 	if (!flag){
 		alertMsg.error("请选择材料类型及材料名称");
+		return;
+	}
+	if (!flag1){
+		alertMsg.error("发现重复的材料，请合并后重新保存");
 		return;
 	}
 	flag = true;
@@ -127,8 +141,8 @@ $(function(){
 						<th type="text" style="width:120px;" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
 						<th type="text" style="width:60px;" name="Tf08_clmxb.DW" hideName="Tf08_clmxb.CZSJ" hideValue="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>">单位</th>
-						<th type="text" class="" style="width:60px;" name="Tf08_clmxb.SL">数量</th>
-						<th type="del">操作</th>
+						<th type="text" class="" style="width:60px;" name="Tf08_clmxb.SL" hideName="Tf08_clmxb.SGDW_ID" hideValue="${sgdw_id }">数量</th>
+						<th type="del" hideName="Tf08_clmxb.CZRY" hideValue="${user.name }">操作</th>
 					</tr>
 				</thead>
 				<tbody>
