@@ -862,20 +862,21 @@ public class Wxdw {
 	public void jcclImport(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String json = "{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"" + "jcclList"
 				+ "\", \"forwardUrl\":\"" + "" + "\", \"callbackType\":\"" + "" + "\"}";
-		MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
-		Iterator<?> it = mrequest.getFileNames();
-		while (it.hasNext()) {
-			String fileDispath = (String) it.next();
-			MultipartFile file = mrequest.getFile(fileDispath);
-			if (file.getName() != null && !file.getName().equals("") && file.getInputStream().available() > 0) {
-				List<List<String>> rowlist = (List<List<String>>) ExcelRead.readEcelFilebyStream(file.getInputStream(),
-						file.getOriginalFilename(), 0, 1);
-				// 遍历全表
-				Session session = saveService.getHiberbateSession();
-				Transaction transaction = session.beginTransaction();
-				transaction.begin();
-				try {
-					session.createQuery("delete from Tf06_clb").executeUpdate();
+		Session session = saveService.getHiberbateSession();
+		Transaction transaction = session.beginTransaction();
+		transaction.begin();
+		try {
+			MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
+			Iterator<?> it = mrequest.getFileNames();
+			while (it.hasNext()) {
+				String fileDispath = (String) it.next();
+				MultipartFile file = mrequest.getFile(fileDispath);
+				if (file.getName() != null && !file.getName().equals("") && file.getInputStream().available() > 0) {
+					List<List<String>> rowlist = (List<List<String>>) ExcelRead.readEcelFilebyStream(file
+							.getInputStream(), file.getOriginalFilename(), 0, 1);
+					// 遍历全表
+
+					session.createQuery("delete from Tf06_clb where id>342").executeUpdate();
 					rowlist.remove(0);
 					for (List<String> row : rowlist) {
 						Tf06_clb tf06 = new Tf06_clb();
@@ -888,16 +889,17 @@ public class Wxdw {
 					}
 					session.flush();
 					transaction.commit();
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-					json = "{\"statusCode\":\"300\", \"message\":\"导入失败\", \"navTabId\":\"" + ""
-							+ "\", \"forwardUrl\":\"" + "" + "\", \"callbackType\":\"" + "" + "\"}";
-					transaction.rollback();
-				} finally {
-					session.close();
+
 				}
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			json = "{\"statusCode\":\"300\", \"message\":\"导入失败\", \"navTabId\":\"" + "" + "\", \"forwardUrl\":\"" + ""
+					+ "\", \"callbackType\":\"" + "" + "\"}";
+			transaction.rollback();
+		} finally {
+			session.close();
 		}
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().print(json);

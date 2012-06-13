@@ -70,7 +70,6 @@
 						<a style="margin-left:3px;color:darkblue" href="wxdw/crkEdit.do?dz=0" target="navTab" rel="crk" title="入库">入库</a>
 						<a style="margin-left:3px;color:darkblue" href="wxdw/crkMxList.do?dz=0" target="navTab" rel="crkMx" title="入库明细">入库明细</a>
 						<a style="margin-left:3px;color:darkblue" href="wxdw/crkMxList.do?dz=1" target="navTab" rel="crkMx" title="出库明细">出库明细</a>
-						<a style="margin-left:3px;color:darkblue" href="wxdw/crkMxList.do?dz=2" target="navTab" rel="crkMx" title="缴料明细">缴料明细</a>
 						<a style="margin-left:3px;color:darkblue" href="wxdw/gcKcList.do" target="navTab" rel="gcKc" title="材料信息">材料信息</a>
 						</td>
 					</tr>
