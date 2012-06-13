@@ -29,7 +29,7 @@ function saveJfxx(){
 	</div>
 	
 	
-	<div class="pageContent">
+	<div class="pageContent" layouth="48">
 		<form id="mbk_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation"	value="noFatherTable:com.rms.dataObjects.mbk.TD21_MBK" />
 			<input type="hidden" name="TD21_MBK.ID" value="${TD21_MBK.id}" />
