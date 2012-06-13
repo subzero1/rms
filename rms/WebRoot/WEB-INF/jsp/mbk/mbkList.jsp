@@ -23,11 +23,11 @@
 				<table class="searchContent">
 					<tr>
 						<td>地区：</td>
-						<td><netsky:htmlSelect name="ssdq" id="ssdq" objectForOption="dqList" valueForOption="name" showForOption="name" value="${param.ssdq}" extend="" extendPrefix="true" /></td>
+						<td><netsky:htmlSelect name="ssdq" id="ssdq" objectForOption="dqList" valueForOption="" showForOption="" value="${param.ssdq}" extend="" extendPrefix="true" /></td>
 						<td>类别：</td>
-						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="name" showForOption="name" value="${param.lb}" extend=""  extendPrefix="true" /></td>
+						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.lb}" extend=""  extendPrefix="true" /></td>
 						<td>状态：</td>
-						<td><netsky:htmlSelect name="zt" id="zt" objectForOption="ztList" valueForOption="name" showForOption="name" value="${param.zt}" extend="" extendPrefix="true" /></td>
+						<td><netsky:htmlSelect name="zt" id="zt" objectForOption="ztList" valueForOption="" showForOption="" value="${param.zt}" extend="" extendPrefix="true" /></td>
 						<td>资源名称：</td>
 						<td><input id="zymc" name="zymc" value="${param.zymc}" type="text" size="25" /></td>
 					</tr>
@@ -64,7 +64,9 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${mbkList}">
+				<c:set var="offset" value="${offset+1}"/>
 					<tr target="mbk_id" rel="${obj.id}">
 						<td>${obj.zymc }</td>
 						<td>${obj.ssdq }&nbsp;</td>
@@ -74,6 +76,18 @@
 						<td>${obj.zt }</td>
 					</tr>
 				</c:forEach>
+				<c:if test="${offset<numPerPage}">
+				<c:forEach begin="${offset}" end="${numPerPage-1}">
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<div class="panelBar">
