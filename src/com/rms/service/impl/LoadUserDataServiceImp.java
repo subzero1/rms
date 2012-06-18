@@ -65,9 +65,6 @@ public class LoadUserDataServiceImp implements LoadUserDataService {
 		Ta01_dept ta01 = null;
 		if(user != null && user.getDept_id() != null){
 			ta01 = (Ta01_dept)queryService.searchById(Ta01_dept.class, user.getDept_id());
-			if(ta01 != null){
-				user.setDept_name(ta01.getName());
-			}			
 			dataMap.put("user",user);
 		}
 		

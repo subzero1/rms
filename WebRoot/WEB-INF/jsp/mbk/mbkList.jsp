@@ -57,7 +57,7 @@
 				<tr>
 					<th orderField="zymc">资源名称</th>
 					<th orderField="ssdq">地区</th>
-					<th style="width: 120px;" orderField="jsxx">建设性质</th>
+					<th style="width: 120px;" orderField="jsxz">建设性质</th>
 					<th style="width: 100px;" orderField="lb">类别</th>
 					<th style="width: 80px;" orderField="tdr">谈点人</th>
 					<th style="width: 80px;" orderField="zt">状态</th>
@@ -68,9 +68,9 @@
 				<c:forEach var="obj" items="${mbkList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="mbk_id" rel="${obj.id}">
-						<td>${obj.zymc }</td>
+						<td><a href="mbk/mbkEdit.do?id=${obj.id}" target="navTab" rel="mbk" title="目标库信息">${obj.zymc }</a></td>
 						<td>${obj.ssdq }&nbsp;</td>
-						<td>${obj.jsxx }</td>
+						<td>${obj.jsxz }</td>
 						<td>${obj.lb }</td>
 						<td>${obj.tdr }</td>
 						<td>${obj.zt }</td>

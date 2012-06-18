@@ -6,7 +6,10 @@
 
 <hibernate-mapping
 >
-    <class name="com.rms.dataObjects.mbk.Td21_mbk"  table="Td21_mbk">
+    <class
+        name="com.rms.dataObjects.mbk.Td21_mbk"
+        table="Td21_mbk"
+    >
 
         <id
             name="id"
@@ -15,281 +18,307 @@
         >
             <generator class="sequence">
                 <param name="sequence">td21_num</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Td21_mbk.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
             </generator>
         </id>
 
-   <property
-  name="hdfs"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="hdfs"
-  />
+        <property
+            name="hdfs"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="hdfs"
+        />
 
-  <property
-  name="zybh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="zybh"
-  />
+        <property
+            name="zybh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zybh"
+        />
 
-  <property
-  name="zymc"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="zymc"
-  />
+        <property
+            name="zymc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zymc"
+        />
 
-  <property
-  name="jsxz"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jsxz"
-  />
+        <property
+            name="jsxz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsxz"
+        />
 
-  <property
-  name="lb"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="lb"
-  />
+        <property
+            name="lb"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lb"
+        />
 
-  <property
-  name="zldd"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="zldd"
-  />
+        <property
+            name="zldd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zldd"
+        />
 
-  <property
-  name="ssdq"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="ssdq"
-  />
+        <property
+            name="ssdq"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ssdq"
+        />
 
-  <property
-  name="jd"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jd"
-  />
+        <property
+            name="jd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jd"
+        />
 
-  <property
-  name="wd"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="wd"
-  />
+        <property
+            name="wd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="wd"
+        />
 
-  <property
-  name="jsfs"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jsfs"
-  />
+        <property
+            name="jsfs"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsfs"
+        />
 
-  <property
-  name="tdbm"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="tdbm"
-  />
+        <property
+            name="tdbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tdbm"
+        />
 
-  <property
-  name="tdr"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="tdr"
-  />
+        <property
+            name="tdr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tdr"
+        />
 
-  <property
-  name="tdrdh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="tdrdh"
-  />
+        <property
+            name="tdrdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tdrdh"
+        />
 
-  <property
-  name="lxr"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="lxr"
-  />
+        <property
+            name="lxr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lxr"
+        />
 
-  <property
-  name="lxrdh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="lxrdh"
-  />
+        <property
+            name="lxrdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lxrdh"
+        />
 
-  <property
-  name="sfgj"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="sfgj"
-  />
+        <property
+            name="sfgj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sfgj"
+        />
 
-  <property
-  name="tdxtf"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="tdxtf"
-  />
+        <property
+            name="tdxtf"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="tdxtf"
+        />
 
-  <property
-  name="qysj"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="qysj"
-  />
+        <property
+            name="qysj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="qysj"
+        />
 
-  <property
-  name="zj"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="zj"
-  />
+        <property
+            name="zj"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zj"
+        />
 
-  <property
-  name="nx"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="nx"
-  />
+        <property
+            name="nx"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="nx"
+        />
 
-  <property
-  name="htbh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="htbh"
-  />
+        <property
+            name="htbh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="htbh"
+        />
 
-  <property
-  name="yzmc"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="yzmc"
-  />
+        <property
+            name="yzmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="yzmc"
+        />
 
-  <property
-  name="yzdh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="yzdh"
-  />
+        <property
+            name="yzdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="yzdh"
+        />
 
-  <property
-  name="sfsfk"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="sfsfk"
-  />
+        <property
+            name="sfsfk"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sfsfk"
+        />
 
-  <property
-  name="jsdj"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jsdj"
-  />
+        <property
+            name="jsdj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsdj"
+        />
 
-  <property
-  name="zt"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="zt"
-  />
+        <property
+            name="zt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zt"
+        />
 
-  <property
-  name="sgdw"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="sgdw"
-  />
+        <property
+            name="sgdw"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sgdw"
+        />
 
-  <property
-  name="sggly"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="sggly"
-  />
+        <property
+            name="sggly"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sggly"
+        />
 
-  <property
-  name="tjsj"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="tjsj"
-  />
+        <property
+            name="tjsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="tjsj"
+        />
 
-  <property
-  name="kgsj"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="kgsj"
-  />
+        <property
+            name="kgsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="kgsj"
+        />
 
-  <property
-  name="wgsj"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="wgsj"
-  />
+        <property
+            name="wgsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="wgsj"
+        />
 
-  <property
-  name="czwt"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="czwt"
-  />
+        <property
+            name="czwt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="czwt"
+        />
 
-  <property
-  name="gcfpsm"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="gcfpsm"
-  />
+        <property
+            name="gcfpsm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="gcfpsm"
+        />
 
-  <property
-  name="bz"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="bz"
-  />
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
 
+        <property
+            name="tdzq"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="tdzq"
+        />
+
+        <property
+            name="tdr_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="tdr_id"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Td21_mbk.xml
+            containing the additional properties and place it in your merge dir.
+        -->
 
     </class>
 
