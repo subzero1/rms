@@ -31,6 +31,12 @@ $(function(){
 				alertMsg.error("请选择谈点人，并点击『保存』按钮");
 				return;
 			}
+		} else if (flag == "sfkc"){
+			$("#sfkca").click();
+			return false;
+		} else if (flag == "fahs"){
+			$("#fahsa").click();
+			return false;
 		}
 		alertMsg.confirm("警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！确认"+$(this).text()+"吗？",{
 			okCall:function(){
@@ -45,6 +51,42 @@ $(function(){
 						if (flag == "jsz"){
 							navTab.openTab('aaa', 'http://www.baidu.com');
 						}
+					},
+					error: DWZ.ajaxError
+				});
+			}
+		});
+	});
+	$("#master\\.dwz_devLooup\\.Kcry").change(function(){
+		var data = 'id=${Td21_mbk.id}&type=sfkc&ids='+$(this).val();
+		alertMsg.confirm("警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！确认四方勘察吗？",{
+			okCall:function(){
+				$.ajax({
+					url:'mbk/mbkLz.do',
+					type:'post',
+					data:data,
+					dataType:"json",
+					cache: false,
+					success: function(json){
+						navTabAjaxDone(json);
+					},
+					error: DWZ.ajaxError
+				});
+			}
+		});
+	});
+	$("#master\\.dwz_devLooup\\.Hsry").change(function(){
+		var data = 'id=${Td21_mbk.id}&type=fahs&ids='+$(this).val();
+		alertMsg.confirm("警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！确认方案会审吗？",{
+			okCall:function(){
+				$.ajax({
+					url:'mbk/mbkLz.do',
+					type:'post',
+					data:data,
+					dataType:"json",
+					cache: false,
+					success: function(json){
+						navTabAjaxDone(json);
 					},
 					error: DWZ.ajaxError
 				});
@@ -94,7 +136,6 @@ $(function(){
 			<li><a class="icon" href="#"><span flag="dcxy" class="lzspan">达成协议</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${}">
 				<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '达成协议'}">
 			<li><a class="icon" href="#"><span flag="sfkc" class="lzspan">四方勘察</span></a></li>
 			<li class="line">line</li>
@@ -118,7 +159,6 @@ $(function(){
 			<c:if test="${not empty rolesMap['20105'] && Td21_mbk.zt == '转建设'}">
 			<li><a class="icon" href="#"><span flag="jsz" class="lzspan">新建工程</span></a></li>
 			<li class="line">line</li>
-			</c:if>
 			</c:if>
 			</c:if>
 		</ul>
@@ -180,11 +220,10 @@ $(function(){
 							<input type="text" name="Td21_mbk.TDR" id="master.dwz_devLooup.TDR" style="width:125px" readonly="readonly" value="${Td21_mbk.tdr }" />
 							<a class="btnLook" href="mbk/getTdr.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
 					<input type="hidden" name="Td21_mbk.TDR_ID" id="master.dwz_devLooup.TDR_ID" value="${Td21_mbk.tdr_id}"/>
-					<a style="display:" id="sfkca" class="btnLook" href="mbk/getKcry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
-					<input type="text" id="master.dwz_devLooup.Kcry"/>
-					<a style="display:" id="fahsa" class="btnLook" href="mbk/getHsry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
-					<input type="text" id="master.dwz_devLooup.Hsry"/>
-					
+					<a style="display:none" id="sfkca" class="btnLook" href="mbk/getKcry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
+					<input type="hidden" id="master.dwz_devLooup.Kcry"/>
+					<a style="display:none" id="fahsa" class="btnLook" href="mbk/getHsry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
+					<input type="hidden" id="master.dwz_devLooup.Hsry"/>
 				</p>
 				<p>
 					<label>谈点人电话：</label>

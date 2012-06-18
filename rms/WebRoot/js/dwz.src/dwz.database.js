@@ -30,6 +30,7 @@
 					
 					if (name == inputName) {
 						$input.val(args[key]);
+						$input.change();
 						break;
 					}
 				}
