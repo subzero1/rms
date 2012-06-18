@@ -15,7 +15,8 @@ $(function(){
 		alertMsg.confirm("您选择的该外协单位类别为"+$("input[name='Tf01_wxdw\\.LB']:checked").val()+"单位，确认保存吗？", {
 			okCall: function(){
 				$.ajax({
-					url:'wxdw/getWxdwNOAjax.do?lb='+encodeURI(encodeURI($("input[name='Tf01_wxdw\\.LB']:checked").val())),
+					url:'wxdw/getWxdwNOAjax.do?',
+					data:'lb='+$("input[name='Tf01_wxdw\\.LB']:checked").val(),
 					type:'post',
 					success:function(msg){
 						msg = $.trim(msg);

@@ -197,7 +197,8 @@ public class Wxdw {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String lb = convertUtil.toString(URLDecoder.decode(request.getParameter("lb"), "UTF-8"));
+		String lb = convertUtil.toString(request.getParameter("lb"));
+		System.out.println(lb);
 		String no_start = "";
 		if (lb.equals("施工")) {
 			no_start = "8";

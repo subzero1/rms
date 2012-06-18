@@ -274,20 +274,4 @@ public class Ta03_user implements Serializable{
     this.new_flag = new_flag;
   }
 
- /**
-  * 临时字段
-  */
-  private String dept_name;
-
-  /**
-  * @hibernate.property column="dept_name"
-  * @return Returns the dept_name.
-  */
-  public String getDept_name() {
-     return dept_name;
-  }
-
-  public void setDept_name(String dept_name) {
-     this.dept_name = dept_name;
-   }
 }

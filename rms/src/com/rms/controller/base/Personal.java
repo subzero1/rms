@@ -169,7 +169,6 @@ public class Personal {
 		Ta03_user user = (Ta03_user)dao.getObject(Ta03_user.class, id);
 		user.setArea_name(area_name);
 		user.setDept_id(new Long(dept_id));
-		user.setDept_name(((Ta01_dept)queryService.searchById(Ta01_dept.class, new Long(dept_id))).getName());
 		if (!passwd.equals(user.getPasswd())){
 			user.setLast_pwd_date(new Date());
 			user.setPasswd(passwd);
