@@ -298,10 +298,7 @@ public class Mbk {
 			} else if ("sfkc".equals(type)) {// 四方勘察
 				word = "四方勘察";
 				td21.setZt("四方勘察");
-				String[] ids = request.getParameterValues("sfkc_id");
-				// 下两行是测试用的!!
-				ids = new String[1];
-				ids[0] = "1";
+				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
 				for (String string : ids) {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
@@ -322,10 +319,7 @@ public class Mbk {
 			} else if ("fahs".equals(type)) {// 方案会审
 				word = "方案会审";
 				td21.setZt("方案会审");
-				String[] ids = request.getParameterValues("sfkc_id");
-				// 下两行是测试用的!!
-				ids = new String[1];
-				ids[0] = "1";
+				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
 				for (String string : ids) {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
@@ -421,7 +415,7 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectTdr.jsp", modelMap);
 	}
-	@RequestMapping("/mbk/mbk/getKcry.do")
+	@RequestMapping("/mbk/getKcry.do")
 	public ModelAndView getKcry(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
