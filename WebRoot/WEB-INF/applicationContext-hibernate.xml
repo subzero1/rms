@@ -162,6 +162,7 @@
 				<value>com/rms/dataObjects/base/Tc02_area.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/form/Td00_gcxx.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td01_xmxx.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td21_mbk.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td22_mbk_lzjl.hbm.xml</value>
 				
