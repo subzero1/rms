@@ -172,10 +172,11 @@ if ($.browser.msie) {
 									<ul>
 										<li><a href="OnLineList.do?wtlx=601" target="navTab" rel="OnLineList" title="系统公告">系统公告</a></li>
 										<li><a href="MessageList.do?messageState=1" target="navTab" rel="message" title="短消息">短消息</a></li>
-										<li><a href="OnLineList.do?wtlx=15" target="navTab" rel="OnLineList" width="420" height="320" title="在线提问">在线提问</a></li>
+										<li><a href="OnLineList.do?wtlx=15" target="navTab" rel="OnLineList" title="在线提问">在线提问</a></li>
 										<li><a href="userInfo.do" target="dialog" width="520" height="320" title="用户个人信息设置">个人设置</a></li>
 										<li><a href="commentsList.do" target="dialog" rel="commentsList" width="700" height="450" title="审批意见维护">审批意见维护</a></li>
 										<li><a href="alarm.do" target="dialog" width="480" height="200" title="超时提醒设置">超时提醒设置</a></li>
+										<!-- <li><a href="dispath.do?url=form/gcxxd.jsp" target="navTab" rel="autoform"  title="表单">表单</a></li> -->
 									</ul>
 								</li>
 							</ul>
