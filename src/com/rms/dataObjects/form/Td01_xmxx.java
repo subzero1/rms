@@ -1025,18 +1025,18 @@ public class Td01_xmxx implements Serializable{
  /**
  * 工程说明
  */
- private String gcsm;
+ private String xmsm;
 
  /**
- * @hibernate.property column="gcsm"
- * @return Returns the gcsm.
+ * @hibernate.property column="xmsm"
+ * @return Returns the xmsm.
  */
- public String getGcsm() {
-    return gcsm;
+ public String getXmsm() {
+    return xmsm;
  }
 
- public void setGcsm(String gcsm) {
-    this.gcsm = gcsm;
+ public void setXmsm(String xmsm) {
+    this.xmsm = xmsm;
   }
 
  /**
@@ -1637,35 +1637,35 @@ public class Td01_xmxx implements Serializable{
  /**
  * 工程阶段
  */
- private String gcjd;
+ private String xmjd;
 
  /**
- * @hibernate.property column="gcjd"
- * @return Returns the gcjd.
+ * @hibernate.property column="xmjd"
+ * @return Returns the xmjd.
  */
- public String getGcjd() {
-    return gcjd;
+ public String getXmjd() {
+    return xmjd;
  }
 
- public void setGcjd(String gcjd) {
-    this.gcjd = gcjd;
+ public void setXmjd(String xmjd) {
+    this.xmjd = xmjd;
   }
 
  /**
  * 工程状态
  */
- private String gczt;
+ private String xmzt;
 
  /**
- * @hibernate.property column="gczt"
- * @return Returns the gczt.
+ * @hibernate.property column="xmzt"
+ * @return Returns the xmzt.
  */
- public String getGczt() {
-    return gczt;
+ public String getXmzt() {
+    return xmzt;
  }
 
- public void setGczt(String gczt) {
-    this.gczt = gczt;
+ public void setXmzt(String xmzt) {
+    this.xmzt = xmzt;
   }
 
  /**
@@ -1822,54 +1822,37 @@ public class Td01_xmxx implements Serializable{
   }
 
  /**
- * 项目ID
- */
- private Long xm_id;
-
- /**
- * @hibernate.property column="xm_id"
- * @return Returns the xm_id.
- */
- public Long getXm_id() {
-    return xm_id;
- }
-
- public void setXm_id(Long xm_id) {
-    this.xm_id = xm_id;
-  }
-
- /**
  * 工程编号
  */
- private String gcbh;
+ private String xmbh;
 
  /**
- * @hibernate.property column="gcbh"
- * @return Returns the gcbh.
+ * @hibernate.property column="xmbh"
+ * @return Returns the xmbh.
  */
- public String getGcbh() {
-    return gcbh;
+ public String getXmbh() {
+    return xmbh;
  }
 
- public void setGcbh(String gcbh) {
-    this.gcbh = gcbh;
+ public void setXmbh(String xmbh) {
+    this.xmbh = xmbh;
   }
 
  /**
- * 工程名称
+ * 项目名称
  */
- private String gcmc;
+ private String xmmc;
 
  /**
- * @hibernate.property column="gcmc"
- * @return Returns the gcmc.
+ * @hibernate.property column="xmmc"
+ * @return Returns the xmmc.
  */
- public String getGcmc() {
-    return gcmc;
+ public String getXmmc() {
+    return xmmc;
  }
 
- public void setGcmc(String gcmc) {
-    this.gcmc = gcmc;
+ public void setXmmc(String xmmc) {
+    this.xmmc = xmmc;
   }
 
  /**
