@@ -105,7 +105,7 @@ function phoneMsg(tel,name){
 						<th width="30">状态</th>
 					</c:if>
 					<th orderField="status asc,flag asc,title">主题</th>
-					<th width="80" orderField="status asc,flag asc,aq_name">创建人</th>
+					<th width="100" orderField="status asc,flag asc,aq_name">创建人</th>
 					<th width="120" orderField="status asc,flag asc,aq_tel">创建人电话</th>
 					<th width="120" orderField="status asc,flag asc,aq_date">创建时间</th>
 					<th width="50">回复人</th>
