@@ -170,15 +170,6 @@ public class Mbk {
 		List<String> tdbmList = (List<String>) queryService
 				.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
-		if ("市场部".equals(mbk.getTdbm())) {
-			List<Ta03_user> tdrList = (List<Ta03_user>) queryService
-					.searchList("from Ta03_user where dept_id=(select id from Ta01_dept where name='市场部')");
-			modelMap.put("tdrList", tdrList);
-		} else if ("施工单位".equals(mbk.getTdbm())) {
-			List<Ta03_user> tdrList = (List<Ta03_user>) queryService
-					.searchList("from Ta03_user ta03 where ta03.id in (select tf04.user_id from Tf04_wxdw_user tf04 where tf04.wxdw_id in (select wxdw.id from Tf01_wxdw wxdw where wxdw.lb='施工'))");
-			modelMap.put("tdrList", tdrList);
-		}
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 
