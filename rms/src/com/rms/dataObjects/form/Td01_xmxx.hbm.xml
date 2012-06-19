@@ -483,11 +483,11 @@
   />
 
   <property
-  name="gcsm"
+  name="xmsm"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="gcsm"
+  column="xmsm"
   />
 
   <property
@@ -771,19 +771,19 @@
   />
 
   <property
-  name="gcjd"
+  name="xmjd"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="gcjd"
+  column="xmjd"
   />
 
   <property
-  name="gczt"
+  name="xmzt"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="gczt"
+  column="xmzt"
   />
 
   <property
@@ -859,27 +859,19 @@
   />
 
   <property
-  name="xm_id"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="xm_id"
-  />
-
-  <property
-  name="gcbh"
+  name="xmbh"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="gcbh"
+  column="xmbh"
   />
 
   <property
-  name="gcmc"
+  name="xmmc"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="gcmc"
+  column="xmmc"
   />
 
   <property
