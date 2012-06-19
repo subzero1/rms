@@ -170,6 +170,9 @@ public class Mbk {
 		List<String> tdbmList = (List<String>) queryService
 				.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
+		if (mbk != null) {
+			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id="+id+" order by id asc"));
+		}
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 
