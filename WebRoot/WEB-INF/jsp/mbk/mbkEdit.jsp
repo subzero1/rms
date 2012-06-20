@@ -6,6 +6,10 @@
 <jsp:useBean id="now" class="java.util.Date" />
 
 <script language="javascript">
+var change = false;
+$("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
+		change = true;
+	});
 function saveMbk(){
 	if ($("[name=Td21_mbk.ZYBH]").val()=="" && "${Td21_mbk.id}"=="" && $("[name=Td21_mbk.JSXZ]",navTab.getCurrentPanel()).val()!=""){
 		$.ajax({
@@ -38,7 +42,11 @@ $(function(){
 			$("#fahsa").click();
 			return false;
 		}
-		alertMsg.confirm("警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！确认"+$(this).text()+"吗？",{
+		var alertmsg = "";
+		if ("${not empty rolesMap['20101'] }"=="true" && change){
+		alertmsg = "警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！";
+		}
+		alertMsg.confirm(alertmsg+"确认"+$(this).text()+"吗？",{
 			okCall:function(){
 				$.ajax({
 					url:'mbk/mbkLz.do',
@@ -109,23 +117,23 @@ $(function(){
 	<!-- 主操作按钮 -->
 	<div class="panelBar">
 		<ul class="toolBar">
+		 	<c:if test="${not empty rolesMap['20101']}">
 		 	<li><a class="save"	href="javascript:saveMbk();"><span>保 存</span></a></li>
 			<li class="line">line</li>
+		 	</c:if>
 			<li><a class="print" href="#"><span>打 印</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="javascript:navTab.closeCurrentTab();"><span>关 闭</span></a></li>
 			<li class="line">line</li>
 			<c:if test="${not empty Td21_mbk.id }">
 			<c:if test="${not empty rolesMap['20101'] && empty Td21_mbk.hdfs }">
-			<li><a class="icon" href="#"><span flag="zdrl" class="lzspan">主动认领</span></a></li>
+			<li><a class="send" href="#"><span flag="zdrl" class="lzspan">派发</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20102'] && Td21_mbk.hdfs == '主动认领' && empty Td21_mbk.zt }">
+			<c:if test="${not empty rolesMap['20102'] && Td21_mbk.hdfs == '派发' && Td21_mbk.zt == '新建'}">
 			<li><a class="icon" href="#"><span flag="rl" class="lzspan">认领</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && empty Td21_mbk.hdfs }">
-			<li><a class="icon" href="#"><span flag="zdxf" class="lzspan">指定下发</span></a></li>
+			<li><a class="send" href="#"><span flag="zdxf" class="lzspan">指定下发</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '开始谈点'}">
@@ -175,6 +183,9 @@ $(function(){
 			<input type="hidden" name="_forwardUrl" value="mbk/mbkEdit.do"/>
 			<input type="hidden" name="_navTabId" value="mbkList"/>
 			<input type="hidden" name="validate" value="${validate}"/> 
+			<c:if test="${empty Td21_mbk.cjsj}">
+			<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
+			</c:if>
 			<div class="pageFormContent">
 				<p>
 					<label>资源编号：</label>
@@ -303,7 +314,7 @@ $(function(){
 				</p>
 				<p>
 					<label>资源状态：</label>
-					<input type="text" name="Td21_mbk.ZT" readonly style="width:120px;" value="${Td21_mbk.zt}"/>
+					<input type="text" name="Td21_mbk.ZT" readonly style="width:120px;" value="${empty Td21_mbk.zt ? '新建' : Td21_mbk.zt}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -349,8 +360,8 @@ $(function(){
 		<thead>
 			<tr>
 				<th style="width: 30px;">序号</th>
-				<th style="width: 90px;">开始时间</th>
-				<th style="width: 90px;">结束时间</th>
+				<th style="width: 130px;">开始时间</th>
+				<th style="width: 130px;">结束时间</th>
 				<th style="width: 80px;">相关人</th>
 				<th style="width: 80px;">相关人部门</th>
 				<th>说明</th>
@@ -362,8 +373,8 @@ $(function(){
 			<c:set var="offset" value="${offset+1}"/>
 				<tr>
 					<td>${offset }</td>
-					<td><fmt:formatDate value="${lzjl.kssj }" pattern="yyyy-MM-dd"/></td>
-					<td><fmt:formatDate value="${lzjl.jssj }" pattern="yyyy-MM-dd"/></td>
+					<td><fmt:formatDate value="${lzjl.kssj }" pattern="yyyy-MM-dd HH:mm"/></td>
+					<td><fmt:formatDate value="${lzjl.jssj }" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${lzjl.xgr }</td>
 					<td>${lzjl.xgr_bm }</td>
 					<td>${lzjl.sm }</td>

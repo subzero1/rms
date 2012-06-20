@@ -39,17 +39,17 @@ public class Ta29_report_template implements Serializable{
 	 /**
  * 模板类型(1:报表;2:查询)
  */
- private Integer type;
+ private Long type;
 
  /**
  * @hibernate.property column="type"
  * @return Returns the type.
  */
- public Integer getType() {
+ public Long getType() {
     return type;
  }
 
- public void setType(Integer type) {
+ public void setType(Long type) {
     this.type = type;
   }
 

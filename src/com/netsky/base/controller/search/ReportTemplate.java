@@ -104,7 +104,7 @@ public class ReportTemplate {
 		String value = "";
 		Ta30_template_list ta30;
 		List<?> list;
-		Integer type = null;
+		Long type = null;
 		Long module_id;
 		if (request.getParameter("module_id") != null
 				&& !request.getParameter("module_id").equals("")) {
@@ -121,9 +121,9 @@ public class ReportTemplate {
 			 */
 			if (request.getParameter("type") != null
 					&& request.getParameter("type").length() > 0) {
-				type = Integer.valueOf(request.getParameter("type"));
+				type = Long.valueOf(request.getParameter("type"));
 			} else {
-				type = new Integer(1);
+				type = new Long(1);
 			}
 			if (request.getParameter("template_id") != null
 					&& request.getParameter("template_id").length() > 0) {

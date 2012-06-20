@@ -314,6 +314,14 @@
             column="tdr_id"
         />
 
+        <property
+            name="cjsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="cjsj"
+        />
+
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td21_mbk.xml
