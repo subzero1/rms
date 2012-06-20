@@ -47,7 +47,7 @@
 					dialog.find(".dialogHeader").find("h1").html(title);
 					this.switchDialog(dialog);
 					var jDContent = dialog.find(".dialogContent");
-					jDContent.loadUrl(url, op.data, function(){
+					jDContent.loadUrl(url, {}, function(){
 						jDContent.find("[layoutH]").layoutH(jDContent);
 						$(".pageContent", dialog).width($(dialog).width()-14);
 						$("button.close").click(function(){
@@ -275,7 +275,7 @@
 			}
 			$.pdialog.repaint(target, {oleft:oleft,otop: otop,tmove: tmove,owidth:width});
 			
-			$(window).trigger("resizeGrid");
+			$(window).trigger(DWZ.eventType.resizeGrid);
 		},
 		close:function(dialog) {
 			if(typeof dialog == 'string') dialog = $("body").data(dialog);
@@ -300,11 +300,10 @@
 			if($(dialog).data("mask")){
 				$("#dialogBackground").hide();
 			} else{
-				$.taskBar.closeDialog($(dialog).data("id"));
+				if ($(dialog).data("id")) $.taskBar.closeDialog($(dialog).data("id"));
 			}
 			$("body").removeData($(dialog).data("id"));
-			$(dialog).remove();
-			$.pdialog._current = null;				//modify at 2012-1-9
+			$(dialog).trigger(DWZ.eventType.pageClear).remove();
 		},
 		closeCurrent:function(){
 			this.close($.pdialog._current);
@@ -363,7 +362,7 @@
 			content.find("[layoutH]").layoutH(content);
 			$(".pageContent", dialog).css("width", (width-14) + "px");
 			
-			$(window).trigger("resizeGrid");
+			$(window).trigger(DWZ.eventType.resizeGrid);
 		}
 	};
 })(jQuery);
