@@ -126,9 +126,9 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			queryBuilder = new HibernateQueryBuilder(Ta29_report_template.class);
 			queryBuilder.eq("user_id", user.getId());
 			if (type.equals("reportflag")) {
-				queryBuilder.eq("type", new Integer(1));
+				queryBuilder.eq("type", new Long(1));
 			} else {
-				queryBuilder.eq("type", new Integer(2));
+				queryBuilder.eq("type", new Long(2));
 			}
 			queryBuilder.eq("module_id", module_id);
 			templateList = queryService.searchList(queryBuilder);
@@ -137,8 +137,8 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 * 获取关键字类型查询字段,searchtype=1;
 			 */
 			queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-			queryBuilder.eq(type, new Integer(1));
-			queryBuilder.eq("searchtype", new Integer(1));
+			queryBuilder.eq(type, new Long(1));
+			queryBuilder.eq("searchtype", new Long(1));
 			queryBuilder.eq("module_id", module_id);
 			queryBuilder.addOrderBy(Order.asc("ord"));
 			keyList = queryService.searchList(queryBuilder);
@@ -147,8 +147,8 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 * 获取多选类型查询字段,searchtype=2;
 			 */
 			queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-			queryBuilder.eq(type, new Integer(1));
-			queryBuilder.eq("searchtype", new Integer(2));
+			queryBuilder.eq(type, new Long(1));
+			queryBuilder.eq("searchtype", new Long(2));
 			queryBuilder.eq("module_id", module_id);
 			queryBuilder.addOrderBy(Order.asc("ord"));
 			selectList = queryService.searchList(queryBuilder);
@@ -157,8 +157,8 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 * 获取数字类型查询字段,searchtype=3;
 			 */
 			queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-			queryBuilder.eq(type, new Integer(1));
-			queryBuilder.eq("searchtype", new Integer(3));
+			queryBuilder.eq(type, new Long(1));
+			queryBuilder.eq("searchtype", new Long(3));
 			queryBuilder.eq("module_id", module_id);
 			queryBuilder.addOrderBy(Order.asc("ord"));
 			numberList = queryService.searchList(queryBuilder);
@@ -167,8 +167,8 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 * 获取人员类型查询字段,searchtype=4;
 			 */
 			queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-			queryBuilder.eq(type, new Integer(1));
-			queryBuilder.eq("searchtype", new Integer(4));
+			queryBuilder.eq(type, new Long(1));
+			queryBuilder.eq("searchtype", new Long(4));
 			queryBuilder.eq("module_id", module_id);
 			queryBuilder.addOrderBy(Order.asc("ord"));
 			userList = queryService.searchList(queryBuilder);
@@ -177,8 +177,8 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 * 获取人员类型查询字段,searchtype=5;
 			 */
 			queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-			queryBuilder.eq(type, new Integer(1));
-			queryBuilder.eq("searchtype", new Integer(5));
+			queryBuilder.eq(type, new Long(1));
+			queryBuilder.eq("searchtype", new Long(5));
 			queryBuilder.eq("module_id", module_id);
 			queryBuilder.addOrderBy(Order.asc("ord"));
 			dateList = queryService.searchList(queryBuilder);
@@ -188,13 +188,13 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 */
 			if (type.equals("reportflag")) {
 				queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-				queryBuilder.eq("statisticflag", new Integer(1));
+				queryBuilder.eq("statisticflag", new Long(1));
 				queryBuilder.eq("module_id", module_id);
 				queryBuilder.addOrderBy(Order.asc("ord"));
 				statisticList = queryService.searchList(queryBuilder);
 			} else {
 				queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-				queryBuilder.eq(type, new Integer(1));
+				queryBuilder.eq(type, new Long(1));
 				queryBuilder.addOrderBy(Order.asc("searchtype"));
 				queryBuilder.eq("module_id", module_id);
 				queryBuilder.addOrderBy(Order.asc("ord"));

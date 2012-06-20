@@ -66,6 +66,13 @@ public class Mbk {
 	/**
 	 * 目标库信息列表
 	 */
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/mbk/mbkList.do")
 	public ModelAndView mbkList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -96,6 +103,12 @@ public class Mbk {
 		StringBuffer hsql = new StringBuffer();
 		hsql.append(" from Td21_mbk mbk where 1=1");
 		// where条件
+		//非20101角色
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>)request.getSession().getAttribute("rolesMap");
+		if (rolesMap.get("20101") == null){
+			Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
+			hsql.append(" and (tdr_id=" + user.getId()+" or (zt is null and hdfs='派发'))");
+		}
 		// 类别
 		if (!lb.equals("")) {
 			hsql.append(" and lb='" + lb + "'");
@@ -106,9 +119,6 @@ public class Mbk {
 		}
 		// 状态
 		if (!zt.equals("")) {
-			if (zt.equals("空")) {
-				hsql.append(" and (zt is null or zt='')");
-			}
 			hsql.append(" and zt='" + zt + "'");
 		}
 		// 资源名称
@@ -243,9 +253,9 @@ public class Mbk {
 		// 获取用户对象
 		try {
 			out = response.getWriter();
-			if ("zdrl".equals(type)) {// 主动认领
-				word = "主动认领";
-				td21.setHdfs("主动认领");
+			if ("zdrl".equals(type)) {// 派发
+				word = "派发";
+				td21.setHdfs("派发");
 			} else if ("rl".equals(type)) {// 认领
 				word = "认领";
 				td21.setZt("开始谈点");
@@ -276,7 +286,7 @@ public class Mbk {
 			} else if ("cxtd".equals(type)) {// 重新谈点
 				word = "重新谈点";
 				td21.setHdfs(null);
-				td21.setZt(null);
+				td21.setZt("新建");
 				td21.setTdr(null);
 				td21.setTdr_id(null);
 				td21.setTdrdh(null);

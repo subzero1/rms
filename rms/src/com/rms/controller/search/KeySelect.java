@@ -81,7 +81,7 @@ public class KeySelect {
 				/*
 				 * 所属区域
 				 */
-				String HSql = "select tc03 from Tc02_area tc02 where flag like'%[2]%' order by id ";
+				String HSql = "select tc02 from Tc02_area tc02 order by id ";
 				ResultObject ro = queryService.search(HSql);
 				while (ro.next()) {
 					result.add(PropertyInject.getProperty(ro.get("tc02"), "name") + "");
@@ -160,8 +160,36 @@ public class KeySelect {
 				while (ro.next()) {
 					result.add((String)ro.get("zt"));
 				}
+			}else if (type.equals("jsxz")) {//建设性质
+				String HSql = "select name from Tc01_property tc01 where type='建设性质'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			}else if (type.equals("lb")) {//类别
+				String HSql = "select name from Tc01_property tc01 where type='目标库类别'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
 			}
-			
+			else if (type.equals("jsfs")) {//建设方式
+				String HSql = "select name from Tc01_property tc01 where type='建设方式'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			}else if (type.equals("zt")) {//目标库状态
+				String HSql = "select name from Tc01_property tc01 where type='目标库状态'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			}else if (type.equals("jsdj")) {//建设等级
+					result.add("A");
+					result.add("B");
+					result.add("C");
+			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(KeySelect.class.getName(), "选择基础多选项", e);

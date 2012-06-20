@@ -651,4 +651,22 @@ public class Td21_mbk implements Serializable {
 		this.tdr_id = tdr_id;
 	}
 
+	private Date cjsj;
+
+	/**
+	 * @hibernate.property column="cjsj"
+	 * @return Returns the cjsj.
+	 */
+	public Date getCjsj() {
+		return cjsj;
+	}
+
+	/**
+	 * @param cjsj
+	 *            The cjsj to set.
+	 */
+	public void setCjsj(Date cjsj) {
+		this.cjsj = cjsj;
+	}
+
 }
