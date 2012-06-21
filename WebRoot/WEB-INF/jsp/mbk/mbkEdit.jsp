@@ -382,7 +382,7 @@ function printMbk(){
 					A
 					<input type="radio" name="Td21_mbk.JSDJ" <c:if test="${Td21_mbk.jsdj == 'B' }">checked="checked"</c:if> value="B" />
 					B
-					<input type="radio" name="Td21_mbk.JSDJ" <c:if test="${Td21_mbk.jsdj == '否' }">checked="checked"</c:if> value="C"/>
+					<input type="radio" name="Td21_mbk.JSDJ" <c:if test="${Td21_mbk.jsdj == 'C' }">checked="checked"</c:if> value="C"/>
 					<span style="margin-right:54px;">C</span>
 				</p>
 				<p>
