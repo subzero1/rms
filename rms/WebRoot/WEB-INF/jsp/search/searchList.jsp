@@ -65,6 +65,11 @@ function searchListExport(){
 										<a href="info/jfpm.do?id=${td.value }" target="navTab" rel="showJfpmInfo" title="机房信息"><img border="0" src="Images/project.png" /></a>
 									</td>
 								</c:when>
+								<c:when test="${offset_td == 1 && param.module_id == 1}">
+									<td>
+										<a href="mbk/mbkEdit.do?id=${td.value }" target="navTab" rel="mbk" title="目标库信息"><img border="0" src="Images/project.png" /></a>
+									</td>
+								</c:when>
 								<c:when test="${offset_td == 1 && param.module_id != 101}">
 									<td>&nbsp;</td>
 								</c:when>
