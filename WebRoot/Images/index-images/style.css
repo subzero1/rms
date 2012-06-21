@@ -55,8 +55,8 @@ form{
 }
 .login_title{
 	position:absolute;
-	left:170px;/*标题x坐标*/
-	top:140px;/*标题y坐标*/
+	left:185px;/*标题x坐标*/
+	top:152px;/*标题y坐标*/
 	width:675px;/*标题宽度*/
 	height:89px;/*标题高度*/
 	background-image: url(login-title.png);
@@ -125,7 +125,7 @@ letter-spacing:1em;
 }
 
 .login_copyright{
-	color:#fff;/*版权声明文字颜色*/
+	color:#c00;/*版权声明文字颜色*/
 	text-align:center;
 	padding:12px 0 20 0px;/*版权声明位置*/
 	line-height:20px;
