@@ -58,7 +58,8 @@
 		<script src="js/dwz.src/dwz.combox.js" type="text/javascript"></script>
 		<script src="js/dwz.src/dwz.pngFix.js" type="text/javascript"></script>
 		<script src="js/dwz.src/dwz.regional.zh.js" type="text/javascript"></script>
-		
+		<script src="js/jquery.jqprint.0.3.js" type="text/javascript"></script>
+		<script src="js/jquery.PrintArea.js" type="text/javascript"></script>
 		<script src="js/src/netsky.ui.js" type="text/javascript"></script>
 		<script src="js/src/netsky.buttonControl.js" type="text/javascript"></script>
 		<script src="js/src/netsky.js" type="text/javascript"></script>
