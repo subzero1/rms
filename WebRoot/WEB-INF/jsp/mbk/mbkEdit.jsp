@@ -4,7 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
-
+<style>
+	#printTable tr{
+		
+	}
+</style>
 <script language="javascript">
 var change = false;
 $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
@@ -102,9 +106,78 @@ $(function(){
 		});
 	});
 });
+function printMbk(){
+	$("#printTable",navTab.getCurrentPanel()).jqprint();
+}
 </script>
-
+<div style="display: none">
+	<table style="margin-top:10px;width:630px;" cellspacing="0" border="1" cellpadding="0" bordercolor="#000000" id="printTable">
+			<caption style="width:630px;text-align:center;font-size:20px;font-weight:bolder;height:60px;line-height:60px;">资源信息单</caption>
+			<tr style="height:50px;line-height:50px;">
+				<td style="width:11%;font-size: 13px;text-align:center">资源编号</td><td style="width:22%;font-size: 13px;text-align:center">&nbsp;${Td21_mbk.zybh}</td>
+				<td style="width:11%;font-size: 13px;text-align:center">资源名称</td><td style="width:55%;font-size: 13px;text-align:center" colspan="3">&nbsp;${Td21_mbk.zymc}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="width:11%;font-size: 13px;text-align:center">建设性质</td><td style="width:22%;font-size: 13px;text-align:center">&nbsp;${Td21_mbk.jsxz}</td>
+				<td style="width:11%;font-size: 13px;text-align:center">分 类</td><td style="width:22%;font-size: 13px;text-align:center">&nbsp;${Td21_mbk.lb}</td>
+				<td style="width:11%;font-size: 13px;text-align:center">所属地区</td><td style="width:22%;font-size: 13px;text-align:center">&nbsp;${Td21_mbk.ssdq}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">坐落地点</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.zldd}</td>
+				<td style="font-size: 13px;text-align:center">经 度</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.jd}</td>
+				<td style="font-size: 13px;text-align:center">纬 度</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.wd}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;"><td colspan="6">&nbsp;</td></tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">谈点部门</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.tdbm}</td>
+				<td style="font-size: 13px;text-align:center">谈点人</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.tdr}</td>
+				<td style="font-size: 13px;text-align:center">谈点人电话</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.tdrdh}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">谈点周期</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.tdzq}</td>
+				<td style="font-size: 13px;text-align:center">联系人</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.lxr}</td>
+				<td style="font-size: 13px;text-align:center">联系电话</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.lxrdh}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">建设方式</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.jsfs}</td>
+				<td style="font-size: 13px;text-align:center">是否共建</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.sfgj}</td>
+				<td style="font-size: 13px;text-align:center">谈点协调费</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.tdxtf}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">签约时间</td><td style="font-size: 13px;text-align:center">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.qysj}"/></td>
+				<td style="font-size: 13px;text-align:center">租 金</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.zj}</td>
+				<td style="font-size: 13px;text-align:center">年 限</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.nx}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">合同编号</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.htbh}</td>
+				<td style="font-size: 13px;text-align:center">业主姓名</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.yzmc}</td>
+				<td style="font-size: 13px;text-align:center">业主电话</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.yzdh}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">是否付首款</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.sfsfk}</td>
+				<td style="font-size: 13px;text-align:center">建设等级</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.jsdj}</td>
+				<td style="font-size: 13px;text-align:center">资源状态</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.zt}</td>
+			</tr>
+			<tr style="height:120px;">
+				<td style="font-size: 13px;text-align:center">说 明</td><td colspan="5" style="line-height:18px;">&nbsp;${Td21_mbk.bz}</td>
+			</tr>
+			<tr style="height:50px;line-height:50px;"><td colspan="6">&nbsp;</td></tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">施工单位</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.sgdw}</td>
+				<td style="font-size: 13px;text-align:center">施工管理员</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.sggly}</td>
+				<td style="font-size: 13px;text-align:center">提交时间</td><td style="font-size: 13px;text-align:center">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.tjsj}"/></td>
+			</tr>
+			<tr style="height:50px;line-height:50px;">
+				<td style="font-size: 13px;text-align:center">开工时间</td><td style="font-size: 13px;text-align:center">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.kgsj}"/></td>
+				<td style="font-size: 13px;text-align:center">完工时间</td><td style="font-size: 13px;text-align:center">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.wgsj}"/></td>
+				<td style="font-size: 13px;text-align:center">施工管理员</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.gcfpsm}</td>
+				<tr style="height:50px;line-height:50px;">
+				<td style="height:120px;font-size: 13px;text-align:center">存在问题</td><td colspan="5" style="line-height:18px;">&nbsp;${Td21_mbk.czwt}</td>
+			</tr>
+		</table>
+		</div>
 <div class="page">
+
 	<!-- 表单头 -->
 	<div class="pageHeader">
 		<div class="searchBar">
@@ -121,7 +194,7 @@ $(function(){
 		 	<li><a class="save"	href="javascript:saveMbk();"><span>保 存</span></a></li>
 			<li class="line">line</li>
 		 	</c:if>
-			<li><a class="print" href="#"><span>打 印</span></a></li>
+			<li><a class="print" href="javascript:printMbk()"><span>打 印</span></a></li>
 			<li class="line">line</li>
 			<c:if test="${not empty Td21_mbk.id }">
 			<c:if test="${not empty rolesMap['20101'] && empty Td21_mbk.hdfs }">
@@ -129,7 +202,7 @@ $(function(){
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20102'] && Td21_mbk.hdfs == '派发' && Td21_mbk.zt == '新建'}">
-			<li><a class="icon" href="#"><span flag="rl" class="lzspan">认领</span></a></li>
+			<li><a class="icon" href="#"><span flag="rl" class="lzspan">认 领</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && empty Td21_mbk.hdfs }">
@@ -189,7 +262,7 @@ $(function(){
 			<div class="pageFormContent">
 				<p>
 					<label>资源编号：</label>
-					<input readonly type="text" name="Td21_mbk.ZYBH" style="width:150px;" readonly value="${Td21_mbk.zybh}"/>
+					<input readonly="readonly" type="text" name="Td21_mbk.ZYBH" style="width:150px;" readonly value="${Td21_mbk.zybh}"/>
 				</p>
 				<p>
 					<label>资源名称：</label>

@@ -107,7 +107,7 @@ public class Mbk {
 		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>)request.getSession().getAttribute("rolesMap");
 		if (rolesMap.get("20101") == null){
 			Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
-			hsql.append(" and (tdr_id=" + user.getId()+" or (zt is null and hdfs='派发'))");
+			hsql.append(" and ((tdr_id=" + user.getId()+" and zt='开始谈点') or (zt='新建' and hdfs='派发'))");
 		}
 		// 类别
 		if (!lb.equals("")) {
