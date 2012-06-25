@@ -345,8 +345,6 @@ public class Mbk {
 				word = "转建设";
 				td21.setZt("转建设");
 				Long xmgly_id = convertUtil.toLong(request.getParameter("xmgly_id"));
-				// 下面这行是测试用的!!
-				xmgly_id = 1L;
 				Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, xmgly_id);
 				Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
