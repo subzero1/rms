@@ -71,7 +71,7 @@ $(function(){
 	});
 	$("#master\\.dwz_devLooup\\.Kcry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=sfkc&ids='+$(this).val();
-		alertMsg.confirm("警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！确认四方勘察吗？",{
+		alertMsg.confirm("确认四方勘察吗？",{
 			okCall:function(){
 				$.ajax({
 					url:'mbk/mbkLz.do',
@@ -89,7 +89,7 @@ $(function(){
 	});
 	$("#master\\.dwz_devLooup\\.Hsry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=fahs&ids='+$(this).val();
-		alertMsg.confirm("警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！确认方案会审吗？",{
+		alertMsg.confirm("确认方案会审吗？",{
 			okCall:function(){
 				$.ajax({
 					url:'mbk/mbkLz.do',
