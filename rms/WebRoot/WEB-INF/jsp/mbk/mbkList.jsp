@@ -35,8 +35,10 @@
 				<div class="subBar">
 					<ul>
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'mbk/mbkList.do',navTabSearch);">检 索</button></div></div></li>
-						<li><a class="button" href="mbk/advancedSearch.do" target="dialog" width="800" height="500" rel="advancedSearch" title="高级查询条件"><span>高级查询</span></a></li>
-					</ul>
+						<c:if test="${not empty rolesMap['20101']}">
+							<li><a class="button" href="search/searchList.do?module_id=1&navtab=mbkASList" target="navTab" rel="mbkASList" title="目标库高级查询"><span>高级查询</span></a></li>
+						</c:if>
+						</ul>
 				</div>
 			</div>
 		</form>
