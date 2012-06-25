@@ -475,4 +475,32 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectHsry.jsp", modelMap);
 	}
+	@RequestMapping("/mbk/getXmgly.do")
+	public ModelAndView getXmgly(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 10);
+		Integer totalCount = 0;
+		Integer pageNumShown = 0;
+
+		// 排序变量
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "user.id");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+
+		String name = convertUtil.toString(request.getParameter("name"));
+		StringBuffer hsql = new StringBuffer();
+		hsql
+				.append("select user from Ta03_user user where id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20105)) and name like '%"
+						+ name + "%'");
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		totalCount = ro.getTotalRows();
+		pageNumShown = ro.getTotalPages();
+		modelMap.put("xmglyList", ro.getList());
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("pageNumShown", pageNumShown);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		return new ModelAndView("/WEB-INF/jsp/mbk/selectXmgly.jsp", modelMap);
+	}
 }
