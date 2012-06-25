@@ -101,14 +101,33 @@ public class Mbk {
 		String zt = convertUtil.toString(request.getParameter("zt"));
 
 		StringBuffer hsql = new StringBuffer();
-		hsql.append(" from Td21_mbk mbk where 1=1");
+		hsql.append("select mbk from Td21_mbk mbk where 1=1");
 		// where条件
-		//非20101角色
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>)request.getSession().getAttribute("rolesMap");
-		if (rolesMap.get("20101") == null){
-			Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
-			hsql.append(" and ((tdr_id=" + user.getId()+" and zt='开始谈点') or (zt='新建' and hdfs='派发'))");
+		// 非20101角色
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String roleSql = "1=0";
+		if (rolesMap.get("20101") != null) {
+			roleSql += " or 1=1";
+
 		}
+		if (rolesMap.get("20102") != null) {
+			roleSql += " or (tdr_id=" + user.getId() + " and zt='开始谈点') or (zt='新建' and hdfs='派发')";
+
+		}
+		if (rolesMap.get("20103") != null) {
+			roleSql += " or (zt='四方勘察' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+					+ " and sm='四方勘察' and jssj is null))";
+		}
+		if (rolesMap.get("20104") != null) {
+			roleSql += " or (zt='方案会审' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+					+ " and sm='方案会审' and jssj is null))";
+		}
+		if (rolesMap.get("20105") != null) {
+			roleSql += " or (zt='转建设' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+					+ " and sm='转建设' and jssj is null))";
+		}
+		hsql.append(" and (" + roleSql + ")");
 		// 类别
 		if (!lb.equals("")) {
 			hsql.append(" and lb='" + lb + "'");
@@ -181,7 +200,8 @@ public class Mbk {
 				.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
 		if (mbk != null) {
-			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id="+id+" order by id asc"));
+			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id
+					+ " order by id asc"));
 		}
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
@@ -417,6 +437,7 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectTdr.jsp", modelMap);
 	}
+
 	@RequestMapping("/mbk/getKcry.do")
 	public ModelAndView getKcry(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
@@ -445,6 +466,7 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectKcry.jsp", modelMap);
 	}
+
 	@RequestMapping("/mbk/getHsry.do")
 	public ModelAndView getHsry(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
@@ -473,6 +495,7 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectHsry.jsp", modelMap);
 	}
+
 	@RequestMapping("/mbk/getXmgly.do")
 	public ModelAndView getXmgly(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
