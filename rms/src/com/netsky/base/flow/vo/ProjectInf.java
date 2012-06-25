@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * @author cmp_auto 2012-06-25
- * @hibernate.class table="Projectinf"
+ * @hibernate.class table="ProjectInf"
  */
 
 public class ProjectInf implements Serializable{
