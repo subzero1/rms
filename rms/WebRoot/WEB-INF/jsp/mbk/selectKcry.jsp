@@ -6,13 +6,14 @@
 	function addKcry(id,name){
 		if ($("#ids",$.pdialog.getCurrent()).val().indexOf(","+id)==-1){
 			$("#ids",$.pdialog.getCurrent()).val($("#ids",$.pdialog.getCurrent()).val()+","+id);
-			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+","+name);
+			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+ ($("#names",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
+			$("#names1",$.pdialog.getCurrent()).val($("#names1",$.pdialog.getCurrent()).val()+ ($("#names1",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 		}
 	}
 	$(function(){
 		$("#daihui",$.pdialog.getCurrent()).click(function(){
 			if ($("#ids",$.pdialog.getCurrent()).val().length>0){
-				var names = $("#names",$.pdialog.getCurrent()).val().substring(1);
+				var names = $("#names",$.pdialog.getCurrent()).val();
 				alertMsg.confirm("确认选择"+names+"为四方勘察人员吗？",{
 					okCall:function(){
 						var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
@@ -47,6 +48,10 @@
 			</li>
 		</ul>
 		<div class="subBar">
+		<div style="float:left">
+				<label>已选:</label>
+				<input class="textInput" name="name" readonly="readonly" id="names1" value="${param.name }" type="text"/>
+		</div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="daihui">带回</button></div></div></li>
