@@ -55,7 +55,7 @@
 		<div class="subBar">
 		<div style="float:left">
 				<label>已选:</label>
-				<input class="textInput" name="name" readonly="readonly" id="names1" value="${param.name }" type="text"/>
+				<input class="textInput" name="name" readonly="readonly" id="names1" value="${param.names }" type="text"/>
 		</div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
