@@ -45,6 +45,9 @@ $(function(){
 		} else if (flag == "fahs"){
 			$("#fahsa").click();
 			return false;
+		} else if (flag == "zjs"){
+			$("#zjsa").click();
+			return false;
 		}
 		var alertmsg = "";
 		if ("${not empty rolesMap['20101'] }"=="true" && change){
@@ -90,6 +93,24 @@ $(function(){
 	$("#master\\.dwz_devLooup\\.Hsry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=fahs&ids='+$(this).val();
 		alertMsg.confirm("确认方案会审吗？",{
+			okCall:function(){
+				$.ajax({
+					url:'mbk/mbkLz.do',
+					type:'post',
+					data:data,
+					dataType:"json",
+					cache: false,
+					success: function(json){
+						navTabAjaxDone(json);
+					},
+					error: DWZ.ajaxError
+				});
+			}
+		});
+	});
+	$("#master\\.dwz_devLooup\\.Xmgly").change(function(){
+		var data = 'id=${Td21_mbk.id}&type=zjs&xmgly_id='+$(this).val();
+		alertMsg.confirm("确认转建设吗？",{
 			okCall:function(){
 				$.ajax({
 					url:'mbk/mbkLz.do',
@@ -308,6 +329,8 @@ function printMbk(){
 					<input type="hidden" id="master.dwz_devLooup.Kcry"/>
 					<a style="display:none" id="fahsa" class="btnLook" href="mbk/getHsry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
 					<input type="hidden" id="master.dwz_devLooup.Hsry"/>
+					<a style="display:none" id="zjsa" class="btnLook" href="mbk/getXmgly.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
+					<input type="hidden" id="master.dwz_devLooup.Xmgly"/>
 				</p>
 				<p>
 					<label>谈点人电话：</label>
