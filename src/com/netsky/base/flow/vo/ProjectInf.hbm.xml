@@ -19,6 +19,22 @@
         </id>
 
    <property
+  name="sjkssj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjkssj"
+  />
+
+  <property
+  name="sjjssj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjjssj"
+  />
+
+  <property
   name="xmjd"
   type="java.lang.String"
   update="true"
@@ -184,6 +200,70 @@
   update="true"
   insert="true"
   column="jlhtqdrq"
+  />
+
+  <property
+  name="bdbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bdbh"
+  />
+
+  <property
+  name="ssdq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ssdq"
+  />
+
+  <property
+  name="gclb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gclb"
+  />
+
+  <property
+  name="zydl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zydl"
+  />
+
+  <property
+  name="zyxx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zyxx"
+  />
+
+  <property
+  name="jsxz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsxz"
+  />
+
+  <property
+  name="jsdd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsdd"
+  />
+
+  <property
+  name="yslx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="yslx"
   />
 
   <property
@@ -1208,78 +1288,6 @@
   update="true"
   insert="true"
   column="lxsj"
-  />
-
-  <property
-  name="sjkssj"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="sjkssj"
-  />
-
-  <property
-  name="sjjssj"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="sjjssj"
-  />
-
-  <property
-  name="ssdq"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="ssdq"
-  />
-
-  <property
-  name="gclb"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="gclb"
-  />
-
-  <property
-  name="zydl"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="zydl"
-  />
-
-  <property
-  name="zyxx"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="zyxx"
-  />
-
-  <property
-  name="jsxz"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jsxz"
-  />
-
-  <property
-  name="jsdd"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jsdd"
-  />
-
-  <property
-  name="yslx"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="yslx"
   />
 
 
