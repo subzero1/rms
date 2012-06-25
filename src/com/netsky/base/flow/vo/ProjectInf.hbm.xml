@@ -6,7 +6,7 @@
 
 <hibernate-mapping
 >
-    <class name="com.netsky.base.flow.vo.ProjectInf"  table="Projectinf">
+    <class name="com.netsky.base.flow.vo.ProjectInf"  table="ProjectInf">
 
         <id
             name="id"
