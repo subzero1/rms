@@ -337,7 +337,7 @@ public class Mbk {
 					session.save(td22);
 				}
 			} else if ("hswc".equals(type)) {// 会审完成
-				word = "";
+				word = "会审完成";
 				td21.setZt("会审完成");
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
 						.executeUpdate();
