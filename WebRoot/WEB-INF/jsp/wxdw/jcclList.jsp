@@ -29,12 +29,10 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>名称：</td>
-						<td><input id="clmc" name="clmc" value="${param.clmc}" type="text" size="25" />
+						<td>名称：<input id="clmc" name="clmc" value="${param.clmc}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
-						<td>类别：</td>
-						<td><netsky:htmlSelect name="cllx" id="cllx" objectForOption="cllxList" valueForOption="name" showForOption="name" value="${param.cllx}" extend=""  extendPrefix="true" /></td>
+						<td>类别：<netsky:htmlSelect name="cllx" id="cllx" objectForOption="cllxList" valueForOption="name" showForOption="name" value="${param.cllx}" extend=""  extendPrefix="true" /></td>
 						
 					</tr>
 				</table>

@@ -29,10 +29,8 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>类别：</td>
-						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="name" showForOption="name" value="${param.lb}" extend=""  extendPrefix="true" /></td>
-						<td>单位名称：</td>
-						<td><input id="mc" name="mc" value="${param.mc}" type="text" size="25" />
+						<td>类别：<netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="name" showForOption="name" value="${param.lb}" extend=""  extendPrefix="true" /></td>
+						<td>单位名称：<input id="mc" name="mc" value="${param.mc}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
 					</tr>
