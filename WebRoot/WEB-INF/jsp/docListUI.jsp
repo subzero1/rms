@@ -34,12 +34,12 @@ $(function(){
 			<c:forEach items="${newFormList}" var="formItem">
 				<c:if test="${fn:contains(formItem.url,'module_id=101')}">
 				<li style="float:right;">
-					<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建申请"><span>新建申请	</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建项目"><span>新建项目	</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 				</li>
 				</c:if>
 				<c:if test="${fn:contains(formItem.url,'module_id=102')}">
 				<li style="float:right;">
-					<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建变更"><span>新建变更</span></a>&nbsp;&nbsp;&nbsp;
+					<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建工程"><span>新建工程</span></a>&nbsp;&nbsp;&nbsp;
 				</li>
 				</c:if>
 	     	</c:forEach> 
