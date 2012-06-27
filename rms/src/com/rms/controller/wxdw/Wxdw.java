@@ -590,7 +590,7 @@ public class Wxdw {
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
-				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id=" + wxdw_id + " order by zy");
+				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id=" + wxdw_id + " and nd='"+nd+"' order by zy");
 		Map<String, Tf05_wxdw_dygx> zjgcsMap = new HashMap<String, Tf05_wxdw_dygx>();
 		for (Tf05_wxdw_dygx tf05 : tf05List) {
 			zjgcsMap.put(tf05.getZy(), tf05);
