@@ -4,7 +4,7 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
 
-<form id="pagerForm" method="post" action="">
+<form id="pagerForm" method="post" action="mbk/mbkList.do">
 	<input type="hidden" name="zymc" value="${param.zymc}">
 	<input type="hidden" name="ssdq" value="${param.ssdq}">
 	<input type="hidden" name="lb" value="${param.lb}">
@@ -17,19 +17,14 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="mbk/mbkList.do" method="post">
-			<input type="hidden" id="selectedId_demo" />
+		<form action="mbk/mbkList.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>地区：</td>
-						<td><netsky:htmlSelect name="ssdq" id="ssdq" objectForOption="dqList" valueForOption="" showForOption="" value="${param.ssdq}" extend="" extendPrefix="true" /></td>
-						<td>类别：</td>
-						<td><netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.lb}" extend=""  extendPrefix="true" /></td>
-						<td>状态：</td>
-						<td><netsky:htmlSelect name="zt" id="zt" objectForOption="ztList" valueForOption="" showForOption="" value="${param.zt}" extend="" extendPrefix="true" /></td>
-						<td>资源名称：</td>
-						<td><input id="zymc" name="zymc" value="${param.zymc}" type="text" size="25" /></td>
+						<td>地区：<netsky:htmlSelect name="ssdq" id="ssdq" objectForOption="dqList" valueForOption="" showForOption="" value="${param.ssdq}" extend="" extendPrefix="true" /></td>
+						<td>类别：<netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.lb}" extend=""  extendPrefix="true" /></td>
+						<td>状态：<netsky:htmlSelect name="zt" id="zt" objectForOption="ztList" valueForOption="" showForOption="" value="${param.zt}" extend="" extendPrefix="true" /></td>
+						<td>资源名称：<input id="zymc" name="zymc" value="${param.zymc}" type="text" size="25" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
