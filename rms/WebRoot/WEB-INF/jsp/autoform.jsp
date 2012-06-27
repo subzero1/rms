@@ -121,6 +121,10 @@
 </div>
 
 <script language="javascript">
+	//默认展开表单
+	var bar = $("#sidebar");
+	if(bar.is(":hidden") == false)	$(".toggleCollapse div", bar).click();
+	
 	//修改表单的tabid
 	var  module_id = $("#module_id",navTab.getCurrentPanel()).val();
 	var  doc_id = $("#doc_id",navTab.getCurrentPanel()).val();
