@@ -475,8 +475,6 @@ function openFlowForm(paramJson){
 	var module_id = param_json.module_id, doc_id = param_json.doc_id;
 	var param = "project_id="+param_json.project_id+"&module_id="+param_json.module_id+"&doc_id="+param_json.doc_id+"&opernode_id="+param_json.opernode_id+"&node_id="+param_json.node_id+"&user_id="+param_json.user_id;
 	
-	var bar = $("#sidebar");
-	if(bar.is(":hidden") == false)	$(".toggleCollapse div", bar).click();
 	navTab.openTab('autoform'+module_id+doc_id, 'openForm.do?'+param, {title:'表单'});
 }
 
