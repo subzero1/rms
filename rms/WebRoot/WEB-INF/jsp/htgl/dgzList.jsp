@@ -18,10 +18,8 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>类别：</td>
-						<td><netsky:htmlSelect name="htlb" id="htlb" objectForOption="htlbList" valueForOption="name" showForOption="name" value="${param.htlb}" extend=""  extendPrefix="true" /></td>
-						<td style="height:45px; margin:5px;">项目编号或名称：</td>
-						<td><input name="keywords" value="${param.keywords}" type="text" size="25" />
+						<td>类别：<netsky:htmlSelect name="htlb" id="htlb" objectForOption="htlbList" valueForOption="name" showForOption="name" value="${param.htlb}" extend=""  extendPrefix="true" /></td>
+						<td>项目编号或名称：<input name="keywords" value="${param.keywords}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
 					</tr>
