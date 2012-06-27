@@ -28,8 +28,7 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>名称：</td>
-						<td><input id="gcmc" name="gcmc" value="${param.gcmc}" type="text" size="25" />
+						<td>名称：<input id="gcmc" name="gcmc" value="${param.gcmc}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
 					</tr>
