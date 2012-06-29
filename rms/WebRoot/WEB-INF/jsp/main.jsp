@@ -28,12 +28,14 @@
 <script src="js/jquery/jquery-ui-1.8.15.custom.min.js" type="text/javascript"></script>
 		
 <!-- svg图表  supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+ -->
+<!--
 <script type="text/javascript" src="js/chart/raphael.js"></script>
 <script type="text/javascript" src="js/chart/g.raphael.js"></script>
 <script type="text/javascript" src="js/chart/g.bar.js"></script>
 <script type="text/javascript" src="js/chart/g.line.js"></script>
 <script type="text/javascript" src="js/chart/g.pie.js"></script>
 <script type="text/javascript" src="js/chart/g.dot.js"></script>
+-->
 
 <script src="js/dwz.src.new/dwz.core.js" type="text/javascript"></script>
 <script src="js/dwz.src.new/dwz.util.date.js" type="text/javascript"></script>
