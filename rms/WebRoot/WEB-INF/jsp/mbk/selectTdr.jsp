@@ -14,7 +14,7 @@
 	}
 </script>
 
-<form id="pagerForm">
+<form id="pagerForm" action="">
 	<input type="hidden" name="hkzlmb" value="${param.hkzlmb}"/>
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />

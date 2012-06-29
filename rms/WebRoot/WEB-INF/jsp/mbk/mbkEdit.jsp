@@ -72,7 +72,7 @@ $(function(){
 			}
 		});
 	});
-	$("#master\\.dwz_devLooup\\.Kcry").change(function(){
+	$("#tdrOrg\\.Kcry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=sfkc&ids='+$(this).val();
 		alertMsg.confirm("确认四方勘察吗？",{
 			okCall:function(){
@@ -90,7 +90,7 @@ $(function(){
 			}
 		});
 	});
-	$("#master\\.dwz_devLooup\\.Hsry").change(function(){
+	$("#tdrOrg\\.Hsry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=fahs&ids='+$(this).val();
 		alertMsg.confirm("确认方案会审吗？",{
 			okCall:function(){
@@ -108,7 +108,7 @@ $(function(){
 			}
 		});
 	});
-	$("#master\\.dwz_devLooup\\.Xmgly").change(function(){
+	$("#tdrOrg\\.Xmgly").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=zjs&xmgly_id='+$(this).val();
 		alertMsg.confirm("确认转建设吗？",{
 			okCall:function(){
@@ -318,23 +318,23 @@ function printMbk(){
 				<div class="divider"></div>
 				<p>
 					<label>谈点部门：</label>
-					<input type="text" readonly="readonly" id="master.dwz_devLooup.TDBM" name="Td21_mbk.TDBM" style="width:150px;" value="${Td21_mbk.tdbm}"/>
+					<input type="text" readonly="readonly" id="tdrOrg.TDBM" name="Td21_mbk.TDBM" style="width:150px;" value="${Td21_mbk.tdbm}"/>
 				</p>
 				<p>
 					<label>谈点人：</label>
-							<input type="text" name="Td21_mbk.TDR" id="master.dwz_devLooup.TDR" style="width:125px" readonly="readonly" value="${Td21_mbk.tdr }" />
-							<a class="btnLook" href="mbk/getTdr.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
-					<input type="hidden" name="Td21_mbk.TDR_ID" id="master.dwz_devLooup.TDR_ID" value="${Td21_mbk.tdr_id}"/>
-					<a style="display:none" id="sfkca" class="btnLook" href="mbk/getKcry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
-					<input type="hidden" id="master.dwz_devLooup.Kcry"/>
-					<a style="display:none" id="fahsa" class="btnLook" href="mbk/getHsry.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
-					<input type="hidden" id="master.dwz_devLooup.Hsry"/>
-					<a style="display:none" id="zjsa" class="btnLook" href="mbk/getXmgly.do" lookupGroup="master" lookupName="devLooup" width="600" height="380">查找带回</a>
-					<input type="hidden" id="master.dwz_devLooup.Xmgly"/>
+							<input type="text" name="Td21_mbk.TDR" id="tdrOrg.TDR" style="width:125px" readonly="readonly" value="${Td21_mbk.tdr }" />
+							<a class="btnLook" href="mbk/getTdr.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<input type="hidden" name="Td21_mbk.TDR_ID" id="tdrOrg.TDR_ID" value="${Td21_mbk.tdr_id}"/>
+					<a style="display:none" id="sfkca" class="btnLook" href="mbk/getKcry.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<input type="hidden" id="tdrOrg.Kcry"/>
+					<a style="display:none" id="fahsa" class="btnLook" href="mbk/getHsry.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<input type="hidden" id="tdrOrg.Hsry"/>
+					<a style="display:none" id="zjsa" class="btnLook" href="mbk/getXmgly.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<input type="hidden" id="tdrOrg.Xmgly"/>
 				</p>
 				<p>
 					<label>谈点人电话：</label>
-					<input type="text" id="master.dwz_devLooup.TDRDH" name="Td21_mbk.TDRDH" style="width:120px;" value="${Td21_mbk.tdrdh}"/>
+					<input type="text" id="tdrOrg.TDRDH" name="Td21_mbk.TDRDH" style="width:120px;" value="${Td21_mbk.tdrdh}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
