@@ -32,7 +32,7 @@
 	});
 </script>
 
-<form id="pagerForm">
+<form id="pagerForm" action="">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
