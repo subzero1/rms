@@ -9,8 +9,8 @@
 		<title>南京电信工程建设目标库管理系统</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
 		<link rel="stylesheet" media="screen,projection" type="text/css" href="Images/index-images/style.css" />
-		<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
-		<script src="js/jquery.cookie.js" type="text/javascript"></script>
+		<script src="js/jquery/jquery-1.7.1.js" type="text/javascript"></script>
+		<script src="js/jquery/jquery.cookie.js" type="text/javascript"></script>
 
 		<!--居中显示start-->
 		<script type="text/javascript" src="js/center-plugin.js"></script>
