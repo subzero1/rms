@@ -161,12 +161,12 @@ public class workList {
 			 * 取文档列表
 			 */
 			hsql.append(" from " + docView);
-			hsql.append(" doc,ProjectInf jfxx where jfxx.id = doc.project_id ");
+			hsql.append(" doc,ProjectInf gcxx where gcxx.id = doc.project_id ");
 			if (module_id > -1) {
 				hsql.append(" and doc.module_id = " + module_id);
 			}
 			if (!"".equals(keyWord)) {
-				hsql.append(" and ( jfxx.xmmc like '%" + keyWord + "%')");
+				hsql.append(" and ( gcxx.xmmc like '%" + keyWord + "%')");
 			}
 			if (year > 1900 && workState == 5) {
 				hsql.append(" and doc.oper_time like '" + year + "%'");
@@ -205,17 +205,17 @@ public class workList {
 				pageNum = 1;
 			}
 			// 取列表数据
-			ResultObject rs = queryService.searchByPage("select doc,jfxx " + hsql.toString()
+			ResultObject rs = queryService.searchByPage("select doc,gcxx " + hsql.toString()
 					+ order.toString(), pageNum, numPerPage);
 			List<List> docList = new LinkedList<List>();
 			Object doc = null;
-			Object jfxx = null;
+			Object gcxx = null;
 			DecimalFormat df = new DecimalFormat("#0.00");
 			SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			while (rs.next()) {
 				List row = new LinkedList(); //行对像，先初始化各列数据
 				doc = rs.get("doc");
-				jfxx = rs.get("jfxx");
+				gcxx = rs.get("gcxx");
 				//初始化各列数据
 				for(Ta07_formfield ta07:docColsList){
 					Object obj = null;
@@ -223,7 +223,7 @@ public class workList {
 					if(ta07.getObject_name().equals("doc")){
 						 obj = PropertyInject.getProperty(doc,ta07.getName().trim());
 					} else {
-						 obj = PropertyInject.getProperty(jfxx,ta07.getName().trim());
+						 obj = PropertyInject.getProperty(gcxx,ta07.getName().trim());
 					}
 					
 					//格式化数据
@@ -239,7 +239,7 @@ public class workList {
 				//导EXCEL不需求后面对象
 				if(!"yes".equals(request.getParameter("toExcel"))){
 					row.add(doc);
-					row.add(jfxx);
+					row.add(gcxx);
 				}	
 				
 				docList.add(row);
@@ -368,7 +368,7 @@ public class workList {
 			List<Object[]> docList = new LinkedList<Object[]>();
 			
 			hsql.append(" from " + docView);
-			hsql.append(" doc,ProjectInf jfxx where jfxx.id = doc.project_id ");
+			hsql.append(" doc,ProjectInf gcxx where gcxx.id = doc.project_id ");
 			if("".equals(user_ids)){
 				hsql.append(" and doc.user_id = " + user.getId());
 			} else {
@@ -380,19 +380,19 @@ public class workList {
 			hsql.append(orderField+" ");
 			hsql.append(orderDirection);
 			
-			ResultObject rs = queryService.search("select doc,jfxx " + hsql.toString());
+			ResultObject rs = queryService.search("select doc,gcxx " + hsql.toString());
 			
 			
 			while (rs.next()) {
-				docList.add(new Object[] { rs.get("doc"), rs.get("jfxx") });
+				docList.add(new Object[] { rs.get("doc"), rs.get("gcxx") });
 			}
 			rs = null;
 			
 			if(" NeedWork".equals(docView)){
-				rs = queryService.search("select doc,jfxx " + hsql.toString().replace("NeedWork", "ReplyWork")
+				rs = queryService.search("select doc,gcxx " + hsql.toString().replace("NeedWork", "ReplyWork")
 						+ "  order by doc.oper_time desc ");
 				while (rs.next()) {
-					docList.add(new Object[] { rs.get("doc"), rs.get("jfxx") });
+					docList.add(new Object[] { rs.get("doc"), rs.get("gcxx") });
 				}				
 			}
 
