@@ -27,7 +27,7 @@
 		<ul class="searchContent">
 			<li>
 				<label>手动选派原因:</label>
-				<input class="textInput" id="sdxpyy" name="name" value="" type="text" style="width:200px;"/>
+				<input class="textInput" id="sdpgyy" name="name" value="" type="text" style="width:200px;"/>
 			</li>
 		</ul>
 		<div class="subBar">
