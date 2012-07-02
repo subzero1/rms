@@ -171,6 +171,23 @@ public class Ta03_user implements Serializable{
  public void setDept_id(Long dept_id) {
     this.dept_id = dept_id;
   }
+ 
+ /**
+  * 部门名称
+  */
+  private String dept_name;
+
+  /**
+  * @hibernate.property column="dept_name"
+  * @return Returns the dept_name.
+  */
+  public String getDept_name() {
+     return dept_name;
+  }
+
+  public void setDept_name(String dept_name) {
+     this.dept_name = dept_name;
+   }
 
  /**
  * 0:不可用，1：可用
