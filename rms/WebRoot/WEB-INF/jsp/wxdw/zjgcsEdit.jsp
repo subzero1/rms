@@ -8,7 +8,7 @@
 
 $(function(){
 	$("#nd", navTab.getCurrentPanel()).change(function(){
-		$("#zdgcs_tab").loadUrl("wxdw/zjgcsEdit.do?wxdw_id=${param.wxdw_id }&nd="+$(this).val());
+		$("#zdgcs_tab").loadUrl("wxdw/zjgcsEdit.do?lb=zdgcs&wxdw_id=${param.wxdw_id }&nd="+$(this).val());
 	});
 });
 

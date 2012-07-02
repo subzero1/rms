@@ -22,7 +22,7 @@
 				<tr>
 					<th style="width: 80px;" orderField="login_id">工号</th>
 					<th style="width: 80px;" orderField="name">姓名</th>
-					<th style="width:120px;" orderField="mobile_tel">移动电话</th>
+					<th style="width: 120px;" orderField="mobile_tel">移动电话</th>
 					<th style="width: 50px;" orderField="sex">性别</th>
 					<th style="width: 150px;" orderField="email">邮箱</th>
 					<th>相关岗位</th>
