@@ -23,6 +23,7 @@ public class Tmp_zdxp implements Serializable {
 	private Double jsl;
 	private Double jhfezb;
 	private Long wxdw_id;
+	private Long batch_no;
 
 	/**
 	 * @hibernate.id generator-class="sequence"
@@ -135,6 +136,22 @@ public class Tmp_zdxp implements Serializable {
 	 */
 	public void setWxdw_id(Long wxdw_id) {
 		this.wxdw_id = wxdw_id;
+	}
+
+	/**
+	 * @hibernate.property column="batch_no"
+	 * @return Returns the batch_no.
+	 */
+	public Long getBatch_no() {
+		return batch_no;
+	}
+
+	/**
+	 * @param batch_no
+	 *            The batch_no to set.
+	 */
+	public void setBatch_no(Long batch_no) {
+		this.batch_no = batch_no;
 	}
 
 }

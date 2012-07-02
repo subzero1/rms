@@ -74,6 +74,14 @@
             column="wxdw_id"
         />
 
+        <property
+            name="batch_no"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="batch_no"
+        />
+
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Tmp_zdxp.xml

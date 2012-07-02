@@ -1,5 +1,6 @@
 package com.rms.controller.form;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Sgpd {
 	@RequestMapping("/sgpd.do")
 	public ModelAndView sgpd(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		Long project_id = convertUtil.toLong(request.getParameter("project_id"),-10L);
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"), -10L);
 		Td00_gcxx td00 = (Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
 		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
 		Td01_xmxx td01 = (Td01_xmxx) dao.getObject(Td01_xmxx.class, xm_id);
@@ -52,7 +53,7 @@ public class Sgpd {
 			gclb = td01.getGclb();
 			dq = td01.getSsdq();
 		} else {
-			//System.out.println("找不到工程或项目");
+			// System.out.println("找不到工程或项目");
 			return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp?errormsg=tdnotfound");
 		}
 		// 获得 所有相关地区专业 未停工 类别为施工的外协单位
@@ -63,7 +64,7 @@ public class Sgpd {
 						+ dq
 						+ "' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy') and tf01.lb='施工' and tf01.zt<>'停工'");
 		if (wxdwList == null || wxdwList.size() == 0) {
-			//System.out.println("没有符合的外协单位");
+			// System.out.println("没有符合的外协单位");
 			return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp?errormsg=tfnotfound");
 		}
 		// 建立数组o[11]
@@ -191,7 +192,7 @@ public class Sgpd {
 		// 决算率 从低到高
 		for (int i = 0; i < objectsList.size(); i++) {
 			for (int j = objectsList.size() - 1; j > i; j--) {
-				if ((Long) objectsList.get(j)[3] > (Long) objectsList.get(j - 1)[3]) {
+				if ((Double) objectsList.get(j)[3] > (Double) objectsList.get(j - 1)[3]) {
 					temp = objectsList.get(j);
 					objectsList.set(j, objectsList.get(j - 1));
 					objectsList.set(j, temp);
@@ -205,9 +206,13 @@ public class Sgpd {
 		// 利用数据库做排序
 		Session session = dao.getHibernateSession();
 		Transaction tx = session.beginTransaction();
+		Long nextval = -1L;
 		try {
+
 			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
 			tx.begin();
+			nextval = ((BigDecimal) (session.createSQLQuery("select batch_num.nextval from dual").uniqueResult()))
+					.longValue();
 			for (Object[] o : objectsList) {
 				Tmp_zdxp zdxp = new Tmp_zdxp();
 				zdxp.setDj((String) o[9]);
@@ -216,6 +221,7 @@ public class Sgpd {
 				zdxp.setJsl((Double) o[3]);
 				zdxp.setJhfezb((Double) o[6]);
 				zdxp.setWxdw_id((Long) ((Tf01_wxdw) o[0]).getId());
+				zdxp.setBatch_no(nextval);
 				session.save(zdxp);
 			}
 			session.flush();
@@ -229,7 +235,7 @@ public class Sgpd {
 		}
 		List<Long> wxdw_ids = (List<Long>) dao
 				.search("select wxdw_id from Tmp_zdxp order by dj asc,pm desc,zhdf desc,jsl desc,jhfezb desc");
-		dao.update("delete from Tmp_zdxp");
+		dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
 		List<Object[]> tmpList = new ArrayList<Object[]>();
 		int i = 0;
 		// 只保留前3名
