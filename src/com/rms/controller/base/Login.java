@@ -57,6 +57,7 @@ public class Login {
 	@RequestMapping("/login.do")
 	public void loginRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html,charset=UTF-8");
 		String login_id = com.netsky.base.utils.StringFormatUtil.format(request.getParameter("login_id"));
 		String passwd = com.netsky.base.utils.StringFormatUtil.format(request.getParameter("passwd"));
 		Ta03_user user = null;

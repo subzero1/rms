@@ -95,7 +95,7 @@ public class Main {
 			sql.append(" and ta12.role_id = ta04.id ");
 			sql.append(" and ta09.id = ta04.menu_id ");
 			sql.append(" and ta11.user_id = ?) order by seq");
-			System.out.println(sql);
+//			System.out.println(sql);
 			List<Ta09_menu> menuList= (List<Ta09_menu>)dao.search(sql.toString(),new Object[]{user.getId()}); 
 			String menu_ids = "-1";
 			List tmpList = null;

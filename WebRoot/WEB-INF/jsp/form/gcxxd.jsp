@@ -77,8 +77,9 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
-		<label>施工单位：</label>
-		<input type="text"  name="Td00_gcxx.SGDW" value="${Td00_gcxx.sgdw}" style="width:150px;"/>
+		<label><a href="sgpd.do?project_id=${Td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
+		<input type="text"  name="Td00_gcxx.SGDW" id="sgdwOrg.SGDW" value="${Td00_gcxx.sgdw}" style="width:150px;" readonly="readonly"/>
+		<input type="hidden"  name="Td00_gcxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${Td00_gcxx.sdpgyy}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>进度填报周期：</label>
