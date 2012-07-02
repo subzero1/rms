@@ -4,6 +4,11 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
 
+<input type="hidden" name="configType" value="byxml"/>
+<input type="hidden" name="profile" value="gcxxd.xml"/>
+<input type="hidden" name="Td00_gcxx.ID" value="${param.doc_id}">
+<input type="hidden" name="XM_ID" value="${Td00_gcxx.xm_id}">
+
 <div class="pageFormContent">
 	<p>
 		<label>需求部门：</label>
