@@ -160,6 +160,7 @@
 				
 				<value>com/rms/dataObjects/base/Tc01_property.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tc02_area.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tmp_zdxp.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/form/Td00_gcxx.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td01_xmxx.hbm.xml</value>
@@ -173,6 +174,8 @@
 				<value>com/rms/dataObjects/wxdw/Tf06_clb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf07_kcb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf08_clmxb.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf11_fepcl.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf27_wxdwzhpf.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>

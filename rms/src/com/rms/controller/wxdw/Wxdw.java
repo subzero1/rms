@@ -523,7 +523,7 @@ public class Wxdw {
 			years.add("" + startyear++);
 		}
 		modelMap.put("years", years);
-		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear));
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear-1));
 		modelMap.put("nd", nd);
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
 		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
@@ -585,7 +585,7 @@ public class Wxdw {
 			years.add("" + startyear++);
 		}
 		modelMap.put("years", years);
-		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear));
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear-1));
 		modelMap.put("nd", nd);
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
