@@ -2407,5 +2407,22 @@ public class Td01_xmxx implements Serializable {
 	public void setSdpgyy(String sdpgyy) {
 		this.sdpgyy = sdpgyy;
 	}
+	
+	/**
+	 * 创建日期
+	 */
+	 private Date cjrq;
+
+	 /**
+	 * @hibernate.property column="cjrq"
+	 * @return Returns the cjrq.
+	 */
+	 public Date getCjrq() {
+	    return cjrq;
+	 }
+
+	 public void setCjrq(Date cjrq) {
+	    this.cjrq = cjrq;
+	  }
 
 }
