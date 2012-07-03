@@ -15,12 +15,10 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 	<div class="panelBar">
 		<ul class="toolBar">	
 		 <c:if test="${not empty moduleList}">
-		 	<!-- 
 		 	<li>
 				<a class="edit"	href="showFormTree.do?project_id=${param.project_id }" target="navTab" rel="showFormTree" title="工程主流程"><span>工程主流程</span></a>
 		 	</li>
 			<li class="line">line</li>
-			  -->
 		 	<li>
 				<a class="edit"	href="tree/spyj.do?project_id=${param.project_id }&module_id=${param.module_id }" target="dialog" width="700" height="400" title="查看表单审批明细"><span>审批明细</span></a>
 		 	</li>
@@ -37,7 +35,7 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 	<div class="pageContent" style="width:100%" layoutH="28">
 	
 		<div id="tree-title">
-	  		<br/><h1>机房名称：${title}</h1>
+	  		<br/><h1>项目名称：${title}</h1>
 	  	</div>
 		<div id="tree">
 			<c:forEach var="obj" items="${line_list}">
