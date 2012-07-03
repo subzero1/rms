@@ -68,6 +68,10 @@
 					</c:if>
 		     	</c:forEach> 
 				<li>
+					<a class="icon"	href="batchUpdateProject.do" target="dialog" rel="batchUpdateProject" width="500" height="370"><span>批量修改</span></a>
+				</li>
+				<li class="line">line</li>
+				<li>
 					<a class="exportexcel"	href="workList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a>
 				</li>
 				<li class="line">line</li>
