@@ -1005,6 +1005,24 @@ public class Td00_gcxx implements Serializable {
 	 public void setCjrq(Date cjrq) {
 	    this.cjrq = cjrq;
 	  }
+	 
+	 /**
+	 * 要求完成时间
+	 */
+	 private Date yqwcsj;
+
+	 /**
+	 * @hibernate.property column="yqwcsj"
+	 * @return Returns the yqwcsj.
+	 */
+	 public Date getYqwcsj() {
+	    return yqwcsj;
+	 }
+
+	 public void setYqwcsj(Date yqwcsj) {
+	    this.yqwcsj = yqwcsj;
+	  }
+	 
 	/**
 	 * 设计派工时间
 	 */

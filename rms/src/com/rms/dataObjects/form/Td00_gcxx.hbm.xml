@@ -481,6 +481,14 @@
             insert="true"
             column="cjrq"
         />
+        
+        <property
+            name="yqwcsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="yqwcsj"
+        />
 
         <property
             name="sjpgsj"
