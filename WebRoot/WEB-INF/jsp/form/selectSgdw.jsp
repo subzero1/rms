@@ -56,13 +56,13 @@
 		<tbody>
 			<c:forEach items="${allList }" var="o">
 			<tr>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[3] }"/></td>
-				<td><fmt:formatNumber pattern="0" value="${o[2] }"/></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[6]/100 }"/></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
-				<td>${o[9] }</td>
+				<td title="${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if>" style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if></td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[3] }"/></td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0" value="${o[2] }"/></td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[6]/100 }"/></td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[9] }</td>
 				<td>
 						<a class="btnSelect" href="javascript:bringBack('${o[0].mc }')" title="查找带回">
 				</td>
