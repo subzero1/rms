@@ -107,17 +107,17 @@ public class Ta07_formfield implements Serializable{
  /**
  * dataObject 属性长度；如：12.2 表示number(12,2)，10表示number(10)或varchar2(10)
  */
- private Long datalength;
+ private Double datalength;
 
  /**
  * @hibernate.property column="datalength"
  * @return Returns the datalength.
  */
- public Long getDatalength() {
+ public Double getDatalength() {
     return datalength;
  }
 
- public void setDatalength(Long datalength) {
+ public void setDatalength(Double datalength) {
     this.datalength = datalength;
   }
 
