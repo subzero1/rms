@@ -16,11 +16,11 @@
 	</p>
 	<p>
 		<label>需求提出人：</label> 
-		<input type="text" readOnly name="Td00_gcxx.XQTCR" value="<c:out value="${td00_gcxx.xqtcr}" default="${user.name}"/>" style="width:150px;"/>
+		<input type="text" readOnly name="Td00_gcxx.CJR" value="<c:out value="${td00_gcxx.cjr}" default="${user.name}"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>提出日期：</label>
-		<input readonly type="text" name="Td00_gcxx.XQTCSJ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td00_gcxx.xqtcsj}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
+		<input readonly type="text" name="Td00_gcxx.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td00_gcxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
 	</p>
 	<div class="divider"></div>
 	<p>
@@ -65,7 +65,7 @@
 	<div class="divider"></div>
 	<p>
 		<label>设计单位：</label>
-		<input type="text"  name="Td00_gcxx.SJDW" value="${Td00_gcxx.sjdw}" style="width:150px;"/>
+		<netsky:htmlSelect name="Td00_gcxx.SJDW" objectForOption="sjdwList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${Td00_gcxx.sjdw}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>勘察反馈时限：</label>
@@ -92,7 +92,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>监理单位：</label>
-		<input type="text"  name="Td00_gcxx.JLDW" value="${Td00_gcxx.jldw}" style="width:150px;"/>
+		<netsky:htmlSelect name="Td00_gcxx.JLDW" objectForOption="jldwList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${Td00_gcxx.jldw}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>日志填报周期：</label>
