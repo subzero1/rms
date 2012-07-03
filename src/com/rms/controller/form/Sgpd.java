@@ -120,10 +120,13 @@ public class Sgpd {
 					"select count(*) from Td01_xmxx where sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
 							+ "' and sjjgsj is null").get(0));
 			// 最大工程数
-			Long zdgcs = convertUtil.toLong(dao.search(
-					"select v1 from Tf05_wxdw_dygx tf05 where tf05.wxdw_id=" + ((Tf01_wxdw) objects[0]).getId()
-							+ " and tf05.zy='" + gclb
-							+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy')").get(0), 0L);
+			Double zdgcs = 0D;
+			List<Double> zdgcsList = (List<Double>) dao.search("select v1 from Tf05_wxdw_dygx tf05 where tf05.wxdw_id="
+					+ ((Tf01_wxdw) objects[0]).getId() + " and tf05.zy='" + gclb
+					+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy')");
+			if (zdgcsList != null && !zdgcsList.isEmpty()) {
+				zdgcs = convertUtil.toDouble(zdgcsList.get(0), 0D);
+			}
 			if (zjgcs >= zdgcs) {
 				objects[10] = 2;
 				flag++;
