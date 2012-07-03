@@ -22,8 +22,7 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>选择表单：</td>
-						<td>
+						<td>选择表单：
 						<select name="module_id" >
 							<option value="-1">
 								---请选择表单---
@@ -40,8 +39,7 @@
 							</c:forEach>
 						</select>
 							</td>
-						<td>关键字：</td>
-						<td><input name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
+						<td>关键字：<input name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
@@ -79,7 +77,7 @@
 				<li class="line">line</li>
 			</ul>
 		</div>
-		<table class="table" width="100%" layouth="138">
+		<table class="table" layouth="138">
 			<thead>
 				<tr>
 					<th style="width:20px;"></th>
