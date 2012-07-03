@@ -35,7 +35,7 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 	<div class="pageContent" style="width:100%" layoutH="28">
 	
 		<div id="tree-title">
-	  		<br/><h1>项目名称：${title}</h1>
+	  		<br/><h1 style="font-size:14px;">项目名称：${title}</h1>
 	  	</div>
 		<div id="tree">
 			<c:forEach var="obj" items="${line_list}">
