@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.flow.vo.Vc1_sgpftst;
 import com.netsky.base.service.ExceptionService;
+import com.netsky.base.service.QueryService;
+import com.rms.dataObjects.base.Tc01_property;
+import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.base.Tmp_zdxp;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
@@ -35,6 +40,9 @@ public class Sgpd {
 
 	@Autowired
 	private Dao dao;
+
+	@Autowired
+	private QueryService queryService;
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/sgpd.do")
@@ -283,5 +291,68 @@ public class Sgpd {
 		}
 		modelMap.put("zdxp", result);
 		return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp", modelMap);
+	}
+
+	@RequestMapping("/sgpftst.do")
+	public ModelAndView sgpftst(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "mc");
+		if (orderField.equals("")) {
+			orderField = "mc";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		// 查询条件
+		String mc = convertUtil.toString(request.getParameter("mc"));
+		String zy = convertUtil.toString(request.getParameter("zy"));
+		String dq = convertUtil.toString(request.getParameter("dq"));
+
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select vc1 from Vc1_sgpftst vc1 where 1=1");
+		// where条件
+		// 专业
+		if (!zy.equals("")) {
+			hsql.append(" and zy='" + zy + "'");
+		}
+		// 地区
+		if (!dq.equals("")) {
+			hsql.append(" and dq='" + dq + "'");
+		}
+		// 名称
+		if (!mc.equals("")) {
+			hsql.append(" and mc like '%" + mc + "%'");
+		}
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Vc1_sgpftst> vc1List = new ArrayList<Vc1_sgpftst>();
+		// 导EXCEL
+		while (ro.next()) {
+			vc1List.add((Vc1_sgpftst) ro.get("vc1"));
+		}
+		modelMap.put("vc1List", vc1List);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		// 页面所需内容
+		modelMap.put("dqList", dao.search("from Tc02_area"));
+		modelMap.put("zyList", dao.search("from Tc01_property where type='工程类别'"));
+		return new ModelAndView("/WEB-INF/jsp/form/sgpftst.jsp", modelMap);
 	}
 }

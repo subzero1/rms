@@ -77,7 +77,7 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
-		<label><a href="sgpd.do?project_id=${Td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
+		<label><a href="sgpftst.do" target="navTab" rel="sgpftst">透</a><a href="sgpd.do?project_id=${Td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
 		<input type="text"  name="Td00_gcxx.SGDW" id="sgdwOrg.SGDW" value="${Td00_gcxx.sgdw}" style="width:150px;" readonly="readonly"/>
 		<input type="hidden"  name="Td00_gcxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${Td00_gcxx.sdpgyy}" style="width:150px;"/>
 	</p>
