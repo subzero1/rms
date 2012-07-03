@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Tz03_login_log;
 import com.netsky.base.listener.LoginListener;
@@ -25,6 +26,7 @@ import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.LoadUserDataService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.convertUtil;
 
 /**
  * 处理系统登录
@@ -85,6 +87,15 @@ public class Login {
 		List<?> tmpList = queryService.searchList(hsql.toString(), new Object[] { login_id, login_id });
 		if (tmpList.size() > 0) {
 			user = (Ta03_user) tmpList.get(0);
+			Long dept_id = convertUtil.toLong(user.getDept_id(),-1l);
+			hsql.delete(0, hsql.length());
+			hsql.append("from Ta01_dept where id = ");
+			hsql.append(dept_id);
+			tmpList = queryService.searchList(hsql.toString());
+			if (tmpList.size() > 0) {
+				Ta01_dept dept = (Ta01_dept) tmpList.get(0);
+				user.setDept_name(dept.getName());
+			}
 		}
 		tmpList.clear();
 
