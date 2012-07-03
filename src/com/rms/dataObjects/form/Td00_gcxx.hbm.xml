@@ -721,6 +721,14 @@
             insert="true"
             column="sdpgyy"
         />
+        
+         <property
+            name="cjrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="cjrq"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
