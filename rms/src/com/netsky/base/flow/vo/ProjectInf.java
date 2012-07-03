@@ -906,18 +906,18 @@ public class ProjectInf implements Serializable{
  /**
  * 
  */
- private String xqtcr;
+ private String cjr;
 
  /**
- * @hibernate.property column="xqtcr"
- * @return Returns the xqtcr.
+ * @hibernate.property column="cjr"
+ * @return Returns the cjr.
  */
- public String getXqtcr() {
-    return xqtcr;
+ public String getCjr() {
+    return cjr;
  }
 
- public void setXqtcr(String xqtcr) {
-    this.xqtcr = xqtcr;
+ public void setCjr(String cjr) {
+    this.cjr = cjr;
   }
 
  /**
@@ -1127,18 +1127,18 @@ public class ProjectInf implements Serializable{
  /**
  * 
  */
- private Date xqtcsj;
+ private Date cjrq;
 
  /**
- * @hibernate.property column="xqtcsj"
- * @return Returns the xqtcsj.
+ * @hibernate.property column="cjrq"
+ * @return Returns the cjrq.
  */
- public Date getXqtcsj() {
-    return xqtcsj;
+ public Date getCjrq() {
+    return cjrq;
  }
 
- public void setXqtcsj(Date xqtcsj) {
-    this.xqtcsj = xqtcsj;
+ public void setCjrq(Date cjrq) {
+    this.cjrq = cjrq;
   }
 
  /**
