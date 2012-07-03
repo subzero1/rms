@@ -531,11 +531,11 @@
         />
 
         <property
-            name="xqtcr"
+            name="cjr"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="xqtcr"
+            column="cjr"
         />
 
         <property
@@ -675,11 +675,11 @@
         />
 
         <property
-            name="xqtcsj"
+            name="cjrq"
             type="java.util.Date"
             update="true"
             insert="true"
-            column="xqtcsj"
+            column="cjrq"
         />
 
         <property
@@ -1137,14 +1137,7 @@
             insert="true"
             column="sdpgyy"
         />
-        
-         <property
-            name="cjrq"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="cjrq"
-        />
+      
 
         <!--
             To add non XDoclet property mappings, create a file named

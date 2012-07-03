@@ -771,18 +771,18 @@ public class Td00_gcxx implements Serializable {
 	/**
 	 * 需求提出人
 	 */
-	private String xqtcr;
+	private String cjr;
 
 	/**
-	 * @hibernate.property column="xqtcr"
-	 * @return Returns the xqtcr.
+	 * @hibernate.property column="cjr"
+	 * @return Returns the cjr.
 	 */
-	public String getXqtcr() {
-		return xqtcr;
+	public String getCjr() {
+		return cjr;
 	}
 
-	public void setXqtcr(String xqtcr) {
-		this.xqtcr = xqtcr;
+	public void setCjr(String cjr) {
+		this.cjr = cjr;
 	}
 
 	/**
@@ -992,20 +992,19 @@ public class Td00_gcxx implements Serializable {
 	/**
 	 * 需求提出时间
 	 */
-	private Date xqtcsj;
+	 private Date cjrq;
 
-	/**
-	 * @hibernate.property column="xqtcsj"
-	 * @return Returns the xqtcsj.
+	 /**
+	 * @hibernate.property column="cjrq"
+	 * @return Returns the cjrq.
 	 */
-	public Date getXqtcsj() {
-		return xqtcsj;
-	}
+	 public Date getCjrq() {
+	    return cjrq;
+	 }
 
-	public void setXqtcsj(Date xqtcsj) {
-		this.xqtcsj = xqtcsj;
-	}
-
+	 public void setCjrq(Date cjrq) {
+	    this.cjrq = cjrq;
+	  }
 	/**
 	 * 设计派工时间
 	 */
@@ -1523,21 +1522,4 @@ public class Td00_gcxx implements Serializable {
 		this.sdpgyy = sdpgyy;
 	}
 	
-	/**
-	 * 创建日期
-	 */
-	 private Date cjrq;
-
-	 /**
-	 * @hibernate.property column="cjrq"
-	 * @return Returns the cjrq.
-	 */
-	 public Date getCjrq() {
-	    return cjrq;
-	 }
-
-	 public void setCjrq(Date cjrq) {
-	    this.cjrq = cjrq;
-	  }
-
 }
