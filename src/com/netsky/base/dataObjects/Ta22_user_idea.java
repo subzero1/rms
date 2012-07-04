@@ -56,17 +56,17 @@ public class Ta22_user_idea implements Serializable{
  /**
  * 审批结果
  */
- private Integer check_result;
+ private Long check_result;
 
  /**
  * @hibernate.property column="check_result"
  * @return Returns the check_result.
  */
- public Integer getCheck_result() {
+ public Long getCheck_result() {
     return check_result;
  }
 
- public void setCheck_result(Integer check_result) {
+ public void setCheck_result(Long check_result) {
     this.check_result = check_result;
   }
 
