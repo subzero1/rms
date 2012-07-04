@@ -114,7 +114,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			
 			// 获取地区
 			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
-			queryBuilder.eq("type", "1");
+			queryBuilder.like("type", "[1]");
 			queryBuilder.addOrderBy(Order.asc("seq"));
 			tmpList = queryService.searchList(queryBuilder);
 			if (tmpList != null) {
@@ -124,6 +124,20 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					ssdqList.add((Tc02_area) itr.next());
 				}
 				request.setAttribute("ssdqList", ssdqList);
+			}
+			
+			// 获取专业
+			queryBuilder = new HibernateQueryBuilder(Tc03_gczy.class);
+			queryBuilder.eq("yxnd", DateGetUtil.getYear());
+			queryBuilder.addOrderBy(Order.asc("zymc"));
+			tmpList = queryService.searchList(queryBuilder);
+			if (tmpList != null) {
+				List<Tc03_gczy> zydlList = new LinkedList<Tc03_gczy>();
+				for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+						.hasNext();) {
+					zydlList.add((Tc03_gczy) itr.next());
+				}
+				request.setAttribute("zydlList", zydlList);
 			}
 			
 				
