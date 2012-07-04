@@ -51,11 +51,11 @@
 	</p>
 	<p>
 		<label>工程专业：</label>
-		<netsky:htmlSelect name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="name" showForOption="name" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="zymc" showForOption="zymc" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>专业细项：</label>
-		<netsky:htmlSelect name="Td00_gcxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="name" showForOption="name" value="${td00_gcxx.zyxx}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.zyxx}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
