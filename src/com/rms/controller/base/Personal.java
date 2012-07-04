@@ -107,7 +107,7 @@ public class Personal {
 			Ta22_user_idea ta22 = new Ta22_user_idea();
 			ta22.setCheck_idea(check_idea);
 			ta22.setUser_id(user.getId());
-			ta22.setCheck_result(new Integer(check_result));
+			ta22.setCheck_result(new Long(check_result));
 			QueryBuilder queryBuilder = new HibernateQueryBuilder(Ta22_user_idea.class);
 			queryBuilder.eq("check_idea", ta22.getCheck_idea());
 			queryBuilder.eq("check_result", ta22.getCheck_result());
