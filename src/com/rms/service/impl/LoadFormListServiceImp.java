@@ -67,7 +67,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 		ResultObject ro = null;
 		Class<?> clazz = null;
 		StringBuffer hsql = null;
-		String curArea = null;
 
 		QueryBuilder queryBuilder = null;
 		try {
@@ -87,8 +86,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					.get("year"), "-1");
 			String cansave = StringFormatUtil.format((String) paraMap
 					.get("cansave"), "no");
-			curArea = StringFormatUtil.format((String) paraMap
-					.get("curArea"), "南京市");
 
 			module_id = convertUtil.toLong(t_module_id);
 			project_id = convertUtil.toLong(t_project_id);
@@ -128,8 +125,8 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			
 			// 获取专业
 			queryBuilder = new HibernateQueryBuilder(Tc03_gczy.class);
-			queryBuilder.eq("yxnd", DateGetUtil.getYear());
-			queryBuilder.addOrderBy(Order.asc("zymc"));
+			queryBuilder.eq("yxnd", new Long(DateGetUtil.getYear()));
+			queryBuilder.addOrderBy(Order.asc("id"));
 			tmpList = queryService.searchList(queryBuilder);
 			if (tmpList != null) {
 				List<Tc03_gczy> zydlList = new LinkedList<Tc03_gczy>();
