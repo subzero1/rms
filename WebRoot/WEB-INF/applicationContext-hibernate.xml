@@ -160,6 +160,8 @@
 				
 				<value>com/rms/dataObjects/base/Tc01_property.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tc02_area.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc03_gczy.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc04_zyxx.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tmp_zdxp.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/form/Td00_gcxx.hbm.xml</value>
