@@ -26,34 +26,34 @@ public class CascadeUtil {
 		Map<String, Object> requestMap = request.getParameterMap();
 		String tableName = convertUtil.toString(request.getParameter("tableName"));
 		String conditionColumn = convertUtil.toString(request.getParameter("conditionColumn"));
-		String valueColumn = convertUtil.toString(request.getParameter("valueColumn"));
+		String valueForOption = convertUtil.toString(request.getParameter("valueForOption"));
 		String conditionValue = convertUtil.toString(request.getParameter("conditionValue"));
 		String orderBy = convertUtil.toString(request.getParameter("orderBy"));
 		Map<String, String> extendColumns = new HashMap<String, String>();
-		Map<String, String> showColumn = new HashMap<String, String>();
+		Map<String, String> showForOption = new HashMap<String, String>();
 		for (String key : requestMap.keySet()) {
 			if (key.startsWith("extendColumn_")) {
 				extendColumns.put(key.replaceFirst("extendColumn_", ""), convertUtil
 						.toString(request.getParameter(key)));
-			} else if (key.startsWith("showColumn_")) {
-				if (!"pattern".equals(key.replaceFirst("showColumn_", ""))) {
-					showColumn
-							.put(key.replaceFirst("showColumn_", ""), convertUtil.toString(request.getParameter(key)));
+			} else if (key.startsWith("showForOption_")) {
+				if (!"pattern".equals(key.replaceFirst("showForOption_", ""))) {
+					showForOption.put(key.replaceFirst("showForOption_", ""), convertUtil.toString(request
+							.getParameter(key)));
 				}
 			}
 		}
-		String pattern = convertUtil.toString(request.getParameter("showColumn_pattern"));
+		String pattern = convertUtil.toString(request.getParameter("showForOption_pattern"));
 		StringBuffer hsql = new StringBuffer();
 		hsql.append("select ");
-		hsql.append(valueColumn);
+		hsql.append(valueForOption);
 		for (String key : extendColumns.keySet()) {
 			hsql.append(",");
 			hsql.append(extendColumns.get(key));
 		}
-		for (String key : showColumn.keySet()) {
+		for (String key : showForOption.keySet()) {
 			if (!"pattern".equals(key)) {
 				hsql.append(",");
-				hsql.append(showColumn.get(key));
+				hsql.append(showForOption.get(key));
 			}
 		}
 		hsql.append(" from ");
@@ -81,7 +81,7 @@ public class CascadeUtil {
 					options.append(o);
 					options.append("\" ");
 				} else {
-					show = show.replaceAll((String) showColumn.keySet().toArray()[i - 1 - extendColumns.size()], o
+					show = show.replaceAll((String) showForOption.keySet().toArray()[i - 1 - extendColumns.size()], o
 							.toString());
 				}
 			}
@@ -89,7 +89,6 @@ public class CascadeUtil {
 			options.append(show);
 			options.append("</option>");
 		}
-		System.out.println(options);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(options);
