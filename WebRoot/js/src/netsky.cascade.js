@@ -7,14 +7,14 @@
 *			childSelect:$("#childSelect"),
 *			tableName:'Ta03_user',
 *			conditionColumn:'dept_id',
-*			valueColumn:'id',
+*			valueForOption:'id',
 			orderBy:'name asc', //default:id asc
 *			extendColumns:{
 *							login_id:'login_id',
 *							passwd:'passwd',
 *							title:'name'
 *			},
-*			showColumn:{
+*			showForOption:{
 *							pattern:'name(login_id)',
 *							name:'name',
 *							login_id:'login_id'
@@ -29,17 +29,17 @@
 	$.fn.cascade = function (options) {
 		options = $.extend(defaults,options);
 		var extendColumns = options.extendColumns;
-		var showColumn = options.showColumn;
+		var showForOption = options.showForOption;
 		var data = {tableName:options.tableName,
 					conditionColumn:options.conditionColumn,
-					valueColumn:options.valueColumn,
+					valueForOption:options.valueForOption,
 					orderBy:options.orderBy
 		};
 		$.each(extendColumns ,function(i){
                 data["extendColumn_"+i] = extendColumns[i];
         });
-        $.each(showColumn ,function(i){
-        		data["showColumn_"+i] = showColumn[i];
+        $.each(showForOption ,function(i){
+        		data["showForOption_"+i] = showForOption[i];
         });
 		return this.each(function () {
 			var $this = $(this);
