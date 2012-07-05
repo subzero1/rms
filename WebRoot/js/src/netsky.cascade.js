@@ -53,7 +53,7 @@
 			var $this = $(this);
 			$this.change(function(){
 				var value = $this.val();
-				if (o.key){
+				if (o.key && $this.find("option:selected").attr("valueforextend")){
 				var value = eval('('+$this.find("option:selected").attr("valueforextend")+')')[o.key];
 				}
 				data["conditionValue"] = value;//o.val == null ? $this.val() : o.val;
