@@ -3,24 +3,26 @@
 * version: Alpha 0.03 (07/04/2012)
 *
 * usage as:
-*		$("#parentSelect").cascade({
-*			childSelect:$("#childSelect"),
-*			tableName:'Ta03_user',
-*			conditionColumn:'dept_id',
-*			valueForOption:'id',
-			val: ,//default:null(if null then $(this).val())
-			orderBy:'name asc',
-*			extendColumns:{
-*							login_id:'login_id',
-*							passwd:'passwd',
-*							title:'name'
-*			},
-*			showForOption:{
-*							pattern:'[name]\[[login_id]\]',
-*							name:'name',
-*							login_id:'login_id'
-*			}
-*		});
+*			$("#parentSelect").cascade({
+*				childSelect:$("#childSelect"),
+*				tableName:'Ta03_user ta03,Ta01_dept dept',
+*				conditionColumn:'ta03.dept_id',
+*				valueForOption:'ta03.id',
+*				whereClause:'ta03.dept_id=dept.id',
+*				orderBy:'ta03.name',
+				key:'',
+*				extendColumns:{
+*					login_id:'ta03.login_id',
+*					passwd:'ta03.passwd',
+*					title:'ta03.name'
+*				},
+*				showForOption:{
+*					pattern:'[name]\[[login_id]\],[testname]',
+*					name:'ta03.name',
+*					login_id:'ta03.login_id',
+*					testname:'dept.name'
+*				}
+*			});	
 *     
 * Copyright 2012 ZhangYi[zhang_yi0627@hotmail.com]
 */
@@ -29,7 +31,8 @@
 		var defaults = {orderBy:'',
 						extendColumns:{},
 						val:null,
-						whereClause:''
+						whereClause:'',
+						key:null
 		};
 		var o = $.extend(defaults,options);
 		var extendColumns = o.extendColumns;
@@ -49,7 +52,11 @@
 		return this.each(function () {
 			var $this = $(this);
 			$this.change(function(){
-				data["conditionValue"] = o.val == null ? $this.val() : o.val;
+				var value = $this.val();
+				if (o.key){
+				var value = eval('('+$this.find("option:selected").attr("optionforextend")+')')[o.key];
+				}
+				data["conditionValue"] = value;//o.val == null ? $this.val() : o.val;
 				$.ajax({
 					url:'cascade.do',
 					data:data,
