@@ -3,10 +3,13 @@ package com.netsky.base.taglib.html;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 import java.util.Properties;
 import javax.servlet.jsp.tagext.BodyContent;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.utils.convertUtil;
+import com.netsky.base.utils.RegExp;
+
 
 /**
  * 作者：李翔宇
@@ -51,6 +54,11 @@ public class HtmlSelect extends ChangeableWidget {
 	 */
 	private String show_for_option;
 
+	/**
+	 * 用于选择的显示数据
+	 */
+	private String value_for_extend;
+	
 	/**
 	 * 尺寸
 	 */
@@ -137,6 +145,15 @@ public class HtmlSelect extends ChangeableWidget {
 		this.value_for_option = value_for_option;
 	}
 
+	
+	public String getValue_for_extend() {
+		return value_for_extend;
+	}
+
+	public void setValue_for_extend(String value_for_extend) {
+		this.value_for_extend = value_for_extend;
+	}
+
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -171,6 +188,20 @@ public class HtmlSelect extends ChangeableWidget {
 	 */
 	public String getValueForOption() {
 		return value_for_option;
+	}
+	
+	/**
+	 * 设置扩展项的值
+	 */
+	public void setValueForExtend(String value_for_extend) {
+		this.value_for_extend = value_for_extend;
+	}
+
+	/**
+	 * 获得扩展项的值
+	 */
+	public String getValueForExtend() {
+		return value_for_extend;
 	}
 
 	/**
@@ -381,6 +412,20 @@ public class HtmlSelect extends ChangeableWidget {
 				String value_tmp = null;
 				String show_tmp = null;
 				
+				/*
+				 * 此处主要处理自定义属性valueForExtend="abc[xx]ddef[yy]g"
+				 * xx yy 为objectForOption中对象的属性
+				 * 将[xx][yy]替换为具体的属性值 [xx]=XX [yy]=YY
+				 * 显示效果应该为<option value="a" valueForExtend="abcXXddefYYg">show</option>
+				 */
+				String extend_tmp = null;
+				Vector tv = new Vector();
+				if(value_for_extend != null){
+					extend_tmp = value_for_extend;
+					RegExp re = new RegExp();
+					tv = re.pickupAll("\\[([a-zA-Z0-9]+)\\]+",extend_tmp,1);
+				}
+				
 				for (it = objectList.iterator(); it.hasNext();) {
 
 					Object tmp_obj = it.next();
@@ -388,6 +433,9 @@ public class HtmlSelect extends ChangeableWidget {
 						Properties p = (Properties) tmp_obj;
 						show_tmp = p.getProperty("show");
 						value_tmp = p.getProperty("value");
+						if(value_for_extend != null){
+							extend_tmp = p.getProperty("extend");
+						}
 					} else if (tmp_type.equals("String")) {
 						show_tmp = tmp_obj.toString();
 						value_tmp = tmp_obj.toString();
@@ -402,6 +450,11 @@ public class HtmlSelect extends ChangeableWidget {
 								show_for_option));
 						value_tmp = convertUtil.toString(PropertyInject.getProperty(
 								tmp_obj, value_for_option));
+						if(value_for_extend != null){
+							for(int i = 0;i < tv.size();i++){
+								extend_tmp = extend_tmp.replace("["+(String)tv.get(i)+"]",convertUtil.toString(PropertyInject.getProperty(tmp_obj, (String)tv.get(i))));
+							}
+						}
 					}
 
 					if (value_tmp == null)
@@ -422,6 +475,13 @@ public class HtmlSelect extends ChangeableWidget {
 						value = value_tmp;
 						setValue(value);
 					}
+					
+					if(value_for_extend != null){
+						sb_tmp.append(" valueForExtend=\"");
+						sb_tmp.append(extend_tmp);
+						sb_tmp.append("\" ");
+					}
+
 					sb_tmp.append(">");
 					sb_tmp.append(show_tmp);
 					sb_tmp.append("</option>");
