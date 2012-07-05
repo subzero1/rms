@@ -24,7 +24,8 @@
 * Copyright 2012 ZhangYi[zhang_yi0627@hotmail.com]
 */
 (function ($) {
-	var defaults = {orderBy:'id desc'
+	var defaults = {orderBy:'id desc',
+					extendColumns:{}
 	};
 	$.fn.cascade = function (options) {
 		options = $.extend(defaults,options);
