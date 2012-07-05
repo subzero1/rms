@@ -25,18 +25,20 @@
 * Copyright 2012 ZhangYi[zhang_yi0627@hotmail.com]
 */
 (function ($) {
-	var defaults = {orderBy:'id desc',
-					extendColumns:{},
-					val:null
-	};
 	$.fn.cascade = function (options) {
-		options = $.extend(defaults,options);
-		var extendColumns = options.extendColumns;
-		var showForOption = options.showForOption;
-		var data = {tableName:options.tableName,
-					conditionColumn:options.conditionColumn,
-					valueForOption:options.valueForOption,
-					orderBy:options.orderBy
+		var defaults = {orderBy:'',
+						extendColumns:{},
+						val:null,
+						whereClause:''
+		};
+		var o = $.extend(defaults,options);
+		var extendColumns = o.extendColumns;
+		var showForOption = o.showForOption;
+		var data = {tableName:o.tableName,
+					conditionColumn:o.conditionColumn,
+					valueForOption:o.valueForOption,
+					orderBy:o.orderBy,
+					whereClause:o.whereClause
 		};
 		$.each(extendColumns ,function(i){
                 data["extendColumn_"+i] = extendColumns[i];
@@ -47,14 +49,14 @@
 		return this.each(function () {
 			var $this = $(this);
 			$this.change(function(){
-				data["conditionValue"] = options.val == null ? $this.val() : options.val;
+				data["conditionValue"] = o.val == null ? $this.val() : o.val;
 				$.ajax({
 					url:'cascade.do',
 					data:data,
 					type:'post',
 					success:function(msg){
-						options.childSelect.empty();
-						options.childSelect.append(msg);
+						o.childSelect.empty();
+						o.childSelect.append(msg);
 					}
 				});
 			});
