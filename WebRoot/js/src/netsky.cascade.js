@@ -1,6 +1,6 @@
 /*
 * Cascade
-* version: Alpha 0.01 (07/04/2012)
+* version: Alpha 0.03 (07/04/2012)
 *
 * usage as:
 *		$("#parentSelect").cascade({
@@ -9,14 +9,14 @@
 *			conditionColumn:'dept_id',
 *			valueForOption:'id',
 			val: ,//default:null(if null then $(this).val())
-			orderBy:'name asc', //default:id asc
+			orderBy:'name asc',
 *			extendColumns:{
 *							login_id:'login_id',
 *							passwd:'passwd',
 *							title:'name'
 *			},
 *			showForOption:{
-*							pattern:'name(login_id)',
+*							pattern:'[name]\[[login_id]\]',
 *							name:'name',
 *							login_id:'login_id'
 *			}
