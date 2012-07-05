@@ -30,7 +30,9 @@
 				tableName:'Ta03_user ta03,Ta01_dept dept',
 				conditionColumn:'ta03.dept_id',
 				valueForOption:'ta03.id',
+				key:'id',
 				whereClause:'ta03.dept_id=dept.id',
+				orderBy:'ta03.name',
 				extendColumns:{
 								login_id:'ta03.login_id',
 								passwd:'ta03.passwd',
@@ -57,10 +59,10 @@
 		<select id="chlidSelect1">
 		</select>
 		<br/>
-		多表：<select id="parentSelect">
+	多表：<select id="parentSelect">
 			<option></option>
-			<option value="4">
-				4
+			<option value="4" optionforextend="{'id':'4' }">
+				工程建设中心
 			</option>
 		</select>
 		<select id="childSelect">
