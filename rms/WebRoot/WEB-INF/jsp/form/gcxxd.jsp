@@ -6,17 +6,19 @@
 
 <script type="text/javascript">
 $(function(){
-	$("#zydl").cascade({
-		childSelect:$("#zyxl"),
-		tableName:'Tc04_zyxx',
-		conditionColumn:'gczy_id',
-		valueForOption:'mc',
-		showForOption:{
-						pattern:'mc',
-						mc:'mc'
-		}
-	});
-});
+	   		$("#zydl_select").cascade({
+				childSelect:$("#zyxx_select"),
+				tableName:'Tc04_zyxx',
+				conditionColumn:'gczy_id',
+				valueForOption:'mc',
+				key:'id',
+				orderBy:'id',
+				showForOption:{
+								pattern:'[mc]',
+								mc:'mc'
+				}
+			});	
+	   	});
 </script>
 
 
@@ -67,11 +69,11 @@ $(function(){
 	</p>
 	<p>
 		<label>工程专业：</label>
-		<netsky:htmlSelect id="zydl" name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="zymc" showForOption="zymc" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="zydl_select" name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="zymc" valueForExtend="{'id':'[id]','yxnd':'[yxnd]'}" showForOption="zymc" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>专业细项：</label>
-		<netsky:htmlSelect id="zyxl" name="Td00_gcxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.zyxx}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="zyxx_select" name="Td00_gcxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.zyxx}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
