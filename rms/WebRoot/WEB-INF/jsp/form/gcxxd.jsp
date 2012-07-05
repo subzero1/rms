@@ -4,6 +4,22 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
 
+<script type="text/javascript">
+$(function(){
+	$("#zydl").cascade({
+		childSelect:$("#zyxl"),
+		tableName:'Tc04_zyxx',
+		conditionColumn:'gczy_id',
+		valueForOption:'mc',
+		showForOption:{
+						pattern:'mc',
+						mc:'mc'
+		}
+	});
+});
+</script>
+
+
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="gcxxd.xml"/>
 <input type="hidden" name="Td00_gcxx.ID" value="${param.doc_id}">
@@ -51,11 +67,11 @@
 	</p>
 	<p>
 		<label>工程专业：</label>
-		<netsky:htmlSelect name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="zymc" showForOption="zymc" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="zydl" name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="zymc" showForOption="zymc" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>专业细项：</label>
-		<netsky:htmlSelect name="Td00_gcxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.zyxx}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="zyxl" name="Td00_gcxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.zyxx}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
