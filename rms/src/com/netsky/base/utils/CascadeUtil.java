@@ -29,6 +29,7 @@ public class CascadeUtil {
 		String valueForOption = convertUtil.toString(request.getParameter("valueForOption"));
 		String conditionValue = convertUtil.toString(request.getParameter("conditionValue"));
 		String orderBy = convertUtil.toString(request.getParameter("orderBy"));
+		String whereClause = convertUtil.toString(request.getParameter("whereClause"));
 		Map<String, String> extendColumns = new HashMap<String, String>();
 		Map<String, String> showForOption = new HashMap<String, String>();
 		for (String key : requestMap.keySet()) {
@@ -62,8 +63,15 @@ public class CascadeUtil {
 		hsql.append(conditionColumn);
 		hsql.append("='");
 		hsql.append(conditionValue);
-		hsql.append("' order by ");
-		hsql.append(orderBy);
+		hsql.append("'");
+		if (!"".equals(whereClause)) {
+			hsql.append(" and ");
+			hsql.append(whereClause);
+		}
+		if (!"".equals(orderBy)) {
+			hsql.append(" order by ");
+			hsql.append(orderBy);
+		}
 		List<Object[]> list = (List<Object[]>) dao.search(hsql.toString());
 		StringBuffer options = new StringBuffer();
 		options.append("<option></option>");
@@ -81,7 +89,7 @@ public class CascadeUtil {
 					options.append(o);
 					options.append("\" ");
 				} else {
-					show = show.replaceAll((String) showForOption.keySet().toArray()[i - 1 - extendColumns.size()], o
+					show = show.replaceAll("\\["+(String) showForOption.keySet().toArray()[i - 1 - extendColumns.size()]+"\\]", o
 							.toString());
 				}
 			}
