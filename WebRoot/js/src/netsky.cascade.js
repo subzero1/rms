@@ -54,7 +54,10 @@
 			$this.change(function(){
 				var value = $this.val();
 				if (o.key && $this.find("option:selected").attr("valueforextend")){
-				var value = eval('('+$this.find("option:selected").attr("valueforextend")+')')[o.key];
+				var value = (window.JSON && window.JSON.parse ?
+					window.JSON.parse( $this.find("option:selected").attr("valueforextend") ) :
+					(new Function("return " + $this.find("option:selected").attr("valueforextend")))())[o.key];
+				//var value = eval('('+$this.find("option:selected").attr("valueforextend")+')')[o.key];
 				}
 				data["conditionValue"] = value;//o.val == null ? $this.val() : o.val;
 				$.ajax({
