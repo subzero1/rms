@@ -25,7 +25,8 @@
 */
 (function ($) {
 	var defaults = {orderBy:'id desc',
-					extendColumns:{}
+					extendColumns:{},
+					val:null
 	};
 	$.fn.cascade = function (options) {
 		options = $.extend(defaults,options);
@@ -45,7 +46,7 @@
 		return this.each(function () {
 			var $this = $(this);
 			$this.change(function(){
-				data["conditionValue"] = $this.val();
+				data["conditionValue"] = options.val == null ? $this.val() : options.val;
 				$.ajax({
 					url:'cascade.do',
 					data:data,
