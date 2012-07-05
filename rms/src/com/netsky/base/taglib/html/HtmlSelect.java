@@ -421,13 +421,13 @@ public class HtmlSelect extends ChangeableWidget {
 				String extend_tmp = null;
 				Vector tv = new Vector();
 				if(value_for_extend != null){
-					extend_tmp = value_for_extend;
 					RegExp re = new RegExp();
-					tv = re.pickupAll("\\[([a-zA-Z0-9]+)\\]+",extend_tmp,1);
+					tv = re.pickupAll("\\[([a-zA-Z0-9]+)\\]+",value_for_extend,1);
 				}
 				
 				for (it = objectList.iterator(); it.hasNext();) {
 
+					extend_tmp = value_for_extend;
 					Object tmp_obj = it.next();
 					if (tmp_type.equals("Properties")) {
 						Properties p = (Properties) tmp_obj;
