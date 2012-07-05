@@ -89,11 +89,14 @@ public class RegExp {
 			//Vector v = new RegExp().pickupAll("<img[\\s+[a-z]+=\"[^\"]\"]*\\s+src=\"/[a-zA-Z]+_[a-zA-Z]+/download.do\\?slave_id=(\\d+)\"[\\s+[a-z]+=\"[^\"]\"]*\\s+/>",yy);
 			
 			String yy = "dds<img src=\"/crht_bms/download.do?slave_id=28\" alt=\"\" />sdfew<img src=\"/crht_bms/download.do?slave_id=29\" alt=\"\" />few";
-			Vector v = new RegExp().pickupAll("<img(\\s+[a-z]+=\"[^\"]*\")*\\s+src=\"/[a-zA-Z]+_[a-zA-Z]+/download.do\\?slave_id=(\\d+)\"(\\s+[a-z]+=\"[^\"]*\")*\\s+/>",yy,2);
-			System.out.println(v.size());
+			//Vector v = new RegExp().pickupAllGroup("<img(\\s+[a-z]+=\"[^\"]*\")*\\s+src=\"/[a-zA-Z]+_[a-zA-Z]+/download.do\\?slave_id=(\\d+)\"(\\s+[a-z]+=\"[^\"]*\")*\\s+/>",yy);
+			//System.out.println(v.size());
+			yy="{id:[id],name:[name],sex:sex}";
+			Vector v = new RegExp().pickupAll("\\[([a-zA-Z0-9]+)\\]+",yy,1);
+			//System.out.println(v.size());
 			//double tmp_xs = Double.parseDouble(new RegExp().pickup(".+(\\d*\\.?\\d*)",yy));
 			//System.out.println(tmp_xs);
-			System.out.println(new RegExp().pickup(".+(\\d*)",yy));
+			//System.out.println(new RegExp().pickup(".+(\\d*)",yy));
 //			String xx = "技工总工日×34.00";
 //
 //			System.out.println(new RegExp().pickup(".+×((\\d)*\\.?(\\d)*)%?",

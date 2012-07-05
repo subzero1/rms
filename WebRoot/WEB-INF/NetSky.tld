@@ -90,6 +90,10 @@
 			<required>false</required>		  
 		</attribute>
 		<attribute>
+			<name>valueForExtend</name>
+			<required>false</required>		  
+		</attribute>
+		<attribute>
 			<name>showForOption</name>
 			<required>false</required>		  
 		</attribute>
