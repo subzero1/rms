@@ -54,7 +54,7 @@
 			$this.change(function(){
 				var value = $this.val();
 				if (o.key){
-				var value = eval('('+$this.find("option:selected").attr("optionforextend")+')')[o.key];
+				var value = eval('('+$this.find("option:selected").attr("valueforextend")+')')[o.key];
 				}
 				data["conditionValue"] = value;//o.val == null ? $this.val() : o.val;
 				$.ajax({
