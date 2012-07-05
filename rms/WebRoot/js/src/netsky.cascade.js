@@ -8,6 +8,7 @@
 *			tableName:'Ta03_user',
 *			conditionColumn:'dept_id',
 *			valueForOption:'id',
+			val: ,//default:null(if null then $(this).val())
 			orderBy:'name asc', //default:id asc
 *			extendColumns:{
 *							login_id:'login_id',
