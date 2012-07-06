@@ -69,7 +69,7 @@ $(function(){
 	</p>
 	<p>
 		<label>工程专业：</label>
-		<netsky:htmlSelect id="zydl_select" name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:155px;" valueForOption="zymc" valueForExtend="{'id':'[id]','yxnd':'[yxnd]'}" showForOption="zymc" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="zydl_select" name="Td00_gcxx.ZYDL" objectForOption="zydlList" style="width:157px;" valueForOption="zymc" showForOption="zymc" valueForExtend="{'id':'[id]','yxnd':'[yxnd]'}" extend="" extendPrefix="true" value="${td00_gcxx.zydl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>专业细项：</label>
