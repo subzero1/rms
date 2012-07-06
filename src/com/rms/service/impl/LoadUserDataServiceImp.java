@@ -142,7 +142,7 @@ public class LoadUserDataServiceImp implements LoadUserDataService {
 			if(ta07.getObject_name().equals("com.netsky.base.flow.vo.DocStruct")){
 				ta07.setObject_name("doc");
 			} else {
-				ta07.setObject_name("jfxx");
+				ta07.setObject_name("gcxx");
 			}
 			docTabWitdh += ta07.getWidth();
 		} 
