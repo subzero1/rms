@@ -30,6 +30,7 @@
 					<name>工程标识</name>
 					<!-- 列名称 -->
 					<colName>工程标识</colName>
+					<required>true</required>
 			</column>
 			<column>
 					<columnName>XM_ID</columnName>
