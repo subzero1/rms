@@ -118,7 +118,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 					Map tableInfo = (Map) configInfo.get((String) tableIt.next());
 					String tableName = (String) tableInfo.get("$tableName");
 					if (!"".equals(convertUtil.toString(request.getParameter("executebeforeinsert")))) {
-						System.out.println(new String(request.getParameter("executebeforeinsert").getBytes("iso-8859-1"), "GBK"));
+						//System.out.println(new String(request.getParameter("executebeforeinsert").getBytes("iso-8859-1"), "GBK"));
 						session.createQuery(new String(request.getParameter("executebeforeinsert").getBytes("iso-8859-1"), "GBK"))
 								.executeUpdate();
 					}
