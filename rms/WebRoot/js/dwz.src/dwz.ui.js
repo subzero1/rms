@@ -163,7 +163,7 @@ function initUI(_box){
 	$.validator.setDefaults({onkeyup:function(element){}});
 	
 	$("form.required-validate", $p).each(function(){
-		if($.fn.initValidateFields && $("input[name=validate]",$(this)).size()>0)$(this).initValidateFields();
+		if($.fn.initValidateFields && $("input[name=validate]",$(this)).size()>0)$(this).initValidateFields();//增加表单有效性校验  modify at 2011-05-18
 		$(this).validate({
 			focusInvalid: false,
 			focusCleanup: true,
