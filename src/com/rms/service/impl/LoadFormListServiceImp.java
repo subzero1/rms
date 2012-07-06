@@ -22,7 +22,8 @@ import com.netsky.base.service.LoadFormListService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
-import com.netsky.base.dataObjects.Ta01_dept;
+import com.rms.dataObjects.form.Td01_xmxx;
+import com.rms.dataObjects.form.Td00_gcxx;
 
 @Service("loadFormListService")
 public class LoadFormListServiceImp implements LoadFormListService {
@@ -64,6 +65,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 		List<?> tmpList = null;
 		Long cur_nd = new Long(DateGetUtil.getYear());
 		Long tmp_nd = null;
+		String cur_gczy = null;
 		ResultObject ro = null;
 		Class<?> clazz = null;
 		StringBuffer hsql = null;
@@ -123,20 +125,73 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				request.setAttribute("ssdqList", ssdqList);
 			}
 			
-			// 获取专业
-			queryBuilder = new HibernateQueryBuilder(Tc03_gczy.class);
-			queryBuilder.eq("yxnd", new Long(DateGetUtil.getYear()));
-			queryBuilder.addOrderBy(Order.asc("id"));
-			tmpList = queryService.searchList(queryBuilder);
-			if (tmpList != null) {
-				List<Tc03_gczy> zydlList = new LinkedList<Tc03_gczy>();
-				for (java.util.Iterator<?> itr = tmpList.iterator(); itr
-						.hasNext();) {
-					zydlList.add((Tc03_gczy) itr.next());
+			// 获取专业大类和专业小类，获取工程年度下所有专业，默认当前年
+			if (module_id == 101 || module_id == 102) {
+				if (doc_id != -1) {
+					if(module_id==101){
+						clazz = Td01_xmxx.class;
+					}else{
+						clazz = Td00_gcxx.class;
+					}
+					queryBuilder = new HibernateQueryBuilder(clazz);
+					queryBuilder.eq("id", doc_id);
+					ro = queryService.search(queryBuilder);
+					if (ro.next()) {
+						tmp_nd = (Long) ro.get("cjrq");
+						cur_gczy = (String)ro.get("zydl");
+					}
 				}
-				request.setAttribute("zydlList", zydlList);
+
+				if (tmp_nd == null) {
+					tmp_nd = cur_nd;
+				}
+				
+				// 获取专业
+				queryBuilder = new HibernateQueryBuilder(Tc03_gczy.class);
+				queryBuilder.eq("yxnd", tmp_nd);
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc03_gczy> zydlList = new LinkedList<Tc03_gczy>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						zydlList.add((Tc03_gczy) itr.next());
+					}
+					request.setAttribute("zydlList", zydlList);
+				}
+				
+	
+				
+				// 获取专业小类：Tc04_zyxx
+				if(doc_id != -1 && cur_gczy != null){
+					hsql.delete(0, hsql.length());
+					hsql.append("select tc04.id,tc04.mc ");
+					hsql.append(" from Tc04_zyxx tc04,Tc03_gczy tc03,");
+					if(module_id==101)
+						hsql.append("Td01_xmxx");
+					else
+						hsql.append("Td00_gcxx");
+					
+					hsql.append(" td00 ");
+					hsql.append(" where tc03.id = tc04.gczy_id ");
+					hsql.append(" and td00.zydl = tc03.zymc ");
+					hsql.append(" and tc03.yxnd = '");
+					hsql.append(t_year);
+					hsql.append("' and td00.doc_id = ");
+					hsql.append(doc_id);
+					hsql.append(" order by tc04.mc ");
+	
+					ro = queryService.search(hsql.toString());
+					List<Tc04_zyxx> zyxxList = new LinkedList<Tc04_zyxx>();
+					while (ro.next()) {
+						Tc04_zyxx o_tc04 = new Tc04_zyxx();
+						o_tc04.setMc((String) ro.get("tc04.mc"));
+						o_tc04.setId((Long) ro.get("tc04.id"));
+						zyxxList.add(o_tc04);
+					}
+					request.setAttribute("zyxxList", zyxxList);
+				}
 			}
-			
 				
 
 			// end if
