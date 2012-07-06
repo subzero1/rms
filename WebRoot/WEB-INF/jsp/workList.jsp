@@ -68,7 +68,7 @@
 					</c:if>
 		     	</c:forEach> 
 				<li>
-					<a class="icon"	href="batchUpdateProject.do" target="dialog" rel="batchUpdateProject" width="500" height="370"><span>批量修改</span></a>
+					<a class="icon"	href="dispath.do?url=form/batchUpdateProject.jsp" target="dialog" rel="batchUpdateProject" width="400" height="200"><span>批量修改</span></a>
 				</li>
 				<li class="line">line</li>
 				<li>
