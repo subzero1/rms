@@ -160,6 +160,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 							String name = (String) colName.next();
 							Map col = (Map) column.get(name);
 							String title = (String) col.get("$name");
+							String required = (String) col.get("$required");
 							for (int i = 0; i < cell.length; i++) {
 								if (cell[i].getContents() != null && cell[i].getContents().equals(title)) {
 									rightExcel = true;
@@ -167,9 +168,9 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 									columnMap.put(name, col);
 								}
 							}
-//							if (!rightExcel) {
-//								throw new Exception("<br><font color='red'>Excel文件中缺少列：" + title + "</font>");
-//							}
+							if (!rightExcel && required.equals("true")) {
+								throw new Exception("<br><font color='red'>Excel文件中缺少列：" + title + "</font>");
+							}
 						}
 					}
 					int totalRows = st.getRows();
@@ -404,6 +405,12 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 				}else
 				column.put("$index", "");
 				column.put("$name", element.element("name").getText());
+				Element e_required = element.element("required");
+				if(e_required != null)
+					column.put("$required", element.element("required").getText());
+				else
+					column.put("$required", "false");
+				
 				columnMap.put(element.element("columnName").getText(), column);
 			}
 			tableMap.put("$columnMap", columnMap);

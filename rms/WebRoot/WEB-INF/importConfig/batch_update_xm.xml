@@ -30,6 +30,7 @@
 					<name>项目标识</name>
 					<!-- 列名称 -->
 					<colName>项目标识</colName>
+					<required>true</required>
 			</column>
 			<column>
 					<columnName>XMBH</columnName>
