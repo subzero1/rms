@@ -161,6 +161,7 @@ function initUI(_box){
 
 	//validate form
 	$("form.required-validate", $p).each(function(){
+		if($.fn.initValidateFields && $("input[name=validate]",$(this)).size()>0)$(this).initValidateFields();
 		$(this).validate({
 			onsubmit: false,
 			focusInvalid: false,
