@@ -304,7 +304,7 @@ function initUI(_box){
 	var $orderDirection = $("#pagerForm input[name=orderDirection]", $p);
 	if($orderDirection.length>0){
 		var $orderField = $("input[name=orderField]", $p).val();
-		var $thead = $("thead [orderField="+$orderField+"]", $p);
+		var $thead = $("thead [orderField='"+$orderField+"']", $p);
 		if($thead)$thead.addClass($orderDirection.val());
 	}
 	
