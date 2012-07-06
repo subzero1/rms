@@ -9,7 +9,7 @@
 		<endRow/>
 		<endFlag></endFlag>
 		<!-- 表名称，对应持久化对象名称 -->
-		<tableName> Td01_xmxx</tableName>
+		<tableName>Td01_xmxx</tableName>
 		<!-- 表名称,用于显示 -->
 		<tableNameShow>项目信息批量导入</tableNameShow>
 		<!-- 本表对应的父表信息 -->

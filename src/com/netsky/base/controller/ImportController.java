@@ -1,9 +1,11 @@
 package com.netsky.base.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,7 +120,6 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 					Map tableInfo = (Map) configInfo.get((String) tableIt.next());
 					String tableName = (String) tableInfo.get("$tableName");
 					if (!"".equals(convertUtil.toString(request.getParameter("executebeforeinsert")))) {
-						//System.out.println(new String(request.getParameter("executebeforeinsert").getBytes("iso-8859-1"), "GBK"));
 						session.createQuery(new String(request.getParameter("executebeforeinsert").getBytes("iso-8859-1"), "GBK"))
 								.executeUpdate();
 					}
@@ -166,9 +167,9 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 									columnMap.put(name, col);
 								}
 							}
-							if (!rightExcel) {
-								throw new Exception("<br><font color='red'>Excel文件中缺少列：" + title + "</font>");
-							}
+//							if (!rightExcel) {
+//								throw new Exception("<br><font color='red'>Excel文件中缺少列：" + title + "</font>");
+//							}
 						}
 					}
 					int totalRows = st.getRows();
@@ -257,22 +258,34 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 			return exceptionService.exceptionControl(this.getClass().getName(), e.toString(), null);
 		} finally {
 			session.close();
-		}
-		/**
-		 * 处理返回路径
-		 */
-		String dispatchStr = request.getParameter("dispatchStr");
-		if (request.getParameter("perproty") != null && request.getParameter("perproty").length() > 0) {
-			String perprotys[] = request.getParameter("perproty").split("/");
-			for (int i = 0; i < perprotys.length; i++) {
-				if (dispatchStr.indexOf("?") != -1) {
-					dispatchStr += "&" + perprotys[i] + "=" + request.getParameter(perprotys[i]);
-				} else {
-					dispatchStr += "?" + perprotys[i] + "=" + request.getParameter(perprotys[i]);
+			
+			/**
+			 * 处理返回路径
+			 */
+			Map<String, String> dispathMap = new HashMap<String, String>();
+			if (request.getParameter("perproty") != null && request.getParameter("perproty").length() > 0) {
+				String perprotys[] = request.getParameter("perproty").split("/");
+				for (int i = 0; i < perprotys.length; i++) {
+					dispathMap.put(perprotys[i],request.getParameter(perprotys[i]));
 				}
+				printJson(request, response, "200", dispathMap);
+				
 			}
-		}
-		return new ModelAndView("redirect:" + dispatchStr);
+		}	
+		return null;
+		
+//		String dispatchStr = request.getParameter("dispatchStr");
+//		if (request.getParameter("perproty") != null && request.getParameter("perproty").length() > 0) {
+//			String perprotys[] = request.getParameter("perproty").split("/");
+//			for (int i = 0; i < perprotys.length; i++) {
+//				if (dispatchStr.indexOf("?") != -1) {
+//					dispatchStr += "&" + perprotys[i] + "=" + request.getParameter(perprotys[i]);
+//				} else {
+//					dispatchStr += "?" + perprotys[i] + "=" + request.getParameter(perprotys[i]);
+//				}
+//			}
+//		}
+//		return new ModelAndView("redirect:" + dispatchStr);
 	}
 
 	/**
@@ -455,5 +468,86 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 		}
 		request.setAttribute("obj", o);
 		return set;
+	}
+	
+	@SuppressWarnings("unused")
+	private void printFrameJson(HttpServletRequest request, HttpServletResponse response, String statusCode)
+			throws IOException {
+		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
+		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
+		String callbackType = convertUtil.toString(request.getParameter("_callbackType"));
+		response.setCharacterEncoding("GBK");
+
+		response.getWriter().print(
+				"{\"statusCode\":\"" + statusCode + "\", \"message\":\"操作成功\", \"navTabId\":\"" + navTabId
+						+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\"}");
+	}
+
+	private void printJson(HttpServletRequest request, HttpServletResponse response, String statusCode,
+			Map<String, String> dispathMap) throws IOException {
+
+		String message = convertUtil.toString(request.getParameter("_message"));
+		if ("200".equals(statusCode)) {
+			message = message + "成功";
+		} else if ("301".equals(statusCode)) {
+			message = message + "失败";
+		} else {
+			message = message + "失败";
+		}
+		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
+		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
+		String callbackType = convertUtil.toString(request.getParameter("_callbackType"));
+		String backParam = "";
+		if (dispathMap != null) {
+			Iterator<String> it = dispathMap.keySet().iterator();
+			while (it.hasNext()) {
+				String key = it.next();
+				String param = dispathMap.get(key);
+				backParam += ",\"" + key + "\":\"" + param + "\"";
+				if (forwardUrl.indexOf("?") != -1) {
+					forwardUrl += "&" + key + "=" + param;
+				} else {
+					forwardUrl += "?" + key + "=" + param;
+				}
+			}
+		}
+		response.getWriter().print(
+				"{\"statusCode\":\"" + statusCode + "\", \"message\":\"" + message + "\", \"navTabId\":\"" + navTabId
+						+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\""
+						+ backParam + "}");
+	}
+
+	/**
+	 * 打印 （dwz json数据结构）
+	 * 
+	 * @param request
+	 * @param response
+	 * @param statusCode
+	 * @param _message
+	 * @throws IOException
+	 *             void
+	 */
+	@SuppressWarnings("unused")
+	private void printJson(HttpServletRequest request, HttpServletResponse response, String statusCode, String _message)
+			throws IOException {
+		String message = convertUtil.toString(request.getParameter("_message"));
+
+		if (!"".equals(convertUtil.toString(_message))) {
+			message = _message;
+		} else {
+			if ("200".equals(statusCode)) {
+				message = message + "成功";
+			} else if ("301".equals(statusCode)) {
+				message = message + "失败";
+			} else {
+				message = message + "失败";
+			}
+		}
+		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
+		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
+		String callbackType = convertUtil.toString(request.getParameter("_callbackType"));
+		response.getWriter().print(
+				"{\"statusCode\":\"" + statusCode + "\", \"message\":\"" + message + "\", \"navTabId\":\"" + navTabId
+						+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\"}");
 	}
 }

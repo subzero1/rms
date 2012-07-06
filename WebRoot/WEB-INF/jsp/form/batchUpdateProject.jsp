@@ -11,7 +11,7 @@
 				alertMsg.error("请选择导入EXCEL文件！");
 				return false;
 			}
-			alertMsg.confirm("该操作将删除所有原有信息，并进行全新的导入。建议您首先导出当前的基础材料信息到EXCEL文件后再进行导入操作。导入前请您先行下载EXCEL模板，根据模板格式进行数据录入，以避免因导入数据产生的问题。现在继续吗？", {
+			alertMsg.confirm("确定更新吗？", {
 				okCall: function(){
 					$("#importform",$.pdialog.getCurrent()).submit();
 				}
@@ -22,9 +22,11 @@
 
 <div class="page">
 	<div class="pageContent">
-		<form method="post" action="wxdw/jcclImport.do" enctype="multipart/form-data" id="importform" onsubmit="return iframeCallback(this,dialogAjaxDone);">
-			<input type="hidden" name="dispatchStr" value="dispath.do?url=excel/importSuccess.jsp"/>
+		<form method="post" action="import.do" enctype="multipart/form-data" id="importform" onsubmit="return iframeCallback(this,dialogAjaxDone);">
 			<input type="hidden" name="packgePath" value="com.rms.dataObjects.form"/>
+			<input type="hidden" name="_callbackType" value="closeCurrent" />
+			<input type="hidden" name="_navTabId" value="" />
+			<input type="hidden" name="_forwardUrl" value="" />
 			<div class="pageFormContent" layoutH="56">
 				<p style="">
 					<label>EXCEL文件</label>
