@@ -15,14 +15,14 @@ $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 		change = true;
 	});
 function saveMbk(){
-	if ($("[name=Td21_mbk.ZYBH]").val()=="" && "${Td21_mbk.id}"=="" && $("[name=Td21_mbk.JSXZ]",navTab.getCurrentPanel()).val()!=""){
+	if ($("[name=Td21_mbk\\.ZYBH]").val()=="" && "${Td21_mbk.id}"=="" && $("[name=Td21_mbk\\.JSXZ]",navTab.getCurrentPanel()).val()!=""){
 		$.ajax({
 		url:'mbk/getZybh.do',
-		data:'jsxz='+$("[name=Td21_mbk.JSXZ]",navTab.getCurrentPanel()).val(),
+		data:'jsxz='+$("[name=Td21_mbk\\.JSXZ]",navTab.getCurrentPanel()).val(),
 		type:'post',
 		success:function(msg){
 			msg = $.trim(msg);
-			$("[name=Td21_mbk.ZYBH]",navTab.getCurrentPanel()).val(msg);
+			$("[name=Td21_mbk\\.ZYBH]",navTab.getCurrentPanel()).val(msg);
 			$("#mbk_form",navTab.getCurrentPanel()).submit();
 		}
 	});
@@ -35,7 +35,7 @@ $(function(){
 		var flag = $(this).attr("flag");
 		var data = 'id=${Td21_mbk.id}&type='+flag;
 		if (flag == "zdxf") {
-			if ($("[name=Td21_mbk.TDR_ID]",navTab.getCurrentPanel()).val()==""){
+			if ($("[name=Td21_mbk\\.TDR_ID]",navTab.getCurrentPanel()).val()==""){
 				alertMsg.error("请选择谈点人，并点击『保存』按钮");
 				return;
 			}
@@ -64,7 +64,7 @@ $(function(){
 					success: function(json){
 						navTabAjaxDone(json);
 						if (flag == "jsz"){
-							navTab.openTab('aaa', 'http://www.baidu.com');
+							navTab.openTab('autoform', 'flowForm.do?module_id=102&node_id=10201&flow_id=102',{'title':'新建工程'});
 						}
 					},
 					error: DWZ.ajaxError
@@ -259,7 +259,8 @@ function printMbk(){
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20105'] && Td21_mbk.zt == '转建设'}">
-			<li><a class="icon" href="#"><span flag="jsz" class="lzspan">新建工程</span></a></li>
+			<li><a class="add" href="#"><span flag="jsz" class="lzspan">新建工程</span></a>
+			</li>
 			<li class="line">line</li>
 			</c:if>
 			</c:if>

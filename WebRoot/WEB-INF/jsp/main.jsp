@@ -73,8 +73,7 @@
 <script src="js/dwz.src.new/dwz.regional.zh.js" type="text/javascript"></script>
 
 
-<script src="js/jquery.jqprint.0.3.js" type="text/javascript"></script>
-<script src="js/jquery.PrintArea.js" type="text/javascript"></script>
+<script src="js/jquery/jquery.jqprint.0.3.js" type="text/javascript"></script>
 
 <script src="js/src/netsky.ui.js" type="text/javascript"></script>
 <script src="js/src/netsky.buttonControl.js" type="text/javascript"></script>

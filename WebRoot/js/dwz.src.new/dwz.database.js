@@ -27,6 +27,7 @@
 
 					if (name == inputId) {
 						$input.val(args[key]);
+						$input.change(); //modify:2012-7-6 ZY 查找带回时,调用输入域的onchange事件
 						break;
 					}
 				}
