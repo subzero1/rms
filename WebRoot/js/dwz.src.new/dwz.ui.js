@@ -160,6 +160,10 @@ function initUI(_box){
 	$("div.tabsHeader li, div.tabsPageHeader li, div.accordionHeader, div.accordion", $p).hoverClass("hover");
 
 	//validate form
+	$.validator.setDefaults({onfocusout:function(element){}});//去掉校验时光标移出\点击事件   modify at 2011/09/08
+	$.validator.setDefaults({onclick:function(element){}});
+	$.validator.setDefaults({onkeyup:function(element){}});
+	
 	$("form.required-validate", $p).each(function(){
 		if($.fn.initValidateFields && $("input[name=validate]",$(this)).size()>0)$(this).initValidateFields();//增加表单有效性校验  modify at 2011-05-18
 		$(this).validate({
@@ -192,6 +196,7 @@ function initUI(_box){
 			var $this = $(this);
 			var opts = {};
 			if ($this.attr("format")) opts.pattern = $this.attr("format");
+			if ($this.attr("pattern")) opts.pattern = $this.attr("pattern");
 			if ($this.attr("yearstart")) opts.yearstart = $this.attr("yearstart");
 			if ($this.attr("yearend")) opts.yearend = $this.attr("yearend");
 			$this.datepicker(opts);
@@ -291,6 +296,18 @@ function initUI(_box){
 	if ($.fn.selectedTodo) $("a[target=selectedTodo]", $p).selectedTodo();
 	if ($.fn.pagerForm) $("form[rel=pagerForm]", $p).pagerForm({parentBox:$p});
 
+	
+	/**
+	 * 将orderDirection绑定回th的class
+	 * modify at 2011-07-18
+	*/
+	var $orderDirection = $("#pagerForm input[name=orderDirection]", $p);
+	if($orderDirection.length>0){
+		var $orderField = $("input[name=orderField]", $p).val();
+		var $thead = $("thead [orderField="+$orderField+"]", $p);
+		if($thead)$thead.addClass($orderDirection.val());
+	}
+	
 	// 这里放其他第三方jQuery插件...
 	netskyInitWeb(_box);
 }
