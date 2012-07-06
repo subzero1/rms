@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.rms.dataObjects.gcjs.Te03_gcgys_zhxx"
+        table="Te03_gcgys_zhxx"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">TE03ZHXXNUM;;</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Te03_gcgys_zhxx.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="gc_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="gc_id"
+        />
+
+        <property
+            name="jsxmmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsxmmc"
+        />
+
+        <property
+            name="dxgcmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="dxgcmc"
+        />
+
+        <property
+            name="jsdw"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsdw"
+        />
+
+        <property
+            name="bgbh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bgbh"
+        />
+
+        <property
+            name="sjfzr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sjfzr"
+        />
+
+        <property
+            name="shr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="shr"
+        />
+
+        <property
+            name="bzr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bzr"
+        />
+
+        <property
+            name="bzrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="bzrq"
+        />
+
+        <property
+            name="gcztz"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="gcztz"
+        />
+
+        <property
+            name="jggr"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jggr"
+        />
+
+        <property
+            name="pggr"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="pggr"
+        />
+
+        <property
+            name="rgf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="rgf"
+        />
+
+        <property
+            name="clf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="clf"
+        />
+
+        <property
+            name="sjf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sjf"
+        />
+
+        <property
+            name="bgsz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bgsz"
+        />
+
+        <property
+            name="gyszh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="gyszh"
+        />
+
+        <property
+            name="zzdj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zzdj"
+        />
+
+        <property
+            name="sbf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sbf"
+        />
+
+        <property
+            name="jxf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jxf"
+        />
+
+        <property
+            name="jzazgcf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jzazgcf"
+        />
+
+        <property
+            name="gcjsqtf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="gcjsqtf"
+        />
+
+        <property
+            name="gys_flag"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="gys_flag"
+        />
+
+        <property
+            name="ybf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="ybf"
+        />
+
+        <property
+            name="jlf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jlf"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Te03_gcgys_zhxx.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -150,6 +150,16 @@
 				<value>com/netsky/base/dataObjects/Te07_qa.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te08_message.hbm.xml</value>
 				
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b1.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b2.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b3j.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b3y.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b3b.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b4j.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b5j.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_bhz.hbm.xml</value>
+				<value>com/rms/dataObjects/gcjs/Te03_gcgys_zhxx.hbm.xml</value>
+				
 				
 				<value>com/netsky/base/dataObjects/Tz01_exception.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz02_oper_log.hbm.xml</value>

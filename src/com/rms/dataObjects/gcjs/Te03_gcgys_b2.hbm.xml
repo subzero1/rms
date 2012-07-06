@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.rms.dataObjects.gcjs.Te03_gcgys_b2"
+        table="Te03_gcgys_b2"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">TE03B2NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Te03_gcgys_b2.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="gc_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="gc_id"
+        />
+
+        <property
+            name="xh1"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xh1"
+        />
+
+        <property
+            name="fymc1"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fymc1"
+        />
+
+        <property
+            name="yjsf1"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="yjsf1"
+        />
+
+        <property
+            name="jgf1"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jgf1"
+        />
+
+        <property
+            name="pgf1"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="pgf1"
+        />
+
+        <property
+            name="hj1"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="hj1"
+        />
+
+        <property
+            name="xh2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xh2"
+        />
+
+        <property
+            name="fymc2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fymc2"
+        />
+
+        <property
+            name="yjsf2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="yjsf2"
+        />
+
+        <property
+            name="jgf2"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jgf2"
+        />
+
+        <property
+            name="pgf2"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="pgf2"
+        />
+
+        <property
+            name="hj2"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="hj2"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Te03_gcgys_b2.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
