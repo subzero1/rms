@@ -9,7 +9,7 @@
   </config>  
   <config> 
     <name>batch_update_gc</name>  
-    <fileName>/importConfig/batch_update_xm.xml</fileName>  
+    <fileName>/importConfig/batch_update_gc.xml</fileName>  
     <user>default</user> 
   </config>
 </configs>
