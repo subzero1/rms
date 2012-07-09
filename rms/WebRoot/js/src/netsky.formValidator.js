@@ -15,7 +15,8 @@
 					var nameMode = fieldName.split(".");						
 					if(nameMode.length > 1 && eval("validatorOp." + nameMode[0]) == null){
 						//没有输入权限
-						$input.attr("disabled",true);					
+						$input.attr("disabled",true);
+						$input.addClass("readonly").focus(function(){$(this).blur();});	
 					}else{
 						var field_op = eval("validatorOp." + fieldName);										
 						if(field_op){							
@@ -51,11 +52,13 @@
 						}else{
 							//没有输入权限
 							$input.attr("disabled",true);
+							$input.addClass("readonly").focus(function(){$(this).blur();});	
 						}
 					}	
 				}else{
 					//没有输入权限
 					$input.attr("disabled",true);
+					$input.addClass("readonly").focus(function(){$(this).blur();});	
 				}
 				
 			});
