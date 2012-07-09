@@ -146,7 +146,6 @@ public class OnLine {
 		String wtzt = request.getParameter("wtzt");
 		String ztgjz = request.getParameter("ztgjz");
 		String wtlx = request.getParameter("wtlx");
-		System.out.println(wtlx);
 		String temp = "1";
 		List<?> sta_user_list = queryService
 				.searchList("select user_id from Ta11_sta_user where station_id=1");
