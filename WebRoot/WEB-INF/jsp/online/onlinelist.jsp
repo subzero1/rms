@@ -25,9 +25,20 @@ function phoneMsg(tel,name){
 	</c:otherwise>
 </c:choose>
 
+<form id="pagerForm" method="post" action="OnLineList.do">
+	<input type="hidden" name="pageNum" value="${param.pageNum}" />
+	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<input type="hidden" name="wttcr" value="${param.wttcr}" />
+	<input type="hidden" name="wtzt" value="${param.wtzt}" />
+	<input type="hidden" name="ztgjz" value="${param.ztgjz}" />
+	<input type="hidden" name="wtlx" value="${wtlx}" />
+</form>
+
 <div class="page">
 	<div class="pageHeader">
-		<form name="form1" id="pagerForm" action="OnLineList.do" method="post">
+		<form name="form1" action="OnLineList.do" method="post">
 			<input type="hidden" name="pageNum" value="${pageNum }" />
 			<input type="hidden" name="numPerPage" value="${numPerPage}" />
 			<input type="hidden" name="orderField" value="${param.orderField}" />
