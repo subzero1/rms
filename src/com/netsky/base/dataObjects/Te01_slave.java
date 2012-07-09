@@ -3,12 +3,14 @@ package com.netsky.base.dataObjects;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.netsky.base.dataObjects.interfaces.SlaveObject;
+
 /**
  * @author cmp_auto 2012-06-04
  * @hibernate.class table="Te01_slave"
  */
 
-public class Te01_slave implements Serializable{
+public class Te01_slave implements SlaveObject , Serializable{
 
 	/**
 	 * 
@@ -37,7 +39,7 @@ public class Te01_slave implements Serializable{
 	}
 
 	 /**
- * 机房规划图（module_id=200,doc_id=td00.id,project_id=td00.id）、机房现状图（module_id=200,doc_id=td00.id,project_id=td00.id）
+ * project_id
  */
  private Long project_id;
 
@@ -54,7 +56,7 @@ public class Te01_slave implements Serializable{
   }
 
  /**
- * 机房规划图（module_id=200,doc_id=td00.id,project_id=td00.id）、机房现状图（module_id=100,doc_id=td00.id,project_id=td00.id）、申请设计图（module_id=101,doc_id=td00.id）、变更设计图（module_id=102,doc_id=td00.id）
+ * doc_id
  */
  private Long doc_id;
 
@@ -71,7 +73,7 @@ public class Te01_slave implements Serializable{
   }
 
  /**
- * 附件类型：普通附件、机房规划图（module_id=100,doc_id=td00.id,project_id=td00.id）、机房现状图（module_id=100,doc_id=td00.id,project_id=td00.id）、申请设计图（module_id=101,doc_id=td00.id）、变更设计图（module_id=102,doc_id=td00.id）
+ * 附件类型
  */
  private String slave_type;
 
@@ -223,5 +225,24 @@ public class Te01_slave implements Serializable{
     this.remark = remark;
   }
 
+ public String getSlaveIdentifier() {
+		return "Slave";
+	}
 
+	public void setFileName(String FileName) {
+		this.file_name = FileName;
+		
+	}
+
+	public void setFilePatch(String FilePatch) {
+		this.ftp_url = FilePatch;
+		
+	}
+
+	public String getType() {
+		return this.slave_type;
+	}
+	public String getSaveType() {
+		return null;
+	}
 }
