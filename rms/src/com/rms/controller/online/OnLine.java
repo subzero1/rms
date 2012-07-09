@@ -55,7 +55,6 @@ import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Te03_online;
 import com.netsky.base.dataObjects.interfaces.SlaveObject;
-
 /**
  * @description:
  * 
@@ -113,12 +112,17 @@ public class OnLine {
 	// 在线问答列表
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/OnLineList.do")
-	public ModelAndView handleRequest1(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest1(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 
 		// response.setCharacterEncoding("GBK");
 		// request.setCharacterEncoding("GBK");
-		String orderField = StringFormatUtil.format(request.getParameter("orderField"), "status,flag,aq_date");
-		String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"), "desc");
+
+		String orderField = StringFormatUtil.format(request
+				.getParameter("orderField"), "status,flag,aq_date");
+		String orderDirection = StringFormatUtil.format(request
+				.getParameter("orderDirection"), "desc");
+
 		// 权限控制
 		Map rolesMap = (Map) request.getSession().getAttribute("rolesMap");
 		if (rolesMap != null) {
@@ -142,16 +146,18 @@ public class OnLine {
 		String wtzt = request.getParameter("wtzt");
 		String ztgjz = request.getParameter("ztgjz");
 		String wtlx = request.getParameter("wtlx");
-
+		System.out.println(wtlx);
 		String temp = "1";
-		List<?> sta_user_list = queryService.searchList("select user_id from Ta11_sta_user where station_id=1");
+		List<?> sta_user_list = queryService
+				.searchList("select user_id from Ta11_sta_user where station_id=1");
 		if (sta_user_list.contains(user.getId())) {
 			temp = "";
 		}
 		if ("601".equals(wtlx)) {
 			temp = "";
 		}
-		String wttcr = StringFormatUtil.format(request.getParameter("wttcr"), temp);
+		String wttcr = StringFormatUtil.format(request.getParameter("wttcr"),
+				temp);
 		String sql_qa = "select login_id,id,aq_name,title,content,role_id,aq_date,status,aq_tel,flag from Te03_online where ";
 		String sql_qa_num = "select count(*) from Te03_online where ";
 
@@ -172,8 +178,10 @@ public class OnLine {
 			request.setAttribute("wttcr", wttcr);
 		}
 		if (ztgjz != null && !"".equals(ztgjz)) {
-			sql_qa = sql_qa + " (title like '%" + ztgjz + "%' or aq_name like '%" + ztgjz + "%') and ";
-			sql_qa_num = sql_qa_num + " (title like '%" + ztgjz + "%' or aq_name like '%" + ztgjz + "%') and ";
+			sql_qa = sql_qa + " (title like '%" + ztgjz
+					+ "%' or aq_name like '%" + ztgjz + "%') and ";
+			sql_qa_num = sql_qa_num + " (title like '%" + ztgjz
+					+ "%' or aq_name like '%" + ztgjz + "%') and ";
 			request.setAttribute("ztgjz", ztgjz);
 		}
 
@@ -181,7 +189,8 @@ public class OnLine {
 		sql_qa_num = sql_qa_num + "up_id is null";
 
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"));
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"));
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"));
 		numPerPage = numPerPage < 0 ? 20 : numPerPage;
 		int totalPages = 1;
 		int totalCount = 1;
@@ -205,8 +214,10 @@ public class OnLine {
 		order.append(" order by ");
 		order.append(orderField + " ");
 		order.append(orderDirection);
+
 		// 取列表数据
-		ResultObject ro = queryService.searchByPage(sql_qa + order.toString(), pageNum, numPerPage);
+		ResultObject ro = queryService.searchByPage(sql_qa + order.toString(),
+				pageNum, numPerPage);
 
 		List list_qa = new ArrayList();
 		String content_jx = "";
@@ -222,12 +233,14 @@ public class OnLine {
 			mo.put("title_jx", title_jx);
 
 			// 取出最后回复人员和最后回复时间
-			String sql_zhhf = "select aq_name,aq_date from Te03_online where up_id=" + mo.get("id")
+			String sql_zhhf = "select aq_name,aq_date from Te03_online where up_id="
+					+ mo.get("id")
 					+ " and up_id is not null order by aq_date desc";
 			ResultObject ro_zhhf = queryService.search(sql_zhhf);
 			if (ro_zhhf.next()) {
 				if (!ro_zhhf.get("aq_name").equals("管理员")) {
-					mo.put("hfr", "<font color='red' >" + ro_zhhf.get("aq_name") + "</font>");
+					mo.put("hfr", "<font color='red' >"
+							+ ro_zhhf.get("aq_name") + "</font>");
 				} else {
 					mo.put("hfr", ro_zhhf.get("aq_name"));
 				}
@@ -238,8 +251,8 @@ public class OnLine {
 			}
 
 			// 取出主题的回复数
-			String sql_hf = "select up_id,count(*) as hfs from Te03_online where up_id=" + mo.get("id")
-					+ " and up_id is not null group by up_id";
+			String sql_hf = "select up_id,count(*) as hfs from Te03_online where up_id="
+					+ mo.get("id") + " and up_id is not null group by up_id";
 			ResultObject ro_hf = queryService.search(sql_hf);
 			if (ro_hf.next()) {
 				mo.put("hfs", ro_hf.get("hfs"));
@@ -248,8 +261,8 @@ public class OnLine {
 			}
 
 			// 取出附件数
-			String sql_fj = "select count(*) as fjs from Te01_slave where doc_id=" + mo.get("id")
-					+ " and module_id=9001";
+			String sql_fj = "select count(*) as fjs from Te01_slave where doc_id="
+					+ mo.get("id") + " and module_id=9001";
 			ResultObject ro_fj = queryService.search(sql_fj);
 			if (ro_fj.next()) {
 				mo.put("fjs", ro_fj.get("fjs"));
@@ -266,7 +279,8 @@ public class OnLine {
 
 	// 在线问答提问
 	@RequestMapping("/OnLinequestion.do")
-	public ModelAndView handleRequest2(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest2(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("GBK");
 		request.setCharacterEncoding("GBK");
 		// 取出问题信息
@@ -278,7 +292,8 @@ public class OnLine {
 		String role_id = "";
 		String ydcs = "";
 		ResultObject ro_online = null;
-		String sql_online = "select aq_name,title,content,aq_date,role_id,ydcs from Te03_online where id=" + online_id;
+		String sql_online = "select aq_name,title,content,aq_date,role_id,ydcs from Te03_online where id="
+				+ online_id;
 		ro_online = queryService.search(sql_online);
 		if (ro_online.next()) {
 			if (ro_online.get("title") != null) {
@@ -288,7 +303,8 @@ public class OnLine {
 				content = ro_online.get("content").toString();
 			}
 			if (ro_online.get("aq_date") != null) {
-				SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat sf = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");
 				aq_date = sf.format(ro_online.get("aq_date"));
 			}
 			if (ro_online.get("aq_name") != null) {
@@ -363,7 +379,8 @@ public class OnLine {
 	// 桌面我的提问列表
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/OnLineUIList.do")
-	public ModelAndView handleRequest4(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest4(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 
 		response.setContentType("text/xml");
 		response.setCharacterEncoding("GBK");
@@ -375,7 +392,9 @@ public class OnLine {
 		if (status != null && "yes".equals(status)) {
 			String aq_id = request.getParameter("aq_id");
 			if (aq_id != null) {
-				saveService.updateByHSql("update Te03_online set status='已处理' where id=" + aq_id);
+				saveService
+						.updateByHSql("update Te03_online set status='已处理' where id="
+								+ aq_id);
 			}
 		}
 
@@ -388,7 +407,8 @@ public class OnLine {
 
 		String sql_qa = "select id,aq_name,title,content,role_id,aq_date,status from Te03_online where login_id='"
 				+ user.getLogin_id() + "'";
-		String sql_qa_num = "select count(*) from Te03_online where login_id='" + user.getLogin_id() + "'";
+		String sql_qa_num = "select count(*) from Te03_online where login_id='"
+				+ user.getLogin_id() + "'";
 
 		if (wtlx != null && !"".equals(wtlx)) {
 			sql_qa = sql_qa + " and role_id='" + wtlx + "' and ";
@@ -401,7 +421,8 @@ public class OnLine {
 		// System.out.println("sql_qa="+sql_qa);
 
 		Integer page = convertUtil.toInteger(request.getParameter("page"));
-		Integer pageRowSize = convertUtil.toInteger(request.getParameter("pageRowSize"));
+		Integer pageRowSize = convertUtil.toInteger(request
+				.getParameter("pageRowSize"));
 		pageRowSize = pageRowSize < 3 ? 6 : pageRowSize - 2;
 		int totalPages = 1;
 		int totalRows = 1;
@@ -435,8 +456,8 @@ public class OnLine {
 			mo.put("content_jx", content_jx);
 			mo.put("title_jx", title_jx);
 			// 取出主题的回复数
-			String sql_hf = "select up_id,count(*) as hfs from Te03_online where up_id=" + mo.get("id")
-					+ " and up_id is not null group by up_id";
+			String sql_hf = "select up_id,count(*) as hfs from Te03_online where up_id="
+					+ mo.get("id") + " and up_id is not null group by up_id";
 			ResultObject ro_hf = queryService.search(sql_hf);
 			if (ro_hf.next()) {
 				mo.put("hfs", ro_hf.get("hfs"));
@@ -453,10 +474,11 @@ public class OnLine {
 	// 在线问答解答
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/OnLineanswer.do")
-	public ModelAndView handleRequest3(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest3(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("GBK");
 		request.setCharacterEncoding("GBK");
-
+		
 		// 新回复置状态：管理员=已处理；非管理员=未处理
 
 		// String xhf = request.getParameter("xhf");
@@ -501,8 +523,9 @@ public class OnLine {
 			request.setAttribute("ggrole", "no");
 		}
 		// 更新阅读次数
-		saveService.updateByHSql("update Te03_online set ydcs = ydcs + 1 where id="
-				+ convertUtil.toLong(request.getParameter("aq_id")));
+		saveService
+				.updateByHSql("update Te03_online set ydcs = ydcs + 1 where id="
+						+ convertUtil.toLong(request.getParameter("aq_id")));
 
 		// 取出当前用户作为默认发布人
 		HttpSession session = request.getSession();
@@ -529,7 +552,8 @@ public class OnLine {
 			ResultObject ro = null;
 			ro = queryService.search(queryBuilder);
 			if (ro.next()) {
-				Te03_online online = (Te03_online) ro.get(Te03_online.class.getName());
+				Te03_online online = (Te03_online) ro.get(Te03_online.class
+						.getName());
 				if (online.getAq_id() != null) {
 					twr_id = online.getAq_id().toString();
 					twr_name = online.getAq_name();
@@ -539,7 +563,8 @@ public class OnLine {
 				request.setAttribute("online", online);
 
 				// 取出回复数
-				String sql_hf = "select up_id,count(*) as hfs from Te03_online where up_id=" + online.getId()
+				String sql_hf = "select up_id,count(*) as hfs from Te03_online where up_id="
+						+ online.getId()
 						+ " and up_id is not null group by up_id";
 				ResultObject ro_hf = queryService.search(sql_hf);
 				if (ro_hf.next()) {
@@ -551,7 +576,10 @@ public class OnLine {
 				// 取附件
 				List list_fj = new ArrayList();
 				String sql_salve = "select id,doc_id,file_name,ext_name,ftp_url from Te01_slave where (doc_id in(select id from Te03_online where up_id="
-						+ online.getId() + ") or doc_id=" + online.getId() + ") and module_id=9001";
+						+ online.getId()
+						+ ") or doc_id="
+						+ online.getId()
+						+ ") and module_id=9001";
 				ResultObject ro_salve = queryService.search(sql_salve);
 				while (ro_salve.next()) {
 					Map<String, Object> mo = ro_salve.getMap();
@@ -568,7 +596,8 @@ public class OnLine {
 		String login_id = "";
 		if (online_id != null) {
 			// 取出回复内容
-			String sql_hf = "select login_id,title,content from Te03_online where id=" + online_id;
+			String sql_hf = "select login_id,title,content from Te03_online where id="
+					+ online_id;
 			ResultObject ro_hf = queryService.search(sql_hf);
 			if (ro_hf.next()) {
 				title_hf = ro_hf.get("title").toString();
@@ -600,7 +629,8 @@ public class OnLine {
 						phs.setRecvNum(twr_tel);
 						phs.setMsg(message_phone.toString());
 						String state = phs.sendSMS();
-						phs.dxjl(user.getName(), twr_name, "在线提问", content_hf, state);// 保存短信记录
+						phs.dxjl(user.getName(), twr_name, "在线提问", content_hf,
+								state);// 保存短信记录
 					}
 					if ("1".equals(ro_tx.get("message_flag").toString())) {
 						// 保存数据（短消息）
@@ -636,7 +666,8 @@ public class OnLine {
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/OnLineanswer_001.do")
-	public void getWxdw(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void getWxdw(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		response.setCharacterEncoding("GBK");
 		PrintWriter out = response.getWriter();
 
@@ -655,8 +686,10 @@ public class OnLine {
 			}
 		}
 		// 获得当前人员所在的地区
-		if (request.getParameter("del") != null && !request.getParameter("del").equals("")) {
-			saveService.updateByHSql("delete Te03_online where id=" + request.getParameter("hf_id"));
+		if (request.getParameter("del") != null
+				&& !request.getParameter("del").equals("")) {
+			saveService.updateByHSql("delete Te03_online where id="
+					+ request.getParameter("hf_id"));
 		}
 		response.setContentType("text/xml");
 		out.print("yes");
@@ -667,13 +700,16 @@ public class OnLine {
 	// 疑难解答列表
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/QAList.do")
-	public ModelAndView handleRequest5(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest5(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/xml");
 		response.setCharacterEncoding("GBK");
 		request.setCharacterEncoding("GBK");
 
-		String sortField = StringFormatUtil.format(request.getParameter("sortField"), "id");
-		String sortType = StringFormatUtil.format(request.getParameter("sortType"), "desc");
+		String sortField = StringFormatUtil.format(request
+				.getParameter("sortField"), "id");
+		String sortType = StringFormatUtil.format(request
+				.getParameter("sortType"), "desc");
 		// 权限判断
 		String role_id = request.getParameter("role_id");
 		if (role_id != null) {
@@ -698,7 +734,8 @@ public class OnLine {
 			String[] del_id = request.getParameterValues("del_id");
 			if (del_id != null) {
 				for (int i = 0; i < del_id.length; i++) {
-					saveService.updateByHSql("delete Te07_qa where id=" + del_id[i]);
+					saveService.updateByHSql("delete Te07_qa where id="
+							+ del_id[i]);
 				}
 				// 删除后重新排序
 				qaOrderService.delOrder();
@@ -717,7 +754,8 @@ public class OnLine {
 		sql_qa_num = sql_qa_num + " order by ord asc";
 
 		Integer page = convertUtil.toInteger(request.getParameter("page"));
-		Integer pageRowSize = convertUtil.toInteger(request.getParameter("pageRowSize"));
+		Integer pageRowSize = convertUtil.toInteger(request
+				.getParameter("pageRowSize"));
 		pageRowSize = pageRowSize < 0 ? 12 : pageRowSize;
 		int totalPages = 1;
 		int totalRows = 1;
@@ -744,7 +782,8 @@ public class OnLine {
 		request.setAttribute("page", page);
 
 		// 取列表数据
-		ResultObject ro = queryService.searchByPage(sql_qa + order.toString(), page, pageRowSize);
+		ResultObject ro = queryService.searchByPage(sql_qa + order.toString(),
+				page, pageRowSize);
 		String question_jx;
 		String answer_jx;
 		List list_qa = new ArrayList();
@@ -767,7 +806,8 @@ public class OnLine {
 
 	// 疑难解答列表
 	@RequestMapping("/QA.do")
-	public ModelAndView handleRequest6(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest6(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/xml");
 		response.setCharacterEncoding("GBK");
 		request.setCharacterEncoding("GBK");
@@ -794,7 +834,8 @@ public class OnLine {
 
 	// 疑难解答查阅列表
 	@RequestMapping("/qa_answer.do")
-	public ModelAndView handleRequest7(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest7(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/xml");
 		response.setCharacterEncoding("GBK");
 		request.setCharacterEncoding("GBK");
@@ -827,7 +868,8 @@ public class OnLine {
 	 *             ModelAndView
 	 */
 	@RequestMapping("/onlinedelajax.do")
-	public void onlinedelajax(HttpServletRequest request, HttpServletResponse response) {
+	public void onlinedelajax(HttpServletRequest request,
+			HttpServletResponse response) {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		PrintWriter out = null;
 		response.setContentType("text/xml");
@@ -838,8 +880,10 @@ public class OnLine {
 		try {
 			out = response.getWriter();
 			String hsql = "from Te03_online where up_id=" + id;
-			List<Te03_online> list = (List<Te03_online>) queryService.searchList(hsql);
-			list.add((Te03_online) queryService.searchById(Te03_online.class, id));
+			List<Te03_online> list = (List<Te03_online>) queryService
+					.searchList(hsql);
+			list.add((Te03_online) queryService.searchById(Te03_online.class,
+					id));
 			// 删除
 			OperFile of = new OperFile();
 			of.setQueryService(queryService);
@@ -855,20 +899,24 @@ public class OnLine {
 			// }
 			for (Te03_online te03_online : list) {
 				String sql = "select id,doc_id,file_name,ext_name,ftp_url from Te01_slave where (doc_id in(select id from Te03_online where up_id="
-						+ te03_online.getId() + ") or doc_id=" + te03_online.getId() + ") and module_id=9001";
+						+ te03_online.getId()
+						+ ") or doc_id="
+						+ te03_online.getId() + ") and module_id=9001";
 				;
 				ResultObject ro = queryService.search(sql);
 				while (ro.next()) {
 					request.setAttribute("slave_id", ro.get("id"));
 					of.delfile(request, response);
-					dao.update("delete from Te01_slave where doc_id = " + te03_online.getId());
+					dao.update("delete from Te01_slave where doc_id = "
+							+ te03_online.getId());
 				}
 				dao.removeObject(Te03_online.class, te03_online.getId());
 			}
 
 			out.print(returnurl);
 		} catch (Exception e) {
-			exceptionService.exceptionControl("com.netsky.controller.business.Online", "在线提问删除失败", e);
+			exceptionService.exceptionControl(
+					"com.netsky.controller.business.Online", "在线提问删除失败", e);
 		}
 	}
 
@@ -878,7 +926,7 @@ public class OnLine {
 	 * 
 	 */
 	@RequestMapping("/onlinechuliajax.do")
-	public void onlinechuliajax(HttpServletRequest request, HttpServletResponse response) {
+	public void onlinechuliajax(HttpServletRequest request,	HttpServletResponse response) {
 		String id = request.getParameter("id");
 		String chuli = request.getParameter("chuli");
 		String msg = "false";
@@ -892,7 +940,8 @@ public class OnLine {
 				status = "未处理";
 			}
 			if (status.length() != 0 && id.length() != 0) {
-				saveService.updateByHSql("update Te03_online set status='" + status + "' where id=" + id);
+				saveService.updateByHSql("update Te03_online set status='"
+						+ status + "' where id=" + id);
 				msg = "true";
 			}
 		} catch (IOException e) {
@@ -915,24 +964,26 @@ public class OnLine {
 	 *             ModelAndView
 	 */
 	@RequestMapping("/onlinezdajax.do")
-	public void onlinezdajax(HttpServletRequest request, HttpServletResponse response) {
+	public void onlinezdajax(HttpServletRequest request,
+			HttpServletResponse response) {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		PrintWriter out = null;
-
 		Long id = convertUtil.toLong(request.getParameter("id"), -1L);
 
 		// 获取用户对象
 		try {
 			out = response.getWriter();
-			Te03_online te03_online = (Te03_online) queryService.searchById(Te03_online.class, id);
+			Te03_online te03_online = (Te03_online) queryService.searchById(
+					Te03_online.class, id);
 			Long flag = te03_online.getFlag();
 			flag = flag == 0L ? 1L : 0L;
-			saveService.updateByHSql("update Te03_online set flag=" + flag + " where id=" + id);
+			saveService.updateByHSql("update Te03_online set flag=" + flag
+					+ " where id=" + id);
 			out
-					.print("{\"statusCode\":\"200\", \"message\":\"置顶修改成功\", \"navTabId\":\"OnLineList\", \"forwardUrl\":\"OnLineList.do?wtlx="
-							+ convertUtil.toString(request.getParameter("wtlx")) + "\", \"callbackType\":\"\"}");
+					.print("{\"statusCode\":\"200\", \"message\":\"置顶修改成功\", \"navTabId\":\"\", \"forwardUrl\":\"OnLineList.do?wtlx="+convertUtil.toString(request.getParameter("wtlx"))+"\", \"callbackType\":\"forward\"}");
 		} catch (Exception e) {
-			exceptionService.exceptionControl("com.netsky.controller.business.Online", "置顶修改失败", e);
+			exceptionService.exceptionControl(
+					"com.netsky.controller.business.Online", "置顶修改失败", e);
 		}
 	}
 
@@ -943,14 +994,14 @@ public class OnLine {
 	 */
 
 	@RequestMapping("/onlineanswerdelajax.do")
-	public void onlineanswerdelajax(HttpServletRequest request, HttpServletResponse response) {
+	public void onlineanswerdelajax(HttpServletRequest request,
+			HttpServletResponse response) {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		PrintWriter out = null;
-		// response.setContentType("text/xml");
+		//response.setContentType("text/xml");
 		Long id = convertUtil.toLong(request.getParameter("id"), -1L);
 		Long up_id = convertUtil.toLong(request.getParameter("up_id"), -1L);
-		String returnurl = "{\"statusCode\":\"200\", \"message\":\"删除成功\", \"navTabId\":\"OnLineList\", \"forwardUrl\":\"OnLineanswer.do?aq_id="
-				+ up_id + "\", \"callbackType\":\"forward\"}";
+		String returnurl = "{\"statusCode\":\"200\", \"message\":\"删除成功\", \"navTabId\":\"\", \"forwardUrl\":\"OnLineanswer.do?aq_id="+up_id+"\", \"callbackType\":\"forward\"}";
 		try {
 			out = response.getWriter();
 			// 删除
@@ -958,8 +1009,8 @@ public class OnLine {
 			of.setQueryService(queryService);
 			of.setSaveService(saveService);
 
-			String sql = "select id,doc_id,file_name,ext_name,ftp_url from Te01_slave where doc_id =" + id
-					+ " and module_id=9001";
+			String sql = "select id,doc_id,file_name,ext_name,ftp_url from Te01_slave where doc_id ="
+					+ id + " and module_id=9001";
 			ResultObject ro = queryService.search(sql);
 			while (ro.next()) {
 				request.setAttribute("slave_id", ro.get("id"));
@@ -970,9 +1021,11 @@ public class OnLine {
 
 			out.print(returnurl);
 		} catch (Exception e) {
-			exceptionService.exceptionControl("com.netsky.controller.business.Online", "删除失败", e);
+			exceptionService.exceptionControl(
+					"com.netsky.controller.business.Online", "删除失败", e);
 		}
 	}
+	
 
 	/**
 	 * （在线提问、系统公告）保存ajax实现
@@ -984,7 +1037,8 @@ public class OnLine {
 	 *             ModelAndView
 	 */
 	@RequestMapping("/onlineAjaxSave.do")
-	public void onlineAjaxSave(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void onlineAjaxSave(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("GBK");
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		PrintWriter out = null;
@@ -999,14 +1053,14 @@ public class OnLine {
 			if (user != null) {
 				Long id = convertUtil.toLong(request.getParameter("Te03_online.ID"), -1L);
 				Long up_id = convertUtil.toLong(request.getParameter("Te03_online.UP_ID"), -1L);
-				if (up_id == -1) {
+				if(up_id == -1){
 					up_id = null;
 				}
 				String title = convertUtil.toString(request.getParameter("Te03_online.TITLE"));
 				String content = convertUtil.toString(request.getParameter("Te03_online.CONTENT"));
 				String status = convertUtil.toString(request.getParameter("Te03_online.STATUS"));
 				Long flag = convertUtil.toLong(request.getParameter("Te03_online.FLAG"));
-
+				
 				String login_id = convertUtil.toString(request.getParameter("Te03_online.LOGIN_ID"));
 				String aq_name = convertUtil.toString(request.getParameter("Te03_online.AQ_NAME"));
 				String aq_tel = convertUtil.toString(request.getParameter("Te03_online.AQ_TEL"));
@@ -1014,11 +1068,11 @@ public class OnLine {
 				Long aq_id = convertUtil.toLong(request.getParameter("Te03_online.AQ_ID"));
 				String aq_ip = convertUtil.toString(request.getParameter("Te03_online.AQ_IP"));
 				Long ydcs = convertUtil.toLong(request.getParameter("Te03_online.YDCS"));
-
-				title = new String(title.getBytes(fromEncode), targetEncode);
-				content = new String(content.getBytes(fromEncode), targetEncode);
-				status = new String(status.getBytes(fromEncode), targetEncode);
-				aq_name = new String(aq_name.getBytes(fromEncode), targetEncode);
+				
+				title = new String(title.getBytes(fromEncode),targetEncode);
+				content = new String(content.getBytes(fromEncode),targetEncode);
+				status = new String(status.getBytes(fromEncode),targetEncode);
+				aq_name = new String(aq_name.getBytes(fromEncode),targetEncode);
 
 				/**
 				 * 保存知识库
@@ -1050,7 +1104,7 @@ public class OnLine {
 				te03.setAq_tel(aq_tel);
 				te03.setYdcs(ydcs);
 				te03.setRole_id(role_id);
-				if (id == -1) {
+				if(id == -1){
 					te03.setAq_date(new Date());
 				}
 				dao.saveObject(te03);
@@ -1065,11 +1119,12 @@ public class OnLine {
 								content, 2);
 				if (v_slave_id != null && v_slave_id.size() > 0) {
 					for (int i = 0; i < v_slave_id.size(); i++) {
-						dao.update("update Te01_slave set doc_id = " + te03.getId() + " where id = "
+						dao.update("update Te01_slave set doc_id = "
+								+ te03.getId() + " where id = "
 								+ v_slave_id.get(i));
 					}
 				}
-
+				
 				/**
 				 * 处理附件
 				 */
@@ -1091,74 +1146,73 @@ public class OnLine {
 					/**
 					 * 处理主从表信息
 					 */
-
-					PropertyInject.injectNexus(te03, "ID", o[i], "DOC_ID");
-					PropertyInject.injectNexus(te03, "ID", o[i], "PROJECT_ID");
+				
+					PropertyInject.injectNexus(te03, "ID",o[i], "DOC_ID");
+					PropertyInject.injectNexus(te03, "ID",o[i], "PROJECT_ID");
 				}
-
-				Map<String, String> ftpFolder = this.getFtpFolder(Mrequest);
-				Iterator<?> it = Mrequest.getFileNames();
-				int i = 0;
-				while (it.hasNext() && i < o.length) {
-					String fileDispath = (String) it.next();
-					MultipartFile file = Mrequest.getFile(fileDispath);
-					if (file.getName() != null && !file.getName().equals("") && file.getInputStream().available() > 0) {
-						dao.saveObject(o[i]);
-						SlaveObject so = (SlaveObject) o[i];
-						String fileName = so.getId() + so.getSlaveIdentifier();
-						String extends_name = "";
-						String folder;
-						if (ftpFolder.get(so.getType()) != null) {
-							folder = ftpFolder.get(so.getType());
-						} else {
-							folder = ftpConfig.get("folder");
-						}
-						if (file.getOriginalFilename().indexOf(".") != -1) {
-							extends_name = file.getOriginalFilename().substring(
-									file.getOriginalFilename().lastIndexOf("."));
-							if (extends_name.length() == extends_name.getBytes().length)
-								fileName += extends_name;
-						}
-						FTPClient ftp = new FTPClient();
-						ftp.connect(ftpConfig.get("address"));
-						ftp.login(ftpConfig.get("username"), ftpConfig.get("password"));
-						ftp.enterLocalPassiveMode();
-						ftp.setFileType(FTP.BINARY_FILE_TYPE);
-						folder += "/" + new SimpleDateFormat("yyyyMM").format(new Date());
-						String folders[] = folder.split("/");
-						for (int j = 0; j < folders.length; j++) {
-							if (!ftp.changeWorkingDirectory(folders[j])) {
-								if (!ftp.makeDirectory(folders[j])) {
-									throw new Exception("创建目录失败");
-								}
-								ftp.changeWorkingDirectory(folders[j]);
+				
+					Map<String, String> ftpFolder = this.getFtpFolder(Mrequest);
+					Iterator<?> it = Mrequest.getFileNames();
+					int i = 0;
+					while (it.hasNext() && i < o.length) {
+						String fileDispath = (String) it.next();
+						MultipartFile file = Mrequest.getFile(fileDispath);
+						if (file.getName() != null && !file.getName().equals("")
+								&& file.getInputStream().available() > 0) {
+							dao.saveObject(o[i]);
+							SlaveObject so = (SlaveObject) o[i];
+							String fileName = so.getId() + so.getSlaveIdentifier();
+							String extends_name = "";
+							String folder;
+							if (ftpFolder.get(so.getType()) != null) {
+								folder = ftpFolder.get(so.getType());
+							} else {
+								folder = ftpConfig.get("folder");
 							}
+							if (file.getOriginalFilename().indexOf(".") != -1) {
+								extends_name = file.getOriginalFilename().substring(
+										file.getOriginalFilename().lastIndexOf("."));
+								if (extends_name.length() == extends_name.getBytes().length)
+									fileName += extends_name;
+							}
+							FTPClient ftp = new FTPClient();
+							ftp.connect(ftpConfig.get("address"));
+							ftp.login(ftpConfig.get("username"), ftpConfig.get("password"));
+							ftp.enterLocalPassiveMode();
+							ftp.setFileType(FTP.BINARY_FILE_TYPE);
+							folder += "/" + new SimpleDateFormat("yyyyMM").format(new Date());
+							String folders[] = folder.split("/");
+							for (int j = 0; j < folders.length; j++) {
+								if (!ftp.changeWorkingDirectory(folders[j])) {
+									if (!ftp.makeDirectory(folders[j])) {
+										throw new Exception("创建目录失败");
+									}
+									ftp.changeWorkingDirectory(folders[j]);
+								}
+							}
+							ftp.storeFile(fileName, file.getInputStream());
+							file.getInputStream().close();
+
+							ftp.disconnect();
+							so.setFileName(new String(file.getOriginalFilename().getBytes(fromEncode), targetEncode));
+							so.setExt_name(extends_name);
+							so.setFilePatch(folder + "/" + fileName);
+							dao.saveObject(so);
 						}
-						ftp.storeFile(fileName, file.getInputStream());
-						file.getInputStream().close();
-
-						ftp.disconnect();
-						so.setFileName(new String(file.getOriginalFilename().getBytes(fromEncode), targetEncode));
-						so.setExt_name(extends_name);
-						so.setFilePatch(folder + "/" + fileName);
-						dao.saveObject(so);
+						i++;
 					}
-					i++;
-				}
 
-				out
-						.print("{\"statusCode\":\"200\",\"message\":\"保存成功\",\"navTabId\":\"OnLineList\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
+				out.print("{\"statusCode\":\"200\",\"message\":\"保存成功\",\"navTabId\":\"OnLineList\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
 			} else {
-				out
-						.print("{\"statusCode\":\"301\",\"message\":\"会话超时，重新登录\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
+				out.print("{\"statusCode\":\"301\",\"message\":\"会话超时，重新登录\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			out
-					.print("{\"statusCode\":\"300\",\"message\":\"保存失败\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
-		}
+			out.print("{\"statusCode\":\"300\",\"message\":\"保存失败\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
+		} 
 	}
+	
 
 	private Map<String, String> getFtpConfig(HttpServletRequest request) throws Exception {
 		Map<String, String> result = new HashMap<String, String>();
