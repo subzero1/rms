@@ -874,7 +874,7 @@ public class OnLine {
 		response.setContentType("text/xml");
 
 		Long id = convertUtil.toLong(request.getParameter("id"), -1L);
-		String returnurl = "{\"statusCode\":\"200\", \"message\":\"在线提问删除成功\", \"navTabId\":\"OnLineList\", \"forwardUrl\":\"OnLineList.do\", \"callbackType\":\"\"}";
+		String returnurl = "{\"statusCode\":\"200\", \"message\":\"在线提问删除成功\", \"navTabId\":\"\", \"forwardUrl\":\"OnLineList.do?wtlx="+convertUtil.toString(request.getParameter("wtlx"))+"\", \"callbackType\":\"forward\"}";
 		// 获取用户对象
 		try {
 			out = response.getWriter();
