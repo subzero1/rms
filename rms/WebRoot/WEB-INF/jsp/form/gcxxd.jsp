@@ -105,7 +105,7 @@ $(function(){
 	</p>
 	<p>
 		<label>计划竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.JHJGSJ" value="${td00_gcxx.jhjgsj}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.JHJGSJ" value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -119,15 +119,15 @@ $(function(){
 	<div style="height:0px;"></div>
 	<p>
 		<label>设计派发时间：</label>
-		<input type="text"  name="Td00_gcxx.SJPGSJ" value="${td00_gcxx.sjpgsj}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.SJPGSJ" value="<fmt:formatDate value="${td00_gcxx.sjpgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>施工派发时间：</label>
-		<input type="text"  name="Td00_gcxx.SGPFSJ" value="${td00_gcxx.sgpfsj}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.SGPFSJ" value="<fmt:formatDate value="${td00_gcxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>监理派发时间：</label>
-		<input type="text"  name="Td00_gcxx.JLPFSJ" value="${td00_gcxx.jlpfsj}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.JLPFSJ" value="<fmt:formatDate value="${td00_gcxx.jlpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -149,11 +149,11 @@ $(function(){
 	</p>
 	<p>
 		<label>实际开工时间：</label>
-		<input type="text"  name="Td00_gcxx.SJKGSJ" value="${td00_gcxx.sjkgsj}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.SJKGSJ" value="<fmt:formatDate value="${td00_gcxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>实际竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.SJJGSJ" value="${td00_gcxx.sjjgsj}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.SJJGSJ" value="<fmt:formatDate value="${td00_gcxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	
 	<div class="divider"></div>

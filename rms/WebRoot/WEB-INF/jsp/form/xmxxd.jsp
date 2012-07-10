@@ -115,7 +115,7 @@ $(function(){
 	</p>
 	<p>
 		<label>立项时间：</label>
-		<input type="text"  name="Td01_xmxx.LXSJ" value="${td01_xmxx.lxsj}" style="width:150px;"/>
+		<input type="text"  name="Td01_xmxx.LXSJ" value="<fmt:formatDate value="${td01_xmxx.lxsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>需求部门：</label>
@@ -128,7 +128,7 @@ $(function(){
 	</p>
 	<p>
 		<label>设计派发时间：</label>
-		<input type="text"  name="Td01_xmxx.SJPGSJ" value="${td01_xmxx.sjpgsj}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.SJPGSJ" value="<fmt:formatDate value="${td01_xmxx.sjpgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -138,7 +138,7 @@ $(function(){
 	</p>
 	<p>
 		<label>施工派发时间：</label>
-		<input type="text"  name="Td01_xmxx.SGPFSJ" value="${td01_xmxx.sgpfsj}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.SGPFSJ" value="<fmt:formatDate value="${td01_xmxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -147,7 +147,7 @@ $(function(){
 	</p>
 	<p>
 		<label>监理派发时间：</label>
-		<input type="text"  name="Td01_xmxx.JLPFSJ" value="${td01_xmxx.jlpfsj}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.JLPFSJ" value="<fmt:formatDate value="${td01_xmxx.jlpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div class="divider"></div>
 	<p>
@@ -178,15 +178,15 @@ $(function(){
 	<div style="height:0px;"></div>
 	<p>
 		<label>开工时间：</label>
-		<input type="text"  name="Td01_xmxx.SJKGSJ" value="${td01_xmxx.sjkgsj}" style="width:150px;"/>
+		<input type="text"  name="Td01_xmxx.SJKGSJ" value="<fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>竣工时间：</label>
-		<input type="text"  name="Td01_xmxx.SJJGSJ" value="${td01_xmxx.sjjgsj}" style="width:150px;"/>
+		<input type="text"  name="Td01_xmxx.SJJGSJ" value="<fmt:formatDate value="${td01_xmxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>验收时间：</label>
-		<input type="text"  name="Td01_xmxx.YSSJ" value="${td01_xmxx.yssj}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.YSSJ" value="<fmt:formatDate value="${td01_xmxx.yssj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -215,7 +215,7 @@ $(function(){
 	</p>
 	<p>
 		<label>签订日期：</label>
-		<input type="text"  name="Td01_xmxx.SJHTQDRQ" value="${td01_xmxx.sjhtqdrq}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.SJHTQDRQ" value="<fmt:formatDate value="${td01_xmxx.sjhtqdrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>	
 	<p>
@@ -228,7 +228,7 @@ $(function(){
 	</p>
 	<p>
 		<label>签订日期：</label>
-		<input type="text"  name="Td01_xmxx.SGHTQDRQ" value="${td01_xmxx.sghtqdrq}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.SGHTQDRQ" value="<fmt:formatDate value="${td01_xmxx.sghtqdrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>	
 	<p>
@@ -241,7 +241,7 @@ $(function(){
 	</p>
 	<p>
 		<label>签订日期：</label>
-		<input type="text"  name="Td01_xmxx.JLHTQDRQ" value="${td01_xmxx.jlhtqdrq}" style="width:120px;"/>
+		<input type="text"  name="Td01_xmxx.JLHTQDRQ" value="<fmt:formatDate value="${td01_xmxx.jlhtqdrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	
 	<div class="divider"></div>
