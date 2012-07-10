@@ -6,8 +6,8 @@
 
 <script type="text/javascript">
 $(function(){
-	   		$("#zydl_select").cascade({
-				childSelect:$("#zyxx_select"),
+	   		$("#zydl_select",navTab.getCurrentPanel()).cascade({
+				childSelect:$("#zyxx_select",navTab.getCurrentPanel()),
 				tableName:'Tc04_zyxx',
 				conditionColumn:'gczy_id',
 				valueForOption:'mc',
@@ -56,7 +56,7 @@ $(function(){
 	</p>
 	<p>
 		<label>要求完成时间：</label>
-		<input type="text"  name="Td00_gcxx.YQWCSJ" value="${td00_gcxx.yqwcsj}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YQWCSJ" value="<fmt:formatDate value="${td00_gcxx.yqwcsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>项目编号：</label>
