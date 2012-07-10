@@ -65,7 +65,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 		List<?> tmpList = null;
 		Long cur_nd = new Long(DateGetUtil.getYear());
 		Long tmp_nd = null;
-		String cur_gczy = null;
 		ResultObject ro = null;
 		Class<?> clazz = null;
 		StringBuffer hsql = null;
@@ -138,7 +137,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					ro = queryService.search(queryBuilder);
 					if (ro.next()) {
 						tmp_nd = (Long) ro.get("cjrq");
-						cur_gczy = (String)ro.get("zydl");
 					}
 				}
 
@@ -163,7 +161,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 	
 				
 				// 获取专业小类：Tc04_zyxx
-				if(doc_id != -1 && cur_gczy != null){
+				if(doc_id != -1){
 					hsql.delete(0, hsql.length());
 					hsql.append("select tc04.id,tc04.mc ");
 					hsql.append(" from Tc04_zyxx tc04,Tc03_gczy tc03,");
@@ -203,27 +201,29 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				tmpList = queryService.searchList(queryBuilder);
 				request.setAttribute("qkdlList", tmpList);
 				
-				// 获取切块小类：Tc07_qkxl
-				hsql.delete(0, hsql.length());
-				hsql.append("select tc07.id,tc07.mc ");
-				hsql
-						.append("from Tc06_tzqk tc06,Tc07_qkxx tc07,Td01_xmxx td01 ");
-				hsql.append("where tc06.id = tc07.qk_id ");
-				hsql.append("and td01.qkdl = tc06.qkmc ");
-				hsql.append(" and tc06.nd = '");
-				hsql.append(t_year);
-				hsql.append("' and td01.id = ");
-				hsql.append(doc_id);
-				hsql.append(" order by tc07.mc ");
-				ro = queryService.search(hsql.toString());
-				List<Tc07_qkxx> qkxl_list = new LinkedList<Tc07_qkxx>();
-				while (ro.next()) {
-					Tc07_qkxx o_tc07 = new Tc07_qkxx();
-					o_tc07.setMc((String) ro.get("tc07.mc"));
-					o_tc07.setId((Long) ro.get("tc07.id"));
-					qkxl_list.add(o_tc07);
+				if(doc_id != -1){
+					// 获取切块小类：Tc07_qkxl
+					hsql.delete(0, hsql.length());
+					hsql.append("select tc07.id,tc07.mc ");
+					hsql
+							.append("from Tc06_tzqk tc06,Tc07_qkxx tc07,Td01_xmxx td01 ");
+					hsql.append("where tc06.id = tc07.qk_id ");
+					hsql.append("and td01.qkdl = tc06.qkmc ");
+					hsql.append(" and tc06.nd = '");
+					hsql.append(t_year);
+					hsql.append("' and td01.id = ");
+					hsql.append(doc_id);
+					hsql.append(" order by tc07.mc ");
+					ro = queryService.search(hsql.toString());
+					List<Tc07_qkxx> qkxl_list = new LinkedList<Tc07_qkxx>();
+					while (ro.next()) {
+						Tc07_qkxx o_tc07 = new Tc07_qkxx();
+						o_tc07.setMc((String) ro.get("tc07.mc"));
+						o_tc07.setId((Long) ro.get("tc07.id"));
+						qkxl_list.add(o_tc07);
+					}
+					request.setAttribute("qkxlList", qkxl_list);
 				}
-				request.setAttribute("qkxlList", qkxl_list);
 			}
 				
 
