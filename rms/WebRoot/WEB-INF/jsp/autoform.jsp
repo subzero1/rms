@@ -124,7 +124,7 @@
 
 <script language="javascript">
 	//按照屏幕分配表单右侧信息
-	var max_w = $("#autoform_body").width();
+	var max_w = $("#autoform_body",navTab.getCurrentPanel()).width();
 	var attach_w = navTab._panelBox.width() - 800;
 	var attach_h = navTab._panelBox.height() - 63;
 	if(max_w <1080){
@@ -133,10 +133,10 @@
 		if(bar.is(":hidden") == false)	$(".toggleCollapse div", bar).click();
 		attach_w = attach_w+175;
 	}
-	$("#attachBody").css({"width":attach_w+"px", "position":"relative"});
-	$("#attachBody").css("margin","-" + attach_h + " 30 30 780");	
+	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
+	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 30 30 780");	
 	
-	$(".panel div").height(parseInt((attach_h-150)/3));
+	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)/3));
 	
 	
 	//修改表单的tabid
