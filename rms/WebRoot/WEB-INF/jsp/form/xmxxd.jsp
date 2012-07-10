@@ -4,14 +4,34 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
 
+<script type="text/javascript">
+$(function(){
+	   		$("#qkdl_select",navTab.getCurrentPanel()).cascade({
+				childSelect:$("#qkxl_select",navTab.getCurrentPanel()),
+				tableName:'Tc07_qkxx',
+				conditionColumn:'qk_id',
+				valueForOption:'mc',
+				key:'id',
+				orderBy:'id',
+				showForOption:{
+								pattern:'[mc]',
+								mc:'mc'
+				}
+			});	
+	   	});
+</script>
+
+
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmxxd.xml"/>
-<input type="hidden" name="Td00_gcxx.ID" value="${param.doc_id}">
+<input type="hidden" name="Td01_xmxx.ID" value="${param.doc_id}">
+<input type="hidden" name="Td01_xmxx.CJR" value="<c:out value="${td01_xmxx.cjr}" default="${user.name}"/>">
+<input type="hidden" name="Td01_xmxx.CJRQ" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td01_xmxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>">
 
 <div class="pageFormContent">
 	<p>
 		<label>项目名称：</label>
-		<input type="text" name="Td00_gcxx.XMMC" value="${td01_xmxx.xmmc}" style="width:407px;"/>
+		<input type="text" name="Td01_xmxx.XMMC" value="${td01_xmxx.xmmc}" style="width:407px;"/>
 	</p>
 	<p>
 		<label>项目编号：</label>
@@ -20,11 +40,11 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>投资切块：</label>
-		<netsky:htmlSelect name="Td01_xmxx.QKDL" objectForOption="qkdlList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.qkdl}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="qkdl_select" name="Td01_xmxx.QKDL" objectForOption="qkdlList" style="width:157px;" valueForOption="qkmc" showForOption="qkmc" valueForExtend="{'id':'[id]','nd':'[nd]'}" extend="" extendPrefix="true"  value="${td01_xmxx.qkdl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>切块细项：</label>
-		<netsky:htmlSelect name="Td01_xmxx.QKXL" objectForOption="qkxlList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
+		<netsky:htmlSelect id="qkxl_select" name="Td01_xmxx.QKXL" objectForOption="qkxlList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>所属区域：</label>
@@ -91,11 +111,11 @@
 	<div class="divider"></div>
 	<p>
 		<label>立项金额：</label>
-		<input type="text"  name="Td01_xmxx.LXJE" value="${td01_xmxx.ys_lxje}" style="width:150px;"/>
+		<input type="text"  name="Td01_xmxx.LXJE" value="${td01_xmxx.lxje}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>立项时间：</label>
-		<input type="text"  name="Td01_xmxx.LXSJ" value="${td01_xmxx.ys_lxsj}" style="width:150px;"/>
+		<input type="text"  name="Td01_xmxx.LXSJ" value="${td01_xmxx.lxsj}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>需求部门：</label>
@@ -136,7 +156,7 @@
 	</p>
 	<p>
 		<label>施工管理员：</label>
-		<input type="text"  name="Td01_xmxx.SGGLY" value="${td01_xmxx.sggly}" style="width:150px;"/>
+		<input type="text"  name="Td01_xmxx.SGFZR" value="${td01_xmxx.sgfzr}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>监理工程师：</label>
