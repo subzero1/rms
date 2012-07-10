@@ -24,7 +24,7 @@
 	</p>
 	<p>
 		<label>切块细项：</label>
-		<netsky:htmlSelect name="Td01_xmxx.QKXL" objectForOption="qkdlList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td01_xmxx.QKXL" objectForOption="qkxlList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>所属区域：</label>
