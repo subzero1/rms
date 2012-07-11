@@ -33,6 +33,14 @@
             insert="true"
             column="xm_id"
         />
+        
+        <property
+            name="glgc_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="glgc_id"
+        />
 
         <property
             name="gcbh"

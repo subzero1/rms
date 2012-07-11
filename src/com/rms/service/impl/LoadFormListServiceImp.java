@@ -225,6 +225,41 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("qkxlList", qkxl_list);
 				}
 			}
+			
+			if(module_id==102){
+				
+				// 获取切块大类：Tc06_tzqk
+				queryBuilder = new HibernateQueryBuilder(Tc06_tzqk.class);
+				queryBuilder.eq("nd", tmp_nd);
+				queryBuilder.eq("flag", 1L);
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				request.setAttribute("qkdlList", tmpList);
+				
+				if(doc_id != -1){
+					// 获取切块小类：Tc07_qkxl
+					hsql.delete(0, hsql.length());
+					hsql.append("select tc07.id,tc07.mc ");
+					hsql
+							.append("from Tc06_tzqk tc06,Tc07_qkxx tc07,Td01_xmxx td01 ");
+					hsql.append("where tc06.id = tc07.qk_id ");
+					hsql.append("and td01.qkdl = tc06.qkmc ");
+					hsql.append(" and tc06.nd = '");
+					hsql.append(t_year);
+					hsql.append("' and td01.id = ");
+					hsql.append(doc_id);
+					hsql.append(" order by tc07.mc ");
+					ro = queryService.search(hsql.toString());
+					List<Tc07_qkxx> qkxl_list = new LinkedList<Tc07_qkxx>();
+					while (ro.next()) {
+						Tc07_qkxx o_tc07 = new Tc07_qkxx();
+						o_tc07.setMc((String) ro.get("tc07.mc"));
+						o_tc07.setId((Long) ro.get("tc07.id"));
+						qkxl_list.add(o_tc07);
+					}
+					request.setAttribute("qkxlList", qkxl_list);
+				}
+			}
 				
 
 			// end if

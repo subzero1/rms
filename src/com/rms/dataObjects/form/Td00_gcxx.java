@@ -55,6 +55,23 @@ public class Td00_gcxx implements Serializable {
 	}
 
 	/**
+	 * 项目ID
+	 */
+	private Long glgc_id;
+
+	/**
+	 * @hibernate.property column="glgc_id"
+	 * @return Returns the glgc_id.
+	 */
+	public Long getGlgc_id() {
+		return glgc_id;
+	}
+
+	public void setGlgc_id(Long glgc_id) {
+		this.glgc_id = glgc_id;
+	}
+	
+	/**
 	 * 工程编号
 	 */
 	private String gcbh;
