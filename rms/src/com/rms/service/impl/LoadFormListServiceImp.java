@@ -245,6 +245,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						fact_glgc_id = glgc_id;
 					}
 					glgc.setId(null);
+					glgc.setGcmc(glgc.getGcmc()+"【关联工程......】");
 					glgc.setGlgc_id(fact_glgc_id);
 					request.setAttribute("td00_gcxx", glgc);
 				}
