@@ -227,40 +227,28 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			}
 			
 			if(module_id==102){
-				
-				// 获取切块大类：Tc06_tzqk
-				queryBuilder = new HibernateQueryBuilder(Tc06_tzqk.class);
-				queryBuilder.eq("nd", tmp_nd);
-				queryBuilder.eq("flag", 1L);
-				queryBuilder.addOrderBy(Order.asc("id"));
-				tmpList = queryService.searchList(queryBuilder);
-				request.setAttribute("qkdlList", tmpList);
-				
-				if(doc_id != -1){
-					// 获取切块小类：Tc07_qkxl
-					hsql.delete(0, hsql.length());
-					hsql.append("select tc07.id,tc07.mc ");
-					hsql
-							.append("from Tc06_tzqk tc06,Tc07_qkxx tc07,Td01_xmxx td01 ");
-					hsql.append("where tc06.id = tc07.qk_id ");
-					hsql.append("and td01.qkdl = tc06.qkmc ");
-					hsql.append(" and tc06.nd = '");
-					hsql.append(t_year);
-					hsql.append("' and td01.id = ");
-					hsql.append(doc_id);
-					hsql.append(" order by tc07.mc ");
-					ro = queryService.search(hsql.toString());
-					List<Tc07_qkxx> qkxl_list = new LinkedList<Tc07_qkxx>();
-					while (ro.next()) {
-						Tc07_qkxx o_tc07 = new Tc07_qkxx();
-						o_tc07.setMc((String) ro.get("tc07.mc"));
-						o_tc07.setId((Long) ro.get("tc07.id"));
-						qkxl_list.add(o_tc07);
+				/*
+				 * 新建关联工程时把原来工程的数据写过去
+				 * 1.假设三个工程 A、B、C ，如果通过A生成B、C,则B、C的关联工程就是A；
+				 * 2.假设三个工程 A、B、C ，如果通过A生成B,再通过B生成C,则B、C的关联工程还是A；
+				 * 以上方式主要是为了查询方便。
+				 */
+				Long glgc_id = convertUtil.toLong(request.getParameter("glgc_id"),-1l);
+				Long fact_glgc_id = null; //记录描述中A的ID。
+				if(glgc_id != null && glgc_id != -1){
+					Td00_gcxx glgc = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,glgc_id);
+					if(glgc == null){
+						glgc = new Td00_gcxx();
 					}
-					request.setAttribute("qkxlList", qkxl_list);
+					fact_glgc_id = glgc.getGlgc_id();
+					if(fact_glgc_id == null || fact_glgc_id == -1){
+						fact_glgc_id = glgc_id;
+					}
+					glgc.setId(null);
+					glgc.setGlgc_id(fact_glgc_id);
+					request.setAttribute("td00_gcxx", glgc);
 				}
 			}
-				
 
 			// end if
 		} catch (Exception e) {
