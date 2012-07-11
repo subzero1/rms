@@ -19,6 +19,13 @@ $(function(){
 				}
 			});	
 	   	});
+	   	
+	function xjglgc(){
+		var t_param = 'module_id=102&node_id=10201&flow_id=102&glgc_id=${td00_gcxx.id}';
+		navTab.closeCurrentTab();
+		navTab.openTab('autoform102', 'flowForm.do?'+t_param, {title:'表单'});
+		
+	}
 </script>
 
 
@@ -26,6 +33,7 @@ $(function(){
 <input type="hidden" name="profile" value="gcxxd.xml"/>
 <input type="hidden" name="Td00_gcxx.ID" value="${param.doc_id}">
 <input type="hidden" name="XM_ID" value="${td00_gcxx.xm_id}">
+<input type="hidden" name="GLGC_ID" value="${td00_gcxx.glgc_id}">
 
 <div class="pageFormContent">
 	<p>
