@@ -7,9 +7,10 @@ $(document).ready(function(){
 </script>
 
 <form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
-	<input type="hidden" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Ta05_group" />
+	<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.base.Tc03_gczy" />
+	<input type="hidden" name="tableInfomation" value="com.rms.dataObjects.base.Tc03_gczy,id,gczy_id:com.rms.dataObjects.base.Tc04_zyxx"/>
 	<input type="hidden" name="Tc03_gczy.ID" value="${tc03.id}" />
-	<input type="hidden" name="perproty" value="group_id,Ta05_group,id">
+	<input type="hidden" name="perproty" value="id,Tc03_gczy,id">
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/zywhList.do" />
 	<input type="hidden" name="_navTabId" value="zywhList" />
@@ -41,7 +42,7 @@ $(document).ready(function(){
 			</div>
 			<div class="formBar">
 				<div  style="float:left;">
-					<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="sysManage/groupEdit.do">新建专业</button></div></div>
+					<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="infoManage/zywhEdit.do">新建专业</button></div></div>
 				</div>
 				<ul>
 					<li>
@@ -57,11 +58,12 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div class="panel sysmanage_min" defH="110"	style="width: 97%; float: left; margin: 5px">
+		<h1>专业细项</h1>
 		<div>
-			<table width="100%" class="list itemDetail">
+			<table class="list itemDetail">
 			<thead>
 				<tr>
-					<th type="text"style="width:150px;" name="Tc04_zyxx.MC" hideName="Tc04_zyxx.ID">专业细项名称</th>
+					<th type="text"style="width:300px;" name="Tc04_zyxx.MC" hideName="Tc04_zyxx.ID">名称</th>
 					<th type="del" style="width:30px;">操作</th>
 				</tr>
 			</thead>
@@ -77,6 +79,8 @@ $(document).ready(function(){
 			</c:forEach>
 			</tbody>
 		</table>
+		<br/>
+		<div style="color:888;">注：修改明细数据后需点击【保存】按钮保存修改。</div>
 		</div>
 	</div>
 </form>
