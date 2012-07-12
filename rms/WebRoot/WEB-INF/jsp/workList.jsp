@@ -97,12 +97,12 @@
 					<tr>
 						<td>
 							<c:if test="${doc[cols] != null }">
-								<a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');" title="表单"><img border="0" src="Images/form.gif" style="cursor:pointer"/></a>
+								<a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');" title="表单[${doc[cols].project_id}]"><img border="0" src="Images/form.gif" style="cursor:pointer"/></a>
 							</c:if>				
 						</td>
 						<td>
 							<c:if test="${doc[cols] != null}">								
-								<a href="showTree.do?project_id=${doc[cols].project_id}&doc_id=${doc[cols].doc_id}&module_id=${doc[cols].module_id}" target="navTab" rel="showTree" title="流程图"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+								<a href="showTree.do?project_id=${doc[cols].project_id}&doc_id=${doc[cols].doc_id}&module_id=${doc[cols].module_id}" target="navTab" rel="showTree" title="流程图[${doc[cols].project_id}]"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
 							</c:if>		
 						</td>
 						
