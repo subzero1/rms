@@ -25,6 +25,7 @@ import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.convertUtil;
 import com.rms.dataObjects.base.Tc04_zyxx;
 import com.rms.dataObjects.base.Tc03_gczy;
@@ -53,6 +54,13 @@ public class Zywh {
 	 */
 	@Autowired
 	private QueryService queryService;
+	
+	
+	/**
+	 * 保存服务
+	 */
+	@Autowired
+	private SaveService saveService;
 
 	/**
 	 * 日志处理类
@@ -139,7 +147,12 @@ public class Zywh {
 		// 获取对象
 		try {
 			out = response.getWriter();
-			dao.removeObject(Tc03_gczy.class, id);
+			
+			String HSql = "delete from Tc04_zyxx where gczy_id =" + id;
+			saveService.updateByHSql(HSql);
+			HSql = "delete from Tc03_gczy where id =" + id;
+			saveService.updateByHSql(HSql);
+			
 			out
 					.print("{\"statusCode\":\"200\", \"message\":\"专业删除成功\", \"navTabId\":\"\", \"forwardUrl\":\"infoManage/zywhList.do\", \"callbackType\":\"forward\"}");
 		} catch (IOException e) {
