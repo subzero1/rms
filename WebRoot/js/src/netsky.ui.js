@@ -94,7 +94,7 @@ function netskyInitWeb(_box){
 	});
 	
 	//表单明细输入域宽度自适应
-	$("table[itemdetail] td",$p).each(function(){
+	$("table.itemDetail td",$p).each(function(){
 		$(this).initDetailWidth();
 	});	
 }
