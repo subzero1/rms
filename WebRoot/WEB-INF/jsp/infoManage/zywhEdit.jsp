@@ -3,13 +3,18 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	initSysManageWeb();
+	
+	$("#delGczy").click(function(){
+		var tc03_id = $("#gczy_id",navTab.getCurrentPanel()).val();
+		ajaxTodo('infoManage/ajaxDelZydl.do', navTabAjaxDone ,{"id":tc03_id});
+	});
 });
 </script>
 
 <form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 	<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.base.Tc03_gczy" />
-	<input type="hidden" name="tableInfomation" value="com.rms.dataObjects.base.Tc03_gczy,id,gczy_id:com.rms.dataObjects.base.Tc04_zyxx"/>
-	<input type="hidden" name="Tc03_gczy.ID" value="${tc03.id}" />
+	<input type="hidden" name="tableInfomation" value="Tc03_gczy,id,gczy_id:com.rms.dataObjects.base.Tc04_zyxx"/>
+	<input type="hidden" id="gczy_id" name="Tc03_gczy.ID" value="${tc03.id}" />
 	<input type="hidden" name="perproty" value="id,Tc03_gczy,id">
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/zywhList.do" />
@@ -29,26 +34,26 @@ $(document).ready(function(){
 					<label>
 						有效年度：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND" value="${tc03.yxnd}" class="required digits" style="width: 100px;" maxlength="4" />
+					<input type="text" name="Tc03_gczy.YXND" value="<c:out value="${tc03.yxnd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readonly/>
 				</p>
 				<p>
 					<label>
 						是否市控：
 					</label>
-					<input type="radio" name="Tc03.gczy.SFSK" value="1"/>是
-					<input type="radio" name="Tc03.gczy.SFSK" value="0"/>否
+					<input type="radio" name="Tc03_gczy.SFSK" value="1" <c:if test="${tc03.sfsk=='1' }">checked</c:if>/>是
+					<input type="radio" name="Tc03.gczy.SFSK" value="" <c:if test="${tc03.sfsk!='1' }">checked</c:if>/>否
 				</p>
 				<div style="height: 0px;"></div>
 			</div>
 			<div class="formBar">
 				<div  style="float:left;">
-					<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="infoManage/zywhEdit.do">新建专业</button></div></div>
+					<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="infoManage/zywhEdit.do?year=${param.year }">新建专业</button></div></div>
 				</div>
 				<ul>
 					<li>
 						<div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div>
 					</li>
-					<c:if test="${not empty group}">
+					<c:if test="${not empty tc03}">
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" id="delGczy">删 除</button></div></div>
 					</li>
@@ -74,7 +79,7 @@ $(document).ready(function(){
 						<input type="hidden" name="Tc04_zyxx.ID" value="${tc04.id}"/>
 						<input type="text" name="Tc04_zyxx.MC" value="${tc04.mc}" style="width:0px;"/>
 					</td>
-					<td><a href="javascript:fsd" class="btnDel emptyInput" title="确认删除此明细">删除</a></td>
+					<td><a href="javascript:" class="btnDel emptyInput" title="确认删除此明细">删除</a></td>
 				</tr>
 			</c:forEach>
 			</tbody>
