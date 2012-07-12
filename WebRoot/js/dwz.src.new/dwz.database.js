@@ -259,11 +259,13 @@
 				$tbody.find("a.btnDel").click(function(){
 					var $btnDel = $(this);
 					
+					/* modify at 2012-07-12 jquery 1.7报错，暂不用
 					if ($btnDel.is("[href^=javascript:]")){
 						$btnDel.parents("tr:first").remove();
 						initSuffix($tbody);
 						return false;
 					}
+					*/
 					
 					function delDbData(){
 						$.ajax({
@@ -275,6 +277,7 @@
 							error: DWZ.ajaxError
 						});
 					}
+					
 					if($btnDel.hasClass("emptyInput")){	//modify at 2011-08-09 扩展emptyInput类,清空字段不执行后台删除,配合保存实现
 						var $tr = $btnDel.parents("tr:first");
 												
