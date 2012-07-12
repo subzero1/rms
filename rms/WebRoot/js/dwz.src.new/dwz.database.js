@@ -275,17 +275,28 @@
 							error: DWZ.ajaxError
 						});
 					}
-					
-					if ($btnDel.attr("title")){
-						alertMsg.confirm($btnDel.attr("title"), {okCall: delDbData});
-					} else {
-						delDbData();
+					if($btnDel.hasClass("emptyInput")){	//modify at 2011-08-09 扩展emptyInput类,清空字段不执行后台删除,配合保存实现
+						var $tr = $btnDel.parents("tr:first");
+												
+						$tr.find(":input").not($("[name$='.ID']")).each(function(){
+							$(this).val("");
+							$(this).removeClass();
+						});
+						
+						$tr.hide();
+						
+					}else{	
+						if ($btnDel.attr("title")){
+							alertMsg.confirm($btnDel.attr("title"), {okCall: delDbData});
+						} else {
+							delDbData();
+						}
 					}
 					
 					return false;
 				});
 
-				var addButTxt = $table.attr('addButton') || "Add New";
+				var addButTxt = $table.attr('addButton') || "添加";
 				if (addButTxt) {
 					var $addBut = $('<div class="button"><div class="buttonContent"><button type="button">'+addButTxt+'</button></div></div>').insertBefore($table).find("button");
 					var $rowNum = $('<input type="text" name="dwz_rowNum" class="textInput" style="margin:2px;" value="1" size="2"/>').insertBefore($table);
@@ -303,8 +314,10 @@
 								initSuffix($tbody);
 								return false;
 							});
+							$tr.find(">td").each(function(){$(this).initDetailWidth();});	//modify at 2011-09-21 初始化宽度
 						}
 						initSuffix($tbody);
+						
 					});
 				}
 			});
