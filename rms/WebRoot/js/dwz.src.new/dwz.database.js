@@ -296,7 +296,7 @@
 					return false;
 				});
 
-				var addButTxt = $table.attr('addButton') || "添加";
+				var addButTxt = $table.attr('addButton') || "追加行";
 				if (addButTxt) {
 					var $addBut = $('<div class="button"><div class="buttonContent"><button type="button">'+addButTxt+'</button></div></div>').insertBefore($table).find("button");
 					var $rowNum = $('<input type="text" name="dwz_rowNum" class="textInput" style="margin:2px;" value="1" size="2"/>').insertBefore($table);
