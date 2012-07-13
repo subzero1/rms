@@ -107,34 +107,34 @@ public class Tf10_gzltb implements Serializable{
  /**
  * 时间进度
  */
- private Long sjjd;
+ private Double sjjd;
 
  /**
  * @hibernate.property column="sjjd"
  * @return Returns the sjjd.
  */
- public Long getSjjd() {
+ public Double getSjjd() {
     return sjjd;
  }
 
- public void setSjjd(Long sjjd) {
+ public void setSjjd(Double sjjd) {
     this.sjjd = sjjd;
   }
 
  /**
  * 填报进度
  */
- private Long tbjd;
+ private Double tbjd;
 
  /**
  * @hibernate.property column="tbjd"
  * @return Returns the tbjd.
  */
- public Long getTbjd() {
+ public Double getTbjd() {
     return tbjd;
  }
 
- public void setTbjd(Long tbjd) {
+ public void setTbjd(Double tbjd) {
     this.tbjd = tbjd;
   }
 
