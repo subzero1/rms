@@ -55,7 +55,7 @@
 					<th style="width: 100px;" orderField="jhjgsj">计划竣工</th>
 					<th style="width: 70px;" orderField="sgjdtbzq">填报周期</th>
 					<th style="width: 100px;">应填报日期</th>
-					<th style="width: 70px;">计划进度</th>
+					<th style="width: 70px;">时间进度</th>
 					<th style="width: 70px;">填报进度</th>
 				</tr>
 			</thead>
