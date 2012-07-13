@@ -71,7 +71,9 @@ function searchListExport(){
 									</td>
 								</c:when>
 								<c:when test="${offset_td == 1 && param.module_id != 101}">
-									<td>&nbsp;</td>
+									<td>
+									<a href="flowForm.do?module_id=102&node_id=10201&flow_id=102&project_id=${td.value }" target="navTab" rel="autoform" title="新建工程"><img border="0" src="Images/project.png" /></a>
+									</td>
 								</c:when>
 								<c:otherwise>
 									<td align="${td.align}" width="${td.width}">${td.value }</td>

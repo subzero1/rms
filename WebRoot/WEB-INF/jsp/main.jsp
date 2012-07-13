@@ -82,6 +82,7 @@
 <script src="js/src/netsky.formValidator.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/CutPic.js"></script>
 <script type="text/javascript" src="js/src/netsky.cascade.js"></script>
+<script type="text/javascript" src="js/chart/highcharts.js"></script>
 
 		
 <script type="text/javascript">

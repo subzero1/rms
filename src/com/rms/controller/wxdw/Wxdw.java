@@ -2,6 +2,7 @@ package com.rms.controller.wxdw;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,8 +37,10 @@ import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.dataObjects.Ta22_user_idea;
+import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.dataObjects.Tb15_docflow;
 import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.flow.vo.Vc2_gcxx_gzltb;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -53,6 +56,7 @@ import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
 import com.rms.dataObjects.wxdw.Tf06_clb;
 import com.rms.dataObjects.wxdw.Tf07_kcb;
 import com.rms.dataObjects.wxdw.Tf08_clmxb;
+import com.rms.dataObjects.wxdw.Tf10_gzltb;
 
 @Controller
 public class Wxdw {
@@ -523,7 +527,7 @@ public class Wxdw {
 			years.add("" + startyear++);
 		}
 		modelMap.put("years", years);
-		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear-1));
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear - 1));
 		modelMap.put("nd", nd);
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
 		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
@@ -585,12 +589,13 @@ public class Wxdw {
 			years.add("" + startyear++);
 		}
 		modelMap.put("years", years);
-		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear-1));
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear - 1));
 		modelMap.put("nd", nd);
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
-				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id=" + wxdw_id + " and nd='"+nd+"' order by zy");
+				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id=" + wxdw_id + " and nd='" + nd
+						+ "' order by zy");
 		Map<String, Tf05_wxdw_dygx> zjgcsMap = new HashMap<String, Tf05_wxdw_dygx>();
 		for (Tf05_wxdw_dygx tf05 : tf05List) {
 			zjgcsMap.put(tf05.getZy(), tf05);
@@ -1565,5 +1570,194 @@ public class Wxdw {
 		}
 		out.flush();
 		out.close();
+	}
+
+	/**
+	 * 进度反馈提醒列表(施工负责人)
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jdfktxListforSgfzr.do")
+	public ModelAndView jdfktxListforSgfzr(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		if (orderField.equals("")) {
+			orderField = "gcmc";
+		}
+		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		StringBuffer hsql = new StringBuffer();
+		hsql
+				.append("select distinct(gcxx) as gcxx,sysdate-((case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+		if (!"".equals(gcmc)) {
+			hsql.append("gcxx.gcmc like '%" + gcmc + "%' and ");
+		}
+		hsql
+				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10107,10209) and tb15.user_id="
+						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
+		hsql
+				.append(" and (case when tbrq is null then sjkgsj else tbrq end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq end)");
+		System.out.println(hsql);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Object[]> gcxxList = new ArrayList<Object[]>();
+		while (ro.next()) {
+			Object[] o = new Object[4];
+			Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) ro.get("gcxx");
+			System.out.println(gcxx.getTbjd());
+			o[0] = gcxx;
+			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_DOWN).longValue();
+			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red" : d.equals(0L) ? ""
+					: "yellow";
+			o[2] = ro.get("a2");
+			o[3] = ro.get("a3");
+			gcxxList.add(o);
+		}
+		modelMap.put("gcxxList", gcxxList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jdfktxList.jsp?canedit=true", modelMap);
+	}
+
+	/**
+	 * 进度反馈提醒列表(项目管理员)
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jdfktxListforXmgly.do")
+	public ModelAndView jdfktxListforXmgly(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		if (orderField.equals("")) {
+			orderField = "gcmc";
+		}
+		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		StringBuffer hsql = new StringBuffer();
+		hsql
+				.append("select distinct(gcxx) as gcxx,sysdate-((case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+		if (!"".equals(gcmc)) {
+			hsql.append("gcxx.gcmc like '%" + gcmc + "%' and ");
+		}
+		hsql
+				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10101,10202) and tb15.user_id="
+						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
+		hsql
+				.append(" and (case when tbrq is null then sjkgsj end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq end)");
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Object[]> gcxxList = new ArrayList<Object[]>();
+		while (ro.next()) {
+			Object[] o = new Object[4];
+			Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) ro.get("gcxx");
+			o[0] = gcxx;
+			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_DOWN).longValue();
+			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red" : d.equals(0L) ? ""
+					: "yellow";
+			o[2] = ro.get("a2");
+			o[3] = ro.get("a3");
+			gcxxList.add(o);
+		}
+		modelMap.put("gcxxList", gcxxList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jdfktxList.jsp", modelMap);
+	}
+
+	/**
+	 * 进度反馈页面
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jdfk.do")
+	public ModelAndView jdfk(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, id);
+		modelMap.put("gcxx", gcxx);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jdfk.jsp", modelMap);
+	}
+
+	/**
+	 * 进度反馈信息页面
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jdfkxx.do")
+	public ModelAndView jdfkxx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) queryService.searchById(Vc2_gcxx_gzltb.class, id);
+		modelMap.put("gcxx", gcxx);
+		List<Tf10_gzltb> tf10List = (List<Tf10_gzltb>) queryService.searchList("from Tf10_gzltb where project_id=" + id
+				+ " order by id asc");
+		modelMap.put("tf10List", tf10List);
+		String categories = "";
+		String sjjddata = "";
+		String tbjddata = "";
+		for (Tf10_gzltb tf10 : tf10List) {
+			categories += new SimpleDateFormat("yyyy-MM-dd").format(tf10.getTbrq()) + ",";
+			sjjddata += new BigDecimal(tf10.getSjjd() * 100).setScale(2, BigDecimal.ROUND_HALF_UP) + ",";
+			tbjddata += new BigDecimal(tf10.getTbjd() * 100).setScale(2, BigDecimal.ROUND_HALF_UP) + ",";
+		}
+		if (!tf10List.isEmpty()) {
+			categories = categories.substring(0, categories.length() - 1);
+			sjjddata = sjjddata.substring(0, sjjddata.length() - 1);
+			tbjddata = tbjddata.substring(0, tbjddata.length() - 1);
+		}
+		modelMap.put("categories", categories);
+		modelMap.put("sjjddata", sjjddata);
+		modelMap.put("tbjddata", tbjddata);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jdfkxx.jsp", modelMap);
 	}
 }

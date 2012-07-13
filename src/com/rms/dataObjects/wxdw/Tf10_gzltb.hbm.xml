@@ -6,7 +6,10 @@
 
 <hibernate-mapping
 >
-    <class name="com.rms.dataObjects.wxdw.Tf10_gzltb"  table="Tf10_gzltb">
+    <class
+        name="com.rms.dataObjects.wxdw.Tf10_gzltb"
+        table="Tf10_gzltb"
+    >
 
         <id
             name="id"
@@ -15,65 +18,75 @@
         >
             <generator class="sequence">
                 <param name="sequence">tf10_num</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tf10_gzltb.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
             </generator>
         </id>
 
-   <property
-  name="project_id"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="project_id"
-  />
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
 
-  <property
-  name="tbsl"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="tbsl"
-  />
+        <property
+            name="tbsl"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="tbsl"
+        />
 
-  <property
-  name="tbrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="tbrq"
-  />
+        <property
+            name="tbrq"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="tbrq"
+        />
 
-  <property
-  name="tbr"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="tbr"
-  />
+        <property
+            name="tbr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tbr"
+        />
 
-  <property
-  name="sjjd"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="sjjd"
-  />
+        <property
+            name="sjjd"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sjjd"
+        />
 
-  <property
-  name="tbjd"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="tbjd"
-  />
+        <property
+            name="tbjd"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="tbjd"
+        />
 
-  <property
-  name="jdms"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="jdms"
-  />
+        <property
+            name="jdms"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jdms"
+        />
 
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tf10_gzltb.xml
+            containing the additional properties and place it in your merge dir.
+        -->
 
     </class>
 
