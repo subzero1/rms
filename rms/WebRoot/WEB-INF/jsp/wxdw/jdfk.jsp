@@ -32,7 +32,7 @@
 					<input type="text" readonly="readonly" name="Tf10_gzltb.TBR" style="width:120px;" value="${user.name }" />
 				</p>
 				<p>
-					<label>计划进度：</label>
+					<label>时间进度：</label>
 					<input type="text" readonly="readonly" style="width:120px;" value="<fmt:formatNumber pattern="0.00%" value="${param.jhjd }"/>" />
 					<input type="hidden" name="Tf10_gzltb.SJJD" style="width:120px;" value="<fmt:formatNumber pattern="0.0000" value="${param.jhjd }"/>" />
 				</p>
