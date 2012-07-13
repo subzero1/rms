@@ -8,7 +8,7 @@
 		var url = 'MessageRead.do?message_id='+id+'&messageState=${param.messageState}';
 		$.pdialog.open(url,'xtdxx', '短消息',{mask:true, width:600, height:320});
 	}
-}
+
 </script>
 <form id="pagerForm" method="post" action="MessageList.do?messageState=${param.messageState}">
 	<input type="hidden" name="keyWord" value="${param.keyWord}" />
