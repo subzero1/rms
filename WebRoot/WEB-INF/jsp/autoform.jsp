@@ -7,6 +7,21 @@
 
 <style>
 .scroll-follow{width:180px; height:250px; border:0px solid #ccc; position:relative; margin-left:790px; margin-top:0px; margin-right:30px;} 
+
+/* Firefox*/
+@-moz-document url-prefix()
+{
+	#attachBody{position:absolute;float:right;right:15px;}
+	#mainBody{position:absolute;width:100%;right:0px;}
+}
+
+
+/*Opera*/
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{
+ #attachBody{position:absolute;float:right;right:15px;}
+ #mainBody{border:solid 1px #f00;position:absolute;width:100%;right:0px;}
+}
 </style>
 
 <div class="page">
@@ -119,6 +134,7 @@
 				</div>
 			</div>
 		</div>
+		<div  style="clear:both"></div>  
 	</div>
 </div>
 
