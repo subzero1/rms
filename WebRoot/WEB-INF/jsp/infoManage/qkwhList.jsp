@@ -3,12 +3,12 @@
 <script type="text/javascript">
 $(document).ready(function(){	
 	$("#year").change(function(){
-		navTab.reload('infoManage/zywhList.do',{data:{"year":$(this).val()}, navTabId:"zywhList"});
+		navTab.reload('infoManage/qkwhList.do',{data:{"year":$(this).val()}, navTabId:"qkwhList"});
 	});
 });
 </script>
 
-<h2 class="contentTitle">专业维护
+<h2 class="contentTitle">投资切块维护
 <select id="year" style="width:110px;">
 		<c:forEach var="i" begin="2012" end="${curYear+1}">
 			<c:choose>
@@ -25,14 +25,14 @@ $(document).ready(function(){
 <div class="sysmanage_left" style=" float:left; display:block; margin:10px; overflow:auto; width:22%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 
 	<ul class="tree expand">
-		<li><a href="">${year}专业列表</a>
+		<li><a href="">${year}投资切块列表</a>
 			<ul id="node_li">
-			<c:forEach var="gczy" items="${gczy_list}">
-			   <li><a href="infoManage/zywhEdit.do?id=${gczy.id}" target="loadFileArea" rel="zywhEdit">${gczy.zymc }</a></li>
+			<c:forEach var="tzqk" items="${tzqk_list}">
+			   <li><a href="infoManage/qkwhEdit.do?id=${tzqk.id}" target="loadFileArea" rel="qkwhEdit">${tzqk.qkmc }</a></li>
 			</c:forEach>
 			</ul>
 		</li>
 	</ul>
 </div>
-<div id="zydlEdit" class="loadFileArea sysmanage_right" loadfile="infoManage/zywhEdit.do?year=${year}&id=<c:out value="${param.id}" default="${gczy_list[0].id}"/>" style=" float:left; display:block; margin:10px; overflow:hidden; width:68%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
+<div id="qkwhEdit" class="loadFileArea sysmanage_right" loadfile="infoManage/qkwhEdit.do?year=${year}&id=<c:out value="${param.id}" default="${tzqk_list[0].id}"/>" style=" float:left; display:block; margin:10px; overflow:hidden; width:68%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 </div>
