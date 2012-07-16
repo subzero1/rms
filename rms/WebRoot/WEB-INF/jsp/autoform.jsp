@@ -11,16 +11,16 @@
 /* Firefox*/
 @-moz-document url-prefix()
 {
-	#attachBody{position:absolute;float:right;right:15px;}
+	#attachBody {position:absolute;float:right;right:15px;}
 	#mainBody{position:absolute;width:100%;right:0px;}
 }
 
 
 /*Opera*/
-@media screen and (-webkit-min-device-pixel-ratio:0) 
+@media all and (min-width: 0px)
 {
  #attachBody{position:absolute;float:right;right:15px;}
- #mainBody{border:solid 1px #f00;position:absolute;width:100%;right:0px;}
+ #mainBody{position:absolute;width:100%;right:0px;}
 }
 </style>
 
