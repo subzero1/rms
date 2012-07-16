@@ -4,9 +4,9 @@
 $(document).ready(function(){
 	initSysManageWeb();
 	
-	$("#delGczy").click(function(){
-		var tc03_id = $("#gczy_id",navTab.getCurrentPanel()).val();
-		ajaxTodo('infoManage/ajaxDelZydl.do', navTabAjaxDone ,{"id":tc03_id});
+	$("#delTzqk").click(function(){
+		var tc06_id = $("#tzqk_id",navTab.getCurrentPanel()).val();
+		ajaxTodo('infoManage/ajaxDelQkdl.do', navTabAjaxDone ,{"id":tc06_id});
 	});
 });
 </script>
@@ -14,7 +14,7 @@ $(document).ready(function(){
 <form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 	<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.base.Tc06_tzqk" />
 	<input type="hidden" name="tableInfomation" value="Tc06_tzqk,id,qk_id:com.rms.dataObjects.base.Tc07_qkxx"/>
-	<input type="hidden" id="gczy_id" name="Tc06_tzqk.ID" value="${tc06.id}" />
+	<input type="hidden" id="tzqk_id" name="Tc06_tzqk.ID" value="${tc06.id}" />
 	<input type="hidden" name="perproty" value="id,Tc06_tzqk,id">
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/qkwhList.do" />
@@ -62,7 +62,7 @@ $(document).ready(function(){
 					</li>
 					<c:if test="${not empty tc03}">
 					<li>
-						<div class="button"><div class="buttonContent"><button type="Button" id="delGczy">删 除</button></div></div>
+						<div class="button"><div class="buttonContent"><button type="Button" id="delTzqk">删 除</button></div></div>
 					</li>
 					</c:if>
 				</ul>
