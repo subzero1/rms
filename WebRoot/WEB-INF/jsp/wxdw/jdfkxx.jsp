@@ -116,11 +116,11 @@ $(function () {
 				<div style="height:0px;"></div>
 				<p>
 					<label>填报周期：</label>
-					<input readonly="readonly" type="text" style="width:150px;" value="${gcxx.gcbh}"/>
+					<input readonly="readonly" type="text" style="width:150px;" value="${empty gcxx.sgjdtbzq ? '默认3' : gcxx.sgjdtbzq}天"/>
 				</p>
 				<p>
 					<label>施工单位：</label>
-					<input readonly="readonly" type="text" style="width:376px;" value="${gcxx.gcmc}" />
+					<input readonly="readonly" type="text" style="width:376px;" value="${gcxx.sgdw}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>

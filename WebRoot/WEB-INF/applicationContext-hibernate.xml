@@ -190,6 +190,7 @@
 				<value>com/rms/dataObjects/wxdw/Tf08_clmxb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf10_gzltb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf11_fepcl.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf14_jlrj.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf27_wxdwzhpf.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
@@ -204,6 +205,7 @@
 				<value>com/netsky/base/flow/vo/FormOperDatail.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Vc1_sgpftst.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Vc2_gcxx_gzltb.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/Vc3_gcxx_jlrj.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
