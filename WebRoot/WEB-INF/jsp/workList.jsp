@@ -56,7 +56,7 @@
 				<c:forEach items="${newFormList}" var="formItem">
 					<c:if test="${fn:contains(formItem.url,'module_id=101')}">
 					<li>
-						<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建项目"><span>新建项目	</span></a>
+						<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="打包立项"><span>打包立项	</span></a>
 					</li>
 					<li class="line">line</li>
 					</c:if>
