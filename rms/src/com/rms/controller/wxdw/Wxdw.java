@@ -3,7 +3,6 @@ package com.rms.controller.wxdw;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,19 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.netsky.base.baseObject.HibernateQueryBuilder;
-import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta02_station;
 import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.dataObjects.Ta04_role;
-import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta11_sta_user;
-import com.netsky.base.dataObjects.Ta22_user_idea;
-import com.netsky.base.dataObjects.Tb02_node;
-import com.netsky.base.dataObjects.Tb15_docflow;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.flow.vo.Vc2_gcxx_gzltb;
+import com.netsky.base.flow.vo.Vc3_gcxx_jlrj;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -50,13 +43,13 @@ import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf02_sgd;
-import com.rms.dataObjects.wxdw.Tf03_yhda;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
 import com.rms.dataObjects.wxdw.Tf06_clb;
 import com.rms.dataObjects.wxdw.Tf07_kcb;
 import com.rms.dataObjects.wxdw.Tf08_clmxb;
 import com.rms.dataObjects.wxdw.Tf10_gzltb;
+import com.rms.dataObjects.wxdw.Tf14_jlrj;
 
 @Controller
 public class Wxdw {
@@ -202,7 +195,6 @@ public class Wxdw {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String lb = convertUtil.toString(request.getParameter("lb"));
-		System.out.println(lb);
 		String no_start = "";
 		if (lb.equals("施工")) {
 			no_start = "8";
@@ -1251,9 +1243,6 @@ public class Wxdw {
 		return new ModelAndView("/WEB-INF/jsp/wxdw/gcKcList.jsp", modelMap);
 	}
 
-	public static void main(String[] args) {
-	}
-
 	/**
 	 * 材料类型选项
 	 * 
@@ -1584,6 +1573,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/jdfktxListforSgfzr.do")
 	public ModelAndView jdfktxListforSgfzr(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		modelMap.put("url", "wxdw/jdfktxListforSgfzr.do");
 		// 分页
 		Integer totalPages = 1;
 		Integer totalCount = 0;
@@ -1604,27 +1594,27 @@ public class Wxdw {
 		modelMap.put("orderDirection", orderDirection);
 		StringBuffer hsql = new StringBuffer();
 		hsql
-				.append("select distinct(gcxx) as gcxx,sysdate-((case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+				.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
 		if (!"".equals(gcmc)) {
-			hsql.append("gcxx.gcmc like '%" + gcmc + "%' and ");
+			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
 		hsql
 				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10107,10209) and tb15.user_id="
 						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
-		hsql
-				.append(" and (case when tbrq is null then sjkgsj else tbrq end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq end)");
-		System.out.println(hsql);
+		// hsql
+		// .append(" and (case when tbrq is null then sjkgsj else tbrq
+		// end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq
+		// end)");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
 		while (ro.next()) {
 			Object[] o = new Object[4];
 			Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) ro.get("gcxx");
-			System.out.println(gcxx.getTbjd());
 			o[0] = gcxx;
-			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_DOWN).longValue();
-			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red" : d.equals(0L) ? ""
-					: "yellow";
+			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
+			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red"
+					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
 			o[2] = ro.get("a2");
 			o[3] = ro.get("a3");
 			gcxxList.add(o);
@@ -1650,6 +1640,7 @@ public class Wxdw {
 	@RequestMapping("/wxdw/jdfktxListforXmgly.do")
 	public ModelAndView jdfktxListforXmgly(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		modelMap.put("url", "wxdw/jdfktxListforXmgly.do");
 		// 分页
 		Integer totalPages = 1;
 		Integer totalCount = 0;
@@ -1668,17 +1659,22 @@ public class Wxdw {
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
+		boolean allproject = request.getParameter("allproject") != null;
 		StringBuffer hsql = new StringBuffer();
 		hsql
-				.append("select distinct(gcxx) as gcxx,sysdate-((case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+				.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
 		if (!"".equals(gcmc)) {
-			hsql.append("gcxx.gcmc like '%" + gcmc + "%' and ");
+			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
 		hsql
 				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10101,10202) and tb15.user_id="
-						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
-		hsql
-				.append(" and (case when tbrq is null then sjkgsj end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq end)");
+						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ")");
+		if (!allproject) {
+			hsql.append(" and sjjgsj is null");
+		}
+		// hsql
+		// .append(" and (case when tbrq is null then sjkgsj end)<=sysdate-(case
+		// when sgjdtbzq is null then 3 else sgjdtbzq end)");
 		// orderField
 		hsql.append(" order by " + orderField);
 		// orderDirection
@@ -1690,10 +1686,10 @@ public class Wxdw {
 			Object[] o = new Object[4];
 			Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) ro.get("gcxx");
 			o[0] = gcxx;
-			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_DOWN).longValue();
-			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red" : d.equals(0L) ? ""
-					: "yellow";
-			o[2] = ro.get("a2");
+			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
+			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red"
+					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+					o[2] = ro.get("a2");
 			o[3] = ro.get("a3");
 			gcxxList.add(o);
 		}
@@ -1718,9 +1714,14 @@ public class Wxdw {
 	@RequestMapping("/wxdw/jdfk.do")
 	public ModelAndView jdfk(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		Long id = convertUtil.toLong(request.getParameter("id"));
-		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, id);
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, project_id);
 		modelMap.put("gcxx", gcxx);
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		if (!id.equals(-1L)) {
+			Tf10_gzltb tf10 = (Tf10_gzltb) queryService.searchById(Tf10_gzltb.class, id);
+			modelMap.put("gzltb", tf10);
+		}
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jdfk.jsp", modelMap);
 	}
 
@@ -1759,5 +1760,190 @@ public class Wxdw {
 		modelMap.put("sjjddata", sjjddata);
 		modelMap.put("tbjddata", tbjddata);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jdfkxx.jsp", modelMap);
+	}
+
+	/**
+	 * 监理工程列表(监理工程师)
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jlgcListforJlgcs.do")
+	public ModelAndView jlgcListforJlgcs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		modelMap.put("url", "wxdw/jlgcListforJlgcs.do");
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		if (orderField.equals("")) {
+			orderField = "gcmc";
+		}
+		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		StringBuffer hsql = new StringBuffer();
+		hsql
+				.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
+		if (!"".equals(gcmc)) {
+			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
+		}
+		hsql
+				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10109,10211) and tb15.user_id="
+						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
+		// hsql
+		// .append(" and (case when create_date is null then sjkgsj else
+		// create_date end)<=sysdate-(case when jlrjtbzq is null then 3 else
+		// jlrjtbzq end)");
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Object[]> gcxxList = new ArrayList<Object[]>();
+		while (ro.next()) {
+			Object[] o = new Object[4];
+			Vc3_gcxx_jlrj gcxx = (Vc3_gcxx_jlrj) ro.get("gcxx");
+			o[0] = gcxx;
+			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
+			o[1] = d >= convertUtil.toLong(((Vc3_gcxx_jlrj) o[0]).getJlrjtbzq(), 3L) ? "red"
+					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+			o[2] = ro.get("a2");
+			gcxxList.add(o);
+		}
+		modelMap.put("gcxxList", gcxxList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jlgcList.jsp?canedit=true", modelMap);
+	}
+
+	/**
+	 * 监理工程列表(项目管理员)
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jlgcListforXmgly.do")
+	public ModelAndView jlgcListforXmgly(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ModelMap modelMap = new ModelMap();
+		modelMap.put("url", "wxdw/jlgcListforXmgly.do");
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		if (orderField.equals("")) {
+			orderField = "gcmc";
+		}
+		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		StringBuffer hsql = new StringBuffer();
+		boolean allproject = request.getParameter("allproject") != null;
+		hsql
+				.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
+		if (!"".equals(gcmc)) {
+			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
+		}
+		hsql
+				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10101,10202) and tb15.user_id="
+						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ")");
+		if (!allproject) {
+			hsql.append(" and sjjgsj is null");
+		}
+		// hsql
+		// .append(" and (case when create_date is null then sjkgsj else
+		// create_date end)<=sysdate-(case when jlrjtbzq is null then 3 else
+		// jlrjtbzq end)");
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Object[]> gcxxList = new ArrayList<Object[]>();
+		while (ro.next()) {
+			Object[] o = new Object[4];
+			Vc3_gcxx_jlrj gcxx = (Vc3_gcxx_jlrj) ro.get("gcxx");
+			o[0] = gcxx;
+			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
+			o[1] = d >= convertUtil.toLong(((Vc3_gcxx_jlrj) o[0]).getJlrjtbzq(), 3L) ? "red"
+					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+			o[2] = ro.get("a2");
+			gcxxList.add(o);
+		}
+		modelMap.put("gcxxList", gcxxList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jlgcList.jsp", modelMap);
+
+	}
+
+	/**
+	 * 监理日志页面
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jlrj.do")
+	public ModelAndView jlrj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, project_id);
+		modelMap.put("gcxx", gcxx);
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		if (!id.equals(-1L)) {
+			Tf14_jlrj tf14 = (Tf14_jlrj) queryService.searchById(Tf14_jlrj.class, id);
+			modelMap.put("jlrj", tf14);
+		}
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jlrj.jsp", modelMap);
+	}
+
+	public static void main(String[] args) {
+	}
+	
+	/**
+	 * 监理日志信息页面
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/jlrjxx.do")
+	public ModelAndView jlrjxx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		Vc3_gcxx_jlrj gcxx = (Vc3_gcxx_jlrj) queryService.searchById(Vc3_gcxx_jlrj.class, id);
+		modelMap.put("gcxx", gcxx);
+		List<Object[]> tf14List = (List<Object[]>) queryService.searchList("select jlrj,user.name as user_name from Tf14_jlrj jlrj,Ta03_user user where user.id=jlrj.user_id and project_id=" + id
+				+ " order by jlrj.id asc");
+		modelMap.put("tf14List", tf14List);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/jlrjxx.jsp", modelMap);
 	}
 }

@@ -5,10 +5,10 @@ import java.util.Date;
 
 /**
  * @author cmp_auto 2012-06-04
- * @hibernate.class table="Vc2_gcxx_gzltb"
+ * @hibernate.class table="Vc3_gcxx_jlrj"
  */
 
-public class Vc2_gcxx_gzltb implements Serializable {
+public class Vc3_gcxx_jlrj implements Serializable {
 
 	/**
 	 * 
@@ -1539,124 +1539,91 @@ public class Vc2_gcxx_gzltb implements Serializable {
 		this.sdpgyy = sdpgyy;
 	}
 
-	/**
-	 * 填报数量
-	 */
-	private Long tbsl;
+	private Long user_id;
+	private Date create_date;
+	private String zt;
+	private String xcms;
 
 	/**
-	 * @hibernate.property column="tbsl"
-	 * @return Returns the tbsl.
+	 * @hibernate.property column="user_id"
+	 * @return Returns the user_id.
 	 */
-	public Long getTbsl() {
-		return tbsl;
-	}
-
-	public void setTbsl(Long tbsl) {
-		this.tbsl = tbsl;
+	public Long getUser_id() {
+		return user_id;
 	}
 
 	/**
-	 * 填报日期
+	 * @param user_id
+	 *            The user_id to set.
 	 */
-	private Date tbrq;
-
-	/**
-	 * @hibernate.property column="tbrq"
-	 * @return Returns the tbrq.
-	 */
-	public Date getTbrq() {
-		return tbrq;
-	}
-
-	public void setTbrq(Date tbrq) {
-		this.tbrq = tbrq;
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	/**
-	 * 填报人
+	 * @hibernate.property column="create_date"
+	 * @return Returns the create_date.
 	 */
-	private String tbr;
-
-	/**
-	 * @hibernate.property column="tbr"
-	 * @return Returns the tbr.
-	 */
-	public String getTbr() {
-		return tbr;
-	}
-
-	public void setTbr(String tbr) {
-		this.tbr = tbr;
+	public Date getCreate_date() {
+		return create_date;
 	}
 
 	/**
-	 * 时间进度
+	 * @param create_date
+	 *            The create_date to set.
 	 */
-	private Double sjjd;
-
-	/**
-	 * @hibernate.property column="sjjd"
-	 * @return Returns the sjjd.
-	 */
-	public Double getSjjd() {
-		return sjjd;
-	}
-
-	public void setSjjd(Double sjjd) {
-		this.sjjd = sjjd;
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
 	}
 
 	/**
-	 * 填报进度
+	 * @hibernate.property column="zt"
+	 * @return Returns the zt.
 	 */
-	private Double tbjd;
-
-	/**
-	 * @hibernate.property column="tbjd"
-	 * @return Returns the tbjd.
-	 */
-	public Double getTbjd() {
-		return tbjd;
-	}
-
-	public void setTbjd(Double tbjd) {
-		this.tbjd = tbjd;
+	public String getZt() {
+		return zt;
 	}
 
 	/**
-	 * 进度描述
+	 * @param zt
+	 *            The zt to set.
 	 */
-	private String jdms;
-
-	/**
-	 * @hibernate.property column="jdms"
-	 * @return Returns the jdms.
-	 */
-	public String getJdms() {
-		return jdms;
-	}
-
-	public void setJdms(String jdms) {
-		this.jdms = jdms;
-	}
-
-	private Long gzltb_id;
-
-	/**
-	 * @hibernate.property column="gzltb_id"
-	 * @return Returns the gzltb_id.
-	 */
-	public Long getGzltb_id() {
-		return gzltb_id;
+	public void setZt(String zt) {
+		this.zt = zt;
 	}
 
 	/**
-	 * @param gzltb_id
-	 *            The gzltb_id to set.
+	 * @hibernate.property column="xcms"
+	 * @return Returns the xcms.
 	 */
-	public void setGzltb_id(Long gzltb_id) {
-		this.gzltb_id = gzltb_id;
+	public String getXcms() {
+		return xcms;
+	}
+
+	/**
+	 * @param xcms
+	 *            The xcms to set.
+	 */
+	public void setXcms(String xcms) {
+		this.xcms = xcms;
+	}
+
+	private Long jlrj_id;
+
+	/**
+	 * @hibernate.property column="jlrj_id"
+	 * @return Returns the jlrj_id.
+	 */
+	public Long getJlrj_id() {
+		return jlrj_id;
+	}
+
+	/**
+	 * @param jlrj_id
+	 *            The jlrj_id to set.
+	 */
+	public void setJlrj_id(Long jlrj_id) {
+		this.jlrj_id = jlrj_id;
 	}
 
 }

@@ -54,12 +54,11 @@
 				<tr>
 					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th orderField="gcmc">工程名称</th>
-					<th style="width: 100px;" orderField="sgdw">施工单位</th>
-					<th style="width: 100px;" orderField="jhjgsj">计划竣工</th>
-					<th style="width: 70px;" orderField="sgjdtbzq">填报周期</th>
-					<th style="width: 100px;">应填报日期</th>
-					<th style="width: 70px;">时间进度</th>
-					<th style="width: 70px;">填报进度</th>
+					<th style="width: 100px;" orderField="jldw">监理单位</th>
+					<th style="width: 70px;" orderField="jlrjtbzq">填报周期</th>
+					<th style="width: 100px;" orderField="create_date">创建时间</th>
+					<th style="width: 70px;" orderField="zt">状态</th>
+					<th style="width: 200px;" orderField="xcms">现场描述</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,20 +68,18 @@
 					<tr style="background-color: ${obj[1] }">
 						<td>${obj[0].gcbh }</td>
 						<td>${obj[0].gcmc }</td>
-						<td>${obj[0].sgdw }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].jhjgsj }"/></td>
-						<td>${empty obj[0].sgjdtbzq ? '默认3' : obj[0].sgjdtbzq}天</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[2] }"/></td>
-						<td><c:if test="${param.canedit == 'true'}"><a href="wxdw/jdfk.do?project_id=${obj[0].id}&jhjd=${obj[3] }<c:if test="${obj[1] == '' }">&id=${obj[0].gzltb_id }</c:if>" target="dialog" rel="jdfk" width="528" height="297" title="进度反馈"><fmt:formatNumber pattern="0.00%" value="${obj[3] }"/></a></c:if>
-							<c:if test="${param.canedit != 'true'}"><fmt:formatNumber pattern="0.00%" value="${obj[3] }"/></c:if>
+						<td>${obj[0].jldw }</td>
+						<td><c:if test="${not empty param.canedit}"><a href="wxdw/jlrj.do?project_id=${obj[0].id}<c:if test="${obj[1] == '' }">&id=${obj[0].jlrj_id }</c:if>" target="dialog" rel="jlrj" width="528" height="297" title="监理日志">${empty obj[0].jlrjtbzq ? '默认3' : obj[0].jlrjtbzq}天</a></c:if>
+							<c:if test="${empty param.canedit}">${empty obj[0].jlrjtbzq ? '默认3' : obj[0].jlrjtbzq}天</c:if>
 						</td>
-						<td><fmt:formatNumber pattern="0.00%" value="${obj[0].tbjd }"/></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].create_date }"/></td>
+						<td>${obj[0].zt }</td>
+						<td>${obj[0].xcms }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>

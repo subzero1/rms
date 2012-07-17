@@ -7,8 +7,8 @@
 <hibernate-mapping
 >
     <class
-        name="com.netsky.base.flow.vo.Vc2_gcxx_gzltb"
-        table="Vc2_gcxx_gzltb"
+        name="com.netsky.base.flow.vo.Vc3_gcxx_jlrj"
+        table="Vc3_gcxx_jlrj"
     >
 
         <id
@@ -19,7 +19,7 @@
             <generator class="assigned">
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Vc2_gcxx_gzltb.xml 
+                  hibernate-generator-params-Vc3_gcxx_jlrj.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
@@ -730,64 +730,48 @@
         />
 
         <property
-            name="tbsl"
+            name="user_id"
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="tbsl"
+            column="user_id"
         />
 
         <property
-            name="tbrq"
+            name="create_date"
             type="java.util.Date"
             update="true"
             insert="true"
-            column="tbrq"
+            column="create_date"
         />
 
         <property
-            name="tbr"
+            name="zt"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="tbr"
+            column="zt"
         />
 
         <property
-            name="sjjd"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="sjjd"
-        />
-
-        <property
-            name="tbjd"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="tbjd"
-        />
-
-        <property
-            name="jdms"
+            name="xcms"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="jdms"
+            column="xcms"
         />
 
         <property
-            name="gzltb_id"
+            name="jlrj_id"
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="gzltb_id"
+            column="jlrj_id"
         />
 
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-Vc2_gcxx_gzltb.xml
+                hibernate-properties-Vc3_gcxx_jlrj.xml
             containing the additional properties and place it in your merge dir.
         -->
 
