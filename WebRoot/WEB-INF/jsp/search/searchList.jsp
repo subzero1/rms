@@ -60,19 +60,19 @@ function searchListExport(){
 						<c:forEach var="td" items="${tdList}">
 							<c:set var="offset_td" scope="page" value="${offset_td + 1}"/>
 							<c:choose>
-								<c:when test="${offset_td == 1 && param.module_id == 200}">
-									<td>
-										<a href="info/jfpm.do?id=${td.value }" target="navTab" rel="showJfpmInfo" title="机房信息"><img border="0" src="Images/project.png" /></a>
-									</td>
-								</c:when>
 								<c:when test="${offset_td == 1 && param.module_id == 1}">
 									<td>
 										<a href="mbk/mbkEdit.do?id=${td.value }" target="navTab" rel="mbk" title="目标库信息"><img border="0" src="Images/project.png" /></a>
 									</td>
 								</c:when>
-								<c:when test="${offset_td == 1 && param.module_id != 101}">
+								<c:when test="${offset_td == 1 && param.module_id == 101}">
 									<td>
-									<a href="flowForm.do?module_id=102&node_id=10201&flow_id=102&project_id=${td.value }" target="navTab" rel="autoform" title="新建工程"><img border="0" src="Images/project.png" /></a>
+										<a href="javascript:openFlowForm('{project_id:${td.value},doc_id:${td.value},module_id:101,opernode_id:-1,node_id:-1,user_id:-1}');" title="表单[${doc[cols].project_id}]"  title="项目信息"><img border="0" src="Images/project.png" /></a>
+									</td>
+								</c:when>
+								<c:when test="${offset_td == 1 && param.module_id == 102}">
+									<td>
+										<a href="javascript:openFlowForm('{project_id:${td.value},doc_id:${td.value},module_id:102,opernode_id:-1,node_id:-1,user_id:-1}');" title="表单[${doc[cols].project_id}]"  title="工程信息"><img border="0" src="Images/project.png" /></a>
 									</td>
 								</c:when>
 								<c:otherwise>
