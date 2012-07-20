@@ -22,8 +22,8 @@ $(function(){
 	   	
 function xzdbgc(){
 		//选择打包工程
-		var url = 'form/xzgcForDblx.do?project_id=${td01_xmxx.id}';
-		$.pdialog.open(url,'_xzgcForDblx','选择打包工程',{width:800,height:500});
+		var url = 'form/xzgcForDblx.do?xm_id=${td01_xmxx.id}';
+		$.pdialog.open(url,'_xzgcForDblx','选择打包工程',{width:800,height:520});
 	}
 </script>
 

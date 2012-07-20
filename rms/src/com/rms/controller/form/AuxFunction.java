@@ -21,6 +21,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.service.SaveService;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta14_group_user;
 
@@ -33,6 +34,9 @@ public class AuxFunction {
 
 	@Autowired
 	private QueryService queryService;
+	
+	@Autowired
+	private SaveService saveService;
 
 	@RequestMapping("/form/xzgcForDblx.do")
 	public ModelAndView xzgcForDblx(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -77,7 +81,7 @@ public class AuxFunction {
 	}
 	
 	/**
-	 * 处理用户群组配置信息
+	 * 打包立项选择工程保存
 	 * 
 	 * @param request
 	 * @param response
@@ -89,48 +93,31 @@ public class AuxFunction {
 			HttpServletResponse response, HttpSession session) throws Exception {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		String[] groups = request.getParameterValues("t_group");
-		Long id = convertUtil.toLong(request.getParameter("user_id"), -1L);
+		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"), -1L);
+		String forwardUrl = "-1";
 
-		String forwardUrl = "sysManage/userList.do?user_id="
-				+ convertUtil.toString(request.getParameter("user_id"), "");
-
-		// 获取岗位的对象
-		StringBuffer checkGroup = new StringBuffer();
-		checkGroup
-				.append("select ta14 from Ta14_group_user ta14 where user_id=");
-		checkGroup.append(id);
 		try {
-			// 把数据库所有岗位相关的角色放到集合里面
-			List allGroupList = (dao.search(checkGroup.toString()));
-			if (groups == null || groups.length == 0) {
-				// 对现有的岗位对象进行判断，如果不为空，进行清空
-				if (!allGroupList.isEmpty()) {
-					for (int r = 0; r < allGroupList.size(); r++) {
-						dao.removeObject(allGroupList.toArray()[r]);
-					}
-				}
-			} else {
-				// 对现有的岗位对象进行判断，如果不为空，进行清空
-				if (!allGroupList.isEmpty()) {
-					for (int r = 0; r < allGroupList.size(); r++) {
-						dao.removeObject(allGroupList.toArray()[r]);
-					}
-				}
-				// 对配置的角色进行保存
-				for (int i = 0; i < groups.length; i++) {
-					Ta14_group_user group_user = new Ta14_group_user();
-					group_user.setUser_id(id);
-					group_user.setGroup_id(new Long(groups[i]));
-					if (id != -1) {
-						dao.saveObject(group_user);
-					}
-				}
+			// 获取岗位的对象
+			StringBuffer sql = new StringBuffer();
+			sql.delete(0, sql.length());
+			sql.append("update Td00_gcxx set xm_id = null where xm_id=");
+			sql.append(xm_id);
+			saveService.updateByHSql(sql.toString());
+			
+			// 对配置的角色进行保存
+			for (int i = 0; i < groups.length; i++) {
+				sql.delete(0, sql.length());
+				sql.append("update Td00_gcxx set xm_id = ");
+				sql.append(xm_id);
+				sql.append(" where id = ");
+				sql.append(groups[i]);
+				saveService.updateByHSql(sql.toString());
 			}
+			
 			response
 					.getWriter()
 					.print(
-							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"userList\",\"forwardUrl\":\""
-									+ forwardUrl + "\", \"callbackType\":\"\"}");
+							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			response.getWriter().print(
 					"{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
