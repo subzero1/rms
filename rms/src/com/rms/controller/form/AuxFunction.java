@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class AuxFunction {
 	
 	@Autowired
 	private SaveService saveService;
+	
+	/**
+	 * 日志处理类
+	 */
+	private Logger log = Logger.getLogger(this.getClass());
 
 	@RequestMapping("/form/xzgcForDblx.do")
 	public ModelAndView xzgcForDblx(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -89,7 +95,7 @@ public class AuxFunction {
 	 * @param ModelAndView
 	 */
 	@RequestMapping("/form/saveXzgcForDblx.do")
-	public ModelAndView saveUserGroups(HttpServletRequest request,
+	public ModelAndView saveXzgcForDblx(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		String[] groups = request.getParameterValues("t_group");
@@ -105,13 +111,15 @@ public class AuxFunction {
 			saveService.updateByHSql(sql.toString());
 			
 			// 对配置的角色进行保存
-			for (int i = 0; i < groups.length; i++) {
-				sql.delete(0, sql.length());
-				sql.append("update Td00_gcxx set xm_id = ");
-				sql.append(xm_id);
-				sql.append(" where id = ");
-				sql.append(groups[i]);
-				saveService.updateByHSql(sql.toString());
+			if(groups != null){
+				for (int i = 0; i < groups.length; i++) {
+					sql.delete(0, sql.length());
+					sql.append("update Td00_gcxx set xm_id = ");
+					sql.append(xm_id);
+					sql.append(" where id = ");
+					sql.append(groups[i]);
+					saveService.updateByHSql(sql.toString());
+				}
 			}
 			
 			response
@@ -119,8 +127,8 @@ public class AuxFunction {
 					.print(
 							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
-			response.getWriter().print(
-					"{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+			log.error("saveXzgcForDblx.do[com.rms.controller.form.AuxFunction]"+e.getMessage()+e);
+			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
 		}
 		return null;
 	}
