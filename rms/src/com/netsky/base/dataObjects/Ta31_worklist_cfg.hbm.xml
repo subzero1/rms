@@ -28,7 +28,7 @@
 
   <property
   name="field_id"
-  type="java.lang.String"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="field_id"
