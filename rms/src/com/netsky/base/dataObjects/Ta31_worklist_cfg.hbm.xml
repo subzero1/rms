@@ -36,7 +36,7 @@
 
   <property
   name="ord"
-  type="java.lang.Long"
+  type="java.lang.Integer"
   update="true"
   insert="true"
   column="ord"
