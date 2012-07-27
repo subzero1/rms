@@ -171,6 +171,15 @@ public class AuxFunction {
 			MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
 			Long project_id = convertUtil.toLong(request.getParameter("project_id"), -1L);
 			
+			saveService.updateByHSql("delete from Te03_gcgys_b1 where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_b2 where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_b3j where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_b3y where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_b3b where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_b4j where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_b5j where gc_id = "+project_id);
+			saveService.updateByHSql("delete from Te03_gcgys_zhxx where gc_id = "+project_id);
+			
 			Iterator<?> it = mrequest.getFileNames();
 			if (it.hasNext()) {
 				String file_name = (String)it.next();
@@ -204,43 +213,47 @@ public class AuxFunction {
 					
 					Map<String, Integer> columnIndex = null;
 					String className = null;
+					String[] colName = null;
 					
 					if(sheetName.indexOf("表一") != -1){
 						
 						//{序号、表格编号、费用名称、小型建筑工程费、需安设备费、不需安设备费、建筑安装工程费、其它费、预算费、人民币总价、外币总价}
-						String[] colName = {"xh","bgbh","fymc","jzgcf","xasbf","bxasbf","azgcf","qtfy","ybf","rmbzj","wbzj"};
-						columnIndex = new HashMap<String, Integer>();
-						for(int j = 0;j < colName.length;j ++){
-							columnIndex.put(colName[j].toUpperCase(), new Integer(x + j));
-						}
+						colName = new String[]{"xh","bgbh","fymc","jzgcf","xasbf","bxasbf","azgcf","qtfy","ybf","rmbzj","wbzj"};
 						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b1";
 					}
 					else if(sheetName.indexOf("表二") != -1){
 						
 						//{序号、费用名称、依据算法、技工费、普工费、合计。。。}
-						String[] colName = {"xh1","fymc1","yjsf1","jgf1","pgf1","hj1","xh2","fymc2","yjsf2","jgf2","pgf2","hj2"};
-						columnIndex = new HashMap<String, Integer>();
-						for(int j = 0;j < colName.length;j ++){
-							columnIndex.put(colName[j].toUpperCase(), new Integer(x + j));
-						}
+						colName = new String[]{"xh1","fymc1","yjsf1","jgf1","pgf1","hj1","xh2","fymc2","yjsf2","jgf2","pgf2","hj2"};
 						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b2";
 					}
 					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("甲") != -1){
-											
+						
+					
 					}
 					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("乙") != -1){
+						
 						
 					}
 					if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("丙") != -1){
 						
+						
 					}
 					else if(sheetName.indexOf("表四") != -1){
 						
+						
 					}
 					else if(sheetName.indexOf("表五") != -1){
-											
+							
+						
 					}
-					if(columnIndex != null){
+					
+					if(className != null){
+						columnIndex = new HashMap<String, Integer>();
+						for(int j = 0;j < colName.length;j ++){
+							columnIndex.put(colName[j].toUpperCase(), new Integer(x + j));
+						}
+						
 						int t_row = y;
 						while(t_row < rows - 1){
 							Object o = Class.forName(className).newInstance();
