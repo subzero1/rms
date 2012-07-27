@@ -20,10 +20,16 @@ $(function(){
 			});	
 	   	});
 	   	
-function xzdbgc(){
+	function xzdbgc(){
 		//选择打包工程
 		var url = 'form/xzgcForDblx.do?xm_id=${td01_xmxx.id}';
 		$.pdialog.open(url,'_xzgcForDblx','选择打包工程',{width:800,height:520});
+	}
+	
+	function yssc(){
+		//预算上传
+		var url = 'dispath.do?url=gysImport.jsp?xm_id=${td01_xmxx.id}';
+		$.pdialog.open(url,'_yssc','预算上传',{width:400,height:180});
 	}
 </script>
 

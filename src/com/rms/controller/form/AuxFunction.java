@@ -2,7 +2,15 @@ package com.rms.controller.form;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.Cell;
+import jxl.read.biff.BiffException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
@@ -25,7 +35,16 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta14_group_user;
+import com.netsky.base.baseObject.PropertyInject;
 
+import com.rms.dataObjects.gcjs.Te03_gcgys_b1;
+import com.rms.dataObjects.gcjs.Te03_gcgys_b2;
+import com.rms.dataObjects.gcjs.Te03_gcgys_b3j;
+import com.rms.dataObjects.gcjs.Te03_gcgys_b3y;
+import com.rms.dataObjects.gcjs.Te03_gcgys_b3b;
+import com.rms.dataObjects.gcjs.Te03_gcgys_b4j;
+import com.rms.dataObjects.gcjs.Te03_gcgys_b5j;
+import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
 
 @Controller
 public class AuxFunction {
@@ -128,6 +147,114 @@ public class AuxFunction {
 							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			log.error("saveXzgcForDblx.do[com.rms.controller.form.AuxFunction]"+e.getMessage()+e);
+			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+		}
+		return null;
+	}
+	
+	/**
+	 * 概预算导入
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param ModelAndView
+	 */
+	@RequestMapping("/form/gysImport.do")
+	public ModelAndView gysImport(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+
+		Workbook wb = null;  
+		Sheet sheet = null;
+		try {
+			MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
+			Long project_id = convertUtil.toLong(request.getParameter("project_id"), -1L);
+			
+			Iterator<?> it = mrequest.getFileNames();
+			if (it.hasNext()) {
+				String file_name = (String)it.next();
+				MultipartFile file = mrequest.getFile(file_name);
+				wb = Workbook.getWorkbook(file.getInputStream());  
+				Sheet[] sheets = wb.getSheets();
+				for(int i = 0;i < sheets.length;i ++){
+					String sheetName = sheets[i].getName(); 
+					sheet = wb.getSheet(sheetName);  
+					
+					/*
+					 * 获得导入的起始单元格的横、纵坐标
+					 */
+					int x = 0,y = 0; 
+					Cell cell = sheet.findCell("序号");
+					if(cell != null){
+						y = cell.getRow();
+						x = cell.getColumn() + 2;
+					}
+					else{
+						cell = sheet.findCell("Ⅰ");
+						if(cell == null)
+							throw new Exception("Excel格式非法，请按标准模板上传");
+						y = cell.getRow();
+						x = cell.getColumn() + 1;
+					}
+					
+					
+					int rows = sheet.getRows();  //rows取得当前工作蒲一共有几行
+					int cols = sheet.getColumns();  //rows取得当前工作蒲一共有几列
+					
+					Map<String, Integer> columnIndex = null;
+					String className = null;
+					
+					if(sheetName.indexOf("表一") != -1){
+						
+						//{序号、表格编号、费用名称、小型建筑工程费、需安设备费、不需安设备费、建筑安装工程费、其它费、预算费、人民币总价、外币总价}
+						String[] colName = {"xh","bgbh","fymc","jzgcf","xasbf","bxasbf","azgcf","qtfy","ybf","rmbzj","wbzj"};
+						columnIndex = new HashMap<String, Integer>();
+						for(int j = 0;j < colName.length;j ++){
+							columnIndex.put(colName[j].toUpperCase(), new Integer(x + j));
+						}
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b1";
+					}
+					else if(sheetName.indexOf("表二") != -1){
+						
+						//{序号、费用名称、依据算法、技工费、普工费、合计。。。}
+						String[] colName = {"xh1","fymc1","yjsf1","jgf1","pgf1","hj1","xh2","fymc2","yjsf2","jgf2","pgf2","hj2"};
+						columnIndex = new HashMap<String, Integer>();
+						for(int j = 0;j < colName.length;j ++){
+							columnIndex.put(colName[j].toUpperCase(), new Integer(x + j));
+						}
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b2";
+					}
+					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("甲") != -1){
+											
+					}
+					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("乙") != -1){
+						
+					}
+					if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("丙") != -1){
+						
+					}
+					else if(sheetName.indexOf("表四") != -1){
+						
+					}
+					else if(sheetName.indexOf("表五") != -1){
+											
+					}
+					if(columnIndex != null){
+						int t_row = y;
+						while(t_row < rows - 1){
+							Object o = Class.forName(className).newInstance();
+							PropertyInject.setProperty(o, "gc_id", project_id);
+							PropertyInject.injectFromExcel(o, columnIndex, sheet, t_row);
+							saveService.save(o);
+						}
+					}
+				}
+			}
+			
+			response.getWriter().print("{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
+		} catch (Exception e) {
+			log.error("gysImport.do[com.rms.controller.form.AuxFunction]"+e.getMessage()+e);
 			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
 		}
 		return null;
