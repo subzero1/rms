@@ -92,7 +92,7 @@ $(function(){
 	<p>
 		<label><a href="wxdw/jlrjxx.do?id=${td00_gcxx.id }" target="navTab" rel="jlrjxx">监</a>
 		<a href="wxdw/jdfkxx.do?id=${td00_gcxx.id }" target="navTab" rel="jdfkxx">馈</a>设计单位：</label>
-		<netsky:htmlSelect name="Td00_gcxx.SJDW" objectForOption="sjdwList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.sjdw}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.SJDW" objectForOption="sjdwList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.sjdw}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>勘察反馈时限：</label>
@@ -119,7 +119,7 @@ $(function(){
 	<div style="height:0px;"></div>
 	<p>
 		<label>监理单位：</label>
-		<netsky:htmlSelect name="Td00_gcxx.JLDW" objectForOption="jldwList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.jldw}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.JLDW" objectForOption="jldwList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.jldw}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>日志填报周期：</label>
