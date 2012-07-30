@@ -13,7 +13,7 @@ _color:#FF0000; IE6Ö§³Ö
 /*-----------------------²¹³ä----------------------------*/
 .panel .panelContent ul { display:block;}
 .panel .panelContent li { height:21px;cursor:pointer;border-bottom:dashed 1px #ccc;line-height:27px;}
-.panel .panelContent li a { float:left; display:block; height:21px; padding-left:5px;}
+.panel .panelContent li a { float:left; display:block; height:21px; padding-left:5px;line-height:24px;}
 .panel .panelContent li a:hover {text-decoration:none; background:#e0e0e0;}
 .panel  li span {float:left; display:block; overflow:hidden; height:21px; padding:2px 10px 0 5px; line-height:21px;cursor:pointer;}
 .panel  li.hover { background:#e0e0e0;}
