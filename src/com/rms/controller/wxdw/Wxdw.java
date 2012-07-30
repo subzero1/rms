@@ -50,6 +50,7 @@ import com.rms.dataObjects.wxdw.Tf07_kcb;
 import com.rms.dataObjects.wxdw.Tf08_clmxb;
 import com.rms.dataObjects.wxdw.Tf10_gzltb;
 import com.rms.dataObjects.wxdw.Tf14_jlrj;
+import com.sun.java_cup.internal.sym;
 
 @Controller
 public class Wxdw {
@@ -1689,7 +1690,7 @@ public class Wxdw {
 			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
 			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red"
 					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
-					o[2] = ro.get("a2");
+			o[2] = ro.get("a2");
 			o[3] = ro.get("a3");
 			gcxxList.add(o);
 		}
@@ -1925,7 +1926,7 @@ public class Wxdw {
 
 	public static void main(String[] args) {
 	}
-	
+
 	/**
 	 * 监理日志信息页面
 	 * 
@@ -1941,12 +1942,13 @@ public class Wxdw {
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		Vc3_gcxx_jlrj gcxx = (Vc3_gcxx_jlrj) queryService.searchById(Vc3_gcxx_jlrj.class, id);
 		modelMap.put("gcxx", gcxx);
-		List<Object[]> tf14List = (List<Object[]>) queryService.searchList("select jlrj,user.name as user_name from Tf14_jlrj jlrj,Ta03_user user where user.id=jlrj.user_id and project_id=" + id
-				+ " order by jlrj.id asc");
+		List<Object[]> tf14List = (List<Object[]>) queryService
+				.searchList("select jlrj,user.name as user_name from Tf14_jlrj jlrj,Ta03_user user where user.id=jlrj.user_id and project_id="
+						+ id + " order by jlrj.id asc");
 		modelMap.put("tf14List", tf14List);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jlrjxx.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 材料明细查询
 	 * 
@@ -1961,7 +1963,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		return new ModelAndView("/WEB-INF/jsp/wxdw/clmxcx.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 库存查询
 	 * 
@@ -1974,6 +1976,97 @@ public class Wxdw {
 	@RequestMapping("/wxdw/kccx.do")
 	public ModelAndView kccx(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		// 权限判断 是项目管理员还是施工单位
+		String type = convertUtil.toString(request.getParameter("type"));
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		if ("xmgly".equals(type)) {
+			List<Tf01_wxdw> tf01List = (List<Tf01_wxdw>) queryService.searchList("from Tf01_wxdw where lb='施工'");
+			modelMap.put("tf01List", tf01List);
+			if (tf01List != null && !tf01List.isEmpty() && wxdw_id == -1L) {
+				wxdw_id = tf01List.get(0).getId();
+			}
+		} else if ("wxdw".equals(type)) {
+			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+			List<Tf01_wxdw> tmpList = (List<Tf01_wxdw>) queryService
+					.searchList("from Tf01_wxdw where id=(select wxdw_id from Tf04_wxdw_user where user_id="
+							+ user.getId() + ")");
+			if (tmpList != null && !tmpList.isEmpty() && wxdw_id == -1L){
+				wxdw_id = tmpList.get(0).getId();
+			}
+		}
+
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "clmc");
+		if (orderField.equals("")) {
+			orderField = "clmc";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		// 查询条件
+		String clmc = convertUtil.toString(request.getParameter("clmc"));
+		String gg = convertUtil.toString(request.getParameter("gg"));
+		String xh = convertUtil.toString(request.getParameter("xh"));
+
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select clmc,xh,dw,gg,sum(kcsl) as kcsl,sgdw_id,cllx from Tf07_kcb kcb where sgdw_id=" + wxdw_id);
+		// where条件
+		// 材料名称
+		if (!clmc.equals("")) {
+			hsql.append(" and clmc like '%" + clmc + "%'");
+		}
+		// 规格
+		if (!gg.equals("")) {
+			hsql.append(" and gg like '%" + gg + "%'");
+		}
+		// 型号
+		if (!xh.equals("")) {
+			hsql.append(" and xh like '%" + xh + "%'");
+		}
+		// group by
+		hsql.append(" group by clmc,xh,dw,gg,sgdw_id,cllx ");
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Tf07_kcb> kcbList = new ArrayList<Tf07_kcb>();
+		// 导EXCEL
+		while (ro.next()) {
+			Tf07_kcb tf07 = new Tf07_kcb();
+			tf07.setClmc(convertUtil.toString(ro.get("clmc")));
+			tf07.setXh(convertUtil.toString(ro.get("xh")));
+			tf07.setDw(convertUtil.toString(ro.get("dw")));
+			tf07.setGg(convertUtil.toString(ro.get("gg")));
+			tf07.setKcsl(convertUtil.toLong(ro.get("kcsl")));
+			tf07.setKcsl(convertUtil.toLong(ro.get("kcsl")));
+			kcbList.add(tf07);
+		}
+		modelMap.put("kcbList", kcbList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		// 页面所需内容
+		// 类别
+		List<String> lbList = new ArrayList<String>();
+		lbList.add("设计单位");
+		lbList.add("施工单位");
+		lbList.add("监理单位");
+		modelMap.put("lbList", lbList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/kccx.jsp", modelMap);
 	}
 }
