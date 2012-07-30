@@ -774,8 +774,7 @@ public class Relation {
 		String[] fields = request.getParameterValues("t_field");
 		Long id = convertUtil.toLong(request.getParameter("node_id"), -1L);
 
-		String forwardUrl = "sysManage/staList.do?group_id="
-				+ convertUtil.toString(request.getParameter("node_id"), "");
+		
 		// 获取岗位的对象
 		StringBuffer checkfield = new StringBuffer();
 		checkfield
@@ -811,8 +810,7 @@ public class Relation {
 			response
 					.getWriter()
 					.print(
-							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"staList\",\"forwardUrl\":\""
-									+ forwardUrl + "\", \"callbackType\":\"\"}");
+							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			response.getWriter().print(
 					"{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
