@@ -188,6 +188,7 @@
 				<value>com/rms/dataObjects/wxdw/Tf06_clb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf07_kcb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf08_clmxb.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf09_wxgg.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf10_gzltb.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf11_fepcl.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf14_jlrj.hbm.xml</value>

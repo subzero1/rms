@@ -1946,4 +1946,34 @@ public class Wxdw {
 		modelMap.put("tf14List", tf14List);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/jlrjxx.jsp", modelMap);
 	}
+	
+	/**
+	 * 材料明细查询
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/clmxcx.do")
+	public ModelAndView clmxcx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/clmxcx.jsp", modelMap);
+	}
+	
+	/**
+	 * 库存查询
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/kccx.do")
+	public ModelAndView kccx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		return new ModelAndView("/WEB-INF/jsp/wxdw/kccx.jsp", modelMap);
+	}
 }
