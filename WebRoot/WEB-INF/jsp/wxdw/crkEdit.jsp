@@ -32,7 +32,7 @@ function checkandsave(){
 	var flag = true;
 	var flag1 = true;
 	var ids = [];
-	$("select[name=Tf08_clmxb.CLMC]").each(function(){
+	$("select[name=Tf08_clmxb\\.CLMC]").each(function(){
 		if ($(this).closest("tr").css("display") != "none" && $.trim($(this).val())==""){
 			flag = false;
 			return;
@@ -55,7 +55,7 @@ function checkandsave(){
 		return;
 	}
 	flag = true;
-	$("input[name=Tf08_clmxb.SL]").each(function(){
+	$("input[name=Tf08_clmxb\\.SL]").each(function(){
 		if (($(this).closest("tr").css("display") != "none") && (($.trim($(this).val())== "" || isNaN($(this).val()) || $(this).val().indexOf(".") != -1 ||parseInt($(this).val())<=0))){
 			flag = false;
 			return;
@@ -65,7 +65,7 @@ function checkandsave(){
 		alertMsg.error("请在数量栏填入正整数");
 		return;
 	}
-	if ($("select[name=Tf08_clmxb.CLLX]").size() == 0){
+	if ($("select[name=Tf08_clmxb\\.CLLX]").size() == 0){
 		return;
 	}
 	$("#rkckjl",navTab.getCurrentPanel()).trigger("onsubmit");
@@ -74,24 +74,24 @@ $(function(){
 	$("#rkckjl :input").live("change",function(){
 		change = true;
 	});
-	$("select[name=Tf08_clmxb.CLLX]").die("change");
-	$("select[name=Tf08_clmxb.CLLX]").live("change",function(){
+	$("select[name=Tf08_clmxb\\.CLLX]").die("change");
+	$("select[name=Tf08_clmxb\\.CLLX]").live("change",function(){
 		var params = "cllx="+$(this).val()+"&dz=${dz}&project_id=${gcxx.id}";
 		var $this = $(this);
 		$.ajax({type:"post",async:false,url:"wxdw/getClmc.do",data:params, success:function (msg) {
-			$this.closest("tr").find("[name=Tf08_clmxb.CLMC]").empty();
-			$this.closest("tr").find("[name=Tf08_clmxb.CLMC]").append(msg);
-			$this.closest("tr").find("[name=Tf08_clmxb.CLMC]").change();
+			$this.closest("tr").find("[name=Tf08_clmxb\\.CLMC]").empty();
+			$this.closest("tr").find("[name=Tf08_clmxb\\.CLMC]").append(msg);
+			$this.closest("tr").find("[name=Tf08_clmxb\\.CLMC]").change();
 		}});
 	});
-	$("select[name=Tf08_clmxb.CLMC]").die("change");
-	$("select[name=Tf08_clmxb.CLMC]").live("change",function(){
+	$("select[name=Tf08_clmxb\\.CLMC]").die("change");
+	$("select[name=Tf08_clmxb\\.CLMC]").live("change",function(){
 		var $this = $(this);
 		var id = $this.children(':selected').attr('flag');
-		var gg = $this.closest('tr').find('[name=Tf08_clmxb.GG]');
-		var xh = $this.closest('tr').find('[name=Tf08_clmxb.XH]');
-		var dw = $this.closest('tr').find('[name=Tf08_clmxb.DW]');
-		var sl = $this.closest('tr').find('[name=Tf08_clmxb.SL]');
+		var gg = $this.closest('tr').find('[name=Tf08_clmxb\\.GG]');
+		var xh = $this.closest('tr').find('[name=Tf08_clmxb\\.XH]');
+		var dw = $this.closest('tr').find('[name=Tf08_clmxb\\.DW]');
+		var sl = $this.closest('tr').find('[name=Tf08_clmxb\\.SL]');
 		var params = "id="+id+"&dz=${dz}";
 		$.ajax({type:"post",async:false,url:"wxdw/setClxx.do",data:params, success:function (msg) {
 			msgs = $.trim(msg).split("@#$");
