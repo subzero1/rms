@@ -24,6 +24,7 @@ import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.rms.dataObjects.form.Td00_gcxx;
+import com.rms.dataObjects.wxdw.Tf01_wxdw;
 
 @Service("loadFormListService")
 public class LoadFormListServiceImp implements LoadFormListService {
@@ -189,6 +190,26 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					}
 					request.setAttribute("zyxxList", zyxxList);
 				}
+				
+				//获取设计单位和监理单位列表
+				hsql.delete(0, hsql.length());
+				hsql.append("select tf01.id,tf01.mc,tf01.lb from Tf01_wxdw tf01 where lb='设计' or lb='监理' order by id");
+				ro = queryService.search(hsql.toString());
+				List<Tf01_wxdw> sjdwList = new LinkedList<Tf01_wxdw>();
+				List<Tf01_wxdw> jldwList = new LinkedList<Tf01_wxdw>();
+				while (ro.next()) {
+					Tf01_wxdw o_tf01 = new Tf01_wxdw();
+					o_tf01.setMc((String) ro.get("tf01.mc"));
+					o_tf01.setId((Long) ro.get("tf01.id"));
+					
+					if(ro.get("tf01.lb").equals("设计"))
+						sjdwList.add(o_tf01);
+					else
+						jldwList.add(o_tf01);
+				}
+				request.setAttribute("sjdwList", sjdwList);
+				request.setAttribute("jldwList", jldwList);	
+				
 			}
 			
 			if(module_id==101){
