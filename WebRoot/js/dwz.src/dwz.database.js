@@ -382,7 +382,7 @@
 						break;
 					case 'enum':
 						var options = DWZ.jsonEval(field.enumData);
-						var enum_data = $.extend({enumName:field.enumName, inputName:fieldName}, options); //modify at 2011-08-09 扩展选项url参数,解决中文转码问题
+						var enum_data = $.extend({enumName:field.enumName, inputName:field.name}, options); //modify at 2011-08-09 扩展选项url参数,解决中文转码问题
 						$.ajax({
 							type:"POST", dataType:"html", async: false,
 							url:field.enumUrl, 
