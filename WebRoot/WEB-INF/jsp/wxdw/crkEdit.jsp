@@ -133,7 +133,7 @@ $(function(){
 				<span style="float:left;margin-left:20px;">工程编号：${gcxx.gcbh}</span>
 			<div class="divider" style="height:1px;"></div>
 			<div style="text-align:left;color:blue;"><h3>待${type }材料&nbsp;</h3></div>
-			<table width="100%" class="list" itemdetail="clDetail" width="100%">
+			<table width="100%" class="list  itemDetail" width="100%">
 				<thead>
 					<tr>
 						<th type="enum" style="width:85px;" name="Tf08_clmxb.CLLX" enumName="cllx" enumUrl="wxdw/cllxSelect.do" enumData="{'type':'材料类型','dz':'${dz }','project_id':'${gcxx.id }'}" hideName="Tf08_clmxb.ID">材料类别</th>
