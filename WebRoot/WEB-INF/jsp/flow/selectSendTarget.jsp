@@ -33,14 +33,13 @@
 //保存节点常用人员配制
 	function ok_send(obj){
 		$form = $(obj).closest("form");
-		
 		//设置隐藏域 从autoForm copy 过来
 		$("#_selectuser #hidden_div").html("");
 		$("#_sharestore INPUT[type='hidden']",navTab.getCurrentPanel()).each(function(){
 				$("#_selectuser #hidden_div").prepend(this);
 			}
 		);
-		
+		//alert($form.serializeArray());
 		$.ajax({
 			type: $form.attr("method") || 'POST',
 			url:$form.attr("action"),
@@ -117,11 +116,10 @@
 		$("#_sendUserTemplate").hide();$("#_selectuser").show();
 		
 		var t_formAction = '${param.formAction}';
-		if(t_formAction == null){
+		if(t_formAction == null || $.trim(t_formAction)==''){
 			t_formAction = "send.do";
 		}
 		$("#_su").attr("action",t_formAction);
-		alert('${param.opernode_id}');
 	});
 
 </script>
@@ -132,8 +130,8 @@
 			<form id="_su" name="_selectuser" action="send.do" method="post" >				
 				<div class="pageFormContent" layoutH="56">
 					<div style="display=none" id="hidden_div"></div> 
-					<input type="text" name="opernode_id" id="opernode_id" value="<c:out value="${param.opernode_id}" default="-1"/>"/>
-					<input type="text" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
+					<input type="hidden" name="opernode_id" id="opernode_id" value="<c:out value="${param.opernode_id}" default="-1"/>"/>
+					<input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
 					<select id='select-options' name='${param.return_flag }'  type='select-multiple' size="6" align='center' style='width:390px;height:170px;'>
 						<c:forEach var="user" items="${userList}">
 							<option  value="${user.id}">[${user.login_id }]${user.name }</option>
