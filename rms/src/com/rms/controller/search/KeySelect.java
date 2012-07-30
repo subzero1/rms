@@ -18,6 +18,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.convertUtil;
+import com.rms.controller.search.KeySelect;
 import com.rms.dataObjects.base.Tc06_tzqk;
 import com.rms.dataObjects.base.Tc07_qkxx;
 import com.rms.dataObjects.base.Tc03_gczy;
@@ -80,7 +81,7 @@ public class KeySelect {
 			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
-			return exceptionService.exceptionControl(KeySelect.class.getName(), "×¨Òµ¶àÑ¡Ïî", e);
+			return exceptionService.exceptionControl(KeySelect.class.getName(), "专业多选项", e);
 		}
 		return new ModelAndView("/WEB-INF/jsp/search/selectZy.jsp");
 	}
@@ -99,14 +100,14 @@ public class KeySelect {
 		response.getWriter().print("<root>");
 		while (ro.next()) {
 			tc03 = (Tc03_gczy) ro.get(Tc03_gczy.class.getName());
-			response.getWriter().print("<zy>");
+			response.getWriter().print("<zydl>");
 			response.getWriter().print("<id>");
 			response.getWriter().print(tc03.getId());
 			response.getWriter().print("</id>");
-			response.getWriter().print("<name>");
+			response.getWriter().print("<mc>");
 			response.getWriter().print(tc03.getZymc());
-			response.getWriter().print("</name>");
-			response.getWriter().print("</zy>");
+			response.getWriter().print("</mc>");
+			response.getWriter().print("</zydl>");
 		}
 		response.getWriter().print("</root>");
 	}
@@ -118,7 +119,10 @@ public class KeySelect {
 		response.setContentType("text/xml");
 		response.getWriter().print("<?xml version=\"1.0\" encoding=\"GBK\"?>");
 		response.getWriter().print("<root>");
-		String HSql = "select tc04 from Tc04_zyxx tc04 where tc04.gczy_id in (" + request.getParameter("gczy") + ")";
+		
+		String zydl = convertUtil.toString(request.getParameter("dl"), "-1");
+		
+		String HSql = "select tc04 from Tc04_zyxx tc04 where tc04.gczy_id = " + zydl ;
 		ResultObject ro = queryService.search(HSql);
 		while (ro.next()) {
 			Tc04_zyxx tc04 = (Tc04_zyxx) ro.get("tc04");
@@ -128,7 +132,7 @@ public class KeySelect {
 		}
 		response.getWriter().print("</root>");
 	}
-	
+
 	@RequestMapping("/search/selectQk.do")
 	public ModelAndView selectQk(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -141,7 +145,7 @@ public class KeySelect {
 			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
-			return exceptionService.exceptionControl(KeySelect.class.getName(), "ÇÐ¿é¶àÑ¡Ïî", e);
+			return exceptionService.exceptionControl(KeySelect.class.getName(), "切块多选项", e);
 		}
 		return new ModelAndView("/WEB-INF/jsp/search/selectQk.jsp");
 	}
@@ -150,7 +154,7 @@ public class KeySelect {
 	public void getTzqk(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("GBK");
 		Tc06_tzqk tc06;
-		Long nd = Long.valueOf(request.getParameter("nd"));
+		Long nd = Long.valueOf(request.getParameter("qknd"));
 		QueryBuilder queryBuilder = new HibernateQueryBuilder(Tc06_tzqk.class);
 		queryBuilder.eq("nd", nd);
 		ResultObject ro = queryService.search(queryBuilder);
@@ -160,14 +164,14 @@ public class KeySelect {
 		response.getWriter().print("<root>");
 		while (ro.next()) {
 			tc06 = (Tc06_tzqk) ro.get(Tc06_tzqk.class.getName());
-			response.getWriter().print("<qk>");
+			response.getWriter().print("<qkdl>");
 			response.getWriter().print("<id>");
 			response.getWriter().print(tc06.getId());
 			response.getWriter().print("</id>");
 			response.getWriter().print("<name>");
 			response.getWriter().print(tc06.getQkmc());
 			response.getWriter().print("</name>");
-			response.getWriter().print("</qk>");
+			response.getWriter().print("</qkdl>");
 		}
 		response.getWriter().print("</root>");
 	}
@@ -179,7 +183,9 @@ public class KeySelect {
 		response.setContentType("text/xml");
 		response.getWriter().print("<?xml version=\"1.0\" encoding=\"GBK\"?>");
 		response.getWriter().print("<root>");
-		String HSql = "select tc07 from Tc07_qkxx tc07 where tc07.qk_id in (" + request.getParameter("tzqk") + ")";
+		String qkdl = convertUtil.toString(request.getParameter("dl"), "-1");
+		
+		String HSql = "select tc07 from Tc07_qkxx tc07 where tc07.qk_id = " + qkdl;
 		ResultObject ro = queryService.search(HSql);
 		while (ro.next()) {
 			Tc07_qkxx tc07 = (Tc07_qkxx) ro.get("tc07");
