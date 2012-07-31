@@ -42,11 +42,10 @@
 				<tr>
 					<th style="width: 120px;" orderField="xmbh">项目编号</th>
 					<th orderField="xmmc">项目名称</th>
-					<th style="width: 80px;" orderField="htlb">合同类型</th>
 					<th style="width: 100px;" orderField="lxsj">立项日期</th>
-					<th style="width: 120px;" orderField="htbh">合同编号</th>
-					<th style="width: 100px;" orderField="htqdrq">签订日期</th>
-					<th style="width: 80px;" orderField="htje">合同金额</th>
+					<th style="width: 120px;" orderField="${param.htlb }htbh">合同编号</th>
+					<th style="width: 100px;" orderField="${param.htlb }htqdrq">签订日期</th>
+					<th style="width: 80px;" orderField="${param.htlb }htje">合同金额</th>
 					<th style="width: 80px;">指导金额</th>
 				</tr>
 			</thead>
@@ -56,13 +55,12 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${obj.xmbh }</td>
-						<td><a href="htEdit.do?xm_id=${obj.xm_id }&act=ht" target="dialog" width="450" height="300" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
-						<td>${obj.htlb}</td>
+						<td><a href="htEdit.do?xm_id=${obj.id }&act=ht" target="dialog" width="450" height="300" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
 						<td>${obj.lxsj }</td>
 						<td>${obj.htbh }</td>
 						<td>${obj.htqdrq }</td>
 						<td>${obj.htje }</td>
-						<td>${obj.zdje }</td>
+						<td></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
