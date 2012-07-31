@@ -167,6 +167,8 @@ public class AuxFunction {
 
 		Workbook wb = null;  
 		Sheet sheet = null;
+		StringBuffer sql = new StringBuffer();
+		ResultObject ro = null;
 		try {
 			MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
 			Long project_id = convertUtil.toLong(request.getParameter("project_id"), -1L);
@@ -274,6 +276,116 @@ public class AuxFunction {
 					}
 				}
 			}
+			
+			/**
+			 * 计算综合信息
+			 */
+			/*
+			 * 技工工日、普工工日
+			 */
+			Double jggr = 0d,pggr = 0d;
+			sql.delete(0, sql.length());
+			sql.append("select jghj,pghj from Te03_gcgys_b3j ");
+			sql.append("where xmmc like '%总%' and xmmc like '%计%' and gc_id = ");
+			sql.append(project_id);
+			ro = queryService.search(sql.toString());
+			if(ro.next()){
+				jggr = (Double)ro.get("jghj");
+				pggr = (Double)ro.get("pghj");
+			}
+			
+			/*
+			 * 设计费、监理费
+			 */
+			Double sjf = 0d,jlf = 0d;
+			sql.delete(0, sql.length());
+			sql.append("select hj from Te03_gcgys_b5j ");
+			sql.append("where fymc like '%设计费%' and gc_id = ");
+			sql.append(project_id);
+			ro = queryService.search(sql.toString());
+			if(ro.next()){
+				sjf = (Double)ro.get("hj");
+			}
+			sql.delete(0, sql.length());
+			sql.append("select hj from Te03_gcgys_b5j ");
+			sql.append("where fymc like '%监理费%' and gc_id = ");
+			sql.append(project_id);
+			ro = queryService.search(sql.toString());
+			if(ro.next()){
+				jlf = (Double)ro.get("hj");
+			}
+			
+			/*
+			 * 人工费、材料费、机械费、仪表费、建安费
+			 */
+			Double rgf = 0d,clf = 0d,jxf = 0d,ybf = 0d,jaf = 0d;
+			sql.delete(0, sql.length());
+			sql.append("select hj1 from Te03_gcgys_b2 ");
+			sql.append("where gc_id = ");
+			sql.append(project_id);
+			sql.append(" fymc1 = ");
+			ro = queryService.search(sql.toString() + "'人工费'");
+			if(ro.next()){
+				rgf = (Double)ro.get("hj1");
+			}
+			ro = queryService.search(sql.toString() + "'材料费'");
+			if(ro.next()){
+				clf = (Double)ro.get("hj1");
+			}
+			ro = queryService.search(sql.toString() + "'仪表费'");
+			if(ro.next()){
+				ybf = (Double)ro.get("hj1");
+			}
+			ro = queryService.search(sql.toString() + "'机械费'");
+			if(ro.next()){
+				jxf = (Double)ro.get("hj1");
+			}
+			ro = queryService.search(sql.toString() + "'建筑安装工程费'");
+			if(ro.next()){
+				jaf = (Double)ro.get("hj1");
+			}
+			
+			/*
+			 * 其它费
+			 */
+			Double qtf = 0d;
+			sql.delete(0, sql.length());
+			sql.append("select rmbzj from Te03_gcgys_b1 ");
+			sql.append("where gc_id = ");
+			sql.append(project_id);
+			sql.append(" fymc = '工程建设其他费'");
+			ro = queryService.search(sql.toString());
+			if(ro.next()){
+				qtf = (Double)ro.get("rmbzj");
+			}
+			
+			/*
+			 * 保存综合信息
+			 */
+			Te03_gcgys_zhxx te03_zhxx = null;
+			sql.delete(0, sql.length());
+			sql.append("from Te03_gcgys_zhxx ");
+			sql.append("where gc_id = ");
+			sql.append(project_id);
+			ro = queryService.search(sql.toString());
+			if(ro.next()){
+				te03_zhxx = (Te03_gcgys_zhxx)ro.get(Te03_gcgys_zhxx.class.getName());
+			}
+			else{
+				te03_zhxx = new Te03_gcgys_zhxx();
+			}
+			te03_zhxx.setGc_id(project_id);
+			te03_zhxx.setJggr(jggr);
+			te03_zhxx.setPggr(pggr);
+			te03_zhxx.setRgf(rgf);
+			te03_zhxx.setClf(clf);
+			te03_zhxx.setJxf(jxf);
+			te03_zhxx.setYbf(ybf);
+			te03_zhxx.setJzazgcf(jaf);
+			te03_zhxx.setGcjsqtf(qtf);
+			te03_zhxx.setSjf(sjf);
+			te03_zhxx.setJlf(jlf);
+			saveService.save(te03_zhxx);
 			
 			response.getWriter().print("{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
