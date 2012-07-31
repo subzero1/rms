@@ -212,13 +212,14 @@ function initUI(_box){
 			var tabid = $this.attr("rel") || "_blank";
 			var fresh = eval($this.attr("fresh") || "true");
 			var external = eval($this.attr("external") || "false");
+			var data = DWZ.jsonEval($this.attr("data")); //增加data属性 以传中文参数 modify:2012-7-31
 			var url = unescape($this.attr("href")).replaceTmById($(event.target).parents(".unitBox:first"));
 			DWZ.debug(url);
 			if (!url.isFinishedTm()) {
 				alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
 				return false;
 			}
-			navTab.openTab(tabid, url,{title:title, fresh:fresh, external:external});
+			navTab.openTab(tabid, url,{title:title, fresh:fresh, external:external,data:data});//增加data属性 以传中文参数 modify:2012-7-31
 
 			event.preventDefault();
 		});
