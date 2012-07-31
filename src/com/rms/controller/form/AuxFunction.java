@@ -198,15 +198,15 @@ public class AuxFunction {
 					int x = 0,y = 0; 
 					Cell cell = sheet.findCell("序号");
 					if(cell != null){
-						y = cell.getRow();
-						x = cell.getColumn() + 2;
+						y = cell.getRow() + 2;
+						x = cell.getColumn();
 					}
 					else{
 						cell = sheet.findCell("Ⅰ");
 						if(cell == null)
 							throw new Exception("Excel格式非法，请按标准模板上传");
-						y = cell.getRow();
-						x = cell.getColumn() + 1;
+						y = cell.getRow() + 1;
+						x = cell.getColumn();
 					}
 					
 					
