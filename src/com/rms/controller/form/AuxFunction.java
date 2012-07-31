@@ -229,23 +229,33 @@ public class AuxFunction {
 					}
 					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("甲") != -1){
 						
-					
+						//{序号、定额编号、定额名称、单位、数量、单位技工、单位普工、技工合计、普工合计}
+						colName = new String[]{"xh","debh","xmmc","dw","sl","dwjg","dwpg","jghj","pghj"};
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b3j";
 					}
 					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("乙") != -1){
 						
-						
+						//{序号、定额编号、定额名称、机械名称、单位、数量、数量、单位数量、单价、数量合计、金额合计、备注}
+						colName = new String[]{"xh","debh","xmmc","dw","sl","jxmc","dwsl","dj","slhj","jehj"};
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b3y";
 					}
 					if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("丙") != -1){
 						
-						
+						//{序号、定额编号、定额名称、单位、数量、仪表名称、单位数量、单价、数量合计、金额合计}
+						colName = new String[]{"xh","debh","xmmc","dw","sl","ybmc","dwsl","dj","slhj","jehj"};
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b3b";
 					}
 					else if(sheetName.indexOf("表四") != -1){
 						
-						
+						//{序号、名称、型号规格、单位、数量、单价、合计、备注}
+						colName = new String[]{"xh","mc","xhgg","dw","sl","dj","hj","bz"};
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b4j";
 					}
 					else if(sheetName.indexOf("表五") != -1){
 							
-						
+						//{序号、费用名称、单位、数量、单价、合计、备注、计算依据和方法}
+						colName = new String[]{"xh","fymc","yjsf","hj","bz"};
+						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b5j";
 					}
 					
 					if(className != null){
