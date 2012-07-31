@@ -29,6 +29,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.rms.dataObjects.base.Tc04_zyxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 
 @Controller
@@ -98,8 +99,12 @@ public class Htgl {
 		
 		//获得待签合同信息列表
 		sql.delete(0, sql.length());
-		sql.append("from Td01_xmxx td01 ");
-		sql.append("where " + htlb +"htbh is null ");
+		sql.append("select id,xmbh,xmmc,lxsj");
+		sql.append(","+ htlb +"htbh as htbh");
+		sql.append(","+ htlb +"htje as htje");
+		sql.append(","+ htlb +"htqdrq as htqdrq");
+		sql.append(" from Td01_xmxx ");
+		sql.append(" where " + htlb +"htbh is null ");
 				
 		 //关键字
 		if(!keywords.equals("")){
@@ -128,7 +133,15 @@ public class Htgl {
 		
 		List<Object> htList = new LinkedList<Object>();
 		while (ro.next()) {
-			htList.add((Td01_xmxx) ro.get("td01"));
+			Td01_xmxx td01 = new Td01_xmxx();
+			td01.setId((Long)ro.get("id"));
+			td01.setXmbh((String)ro.get("xmbh"));
+			td01.setXmmc((String)ro.get("xmmc"));
+			td01.setLxsj((Date)ro.get("lxsj"));
+			td01.setHtbh((String)ro.get("htbh"));
+			td01.setHtje((Long)ro.get("htje"));
+			td01.setHtqdrq((Date)ro.get("htqdrq"));
+			htList.add(td01);
 		}		
 		modelMap.put("htList", htList);
 		
