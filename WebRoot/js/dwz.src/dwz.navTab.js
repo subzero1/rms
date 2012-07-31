@@ -334,7 +334,6 @@ var navTab = {
 	 */
 	openTab: function(tabid, url, options){ //if found tabid replace tab, else create a new tab.
 		var op = $.extend({title:"New Tab", data:{}, fresh:true, external:false}, options);
-
 		var iOpenIndex = this._indexTabId(tabid);
 
 		if (iOpenIndex >= 0){
@@ -350,7 +349,7 @@ var navTab = {
 				} else {
 					$tab.removeClass("external");
 					$panel.ajaxUrl({
-						type:"GET", url:url, data:op.data, callback:function(){
+						type:"POST", url:url, data:op.data, callback:function(){ //type改为POST modify:2012-7-31
 							navTab._loadUrlCallback($panel);
 						}
 					});
@@ -373,7 +372,7 @@ var navTab = {
 			} else {
 				$tab.removeClass("external");
 				$panel.ajaxUrl({
-					type:"GET", url:url, data:op.data, callback:function(){
+					type:"POST", url:url, data:op.data, callback:function(){ //type改为POST modify:2012-7-31
 						navTab._loadUrlCallback($panel);
 					}
 				});
