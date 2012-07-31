@@ -17,7 +17,7 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">TE03BHZNUM;</param>
+                <param name="sequence">TE03BHZNUM</param>
               <!--  
                   To add non XDoclet generator parameters, create a file named 
                   hibernate-generator-params-Te03_gcgys_bhz.xml 
