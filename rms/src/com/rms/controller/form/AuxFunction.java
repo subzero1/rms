@@ -163,7 +163,7 @@ public class AuxFunction {
 	@RequestMapping("/form/gysImport.do")
 	public ModelAndView gysImport(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
-		response.setCharacterEncoding(request.getCharacterEncoding());
+		response.setCharacterEncoding("GBK");
 
 		Workbook wb = null;  
 		Sheet sheet = null;
@@ -226,7 +226,7 @@ public class AuxFunction {
 					else if(sheetName.indexOf("表二") != -1){
 						
 						//{序号、费用名称、依据算法、技工费、普工费、合计。。。}
-						colName = new String[]{"xh1","fymc1","yjsf1","jgf1","pgf1","hj1","xh2","fymc2","yjsf2","jgf2","pgf2","hj2"};
+						colName = new String[]{"xh1","fymc1","yjsf1","hj1","jg1","xh2","fymc2","yjsf2","hj2"};
 						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b2";
 					}
 					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("甲") != -1){
@@ -241,7 +241,7 @@ public class AuxFunction {
 						colName = new String[]{"xh","debh","xmmc","dw","sl","jxmc","dwsl","dj","slhj","jehj"};
 						className = "com.rms.dataObjects.gcjs.Te03_gcgys_b3y";
 					}
-					if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("丙") != -1){
+					else if(sheetName.indexOf("表三") != -1 && sheetName.indexOf("丙") != -1){
 						
 						//{序号、定额编号、定额名称、单位、数量、仪表名称、单位数量、单价、数量合计、金额合计}
 						colName = new String[]{"xh","debh","xmmc","dw","sl","ybmc","dwsl","dj","slhj","jehj"};
@@ -272,6 +272,7 @@ public class AuxFunction {
 							PropertyInject.setProperty(o, "gc_id", project_id);
 							PropertyInject.injectFromExcel(o, columnIndex, sheet, t_row);
 							saveService.save(o);
+							t_row = t_row + 1;
 						}
 					}
 				}
