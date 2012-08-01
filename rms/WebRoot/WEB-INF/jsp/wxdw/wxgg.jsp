@@ -117,8 +117,7 @@
 		</div>
 	</div>
 	<c:choose>
-			<c:when
-				test="${wxgg.zt != '1'}">
+			<c:when test="${wxgg.zt != '1'}">
 	<!-- 主操作按钮 -->
 	<div class="panelBar">
 		<ul class="toolBar">
@@ -277,28 +276,27 @@
 										外协单位名称：
 									</label>
 									<div id="boxdiv">
-								<div style="width: 100%; display: inline-block; margin-left: 100px;">
-									<c:forEach var="list_mbdw" items="${list_mbdw}">
-										<c:set var="offset" value="${offset+1}" />
-
-										<p
-											style="width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-											title="${list_mbdw.mc }">
-											<input ${ggLimit }  type="checkbox" id="mbdw" name="mbdw"
-												value="${list_mbdw.mc }"
-												onClick="set_c('mbdw','Tf09_wxgg.MBDW')"
-												<c:if test="${list_mbdw.mc==mbdw[list_mbdw.mc] }">checked="checked"</c:if> />
-											&nbsp;
-											<span onclick="javascript:spanclick(this);" style="cursor: pointer">${list_mbdw.mc}</span>
-										</p>
-										<c:if test="${offset % 3 == 0}">
+										<div style="width: 100%; display: inline-block; margin-left: 100px;">
+											<c:forEach var="list_mbdw" items="${list_mbdw}">
+												<c:set var="offset" value="${offset+1}" />
+		
+												<p
+													style="width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+													title="${list_mbdw.mc }">
+													<input ${ggLimit }  type="checkbox" id="mbdw" name="mbdw"
+														value="${list_mbdw.mc }"
+														onClick="set_c('mbdw','Tf09_wxgg.MBDW')"
+														<c:if test="${list_mbdw.mc==mbdw[list_mbdw.mc] }">checked="checked"</c:if> />
+													&nbsp;
+													<span onclick="javascript:spanclick(this);" style="cursor: pointer">${list_mbdw.mc}</span>
+												</p>
+												<c:if test="${offset % 3 == 0}">
+													</div>
+													<div style="width: 100%; display: inline-block; margin-left: 100px;">
+												</c:if>
+											</c:forEach>
+										</div>
 								</div>
-								<div
-									style="width: 100%; display: inline-block; margin-left: 100px;">
-							</c:if>
-							</c:forEach>
-						</div>
-						</div>
 						</c:if>
 					</div>
 					<div style="width: 100%; height: 0px;" />
@@ -382,7 +380,7 @@
 									<c:if test="${user_name==wxgg.fbr_mc}"><a href="delfile.do?slave_id=${fj.id}&callbackType=forward" target="ajaxTodo" title="确认删除吗？"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 								</div>
 							</c:forEach>
-						<div style="background-color:lightblue;height:30px;line-height:30px;">外协单位[类别：${wxgg.wxdw_lb}单位]<font color="red" class="">有标记符号的单位已读过这篇公告</font></div>
+						<div style="background-color:rgb(203,210,220);height:30px;line-height:30px;">外协单位[类别：${wxgg.wxdw_lb}单位]<font color="red" class="">有标记符号的单位已读过这篇公告</font></div>
 						<div style="height: 0px;"></div>
 						<div>
 							<div style="height: 0px;"></div>
