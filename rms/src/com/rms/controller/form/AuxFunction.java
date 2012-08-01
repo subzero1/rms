@@ -457,8 +457,15 @@ public class AuxFunction {
 			
 			response.getWriter().print("{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
+			String msg = "";
+			String e_msg = e.getMessage();
+			if (e_msg != null && e_msg.indexOf("recognize OLE stream") != -1) {
+				msg = "导入失败，Excel格式非法，请将Excel另存为<font color=red>2003版</font>的<font color=red>标准</font>的Excel后再导入";
+			} else {
+				msg = "导入失败,Excel格式非法,请参考导入模板";
+			}
 			log.error("gysImport.do[com.rms.controller.form.AuxFunction]"+e.getMessage()+e);
-			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\""+msg+"\"}");
 		}
 		return null;
 	}
