@@ -1990,7 +1990,7 @@ public class Wxdw {
 			List<Tf01_wxdw> tmpList = (List<Tf01_wxdw>) queryService
 					.searchList("from Tf01_wxdw where id=(select wxdw_id from Tf04_wxdw_user where user_id="
 							+ user.getId() + ")");
-			if (tmpList != null && !tmpList.isEmpty() && wxdw_id == -1L){
+			if (tmpList != null && !tmpList.isEmpty() && wxdw_id == -1L) {
 				wxdw_id = tmpList.get(0).getId();
 			}
 		}
@@ -2051,7 +2051,8 @@ public class Wxdw {
 			tf07.setDw(convertUtil.toString(ro.get("dw")));
 			tf07.setGg(convertUtil.toString(ro.get("gg")));
 			tf07.setKcsl(convertUtil.toLong(ro.get("kcsl")));
-			tf07.setKcsl(convertUtil.toLong(ro.get("kcsl")));
+			tf07.setCllx(convertUtil.toString(ro.get("cllx")));
+			tf07.setSgdw_id(wxdw_id);
 			kcbList.add(tf07);
 		}
 		modelMap.put("kcbList", kcbList);
@@ -2061,12 +2062,96 @@ public class Wxdw {
 		modelMap.put("totalPages", totalPages);
 		modelMap.put("totalCount", totalCount);
 		// 页面所需内容
-		// 类别
-		List<String> lbList = new ArrayList<String>();
-		lbList.add("设计单位");
-		lbList.add("施工单位");
-		lbList.add("监理单位");
-		modelMap.put("lbList", lbList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/kccx.jsp", modelMap);
+	}
+
+	/**
+	 * 库存统计明细
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/kctjmx.do")
+	public ModelAndView kctjmx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		// 权限判断 是项目管理员还是施工单位
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		modelMap.put("sgdw", queryService.searchById(Tf01_wxdw.class, wxdw_id));
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "clmc");
+		if (orderField.equals("")) {
+			orderField = "clmc";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		// 查询条件
+		String clmc = convertUtil.toString(request.getParameter("clmc"));
+		String gg = convertUtil.toString(request.getParameter("gg"));
+		String cllx = convertUtil.toString(request.getParameter("cllx"));
+		String dw = convertUtil.toString(request.getParameter("dw"));
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select gcxx,kcb,(select max(czsj) as cjsj from Tf08_clmxb clmxb where clmxb.zhxx_id=kcb.project_id and kcb.clmc=clmxb.clmc and kcb.gg=clmxb.gg and kcb.cllx=clmxb.cllx and kcb.cllx=clmxb.cllx and kcb.dw=clmxb.dw and dz=0) as cjsj from Tf07_kcb kcb,Td00_gcxx gcxx where gcxx.id=kcb.project_id and sgdw_id=" + wxdw_id);
+		// where条件
+		// 材料名称
+		if (!clmc.equals("")) {
+			hsql.append(" and kcb.clmc = '" + clmc + "'");
+		} else {
+			hsql.append(" and (kcb.clmc = '' or kcb.clmc is null)");
+		}
+		// 规格
+		if (!gg.equals("")) {
+			hsql.append(" and kcb.gg = '" + gg + "'");
+		} else {
+			hsql.append(" and (kcb.gg = '' or kcb.gg is null)");
+		}
+		// 型号
+		if (!cllx.equals("")) {
+			hsql.append(" and kcb.cllx = '" + cllx + "'");
+		} else {
+			hsql.append(" and (kcb.cllx = '' or kcb.cllx is null)");
+		}
+		// 单位
+		if (!dw.equals("")) {
+			hsql.append(" and kcb.dw = '" + dw + "'");
+		} else {
+			hsql.append(" and (kcb.dw = '' or kcb.dw is null)");
+		}
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Object[]> kcbList = new ArrayList<Object[]>();
+		
+		while (ro.next()) {
+			Object[] o = new Object[3];
+			o[0] = ro.get("kcb");
+			o[1] = ro.get("cjsj");
+			o[2] = ro.get("gcxx");
+			kcbList.add(o);
+		}
+		modelMap.put("kcbList", kcbList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		// 页面所需内容
+		return new ModelAndView("/WEB-INF/jsp/wxdw/kctjmx.jsp", modelMap);
 	}
 }
