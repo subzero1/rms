@@ -15,10 +15,10 @@
 
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="wxdw_id" value="${param.wxdw_id}">
-	<input type="hidden" name="xh" value="${param.xh}">
+	<input type="hidden" name="cllx" value="${param.cllx}">
 	<input type="hidden" name="clmc" value="${param.clmc}">
 	<input type="hidden" name="gg" value="${param.gg}">
-	<input type="hidden" name="type" value="${param.type}">
+	<input type="hidden" name="dw" value="${param.dw}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -27,23 +27,28 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="wxdw/kccx.do" method="post">
-			<input type="hidden" name="type" value="${param.type}">
+		<form action="wxdw/wxdwList.do" method="post">
+	<input type="hidden" name="wxdw_id" value="${param.wxdw_id}">
+	<input type="hidden" name="cllx" value="${param.cllx}">
+	<input type="hidden" name="clmc" value="${param.clmc}">
+	<input type="hidden" name="gg" value="${param.gg}">
+	<input type="hidden" name="dw" value="${param.dw}">
 			<input type="hidden" id="selectedId_demo" />
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<c:if test="${param.type == 'xmgly'}"><td>外协单位：<netsky:htmlSelect name="wxdw_id" id="lb" objectForOption="tf01List" valueForOption="id" showForOption="mc" value="${param.wxdw_id}"/></td></c:if>
-						<td>材料名称：<input id="clmc" name="clmc" value="${param.clmc}" type="text" size="25" />
-						<td>规格：<input style="width:100px;" id="gg" name="gg" value="${param.gg}" type="text" size="25" />
-						<td>型号：<input style="width:100px;" id="xh" name="xh" value="${param.xh}" type="text" size="25" />
+						<td>
+						施工单位：</td><td>${sgdw.mc }
+						</td>
+						<td>
+						材料名称：</td><td>${param.clmc }
+						</td>
+						<td>
+						规格：</td><td>${param.gg }
 						</td>
 					</tr>
 				</table>
 				<div class="subBar">
-					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'wxdw/kccx.do?type=${param.type }',navTabSearch);">检 索</button></div></div></li>
-					</ul>
 				</div>
 			</div>
 		</form>
@@ -57,11 +62,10 @@
 			<thead>
 				<tr>
 					<th style="width:50px;">序号</th>
-					<th style="width: 200px;" orderField="clmc">材料名称</th>
-					<th style="width:120px;" orderField="dw">单位</th>
-					<th style="width: 120px;" orderField="gg">规格</th>
-					<th style="width: 120px;" orderField="xh">型号</th>
-					<th style="width: 120px;">数量</th>
+					<th style="width: 200px;" orderField="gcxx.gcmc">工程名称</th>
+					<th style="width:120px;" orderField="gcxx.gcbh">工程编号</th>
+					<th style="width: 120px;" orderField="kcsl">数量</th>
+					<th style="width: 120px;">领料时间</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -70,17 +74,15 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${offset }</td>
-						<td>${obj.clmc }</td>
-						<td>${obj.dw }</td>
-						<td>${obj.gg }</td>
-						<td>${obj.xh }</td>
-						<td><a href="wxdw/kctjmx.do" data="{'wxdw_id':'${obj.sgdw_id}','clmc':'${obj.clmc }','dw':'${obj.dw }','gg':'${obj.gg }','cllx':'${obj.cllx }' }" target="navTab" rel="kctjmx" title="库存统计明细">${obj.kcsl }</a></td>
+						<td>${obj[2].gcmc }</td>
+						<td>${obj[2].gcbh }</td>
+						<td>${obj[0].kcsl }</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[1] }" /></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
