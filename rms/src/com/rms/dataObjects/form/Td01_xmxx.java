@@ -74,51 +74,51 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 当年累计投资完成额
 	 */
-	private Long dnljtzwce;
+	private Double dnljtzwce;
 
 	/**
 	 * @hibernate.property column="dnljtzwce"
 	 * @return Returns the dnljtzwce.
 	 */
-	public Long getDnljtzwce() {
+	public Double getDnljtzwce() {
 		return dnljtzwce;
 	}
 
-	public void setDnljtzwce(Long dnljtzwce) {
+	public void setDnljtzwce(Double dnljtzwce) {
 		this.dnljtzwce = dnljtzwce;
 	}
 
 	/**
 	 * 累计投资完成额
 	 */
-	private Long ljtzwce;
+	private Double ljtzwce;
 
 	/**
 	 * @hibernate.property column="ljtzwce"
 	 * @return Returns the ljtzwce.
 	 */
-	public Long getLjtzwce() {
+	public Double getLjtzwce() {
 		return ljtzwce;
 	}
 
-	public void setLjtzwce(Long ljtzwce) {
+	public void setLjtzwce(Double ljtzwce) {
 		this.ljtzwce = ljtzwce;
 	}
 
 	/**
 	 * 施工进度百分比（*工作量填报）
 	 */
-	private Long wcbfb;
+	private Double wcbfb;
 
 	/**
 	 * @hibernate.property column="wcbfb"
 	 * @return Returns the wcbfb.
 	 */
-	public Long getWcbfb() {
+	public Double getWcbfb() {
 		return wcbfb;
 	}
 
-	public void setWcbfb(Long wcbfb) {
+	public void setWcbfb(Double wcbfb) {
 		this.wcbfb = wcbfb;
 	}
 
@@ -499,17 +499,17 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 监理合同金额
 	 */
-	private Long jlhtje;
+	private Double jlhtje;
 
 	/**
 	 * @hibernate.property column="jlhtje"
 	 * @return Returns the jlhtje.
 	 */
-	public Long getJlhtje() {
+	public Double getJlhtje() {
 		return jlhtje;
 	}
 
-	public void setJlhtje(Long jlhtje) {
+	public void setJlhtje(Double jlhtje) {
 		this.jlhtje = jlhtje;
 	}
 
@@ -533,544 +533,544 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 送审甲方材料费
 	 */
-	private Long ss_clf_j;
+	private Double ss_clf_j;
 
 	/**
 	 * @hibernate.property column="ss_clf_j"
 	 * @return Returns the ss_clf_j.
 	 */
-	public Long getSs_clf_j() {
+	public Double getSs_clf_j() {
 		return ss_clf_j;
 	}
 
-	public void setSs_clf_j(Long ss_clf_j) {
+	public void setSs_clf_j(Double ss_clf_j) {
 		this.ss_clf_j = ss_clf_j;
 	}
 
 	/**
 	 * 送审机械费
 	 */
-	private Long ss_jxf;
+	private Double ss_jxf;
 
 	/**
 	 * @hibernate.property column="ss_jxf"
 	 * @return Returns the ss_jxf.
 	 */
-	public Long getSs_jxf() {
+	public Double getSs_jxf() {
 		return ss_jxf;
 	}
 
-	public void setSs_jxf(Long ss_jxf) {
+	public void setSs_jxf(Double ss_jxf) {
 		this.ss_jxf = ss_jxf;
 	}
 
 	/**
 	 * 送审仪表费
 	 */
-	private Long ss_ybf;
+	private Double ss_ybf;
 
 	/**
 	 * @hibernate.property column="ss_ybf"
 	 * @return Returns the ss_ybf.
 	 */
-	public Long getSs_ybf() {
+	public Double getSs_ybf() {
 		return ss_ybf;
 	}
 
-	public void setSs_ybf(Long ss_ybf) {
+	public void setSs_ybf(Double ss_ybf) {
 		this.ss_ybf = ss_ybf;
 	}
 
 	/**
 	 * 送审其它费
 	 */
-	private Long ss_qtf;
+	private Double ss_qtf;
 
 	/**
 	 * @hibernate.property column="ss_qtf"
 	 * @return Returns the ss_qtf.
 	 */
-	public Long getSs_qtf() {
+	public Double getSs_qtf() {
 		return ss_qtf;
 	}
 
-	public void setSs_qtf(Long ss_qtf) {
+	public void setSs_qtf(Double ss_qtf) {
 		this.ss_qtf = ss_qtf;
 	}
 
 	/**
 	 * 送审施工费
 	 */
-	private Long ss_sgf;
+	private Double ss_sgf;
 
 	/**
 	 * @hibernate.property column="ss_sgf"
 	 * @return Returns the ss_sgf.
 	 */
-	public Long getSs_sgf() {
+	public Double getSs_sgf() {
 		return ss_sgf;
 	}
 
-	public void setSs_sgf(Long ss_sgf) {
+	public void setSs_sgf(Double ss_sgf) {
 		this.ss_sgf = ss_sgf;
 	}
 
 	/**
 	 * 送审监理费
 	 */
-	private Long ss_jlf;
+	private Double ss_jlf;
 
 	/**
 	 * @hibernate.property column="ss_jlf"
 	 * @return Returns the ss_jlf.
 	 */
-	public Long getSs_jlf() {
+	public Double getSs_jlf() {
 		return ss_jlf;
 	}
 
-	public void setSs_jlf(Long ss_jlf) {
+	public void setSs_jlf(Double ss_jlf) {
 		this.ss_jlf = ss_jlf;
 	}
 
 	/**
 	 * 送审设计费
 	 */
-	private Long ss_sjf;
+	private Double ss_sjf;
 
 	/**
 	 * @hibernate.property column="ss_sjf"
 	 * @return Returns the ss_sjf.
 	 */
-	public Long getSs_sjf() {
+	public Double getSs_sjf() {
 		return ss_sjf;
 	}
 
-	public void setSs_sjf(Long ss_sjf) {
+	public void setSs_sjf(Double ss_sjf) {
 		this.ss_sjf = ss_sjf;
 	}
 
 	/**
 	 * 送审金额
 	 */
-	private Long ss_je;
+	private Double ss_je;
 
 	/**
 	 * @hibernate.property column="ss_je"
 	 * @return Returns the ss_je.
 	 */
-	public Long getSs_je() {
+	public Double getSs_je() {
 		return ss_je;
 	}
 
-	public void setSs_je(Long ss_je) {
+	public void setSs_je(Double ss_je) {
 		this.ss_je = ss_je;
 	}
 
 	/**
 	 * 初审技工工日
 	 */
-	private Long cs_jggr;
+	private Double cs_jggr;
 
 	/**
 	 * @hibernate.property column="cs_jggr"
 	 * @return Returns the cs_jggr.
 	 */
-	public Long getCs_jggr() {
+	public Double getCs_jggr() {
 		return cs_jggr;
 	}
 
-	public void setCs_jggr(Long cs_jggr) {
+	public void setCs_jggr(Double cs_jggr) {
 		this.cs_jggr = cs_jggr;
 	}
 
 	/**
 	 * 初审普工工日
 	 */
-	private Long cs_pggr;
+	private Double cs_pggr;
 
 	/**
 	 * @hibernate.property column="cs_pggr"
 	 * @return Returns the cs_pggr.
 	 */
-	public Long getCs_pggr() {
+	public Double getCs_pggr() {
 		return cs_pggr;
 	}
 
-	public void setCs_pggr(Long cs_pggr) {
+	public void setCs_pggr(Double cs_pggr) {
 		this.cs_pggr = cs_pggr;
 	}
 
 	/**
 	 * 初审人工费
 	 */
-	private Long cs_rgf;
+	private Double cs_rgf;
 
 	/**
 	 * @hibernate.property column="cs_rgf"
 	 * @return Returns the cs_rgf.
 	 */
-	public Long getCs_rgf() {
+	public Double getCs_rgf() {
 		return cs_rgf;
 	}
 
-	public void setCs_rgf(Long cs_rgf) {
+	public void setCs_rgf(Double cs_rgf) {
 		this.cs_rgf = cs_rgf;
 	}
 
 	/**
 	 * 初审材料费
 	 */
-	private Long cs_clf;
+	private Double cs_clf;
 
 	/**
 	 * @hibernate.property column="cs_clf"
 	 * @return Returns the cs_clf.
 	 */
-	public Long getCs_clf() {
+	public Double getCs_clf() {
 		return cs_clf;
 	}
 
-	public void setCs_clf(Long cs_clf) {
+	public void setCs_clf(Double cs_clf) {
 		this.cs_clf = cs_clf;
 	}
 
 	/**
 	 * 初审
 	 */
-	private Long cs_clf_j;
+	private Double cs_clf_j;
 
 	/**
 	 * @hibernate.property column="cs_clf_j"
 	 * @return Returns the cs_clf_j.
 	 */
-	public Long getCs_clf_j() {
+	public Double getCs_clf_j() {
 		return cs_clf_j;
 	}
 
-	public void setCs_clf_j(Long cs_clf_j) {
+	public void setCs_clf_j(Double cs_clf_j) {
 		this.cs_clf_j = cs_clf_j;
 	}
 
 	/**
 	 * 甲方材料费
 	 */
-	private Long cs_jxf;
+	private Double cs_jxf;
 
 	/**
 	 * @hibernate.property column="cs_jxf"
 	 * @return Returns the cs_jxf.
 	 */
-	public Long getCs_jxf() {
+	public Double getCs_jxf() {
 		return cs_jxf;
 	}
 
-	public void setCs_jxf(Long cs_jxf) {
+	public void setCs_jxf(Double cs_jxf) {
 		this.cs_jxf = cs_jxf;
 	}
 
 	/**
 	 * 初审仪表费
 	 */
-	private Long cs_ybf;
+	private Double cs_ybf;
 
 	/**
 	 * @hibernate.property column="cs_ybf"
 	 * @return Returns the cs_ybf.
 	 */
-	public Long getCs_ybf() {
+	public Double getCs_ybf() {
 		return cs_ybf;
 	}
 
-	public void setCs_ybf(Long cs_ybf) {
+	public void setCs_ybf(Double cs_ybf) {
 		this.cs_ybf = cs_ybf;
 	}
 
 	/**
 	 * 初审其它费
 	 */
-	private Long cs_qtf;
+	private Double cs_qtf;
 
 	/**
 	 * @hibernate.property column="cs_qtf"
 	 * @return Returns the cs_qtf.
 	 */
-	public Long getCs_qtf() {
+	public Double getCs_qtf() {
 		return cs_qtf;
 	}
 
-	public void setCs_qtf(Long cs_qtf) {
+	public void setCs_qtf(Double cs_qtf) {
 		this.cs_qtf = cs_qtf;
 	}
 
 	/**
 	 * 初审施工费
 	 */
-	private Long cs_sgf;
+	private Double cs_sgf;
 
 	/**
 	 * @hibernate.property column="cs_sgf"
 	 * @return Returns the cs_sgf.
 	 */
-	public Long getCs_sgf() {
+	public Double getCs_sgf() {
 		return cs_sgf;
 	}
 
-	public void setCs_sgf(Long cs_sgf) {
+	public void setCs_sgf(Double cs_sgf) {
 		this.cs_sgf = cs_sgf;
 	}
 
 	/**
 	 * 初审监理费
 	 */
-	private Long cs_jlf;
+	private Double cs_jlf;
 
 	/**
 	 * @hibernate.property column="cs_jlf"
 	 * @return Returns the cs_jlf.
 	 */
-	public Long getCs_jlf() {
+	public Double getCs_jlf() {
 		return cs_jlf;
 	}
 
-	public void setCs_jlf(Long cs_jlf) {
+	public void setCs_jlf(Double cs_jlf) {
 		this.cs_jlf = cs_jlf;
 	}
 
 	/**
 	 * 初审设计费
 	 */
-	private Long cs_sjf;
+	private Double cs_sjf;
 
 	/**
 	 * @hibernate.property column="cs_sjf"
 	 * @return Returns the cs_sjf.
 	 */
-	public Long getCs_sjf() {
+	public Double getCs_sjf() {
 		return cs_sjf;
 	}
 
-	public void setCs_sjf(Long cs_sjf) {
+	public void setCs_sjf(Double cs_sjf) {
 		this.cs_sjf = cs_sjf;
 	}
 
 	/**
 	 * 初审金额
 	 */
-	private Long cs_je;
+	private Double cs_je;
 
 	/**
 	 * @hibernate.property column="cs_je"
 	 * @return Returns the cs_je.
 	 */
-	public Long getCs_je() {
+	public Double getCs_je() {
 		return cs_je;
 	}
 
-	public void setCs_je(Long cs_je) {
+	public void setCs_je(Double cs_je) {
 		this.cs_je = cs_je;
 	}
 
 	/**
 	 * 审定技工工日
 	 */
-	private Long sd_jggr;
+	private Double sd_jggr;
 
 	/**
 	 * @hibernate.property column="sd_jggr"
 	 * @return Returns the sd_jggr.
 	 */
-	public Long getSd_jggr() {
+	public Double getSd_jggr() {
 		return sd_jggr;
 	}
 
-	public void setSd_jggr(Long sd_jggr) {
+	public void setSd_jggr(Double sd_jggr) {
 		this.sd_jggr = sd_jggr;
 	}
 
 	/**
 	 * 审定普工工日
 	 */
-	private Long sd_pggr;
+	private Double sd_pggr;
 
 	/**
 	 * @hibernate.property column="sd_pggr"
 	 * @return Returns the sd_pggr.
 	 */
-	public Long getSd_pggr() {
+	public Double getSd_pggr() {
 		return sd_pggr;
 	}
 
-	public void setSd_pggr(Long sd_pggr) {
+	public void setSd_pggr(Double sd_pggr) {
 		this.sd_pggr = sd_pggr;
 	}
 
 	/**
 	 * 审定人工费
 	 */
-	private Long sd_rgf;
+	private Double sd_rgf;
 
 	/**
 	 * @hibernate.property column="sd_rgf"
 	 * @return Returns the sd_rgf.
 	 */
-	public Long getSd_rgf() {
+	public Double getSd_rgf() {
 		return sd_rgf;
 	}
 
-	public void setSd_rgf(Long sd_rgf) {
+	public void setSd_rgf(Double sd_rgf) {
 		this.sd_rgf = sd_rgf;
 	}
 
 	/**
 	 * 审定材料费
 	 */
-	private Long sd_clf;
+	private Double sd_clf;
 
 	/**
 	 * @hibernate.property column="sd_clf"
 	 * @return Returns the sd_clf.
 	 */
-	public Long getSd_clf() {
+	public Double getSd_clf() {
 		return sd_clf;
 	}
 
-	public void setSd_clf(Long sd_clf) {
+	public void setSd_clf(Double sd_clf) {
 		this.sd_clf = sd_clf;
 	}
 
 	/**
 	 * 审定甲方材料费
 	 */
-	private Long sd_clf_j;
+	private Double sd_clf_j;
 
 	/**
 	 * @hibernate.property column="sd_clf_j"
 	 * @return Returns the sd_clf_j.
 	 */
-	public Long getSd_clf_j() {
+	public Double getSd_clf_j() {
 		return sd_clf_j;
 	}
 
-	public void setSd_clf_j(Long sd_clf_j) {
+	public void setSd_clf_j(Double sd_clf_j) {
 		this.sd_clf_j = sd_clf_j;
 	}
 
 	/**
 	 * 审定机械费
 	 */
-	private Long sd_jxf;
+	private Double sd_jxf;
 
 	/**
 	 * @hibernate.property column="sd_jxf"
 	 * @return Returns the sd_jxf.
 	 */
-	public Long getSd_jxf() {
+	public Double getSd_jxf() {
 		return sd_jxf;
 	}
 
-	public void setSd_jxf(Long sd_jxf) {
+	public void setSd_jxf(Double sd_jxf) {
 		this.sd_jxf = sd_jxf;
 	}
 
 	/**
 	 * 审定仪表费
 	 */
-	private Long sd_ybf;
+	private Double sd_ybf;
 
 	/**
 	 * @hibernate.property column="sd_ybf"
 	 * @return Returns the sd_ybf.
 	 */
-	public Long getSd_ybf() {
+	public Double getSd_ybf() {
 		return sd_ybf;
 	}
 
-	public void setSd_ybf(Long sd_ybf) {
+	public void setSd_ybf(Double sd_ybf) {
 		this.sd_ybf = sd_ybf;
 	}
 
 	/**
 	 * 审定其它费
 	 */
-	private Long sd_qtf;
+	private Double sd_qtf;
 
 	/**
 	 * @hibernate.property column="sd_qtf"
 	 * @return Returns the sd_qtf.
 	 */
-	public Long getSd_qtf() {
+	public Double getSd_qtf() {
 		return sd_qtf;
 	}
 
-	public void setSd_qtf(Long sd_qtf) {
+	public void setSd_qtf(Double sd_qtf) {
 		this.sd_qtf = sd_qtf;
 	}
 
 	/**
 	 * 审定施工费
 	 */
-	private Long sd_sgf;
+	private Double sd_sgf;
 
 	/**
 	 * @hibernate.property column="sd_sgf"
 	 * @return Returns the sd_sgf.
 	 */
-	public Long getSd_sgf() {
+	public Double getSd_sgf() {
 		return sd_sgf;
 	}
 
-	public void setSd_sgf(Long sd_sgf) {
+	public void setSd_sgf(Double sd_sgf) {
 		this.sd_sgf = sd_sgf;
 	}
 
 	/**
 	 * 审定监理费
 	 */
-	private Long sd_jlf;
+	private Double sd_jlf;
 
 	/**
 	 * @hibernate.property column="sd_jlf"
 	 * @return Returns the sd_jlf.
 	 */
-	public Long getSd_jlf() {
+	public Double getSd_jlf() {
 		return sd_jlf;
 	}
 
-	public void setSd_jlf(Long sd_jlf) {
+	public void setSd_jlf(Double sd_jlf) {
 		this.sd_jlf = sd_jlf;
 	}
 
 	/**
 	 * 审定设计费
 	 */
-	private Long sd_sjf;
+	private Double sd_sjf;
 
 	/**
 	 * @hibernate.property column="sd_sjf"
 	 * @return Returns the sd_sjf.
 	 */
-	public Long getSd_sjf() {
+	public Double getSd_sjf() {
 		return sd_sjf;
 	}
 
-	public void setSd_sjf(Long sd_sjf) {
+	public void setSd_sjf(Double sd_sjf) {
 		this.sd_sjf = sd_sjf;
 	}
 
 	/**
 	 * 审定金额
 	 */
-	private Long sd_je;
+	private Double sd_je;
 
 	/**
 	 * @hibernate.property column="sd_je"
 	 * @return Returns the sd_je.
 	 */
-	public Long getSd_je() {
+	public Double getSd_je() {
 		return sd_je;
 	}
 
-	public void setSd_je(Long sd_je) {
+	public void setSd_je(Double sd_je) {
 		this.sd_je = sd_je;
 	}
 
@@ -2063,357 +2063,357 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 预算金额
 	 */
-	private Long ys_je;
+	private Double ys_je;
 
 	/**
 	 * @hibernate.property column="ys_je"
 	 * @return Returns the ys_je.
 	 */
-	public Long getYs_je() {
+	public Double getYs_je() {
 		return ys_je;
 	}
 
-	public void setYs_je(Long ys_je) {
+	public void setYs_je(Double ys_je) {
 		this.ys_je = ys_je;
 	}
 
 	/**
 	 * 预算建安费
 	 */
-	private Long ys_jaf;
+	private Double ys_jaf;
 
 	/**
 	 * @hibernate.property column="ys_jaf"
 	 * @return Returns the ys_jaf.
 	 */
-	public Long getYs_jaf() {
+	public Double getYs_jaf() {
 		return ys_jaf;
 	}
 
-	public void setYs_jaf(Long ys_jaf) {
+	public void setYs_jaf(Double ys_jaf) {
 		this.ys_jaf = ys_jaf;
 	}
 
 	/**
 	 * 预算材料费
 	 */
-	private Long ys_clf;
+	private Double ys_clf;
 
 	/**
 	 * @hibernate.property column="ys_clf"
 	 * @return Returns the ys_clf.
 	 */
-	public Long getYs_clf() {
+	public Double getYs_clf() {
 		return ys_clf;
 	}
 
-	public void setYs_clf(Long ys_clf) {
+	public void setYs_clf(Double ys_clf) {
 		this.ys_clf = ys_clf;
 	}
 
 	/**
 	 * 预算人工费
 	 */
-	private Long ys_rgf;
+	private Double ys_rgf;
 
 	/**
 	 * @hibernate.property column="ys_rgf"
 	 * @return Returns the ys_rgf.
 	 */
-	public Long getYs_rgf() {
+	public Double getYs_rgf() {
 		return ys_rgf;
 	}
 
-	public void setYs_rgf(Long ys_rgf) {
+	public void setYs_rgf(Double ys_rgf) {
 		this.ys_rgf = ys_rgf;
 	}
 
 	/**
 	 * 预算技工工日
 	 */
-	private Long ys_jggr;
+	private Double ys_jggr;
 
 	/**
 	 * @hibernate.property column="ys_jggr"
 	 * @return Returns the ys_jggr.
 	 */
-	public Long getYs_jggr() {
+	public Double getYs_jggr() {
 		return ys_jggr;
 	}
 
-	public void setYs_jggr(Long ys_jggr) {
+	public void setYs_jggr(Double ys_jggr) {
 		this.ys_jggr = ys_jggr;
 	}
 
 	/**
 	 * 预算普工工日
 	 */
-	private Long ys_pggr;
+	private Double ys_pggr;
 
 	/**
 	 * @hibernate.property column="ys_pggr"
 	 * @return Returns the ys_pggr.
 	 */
-	public Long getYs_pggr() {
+	public Double getYs_pggr() {
 		return ys_pggr;
 	}
 
-	public void setYs_pggr(Long ys_pggr) {
+	public void setYs_pggr(Double ys_pggr) {
 		this.ys_pggr = ys_pggr;
 	}
 
 	/**
 	 * 预算设备费
 	 */
-	private Long ys_sbf;
+	private Double ys_sbf;
 
 	/**
 	 * @hibernate.property column="ys_sbf"
 	 * @return Returns the ys_sbf.
 	 */
-	public Long getYs_sbf() {
+	public Double getYs_sbf() {
 		return ys_sbf;
 	}
 
-	public void setYs_sbf(Long ys_sbf) {
+	public void setYs_sbf(Double ys_sbf) {
 		this.ys_sbf = ys_sbf;
 	}
 
 	/**
 	 * 预算机械费
 	 */
-	private Long ys_jxf;
+	private Double ys_jxf;
 
 	/**
 	 * @hibernate.property column="ys_jxf"
 	 * @return Returns the ys_jxf.
 	 */
-	public Long getYs_jxf() {
+	public Double getYs_jxf() {
 		return ys_jxf;
 	}
 
-	public void setYs_jxf(Long ys_jxf) {
+	public void setYs_jxf(Double ys_jxf) {
 		this.ys_jxf = ys_jxf;
 	}
 
 	/**
 	 * 预算仪表费
 	 */
-	private Long ys_ybf;
+	private Double ys_ybf;
 
 	/**
 	 * @hibernate.property column="ys_ybf"
 	 * @return Returns the ys_ybf.
 	 */
-	public Long getYs_ybf() {
+	public Double getYs_ybf() {
 		return ys_ybf;
 	}
 
-	public void setYs_ybf(Long ys_ybf) {
+	public void setYs_ybf(Double ys_ybf) {
 		this.ys_ybf = ys_ybf;
 	}
 
 	/**
 	 * 预算设计费
 	 */
-	private Long ys_sjf;
+	private Double ys_sjf;
 
 	/**
 	 * @hibernate.property column="ys_sjf"
 	 * @return Returns the ys_sjf.
 	 */
-	public Long getYs_sjf() {
+	public Double getYs_sjf() {
 		return ys_sjf;
 	}
 
-	public void setYs_sjf(Long ys_sjf) {
+	public void setYs_sjf(Double ys_sjf) {
 		this.ys_sjf = ys_sjf;
 	}
 
 	/**
 	 * 预算监理费
 	 */
-	private Long ys_jlf;
+	private Double ys_jlf;
 
 	/**
 	 * @hibernate.property column="ys_jlf"
 	 * @return Returns the ys_jlf.
 	 */
-	public Long getYs_jlf() {
+	public Double getYs_jlf() {
 		return ys_jlf;
 	}
 
-	public void setYs_jlf(Long ys_jlf) {
+	public void setYs_jlf(Double ys_jlf) {
 		this.ys_jlf = ys_jlf;
 	}
 
 	/**
 	 * 仪表其它费
 	 */
-	private Long ys_qtf;
+	private Double ys_qtf;
 
 	/**
 	 * @hibernate.property column="ys_qtf"
 	 * @return Returns the ys_qtf.
 	 */
-	public Long getYs_qtf() {
+	public Double getYs_qtf() {
 		return ys_qtf;
 	}
 
-	public void setYs_qtf(Long ys_qtf) {
+	public void setYs_qtf(Double ys_qtf) {
 		this.ys_qtf = ys_qtf;
 	}
 
 	/**
 	 * 预算施工费
 	 */
-	private Long ys_sgf;
+	private Double ys_sgf;
 
 	/**
 	 * @hibernate.property column="ys_sgf"
 	 * @return Returns the ys_sgf.
 	 */
-	public Long getYs_sgf() {
+	public Double getYs_sgf() {
 		return ys_sgf;
 	}
 
-	public void setYs_sgf(Long ys_sgf) {
+	public void setYs_sgf(Double ys_sgf) {
 		this.ys_sgf = ys_sgf;
 	}
 
 	/**
 	 * 立项金额
 	 */
-	private Long lxje;
+	private Double lxje;
 
 	/**
 	 * @hibernate.property column="lxje"
 	 * @return Returns the lxje.
 	 */
-	public Long getLxje() {
+	public Double getLxje() {
 		return lxje;
 	}
 
-	public void setLxje(Long lxje) {
+	public void setLxje(Double lxje) {
 		this.lxje = lxje;
 	}
 
 	/**
 	 * 变更技工工日
 	 */
-	private Long bg_jggr;
+	private Double bg_jggr;
 
 	/**
 	 * @hibernate.property column="bg_jggr"
 	 * @return Returns the bg_jggr.
 	 */
-	public Long getBg_jggr() {
+	public Double getBg_jggr() {
 		return bg_jggr;
 	}
 
-	public void setBg_jggr(Long bg_jggr) {
+	public void setBg_jggr(Double bg_jggr) {
 		this.bg_jggr = bg_jggr;
 	}
 
 	/**
 	 * 变更普工工日
 	 */
-	private Long bg_pggr;
+	private Double bg_pggr;
 
 	/**
 	 * @hibernate.property column="bg_pggr"
 	 * @return Returns the bg_pggr.
 	 */
-	public Long getBg_pggr() {
+	public Double getBg_pggr() {
 		return bg_pggr;
 	}
 
-	public void setBg_pggr(Long bg_pggr) {
+	public void setBg_pggr(Double bg_pggr) {
 		this.bg_pggr = bg_pggr;
 	}
 
 	/**
 	 * 变更金额
 	 */
-	private Long bg_je;
+	private Double bg_je;
 
 	/**
 	 * @hibernate.property column="bg_je"
 	 * @return Returns the bg_je.
 	 */
-	public Long getBg_je() {
+	public Double getBg_je() {
 		return bg_je;
 	}
 
-	public void setBg_je(Long bg_je) {
+	public void setBg_je(Double bg_je) {
 		this.bg_je = bg_je;
 	}
 
 	/**
 	 * 送审技工工日
 	 */
-	private Long ss_jggr;
+	private Double ss_jggr;
 
 	/**
 	 * @hibernate.property column="ss_jggr"
 	 * @return Returns the ss_jggr.
 	 */
-	public Long getSs_jggr() {
+	public Double getSs_jggr() {
 		return ss_jggr;
 	}
 
-	public void setSs_jggr(Long ss_jggr) {
+	public void setSs_jggr(Double ss_jggr) {
 		this.ss_jggr = ss_jggr;
 	}
 
 	/**
 	 * 送审普工工日
 	 */
-	private Long ss_pggr;
+	private Double ss_pggr;
 
 	/**
 	 * @hibernate.property column="ss_pggr"
 	 * @return Returns the ss_pggr.
 	 */
-	public Long getSs_pggr() {
+	public Double getSs_pggr() {
 		return ss_pggr;
 	}
 
-	public void setSs_pggr(Long ss_pggr) {
+	public void setSs_pggr(Double ss_pggr) {
 		this.ss_pggr = ss_pggr;
 	}
 
 	/**
 	 * 送审人工费
 	 */
-	private Long ss_rgf;
+	private Double ss_rgf;
 
 	/**
 	 * @hibernate.property column="ss_rgf"
 	 * @return Returns the ss_rgf.
 	 */
-	public Long getSs_rgf() {
+	public Double getSs_rgf() {
 		return ss_rgf;
 	}
 
-	public void setSs_rgf(Long ss_rgf) {
+	public void setSs_rgf(Double ss_rgf) {
 		this.ss_rgf = ss_rgf;
 	}
 
 	/**
 	 * 送审材料费
 	 */
-	private Long ss_clf;
+	private Double ss_clf;
 
 	/**
 	 * @hibernate.property column="ss_clf"
 	 * @return Returns the ss_clf.
 	 */
-	public Long getSs_clf() {
+	public Double getSs_clf() {
 		return ss_clf;
 	}
 
-	public void setSs_clf(Long ss_clf) {
+	public void setSs_clf(Double ss_clf) {
 		this.ss_clf = ss_clf;
 	}
 
