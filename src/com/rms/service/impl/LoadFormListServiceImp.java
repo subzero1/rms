@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -270,6 +271,75 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					glgc.setGlgc_id(fact_glgc_id);
 					request.setAttribute("td00_gcxx", glgc);
 				}
+			}
+			
+			
+			/**
+			 * 以下为表单附件区域@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			 */
+
+			Vector<HashMap<String, String>> v_slave = new Vector<HashMap<String, String>>();
+
+			/**
+			 * 项目信息单和工程信息单中的公共附件******************************************************
+			 */
+
+			if (module_id == 101 || module_id == 102) {
+
+				/**
+				 * 工程预算(单机)
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Te03_gcgys_zhxx where gc_id = ");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gcysdj_slave = new HashMap<String, String>();
+					tmp_gcysdj_slave.put("slave_name", "工程预算");
+					tmp_gcysdj_slave.put("formurl", "javascript:djbck(" + project_id + ")");
+					tmp_gcysdj_slave.put("rw", "r");
+					v_slave.add(tmp_gcysdj_slave);
+				}
+
+				/**
+				 * 工程图纸
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Te01_slave where slave_type = '工程图纸' and project_id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gctz_slave = new HashMap<String, String>();
+					tmp_gctz_slave.put("slave_name", "工程图纸");
+					tmp_gctz_slave.put("formurl", "javascript:openCustomWin('form/SlaveList.do?project_id="
+							+ t_project_id + "&doc_id=" + t_doc_id + "&module_id=" + t_module_id
+							+ "&slave_type=sj&canDel=" + cansave + "',600,400,'no')");
+					tmp_gctz_slave.put("rw", "r");
+					v_slave.add(tmp_gctz_slave);
+				}
+
+				/**
+				 * 设计说明
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Te01_slave where slave_type = '设计说明' and project_id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
+					tmp_gcsm_slave.put("slave_name", "设计说明");
+					tmp_gcsm_slave.put("formurl", "javascript:openCustomWin('form/SlaveList.do?project_id="
+							+ t_project_id + "&doc_id=" + t_doc_id + "&module_id=" + t_module_id
+							+ "&slave_type=sj&canDel=" + cansave + "',600,400,'no')");
+					tmp_gcsm_slave.put("rw", "r");
+					v_slave.add(tmp_gcsm_slave);
+				}
+			}
+			if (v_slave.size() > 0) {
+				request.setAttribute("extslave", v_slave);
 			}
 
 			// end if
