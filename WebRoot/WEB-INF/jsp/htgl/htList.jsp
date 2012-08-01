@@ -5,7 +5,7 @@
 
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="keywords" value="${param.keywords}">
-	<input type="hidden" name="htlb" value="${param.htlb}">
+	<input type="hidden" name="htlb" value="${htlb}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -43,9 +43,9 @@
 					<th style="width: 120px;" orderField="xmbh">项目编号</th>
 					<th orderField="xmmc">项目名称</th>
 					<th style="width: 100px;" orderField="lxsj">立项日期</th>
-					<th style="width: 120px;" orderField="${param.htlb }htbh">合同编号</th>
-					<th style="width: 100px;" orderField="${param.htlb }htqdrq">签订日期</th>
-					<th style="width: 80px;" orderField="${param.htlb }htje">合同金额</th>
+					<th style="width: 120px;" orderField="${htlb }htbh">${htlbmc }合同编号</th>
+					<th style="width: 100px;" orderField="${htlb }htqdrq">${htlbmc }签订日期</th>
+					<th style="width: 80px;" orderField="${htlb }htje">${htlbmc }合同金额</th>
 					<th style="width: 80px;">指导金额</th>
 				</tr>
 			</thead>
@@ -55,7 +55,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${obj.xmbh }</td>
-						<td><a href="htEdit.do?xm_id=${obj.id }&act=ht" target="dialog" width="450" height="300" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
+						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="200" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
 						<td>${obj.lxsj }</td>
 						<td>${obj.htbh }</td>
 						<td>${obj.htqdrq }</td>
@@ -66,7 +66,6 @@
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
