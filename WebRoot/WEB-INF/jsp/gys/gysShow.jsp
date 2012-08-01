@@ -21,7 +21,11 @@
 <div class="page">
 	<div class="pageContent">
 			<div class="pageFormContent" layoutH="56">
-				<p><label>
+				<p>
+				  <label>
+				  	项目名称  <c:out value="${xmxx.xmmc }" default="${gcxx.gcmc }"/>
+				  </label>
+				  <label>
 					<select id="select_table">
 						<option value="Te03_gcgys_b1" >概预算总表（表一）</option>
 						<option value="Te03_gcgys_b2" >建筑安装工程费用概预算表（表二）</option>
@@ -32,7 +36,8 @@
 						<option value="Te03_gcgys_b4j" >国内主要材料表（表四）甲</option>
 						<option value="Te03_gcgys_b5j" >工程建设其他费概预算表（表五）甲</option>
 					</select>
-				</label></p>
+				  </label>
+				 </p>
 				<div id="gys_ui">
 					
 				</div>  

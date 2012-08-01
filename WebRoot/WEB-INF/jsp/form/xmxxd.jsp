@@ -37,9 +37,9 @@ $(function(){
 			});
 	}
 	
-	function djbck(){
+	function djbck(project_id){
 		//预算显示
-		navTab.openTab('gysShow', 'form/gysShow.do?bgbh=Te03_gcgys_b1&project_id=${param.project_id}', {title:'概预算显示'});
+		navTab.openTab('gysShow', 'form/gysShow.do?project_id='+project_id, {title:'概预算显示'});
 	}
 </script>
 
