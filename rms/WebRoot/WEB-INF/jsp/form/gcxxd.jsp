@@ -26,6 +26,16 @@ $(function(){
 		navTab.openTab('autoform102', 'flowForm.do?'+t_param, {title:'表单'});
 		
 	}
+	function yssc(){
+		//预算上传
+		var url = 'dispath.do?url=gysImport.jsp?project_id=${td00_gcxx.id}';
+		
+		alertMsg.confirm("确定上传吗？", {
+				okCall: function(){
+					$.pdialog.open(url,'_yssc','预算上传',{width:400,height:180});
+				}
+			});
+	}
 </script>
 
 
