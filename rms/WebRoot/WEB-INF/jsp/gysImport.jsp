@@ -24,6 +24,9 @@ function uploadSlave(butt){
 					<input type="file" name="the_file" id="the_file" size="23"/> 
 					<input type="hidden" name="project_id" value="${param.project_id}"/>
 				</p>
+				<p>
+					<label><a href="dispath.do?url=form/gysImport.xls" target="_blank"><font color="red"><b>模板下载</b></font></a></label>
+				</p>
 		</div>
 		<div class="formBar">
 			<ul>
