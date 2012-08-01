@@ -23,7 +23,6 @@ function uploadSlave(butt){
 					<label>附件选择：</label>
 					<input type="file" name="the_file" id="the_file" size="23"/> 
 					<input type="hidden" name="project_id" value="${param.project_id}"/>
-					<input type="hidden" name="project_type" value="${param.project_type}"/>
 				</p>
 		</div>
 		<div class="formBar">
