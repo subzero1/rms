@@ -44,7 +44,7 @@
 
         <property
             name="dnljtzwce"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="dnljtzwce"
@@ -52,7 +52,7 @@
 
         <property
             name="ljtzwce"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ljtzwce"
@@ -60,7 +60,7 @@
 
         <property
             name="wcbfb"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="wcbfb"
@@ -172,7 +172,7 @@
 
         <property
             name="sjhtje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sjhtje"
@@ -196,7 +196,7 @@
 
         <property
             name="sghtje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sghtje"
@@ -220,7 +220,7 @@
 
         <property
             name="jlhtje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="jlhtje"
@@ -236,7 +236,7 @@
 
         <property
             name="ss_clf_j"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_clf_j"
@@ -244,7 +244,7 @@
 
         <property
             name="ss_jxf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_jxf"
@@ -252,7 +252,7 @@
 
         <property
             name="ss_ybf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_ybf"
@@ -260,7 +260,7 @@
 
         <property
             name="ss_qtf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_qtf"
@@ -268,7 +268,7 @@
 
         <property
             name="ss_sgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_sgf"
@@ -276,7 +276,7 @@
 
         <property
             name="ss_jlf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_jlf"
@@ -284,7 +284,7 @@
 
         <property
             name="ss_sjf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_sjf"
@@ -292,7 +292,7 @@
 
         <property
             name="ss_je"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_je"
@@ -300,7 +300,7 @@
 
         <property
             name="cs_jggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_jggr"
@@ -308,7 +308,7 @@
 
         <property
             name="cs_pggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_pggr"
@@ -316,7 +316,7 @@
 
         <property
             name="cs_rgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_rgf"
@@ -324,7 +324,7 @@
 
         <property
             name="cs_clf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_clf"
@@ -332,7 +332,7 @@
 
         <property
             name="cs_clf_j"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_clf_j"
@@ -340,7 +340,7 @@
 
         <property
             name="cs_jxf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_jxf"
@@ -348,7 +348,7 @@
 
         <property
             name="cs_ybf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_ybf"
@@ -356,7 +356,7 @@
 
         <property
             name="cs_qtf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_qtf"
@@ -364,7 +364,7 @@
 
         <property
             name="cs_sgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_sgf"
@@ -372,7 +372,7 @@
 
         <property
             name="cs_jlf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_jlf"
@@ -380,7 +380,7 @@
 
         <property
             name="cs_sjf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_sjf"
@@ -388,7 +388,7 @@
 
         <property
             name="cs_je"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="cs_je"
@@ -396,7 +396,7 @@
 
         <property
             name="sd_jggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_jggr"
@@ -404,7 +404,7 @@
 
         <property
             name="sd_pggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_pggr"
@@ -412,7 +412,7 @@
 
         <property
             name="sd_rgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_rgf"
@@ -420,7 +420,7 @@
 
         <property
             name="sd_clf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_clf"
@@ -436,7 +436,7 @@
 
         <property
             name="sd_jxf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_jxf"
@@ -444,7 +444,7 @@
 
         <property
             name="sd_ybf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_ybf"
@@ -452,7 +452,7 @@
 
         <property
             name="sd_qtf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_qtf"
@@ -460,7 +460,7 @@
 
         <property
             name="sd_sgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_sgf"
@@ -468,7 +468,7 @@
 
         <property
             name="sd_jlf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_jlf"
@@ -476,7 +476,7 @@
 
         <property
             name="sd_sjf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_sjf"
@@ -484,7 +484,7 @@
 
         <property
             name="sd_je"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_je"
@@ -956,7 +956,7 @@
 
         <property
             name="ys_je"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_je"
@@ -964,7 +964,7 @@
 
         <property
             name="ys_jaf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_jaf"
@@ -972,7 +972,7 @@
 
         <property
             name="ys_clf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_clf"
@@ -980,7 +980,7 @@
 
         <property
             name="ys_rgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_rgf"
@@ -988,7 +988,7 @@
 
         <property
             name="ys_jggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_jggr"
@@ -996,7 +996,7 @@
 
         <property
             name="ys_pggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_pggr"
@@ -1004,7 +1004,7 @@
 
         <property
             name="ys_sbf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_sbf"
@@ -1012,7 +1012,7 @@
 
         <property
             name="ys_jxf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_jxf"
@@ -1020,7 +1020,7 @@
 
         <property
             name="ys_ybf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_ybf"
@@ -1028,7 +1028,7 @@
 
         <property
             name="ys_sjf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_sjf"
@@ -1036,7 +1036,7 @@
 
         <property
             name="ys_jlf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_jlf"
@@ -1044,7 +1044,7 @@
 
         <property
             name="ys_qtf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_qtf"
@@ -1052,7 +1052,7 @@
 
         <property
             name="ys_sgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ys_sgf"
@@ -1060,7 +1060,7 @@
 
         <property
             name="lxje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="lxje"
@@ -1068,7 +1068,7 @@
 
         <property
             name="bg_jggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="bg_jggr"
@@ -1076,7 +1076,7 @@
 
         <property
             name="bg_pggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="bg_pggr"
@@ -1084,7 +1084,7 @@
 
         <property
             name="bg_je"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="bg_je"
@@ -1092,7 +1092,7 @@
 
         <property
             name="ss_jggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_jggr"
@@ -1100,7 +1100,7 @@
 
         <property
             name="ss_pggr"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_pggr"
@@ -1108,7 +1108,7 @@
 
         <property
             name="ss_rgf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_rgf"
@@ -1116,7 +1116,7 @@
 
         <property
             name="ss_clf"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="ss_clf"
