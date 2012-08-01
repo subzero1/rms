@@ -213,6 +213,8 @@ public class AuxFunction {
 						String className = null;
 						String[] colName = null;
 						String keyColName = null;
+						String notImportCol = null;
+						String notImportColValue = null;
 						
 						if(sheetName.indexOf("表一") != -1){
 							
@@ -249,12 +251,23 @@ public class AuxFunction {
 							className = "com.rms.dataObjects.gcjs.Te03_gcgys_b3b";
 							keyColName = "xmmc";
 						}
-						else if(sheetName.indexOf("表四") != -1){
+						else if(sheetName.indexOf("表四") != -1 && sheetName.indexOf("材料") != -1){
 							
 							//{序号、名称、型号规格、单位、数量、单价、合计、备注}
 							colName = new String[]{"xh","mc","xhgg","dw","sl","dj","hj","bz"};
 							className = "com.rms.dataObjects.gcjs.Te03_gcgys_b4j";
 							keyColName = "mc";
+							notImportCol = "bgbh";
+							notImportColValue = "ZC";
+						}
+						else if(sheetName.indexOf("表四") != -1 && sheetName.indexOf("设备") != -1 && sheetName.indexOf("需") != -1){
+							
+							//{序号、名称、型号规格、单位、数量、单价、合计、备注}
+							colName = new String[]{"xh","mc","xhgg","dw","sl","dj","hj","bz"};
+							className = "com.rms.dataObjects.gcjs.Te03_gcgys_b4j";
+							keyColName = "mc";
+							notImportCol = "bgbh";
+							notImportColValue = "XA";
 						}
 						else if(sheetName.indexOf("表五") != -1){
 								
@@ -274,6 +287,12 @@ public class AuxFunction {
 							while(t_row < rows - 1){
 								Object o = Class.forName(className).newInstance();
 								PropertyInject.setProperty(o, "gc_id", project_id);
+								/*
+								 * 处理表四中的表格编号（主材ZC 还是需安设备XA）
+								 */
+								if(notImportCol != null){
+									PropertyInject.setProperty(o, notImportCol, notImportColValue);
+								}
 								PropertyInject.injectFromExcel(o, columnIndex, sheet, t_row);
 								String t_value = (String)PropertyInject.getProperty(o, keyColName);
 								if(t_value != null && !t_value.equals("") && t_value.indexOf("审核") == -1)
