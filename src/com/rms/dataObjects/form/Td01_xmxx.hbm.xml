@@ -172,7 +172,7 @@
 
         <property
             name="sjhtje"
-            type="java.lang.Double"
+            type="java.lang.Long"
             update="true"
             insert="true"
             column="sjhtje"
@@ -196,7 +196,7 @@
 
         <property
             name="sghtje"
-            type="java.lang.Double"
+            type="java.lang.Long"
             update="true"
             insert="true"
             column="sghtje"
@@ -220,7 +220,7 @@
 
         <property
             name="jlhtje"
-            type="java.lang.Double"
+            type="java.lang.Long"
             update="true"
             insert="true"
             column="jlhtje"
