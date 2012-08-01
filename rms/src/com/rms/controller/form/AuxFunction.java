@@ -477,13 +477,11 @@ public class AuxFunction {
 		StringBuffer sql = new StringBuffer("");
 		Long user_id = null;
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		String bgbh = convertUtil.toString(request.getParameter("bgbh"));
-		HttpSession session = request.getSession();
-		if(session != null){
-			Ta03_user ta03 = (Ta03_user)session.getAttribute("user");
-			user_id = ta03.getId();
-		}
+		String bgmc = convertUtil.toString(request.getParameter("bgmc"));
 		
+		/*
+		 * 获得项目信息
+		 */
 		Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
 		if(td00 != null){
 			modelMap.put("gcxx", td00);
@@ -491,20 +489,24 @@ public class AuxFunction {
 		else{
 			Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, project_id);
 			if(td01 != null){
-				modelMap.put("gcxx", td01);
+				modelMap.put("xmxx", td01);
 			}
+		}
+		
+		if(bgmc.equals("")){
+			return new ModelAndView("/WEB-INF/jsp/gys/gysShow.jsp", modelMap);
 		}
 		
 		sql.delete(0, sql.length());
 		sql.append("");
 		sql.append("from ");
-		sql.append(bgbh);
+		sql.append(bgmc);
 		sql.append(" where gc_id = ");
 		sql.append(project_id);
 		sql.append(" order by id ");
 		List list = queryService.searchList(sql.toString()) ;
 		modelMap.put("gysList", list);
 		
-		return new ModelAndView("/WEB-INF/jsp/form/xzgcForDblx.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/gys/"+bgmc+".jsp", modelMap);
 	}
 }
