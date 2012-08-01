@@ -29,7 +29,6 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
-import com.rms.dataObjects.base.Tc04_zyxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 
 @Controller
@@ -79,6 +78,7 @@ public class Htgl {
 		String htlb = convertUtil.toString(request.getParameter("htlb"),"sj");
 		String keywords = convertUtil.toString(request.getParameter("keywords"),"");
 		modelMap.put("htlb", htlb);
+		modelMap.put("htlbmc", getHtlbmc(htlb));
 
 		//购建合同类别下拉列表
 		List<Object> htlbList = new LinkedList<Object>();
@@ -99,11 +99,7 @@ public class Htgl {
 		
 		//获得待签合同信息列表
 		sql.delete(0, sql.length());
-		sql.append("select id,xmbh,xmmc,lxsj");
-		sql.append(","+ htlb +"htbh as htbh");
-		sql.append(","+ htlb +"htje as htje");
-		sql.append(","+ htlb +"htqdrq as htqdrq");
-		sql.append(" from Td01_xmxx ");
+		sql.append(" from Td01_xmxx td01");
 		sql.append(" where " + htlb +"htbh is null ");
 				
 		 //关键字
@@ -133,14 +129,23 @@ public class Htgl {
 		
 		List<Object> htList = new LinkedList<Object>();
 		while (ro.next()) {
-			Td01_xmxx td01 = new Td01_xmxx();
-			td01.setId((Long)ro.get("id"));
-			td01.setXmbh((String)ro.get("xmbh"));
-			td01.setXmmc((String)ro.get("xmmc"));
-			td01.setLxsj((Date)ro.get("lxsj"));
-			td01.setHtbh((String)ro.get("htbh"));
-			td01.setHtje((Long)ro.get("htje"));
-			td01.setHtqdrq((Date)ro.get("htqdrq"));
+			Td01_xmxx td01 = (Td01_xmxx)ro.get("td01");
+			if("sj".equals(htlb)){	//设计			
+				td01.setHtbh(td01.getSjhtbh());
+				td01.setHtje(td01.getSjhtje());
+				td01.setHtqdrq(td01.getSjhtqdrq());
+				
+			}else if("sg".equals(htlb)){	//施工			
+				td01.setHtbh(td01.getSghtbh());
+				td01.setHtje(td01.getSghtje());
+				td01.setHtqdrq(td01.getSghtqdrq());
+							
+			}else if("jl".equals(htlb)){	//监理			
+				td01.setHtbh(td01.getJlhtbh());
+				td01.setHtje(td01.getJlhtje());
+				td01.setHtqdrq(td01.getJlhtqdrq());
+						
+			}
 			htList.add(td01);
 		}		
 		modelMap.put("htList", htList);
@@ -174,14 +179,49 @@ public class Htgl {
 	}
 	
 	/**
-	 * 合同信息编辑\送审信息录入、挂账信息录入
+	 * 合同信息编辑\送审信息录入\挂账信息录入
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/htgl/htEdit.do")
 	public ModelAndView htEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("xm_id"));
+		String htlb = convertUtil.toString(request.getParameter("htlb"));
+		Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, id);
+		
+		if("sj".equals(htlb)){	//设计			
+			td01.setHtbh(td01.getSjhtbh());
+			td01.setHtje(td01.getSjhtje());
+			td01.setHtqdrq(td01.getSjhtqdrq());
+			
+		}else if("sg".equals(htlb)){	//施工			
+			td01.setHtbh(td01.getSghtbh());
+			td01.setHtje(td01.getSghtje());
+			td01.setHtqdrq(td01.getSghtqdrq());
+						
+		}else if("jl".equals(htlb)){	//监理			
+			td01.setHtbh(td01.getJlhtbh());
+			td01.setHtje(td01.getJlhtje());
+			td01.setHtqdrq(td01.getJlhtqdrq());
+					
+		}
+		modelMap.put("td01", td01);
+		modelMap.put("htlb", htlb);
+		modelMap.put("htlbmc", getHtlbmc(htlb));
 		
 		return new ModelAndView("/WEB-INF/jsp/htgl/htEdit.jsp", modelMap);
 		
+	}
+	
+	private String getHtlbmc(String htlb){
+		if("sj".equals(htlb)){
+			return "设计";	
+		}else if("sg".equals(htlb)){
+			return "施工";				
+		}else if("jl".equals(htlb)){
+			return "监理";			
+		}else{
+			return "";	
+		}
 	}
 }
