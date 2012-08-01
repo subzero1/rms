@@ -28,8 +28,13 @@ $(function(){
 	
 	function yssc(){
 		//预算上传
-		var url = 'dispath.do?url=gysImport.jsp?xm_id=${td01_xmxx.id}';
-		$.pdialog.open(url,'_yssc','预算上传',{width:400,height:180});
+		var url = 'dispath.do?url=gysImport.jsp?project_id=${td01_xmxx.id}';
+		
+		alertMsg.confirm("确定上传吗？", {
+				okCall: function(){
+					$.pdialog.open(url,'_yssc','预算上传',{width:400,height:180});
+				}
+			});
 	}
 </script>
 
