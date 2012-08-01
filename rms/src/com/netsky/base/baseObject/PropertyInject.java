@@ -188,7 +188,7 @@ public class PropertyInject {
 						}
 					}
 					if (property != null) {
-						if (invoke(o, method[i], property, null, null))
+						if (invoke(o, method[i], property, "GBK", "GBK"))
 							set = true;
 					}
 				}
@@ -298,11 +298,13 @@ public class PropertyInject {
 						fromBytes = property[i].getBytes(fromCode);
 					} else {
 						fromBytes = property[i].getBytes();
+						System.out.println("fromBytes="+fromBytes);
 					}
 					if (targetCode != null) {
 						targetStr = new String(fromBytes, targetCode);
 					} else {
 						targetStr = new String(fromBytes);
+						System.out.println("targetStr="+targetStr);
 					}
 					object[i] = targetStr;
 				} else if (clazz[i].getName().equals("java.lang.Double")) {
