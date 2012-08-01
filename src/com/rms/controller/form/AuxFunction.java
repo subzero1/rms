@@ -499,7 +499,7 @@ public class AuxFunction {
 		sql.append("");
 		sql.append("from ");
 		sql.append(bgbh);
-		sql.append(" where project_id = ");
+		sql.append(" where gc_id = ");
 		sql.append(project_id);
 		sql.append(" order by id ");
 		List list = queryService.searchList(sql.toString()) ;
