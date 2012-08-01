@@ -346,18 +346,18 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 合同金额
 	 */
-	private Long htje;
+	private Double htje;
 
 	/**
 	 * @hibernate.property column="htje"
 	 * @return Returns the htje.
 	 */
-	public Long getHtje() {
+	public Double getHtje() {
 		return htje;
 	}
 
-	public void setHtje(Long htje) {
-		this.sjhtje = htje;
+	public void setHtje(Double htje) {
+		this.htje = htje;
 	}
 
 	/**
@@ -397,17 +397,17 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 设计合同金额
 	 */
-	private Long sjhtje;
+	private Double sjhtje;
 
 	/**
 	 * @hibernate.property column="sjhtje"
 	 * @return Returns the sjhtje.
 	 */
-	public Long getSjhtje() {
+	public Double getSjhtje() {
 		return sjhtje;
 	}
 
-	public void setSjhtje(Long sjhtje) {
+	public void setSjhtje(Double sjhtje) {
 		this.sjhtje = sjhtje;
 	}
 
@@ -448,17 +448,17 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 施工合同金额
 	 */
-	private Long sghtje;
+	private Double sghtje;
 
 	/**
 	 * @hibernate.property column="sghtje"
 	 * @return Returns the sghtje.
 	 */
-	public Long getSghtje() {
+	public Double getSghtje() {
 		return sghtje;
 	}
 
-	public void setSghtje(Long sghtje) {
+	public void setSghtje(Double sghtje) {
 		this.sghtje = sghtje;
 	}
 
