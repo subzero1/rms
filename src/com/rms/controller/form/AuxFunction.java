@@ -370,7 +370,7 @@ public class AuxFunction {
 			sql.append(" and fymc = '工程建设其他费'");
 			ro = queryService.search(sql.toString());
 			if(ro.next()){
-				qtf = convertUtil.toDouble(ro.get("rmbzj"));
+				qtf = convertUtil.toDouble(ro.get("rmbzj"),0d);
 			}
 			
 			/*
@@ -384,8 +384,8 @@ public class AuxFunction {
 			sql.append(" and fymc like '%总%' and fymc like '%计%'");
 			ro = queryService.search(sql.toString());
 			if(ro.next()){
-				ysje = convertUtil.toDouble(ro.get("rmbzj"));
-				sbf = convertUtil.toDouble(ro.get("xasbf"));
+				ysje = convertUtil.toDouble(ro.get("rmbzj"),0d);
+				sbf = convertUtil.toDouble(ro.get("xasbf"),0d);
 			}
 			
 			/*
