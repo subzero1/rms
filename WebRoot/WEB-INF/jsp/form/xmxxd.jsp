@@ -37,10 +37,6 @@ $(function(){
 			});
 	}
 	
-	function djbck(project_id){
-		//预算显示
-		navTab.openTab('gysShow', 'form/gysShow.do?project_id='+project_id, {title:'概预算显示'});
-	}
 </script>
 
 
