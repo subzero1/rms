@@ -32,8 +32,8 @@
 						<option value="Te03_gcgys_b3j" >建筑安装工程量概预算表（表三）甲</option>
 						<option value="Te03_gcgys_b3y" >建筑安装工程施工机械使用费概预算表（表三）乙</option>
 						<option value="Te03_gcgys_b3b" >建筑安装工程施工机械使用费概预算表（表三）丙</option>
-						<option value="Te03_gcgys_b4j" >国内需要安装设备表（表四）甲</option>
-						<option value="Te03_gcgys_b4j" >国内主要材料表（表四）甲</option>
+						<option value="Te03_gcgys_b4j&bgbh=XA" >国内需要安装设备表（表四）甲</option>
+						<option value="Te03_gcgys_b4j&bgbh=ZC" >国内主要材料表（表四）甲</option>
 						<option value="Te03_gcgys_b5j" >工程建设其他费概预算表（表五）甲</option>
 					</select>
 				  </label>

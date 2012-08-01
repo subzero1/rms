@@ -272,7 +272,7 @@ public class AuxFunction {
 						else if(sheetName.indexOf("表五") != -1){
 								
 							//{序号、费用名称、单位、数量、单价、合计、备注、计算依据和方法}
-							colName = new String[]{"xh","fymc","yjsf","hj","bz"};
+							colName = new String[]{"xh","fymc","yjsf","hj","hj","hj","bz"};
 							className = "com.rms.dataObjects.gcjs.Te03_gcgys_b5j";
 							keyColName = "fymc";
 						}
@@ -497,6 +497,7 @@ public class AuxFunction {
 		Long user_id = null;
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
 		String bgmc = convertUtil.toString(request.getParameter("bgmc"));
+		String bgbh = convertUtil.toString(request.getParameter("bgbh"));
 		
 		/*
 		 * 获得项目信息
@@ -522,6 +523,11 @@ public class AuxFunction {
 		sql.append(bgmc);
 		sql.append(" where gc_id = ");
 		sql.append(project_id);
+		if(!bgbh.equals("")){
+			sql.append(" and bgbh = '");
+			sql.append(bgbh);
+			sql.append("'");
+		}
 		sql.append(" order by id ");
 		List list = queryService.searchList(sql.toString()) ;
 		modelMap.put("gysList", list);
