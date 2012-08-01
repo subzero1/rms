@@ -499,17 +499,17 @@ public class Td01_xmxx implements Serializable {
 	/**
 	 * 监理合同金额
 	 */
-	private Double jlhtje;
+	private Long jlhtje;
 
 	/**
 	 * @hibernate.property column="jlhtje"
 	 * @return Returns the jlhtje.
 	 */
-	public Double getJlhtje() {
+	public Long getJlhtje() {
 		return jlhtje;
 	}
 
-	public void setJlhtje(Double jlhtje) {
+	public void setJlhtje(Long jlhtje) {
 		this.jlhtje = jlhtje;
 	}
 
