@@ -172,7 +172,7 @@
 
         <property
             name="sjhtje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sjhtje"
@@ -196,7 +196,7 @@
 
         <property
             name="sghtje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sghtje"
@@ -220,7 +220,7 @@
 
         <property
             name="jlhtje"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="jlhtje"
@@ -428,7 +428,7 @@
 
         <property
             name="sd_clf_j"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="sd_clf_j"
