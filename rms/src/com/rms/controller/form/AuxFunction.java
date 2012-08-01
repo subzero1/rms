@@ -45,6 +45,8 @@ import com.rms.dataObjects.gcjs.Te03_gcgys_b3b;
 import com.rms.dataObjects.gcjs.Te03_gcgys_b4j;
 import com.rms.dataObjects.gcjs.Te03_gcgys_b5j;
 import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
+import com.rms.dataObjects.form.Td00_gcxx;
+import com.rms.dataObjects.form.Td01_xmxx;
 
 @Controller
 public class AuxFunction {
@@ -372,6 +374,21 @@ public class AuxFunction {
 			}
 			
 			/*
+			 * 预算总金额、设备费
+			 */
+			Double ysje = 0d,sbf = 0d;
+			sql.delete(0, sql.length());
+			sql.append("select xasbf,rmbzj from Te03_gcgys_b1 ");
+			sql.append("where gc_id = ");
+			sql.append(project_id);
+			sql.append(" and fymc like '%总%' and fymc like '%计%'");
+			ro = queryService.search(sql.toString());
+			if(ro.next()){
+				ysje = convertUtil.toDouble(ro.get("rmbzj"));
+				sbf = convertUtil.toDouble(ro.get("xasbf"));
+			}
+			
+			/*
 			 * 保存综合信息
 			 */
 			Te03_gcgys_zhxx te03_zhxx = null;
@@ -398,6 +415,45 @@ public class AuxFunction {
 			te03_zhxx.setSjf(sjf);
 			te03_zhxx.setJlf(jlf);
 			saveService.save(te03_zhxx);
+			
+			/*
+			 * 同步工程信息
+			 */
+			Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
+			if(td00 != null){
+				td00.setYs_jggr(jggr);
+				td00.setYs_pggr(pggr);
+				td00.setYs_jaf(jaf);
+				td00.setYs_rgf(rgf);
+				td00.setYs_clf(clf);
+				td00.setYs_jxf(jxf);
+				td00.setYs_ybf(ybf);
+				td00.setYs_qtf(qtf);
+				td00.setYs_sjf(sjf);
+				td00.setYs_jlf(jlf);
+				td00.setYs_sbf(sbf);
+				td00.setYs_je(ysje);
+				saveService.save(td00);
+			}
+			else{
+				Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, project_id);
+				if(td01 != null){
+					td01.setYs_jggr(jggr);
+					td01.setYs_pggr(pggr);
+					td01.setYs_jaf(jaf);
+					td01.setYs_rgf(rgf);
+					td01.setYs_clf(clf);
+					td01.setYs_jxf(jxf);
+					td01.setYs_ybf(ybf);
+					td01.setYs_qtf(qtf);
+					td01.setYs_sjf(sjf);
+					td01.setYs_jlf(jlf);
+					td01.setYs_sbf(sbf);
+					td01.setYs_je(ysje);
+					saveService.save(td01);
+				}
+			}
+			
 			
 			response.getWriter().print("{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
