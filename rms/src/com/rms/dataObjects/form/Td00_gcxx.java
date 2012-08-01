@@ -414,221 +414,221 @@ public class Td00_gcxx implements Serializable {
 	/**
 	 * 预算金额
 	 */
-	private Long ys_je;
+	private Double ys_je;
 
 	/**
 	 * @hibernate.property column="ys_je"
 	 * @return Returns the ys_je.
 	 */
-	public Long getYs_je() {
+	public Double getYs_je() {
 		return ys_je;
 	}
 
-	public void setYs_je(Long ys_je) {
+	public void setYs_je(Double ys_je) {
 		this.ys_je = ys_je;
 	}
 
 	/**
 	 * 预算建安费
 	 */
-	private Long ys_jaf;
+	private Double ys_jaf;
 
 	/**
 	 * @hibernate.property column="ys_jaf"
 	 * @return Returns the ys_jaf.
 	 */
-	public Long getYs_jaf() {
+	public Double getYs_jaf() {
 		return ys_jaf;
 	}
 
-	public void setYs_jaf(Long ys_jaf) {
+	public void setYs_jaf(Double ys_jaf) {
 		this.ys_jaf = ys_jaf;
 	}
 
 	/**
 	 * 预算材料费
 	 */
-	private Long ys_clf;
+	private Double ys_clf;
 
 	/**
 	 * @hibernate.property column="ys_clf"
 	 * @return Returns the ys_clf.
 	 */
-	public Long getYs_clf() {
+	public Double getYs_clf() {
 		return ys_clf;
 	}
 
-	public void setYs_clf(Long ys_clf) {
+	public void setYs_clf(Double ys_clf) {
 		this.ys_clf = ys_clf;
 	}
 
 	/**
 	 * 预算人工费
 	 */
-	private Long ys_rgf;
+	private Double ys_rgf;
 
 	/**
 	 * @hibernate.property column="ys_rgf"
 	 * @return Returns the ys_rgf.
 	 */
-	public Long getYs_rgf() {
+	public Double getYs_rgf() {
 		return ys_rgf;
 	}
 
-	public void setYs_rgf(Long ys_rgf) {
+	public void setYs_rgf(Double ys_rgf) {
 		this.ys_rgf = ys_rgf;
 	}
 
 	/**
 	 * 预算技工工日
 	 */
-	private Long ys_jggr;
+	private Double ys_jggr;
 
 	/**
 	 * @hibernate.property column="ys_jggr"
 	 * @return Returns the ys_jggr.
 	 */
-	public Long getYs_jggr() {
+	public Double getYs_jggr() {
 		return ys_jggr;
 	}
 
-	public void setYs_jggr(Long ys_jggr) {
+	public void setYs_jggr(Double ys_jggr) {
 		this.ys_jggr = ys_jggr;
 	}
 
 	/**
 	 * 预算普工工日
 	 */
-	private Long ys_pggr;
+	private Double ys_pggr;
 
 	/**
 	 * @hibernate.property column="ys_pggr"
 	 * @return Returns the ys_pggr.
 	 */
-	public Long getYs_pggr() {
+	public Double getYs_pggr() {
 		return ys_pggr;
 	}
 
-	public void setYs_pggr(Long ys_pggr) {
+	public void setYs_pggr(Double ys_pggr) {
 		this.ys_pggr = ys_pggr;
 	}
 
 	/**
 	 * 预算设备费
 	 */
-	private Long ys_sbf;
+	private Double ys_sbf;
 
 	/**
 	 * @hibernate.property column="ys_sbf"
 	 * @return Returns the ys_sbf.
 	 */
-	public Long getYs_sbf() {
+	public Double getYs_sbf() {
 		return ys_sbf;
 	}
 
-	public void setYs_sbf(Long ys_sbf) {
+	public void setYs_sbf(Double ys_sbf) {
 		this.ys_sbf = ys_sbf;
 	}
 
 	/**
 	 * 预算机械费
 	 */
-	private Long ys_jxf;
+	private Double ys_jxf;
 
 	/**
 	 * @hibernate.property column="ys_jxf"
 	 * @return Returns the ys_jxf.
 	 */
-	public Long getYs_jxf() {
+	public Double getYs_jxf() {
 		return ys_jxf;
 	}
 
-	public void setYs_jxf(Long ys_jxf) {
+	public void setYs_jxf(Double ys_jxf) {
 		this.ys_jxf = ys_jxf;
 	}
 
 	/**
 	 * 预算仪表费
 	 */
-	private Long ys_ybf;
+	private Double ys_ybf;
 
 	/**
 	 * @hibernate.property column="ys_ybf"
 	 * @return Returns the ys_ybf.
 	 */
-	public Long getYs_ybf() {
+	public Double getYs_ybf() {
 		return ys_ybf;
 	}
 
-	public void setYs_ybf(Long ys_ybf) {
+	public void setYs_ybf(Double ys_ybf) {
 		this.ys_ybf = ys_ybf;
 	}
 
 	/**
 	 * 预算设计费
 	 */
-	private Long ys_sjf;
+	private Double ys_sjf;
 
 	/**
 	 * @hibernate.property column="ys_sjf"
 	 * @return Returns the ys_sjf.
 	 */
-	public Long getYs_sjf() {
+	public Double getYs_sjf() {
 		return ys_sjf;
 	}
 
-	public void setYs_sjf(Long ys_sjf) {
+	public void setYs_sjf(Double ys_sjf) {
 		this.ys_sjf = ys_sjf;
 	}
 
 	/**
 	 * 预算监理费
 	 */
-	private Long ys_jlf;
+	private Double ys_jlf;
 
 	/**
 	 * @hibernate.property column="ys_jlf"
 	 * @return Returns the ys_jlf.
 	 */
-	public Long getYs_jlf() {
+	public Double getYs_jlf() {
 		return ys_jlf;
 	}
 
-	public void setYs_jlf(Long ys_jlf) {
+	public void setYs_jlf(Double ys_jlf) {
 		this.ys_jlf = ys_jlf;
 	}
 
 	/**
 	 * 仪表其它费
 	 */
-	private Long ys_qtf;
+	private Double ys_qtf;
 
 	/**
 	 * @hibernate.property column="ys_qtf"
 	 * @return Returns the ys_qtf.
 	 */
-	public Long getYs_qtf() {
+	public Double getYs_qtf() {
 		return ys_qtf;
 	}
 
-	public void setYs_qtf(Long ys_qtf) {
+	public void setYs_qtf(Double ys_qtf) {
 		this.ys_qtf = ys_qtf;
 	}
 
 	/**
 	 * 预算施工费
 	 */
-	private Long ys_sgf;
+	private Double ys_sgf;
 
 	/**
 	 * @hibernate.property column="ys_sgf"
 	 * @return Returns the ys_sgf.
 	 */
-	public Long getYs_sgf() {
+	public Double getYs_sgf() {
 		return ys_sgf;
 	}
 
-	public void setYs_sgf(Long ys_sgf) {
+	public void setYs_sgf(Double ys_sgf) {
 		this.ys_sgf = ys_sgf;
 	}
 
@@ -652,51 +652,51 @@ public class Td00_gcxx implements Serializable {
 	/**
 	 * 变更技工工日
 	 */
-	private Long bg_jggr;
+	private Double bg_jggr;
 
 	/**
 	 * @hibernate.property column="bg_jggr"
 	 * @return Returns the bg_jggr.
 	 */
-	public Long getBg_jggr() {
+	public Double getBg_jggr() {
 		return bg_jggr;
 	}
 
-	public void setBg_jggr(Long bg_jggr) {
+	public void setBg_jggr(Double bg_jggr) {
 		this.bg_jggr = bg_jggr;
 	}
 
 	/**
 	 * 变更普工工日
 	 */
-	private Long bg_pggr;
+	private Double bg_pggr;
 
 	/**
 	 * @hibernate.property column="bg_pggr"
 	 * @return Returns the bg_pggr.
 	 */
-	public Long getBg_pggr() {
+	public Double getBg_pggr() {
 		return bg_pggr;
 	}
 
-	public void setBg_pggr(Long bg_pggr) {
+	public void setBg_pggr(Double bg_pggr) {
 		this.bg_pggr = bg_pggr;
 	}
 
 	/**
 	 * 变更金额
 	 */
-	private Long bg_je;
+	private Double bg_je;
 
 	/**
 	 * @hibernate.property column="bg_je"
 	 * @return Returns the bg_je.
 	 */
-	public Long getBg_je() {
+	public Double getBg_je() {
 		return bg_je;
 	}
 
-	public void setBg_je(Long bg_je) {
+	public void setBg_je(Double bg_je) {
 		this.bg_je = bg_je;
 	}
 
@@ -1437,51 +1437,51 @@ public class Td00_gcxx implements Serializable {
 	/**
 	 * 当年累计投资完成额
 	 */
-	private Long dnljtzwce;
+	private Double dnljtzwce;
 
 	/**
 	 * @hibernate.property column="dnljtzwce"
 	 * @return Returns the dnljtzwce.
 	 */
-	public Long getDnljtzwce() {
+	public Double getDnljtzwce() {
 		return dnljtzwce;
 	}
 
-	public void setDnljtzwce(Long dnljtzwce) {
+	public void setDnljtzwce(Double dnljtzwce) {
 		this.dnljtzwce = dnljtzwce;
 	}
 
 	/**
 	 * 累计投资完成额
 	 */
-	private Long ljtzwce;
+	private Double ljtzwce;
 
 	/**
 	 * @hibernate.property column="ljtzwce"
 	 * @return Returns the ljtzwce.
 	 */
-	public Long getLjtzwce() {
+	public Double getLjtzwce() {
 		return ljtzwce;
 	}
 
-	public void setLjtzwce(Long ljtzwce) {
+	public void setLjtzwce(Double ljtzwce) {
 		this.ljtzwce = ljtzwce;
 	}
 
 	/**
 	 * 施工进度百分比（*工作量填报）
 	 */
-	private Long wcbfb;
+	private Double wcbfb;
 
 	/**
 	 * @hibernate.property column="wcbfb"
 	 * @return Returns the wcbfb.
 	 */
-	public Long getWcbfb() {
+	public Double getWcbfb() {
 		return wcbfb;
 	}
 
-	public void setWcbfb(Long wcbfb) {
+	public void setWcbfb(Double wcbfb) {
 		this.wcbfb = wcbfb;
 	}
 
