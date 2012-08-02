@@ -545,6 +545,8 @@ public class AuxFunction {
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
 		String keywords  = convertUtil.toString(request.getParameter("keywords"));
+		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
+		modelMap.put("curUserId", user.getId());
 		
 		/*
 		 * 获得项目信息
