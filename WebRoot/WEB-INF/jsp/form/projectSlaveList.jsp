@@ -56,7 +56,7 @@
 						<td>${obj.ftp_date }</td>
 						<td style="text-align:center;"><a href="download.do?slave_id=${obj.id }" target="_blank">下载</a></td>
 						<td style="text-align:center;">
-						   <c:if test="${param.canDel == 'yes'}">	
+						   <c:if test="${(param.canDel == 'yes' && curUserId == obj.user_id) || admin == 'true'}">	
 							<a href="javascript:del_slave(${obj.id }, ${offset - 1})" target="_blank">删除</a>
 						   </c:if>
 						</td>
