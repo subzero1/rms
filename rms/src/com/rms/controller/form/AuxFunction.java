@@ -174,6 +174,7 @@ public class AuxFunction {
 		try {
 			MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
 			Long project_id = convertUtil.toLong(request.getParameter("project_id"), -1L);
+			Long module_id = convertUtil.toLong(request.getParameter("module_id"), -1L);
 			
 			saveService.updateByHSql("delete from Te03_gcgys_b1 where gc_id = "+project_id);
 			saveService.updateByHSql("delete from Te03_gcgys_b2 where gc_id = "+project_id);
@@ -474,7 +475,7 @@ public class AuxFunction {
 			}
 			
 			
-			response.getWriter().print("{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
+			response.getWriter().print("{\"statusCode\":\"200\", \"message\":\"导入成功\", \"navTabId\":\"autoform"+module_id+project_id+"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			String msg = "";
 			String e_msg = e.getMessage();
