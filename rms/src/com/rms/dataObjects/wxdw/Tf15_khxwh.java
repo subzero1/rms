@@ -103,6 +103,25 @@ public class Tf15_khxwh implements Serializable{
  public void setJsfs(String jsfs) {
     this.jsfs = jsfs;
   }
+ /**
+  * 分类
+  */
+ private String lb;
+
+/**
+ * @hibernate.property column="lb"
+ * @return Returns the lb.
+ */
+public String getLb() {
+	return lb;
+}
+
+/**
+ * @param lb The lb to set.
+ */
+public void setLb(String lb) {
+	this.lb = lb;
+}
 
 
 }
