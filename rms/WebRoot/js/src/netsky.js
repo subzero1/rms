@@ -295,6 +295,21 @@ function showMsgBox(_msg,a,b,c){
 *概预算显示
 */
 function djbck(project_id){
-	//预算显示
 	navTab.openTab('gysShow', 'form/gysShow.do?project_id='+project_id, {title:'概预算显示'});
+}
+
+/**
+*设计文档上传
+*/
+function designDocUpload(project_id,doc_id,module_id,node_id,opernode_id,slave_type){
+	url="dispath.do?url=uploadFile.jsp?project_id="+project_id+"&doc_id="+doc_id+"&module_id="+module_id+"&node_id="+node_id+"&opernode_id="+opernode_id+"&slave_type="+slave_type;
+	$.pdialog.open(url,'_upload_slave_form','附件上传',{width:400,height:220});
+}
+
+/**
+*工程附件显示【设计文档、竣工资料】
+*/
+function projectSlaveShow(project_id,module_id,doc_id){
+	var url = 'form/designDocShow.do?project_id='+project_id+'&module_id='+module_id+'&doc_id='+doc_id;
+	$.pdialog.open(url,'_projectSlaveShow','附件显示',{width:600,height:400});
 }
