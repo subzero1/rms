@@ -3,9 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-<form id="pagerForm" method="post" action="">
+<form id="pagerForm" method="post" action="htgl/wssList.do">
 	<input type="hidden" name="keywords" value="${param.keywords}">
-	<input type="hidden" name="htlb" value="${param.htlb}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -14,11 +13,10 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="htgl/htList.do" method="post">
+		<form action="htgl/wssList.do" method="post">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>类别：<netsky:htmlSelect name="htlb" id="htlb" objectForOption="htlbList" valueForOption="name" showForOption="name" value="${param.htlb}" extend=""  extendPrefix="true" /></td>
 						<td>项目编号或名称：<input name="keywords" value="${param.keywords}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
@@ -26,7 +24,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'htgl/htList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'htgl/wssList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -42,33 +40,30 @@
 				<tr>
 					<th style="width: 120px;" orderField="xmbh">项目编号</th>
 					<th orderField="xmmc">项目名称</th>
-					<th style="width: 80px;" orderField="ssje">送审金额</th>
+					<th style="width: 80px;" orderField="ss_je">送审金额</th>
 					<th style="width: 100px;" orderField="ssrq">送审日期</th>
-					<th style="width: 80px;" orderField="htlb">合同类型</th>
-					<th style="width: 120px;" orderField="htbh">合同编号</th>
-					<th style="width: 100px;" orderField="htqdrq">签订日期</th>
-					<th style="width: 80px;" orderField="htje">合同金额</th>
+					<th style="width: 120px;" orderField="sghtbh">施工合同编号</th>
+					<th style="width: 100px;" orderField="sghtqdrq">施工签订日期</th>
+					<th style="width: 80px;" orderField="sghtje">施工合同金额</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:set var="offset" value="0"/>
-				<c:forEach var="obj" items="${htList}">
+				<c:forEach var="obj" items="${wssList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${obj.xmbh }</td>
-						<td><a href="htEdit.do?xm_id=${obj.xm_id }&act=wss" target="dialog" width="450" height="300" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
-						<td>${obj.ssje }</td>
-						<td>${obj.ssrq }</td>
-						<td>${obj.htlb}</td>
-						<td>${obj.htbh }</td>
-						<td>${obj.htqdrq }</td>
-						<td>${obj.htje }</td>
+						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=wss&htlb=sg" target="dialog" width="380" height="230" rel="htEdit" title="录入送审信息">${obj.xmmc }</a></td>
+						<td>${obj.ss_je }</td>
+						<td><fmt:formatDate value="${obj.ssrq }" pattern="yyyy-MM-dd"/></td>
+						<td>${obj.sghtbh }</td>
+						<td><fmt:formatDate value="${obj.sghtqdrq }" pattern="yyyy-MM-dd"/></td>
+						<td>${obj.sghtje }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
