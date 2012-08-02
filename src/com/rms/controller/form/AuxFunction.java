@@ -535,4 +535,49 @@ public class AuxFunction {
 		
 		return new ModelAndView("/WEB-INF/jsp/gys/"+bgmc+".jsp", modelMap);
 	}
+	
+
+	@RequestMapping("/form/designDocShow.do")
+	public ModelAndView designDocShow(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelMap modelMap = new ModelMap();
+		StringBuffer sql = new StringBuffer("");
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
+		String keywords  = convertUtil.toString(request.getParameter("keywords"));
+		
+		/*
+		 * 获得项目信息
+		 */
+		Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
+		if(td00 != null){
+			modelMap.put("gcxx", td00);
+		}
+		else{
+			Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, project_id);
+			if(td01 != null){
+				modelMap.put("xmxx", td01);
+			}
+		}
+		
+		
+		sql.delete(0, sql.length());
+		sql.append("");
+		sql.append("from Te01_slave ");
+		sql.append("where project_id = ");
+		sql.append(project_id);
+		sql.append(" and module_id = ");
+		sql.append(module_id);
+		sql.append(" and slave_type in('工程图纸','设计说明','竣工资料')");
+		if(!keywords.equals("")){
+			sql.append(" and file_name like '%");
+			sql.append(keywords);
+			sql.append("%'");
+		}
+		sql.append(" order by id ");
+		List list = queryService.searchList(sql.toString()) ;
+		modelMap.put("projectSlaveList", list);
+		
+		return new ModelAndView("/WEB-INF/jsp/form/projectSlaveList.jsp", modelMap);
+	}
 }

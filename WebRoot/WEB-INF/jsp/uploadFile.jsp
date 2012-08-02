@@ -19,16 +19,13 @@ function uploadSlave(butt){
 		<c:set var="slave_type" value="普通附件"/>
 	</c:when>
 	<c:when test="${param.slave_type==2}">
-		<c:set var="slave_type" value="机房规划图"/>
+		<c:set var="slave_type" value="工程图纸"/>
 	</c:when>
 	<c:when test="${param.slave_type==3}">
-		<c:set var="slave_type" value="机房现状图"/>
+		<c:set var="slave_type" value="设计说明"/>
 	</c:when>
 	<c:when test="${param.slave_type==4}">
-		<c:set var="slave_type" value="申请设计图"/>
-	</c:when>
-	<c:when test="${param.slave_type==5}">
-		<c:set var="slave_type" value="变更设计图"/>
+		<c:set var="slave_type" value="竣工资料"/>
 	</c:when>
 	<c:when test="${param.slave_type==8}">
 		<c:set var="slave_type" value="其他附件"/>
