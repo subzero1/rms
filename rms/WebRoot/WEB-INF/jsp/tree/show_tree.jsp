@@ -16,7 +16,7 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 		<ul class="toolBar">	
 		 <c:if test="${not empty moduleList}">
 		 	<li>
-				<a class="edit"	href="showFormTree.do?project_id=${param.project_id }" target="navTab" rel="showFormTree" title="工程主流程"><span>工程主流程</span></a>
+				<a class="edit"	href="showFormTree.do?project_id=${param.project_id }" target="navTab" rel="showFormTree" title="工程主流程"><span>主流程</span></a>
 		 	</li>
 			<li class="line">line</li>
 		 	<li>

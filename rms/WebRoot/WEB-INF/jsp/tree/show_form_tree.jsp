@@ -7,16 +7,7 @@
  * @param List<String> node_list
  */
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>主流程图</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" media="screen,projection" type="text/css" href="css/show_tree.css" />
-<link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
-<script type="text/javascript" src="js/prototype.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/appCommon.js"></script>
+
 <script language="javascript">
 function do_click(flow_id,node_id,project_id,module_id,doc_id,node_status){
 	if(node_status == -1)
@@ -32,50 +23,54 @@ function popFlowForm(url){
 	else window.location.href = url;
 }
 </script>
-</head>
-<body leftmargin="10" topmargin="10">
-	<div id="auto-in">
-		 <c:if test="${not empty param.project_id}">
-			 <div class="in-l in-m" onClick="javascript:openCustomWin('tree/spyj.do?project_id=${param.project_id }&module_id=${param.module_id }',700,350,'no');" title="查看当前工程所有表单审批明细">审批明细</div>
-			 <div class="in-r"></div>
-		 </c:if>
-		 <div class="in-l in-m" onClick="javascript:doClose();" title="关闭当前流程">关 闭</div>
-		 <div class="in-r"></div>
-  	</div>
-	<div style="height:35px"></div>
-	<div id="tree-title">
-  		<h1>${title} 流程图</h1>
-  	</div>
-	<div id="tree">
-		<c:forEach var="obj" items="${line_list}">
-			<div style='width:1px;height:1px;position: absolute; z-index: 1; left: ${obj.x }px; top: ${obj.y }px;background-color:${obj.color };'>
-			</div>
-		</c:forEach>
-		<c:forEach var="obj" items="${word_list}">
-			<div style='width:10px;height:10px;position: absolute; z-index: 1; left: ${obj.x }px; top: ${obj.y }px;' class='${obj.htmlClass }'>
-				${obj.name }
-			</div>
-		</c:forEach>
-		<c:forEach var="obj" items="${node_list}">
-			<div style='width:${obj.width }px;height:${obj.height }px;position: absolute; z-index: 1; left: ${obj.x }px; top: ${obj.y }px;' class='${obj.htmlClass }' onclick='javascript:do_click(${obj.param })'>
-				${obj.name }
-			</div>
-		</c:forEach>
-	</div>
-	<div id="form-select">
-		<form name="form1" action="showFormTree.do" method="post">
-			<c:if test="${not empty flowList}">			
-				<select name="flow_id" onchange="javascript:document.form1.submit();">
-					<c:forEach var="obj" items="${flowList}">
-						<option value="${obj.id }"
-						<c:if test="${obj.id == param.flow_id }">
-							selected
-						</c:if>
-						>${obj.name }</option>
-					</c:forEach>
-				</select>			
-			</c:if>
-		</form>
+
+<div class="page">
+	<div class="panelBar">
+		<ul class="toolBar">
+		 	<li>
+				<a class="edit"	href="tree/spyj.do?project_id=${param.project_id }&module_id=${param.module_id }" target="dialog" width="700" height="400" title="查看表单审批明细"><span>审批明细</span></a>
+		 	</li>
+			<li class="line">line</li>
+		 </ul>
+  	</div>	
+	<div class="pageContent" style="width:100%" layoutH="28">
+	
+		<div id="tree-title">
+	  		<br/><h1 style="font-size:14px;">项目名称：${title}</h1>
+	  	</div>
+		<div id="tree">
+	
+			<c:forEach var="obj" items="${line_list}">
+				<div style='width:1px;height:1px;position: absolute; z-index: 1; left: ${obj.x }px; top: ${obj.y }px;background-color:${obj.color };'>
+				</div>
+			</c:forEach>
+			<c:forEach var="obj" items="${word_list}">
+				<div style='width:10px;height:10px;position: absolute; z-index: 1; left: ${obj.x }px; top: ${obj.y }px;' class='${obj.htmlClass }'>
+					${obj.name }
+				</div>
+			</c:forEach>
+			<c:forEach var="obj" items="${node_list}">
+				<div style='width:${obj.width }px;height:${obj.height }px;position: absolute; z-index: 1; left: ${obj.x }px; top: ${obj.y }px;' class='${obj.htmlClass }' onclick='javascript:do_click(${obj.param })'>
+					${obj.name }
+				</div>
+			</c:forEach>
+		</div>
+		<div id="form-select">
+			<form name="form1" action="showFormTree.do" method="post">
+				<c:if test="${not empty flowList}">			
+					<select name="flow_id" onchange="javascript:document.form1.submit();">
+						<c:forEach var="obj" items="${flowList}">
+							<option value="${obj.id }"
+							<c:if test="${obj.id == param.flow_id }">
+								selected
+							</c:if>
+							>${obj.name }</option>
+						</c:forEach>
+					</select>			
+				</c:if>
+			</form>
+		</div>
+		<!-- 
 		<ul id="tree-form">
 			<c:forEach var="obj" items="${forms}">
 				<c:if test="${obj.node_status != -1}">
@@ -83,10 +78,9 @@ function popFlowForm(url){
 				</c:if>
 			</c:forEach>
 		</ul>
-		<br/><br/>
-	</div>
-	<div>
-		<div style="float:left;" id="color">
+ 		-->
+ 		
+		<div id="color" style="float:left;">  
 			节点颜色标识：
 			<ul>
 				<li> *.未走</li>
@@ -95,6 +89,4 @@ function popFlowForm(url){
 			</ul>
 		</div>
 	</div>
-	<div>&nbsp;</div>
-</body>
-</html>
+</div>
