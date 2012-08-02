@@ -61,8 +61,6 @@ public class Htgl {
 		//数据库相关变量
 		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
-		//Class<?> clazz = null;
-		//QueryBuilder queryBuilder = null;
 		
 		//分页变量
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
@@ -105,17 +103,20 @@ public class Htgl {
 		 //关键字
 		if(!keywords.equals("")){
 			
-			sql.append("and (xmbh like '%");
+			sql.append(" and (xmbh like '%");
 			sql.append(keywords);
 			sql.append("%' or xmmc like '%");
 			sql.append(keywords);
 			sql.append("%') ");
 		}
 		
-		sql.append(" order by ");
-		sql.append(orderField);
-		sql.append(" ");
-		sql.append(orderDirection);
+		 //排序
+		if(!orderField.equals("")){
+			sql.append(" order by ");
+			sql.append(orderField);
+			sql.append(" ");
+			sql.append(orderDirection);
+		}
 		
 		ResultObject ro = queryService.searchByPage(sql.toString(), pageNum, numPerPage);
 		totalCount = ro.getTotalRows();
@@ -159,7 +160,63 @@ public class Htgl {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/htgl/wssList.do")
 	public ModelAndView wssList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		//数据库相关变量
+		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
+		
+		//分页变量
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
+		Integer totalCount = 0;
+		Integer pageNumShown  = 0;
+		
+		//排序变量
+		String orderField = convertUtil.toString(request.getParameter("orderField"),"id");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"),"asc");
+		
+		//查询变量
+		String keywords = convertUtil.toString(request.getParameter("keywords"),"");
+		
+		//获得待送审项目列表，施工合同已签
+		sql.delete(0, sql.length());
+		sql.append(" from Td01_xmxx td01");
+		sql.append(" where sghtbh is not null ");
+		sql.append(" and ssrq is null");
+				
+		 //关键字
+		if(!keywords.equals("")){
+			
+			sql.append(" and (xmbh like '%");
+			sql.append(keywords);
+			sql.append("%' or xmmc like '%");
+			sql.append(keywords);
+			sql.append("%') ");
+		}
+		
+		 //排序
+		if(!orderField.equals("")){
+			sql.append(" order by ");
+			sql.append(orderField);
+			sql.append(" ");
+			sql.append(orderDirection);
+		}
+		
+		ResultObject ro = queryService.searchByPage(sql.toString(), pageNum, numPerPage);
+		totalCount = ro.getTotalRows();
+		pageNumShown = ro.getTotalPages();
+		
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("pageNumShown", pageNumShown);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		
+		List<Object> wssList = new LinkedList<Object>();
+		while (ro.next()) {
+			Td01_xmxx td01 = (Td01_xmxx)ro.get("td01");
+			wssList.add(td01);
+		}		
+		modelMap.put("wssList", wssList);
 		
 		return new ModelAndView("/WEB-INF/jsp/htgl/wssList.jsp", modelMap);
 		
@@ -172,7 +229,63 @@ public class Htgl {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/htgl/dgzList.do")
 	public ModelAndView dgzList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		//数据库相关变量
+		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
+		
+		//分页变量
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
+		Integer totalCount = 0;
+		Integer pageNumShown  = 0;
+		
+		//排序变量
+		String orderField = convertUtil.toString(request.getParameter("orderField"),"id");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"),"asc");
+		
+		//查询变量
+		String keywords = convertUtil.toString(request.getParameter("keywords"),"");
+		
+		//获得待挂账信息列表
+		sql.delete(0, sql.length());
+		sql.append(" from Td01_xmxx td01");
+		sql.append(" where ssrq is not null");
+		sql.append(" and gzrq is null");
+				
+		 //关键字
+		if(!keywords.equals("")){
+			
+			sql.append(" and (xmbh like '%");
+			sql.append(keywords);
+			sql.append("%' or xmmc like '%");
+			sql.append(keywords);
+			sql.append("%') ");
+		}
+		
+		 //排序
+		if(!orderField.equals("")){
+			sql.append(" order by ");
+			sql.append(orderField);
+			sql.append(" ");
+			sql.append(orderDirection);
+		}
+		
+		ResultObject ro = queryService.searchByPage(sql.toString(), pageNum, numPerPage);
+		totalCount = ro.getTotalRows();
+		pageNumShown = ro.getTotalPages();
+		
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("pageNumShown", pageNumShown);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		
+		List<Object> dgzList = new LinkedList<Object>();
+		while (ro.next()) {
+			Td01_xmxx td01 = (Td01_xmxx)ro.get("td01");
+			dgzList.add(td01);
+		}		
+		modelMap.put("dgzList", dgzList);
 		
 		return new ModelAndView("/WEB-INF/jsp/htgl/dgzList.jsp", modelMap);
 		

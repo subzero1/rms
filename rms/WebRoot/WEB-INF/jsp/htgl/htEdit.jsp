@@ -12,9 +12,11 @@
 			<input type="hidden" name="_callbackType" value=""/>
 			<input type="hidden" name="_message" value="提交数据保存" />
 			<input type="hidden" name="_forwardUrl" value=""/>
-			<input type="hidden" name="_navTabId" value=""/>
+			<input type="hidden" name="_navTabId" value="${param.act }List"/>
 			<input type="hidden" name="Td01_xmxx.ID" value="${td01.id}" />
 			<div class="pageFormContent" layoutH="53">
+				<div style="font-size:13px;font-weight:bold;line-height:18px;margin-left:10px;">${td01.xmbh } ${td01.xmmc }</div>
+				<div class="divider"></div>
 				<c:choose>				
 					<c:when test="${param.act=='ht'}">
 						<p>
@@ -32,36 +34,36 @@
 							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.htje }" class="required number" />
 						</p>
 					</c:when>
-					<c:when test="${param.act=='ss'}">
+					<c:when test="${param.act=='wss'}">
 						<p>
 							<label>送审金额：</label>
-							<input type="text" name="Td01_xmxx.SS_JE" style="width:240px;" value="${td01.ss_je }"  class="required number"/>
+							<input type="text" name="Td01_xmxx.SS_JE" style="width:200px;" value="${td01.ss_je }"  class="required number"/>
 						</p>
 						<div style="height:0px;"></div>
 						<p>
 							<label>送审日期：</label>
-							<input type="text" name="Td01_xmxx.SSRQ" style="width:240px;" value="${td01.ssrq }"  class="required date"/>
+							<input type="text" name="Td01_xmxx.SSRQ" style="width:200px;" value="${td01.ssrq }"  class="required date"/>
 						</p>
 					</c:when>
 					<c:otherwise>
 						<p>
 							<label>审定金额：</label>
-							<input type="text" name="Td01_xmxx.SD_JE" style="width:240px;" value="${td01.sd_je }"  class="required number"/>
+							<input type="text" name="Td01_xmxx.SD_JE" style="width:200px;" value="${td01.sd_je }"  class="required number"/>
 						</p>
 						<div style="height:0px;"></div>
 						<p>
 							<label>审定日期：</label>
-							<input type="text" name="Td01_xmxx.SJJSSJ" style="width:240px;" value="${td01.sjjssj }"  class="required date"/>
+							<input type="text" name="Td01_xmxx.SJJSSJ" style="width:200px;" value="${td01.sjjssj }"  class="required date"/>
 						</p>
 						<div style="height:0px;"></div>
 						<p>
 							<label>开票日期：</label>
-							<input type="text" name="Td01_xmxx.KPRQ" style="width:240px;" value="${td01.kprq }"  class="required date"/>
+							<input type="text" name="Td01_xmxx.KPRQ" style="width:200px;" value="${td01.kprq }"  class="required date"/>
 						</p>
 						<div style="height:0px;"></div>
 						<p>
 							<label>挂账日期：</label>
-							<input type="text" name="Td01_xmxx.GZRQ" style="width:240px;" value="${td01.gzrq }"  class="required date"/>
+							<input type="text" name="Td01_xmxx.GZRQ" style="width:200px;" value="${td01.gzrq }"  class="required date"/>
 						</p>
 					</c:otherwise>
 				</c:choose>				

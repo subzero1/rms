@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-<form id="pagerForm" method="post" action="">
+<form id="pagerForm" method="post" action="htgl/htList.do">
 	<input type="hidden" name="keywords" value="${param.keywords}">
 	<input type="hidden" name="htlb" value="${htlb}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
@@ -55,10 +55,10 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${obj.xmbh }</td>
-						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="200" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
-						<td>${obj.lxsj }</td>
+						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="230" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
+						<td><fmt:formatDate value="${obj.lxsj }" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td>${obj.htbh }</td>
-						<td>${obj.htqdrq }</td>
+						<td><fmt:formatDate value="${obj.htqdrq }" pattern="yyyy-MM-dd"/></td>
 						<td>${obj.htje }</td>
 						<td></td>
 					</tr>
