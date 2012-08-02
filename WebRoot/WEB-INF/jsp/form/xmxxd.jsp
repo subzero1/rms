@@ -28,7 +28,7 @@ $(function(){
 	
 	function yssc(){
 		//预算上传
-		var url = 'dispath.do?url=gysImport.jsp?project_id=${td01_xmxx.id}';
+		var url = 'dispath.do?url=gysImport.jsp?module_id=101&project_id=${td01_xmxx.id}';
 		
 		alertMsg.confirm("确定上传吗？", {
 				okCall: function(){
