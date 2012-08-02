@@ -45,7 +45,6 @@ $(function(){
 <input type="hidden" name="XM_ID" value="${td00_gcxx.xm_id}">
 <input type="hidden" name="GLGC_ID" value="${td00_gcxx.glgc_id}">
 
-<div class="pageFormContent">
 	<p>
 		<label>需求部门：</label>
 		<input type="text" readOnly name="Td00_gcxx.XQBM" value="<c:out value="${td00_gcxx.xqbm}" default="${user.dept_name}"/>" style="width:150px;"/>
@@ -263,9 +262,26 @@ $(function(){
 	</p>
 	
 	<div class="divider"></div>
-	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关工程列表</p>
-	<div style="height:0px;"></div>
-	
-	
-	
-</div>
+	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;相关工程列表</h3></div><div class="divider" style="height:1px;"></div>
+	<div style="width:780px;">
+		<table class="table" width="100%">
+			<thead>
+				<tr>
+					<th style="width: 30px;">序号</th>
+					<th style="width: 120px;">工程编号</th>
+					<th >工程名称</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:set var="offset" value="0"/>
+				<c:forEach items="${glgcList}" var="obj">
+				<c:set var="offset" value="${offset+1}"/>
+					<tr>
+						<td>${offset }</td>
+						<td>${obj.gcbh }</td>
+						<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:102,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.gcmc }</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
