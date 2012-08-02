@@ -245,6 +245,13 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						qkxl_list.add(o_tc07);
 					}
 					request.setAttribute("qkxlList", qkxl_list);
+					
+					//获取项目下的所有相关工程列表
+					queryBuilder = new HibernateQueryBuilder(Td00_gcxx.class);
+					queryBuilder.eq("xm_id", doc_id);
+					queryBuilder.addOrderBy(Order.asc("id"));
+					tmpList = queryService.searchList(queryBuilder);
+					request.setAttribute("glgcList", tmpList);
 				}
 			}
 			
@@ -270,6 +277,30 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					glgc.setGcmc(glgc.getGcmc()+"【关联工程......】");
 					glgc.setGlgc_id(fact_glgc_id);
 					request.setAttribute("td00_gcxx", glgc);
+				}
+				
+				//获取关联工程
+				if(doc_id != -1){
+					Td00_gcxx gcxx = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,doc_id);
+					hsql.delete(0, hsql.length());
+					hsql.append(" from Td00_gcxx glgc ");
+					
+					if(gcxx.getGlgc_id()==null){
+						hsql.append(" where glgc_id = ");
+						hsql.append(doc_id);
+					}else{
+						hsql.append(" where id = ");
+						hsql.append(gcxx.getGlgc_id());
+						hsql.append(" or glgc_id = ");
+						hsql.append(gcxx.getGlgc_id());
+					}
+					hsql.append(" order by id");
+					ro = queryService.search(hsql.toString());
+					List<Td00_gcxx> glgc_list = new LinkedList<Td00_gcxx>();
+					while (ro.next()) {
+						glgc_list.add((Td00_gcxx)ro.get("glgc"));
+					}
+					request.setAttribute("glgcList", glgc_list);
 				}
 			}
 			
