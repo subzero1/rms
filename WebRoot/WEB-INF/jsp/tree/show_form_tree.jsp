@@ -10,18 +10,15 @@
 
 <script language="javascript">
 function do_click(flow_id,node_id,project_id,module_id,doc_id,node_status){
-	if(node_status == -1)
-		window.location.href = 'showTree.do?flow_id=' + flow_id;
+	var url="";
+	if(node_status == -1)		
+		url = 'showTree.do?flow_id=' + flow_id;
 	else{
-		window.location.href = 'showTree.do?project_id=' + project_id + "&module_id=" + module_id + "&doc_id=" + doc_id;
+		url = 'showTree.do?project_id=' + project_id + "&module_id=" + module_id + "&doc_id=" + doc_id;
 	}
-	//window.openCustomWin('showTree.do?flow_id=' + flow_id,550,300,'auto','tree');
+	navTab.openTab('showTree', url, {title:'流程图'});
 }
-function popFlowForm(url){
-	var main_win = getHigherWin('pss_main',window);
-	if(main_win != null)main_win.popOperWeb(url);
-	else window.location.href = url;
-}
+
 </script>
 
 <div class="page">
@@ -70,16 +67,15 @@ function popFlowForm(url){
 				</c:if>
 			</form>
 		</div>
-		<!-- 
+ 
 		<ul id="tree-form">
 			<c:forEach var="obj" items="${forms}">
 				<c:if test="${obj.node_status != -1}">
-					<li onclick="javascript:popFlowForm('openForm.do?project_id=${obj.project_id }&module_id=${obj.module_id }&doc_id=${obj.doc_id }&${admin }');" onmouseover="this.style.color='#b00000';" onmouseout="this.style.color=''">${obj.node_name}</li>
+					<li onclick="javascript:navTab.openTab('autoform', 'openForm.do?project_id=${obj.project_id }&module_id=${obj.module_id }&doc_id=${obj.doc_id }&${admin }', {title:'表单'});" onmouseover="this.style.color='#b00000';" onmouseout="this.style.color=''">${obj.node_name}</li>
 				</c:if>
 			</c:forEach>
 		</ul>
- 		-->
- 		
+ 	 		
 		<div id="color" style="float:left;">  
 			节点颜色标识：
 			<ul>
