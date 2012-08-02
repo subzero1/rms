@@ -23,7 +23,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'htgl/htList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="submit" id="searchButton">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -41,7 +41,8 @@
 					<th style="width:100px;" orderField="slave_type">附件类型</th>
 					<th orderField="file_name">附件名称</th>
 					<th style="width: 100px;" orderField="ftp_date">上传时间</th>
-					<th style="width: 60px;"></th>
+					<th style="width: 50px;"></th>
+					<th style="width: 50px;"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,11 +55,17 @@
 						<td>${obj.file_name }</td>
 						<td>${obj.ftp_date }</td>
 						<td style="text-align:center;"><a href="download.do?slave_id=${obj.id }" target="_blank">下载</a></td>
+						<td style="text-align:center;">
+						   <c:if test="${param.canDel == 'yes'}">	
+							<a href="javascript:del_slave(${obj.id }, ${offset - 1})" target="_blank">删除</a>
+						   </c:if>
+						</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
