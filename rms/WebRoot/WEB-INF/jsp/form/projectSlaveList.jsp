@@ -12,7 +12,7 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="" method="post">
+		<form rel="pagerForm" method="post" action="" onsubmit="return dwzSearch(this, 'dialog');">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
