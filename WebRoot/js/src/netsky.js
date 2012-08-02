@@ -309,7 +309,7 @@ function designDocUpload(project_id,doc_id,module_id,node_id,opernode_id,slave_t
 /**
 *工程附件显示【设计文档、竣工资料】
 */
-function projectSlaveShow(project_id,module_id,doc_id){
-	var url = 'form/designDocShow.do?project_id='+project_id+'&module_id='+module_id+'&doc_id='+doc_id;
+function projectSlaveShow(project_id,module_id,doc_id,canDel){
+	var url = 'form/designDocShow.do?project_id='+project_id+'&module_id='+module_id+'&doc_id='+doc_id+'&canDel='+canDel;
 	$.pdialog.open(url,'_projectSlaveShow','附件显示',{width:600,height:400});
 }
