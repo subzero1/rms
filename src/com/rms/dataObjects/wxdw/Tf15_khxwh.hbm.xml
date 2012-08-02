@@ -49,7 +49,12 @@
   insert="true"
   column="jsfs"
   />
-
+<property 
+ name="lb" 
+ type="java.lang.String" 
+ update="true"
+ insert="true"
+ column="lb"/>
 
     </class>
 
