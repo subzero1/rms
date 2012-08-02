@@ -97,6 +97,7 @@ letter-spacing:1em;
 	height:30px;
 	line-height:28px;
 	background: url(login-box.png) transparent;	
+	padding-left:7px;
 }
 .login_pass input{
 	border:transparent;/*±ß¿òÉ«*/	
@@ -104,6 +105,7 @@ letter-spacing:1em;
 	height:30px;
 	line-height:28px;
 	background: url(login-box.png) transparent;	
+	padding-left:7px;
 }
 .login_button_left{
 	position:absolute;
