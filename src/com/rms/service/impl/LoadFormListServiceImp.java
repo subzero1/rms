@@ -344,7 +344,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
 					HashMap<String, String> tmp_gctz_slave = new HashMap<String, String>();
 					tmp_gctz_slave.put("slave_name", "工程图纸");
-					tmp_gctz_slave.put("formurl", "javascript:projectSlaveShow("+t_project_id+","+t_module_id+","+t_doc_id+")");
+					tmp_gctz_slave.put("formurl", "javascript:projectSlaveShow("+t_project_id+","+t_module_id+","+t_doc_id+",'"+cansave+"')");
 					tmp_gctz_slave.put("rw", "r");
 					v_slave.add(tmp_gctz_slave);
 				}
@@ -360,7 +360,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
 					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
 					tmp_gcsm_slave.put("slave_name", "设计说明");
-					tmp_gcsm_slave.put("formurl", "javascript:projectSlaveShow("+t_project_id+","+t_module_id+","+t_doc_id+")");
+					tmp_gcsm_slave.put("formurl", "javascript:projectSlaveShow("+t_project_id+","+t_module_id+","+t_doc_id+",'"+cansave+"')");
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}
