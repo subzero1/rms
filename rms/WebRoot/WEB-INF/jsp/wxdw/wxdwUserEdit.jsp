@@ -10,7 +10,6 @@
 			<input type="hidden" name="WXDW_ID" value="${param.wxdw_id}" />
 			<input type="hidden" name="DEPT_ID" value="${dept_id}" />
 			<input type="hidden" name="AREA_NAME" value="${ta03.area_name}" />
-			<input type="hidden" name="USEFLAG" value="${ta03.useflag}" />
 			<div class="pageFormContent" layoutH="53">
 				<p>
 					<label>登&nbsp;&nbsp;录&nbsp;&nbsp;名：</label>
@@ -38,6 +37,14 @@
 				<p>
 					<label>电子邮件：</label>
 					<input type="text" name="EMAIL" style="width:120px;" value="${ta03.email }" />
+				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>是否可用：</label>
+					<input type="radio" name="USEFLAG" value="1" <c:if test="${ta03.useflag==1 ||empty ta03 }">checked</c:if> />
+					是
+					<input type="radio" name="USEFLAG" value="0" <c:if test="${ta03.useflag==0 }">checked</c:if> />
+					否
 				</p>
 				<div style="height:0px;"></div>
 				<p>

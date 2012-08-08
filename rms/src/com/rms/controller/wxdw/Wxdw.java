@@ -2211,7 +2211,7 @@ public class Wxdw {
 		}
 		// 操作
 		if (!cz.equals("")) {
-			hsql.append(" and cz=" + cz);
+			hsql.append(" and dz=" + cz);
 		}
 		// order排序
 		// orderField
@@ -2235,5 +2235,146 @@ public class Wxdw {
 		modelMap.put("totalPages", totalPages);
 		modelMap.put("totalCount", totalCount);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/clmxcx.jsp", modelMap);
+	}
+
+	/**
+	 * 项目材料分类统计
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/xmclfltj.do")
+	public ModelAndView xmclfltj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		modelMap.put("gcxx", queryService.searchById(Td00_gcxx.class, project_id));
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select clmc,dw,gg,xh,sum(sl) as sl,dz from Tf08_clmxb where zhxx_id = " + project_id
+				+ " group by clmc, dw, gg, xh, dz order by clmc,gg,dz");
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Map<String, Object>> clmxbList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map = null;
+		Tf08_clmxb clmxb = new Tf08_clmxb();
+		String tmp_clmc = "";
+		String tmp_gg = "";
+		while (ro.next()) {
+			String gg = convertUtil.toString(ro.get("gg"));
+			String clmc = convertUtil.toString(ro.get("clmc"));
+			if (!tmp_clmc.equals(clmc) || !tmp_gg.equals(gg)) {
+				if (map != null) {
+					clmxbList.add(map);
+				}
+				map = new HashMap<String, Object>();
+				clmxb = new Tf08_clmxb();
+				clmxb.setClmc(clmc);
+				clmxb.setDw(convertUtil.toString(ro.get("dw")));
+				clmxb.setGg(gg);
+				clmxb.setXh(convertUtil.toString(ro.get("xh")));
+				tmp_clmc = clmc;
+				tmp_gg = gg;
+			}
+			map.put("clmxb", clmxb);
+			map.put(convertUtil.toString(ro.get("dz")), convertUtil.toLong(ro.get("sl")));
+		}
+		if (map != null) {
+			clmxbList.add(map);
+		}
+		modelMap.put("clmxbList", clmxbList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/xmclfltj.jsp", modelMap);
+	}
+
+	/**
+	 * 材料明细查询
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/xmkcfltjmx.do")
+	public ModelAndView xmkcfltjmx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		modelMap.put("gcxx", queryService.searchById(Td00_gcxx.class, project_id));
+		String clmc = convertUtil.toString(request.getParameter("clmc"));
+		String gg = convertUtil.toString(request.getParameter("gg"));
+		String xh = convertUtil.toString(request.getParameter("xh"));
+		String dz = convertUtil.toString(request.getParameter("dz"));
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "clmc");
+		if (orderField.equals("")) {
+			orderField = "clmc";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select clmxb from Tf08_clmxb clmxb where zhxx_id=" + project_id);
+		// where条件
+		// 材料名称
+		if (!clmc.equals("")) {
+			hsql.append(" and clmc like '%" + clmc + "%'");
+		}
+		// 规格
+		if (!gg.equals("")) {
+			hsql.append(" and gg like '%" + gg + "%'");
+		}
+		// 型号
+		if (!xh.equals("")) {
+			hsql.append(" and xh like '%" + xh + "%'");
+		}
+		// 操作
+		if (!dz.equals("")) {
+			hsql.append(" and dz=" + dz);
+		}
+		// order排序
+		// orderField
+		hsql.append(" order by " + orderField);
+		// orderDirection
+		hsql.append(" " + orderDirection);
+
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Tf08_clmxb> clmxbList = new ArrayList<Tf08_clmxb>();
+		while (ro.next()) {
+			clmxbList.add((Tf08_clmxb) ro.get("clmxb"));
+		}
+		modelMap.put("clmxbList", clmxbList);
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		dz = "0".equals(dz) ? "入库" : "1".equals(dz) ? "出库" : "缴料";
+		modelMap.put("dz", dz);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/xmkcfltjmx.jsp", modelMap);
 	}
 }

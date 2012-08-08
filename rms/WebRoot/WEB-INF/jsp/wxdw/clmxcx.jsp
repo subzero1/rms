@@ -65,7 +65,7 @@
 					<th style="width: 60px;" orderField="dw">单位</th>
 					<th style="width: 60px;" orderField="gg">规格</th>
 					<th style="width: 60px;" orderField="xh">型号</th>
-					<th style="width: 60px;" orderField="dz">动作</th>
+					<th style="width: 60px;" orderField="dz">操作</th>
 					<th style="width: 60px;" orderField="sl">数量</th>
 					<th style="width: 250px;" orderField="gcmc">工程名称</th>
 					<th style="width: 120px;" orderField="gcbh">工程编号</th>

@@ -5,41 +5,22 @@
 
 <script type="text/javascript">
 	$(function(){
-		$("#mc").keyup(function(e){
-			if (e.which == 13){
-				$("#searchButton",navTab.getCurrentPanel()).click();
-			}
-		});
 	});
 </script>
 
 <form id="pagerForm" method="post" action="">
-	<input type="hidden" name="wxdw_id" value="${param.wxdw_id}">
-	<input type="hidden" name="cllx" value="${param.cllx}">
-	<input type="hidden" name="clmc" value="${param.clmc}">
-	<input type="hidden" name="gg" value="${param.gg}">
-	<input type="hidden" name="dw" value="${param.dw}">
+	<input type="hidden" name="project_id" value="${param.project}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 </form>
 
 <div class="page">
 	<div class="pageHeader">
 		<form action="wxdw/wxdwList.do" method="post">
-	<input type="hidden" name="wxdw_id" value="${param.wxdw_id}">
-	<input type="hidden" name="cllx" value="${param.cllx}">
-	<input type="hidden" name="clmc" value="${param.clmc}">
-	<input type="hidden" name="gg" value="${param.gg}">
-	<input type="hidden" name="dw" value="${param.dw}">
+	<input type="hidden" name="project_id" value="${param.project}">
 			<input type="hidden" id="selectedId_demo" />
 			<div class="searchBar">
-			<h1>
-						施工单位：${sgdw.mc }
-						材料名称：${param.clmc }
-						规格：${param.gg }
-						</h1>
+				<h1>工程名称：${gcxx.gcmc } 工程编号：${gcxx.gcbh }</h1>
 				<div class="subBar">
 				</div>
 			</div>
@@ -54,27 +35,36 @@
 			<thead>
 				<tr>
 					<th style="width:50px;">序号</th>
-					<th style="width: 200px;" orderField="gcxx.gcmc">工程名称</th>
-					<th style="width:120px;" orderField="gcxx.gcbh">工程编号</th>
-					<th style="width: 120px;" orderField="kcsl">数量</th>
-					<th style="width: 120px;">领料时间</th>
+					<th>材料名称</th>
+					<th style="width:80px;">单位</th>
+					<th style="width:80px;">规格</th>
+					<th style="width: 80px;">型号</th>
+					<th style="width: 80px;">入库数量</th>
+					<th style="width: 80px;">出库数量</th>
+					<th style="width: 80px;">缴料数量</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:set var="offset" value="0"/>
-				<c:forEach var="obj" items="${kcbList}">
+				<c:forEach var="obj" items="${clmxbList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${offset }</td>
-						<td>${obj[2].gcmc }</td>
-						<td>${obj[2].gcbh }</td>
-						<td>${obj[0].kcsl }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[1] }" /></td>
+						<td>${obj['clmxb'].clmc }</td>
+						<td>${obj['clmxb'].dw }</td>
+						<td>${obj['clmxb'].gg }</td>
+						<td>${obj['clmxb'].xh }</td>
+						<td><a data="{'clmc':'${obj['clmxb'].clmc }','dw':'${obj['clmxb'].dw }','gg':'${obj['clmxb'].gg }','xh':'${obj['clmxb'].xh }'}" target="navTab" rel="xmkcfltjmx" title="项目库存分类统计明细" href="wxdw/xmkcfltjmx.do?dz=0&project_id=${param.project_id }">${obj['0'] }</a></td>
+						<td><a data="{'clmc':'${obj['clmxb'].clmc }','dw':'${obj['clmxb'].dw }','gg':'${obj['clmxb'].gg }','xh':'${obj['clmxb'].xh }'}" target="navTab" rel="xmkcfltjmx" title="项目库存分类统计明细" href="wxdw/xmkcfltjmx.do?dz=1&project_id=${param.project_id }">${obj['1'] }</a></td>
+						<td><a data="{'clmc':'${obj['clmxb'].clmc }','dw':'${obj['clmxb'].dw }','gg':'${obj['clmxb'].gg }','xh':'${obj['clmxb'].xh }'}" target="navTab" rel="xmkcfltjmx" title="项目库存分类统计明细" href="wxdw/xmkcfltjmx.do?dz=2&project_id=${param.project_id }">${obj['2'] }</a></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>

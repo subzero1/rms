@@ -50,9 +50,9 @@
 			<thead>
 				<tr>
 					<th orderField="gcmc">工程名称</th>
-					<th style="width: 150px;" orderField="gcbh">工程编号</th>
-					<th style="width: 100px;" orderField="sjkgsj">开工日期</th>
-					<th style="width: 100px;" orderField="sjjgsj">竣工日期</th>
+					<th style="width: 130px;" orderField="gcbh">工程编号</th>
+					<th style="width: 90px;" orderField="sjkgsj">开工日期</th>
+					<th style="width: 90px;" orderField="sjjgsj">竣工日期</th>
 					<th style="width: 360px;">动作</th>
 				</tr>
 			</thead>
@@ -90,6 +90,7 @@
 						<a style="margin-left:3px;color:darkblue" href="wxdw/crkMxList.do?dz=1&project_id=${obj.id }" target="navTab" rel="crkMx" title="出库明细">出库明细</a>
 						<a style="margin-left:3px;color:darkblue" href="wxdw/crkMxList.do?dz=2&project_id=${obj.id }" target="navTab" rel="crkMx" title="缴料明细">缴料明细</a>
 						<a style="margin-left:3px;color:darkblue" href="wxdw/gcKcList.do?project_id=${obj.id }" target="navTab" rel="gcKc" title="材料信息">材料信息</a>
+						<a style="margin-left:3px;color:darkblue" href="wxdw/xmclfltj.do?project_id=${obj.id }" target="navTab" rel="xmclfltj" title="项目材料分类统计">项目材料分类统计</a>
 						</td>
 					</tr>
 				</c:forEach>
