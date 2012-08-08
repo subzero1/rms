@@ -12,9 +12,9 @@
 				<td><input type='text'  class='required' comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
 				<td><select name='Tf15_khxwh.LB' style='width:100%;'>\
 				<option value=''>------</option>\
-					<option value='1'>a类</option>\
-					<option value='2' >b类</option>\
-					<option value='3' >c类</option>\
+					<option value='1'>设计</option>\
+					<option value='2' >施工</option>\
+					<option value='3' >监理</option>\
 				</select></td>\
 				<td><a href='#' onclick='javascript:delComments(this);'  class='btnDel'><span>删除</span></a></td></tr>");
 	}
@@ -106,13 +106,13 @@
 											-----请选择类别-----
 										</option>
 										<option value='1' <c:if test="${tf15.lb==1 }">selected</c:if>>
-											a类
+											设计
 										</option>
 										<option value='2' <c:if test="${tf15.lb==2 }">selected</c:if>>
-											b类
+											施工
 										</option>
 										<option value='3' <c:if test="${tf15.lb==3 }">selected</c:if>>
-											c类
+											监理
 										</option>
 									</select>
 								</td>
