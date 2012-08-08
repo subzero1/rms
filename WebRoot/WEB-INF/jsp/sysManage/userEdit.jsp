@@ -1,14 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-<style>
-.width160 {
-	width: 130px
-}
-.pageFormContent p label {
-	width: 60px;
-}
-</style>
 
 
 <script language="javascript">
@@ -99,7 +91,7 @@ $(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>电子邮件：</label>
-					<input  type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:276px;"/>
+					<input  type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:306px;"/>
 				</p>
 				<p>
 					<label>是否可用：</label>
@@ -111,7 +103,7 @@ $(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>备 注：</label>
-					<textarea name="Ta03_user.REMARK" style="width: 440px; height: 30px;">${userObj.remark }</textarea>
+					<textarea name="Ta03_user.REMARK" style="width: 495px; height: 30px;">${userObj.remark }</textarea>
 				</p>
 			</div>
 			<div class="formBar">
