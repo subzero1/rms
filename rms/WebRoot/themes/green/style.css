@@ -49,7 +49,7 @@
 .dialog .dialogFooter, .dialog .dialogFooter_r, .dialog .dialogFooter_c { background:url(../green/images/dialog/dialogpanel.png) no-repeat;}
 .dialog .dialogHeader h1, .dialog .dialogHeader .close, .dialog .dialogHeader .maximize, .dialog .dialogHeader .restore, .dialog .dialogHeader .minimize, .resizable_f_r { background:url(../green/images/dialog/dialogpanel_icon.png) no-repeat;}
 .dialog .dialogHeader h1 { color:#2d3f00;}
-.dialog .dialogContent { border-color:#6ab191; background:#e3fda7;}/*改了bordercolor还不知道是哪儿*/
+.dialog .dialogContent { border-color:#b8d0d6; background:#eef4f5;}/*改了*/
 
 .resizable { border-color:#3b6200; background:#6ab191;}/*扩张图层遮盖色*/
 
