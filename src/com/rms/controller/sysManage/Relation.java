@@ -169,7 +169,7 @@ public class Relation {
 		String[] users = request.getParameterValues("t_user");
 		Long id = convertUtil.toLong(request.getParameter("station_id"), -1L);
 
-		String forwardUrl = "sysManage/staList.do?station_id="
+		String forwardUrl = "sysManage/staList.do?sta_id="
 				+ convertUtil.toString(request.getParameter("station_id"), "");
 
 		// 获取岗位相关的用户对象那个
@@ -303,7 +303,7 @@ public class Relation {
 		String[] nodes = request.getParameterValues("t_node");
 		Long id = convertUtil.toLong(request.getParameter("station_id"), -1L);
 
-		String forwardUrl = "sysManage/staList.do?station_id="
+		String forwardUrl = "sysManage/staList.do?sta_id="
 				+ convertUtil.toString(request.getParameter("station_id"), "");
 
 		// 获取岗位的对象
