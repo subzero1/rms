@@ -107,7 +107,7 @@ public class Relation {
 		String[] roles = request.getParameterValues("t_role");
 		Long id = convertUtil.toLong(request.getParameter("station_id"), -1L);
 
-		String forwardUrl = "sysManage/staList.do?station_id="
+		String forwardUrl = "sysManage/staList.do?sta_id="
 				+ convertUtil.toString(request.getParameter("station_id"), "");
 
 		// 获取岗位的对象
