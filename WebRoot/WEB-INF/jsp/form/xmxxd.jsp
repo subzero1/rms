@@ -74,23 +74,19 @@ $(function(){
 	<netsky:htmlSelect name="Td01_xmxx.SSDQ" objectForOption="ssdqList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.ssdq}" htmlClass="td-select"/>
 </p>
 <div class="divider"></div>
-<p style="color:#ccc;font-weight:bold;width:513px;text-align:center;">预算情况</p>
+<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
+<div style="height:0px;"></div>
 <p>
 	<label>工程总投资：</label>
-	<input type="text"  name="Td01_xmxx.YS_JE" value="${td01_xmxx.ys_je}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.YS_JE" value="${td01_xmxx.ys_je}" style="width:150px;"/>
 </p>
-<div style="height:0px;"></div>
 <p>
 	<label>建安费：</label>
 	<input type="text"  name="Td01_xmxx.YS_JAF" value="${td01_xmxx.ys_jaf}" style="width:150px;"/>
 </p>
 <p>
 	<label>设备费：</label>
-	<input type="text"  name="Td01_xmxx.YS_SBF" value="${td01_xmxx.ys_sbf}" style="width:150px;"/>
-</p>
-<p>
-	<label>材料费：</label>
-	<input type="text"  name="Td01_xmxx.YS_CLF" value="${td01_xmxx.ys_clf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.YS_SBF" value="${td01_xmxx.ys_sbf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
@@ -107,29 +103,29 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
+	<label>材料费：</label>
+	<input type="text"  name="Td01_xmxx.YS_CLF" value="${td01_xmxx.ys_clf}" style="width:150px;"/>
+</p>
+<p>
 	<label>机械费：</label>
 	<input type="text"  name="Td01_xmxx.YS_JXF" value="${td01_xmxx.ys_jxf}" style="width:150px;"/>
 </p>
 <p>
 	<label>仪表费：</label>
-	<input type="text"  name="Td01_xmxx.YS_YBF" value="${td01_xmxx.ys_ybf}" style="width:150px;"/>
-</p>
-<p>
-	<label>其它费：</label>
-	<input type="text"  name="Td01_xmxx.YS_QTF" value="${td01_xmxx.ys_qtf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.YS_YBF" value="${td01_xmxx.ys_ybf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
+<p>
+	<label>设计费：</label>
+	<input type="text"  name="Td01_xmxx.YS_SJF" value="${td01_xmxx.ys_sjf}" style="width:150px;"/>
+</p>
 <p>
 	<label>监理费：</label>
 	<input type="text"  name="Td01_xmxx.YS_JLF" value="${td01_xmxx.ys_jlf}" style="width:150px;"/>
 </p>
 <p>
-	<label>施工费：</label>
-	<input type="text"  name="Td01_xmxx.YS_SGF" value="${td01_xmxx.ys_sgf}" style="width:150px;"/>
-</p>
-<p>
-	<label>设计费：</label>
-	<input type="text"  name="Td01_xmxx.YS_SJF" value="${td01_xmxx.ys_sjf}" style="width:120px;"/>
+	<label>其它费：</label>
+	<input type="text"  name="Td01_xmxx.YS_QTF" value="${td01_xmxx.ys_qtf}" style="width:120px;"/>
 </p>	
 <div class="divider"></div>
 <p>
@@ -224,6 +220,11 @@ $(function(){
 	<label>项目状态：</label>
 	<input type="text"  name="Td01_xmxx.XMZT" value="${td01_xmxx.xmzt}" style="width:120px;"/>
 </p>
+<div style="height:0px;"></div>
+<p>
+	<label>项目说明：</label>
+	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.GCSM">${Td01_xmxx.xmsm}</textarea>
+</p>
 
 <div class="divider"></div>
 <p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">合同信息</p>
@@ -311,40 +312,6 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_PGF" value="${Td01_xmxx.hjl_pgf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">建安费</p>
-<p>
-	<input type="text"  name="Td01_xmxx.SS_JAF" value="${Td01_xmxx.ss_jaf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.CS_JAF" value="${Td01_xmxx.cs_jaf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.SD_JAF" value="${Td01_xmxx.sd_jaf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.HJE_JAF" value="${Td01_xmxx.hje_jaf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.HJL_JAF" value="${Td01_xmxx.hjl_jaf}" style="width:120px;"/>
-</p>
-<div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">人工费</p>
-<p>
-	<input type="text"  name="Td01_xmxx.SS_RGF" value="${Td01_xmxx.ss_rgf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.CS_RGF" value="${Td01_xmxx.cs_rgf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.SD_RGF" value="${Td01_xmxx.sd_rgf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.HJE_RGF" value="${Td01_xmxx.hje_rgf}" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.HJL_RGF" value="${Td01_xmxx.hjl_rgf}" style="width:120px;"/>
-</p>
-<div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">材料费</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_CLF" value="${Td01_xmxx.ss_clf}" style="width:120px;"/>
@@ -379,7 +346,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_SBF" value="${Td01_xmxx.hjl_sbf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">机械费</p>
+<p style="width:105px;text-align:center;">机械仪表费</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_JXF" value="${Td01_xmxx.ss_jxf}" style="width:120px;"/>
 </p>
@@ -396,24 +363,24 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_JXF" value="${Td01_xmxx.hjl_jxf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">仪表费</p>
+<p style="width:105px;text-align:center;">其它费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_YBF" value="${Td01_xmxx.ss_ybf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_SJF" value="${Td01_xmxx.ss_sjf}" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_YBF" value="${Td01_xmxx.cs_ybf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_SJF" value="${Td01_xmxx.cs_sjf}" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_YBF" value="${Td01_xmxx.sd_ybf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_SJF" value="${Td01_xmxx.sd_sjf}" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_YBF" value="${Td01_xmxx.hje_ybf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_SJF" value="${Td01_xmxx.hje_sjf}" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_YBF" value="${Td01_xmxx.hjl_ybf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_SJF" value="${Td01_xmxx.hjl_sjf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">设计费</p>
+<p style="width:105px;text-align:center;">施工总费用</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_SJF" value="${Td01_xmxx.ss_sjf}" style="width:120px;"/>
 </p>
@@ -446,14 +413,25 @@ $(function(){
 <p>
 	<input type="text"  name="Td01_xmxx.HJL_JLF" value="${Td01_xmxx.hjl_jlf}" style="width:120px;"/>
 </p>
-
 <div style="height:0px;"></div>
+<p style="width:105px;text-align:center;">结算总费用</p>
 <p>
-	<label>项目说明：</label>
-	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.GCSM">${Td01_xmxx.gcsm}</textarea>
+	<input type="text"  name="Td01_xmxx.SS_JLF" value="${Td01_xmxx.ss_jlf}" style="width:120px;"/>
 </p>
-	
+<p>
+	<input type="text"  name="Td01_xmxx.CS_JLF" value="${Td01_xmxx.cs_jlf}" style="width:120px;"/>
+</p>
+<p>
+	<input type="text"  name="Td01_xmxx.SD_JLF" value="${Td01_xmxx.sd_jlf}" style="width:120px;"/>
+</p>
+<p>
+	<input type="text"  name="Td01_xmxx.HJE_JLF" value="${Td01_xmxx.hje_jlf}" style="width:120px;"/>
+</p>
+<p>
+	<input type="text"  name="Td01_xmxx.HJL_JLF" value="${Td01_xmxx.hjl_jlf}" style="width:120px;"/>
+</p>	
 
+<div style="height:10px;"></div>
 <div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;打包工程列表</h3></div><div class="divider" style="height:1px;"></div>
 <div style="width:780px;">
 	<table class="table" width="100%">
