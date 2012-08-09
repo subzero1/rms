@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*
 1.改模板的颜色.panel .panelContent { border-color:#}全部为目标颜色
 2.改body的background
@@ -15,9 +15,9 @@
 .panel .panelFooter, .panel .panelFooterContent { background:url(../purple/images/panel/panel.png) no-repeat;}
 .panel .expandable, .panel .collapsable { background:url(../purple/images/panel/panel_icon.png) no-repeat;}
 .panel .panelHeaderContent h1 { color:#2d3f00; }
-.panel .panelContent { border-color:#e29de2; background:#F9E8F9;}
+.panel .panelContent { border-color:#b8d0d6; background:#F9E8F9;}
 
-.panel .grid { border-color:#E29DE2;}
+.panel .grid { border-color:#b8d0d6;}
 
 /* Tabs */
 .tabs, .tabsHeader, .tabsHeaderContent,
@@ -26,20 +26,20 @@
 
 .tabs .tabsHeader li a { color:#2d3f00;}
 .tabs .tabsHeader li span { color:#2d3f00;}
-.tabs .tabsContent { border-color:#e29de2; background:#F9E8F9;}
+.tabs .tabsContent { border-color:#b8d0d6; background:#F9E8F9;}
 
 /* TabsPage */
 .tabsPage .tabsPageHeader, .tabsPage .tabsPageHeader li, .tabsPage .tabsPageHeader li a, .tabsPage .tabsPageHeader li span { background:url(../purple/images/tabs/tabspage.png) no-repeat;}
 .tabsPage .tabsPageHeader { background-color:#e9f0f2;}
-.tabsPage .tabsPageHeader { border-color:#e29de2;}
+.tabsPage .tabsPageHeader { border-color:#b8d0d6;}
 .tabsPage .tabsPageHeader li a { color:#2d3f00;}
 .tabsPage .tabsPageHeader li .close,
 .tabsPage .tabsPageHeader li.hover .close,
 .tabsPage .tabsPageHeader li.selected .close { background:url(../purple/images/tabs/tabspage_icon.png) no-repeat;}
 .tabsPage .tabsLeft, .tabsPage .tabsRight, .tabsPage .tabsMore { background:url(../purple/images/tabs/tabscontrol.png) no-repeat;}
-.tabsPage .tabsMoreList { border-color:#E29DE2; background:#FFF;}
+.tabsPage .tabsMoreList { border-color:#b8d0d6; background:#FFF;}
 .tabsPage .tabsPageHeader .home_icon { background:url(../default/images/icon.png) no-repeat;}
-.tabsPage .tabsPageContent { border-color:#e29de2; background:#FFF;}
+.tabsPage .tabsPageContent { border-color:#b8d0d6; background:#FFF;}
 
 /* Alert */
 .alert .alertFooter, .alert .alertFooter_r, .alert .alertFooter_c { background:url(../purple/images/alert/alertpanel.png) no-repeat;}
@@ -55,7 +55,7 @@
 .dialog .dialogFooter, .dialog .dialogFooter_r, .dialog .dialogFooter_c { background:url(../purple/images/dialog/dialogpanel.png) no-repeat;}
 .dialog .dialogHeader h1, .dialog .dialogHeader .close, .dialog .dialogHeader .maximize, .dialog .dialogHeader .restore, .dialog .dialogHeader .minimize, .resizable_f_r { background:url(../purple/images/dialog/dialogpanel_icon.png) no-repeat;}
 .dialog .dialogHeader h1 { color:#2d3f00;}
-.dialog .dialogContent { border-color:#e29de2; background:#F9E8F9;}
+.dialog .dialogContent { border-color:#b8d0d6; background:#eef4f5;}
 
 .resizable { border-color:#3b6200; background:#aae31d;}
 
@@ -77,12 +77,12 @@
 .tree ul { background:#FFF;}
 .tree li a, .tree li span { color:#2d3f00;}
 .tree .hover { background:#f6f6f6;}
-.tree .selected { background:#F9E8F9;}
+.tree .selected { background:#fabbbb;}
 /* Accordion */
 .accordion .accordionHeader, .accordion .accordionHeader h2, .accordion .accordionHeader h2 span { color:#2d3f00; background:url(../purple/images/accordion/accordion.png);}
-.accordion { border-color:#e29de2; background:#FFF;}
+.accordion { border-color:#b8d0d6; background:#FFF;}
 .accordion .accordionHeader { background-color:#eaf4ff;}
-.accordion .accordionContent { border-color:#e29de2;}
+.accordion .accordionContent { border-color:#b8d0d6;}
 
 /* Grid */
 .panelBar,
@@ -91,7 +91,7 @@
 .panelBar .pagination li.disabled span span,
 .panelBar .line, .panelBar .pagination li.jumpto, .panelBar .pagination li.jumpto .goto { background:url(../purple/images/grid/grid.png) no-repeat;}
 
-.panelBar { border-color:#e29de2; background-color:#efefef;}
+.panelBar { border-color:#b8d0d6; background-color:#efefef;}
 
 .grid .gridHeader { background:#EEE;}
 .grid { background:#FFF;}
@@ -104,7 +104,7 @@
 
 .grid .gridRowBg { background:#f7f7f7;}
 .grid .hover { background:#f6f6f6;}
-.grid .selected { border-color:#C00; background:#e29de2;}
+.grid .selected { border-color:#C00; background:#fabbbb;}
 .grid .error{background:#fb7e81;}
 
 /* ProgressBar */
@@ -143,7 +143,7 @@ input.disabled, textarea.disabled { border-color:#9eabb3 #d5dbdf #d5dbdf #9eabb3
 
 /* ----------------------------------------------------------------- Pages */
 /* Layout */
-body, #splitBar { background:#F9E8F9;}
+body, #splitBar { background:#db5959;}/*改颜色*/
 #splitBarProxy { border-color:#c0c0c0; background:#CCC;}
 
 #header, #header .headerNav { background:#c90808;/*url(../purple/images/header_bg.png) repeat-x;*/}
@@ -154,9 +154,9 @@ body, #splitBar { background:#F9E8F9;}
 #header .themeList li div { background:url(../default/images/themeButton.png) no-repeat;}
 
 .toggleCollapse, .toggleCollapse div { background:url(../purple/images/layout/toggleSidebar.png) no-repeat;}
-.toggleCollapse { border-style:solid; border-width:1px 1px 0 1px; border-color:#e29de2; background-color:#e7eff0;}
+.toggleCollapse { border-style:solid; border-width:1px 1px 0 1px; border-color:#b8d0d6; background-color:#e7eff0;}
 .toggleCollapse h2 { color:#2d3f00;}
-#sidebar_s .collapse { border:solid 1px #e29de2; background:#F9E8F9;}
+#sidebar_s .collapse { border:solid 1px #b8d0d6; background:#F9E8F9;}
 #sidebar_s .collapse:hover { background:#F9E8F9;}
 
 #taskbar, #taskbar li, #taskbar li .taskbutton { background:url(../default/images/layout/taskbar.png) no-repeat;}
@@ -184,16 +184,16 @@ body, #splitBar { background:#F9E8F9;}
 .pageForm .inputInfo { color:#999;}
 
 /* Pages dialog */
-.dialog .pageHeader, .dialog .pageContent { border-color:#E29DE2;}
-.dialog .pageContent .pageFormContent { border-color:#E29DE2; background:#FFF;}
+.dialog .pageHeader, .dialog .pageContent { border-color:#b8d0d6;}
+.dialog .pageContent .pageFormContent { border-color:#b8d0d6; background:#FFF;}
 
 /* Pages default */
-.page .pageHeader, .formBar { border-color:#E29DE2; background:#ebf0f5 url(../default/images/pageHeader_bg.png) repeat-x;}
+.page .pageHeader, .formBar { border-color:#b8d0d6; background:#ebf0f5 url(../default/images/pageHeader_bg.png) repeat-x;}
 .page .searchBar label { color:#183152;}
 
 /* Pages Form */
-.formBar { border-color:#E29DE2;}
-.divider { border-color:#E29DE2;}
+.formBar { border-color:#b8d0d6;}
+.divider { border-color:#b8d0d6;}
 
 /* combox */
 .combox .select a  { color:#183152; }
