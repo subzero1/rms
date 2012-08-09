@@ -301,6 +301,9 @@ public class Wxdw {
 				.searchList("from Ta02_station where flag like '%" + lb + "%'");
 		modelMap.put("ta02List", ta02List);
 		Long id = convertUtil.toLong(request.getParameter("id"));
+		List<String> dqList = (List<String>) queryService
+				.searchList("select distinct(dq) from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id);
+		modelMap.put("dqList", dqList);
 		if (id != -1L) {
 			modelMap.put("ta03", queryService.searchById(Ta03_user.class, id));
 			List<Ta11_sta_user> ta11List = (List<Ta11_sta_user>) queryService
@@ -310,6 +313,19 @@ public class Wxdw {
 				ta11Map.put(ta11.getStation_id(), ta11);
 			}
 			modelMap.put("ta11Map", ta11Map);
+
+			List<Tf04_wxdw_user> tf04TmpList = (List<Tf04_wxdw_user>) queryService
+					.searchList("from Tf04_wxdw_user where wxdw_id=" + wxdw_id + " and user_id=" + id);
+			if (tf04TmpList != null && !tf04TmpList.isEmpty()) {
+				Tf04_wxdw_user tf04 = tf04TmpList.get(0);
+				String area = convertUtil.toString(tf04.getArea());
+				String[] areas = area.split(" ");
+				Map<String, Object> dqMap = new HashMap<String, Object>();
+				for (String string : areas) {
+					dqMap.put(string, new Object());
+				}
+				modelMap.put("dqMap", dqMap);
+			}
 		}
 		Long dept_id = 4L;
 		try {
@@ -346,6 +362,12 @@ public class Wxdw {
 			}
 			Long useflag = convertUtil.toLong(request.getParameter("USEFLAG"), 1L);
 			String[] STATION_IDs = request.getParameterValues("STATION_ID");
+			String[] DQs = request.getParameterValues("DQ");
+			String dq = "";
+			for (String string : DQs) {
+				dq+=" "+string;
+			}
+			dq = dq.trim();
 			// 保存用户表 TA03
 			Ta03_user ta03 = null;
 			if (id != -1L) {
@@ -377,12 +399,17 @@ public class Wxdw {
 			ta03.setUseflag(useflag);
 			ta03.setArea_name(area_name);
 			session.saveOrUpdate(ta03);
+			Tf04_wxdw_user tf04 = null;
 			if (id == -1L) {
-				Tf04_wxdw_user tf04 = new Tf04_wxdw_user();
+				tf04 = new Tf04_wxdw_user();
 				tf04.setUser_id(ta03.getId());
 				tf04.setWxdw_id(wxdw_id);
-				session.save(tf04);
 			}
+			else {
+				tf04 = ((List<Tf04_wxdw_user>)queryService.searchList("from Tf04_wxdw_user where wxdw_id="+wxdw_id+" and user_id="+id)).get(0);
+			}
+			tf04.setArea(dq);
+			session.save(tf04);
 			// 保存用户岗位表 TA11
 			session.createQuery("delete from Ta11_sta_user where user_id=" + ta03.getId()).executeUpdate();
 			if (STATION_IDs != null) {
