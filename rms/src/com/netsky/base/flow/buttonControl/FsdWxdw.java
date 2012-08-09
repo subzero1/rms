@@ -77,7 +77,9 @@ public class FsdWxdw extends ButtonControl {
 			//为Wxdw赋值
 			String wxdw = "";
 			String zyqy = (String)PropertyInject.getProperty(obj, "ssdq");
+			boolean addDq = false;
 			if(x2 > x1){
+				addDq = true;
 				wxdw = (String)PropertyInject.getProperty(obj, "sgdw");
 			}
 			else if(x3 > x1){
@@ -87,6 +89,7 @@ public class FsdWxdw extends ButtonControl {
 				wxdw = (String)PropertyInject.getProperty(obj, "jldw");
 			}
 			else if(x5 > x1){
+				addDq = true;
 				wxdw = (String)PropertyInject.getProperty(obj, "sgdw");
 			}
 			else if(x6 > x1){
@@ -96,7 +99,7 @@ public class FsdWxdw extends ButtonControl {
 				wxdw = "";
 			}
 			StringBuffer hsql = new StringBuffer();
-			hsql.append(" select ta03 from tf04_wxdw_user tf04,Ta03_user ta03,Tf01_wxdw tf01,Ta13_sta_node ta13,Ta11_sta_user ta11");
+			hsql.append(" select ta03 from Tf04_wxdw_user tf04,Ta03_user ta03,Tf01_wxdw tf01,Ta13_sta_node ta13,Ta11_sta_user ta11");
 			hsql.append(" where tf04.user_id = ta03.id and tf04.wxdw_id = tf01.id ");
 			hsql.append(" and ta13.station_id = ta11.station_id");
 			hsql.append(" and ta11.user_id = tf04.user_id");
@@ -104,8 +107,10 @@ public class FsdWxdw extends ButtonControl {
 			hsql.append(tb03.getDest_id().longValue());
 			hsql.append(" and tf01.mc  = '");
 			hsql.append(wxdw + "'");
-			hsql.append(" and tf04.area like '%");
-			hsql.append(zyqy + "%'");
+			if(addDq){
+				hsql.append(" and tf04.area like '%");
+				hsql.append(zyqy + "%'");
+			}
 			List<Ta03_user> list = (List<Ta03_user>)queryService.searchList(hsql.toString());
 			if(list == null || list.size() == 0){
 				hsql = new StringBuffer();
