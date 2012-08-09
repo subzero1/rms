@@ -38,13 +38,13 @@ $(function(){
 			<input type="hidden" id="module_id" name="module_id" value="${param.module_id}"/>
 		  
 			<div class="pageFormContent" layoutH="56">
-				<div style="width:350px;position:absolute;top:0px;left:10px;">
+				<div style="width:340px;position:absolute;top:0px;left:10px;">
 					<div class="title01">
 						<h3>字段选择：</h3>
 					</div>
 					<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc">
-						<table width="310" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+						<table width="320" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 							<tr>
 								<td colspan="4">
 								</td>
@@ -63,10 +63,10 @@ $(function(){
 									<br/><br/>
 									<input type="button" class="button-td" style="width:20px;height:20px;" onclick="javascript:moveAct('fields_select', 'fields');" value="&lt;=" /><br/>
 								<br /><br /><br /></td>
-								<td valign="top" width="130">
+								<td valign="top" width="140">
 									<select id="fields_select" name="fields_select" style="width:130px;height:218px;" multiple ondblclick="moveAct('fields_select','fields')"></select>
 								</td>
-								<td width="30">
+								<td width="40">
 									 <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('fields_select', 'top');" value="行首" /><br/>
 								    <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('fields_select', 'up');" value="上移" /><br/>
 								    <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('fields_select', 'down');" value="下移" /><br/>
@@ -180,8 +180,8 @@ $(function(){
 					</div>
 					<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc">
-						<div style="height:20px;">
-							<table width="400">
+						<div style="height:22px;">
+							<table width="400" height="22" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr>
 									<td>
 										<div style="position:absolute;">
