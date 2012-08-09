@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="dms"%>
 <div class="panel"  style="width:96%;float:left;margin:10px">
 		<h1>基本属性</h1>
@@ -26,11 +27,13 @@
 			</div>
 			<div class="formBar">
 				<ul>
+				   <c:if test="${empty property_type.flag || fn:indexOf(property_type.flag,'[r]') == -1}">
 					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>
 					<li><div class="button"><div class="buttonContent"><button class="divFileReload" type="Button" loadfile="sysManage/propertyEdit.do">添 加</button></div></div></li>
 					<c:if test="${not empty property_type.id}">
 						<li><div class="button"><div class="buttonContent"><button class="formDataClear" type="Button">删 除</button></div></div></li>
 					</c:if>
+				   </c:if>
 				</ul>
 			</div>
 		</form>
