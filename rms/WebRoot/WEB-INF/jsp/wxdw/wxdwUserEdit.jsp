@@ -53,6 +53,13 @@
 						<input type="checkbox" name="STATION_ID" <c:if test="${not empty ta11Map[ta02.id] }">checked="checked"</c:if> value="${ta02.id }"/>${ta02.name }
 					</c:forEach>
 				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>作业区域：</label>
+					<c:forEach items="${dqList}" var="dq">
+						<input type="checkbox" name="DQ" <c:if test="${not empty dqMap[dq] }">checked="checked"</c:if> value="${dq }"/>${dq }
+					</c:forEach>
+				</p>
 			</div>
 			<div class="formBar">
 				<ul>
