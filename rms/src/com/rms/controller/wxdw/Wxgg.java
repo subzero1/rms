@@ -110,7 +110,6 @@ public class Wxgg {
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
-		System.out.println(hsql);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> wxggList = new ArrayList<Object[]>();
