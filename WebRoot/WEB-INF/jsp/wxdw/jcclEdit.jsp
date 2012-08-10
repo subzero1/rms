@@ -3,11 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" /> 
-<style>
-.width160 {
-	width: 130px
-}
-</style>
 <script type="text/javascript">
 	$(function(){
 	});
