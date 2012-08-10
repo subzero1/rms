@@ -114,10 +114,10 @@ public class FsdWxdw extends ButtonControl {
 			List<Ta03_user> list = (List<Ta03_user>)queryService.searchList(hsql.toString());
 			if(list == null || list.size() == 0){
 				hsql = new StringBuffer();
-				hsql.append(" select ta03 from Tf09_wxdw_user tf09,Ta03_user ta03,Tf01_wxdw tf01,Ta13_sta_node ta13,Ta11_sta_user ta11");
-				hsql.append(" where tf09.user_id = ta03.id and tf09.wxdw_id = tf01.id ");
+				hsql.append(" select ta03 from Tf04_wxdw_user tf04,Ta03_user ta03,Tf01_wxdw tf01,Ta13_sta_node ta13,Ta11_sta_user ta11");
+				hsql.append(" where tf04.user_id = ta03.id and tf04.wxdw_id = tf01.id ");
 				hsql.append(" and ta13.station_id = ta11.station_id");
-				hsql.append(" and ta11.user_id = tf09.user_id");
+				hsql.append(" and ta11.user_id = tf04.user_id");
 				hsql.append(" and ta13.node_id = ");
 				hsql.append(tb03.getDest_id().longValue());
 				hsql.append(" and tf01.mc  = '");
