@@ -180,11 +180,11 @@ $(function(){
 					</div>
 					<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc">
-						<div style="height:22px;">
-							<table width="400" height="22" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+						<div style="height:23px;">
+							<table width="400" height="23" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr>
 									<td>
-										<div style="position:absolute;">
+										<div style="position:absolute;top:8px;border:solid 1px #f00">
 										<input type="hidden" name="type" value="2"/>
 										<input id="template_name" name="template_name" value="" style="width:140px"/>
 										</div>
