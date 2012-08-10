@@ -4,7 +4,7 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" /> 
 <script type="text/javascript">
-	$(function(){
+	$(function(){ 
 	});
 </script>
 <div class="page">
