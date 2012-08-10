@@ -10,11 +10,11 @@
 				<td><input type='text'  class='required' comments='描述' name='Tf15_khxwh.MS' style='width:100%'/></td>\
 				<td><input type='text'  class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width:100%'/></td>\
 				<td><input type='text'  class='required' comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
-				<td><select name='Tf15_khxwh.LB' style='width:100%;'>\
-				<option value=''>------</option>\
-					<option value='1'>设计</option>\
-					<option value='2' >施工</option>\
-					<option value='3' >监理</option>\
+				<td><select name='Tf15_khxwh.LB' style='width:100%;' class='required' comments='类别'>\
+				<option value=''>---请选择类别---</option>\
+					<option value='sj'>设计</option>\
+					<option value='sg' >施工</option>\
+					<option value='jl' >监理</option>\
 				</select></td>\
 				<td><a href='#' onclick='javascript:delComments(this);'  class='btnDel'><span>删除</span></a></td></tr>");
 	}
@@ -100,18 +100,18 @@
 										name='Tf15_khxwh.JSFS' style='width: 100%' value="${tf15.jsfs }"/>
 								</td>
 								<td>
-									<select name='Tf15_khxwh.LB' style='width: 100%;'>
+									<select name='Tf15_khxwh.LB' style='width: 100%;' class='required' comments='类别'>
 									
 										<option value=''>
 											-----请选择类别-----
 										</option>
-										<option value='1' <c:if test="${tf15.lb==1 }">selected</c:if>>
+										<option value='sj' <c:if test="${tf15.lb=='sj' }">selected</c:if>>
 											设计
 										</option>
-										<option value='2' <c:if test="${tf15.lb==2 }">selected</c:if>>
+										<option value='sg' <c:if test="${tf15.lb=='sg' }">selected</c:if>>
 											施工
 										</option>
-										<option value='3' <c:if test="${tf15.lb==3 }">selected</c:if>>
+										<option value='jl' <c:if test="${tf15.lb=='jl' }">selected</c:if>>
 											监理
 										</option>
 									</select>
