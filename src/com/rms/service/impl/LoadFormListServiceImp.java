@@ -376,7 +376,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
 					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
 					tmp_gcsm_slave.put("slave_name", "施工进度");
-					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('sgjd', 'wxdw/jdfkxx.do?id="+ t_project_id +", {title:'施工进度'});");
+					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('sgjd', 'wxdw/jdfkxx.do?id="+ t_project_id +"', {title:'施工进度'});");
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}
@@ -392,7 +392,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
 					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
 					tmp_gcsm_slave.put("slave_name", "监理总结");
-					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('jlzj', 'wxdw/jlrjxx.do?id="+ t_project_id +", {title:'监理总结'});");
+					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('jlzj', 'wxdw/jlrjxx.do?id="+ t_project_id +"', {title:'监理总结'});");
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}

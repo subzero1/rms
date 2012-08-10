@@ -99,8 +99,7 @@ $(function(){
 	</p>
 	<div class="divider"></div>
 	<p>
-		<label><a href="wxdw/jlrjxx.do?id=${td00_gcxx.id }" target="navTab" rel="jlrjxx">监</a>
-		<a href="wxdw/jdfkxx.do?id=${td00_gcxx.id }" target="navTab" rel="jdfkxx">馈</a>设计单位：</label>
+		<label>设计单位：</label>
 		<netsky:htmlSelect name="Td00_gcxx.SJDW" objectForOption="sjdwList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.sjdw}" htmlClass="td-select"/>
 	</p>
 	<p>
@@ -113,7 +112,7 @@ $(function(){
 	</p>
 	<div style="height:0px;"></div>
 	<p>
-		<label><a href="sgpftst.do" target="navTab" rel="sgpftst">透</a><a href="sgpd.do?project_id=${Td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
+		<label><a href="sgpd.do?project_id=${Td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
 		<input type="text"  name="Td00_gcxx.SGDW" id="sgdwOrg.SGDW" value="${td00_gcxx.sgdw}" style="width:150px;" readonly="readonly"/>
 		<input type="hidden"  name="Td00_gcxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${td00_gcxx.sdpgyy}" style="width:150px;"/>
 	</p>
