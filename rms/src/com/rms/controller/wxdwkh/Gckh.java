@@ -62,11 +62,19 @@ public class Gckh {
 		// int result = 0;
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
 		String lb = request.getParameter("lb");
-		String sql = "select t.khx as khx,t.ms as ms,t.zdfz as zdfz,t.jgxx as jgxx,t.jgfz as jgfz,t.jsfs as jsfs from ("
-				+ "select khx,ms,zdfz,jgxx,jgfz,jsfs from Tf16_xmkhdf where project_id = 28 and lb = '"+lb+"' "
-				+ "union all" + " select khx,ms,fz zdfz,null as jgxx,null as jgfz,jsfs from Tf15_khxwh tf15"
-				+ "  where not exists " + "(select 'x' from Tf16_xmkhdf tf16" + " where tf15.khx = tf16.khx"
-				+ " and tf15.lb = tf16.lb " + " and project_id = "+project_id+")" + "and lb = '"+lb+"') t";
+//		String sql = "select t.khx as khx,t.ms as ms,t.zdfz as zdfz,t.jgxx as jgxx,t.jgfz as jgfz,t.jsfs as jsfs from ("
+//				+ "select khx,ms,zdfz,jgxx,jgfz,jsfs from Tf16_xmkhdf where project_id = 28 and lb = '"+lb+"' "
+//				+ "union all" + " select khx,ms,fz zdfz,null as jgxx,null as jgfz,jsfs from Tf15_khxwh tf15"
+//				+ "  where not exists " + "(select 'x' from Tf16_xmkhdf tf16" + " where tf15.khx = tf16.khx"
+//				+ " and tf15.lb = tf16.lb " + " and project_id = "+project_id+")" + "and lb = '"+lb+"') t";
+		
+
+		String sql = "select tf16.khx as khx,tf16.ms as ms,tf16.zdfz as zdfz,tf16.jgxx as jgxx,tf16.jgfz as jgfz,tf16.jsfs as jsfs "
+			+ "from Tf16_xmkhdf tf16 where project_id = "+project_id+" and lb = '"+lb+"' "
+			+ "union all" 
+			+ " select tf15.khx as khx,tf15.ms as ms,tf15.fz as zdfz,null as jgxx,null as jgfz,tf15.jsfs as jsfs from Tf15_khxwh tf15"
+			+ "  where not exists " + "(select 'x' from Tf16_xmkhdf tf16" + " where tf15.khx = tf16.khx"
+			+ " and tf15.lb = tf16.lb " + " and project_id = "+project_id+")" + "and lb = '"+lb+"'";
 		// Ta03_user user =
 		// (Ta03_user)request.getSession().getAttribute("user");
 		// user.getId();
