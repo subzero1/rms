@@ -409,7 +409,7 @@ public class Wxdw {
 				tf04 = ((List<Tf04_wxdw_user>)queryService.searchList("from Tf04_wxdw_user where wxdw_id="+wxdw_id+" and user_id="+id)).get(0);
 			}
 			tf04.setArea(dq);
-			session.save(tf04);
+			session.saveOrUpdate(tf04);
 			// 保存用户岗位表 TA11
 			session.createQuery("delete from Ta11_sta_user where user_id=" + ta03.getId()).executeUpdate();
 			if (STATION_IDs != null) {
