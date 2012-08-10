@@ -364,6 +364,38 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}
+				
+				/**
+				 * 施工进度
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Td00_gcxx where sgdw is not null and id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
+					tmp_gcsm_slave.put("slave_name", "施工进度");
+					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('sgjd', 'wxdw/jdfkxx.do?id="+ t_project_id +", {title:'施工进度'});");
+					tmp_gcsm_slave.put("rw", "r");
+					v_slave.add(tmp_gcsm_slave);
+				}
+				
+				/**
+				 * 监理总结
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Td00_gcxx where jldw is not null and id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
+					tmp_gcsm_slave.put("slave_name", "监理总结");
+					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('jlzj', 'wxdw/jlrjxx.do?id="+ t_project_id +", {title:'监理总结'});");
+					tmp_gcsm_slave.put("rw", "r");
+					v_slave.add(tmp_gcsm_slave);
+				}
 			}
 			if (v_slave.size() > 0) {
 				request.setAttribute("extslave", v_slave);
