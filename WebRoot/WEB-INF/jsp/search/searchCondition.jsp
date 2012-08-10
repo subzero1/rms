@@ -180,13 +180,13 @@ $(function(){
 					</div>
 					<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc">
-						<div style="height:23px;">
+						<div style="height:24px;">
 							<table width="400" height="23" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr>
 									<td>
-										<div style="position:absolute;top:8px;border:solid 1px #f00">
+										<div style="position:absolute;" >
 										<input type="hidden" name="type" value="2"/>
-										<input id="template_name" name="template_name" value="" style="width:140px"/>
+										<input id="template_name" name="template_name" value="" style="width:136px;"/>
 										</div>
 										<div>
 										<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemplate(searchCtCallback);">
