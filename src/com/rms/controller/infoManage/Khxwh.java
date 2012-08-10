@@ -93,19 +93,6 @@ public class Khxwh {
 		
 	}
 
-	@RequestMapping("/infoManage/khxwhList.do")
-	public ModelAndView khxwhList(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwhList.jsp");
-	}
-
-	@RequestMapping("/infoManage/khxwhEdit.do")
-	public ModelAndView khxwhEdit(HttpServletRequest Request, HttpServletResponse response) {
-		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwhEdit.jsp");
-	}
-
-	@RequestMapping("/infoManage/ajaxDelKhxdl")
-	public void ajaxDelKhxdl(HttpServletRequest request, HttpServletResponse response) {
-
-	}
+	
 
 }
