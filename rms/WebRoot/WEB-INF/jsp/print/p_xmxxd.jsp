@@ -237,27 +237,4 @@
 		 	<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px"><c:if test="${td01_xmxx.ss_je!=0}"><fmt:formatNumber value="${(td01_xmxx.ss_je-td01_xmxx.sd_je)/td01_xmxx.ss_je*100}" pattern="#,##0.00" />%</c:if></p></td>
 		</tr>
 	 </table>
-	<table width="165mm">
-		<tr height="15mm">
-			<td width="165mm">
-				<p font="Simhei" font-size="14pt" color="black" align="center">打包工程列表</p>
-			</td>
-		</tr>
-	</table>
-	<table width="165mm">
-		<tr height="8mm">
-			<td width="10mm" border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">序号</p></td>
-			<td width="35mm" border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">工程编号</p></td>
-			<td width="120mm" border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">工程名称</p></td>
-		</tr>
-		<c:set var="offset" value="0"/>
-		<c:forEach items="${glgcList}" var="obj">
-			<c:set var="offset" value="${offset+1}"/>
-			<tr height="8mm">
-				<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="12px">${offset }</p></td>
-				<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="12px">${obj.gcbh }</p></td>
-				<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="12px">${obj.gcmc }</p></td>
-			</tr>
-		</c:forEach>
-	</table>
 </pages>
