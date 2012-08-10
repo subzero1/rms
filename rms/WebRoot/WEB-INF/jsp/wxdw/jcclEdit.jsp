@@ -5,6 +5,7 @@
 <jsp:useBean id="now" class="java.util.Date" /> 
 <script type="text/javascript">
 	$(function(){
+	
 	});
 </script>
 <div class="page">
