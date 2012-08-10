@@ -364,9 +364,10 @@ public class Wxdw {
 			String[] STATION_IDs = request.getParameterValues("STATION_ID");
 			String[] DQs = request.getParameterValues("DQ");
 			String dq = "";
-			for (String string : DQs) {
-				dq+=" "+string;
-			}
+			if (DQs != null)
+				for (String string : DQs) {
+					dq += " " + string;
+				}
 			dq = dq.trim();
 			// 保存用户表 TA03
 			Ta03_user ta03 = null;
@@ -404,9 +405,9 @@ public class Wxdw {
 				tf04 = new Tf04_wxdw_user();
 				tf04.setUser_id(ta03.getId());
 				tf04.setWxdw_id(wxdw_id);
-			}
-			else {
-				tf04 = ((List<Tf04_wxdw_user>)queryService.searchList("from Tf04_wxdw_user where wxdw_id="+wxdw_id+" and user_id="+id)).get(0);
+			} else {
+				tf04 = ((List<Tf04_wxdw_user>) queryService.searchList("from Tf04_wxdw_user where wxdw_id=" + wxdw_id
+						+ " and user_id=" + id)).get(0);
 			}
 			tf04.setArea(dq);
 			session.saveOrUpdate(tf04);
