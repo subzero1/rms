@@ -52,7 +52,7 @@
 
   <property
   name="jgfz"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="jgfz"
@@ -90,7 +90,15 @@
   column="jsfs"
   />
 
+<property
+ name="lb" 
+ type="java.lang.String"
+ update="true"
+ insert="true"
+ column="lb"
+>
 
+</property>
     </class>
 
 </hibernate-mapping>

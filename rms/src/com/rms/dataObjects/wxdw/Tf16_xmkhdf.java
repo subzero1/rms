@@ -107,17 +107,17 @@ public class Tf16_xmkhdf implements Serializable{
  /**
  * 结果分值比例 优：1 良 0.8 中 0.6 差 0.4
  */
- private Long jgfz;
+ private Double jgfz;
 
  /**
  * @hibernate.property column="jgfz"
  * @return Returns the jgfz.
  */
- public Long getJgfz() {
+ public Double getJgfz() {
     return jgfz;
  }
 
- public void setJgfz(Long jgfz) {
+ public void setJgfz(Double jgfz) {
     this.jgfz = jgfz;
   }
 
@@ -189,5 +189,24 @@ public class Tf16_xmkhdf implements Serializable{
     this.jsfs = jsfs;
   }
 
+ /**
+  * 类别
+  * */
+ private String lb;
+
+/**
+ * @hibernate.property column="lb"
+ * @return Returns the lb.
+ */
+public String getLb() {
+	return lb;
+}
+
+/**
+ * @param lb The lb to set.
+ */
+public void setLb(String lb) {
+	this.lb = lb;
+}
 
 }
