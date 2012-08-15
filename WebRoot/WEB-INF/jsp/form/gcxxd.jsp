@@ -36,6 +36,17 @@ $(function(){
 				}
 			});
 	}
+	
+   /*
+	*防止将工程误删除
+	*/
+	var bg_je = ${td00_gcxx.bg_je};
+	if(bg_je == null || bg_je == ''){
+		$("#BG_JE").val(0);
+	}
+	else{
+		$("#BG_JE").val(bg_je);
+	}
 </script>
 
 
@@ -44,6 +55,7 @@ $(function(){
 <input type="hidden" name="Td00_gcxx.ID" value="${param.doc_id}">
 <input type="hidden" name="XM_ID" value="${td00_gcxx.xm_id}">
 <input type="hidden" name="GLGC_ID" value="${td00_gcxx.glgc_id}">
+<input type="hidden" id="BG_JE" name="Td00_gcxx.BG_JE" value="">
 
 	<p>
 		<label>需求部门：</label>
@@ -187,54 +199,54 @@ $(function(){
 	<div style="height:0px;"></div>
 	<p>
 		<label>工程总投资：</label>
-		<input type="text"  name="Td01_xmxx.YS_JE" value="${td00_gcxx.ys_je}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_JE" value="${td00_gcxx.ys_je}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>建安费：</label>
-		<input type="text"  name="Td01_xmxx.YS_JAF" value="${td00_gcxx.ys_jaf}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_JAF" value="${td00_gcxx.ys_jaf}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>设备费：</label>
-		<input type="text"  name="Td01_xmxx.YS_SBF" value="${td00_gcxx.ys_sbf}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.YS_SBF" value="${td00_gcxx.ys_sbf}" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>人工费：</label>
-		<input type="text"  name="Td01_xmxx.YS_RGF" value="${td00_gcxx.ys_rgf}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_RGF" value="${td00_gcxx.ys_rgf}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>普工工日：</label>
-		<input type="text"  name="Td01_xmxx.YS_PGGR" value="${td00_gcxx.ys_pggr}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_PGGR" value="${td00_gcxx.ys_pggr}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>技工工日：</label>
-		<input type="text"  name="Td01_xmxx.YS_JGGR" value="${td00_gcxx.ys_jggr}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.YS_JGGR" value="${td00_gcxx.ys_jggr}" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>材料费：</label>
-		<input type="text"  name="Td01_xmxx.YS_CLF" value="${td00_gcxx.ys_clf}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_CLF" value="${td00_gcxx.ys_clf}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>机械费：</label>
-		<input type="text"  name="Td01_xmxx.YS_JXF" value="${td00_gcxx.ys_jxf}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_JXF" value="${td00_gcxx.ys_jxf}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>仪表费：</label>
-		<input type="text"  name="Td01_xmxx.YS_YBF" value="${td00_gcxx.ys_ybf}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.YS_YBF" value="${td00_gcxx.ys_ybf}" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>设计费：</label>
-		<input type="text"  name="Td01_xmxx.YS_SJF" value="${td00_gcxx.ys_sjf}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_SJF" value="${td00_gcxx.ys_sjf}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>监理费：</label>
-		<input type="text"  name="Td01_xmxx.YS_JLF" value="${td00_gcxx.ys_jlf}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.YS_JLF" value="${td00_gcxx.ys_jlf}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>其它费：</label>
-		<input type="text"  name="Td01_xmxx.YS_QTF" value="${td00_gcxx.ys_qtf}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.YS_QTF" value="${td00_gcxx.ys_qtf}" style="width:120px;"/>
 	</p>
 	
 	<div class="divider"></div>
