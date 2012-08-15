@@ -178,6 +178,9 @@
 				
 				<value>com/rms/dataObjects/form/Td00_gcxx.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td01_xmxx.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td02_xmbgd.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td03_jlzj.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td04_xmysd.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td21_mbk.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td22_mbk_lzjl.hbm.xml</value>
 				
