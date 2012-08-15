@@ -42,6 +42,17 @@ $(function(){
 		var url = 'wxdwkh/gcdf.do?project_id='+project_id+'&lb='+lb;
 		$.pdialog.open(url,'_gcdf','工程考核',{width:400,height:300});
 	}
+	
+	/*
+	*防止将工程误删除
+	*/
+	var bg_je = ${td01_xmxx.bg_je};
+	if(bg_je == null || bg_je == ''){
+		$("#BG_JE_XM").val(0);
+	}
+	else{
+		$("#BG_JE_XM").val(bg_je);
+	}
 </script>
 
 
@@ -50,7 +61,7 @@ $(function(){
 <input type="hidden" name="Td01_xmxx.ID" value="${param.doc_id}">
 <input type="hidden" name="Td01_xmxx.CJR" value="<c:out value="${td01_xmxx.cjr}" default="${user.name}"/>">
 <input type="hidden" name="Td01_xmxx.CJRQ" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td01_xmxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>">
-
+<input type="hidden" id="BG_JE_XM" name="Td01_xmxx.BG_JE" value="">
 
 <p>
 	<label>项目名称：</label>
