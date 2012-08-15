@@ -40,7 +40,7 @@ $(function(){
    /*
 	*防止将工程误删除
 	*/
-	var bg_je = ${td00_gcxx.bg_je};
+	var bg_je = '${td00_gcxx.bg_je}';
 	if(bg_je == null || bg_je == ''){
 		$("#BG_JE").val(0);
 	}
