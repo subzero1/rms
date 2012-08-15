@@ -89,9 +89,9 @@ public class Rckh {
 		// where条件
 		// 确认状态
 		if (qrzt.equals("未确认")) {
-			hsql.append(" and (qr is null or qr='')");
+			hsql.append(" and (qrsj is null)");
 		} else if (qrzt.equals("已确认")) {
-			hsql.append(" and qr='已确认'");
+			hsql.append(" and qrsj is not null");
 		}
 		// 考核类别
 		if (!khlb.equals("")) {
@@ -177,7 +177,7 @@ public class Rckh {
 		modelMap.put("tf17", tf17);
 		String canedit = convertUtil.toString(request.getParameter("canedit"));
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		if (tf17 != null && ("已确认".equals(tf17.getQr()) || !tf17.getKhry_id().equals(user.getId()))) {
+		if (tf17 != null && (tf17.getQrsj() != null || !tf17.getKhry_id().equals(user.getId()))) {
 			canedit = "false";
 		}
 		// 考核类别

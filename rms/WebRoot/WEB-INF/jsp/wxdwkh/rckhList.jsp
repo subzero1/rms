@@ -84,7 +84,7 @@
 					<th style="width: 80px;" orderField="fkje">罚款金额</th>
 					<th style="width: 80px;" orderField="jkfz">加扣分值</th>
 					<th style="width: 80px;" orderField="khjg">考核结果</th>
-					<th style="width: 80px;" orderField="qr">确认</th>
+					<th style="width: 80px;" orderField="qrsj">确认</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -103,7 +103,7 @@
 						<td><fmt:formatNumber pattern="0.00" value="${obj.fkje }"/></td>
 						<td><fmt:formatNumber pattern="0.00" value="${obj.jkfz }"/></td>
 						<td style="white-space:nowrap;overflow:hidden;">${obj.khjg }</td>
-						<td style="text-align:center"><c:if test="${not empty obj.qr }"><img src="Images/online_ok.gif"/></c:if></td>
+						<td style="text-align:center"><c:if test="${not empty obj.qrsj }"><img src="Images/online_ok.gif"/></c:if></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">

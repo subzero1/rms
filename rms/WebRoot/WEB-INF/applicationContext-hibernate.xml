@@ -194,8 +194,9 @@
 				<value>com/rms/dataObjects/wxdw/Tf14_jlrj.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf15_khxwh.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf16_xmkhdf.hbm.xml</value>
-				<value>com/rms/dataObjects/wxdw/Tf27_wxdwzhpf.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf17_rckh.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf18_zhkp.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf27_wxdwzhpf.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>

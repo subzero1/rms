@@ -8,7 +8,7 @@
 		$("#sgqr",$.pdialog.getCurrent()).click(function(){
 			alertMsg.confirm("确认后该日常考核记录将不可修改！要手工确认吗？",{
 				okCall:function(){
-					$("#qr",$.pdialog.getCurrent()).val("已确认");
+					$("#qrsj",$.pdialog.getCurrent()).val("<fmt:formatDate pattern='yyyy-MM-dd' value='${now}'/>");
 					$("#form1",$.pdialog.getCurrent()).submit();
 				}
 			});		
@@ -31,7 +31,7 @@
 					</c:if>
 					<input type="hidden" name="Tf17_rckh.WXDW_ID" id="tf17Org.WXDW_ID" value="${tf17.wxdw_id }"/>
 					<input type="hidden" name="Tf17_rckh.WXDW_LB" id="tf17Org.WXDW_LB" value="${tf17.wxdw_lb }"/>
-					<input type="hidden" name="Tf17_rckh.QR" id="qr" />
+					<input type="hidden" name="Tf17_rckh.QRSJ" id="qrsj" />
 				</p>
 				<p>
 					<label>考核时间：</label>
