@@ -62,7 +62,19 @@ public class SendShowMessage extends ButtonControl {
 				if(list != null && list.size() > 0 ){
 					returnStr = "请先选择【设计单位】，并点上方【保存】按钮!";
 				} else {
-					returnStr ="OK";
+					hsql.delete(0, hsql.length());
+					hsql.append("select id ");
+					hsql.append("from Td00_gcxx td00 ");
+					hsql.append("where td00.xm_id = ");
+					hsql.append(project_id);
+					list = queryService.searchList(hsql.toString());
+					if(list == null || list.size() == 0){
+						returnStr ="请先点击右上方【选择打包工程】，打包完成后才可以下发!";
+					}
+					else{
+						returnStr ="OK";
+					}
+					
 				}
 			}
 			
