@@ -59,7 +59,7 @@ public class SendShowMessage extends ButtonControl {
 			List list = queryService.searchList(hsql.toString());
 			
 			if(list != null && list.size() > 0 ){
-				returnStr = "请先选择施工单位，并点上方【保存】按钮!";
+				returnStr = "请先选择【施工单位】，并点上方【保存】按钮!";
 			} else {
 				returnStr ="OK";
 			}
@@ -80,7 +80,7 @@ public class SendShowMessage extends ButtonControl {
 			List list = queryService.searchList(hsql.toString());
 			
 			if(list != null && list.size() > 0 ){
-				returnStr = "请先选择施工单位，并点上方【保存】按钮!";
+				returnStr = "请先选择【施工单位】，并点上方【保存】按钮!";
 			} else {
 				returnStr ="OK";
 			}
@@ -101,7 +101,7 @@ public class SendShowMessage extends ButtonControl {
 			List list = queryService.searchList(hsql.toString());
 			
 			if(list != null && list.size() > 0 ){
-				returnStr = "请先选择监理单位，并点上方【保存】按钮!";
+				returnStr = "请先选择【监理单位】，并点上方【保存】按钮!";
 			} else {
 				returnStr ="OK";
 			}
@@ -122,7 +122,7 @@ public class SendShowMessage extends ButtonControl {
 			List list = queryService.searchList(hsql.toString());
 			
 			if(list != null && list.size() > 0 ){
-				returnStr = "请先选择监理单位，并点上方【保存】按钮!";
+				returnStr = "请先选择【监理单位】，并点上方【保存】按钮!";
 			} else {
 				returnStr ="OK";
 			}
