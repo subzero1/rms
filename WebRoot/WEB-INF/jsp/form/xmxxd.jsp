@@ -151,7 +151,7 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label><a href="sgpftst.do" target="navTab" rel="sgpftst">透</a><a href="sgpd.do?xm_id=${Td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
+	<label><a href="sgpd.do?xm_id=${Td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
 	<input type="text"  name="Td01_xmxx.SGDW" id="sgdwOrg.SGDW" value="${Td01_xmxx.sgdw}" style="width:407px;" readonly="readonly"/>
 	<input type="hidden"  name="Td01_xmxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${Td01_xmxx.sdpgyy}" style="width:150px;"/>
 </p>
