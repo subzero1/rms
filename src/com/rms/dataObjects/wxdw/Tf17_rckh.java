@@ -23,7 +23,7 @@ public class Tf17_rckh implements Serializable {
 	private Double fkje;
 	private Double jkfz;
 	private String khjg;
-	private String qr;
+	private Date qrsj;
 	private Long wzdl;
 	private Date khsj;
 
@@ -189,19 +189,19 @@ public class Tf17_rckh implements Serializable {
 	}
 
 	/**
-	 * @hibernate.property column="qr"
-	 * @return Returns the qr.
+	 * @hibernate.property column="qrsj"
+	 * @return Returns the qrsj.
 	 */
-	public String getQr() {
-		return qr;
+	public Date getQrsj() {
+		return qrsj;
 	}
 
 	/**
-	 * @param qr
-	 *            The qr to set.
+	 * @param qrsj
+	 *            The qrsj to set.
 	 */
-	public void setQr(String qr) {
-		this.qr = qr;
+	public void setQrsj(Date qrsj) {
+		this.qrsj = qrsj;
 	}
 
 	/**

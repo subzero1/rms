@@ -7,8 +7,8 @@
 <hibernate-mapping
 >
     <class
-        name="com.rms.dataObjects.wxdw.Tf17_rckh"
-        table="Tf17_rckh"
+        name="com.rms.dataObjects.wxdw.Tf18_zhkp"
+        table="Tf18_zhkp"
     >
 
         <id
@@ -17,10 +17,10 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">TF17_NUM</param>
+                <param name="sequence">TF18_NUM</param>
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-Tf17_rckh.xml 
+                  hibernate-generator-params-Tf18_zhkp.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
@@ -43,86 +43,6 @@
         />
 
         <property
-            name="khry_id"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="khry_id"
-        />
-
-        <property
-            name="khry_name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="khry_name"
-        />
-
-        <property
-            name="khyy"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="khyy"
-        />
-
-        <property
-            name="khlb"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="khlb"
-        />
-
-        <property
-            name="fkje"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="fkje"
-        />
-
-        <property
-            name="jkfz"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="jkfz"
-        />
-
-        <property
-            name="khjg"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="khjg"
-        />
-
-        <property
-            name="qrsj"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="qrsj"
-        />
-
-        <property
-            name="wzdl"
-            type="java.lang.Long"
-            update="true"
-            insert="true"
-            column="wzdl"
-        />
-
-        <property
-            name="khsj"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="khsj"
-        />
-
-        <property
             name="wxdw_mc"
             type="java.lang.String"
             update="true"
@@ -130,9 +50,129 @@
             column="wxdw_mc"
         />
 
+        <property
+            name="zylb"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zylb"
+        />
+
+        <property
+            name="zyqy"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zyqy"
+        />
+
+        <property
+            name="zhdf"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="zhdf"
+        />
+
+        <property
+            name="xms"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="xms"
+        />
+
+        <property
+            name="hte"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="hte"
+        />
+
+        <property
+            name="jse"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jse"
+        />
+
+        <property
+            name="wgl"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="wgl"
+        />
+
+        <property
+            name="cql"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="cql"
+        />
+
+        <property
+            name="jsl"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jsl"
+        />
+
+        <property
+            name="dfsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="dfsj"
+        />
+
+        <property
+            name="isdefaulta"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="isdefaulta"
+        />
+
+        <property
+            name="isdefaultb"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="isdefaultb"
+        />
+
+        <property
+            name="ascore"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="ascore"
+        />
+
+        <property
+            name="bscore"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="bscore"
+        />
+
+        <property
+            name="cscore"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="cscore"
+        />
+
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-Tf17_rckh.xml
+                hibernate-properties-Tf18_zhkp.xml
             containing the additional properties and place it in your merge dir.
         -->
 
