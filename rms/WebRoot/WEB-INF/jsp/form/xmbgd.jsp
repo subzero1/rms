@@ -50,7 +50,7 @@
 	</p>
 	<p>
 		<label>项目等级：</label>
-		<input type="text" name="Td01_xmxx.XMDJ" value="${td01_xmxx.xmdj}" style="width:120px;"/>
+		<input type="text" name="Td01_xmxx.XMDJ" value="" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
