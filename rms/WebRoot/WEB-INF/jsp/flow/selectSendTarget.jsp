@@ -82,6 +82,7 @@
 	
 	//页面初始化设置
 	$(function(){
+		
 		if("select-multiple"=="${param.selecttype}"){
 			$("#_selectuser #seltype_remark").html("提示：同时按Ctrl或Shift键可多选");
 			$("#_selectuser #select-options").attr("multiple","true");
