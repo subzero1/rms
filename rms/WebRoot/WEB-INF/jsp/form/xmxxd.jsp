@@ -163,8 +163,8 @@ $(function(){
 <div style="height:0px;"></div>
 <p>
 	<label><a href="sgpd.do?xm_id=${Td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
-	<input type="text"  name="Td01_xmxx.SGDW" id="sgdwOrg.SGDW" value="${Td01_xmxx.sgdw}" style="width:407px;" readonly="readonly"/>
-	<input type="hidden"  name="Td01_xmxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${Td01_xmxx.sdpgyy}" style="width:150px;"/>
+	<input type="text"  name="Td01_xmxx.SGDW" id="sgdwOrg.SGDW" value="${td01_xmxx.sgdw}" style="width:407px;" readonly="readonly"/>
+	<input type="hidden"  name="Td01_xmxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${td01_xmxx.sdpgyy}" style="width:150px;"/>
 </p>
 <p>
 	<label>施工派发时间：</label>
