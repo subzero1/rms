@@ -29,7 +29,7 @@
 	</p>
 	<p>
 		<label>提出日期：</label>
-		<input readonly type="text" name="Td02_xmbgd.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td02_xmbgd.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
+		<input readonly type="text" name="Td02_xmbgd.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/></c:when><c:otherwise><fmt:formatDate value="${td02_xmbgd.cjrq}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>"/>
 	</p>
 	<div class="divider"></div>
 	<p>
@@ -43,11 +43,11 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>变更类别：</label>
-		<netsky:htmlSelect name="Td02_xmbgd.BGLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td02_xmbgd.bglb}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td02_xmbgd.BGLB" objectForOption="bglbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td02_xmbgd.bglb}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>变更种类：</label>
-		<netsky:htmlSelect name="Td02_xmbgd.BGZL" objectForOption="zydlList" style="width:155px;" valueForOption="name" showForOption="name" value="${td02_xmbgd.bgzl}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td02_xmbgd.BGZL" objectForOption="bgzlList" style="width:155px;" valueForOption="name" showForOption="name" value="${td02_xmbgd.bgzl}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>项目等级：</label>
