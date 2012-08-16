@@ -7,11 +7,11 @@
 		</table>
 	</tables>
 	<dispath>
-		<path>/flowForm.do</path>
+		<path></path>
 		<propertise>
 			<property>
-				<type>table</type>
-				<tableName>Td02_xmbgd</tableName>
+				<type>request</type>
+				<tableName/>
 				<column>project_id</column>
 				<name>project_id</name>
 			</property>
