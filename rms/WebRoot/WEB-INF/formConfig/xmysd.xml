@@ -10,9 +10,9 @@
 		<path></path>
 		<propertise>
 			<property>
-				<type>table</type>
-				<tableName>Td04_xmysd</tableName>
-				<column>id</column>
+				<type>request</type>
+				<tableName/>
+				<column>project_id</column>
 				<name>project_id</name>
 			</property>
 			<property>
