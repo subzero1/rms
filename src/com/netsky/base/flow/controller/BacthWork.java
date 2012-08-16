@@ -40,7 +40,7 @@ import com.netsky.base.service.SaveService;
  * @description:
  * 相关批量处理
  * 受理、取消处理、审批、审结、办结、打印
- * @class name:com.netsky.pss.controller.BacthWork
+ * @class name:com.rms.controller.BacthWork
  * @author wind Mar 3, 2010
  */
 @Controller

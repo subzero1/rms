@@ -122,7 +122,7 @@ public class WorkListConfig {
 
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(
-					"com.netsky.pss.controller.personalization.WorkListConfig",
+					"com.rms.controller.personalization.WorkListConfig",
 					"获取工作列表字段配置错误", e);
 		}
 		request.setAttribute("configList", configList);

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @description:
  * 读取表单中列表数据
- * @class name:<br>com.netsky.pss.service.form.LoadFormListService
+ * @class name:<br>com.rms.service.form.LoadFormListService
  * @author lee.xiangyu 2010-01-21
  */
 

@@ -19,7 +19,7 @@ import com.netsky.base.service.QueryService;
 /**
  * @description:
  * 加载用户数据
- * @class name:com.netsky.pss.serviceImpl.LoadUserDataServiceImp
+ * @class name:com.rms.serviceImpl.LoadUserDataServiceImp
  * @author wind Jan 20, 2010
  */
 @Service
@@ -27,7 +27,7 @@ public class LoadUserDataServiceImp implements LoadUserDataService {
 	/**
 	 * 日志处理器
 	 */
-	private  Logger log = Logger.getLogger("name:com.netsky.pss.serviceImpl.LoadUserDataServiceImp");
+	private  Logger log = Logger.getLogger("name:com.rms.serviceImpl.LoadUserDataServiceImp");
 	/**
 	 * 数据库查询操作服务
 	 */
