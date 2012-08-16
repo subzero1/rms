@@ -18,7 +18,7 @@
 <body>
 <script type="text/javascript">
 Event.observe(msg.buttOK, 'click', function(){
-	document.location.href = '/pss/MessageWrite.do?type=${param.type}';	
+	document.location.href = '/rms/MessageWrite.do?type=${param.type}';	
 });
 Event.observe(msg.buttCL, 'click', function(){
 	parent.closeCustomWin();

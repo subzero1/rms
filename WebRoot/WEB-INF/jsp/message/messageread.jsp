@@ -11,7 +11,7 @@
 	function delMessage(){
 		var msg = showMsgBox('确定要删除吗？','ok',null,2);
 		Event.observe(msg.buttOK, 'click', function(){
-			messageRead.action = '/pss/MessageDelete.do';
+			messageRead.action = '/rms/MessageDelete.do';
 			messageRead.submit();
 			parent.location.href = parent.location.href;	
 		});
