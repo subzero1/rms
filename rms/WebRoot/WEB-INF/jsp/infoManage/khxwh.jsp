@@ -44,16 +44,69 @@
 		$("#form1").submit();
 	}
 	//点DEL DEL 隐 ROLLBACK现 JQUERY 选择器 实现???
+	
+	function keygo(cols){ 
+  	var cols=cols;//列数,手动设置
+  	var elobj=$("#khxForm :input").not(":hidden").not("button").length; 
+  	var ele=$("#khxForm :input").not(":hidden").not("button"); 
+ 	 key=window.event.keyCode;
+  if (key==38){//↑
+      CurTabIndex=event.srcElement.tabIndex-cols;
+     for (n=0;n<elobj;n++){
+      if (ele.get(n).tabIndex==CurTabIndex){
+        ele.get(n).select(); 
+        return true;
+      }
+    }
+    }
+  if (key==40){//↓
+      CurTabIndex=event.srcElement.tabIndex+cols;
+    for (n=0;n<elobj;n++){
+      if (ele.get(n).tabIndex==CurTabIndex){
+        ele.get(n).select(); 
+        return true;
+      }
+    }
+    }
+  if (key==37){//←
+      CurTabIndex=event.srcElement.tabIndex-1;
+      for (n=0;n<elobj;n++){
+      if ( ele.get(n).tabIndex==CurTabIndex){
+       ele.get(n).select();  
+       return true;
+ }
+           
+        }
+    }
+  if (key==39){//→
+      CurTabIndex=event.srcElement.tabIndex+1 ;
+    for (n=0;n<elobj;n++){
+      if ( ele.get(n).tabIndex==CurTabIndex){ 
+        ele.get(n).select(); 
+        return true;
+      }
+    }
+    }
+}
+
+
+
+
 </script>
 
 <div class="page">
 	<div class="pageContent">
-		<form id="save.do" action="save.do" method="post"
+		<form id="khxForm" action="save.do" method="post"
 			class="pageForm required-validate"
-			onsubmit="return validateCallback(this, dialogAjaxDone);">
+			onsubmit="return validateCallback(this, dialogAjaxDone);"
+			name="khxForm" onKeyUp="keygo(5)">
 			<input type="hidden" name="tableInfomation"
-				value="noFatherTable:com.rms.dataObjects.wxdw.Tf15_khxwh" />
-
+				value="noFatherTable:com.rms.dataObjects.wxdw.Tf15_khxwh"
+				class="shut" />
+			<input type="hidden" name="_callbackType" value="forward" />
+			<input type="hidden" name="_forwardUrl" value="infoManage/khxwh.do"
+				class="shut" />
+			<input type="hidden" name="_navTabId" value="khxwh" class="shut" />
 			<div class="pageFormContent" layouth="58">
 				<table class="table" width="100%">
 					<thead>
@@ -79,51 +132,55 @@
 						</tr>
 					</thead>
 					<tbody id="mainbodyx">
-					
+
 						<c:forEach var="tf15" items="${tf15List}">
 							<tr>
 								<td>
-									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}">
+									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}"
+										class="shut">
 									<input type='text' class='required' comments='考核项'
 										name='Tf15_khxwh.KHX' style='width: 100%' value="${tf15.khx }" />
 								</td>
 								<td>
 									<input type='text' class='required' comments='描述'
-										name='Tf15_khxwh.MS' style='width: 100%' value="${tf15.ms }"/>
+										name='Tf15_khxwh.MS' style='width: 100%' value="${tf15.ms }" />
 								</td>
 								<td>
 									<input type='text' class='required' comments='最高分数'
-										name='Tf15_khxwh.FZ' style='width: 100%' value="${tf15.fz}"/>
+										name='Tf15_khxwh.FZ' style='width: 100%' value="${tf15.fz}" />
 								</td>
 								<td>
-									<input type='text' class='required' comments='计算方式'
-										name='Tf15_khxwh.JSFS' style='width: 100%' value="${tf15.jsfs }"/>
+									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS'
+										style='width: 100%' value="${tf15.jsfs }" />
 								</td>
 								<td>
-									<select name='Tf15_khxwh.LB' style='width: 100%;' class='required' comments='类别'>
-									
+									<select name='Tf15_khxwh.LB' style='width: 100%;'
+										class='required' comments='类别'>
+
 										<option value=''>
 											-----请选择类别-----
 										</option>
-										<option value='sj' <c:if test="${tf15.lb=='sj' }">selected</c:if>>
+										<option value='sj'
+											<c:if test="${tf15.lb=='sj' }">selected</c:if>>
 											设计
 										</option>
-										<option value='sg' <c:if test="${tf15.lb=='sg' }">selected</c:if>>
+										<option value='sg'
+											<c:if test="${tf15.lb=='sg' }">selected</c:if>>
 											施工
 										</option>
-										<option value='jl' <c:if test="${tf15.lb=='jl' }">selected</c:if>>
+										<option value='jl'
+											<c:if test="${tf15.lb=='jl' }">selected</c:if>>
 											监理
 										</option>
 									</select>
 								</td>
 								<td>
 									<a href="#" onclick="javascript:delComments(this);"
-										class="btnDel"><span>删除</span>
-									</a>
+										class="btnDel"><span>删除</span> </a>
 								</td>
 							</tr>
 						</c:forEach>
-						 
+
 					</tbody>
 				</table>
 			</div>
@@ -160,4 +217,9 @@
 	</div>
 </div>
 
-
+<script type="text/javascript">
+  $("#khxForm :input").not(":hidden").not("button").focus();
+  for (n=0;n<$("#khxForm :input").not(":hidden").not("button").length;n++){
+    $("#khxForm :input").not(":hidden").not("button").get(n).tabIndex=n; 
+  }
+</script>
