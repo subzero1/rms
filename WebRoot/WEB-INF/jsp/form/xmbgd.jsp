@@ -7,6 +7,7 @@
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmbgd.xml"/>
 <input type="hidden" name="Td02_xmbgd.ID" value="${param.doc_id}">
+<input type="hidden" name="Td02_xmbgd.PROJECT_ID" value="${param.project_id}">
 
 <div class="pageFormContent">
 	<p>
@@ -42,7 +43,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>变更类别：</label>
-		<netsky:htmlSelect name="Td02_xmbgd.BGLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td02_xmbgd.gclb}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td02_xmbgd.BGLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td02_xmbgd.bglb}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>变更种类：</label>
@@ -59,7 +60,7 @@
 	</p>
 	<p>
 		<label>立项金额：</label>
-		<input type="text"  name="Td02_xmbgd.LXJE" value="${td02_xmbgd.lxje}" style="width:150px;"/>
+		<input type="text"  name="Td02_xmbgd.LXJE" value="${td01_xmxx.lxje}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>变更金额：</label>
