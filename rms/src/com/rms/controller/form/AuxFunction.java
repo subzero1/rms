@@ -545,6 +545,7 @@ public class AuxFunction {
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
 		String keywords  = convertUtil.toString(request.getParameter("keywords"));
+		String lb  = convertUtil.toString(request.getParameter("lb"));
 		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
 		modelMap.put("curUserId", user.getId());
 		
@@ -570,7 +571,12 @@ public class AuxFunction {
 		sql.append(project_id);
 		sql.append(" and module_id = ");
 		sql.append(module_id);
-		sql.append(" and slave_type in('工程图纸','设计说明','竣工资料')");
+		if(lb.equals("jgzl")){
+			sql.append(" and slave_type in('竣工资料')");
+		}
+		else{
+			sql.append(" and slave_type in('工程图纸','设计说明')");
+		}
 		if(!keywords.equals("")){
 			sql.append(" and file_name like '%");
 			sql.append(keywords);
