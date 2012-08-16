@@ -213,6 +213,39 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				
 			}
 			
+			// 获取变更类别、变更种类
+			if (module_id == 103) {
+				
+				// 获取变更类别：Tc01_property type="变更类别"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "变更类别");
+				queryBuilder.addOrderBy(Order.asc("name"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc01_property> bglbList = new LinkedList<Tc01_property>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						bglbList.add((Tc01_property) itr.next());
+					}
+					request.setAttribute("bglbList", bglbList);
+				}
+				
+				// 获取变更种类：Tc01_property type="变更种类"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "变更种类");
+				queryBuilder.addOrderBy(Order.asc("name"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc01_property> bgzlList = new LinkedList<Tc01_property>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						bgzlList.add((Tc01_property) itr.next());
+					}
+					request.setAttribute("bgzlList", bgzlList);
+				}
+				
+			}
+			
 			if(module_id==101){
 				
 				// 获取切块大类：Tc06_tzqk
