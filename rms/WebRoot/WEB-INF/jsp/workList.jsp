@@ -109,7 +109,7 @@
 						<c:forEach var="j" begin="0" end ="${cols-1}">
 							<c:choose>
 								<c:when test="${'名称' == docColsList[j].comments}">
-									<td align="${docColsList[j].align}"><a href="javascript:openFlowForm('{project_id:${doc[cols].doc_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');">${doc[j]}</a></td>
+									<td align="${docColsList[j].align}"><a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');">${doc[j]}</a></td>
 								</c:when>
 								<c:otherwise><td align="${docColsList[j].align}">${doc[j]}</td></c:otherwise>
 							</c:choose>
