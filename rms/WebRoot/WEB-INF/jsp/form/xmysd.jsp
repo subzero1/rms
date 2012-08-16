@@ -46,7 +46,7 @@
 	</p>
 	<p>
 		<label>开工日期：</label>
-		<input type="text" name="Td01_xmxx.SJKGRQ" value="<fmt:formatDate value="${td01_xmxx.sjkgrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
+		<input type="text" name="Td01_xmxx.SJKGRQ" value="<fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -55,7 +55,7 @@
 	</p>
 	<p>
 		<label>竣工日期：</label>
-		<input type="text" name="Td01_xmxx.SJJGRQ" value="<fmt:formatDate value="${td01_xmxx.sjjgrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
+		<input type="text" name="Td01_xmxx.SJJGRQ" value="<fmt:formatDate value="${td01_xmxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
