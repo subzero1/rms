@@ -58,7 +58,7 @@ import com.netsky.base.dataObjects.interfaces.SlaveObject;
 /**
  * @description:
  * 
- * @class name:com.netsky.pss.controller.OnLine
+ * @class name:com.rms.controller.OnLine
  * 
  * @author liuxu Feb 25, 2010
  */
@@ -341,7 +341,7 @@ public class OnLine {
 
 			String phonenums[] = admin_sjh.split(";");
 			StringBuffer message_phone = new StringBuffer();
-			message_phone.append("发自：" + "pss在线提问");
+			message_phone.append("发自：" + "rms在线提问");
 			message_phone.append("\n");
 			message_phone.append("用户名：" + aq_name);
 			message_phone.append("\n");
@@ -614,7 +614,7 @@ public class OnLine {
 						PHSService phs = new PHSService();
 						phs.setSaveService(saveService);
 						StringBuffer message_phone = new StringBuffer();
-						message_phone.append("发自：" + "pss在线提问");
+						message_phone.append("发自：" + "rms在线提问");
 						message_phone.append("\n");
 						message_phone.append("用户名：" + user.getName());
 						message_phone.append("\n");

@@ -98,7 +98,7 @@ public class SaveImageServlet extends HttpServlet {
 				int width = image.getWidth();
 				int height = image.getHeight();
 				response.sendRedirect("dispath.do?url=personalization/upload_ok.html?url="+personal_head+","+width+","+height);
-				//response.sendRedirect("/pss/openupl.do");
+				//response.sendRedirect("/rms/openupl.do");
 			}
 		} catch (Exception e) {
 			Tz01_exception tz01 = new Tz01_exception();

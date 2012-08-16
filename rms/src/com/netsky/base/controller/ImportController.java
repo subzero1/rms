@@ -57,7 +57,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 	/**
 	 * 默认持久化对象包路径
 	 */
-	private static String packgePath = "com.netsky.pss.dataObjects.form";
+	private static String packgePath = "com.rms.dataObjects.form";
 
 	private static String configFile = "/importConfig/import.xml";
 

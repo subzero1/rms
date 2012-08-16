@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * @description:
  * ͨ��Service�ӿ�
- * @class name:com.netsky.pss.service.other.GeneralService
+ * @class name:com.rms.service.other.GeneralService
  * @author Administrator Jun 14, 2011
  */
 public interface GeneralService {

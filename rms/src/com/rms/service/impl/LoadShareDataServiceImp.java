@@ -18,7 +18,7 @@ import com.netsky.base.service.QueryService;
 /**
  * @description:
  * 装载tc表数据，tc02按类别分别放到不能的List中去。
- * @class name:com.netsky.pss.serviceImpl.LoadShareDataServiceImp
+ * @class name:com.rms.serviceImpl.LoadShareDataServiceImp
  * @author wind Jan 20, 2010
  */
 @Service("loadShareDataService")
