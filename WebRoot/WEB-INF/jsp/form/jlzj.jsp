@@ -7,6 +7,7 @@
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="jlzj.xml"/>
 <input type="hidden" name="Td03_jlzj.ID" value="${param.doc_id}">
+<input type="hidden" name="Td03_jlzj.PROJECT_ID" value="${param.project_id}">
 
 <div class="pageFormContent">
 	<p>
@@ -28,7 +29,7 @@
 	</p>
 	<p>
 		<label>提出日期：</label>
-		<input readonly type="text" name="Td03_jlzj.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td03_jlzj.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
+		<input readonly type="text" name="Td03_jlzj.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/></c:when><c:otherwise><fmt:formatDate value="${td03_jlzj.cjrq}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>"/>
 	</p>
 	<div class="divider"></div>
 	<p>
