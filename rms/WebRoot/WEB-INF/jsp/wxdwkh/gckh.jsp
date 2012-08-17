@@ -2,49 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script type="text/javascript">
-/*
-	function addComments(){
-		$("#mainbody").append("<tr><td><input type='hidden' name='Ta22_user_idea.USER_ID' value='${user.id}'/>\
-				<input type='hidden' name='Ta22_user_idea.ID' value='' />\
-				<select name='Ta22_user_idea.CHECK_RESULT' style='width:98%;'>\
-					<option value='4'>同意</option>\
-					<option value='5' >修改后再报</option>\
-					<option value='6' >不同意</option>\
-				</select></td>\
-				<td><input type='text'  class='required' comments='审批意见' name='Ta22_user_idea.CHECK_IDEA' style='width:98%'/></td>\
-				<td><a href='#' onclick='javascript:delComments(this);'  class='btnDel'><span>删除</span></a></td></tr>");
-	}
-	function delComments(obj){
-		var $tr = $(obj).closest("tr");
-		if($tr){
-			var valid = false;
-			$tr.find(":input").each(function(){
-				if(this.name != "Ta22_user_idea.ID"){
-					$(this).val("");
-				}else{
-					if($(this).val()!="")
-						valid = true;
-				}
-			});
-			if(valid)
-				$tr.hide();
-			else
-				$tr.remove();
-		}
-	}
-	*/
-	/*
-	$.().ready(function(){
-		$("#save").click(function(){
-			$.post("deleteTf15.do",data,callback);
-		});
-	});
-	
-	$(function(){
-		
-	});
-	*/ 
+<script type="text/javascript"> 
 	function pfjg(obj){ 
 		var $tr=$(obj).closest("tr");
 		if($(obj).val()=="优"){	
@@ -85,15 +43,15 @@
 				<tbody id="mainbody"><c:forEach var="gc" items="${gc1}">
 					<tr>
 						<td>
-							<input type="hidden" style="width:100%"  name="Tf16_xmkhdf.ID" value="" />
-							<input type="text" style="width:100%"  class="required" name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
+							<input type="hidden"  name="Tf16_xmkhdf.ID" value="" />
+							<input type="text"    name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
 						</td>
 						<td>
-							<input type="text" style="width:100%"  class="required" name="Tf16_xmkhdf.MS" value="${gc[1]}" />
+							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc[1]}" />
 						</td>
 						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc[2] }"  /> 
-							<select name="Tf16_xmkhdf.JGXX" style="width:100%" onchange="pfjg(this)" id="jgxx">
+							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" id="jgxx">
 								<option value="" >请评价</option>
 								<option value="优" >优</option>
 								<option value="良" >良</option>
@@ -112,15 +70,15 @@
 					<c:forEach var="gc" items="${gc2}">
 					<tr>
 						<td width="40%">
-							<input type="hidden" style="width:100%"  name="Tf16_xmkhdf.ID" value="${gc.id }" />
-							<input type="text" style="width:100%"  class="required" name="Tf16_xmkhdf.KHX" value="${gc.khx}" />
+							<input type="hidden" name="Tf16_xmkhdf.ID" value="${gc.id }" />
+							<input type="text"    name="Tf16_xmkhdf.KHX" value="${gc.khx}"  disabled />
 						</td >
 						<td width="40%">
-							<input type="text" style="width:100%"  class="required" name="Tf16_xmkhdf.MS" value="${gc.ms}" />
+							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}"  disabled />
 						</td>
 						<td width="20%"> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc.zdfz}"   /> 
-							<select name="Tf16_xmkhdf.JGXX" style="width:100%;" onchange="pfjg(this)" >
+							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" >
 								<option value="" <c:if test="${gc.jgxx==''}">selected</c:if>>请评价</option>
 								<option value="优" <c:if test="${gc.jgxx=='优'}">selected</c:if>>优</option>
 								<option value="良" <c:if test="${gc.jgxx=='良'}">selected</c:if>>良</option>
