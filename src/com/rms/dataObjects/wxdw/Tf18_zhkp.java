@@ -31,6 +31,7 @@ public class Tf18_zhkp implements Serializable {
 	private Double ascore;
 	private Double bscore;
 	private Double cscore;
+	private Date lastdfsj;
 
 	/**
 	 * @hibernate.id generator-class="sequence"
@@ -335,6 +336,22 @@ public class Tf18_zhkp implements Serializable {
 	 */
 	public void setCscore(Double cscore) {
 		this.cscore = cscore;
+	}
+
+	/**
+	 * @hibernate.property column="lastdfsj"
+	 * @return Returns the lastdfsj.
+	 */
+	public Date getLastdfsj() {
+		return lastdfsj;
+	}
+
+	/**
+	 * @param lastdfsj
+	 *            The lastdfsj to set.
+	 */
+	public void setLastdfsj(Date lastdfsj) {
+		this.lastdfsj = lastdfsj;
 	}
 
 }
