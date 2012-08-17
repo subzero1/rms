@@ -77,9 +77,9 @@
 			<table class="table" width="100%">
 				<thead>
 					<tr>
-						<th style='width:100px;'>考核项</th>
-						<th style='width:240px;'>描述</th>
-						<th style='width:30px;'>结果</th>
+						<th width="40%">考核项</th>
+						<th width="40%">描述</th>
+						<th width="20%">结果</th>
 					</tr>
 				</thead>
 				<tbody id="mainbody"><c:forEach var="gc" items="${gc1}">
@@ -94,13 +94,13 @@
 						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc[2] }"  /> 
 							<select name="Tf16_xmkhdf.JGXX" style="width:100%" onchange="pfjg(this)" id="jgxx">
-								<option value="" >---请评价---</option>
+								<option value="" >请评价</option>
 								<option value="优" >优</option>
 								<option value="良" >良</option>
 								<option value="中" >中</option> 
 								<option value="差" >差</option>
 							</select>
-							<input type="text" name="Tf16_xmkhdf.JGFZ"  id="jgfz" /> 
+							<input type="hidden" name="Tf16_xmkhdf.JGFZ"  id="jgfz" /> 
 							<input type="hidden" name="Tf16_xmkhdf.PROJECT_ID" value="${project_id}"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PFRY"  value="${user.id }" id="pfry"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PFSJ"  value="<fmt:formatDate value="${curDate}" pattern="yyyy-MM-dd HH:mm"/>"/> 
@@ -111,22 +111,23 @@
 				</c:forEach>
 					<c:forEach var="gc" items="${gc2}">
 					<tr>
-						<td>
+						<td width="40%">
 							<input type="hidden" style="width:100%"  name="Tf16_xmkhdf.ID" value="${gc.id }" />
 							<input type="text" style="width:100%"  class="required" name="Tf16_xmkhdf.KHX" value="${gc.khx}" />
-						</td>
-						<td>
+						</td >
+						<td width="40%">
 							<input type="text" style="width:100%"  class="required" name="Tf16_xmkhdf.MS" value="${gc.ms}" />
 						</td>
-						<td> 
+						<td width="20%"> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc.zdfz}"   /> 
-							<select name="Tf16_xmkhdf.JGXX" style="width:100%" onchange="pfjg(this)" >
+							<select name="Tf16_xmkhdf.JGXX" style="width:100%;" onchange="pfjg(this)" >
+								<option value="" <c:if test="${gc.jgxx==''}">selected</c:if>>请评价</option>
 								<option value="优" <c:if test="${gc.jgxx=='优'}">selected</c:if>>优</option>
 								<option value="良" <c:if test="${gc.jgxx=='良'}">selected</c:if>>良</option>
 								<option value="中" <c:if test="${gc.jgxx=='中'}">selected</c:if>>中</option> 
 								<option value="差" <c:if test="${gc.jgxx=='差'}">selected</c:if>>差</option>
 							</select>
-							<input type="text" name="Tf16_xmkhdf.JGFZ"  /> 
+							<input type="hidden" name="Tf16_xmkhdf.JGFZ"  /> 
 							<input type="hidden" name="Tf16_xmkhdf.PROJECT_ID" value="${gc.project_id }"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PFRY"  value="${gc.pfry }" id="pfry"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PFSJ"  value="<fmt:formatDate value="${gc.pfsj}" pattern="yyyy-MM-dd HH:mm"/>"/> 
