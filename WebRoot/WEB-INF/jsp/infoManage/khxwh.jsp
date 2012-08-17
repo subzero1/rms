@@ -9,7 +9,7 @@
 				<input type='text'  class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width:100%'/></td>\
 				<td><input type='text'  class='required' comments='描述' name='Tf15_khxwh.MS' style='width:100%'/></td>\
 				<td><input type='text'  class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width:100%'/></td>\
-				<td><input type='text'  class='required' comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
+				<td><input type='text'   comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
 				<td><select name='Tf15_khxwh.LB' style='width:100%;' class='required' comments='类别'>\
 				<option value=''>---请选择类别---</option>\
 					<option value='sj'>设计</option>\
@@ -72,6 +72,8 @@
       CurTabIndex=event.srcElement.tabIndex-1;
       for (n=0;n<elobj;n++){
       if ( ele.get(n).tabIndex==CurTabIndex){
+     	 if((n+1)%5==0)//如果是下拉框则为焦点定位
+      		ele.get(n).focus(); 
        ele.get(n).select();  
        return true;
  }
@@ -82,18 +84,21 @@
       CurTabIndex=event.srcElement.tabIndex+1 ;
     for (n=0;n<elobj;n++){
       if ( ele.get(n).tabIndex==CurTabIndex){ 
+      	if((n+1)%5==0)//如果是下拉框则为焦点定位
+      		ele.get(n).focus();
         ele.get(n).select(); 
         return true;
       }
     }
+    if(event.srcElement.tabIndex+1==25){
+    	 CurTabIndex=0;
+    	   ele.get(0).select(); 
+    }
+    	
     }
 }
-
-
-
-
-</script>
-
+ 
+</script>   
 <div class="page">
 	<div class="pageContent">
 		<form id="khxForm" action="save.do" method="post"
@@ -106,7 +111,7 @@
 			<input type="hidden" name="_callbackType" value="forward" />
 			<input type="hidden" name="_forwardUrl" value="infoManage/khxwh.do"
 				class="shut" />
-			<input type="hidden" name="_navTabId" value="khxwh" class="shut" />
+			<input type="hidden" name="_navTabId" value="khxwh" class="shut" /> 
 			<div class="pageFormContent" layouth="58">
 				<table class="table" width="100%">
 					<thead>
@@ -123,8 +128,8 @@
 							<th style='width: 60px;'>
 								计算方式
 							</th>
-							<th style='width: 60px;'>
-								类别;
+							<th style='width: 60px; cursor: hand' onclick="" >
+								<a id="lbie" target='navTab' rel="khxwh" title="考核信息项维护"  style="width:100%" href='infoManage/sortbyl.do?sort=${sort}' ><span >类别</span></a>
 							</th>
 							<th style='width: 30px;'>
 								&nbsp;
