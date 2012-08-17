@@ -29,7 +29,7 @@
 	</p>
 	<p>
 		<label>提出日期：</label>
-		<input readonly type="text" name="Td04_xmysd.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td04_xmysd.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
+		<input readonly type="text" name="Td04_xmysd.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/></c:when><c:otherwise><fmt:formatDate value="${td04_xmysd.cjrq}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>"/>
 	</p>
 	<div class="divider"></div>
 	<p>
