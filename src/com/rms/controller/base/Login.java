@@ -129,15 +129,15 @@ public class Login {
 		String sys = request.getHeader("User-Agent");
 		String systeminfo = "";
 		System.out.print(sys+"**************************");
-//		if (sys.split(";")[1].equals(" MSIE 8.0")) {
-//			systeminfo += "IE 8.0 ;";
-//		} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
-//			systeminfo += "IE 7.0 ;";
-//		} else if (sys.split(";")[1].equals(" MSIE 6.0")) {
-//			systeminfo += "IE 6.0 ;";
-//		} else {
-//			systeminfo += sys.split(";")[1] + " ;";
-//		}
+		if (sys.split(";")[1].equals(" MSIE 8.0")) {
+			systeminfo += "IE 8.0 ;";
+		} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
+			systeminfo += "IE 7.0 ;";
+		} else if (sys.split(";")[1].equals(" MSIE 6.0")) {
+			systeminfo += "IE 6.0 ;";
+		} else {
+			systeminfo += sys.split(";")[1] + " ;";
+		}
 
 		if (sys.indexOf("Windows NT 6.0") != -1) {
 			systeminfo += " Windows Vista ";
