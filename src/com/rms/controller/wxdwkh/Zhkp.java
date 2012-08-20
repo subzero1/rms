@@ -96,7 +96,7 @@ public class Zhkp {
 									+ " from tf01_wxdw tf01 "
 									+ "left join (select sum(t1.sum1) as sum1, t1.sgdw as sgdw from "
 									+ "(select td01.sgdw as sgdw, t0.sum1 as sum1 from td01_xmxx td01 left join "
-									+ "(select sum(zdfz * jgfz) as sum1, project_id, lb from tf16_xmkhdf where lb = 'sg' and pfsj>=to_date('"
+									+ "(select sum(zdfz * jgfz)/(count(*) as sum1, project_id, lb from tf16_xmkhdf where lb = 'sg' and pfsj>=to_date('"
 									+ zhkpsj
 									+ "','yyyy-MM-dd') and pfsj<to_date('"
 									+ now
