@@ -13,7 +13,7 @@
 		    $tr.find("input[name='Tf16_xmkhdf.JGFZ']").val(0.6);
 		}else if($(obj).val()=="差"){
 		    $tr.find("input[name='Tf16_xmkhdf.JGFZ']").val(0.4);
-		}
+		} 
 		//如果做出修改，更新评分时间和人员
 		var curTime=$("#curTime").val();
 		var curUser=$("#curUser").val(); 
@@ -85,7 +85,7 @@
 								<option value="中" <c:if test="${gc.jgxx=='中'}">selected</c:if>>中</option> 
 								<option value="差" <c:if test="${gc.jgxx=='差'}">selected</c:if>>差</option>
 							</select>
-							<input type="hidden" name="Tf16_xmkhdf.JGFZ"  /> 
+							<input type="hidden" name="Tf16_xmkhdf.JGFZ"  value="${gc.jgfz }"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PROJECT_ID" value="${gc.project_id }"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PFRY"  value="${gc.pfry }" id="pfry"/> 
 							<input type="hidden" name="Tf16_xmkhdf.PFSJ"  value="<fmt:formatDate value="${gc.pfsj}" pattern="yyyy-MM-dd HH:mm"/>"/> 
