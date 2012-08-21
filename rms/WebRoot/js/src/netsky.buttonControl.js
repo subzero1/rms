@@ -416,6 +416,7 @@ function delSalveAjaxDone(json){
 			var slavep = $("#slaveDiv", navTab.getCurrentPanel()).find("p");
 			if(slavep.size()>0){
 				$(slavep[json.slaveIndex]).remove();
+				$.pdialog.reload();
 			}
 		}
 	}
