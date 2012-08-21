@@ -53,6 +53,27 @@ $(function(){
 	else{
 		$("#BG_JE_XM").val(bg_je);
 	}
+	
+	
+	/**
+		sObj:需要修改的对象
+		dObj:级联更新的对象
+		hObj:辅助对象，隐藏域
+	*/
+	function computeZje(sObj,dObj,hObj){		 	
+		var svar = sObj.value;
+		var dvar = dObj.value;
+		var hvar = hObj.value;
+
+		if(svar == '')
+			svar = 0;
+		if(dvar == '')
+			dvar = 0;
+		if(hvar == '')
+			hvar = 0;
+		dvar = Number(dvar) - Number(hvar) + Number(svar);
+		dObj.value = Math.round(dvar*100)/100;
+	}
 </script>
 
 
@@ -291,155 +312,155 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">技工工日</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JGGR" value="${Td01_xmxx.ss_jggr}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JGGR" value="<fmt:formatNumber value="${Td01_xmxx.ss_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JGGR" value="${Td01_xmxx.cs_jggr}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JGGR" value="<fmt:formatNumber value="${Td01_xmxx.cs_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JGGR" value="${Td01_xmxx.sd_jggr}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JGGR" value="<fmt:formatNumber value="${Td01_xmxx.sd_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_JGGR" value="${Td01_xmxx.hje_jggr}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_JGGR" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_JGGR" value="${Td01_xmxx.hjl_jggr}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_JGGR" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">普工工日</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_PGF" value="${Td01_xmxx.ss_pgf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_PGGR" value="<fmt:formatNumber value="${Td01_xmxx.ss_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_PGF" value="${Td01_xmxx.cs_pgf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_PGGR" value="<fmt:formatNumber value="${Td01_xmxx.cs_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_PGF" value="${Td01_xmxx.sd_pgf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_PGGR" value="<fmt:formatNumber value="${Td01_xmxx.sd_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_PGF" value="${Td01_xmxx.hje_pgf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_PGGR" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_PGF" value="${Td01_xmxx.hjl_pgf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_PGGR" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">材料费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_CLF" value="${Td01_xmxx.ss_clf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_CLF" value="<fmt:formatNumber value="${Td01_xmxx.ss_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_CLF" value="${Td01_xmxx.cs_clf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_CLF" value="<fmt:formatNumber value="${Td01_xmxx.cs_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_CLF" value="${Td01_xmxx.sd_clf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_CLF" value="<fmt:formatNumber value="${Td01_xmxx.sd_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_CLF" value="${Td01_xmxx.hje_clf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_CLF" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_CLF" value="${Td01_xmxx.hjl_clf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_CLF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">设备费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_SBF" value="${Td01_xmxx.ss_sbf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_SBF" value="<fmt:formatNumber value="${Td01_xmxx.ss_sbf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_SBF" value="${Td01_xmxx.cs_sbf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_SBF" value="<fmt:formatNumber value="${Td01_xmxx.cs_sbf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_SBF" value="${Td01_xmxx.sd_sbf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_SBF" value="<fmt:formatNumber value="${Td01_xmxx.sd_sbf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_SBF" value="${Td01_xmxx.hje_sbf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_SBF" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_SBF" value="${Td01_xmxx.hjl_sbf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_SBF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">机械仪表费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JXF" value="${Td01_xmxx.ss_jxf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JXF" value="<fmt:formatNumber value="${Td01_xmxx.ss_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JXF" value="${Td01_xmxx.cs_jxf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JXF" value="<fmt:formatNumber value="${Td01_xmxx.cs_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JXF" value="${Td01_xmxx.sd_jxf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JXF" value="<fmt:formatNumber value="${Td01_xmxx.sd_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_JXF" value="${Td01_xmxx.hje_jxf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_JXF" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_JXF" value="${Td01_xmxx.hjl_jxf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_JXF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">其它费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_SJF" value="${Td01_xmxx.ss_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_QTF" value="<fmt:formatNumber value="${Td01_xmxx.ss_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_SJF" value="${Td01_xmxx.cs_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_QTF" value="<fmt:formatNumber value="${Td01_xmxx.cs_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_SJF" value="${Td01_xmxx.sd_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_QTF" value="<fmt:formatNumber value="${Td01_xmxx.sd_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_SJF" value="${Td01_xmxx.hje_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_QTF" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_SJF" value="${Td01_xmxx.hjl_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_QTF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">施工总费用</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_SJF" value="${Td01_xmxx.ss_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_SGF" value="<fmt:formatNumber value="${Td01_xmxx.ss_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_SJF" value="${Td01_xmxx.cs_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_SGF" value="<fmt:formatNumber value="${Td01_xmxx.cs_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_SJF" value="${Td01_xmxx.sd_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_SGF" value="<fmt:formatNumber value="${Td01_xmxx.sd_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_SJF" value="${Td01_xmxx.hje_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_SGF" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_SJF" value="${Td01_xmxx.hjl_sjf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_SGF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">监理费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JLF" value="${Td01_xmxx.ss_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JLF" value="<fmt:formatNumber value="${Td01_xmxx.ss_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JLF" value="${Td01_xmxx.cs_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JLF" value="<fmt:formatNumber value="${Td01_xmxx.cs_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JLF" value="${Td01_xmxx.sd_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JLF" value="<fmt:formatNumber value="${Td01_xmxx.sd_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_JLF" value="${Td01_xmxx.hje_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_JLF" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_JLF" value="${Td01_xmxx.hjl_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_JLF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p style="width:105px;text-align:center;">结算总费用</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JLF" value="${Td01_xmxx.ss_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JE" value="<fmt:formatNumber value="${Td01_xmxx.ss_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JLF" value="${Td01_xmxx.cs_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JE" value="<fmt:formatNumber value="${Td01_xmxx.cs_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JLF" value="${Td01_xmxx.sd_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JE" value="<fmt:formatNumber value="${Td01_xmxx.sd_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJE_JLF" value="${Td01_xmxx.hje_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJE_JE" value="" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.HJL_JLF" value="${Td01_xmxx.hjl_jlf}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.HJL_JE" value="" style="width:120px;"/>
 </p>	
 
 <div style="height:10px;"></div>
