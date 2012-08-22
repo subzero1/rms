@@ -161,7 +161,14 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 				
 	
-				
+				boolean tmp_doc_id = false;//关联工程时解决专业小类取不出来的问题
+				if(doc_id == -1){
+					Long glgc_id = convertUtil.toLong(request.getParameter("glgc_id"),-1l);
+					if(glgc_id != -1){
+						doc_id = glgc_id;
+						tmp_doc_id = true;
+					}
+				}
 				// 获取专业小类：Tc04_zyxx
 				if(doc_id != -1){
 					hsql.delete(0, hsql.length());
@@ -190,6 +197,9 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						zyxxList.add(o_tc04);
 					}
 					request.setAttribute("zyxxList", zyxxList);
+				}
+				if(tmp_doc_id){
+					doc_id = -1l;
 				}
 				
 				//获取设计单位和监理单位列表
@@ -255,6 +265,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				queryBuilder.addOrderBy(Order.asc("id"));
 				tmpList = queryService.searchList(queryBuilder);
 				request.setAttribute("qkdlList", tmpList);
+				
 				
 				if(doc_id != -1){
 					// 获取切块小类：Tc07_qkxl
