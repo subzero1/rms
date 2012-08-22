@@ -155,6 +155,67 @@ public class AuxFunction {
 	}
 	
 	/**
+	 * 打包立项选择工程检测（工程类别、施工单位）
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param ModelAndView
+	 */
+	@RequestMapping("/form/chkXzgcForDblx.do")
+	public ModelAndView chkXzgcForDblx(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		String[] groups = request.getParameterValues("t_group");
+		String json = "{\"statusCode\":\"200\", \"message\":\"成功\"}";
+		
+		try {
+			// 获取岗位的对象
+			StringBuffer sql = new StringBuffer();
+			String ids = "";
+			// 对配置的角色进行保存
+			if(groups != null){
+				for (int i = 0; i < groups.length; i++) {
+					ids += groups[i]+",";
+				}
+				ids += "-1";
+			}
+			
+			/*
+			 * 判断工程类别是否不一致
+			 */
+			sql.delete(0, sql.length());
+			sql.append("select distinct gclb from Td00_gcxx where id in (");
+			sql.append(ids);
+			sql.append(")");
+			List list = queryService.searchList(sql.toString());
+			if(list != null && list.size() > 1){
+				json = "{\"statusCode\":\"300\", \"message\":\"以上工程【工程类别】不一致，打包失败\"}";
+			}
+			
+			/*
+			 * 判断施工单位是否不一致
+			 */
+			sql.delete(0, sql.length());
+			sql.append("select distinct sgdw from Td00_gcxx where id in (");
+			sql.append(ids);
+			sql.append(") and sgdw is not null ");
+			list = queryService.searchList(sql.toString());
+			if(list != null && list.size() > 1){
+				json = "{\"statusCode\":\"300\", \"message\":\"以上工程【施工单位】不一致，打包失败\"}";
+			}
+			
+			response.getWriter().print(json);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("chkXzgcForDblx.do[com.rms.controller.form.AuxFunction]"+e.getMessage()+e);
+			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+		}
+		return null;
+	}
+	
+	/**
 	 * 概预算导入
 	 * 
 	 * @param request
