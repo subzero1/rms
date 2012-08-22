@@ -36,6 +36,32 @@
         }
 	})
 	
+	$("#_submit").click(function(){
+	
+	    $("#t_group").children().each(function(k,v){ //k,v 隐含参数 k:当前OPTION位置序号 v:当前OPTION对象。 
+       		if(k != 0)
+       			$(v).attr('selected','true');      
+       	});
+        	
+		var $form = $(this).closest("form");
+		$.ajax({
+			type: "POST",
+			url: "form/chkXzgcForDblx.do",
+			data:$form.serializeArray(),
+			dataType:"json",
+			success: function(json){
+				if(json.statusCode == DWZ.statusCode.ok){
+					$form.submit();
+				}
+				else{
+					alertMsg.warn(json.message);
+					return false;
+				}
+			},
+			error: DWZ.ajaxError
+		});
+	})
+	
 </script>
 <div class="page">
 	<div class="pageContent">
@@ -74,7 +100,7 @@
 			</div>
 			<div class="formBar">
 				<ul>
-					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">确 定</button></div></div></li>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="_submit">确 定</button></div></div></li>
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>
