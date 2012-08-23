@@ -44,14 +44,14 @@
 					<tr>
 						<td>
 							<input type="hidden"  name="Tf16_xmkhdf.ID" value="" />
-							<input type="text"    name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
+							<input type="text"  style="width:100%;border:0px;"  name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
 						</td>
 						<td>
-							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc[1]}" />
+							<input type="text" style="width:100%;border:0px;"  name="Tf16_xmkhdf.MS" value="${gc[1]}" />
 						</td>
 						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc[2] }"  /> 
-							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" id="jgxx">
+							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" id="jgxx" style="width:100%">
 								<option value="" >请评价</option>
 								<option value="优" >优</option>
 								<option value="良" >良</option>
@@ -71,14 +71,14 @@
 					<tr>
 						<td width="40%">
 							<input type="hidden" name="Tf16_xmkhdf.ID" value="${gc.id }" />
-							<input type="text"    name="Tf16_xmkhdf.KHX" value="${gc.khx}"  disabled />
+							<input type="text" name="Tf16_xmkhdf.KHX" value="${gc.khx}" style="width:100%" disabled />
 						</td >
 						<td width="40%">
-							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}"  disabled />
+							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}" style="width:100%" disabled />
 						</td>
 						<td width="20%"> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc.zdfz}"   /> 
-							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" >
+							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" style="width:100%">
 								<option value="" <c:if test="${gc.jgxx==''}">selected</c:if>>请评价</option>
 								<option value="优" <c:if test="${gc.jgxx=='优'}">selected</c:if>>优</option>
 								<option value="良" <c:if test="${gc.jgxx=='良'}">selected</c:if>>良</option>
