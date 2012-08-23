@@ -116,22 +116,25 @@
 				<table class="table" width="100%">
 					<thead>
 						<tr>
-							<th style='width: 60px;'>
+							<th>
 								考核项
 							</th>
-							<th style='width: 60px;'>
+							<th>
 								描述
 							</th>
-							<th style='width: 60px;'>
+							<th>
 								最高分数
 							</th>
-							<th style='width: 60px;'>
+							<th>
 								计算方式
 							</th>
-							<th style='width: 60px; cursor: hand' onclick="" >
+							<th>
 								<a id="lbie" target='navTab' rel="khxwh" title="考核信息项维护"  style="width:100%" href='infoManage/sortbyl.do?sort=${sort}' ><span >类别</span></a>
 							</th>
 							<th style='width: 30px;'>
+								&nbsp;
+							</th>
+							<th>
 								&nbsp;
 							</th>
 						</tr>
@@ -140,25 +143,24 @@
 
 						<c:forEach var="tf15" items="${tf15List}">
 							<tr>
-								<td>
-									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}"
-										class="shut">
+								<td style="width:200px">
+									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}">
 									<input type='text' class='required' comments='考核项'
 										name='Tf15_khxwh.KHX' style='width: 100%' value="${tf15.khx }" />
 								</td>
-								<td>
+								<td style="width:200px">
 									<input type='text' class='required' comments='描述'
 										name='Tf15_khxwh.MS' style='width: 100%' value="${tf15.ms }" />
 								</td>
-								<td>
+								<td style="width:100px">
 									<input type='text' class='required' comments='最高分数'
 										name='Tf15_khxwh.FZ' style='width: 100%' value="${tf15.fz}" />
 								</td>
-								<td>
+								<td style="width:200px">
 									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS'
 										style='width: 100%' value="${tf15.jsfs }" />
 								</td>
-								<td>
+								<td style="width:60px">
 									<select name='Tf15_khxwh.LB' style='width: 100%;'
 										class='required' comments='类别'>
 
@@ -179,10 +181,11 @@
 										</option>
 									</select>
 								</td>
-								<td>
+								<td style="width:30px">
 									<a href="#" onclick="javascript:delComments(this);"
 										class="btnDel"><span>删除</span> </a>
 								</td>
+								<td>&nbsp;</td>
 							</tr>
 						</c:forEach>
 
