@@ -44,10 +44,10 @@
 					<tr>
 						<td>
 							<input type="hidden"  name="Tf16_xmkhdf.ID" value="" />
-							<input type="text"  style="width:100%;border:0px;"  name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
+							<input type="text"  style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
 						</td>
 						<td>
-							<input type="text" style="width:100%;border:0px;"  name="Tf16_xmkhdf.MS" value="${gc[1]}" />
+							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.MS" value="${gc[1]}" />
 						</td>
 						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc[2] }"  /> 
