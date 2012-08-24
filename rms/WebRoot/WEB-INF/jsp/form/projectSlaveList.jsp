@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
@@ -49,11 +48,11 @@
 			<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${projectSlaveList}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr>
+					<tr class="maintr">
 						<td>${offset }</td>
 						<td>${obj.slave_type }</td>
 						<td>${obj.file_name }</td>
-						<td>${obj.ftp_date }</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${obj.ftp_date }"/></td>
 						<td style="text-align:center;"><a href="download.do?slave_id=${obj.id }" target="_blank">下载</a></td>
 						<td style="text-align:center;">
 						   <c:if test="${(param.canDel == 'yes' && curUserId == obj.user_id) || admin == 'true'}">	
