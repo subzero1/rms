@@ -3,7 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-
+<script type="text/javascript">
+$(function(){
+	$("#keyword",navTab.getCurrentPanel()).keyup(function(e){
+		if (e.which == 13){
+			$("#searchButton",navTab.getCurrentPanel()).click();
+		}
+	});
+});
+</script>
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="workState" value="${param.workState}">
 	<input type="hidden" name="module_id" value="${param.module_id}">
@@ -16,7 +24,7 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form	action="business/feeApplyList.do" method="post">
+		<form	action="workList.do" method="post">
 			<input type="hidden" id="selectedId_demo" />
 			<input type="hidden" name="workState" value="${param.workState}">
 			<div class="searchBar">
@@ -39,12 +47,14 @@
 							</c:forEach>
 						</select>
 							</td>
-						<td>关键字：<input name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
+						<td>
+						<input type="text" style="display:none"/>
+						关键字：<input id="keyword" name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'workList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'workList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
