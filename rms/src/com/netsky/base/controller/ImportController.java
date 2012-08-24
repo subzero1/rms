@@ -467,7 +467,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 						}
 					}
 					if (property != null) {
-						if (PropertyInject.invoke(o, method[i], property, null, null))
+						if (PropertyInject.invoke(o, method[i], property, "GBK", "GBK"))
 							set = true;
 					}
 				}
