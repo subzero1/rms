@@ -27,6 +27,7 @@
 			<input type="hidden" name="_callbackType" value="closeCurrent" />
 			<input type="hidden" name="_navTabId" value="" />
 			<input type="hidden" name="_forwardUrl" value="" />
+			<input type="hidden" name="perproty" value=" " />
 			<div class="pageFormContent" layoutH="56">
 				<p style="">
 					<label>EXCEL文件</label>
