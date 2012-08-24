@@ -1557,4 +1557,22 @@ public class Td00_gcxx implements Serializable {
 		this.sdpgyy = sdpgyy;
 	}
 	
+	/**
+	 * 目标库标识
+	 * 
+	 */
+	private Long mbk_id;
+
+	/**
+	 * @hibernate.property column="mbk_id"
+	 * @return Returns the mbk_id.
+	 */
+	public Long getMbk_id() {
+		return mbk_id;
+	}
+
+	public void setMbk_id(Long mbk_id) {
+		this.mbk_id = mbk_id;
+	}
+
 }

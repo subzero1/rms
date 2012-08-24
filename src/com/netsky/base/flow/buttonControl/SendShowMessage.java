@@ -116,7 +116,7 @@ public class SendShowMessage extends ButtonControl {
 		/**
 		 * 不选择设计单位不能继续走流程
 		 */
-		if (module_id == 102 && relatioin_name.trim().indexOf("下发设计") != -1) {
+		if (module_id == 102) {
 			
 			if(relatioin_name.trim().indexOf("下发设计") != -1){
 				hsql.delete(0, hsql.length());
@@ -165,6 +165,55 @@ public class SendShowMessage extends ButtonControl {
 				if(list != null && list.size() > 0 ){
 					returnStr = "请先选择【监理单位】，并点上方【保存】按钮!";
 				} else {
+					returnStr ="OK";
+				}
+			}
+			
+			else if(relatioin_name.trim().indexOf("上报审核") != -1 && relation_desc.trim().indexOf("设计人员") != -1){
+				boolean noHaveYs = false;
+				boolean noHaveTz = false;
+				boolean noHaveSm = false;
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select id ");
+				hsql.append("from Te03_gcgys_zhxx te03 ");
+				hsql.append("where te03.gc_id = ");
+				hsql.append(project_id);
+				List list = queryService.searchList(hsql.toString());
+				if(list == null || list.size() == 0 ){
+					noHaveYs = true;
+				} 
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select id ");
+				hsql.append("from Te01_slave te01 ");
+				hsql.append("where te01.slave_type = '工程图纸' and te01.project_id = ");
+				hsql.append(project_id);
+				list = queryService.searchList(hsql.toString());
+				if(list == null || list.size() == 0 ){
+					noHaveTz = true;
+				} 
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select id ");
+				hsql.append("from Te01_slave te01 ");
+				hsql.append("where te01.slave_type = '设计说明' and te01.project_id = ");
+				hsql.append(project_id);
+				list = queryService.searchList(hsql.toString());
+				if(list == null || list.size() == 0 ){
+					noHaveSm = true;
+				} 
+				
+				if(noHaveYs){
+					returnStr = "请先选择【预算上传】，导入预算!";
+				}
+				else if(noHaveTz){
+					returnStr = "请先选择【设计图纸】，上传图纸!";
+				}
+				else if(noHaveSm){
+					returnStr = "请先选择【设计说明】，上传说明!";
+				}
+				else{
 					returnStr ="OK";
 				}
 			}
