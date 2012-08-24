@@ -3,29 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
 
-<script type="text/javascript">
-function jlfkAjaxDone(json){
-	DWZ.ajaxDone(json);
-	if (json.statusCode == DWZ.statusCode.ok){
-		$.ajax({
-			
-			type: "post",
-			data: "project_id=${param.project_id}&module_id=${param.module_id }&user_id=${param.user_id }&doc_id=${param.doc_id }",
-			url: "jlfkAjax.do",
-			success: function(msg){
-				$("#jlfkdiv",navTab.getCurrentPanel()).empty();
-				$("#jlfkdiv",navTab.getCurrentPanel()).append($.trim(msg));
-				setJlfkNum(1);
-				setTimeout(function(){$.pdialog.closeCurrent();}, 100);
-	 		}
-		});
-	}
-}
-</script>
-
 <div class="page">
 	<div class="pageContent">
-	<form id="form1" name="form1" class="pageForm required-validate" enctype="multipart/form-data" action="save.do" method="post" onsubmit="return iframeCallback(this, jlfkAjaxDone);">
+	<form id="form1" name="form1" class="pageForm required-validate" enctype="multipart/form-data" action="save.do" method="post" onsubmit="return iframeCallback(this, dialogAjaxDone);">
 		<input type="hidden" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Te02_jlfk"/>
 		<input type="hidden" name="slaveTable" value="com.netsky.base.dataObjects.Te01_slave"/>
 		<input type="hidden" name="slaveFatherTables" value="Te02_jlfk,ID,DOC_ID"/>
