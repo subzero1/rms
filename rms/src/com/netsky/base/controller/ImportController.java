@@ -74,6 +74,8 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 
 	public ModelAndView handleRequest(HttpServletRequest HttpRequest, HttpServletResponse response) throws Exception {
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) HttpRequest;
+		String statusCode = "200";
+		String message = "";
 		/**
 		 * 获取配置文件信息
 		 */
@@ -169,6 +171,8 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 								}
 							}
 							if (!rightExcel && required.equals("true")) {
+								message = "Excel文件中缺少列：" + title;
+								statusCode = "300";
 								throw new Exception("<br><font color='red'>Excel文件中缺少列：" + title + "</font>");
 							}
 						}
@@ -256,7 +260,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
-			return exceptionService.exceptionControl(this.getClass().getName(), e.toString(), null);
+			//return exceptionService.exceptionControl(this.getClass().getName(), e.toString(), null);
 		} finally {
 			session.close();
 			
@@ -269,7 +273,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 				for (int i = 0; i < perprotys.length; i++) {
 					dispathMap.put(perprotys[i],request.getParameter(perprotys[i]));
 				}
-				printJson(request, response, "200", dispathMap);
+				printJson(request, response, statusCode, dispathMap,message);
 				
 			}
 		}	
@@ -491,15 +495,15 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 	}
 
 	private void printJson(HttpServletRequest request, HttpServletResponse response, String statusCode,
-			Map<String, String> dispathMap) throws IOException {
-
+			Map<String, String> dispathMap,String originalMessage) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		String message = convertUtil.toString(request.getParameter("_message"));
 		if ("200".equals(statusCode)) {
 			message = message + "成功";
 		} else if ("301".equals(statusCode)) {
-			message = message + "失败";
+			message = message + "超时失败";
 		} else {
-			message = message + "失败";
+			message = message + "失败，"+originalMessage;
 		}
 		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
 		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
