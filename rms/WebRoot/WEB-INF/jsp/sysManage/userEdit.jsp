@@ -132,7 +132,7 @@ $(function(){
 		style="width: 47.5%; float: left; margin: 5px; margin-left: 10px">
 		<h1>
 			相关岗位&nbsp;
-			<a href="sysManage/userStas.do?id=${userObj.id}" target="dialog"
+			<a href="sysManage/userStas.do?id=${userObj.id}" target="dialog" height="340" width="455"
 				title="用户岗位配置">[配置]</a>
 		</h1>
 		<div>
@@ -149,7 +149,7 @@ $(function(){
 		style="width: 47.5%; float: left; margin: 5px;">
 		<h1>
 			相关群组&nbsp;
-			<a href="sysManage/userGroups.do?id=${userObj.id}" target="dialog"
+			<a href="sysManage/userGroups.do?id=${userObj.id}" target="dialog" height="340" width="455"
 				title="用户群组配置">[配置]</a>
 		</h1>
 		<div>
