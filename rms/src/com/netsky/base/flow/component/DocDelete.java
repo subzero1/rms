@@ -79,7 +79,7 @@ public class DocDelete {
 			CallableStatement cstmt = con.prepareCall(procedure);
 			cstmt.setString(1, "result");
 			cstmt.setLong(2, MapUtil.getLong(paraMap, "project_id"));
-			cstmt.setString(3, "DMS");
+			cstmt.setString(3, "PSS_NJ");
 			cstmt.executeUpdate();
 			cstmt.close();
 			con.commit();
