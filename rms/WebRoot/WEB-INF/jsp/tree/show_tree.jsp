@@ -9,6 +9,9 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 		$.pdialog.open('nodeInfo.do?node_id=' + opernode_id,'','节点信息',{mask:true, width:740,height:350});
 	}
 }
+function showtree(value){
+	navTab.reload(document.form1.action+value);
+}
 </script>
 
 <div class="page">
@@ -58,7 +61,7 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 				<!-- 表单选择 对于项目的,列出当前项目的所有表单,对于系统流程显示的,列出系统中配置的所有表单流程 -->
 				
 				<c:if test="${not empty moduleList}">
-					<select name="" onchange="javascript:document.form1.action=document.form1.action + this.value;document.form1.submit();">
+					<select name="" onchange="showtree(this.value)">
 						<c:forEach var="obj" items="${moduleList}">
 							<option value="${obj.value }"
 							<c:if test="${obj.module_id == param.module_id && obj.doc_id == param.doc_id }">
