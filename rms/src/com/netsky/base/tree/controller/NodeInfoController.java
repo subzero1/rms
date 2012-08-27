@@ -307,7 +307,7 @@ public class NodeInfoController {
 					CallableStatement cstmt = con.prepareCall(procedure);
 					cstmt.registerOutParameter(1, Types.VARCHAR);
 					cstmt.setLong(2, root.getProject_id());
-					cstmt.setString(3, "DMS");
+					cstmt.setString(3, "PSS_NJ");
 					cstmt.executeUpdate();
 					String result = cstmt.getString(1);
 					if (!"success".equals(result)) {
