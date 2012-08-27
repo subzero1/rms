@@ -96,9 +96,10 @@ public class Delsend {
 				
 				}
 				saveService.updateByHSql("delete Te02_jlfk  where id="+pro_id);
-				out.println("success");	
+				out.print("{\"statusCode\":\"200\", \"message\":\"删除文件成功\"}");
+				
 		}catch(Exception e){
-			out.println("fail");
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除文件失败\"}");
 		}
 		out.flush();
 		out.close();
