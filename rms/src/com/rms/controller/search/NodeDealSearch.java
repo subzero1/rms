@@ -231,7 +231,7 @@ public class NodeDealSearch {
 			HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("GBK");
 		ModelMap modelMap = new ModelMap();
-		//返回的VIEW
+//		返回的VIEW
 		String view = "/WEB-INF/jsp/search/jdcltj.jsp";
 		// 获取搜索条件及结果显示参数
 		String ssdq = convertUtil.toString(request.getParameter("5"), convertUtil.toString(request.getParameter("ssdq"), ""));
@@ -270,6 +270,8 @@ public class NodeDealSearch {
 						.getParameter("pageRowSize")));
 		int totalPages = 1;
 		int totalRows = 0;
+		
+		
 		// 获取结果
 		StringBuffer hsql = new StringBuffer("");
 		List<String> docColsList = new ArrayList<String>();
@@ -289,7 +291,7 @@ public class NodeDealSearch {
 				.append(", count(doc.id) as wdsl from Tb15_docflow doc,Ta03_user u ,Tb12_opernode tb12,Ta06_module ta06,Td00_gcxx td00");
 		hsql
 				.append(" where doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
-		hsql.append(" and doc.module_id = " + bdmc_id);
+		//hsql.append(" and doc.module_id = " + bdmc_id);
 		if (!"''".equals(ssdq))
 		hsql.append(" and td00.ssdq in(" + ssdq + ")");
 		if (!"''".equals(zydl))
@@ -442,6 +444,10 @@ public class NodeDealSearch {
 					contentList.add(tempList);
 				}
 			}
+			
+			
+			
+			
 			List<String> titleList = new ArrayList<String>();
 			titleList.add("表单名称");
 			titleList.add("节点名称");
