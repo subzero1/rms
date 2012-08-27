@@ -432,24 +432,12 @@ function del_send(jlfk_project_id,project_id,slave_id,module_id,user_id,doc_id){
 	okCall: function(){
 			$.ajax({
 			type: "post",
+			dataType:"json",
 			data: 'project_id='+jlfk_project_id+'&slave_id='+slave_id+'&random='+Math.random(),
 			url: "delsend.do",
 			success: function(msg){
-				if ($.trim(msg) == "success"){
-					$.ajax({
-						type: "post",
-						data: "project_id="+project_id+"&module_id="+module_id+"&user_id="+user_id+"&doc_id="+doc_id,
-						url: "jlfkAjax.do",
-						success: function(msg1){
-							$("#jlfkdiv").empty();
-							$("#jlfkdiv").append($.trim(msg1));
-							setJlfkNum(-1);
-							alertMsg.correct("删除成功!");
-				 		}
-					});
-				} else {
-					alertMsg.error("<b>〖 错误 〗</b><br/><font color=blue>未找到信息！</font><br/>请联系系统管理员！");
-				}
+				DWZ.ajaxDone(msg);
+				navTab.reload();
 	 		}
 			});
 	}
