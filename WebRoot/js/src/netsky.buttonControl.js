@@ -443,16 +443,6 @@ function del_send(jlfk_project_id,project_id,slave_id,module_id,user_id,doc_id){
 	}
 	});
 }
-/**********************************************
-* 修改交流反馈数量
-* 参数: 	
-***********************************************/
-function setJlfkNum(step){
-	var str = $("#jlfkTitle").find("h2").html();
-	var num = parseInt(str.substring(str.indexOf("[")+1,str.length-1),10)+parseInt(step,10);
-	$("#jlfkTitle").find("h2").html(str.replaceAll("\\[.+\\]", "["+num+"]"));
-	
-}
 
 /**********************************************
 * 打开表单
