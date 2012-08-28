@@ -39,6 +39,15 @@
 				$("#_selectuser #hidden_div").prepend(this);
 			}
 		);
+		var ids = "";
+		$("#select-options",$.pdialog.getCurrent()).children(":selected").each(function(){
+				ids += $(this).val()+",";
+			}
+		);
+		if (ids.length!=0){
+			ids = ids.substring(0,ids.length-1);
+		}
+		$("#select-options1",$.pdialog.getCurrent()).val(ids);
 		//alert($form.serializeArray());
 		$.ajax({
 			type: $form.attr("method") || 'POST',
@@ -134,7 +143,8 @@
 					<div style="display=none" id="hidden_div"></div> 
 					<input type="hidden" name="opernode_id" id="opernode_id" value="<c:out value="${param.opernode_id}" default="-1"/>"/>
 					<input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
-					<select id='select-options' name='${param.return_flag }'  type='select-multiple' size="6" align='center' style='width:390px;height:170px;'>
+					<input type="hidden" id="select-options1" name="${param.return_flag }"/>
+					<select id='select-options' type='select-multiple' size="6" align='center' style='width:390px;height:170px;'>
 						<c:forEach var="user" items="${userList}">
 							<option  value="${user.id}">[${user.login_id }]${user.name }</option>
 						</c:forEach>		
