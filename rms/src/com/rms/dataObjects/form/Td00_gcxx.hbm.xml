@@ -33,7 +33,7 @@
             insert="true"
             column="xm_id"
         />
-        
+
         <property
             name="glgc_id"
             type="java.lang.Long"
@@ -489,7 +489,7 @@
             insert="true"
             column="cjrq"
         />
-        
+
         <property
             name="yqwcsj"
             type="java.util.Date"
@@ -737,13 +737,21 @@
             insert="true"
             column="sdpgyy"
         />
-        
-         <property
+
+        <property
             name="mbk_id"
             type="java.lang.Long"
             update="true"
             insert="true"
             column="mbk_id"
+        />
+
+        <property
+            name="sgjd"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sgjd"
         />
 
         <!--
