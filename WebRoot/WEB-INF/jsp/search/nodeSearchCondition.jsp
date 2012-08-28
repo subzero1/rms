@@ -138,7 +138,7 @@ $(function(){
 										<div style="position: absolute;">
 											<input type="hidden" name="type" value="2" />
 											是否具体到人：
-											<input type="checkbox" name="toexcel" value="yes" />
+											<input type="checkbox" name="toperson" value="yes" />
 										</div>
 										<div>
 

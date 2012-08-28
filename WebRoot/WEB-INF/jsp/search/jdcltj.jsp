@@ -144,7 +144,7 @@ function searchListExport(){
 									</c:forEach>
 									<tr>
 										<td	width="90" class="t-right">文档状态：</td>
-										<td width="310"><select name="doc_status"><option value="0,1,2,4">未处理</option><option value="8">已处理</option></select></td>			
+										<td width="310"><select name="doc_status" ><option value="0,1,2,4">未处理</option><option value="8">已处理</option></select></td>			
 									</tr>
 								</table>
   			   </div></td></tr></table>
