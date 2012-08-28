@@ -260,18 +260,19 @@ public class NodeDealSearch {
 		gclb = paramUtil(gclb, ",","'");
 		String doc_status = request.getParameter("doc_status");
 		modelMap.put("doc_status", doc_status);
+		
+		
 		// 是否具体到人
 		boolean toperson = "yes".equals(convertUtil.toString(request
 				.getParameter("toperson"), "no"));
 		// 分页条件
 		Integer page = convertUtil.toInteger(request.getParameter("page"), 1);
-		Integer pageRowSize = convertUtil.toInteger(request
-				.getAttribute("pageRowSize"),convertUtil.toInteger(request
-						.getParameter("pageRowSize")));
+		//Integer pageRowSize = convertUtil.toInteger(request
+		//		.getAttribute("pageRowSize"),convertUtil.toInteger(request
+			//			.getParameter("pageRowSize")));
+		Integer pageRowSize = 18;
 		int totalPages = 1;
-		int totalRows = 0;
-		
-		
+		int totalRows = 0; 
 		// 获取结果
 		StringBuffer hsql = new StringBuffer("");
 		List<String> docColsList = new ArrayList<String>();
@@ -283,6 +284,10 @@ public class NodeDealSearch {
 			docColsList.add("姓名");
 			docColsList.add("电话");
 		}
+		
+		
+		
+		
 		hsql.append("select ta06.name as bdmc,tb12.node_name as jdmc");
 		if (toperson) {
 			hsql.append(",u.login_id as zh,u.name as xm,u.mobile_tel as dh");
@@ -315,6 +320,8 @@ public class NodeDealSearch {
 		}
 //		System.out.println(new Date() + " " + hsql);
 		ResultObject ro = null;
+		
+		
 		// 是否EXCEL
 		if ("yes".equals(request.getParameter("toexcel"))) {
 			ro = queryService.search(hsql.toString());
