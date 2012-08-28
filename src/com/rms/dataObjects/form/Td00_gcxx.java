@@ -70,7 +70,7 @@ public class Td00_gcxx implements Serializable {
 	public void setGlgc_id(Long glgc_id) {
 		this.glgc_id = glgc_id;
 	}
-	
+
 	/**
 	 * 工程编号
 	 */
@@ -1009,37 +1009,37 @@ public class Td00_gcxx implements Serializable {
 	/**
 	 * 需求提出时间
 	 */
-	 private Date cjrq;
+	private Date cjrq;
 
-	 /**
+	/**
 	 * @hibernate.property column="cjrq"
 	 * @return Returns the cjrq.
 	 */
-	 public Date getCjrq() {
-	    return cjrq;
-	 }
+	public Date getCjrq() {
+		return cjrq;
+	}
 
-	 public void setCjrq(Date cjrq) {
-	    this.cjrq = cjrq;
-	  }
-	 
-	 /**
+	public void setCjrq(Date cjrq) {
+		this.cjrq = cjrq;
+	}
+
+	/**
 	 * 要求完成时间
 	 */
-	 private Date yqwcsj;
+	private Date yqwcsj;
 
-	 /**
+	/**
 	 * @hibernate.property column="yqwcsj"
 	 * @return Returns the yqwcsj.
 	 */
-	 public Date getYqwcsj() {
-	    return yqwcsj;
-	 }
+	public Date getYqwcsj() {
+		return yqwcsj;
+	}
 
-	 public void setYqwcsj(Date yqwcsj) {
-	    this.yqwcsj = yqwcsj;
-	  }
-	 
+	public void setYqwcsj(Date yqwcsj) {
+		this.yqwcsj = yqwcsj;
+	}
+
 	/**
 	 * 设计派工时间
 	 */
@@ -1556,7 +1556,7 @@ public class Td00_gcxx implements Serializable {
 	public void setSdpgyy(String sdpgyy) {
 		this.sdpgyy = sdpgyy;
 	}
-	
+
 	/**
 	 * 目标库标识
 	 * 
@@ -1575,4 +1575,24 @@ public class Td00_gcxx implements Serializable {
 		this.mbk_id = mbk_id;
 	}
 
+	/**
+	 * 施工进度
+	 */
+	private Double sgjd;
+
+	/**
+	 * @hibernate.property column="sgjd"
+	 * @return Returns the sgjd.
+	 */
+	public Double getSgjd() {
+		return sgjd;
+	}
+
+	/**
+	 * @param sgjd
+	 *            The sgjd to set.
+	 */
+	public void setSgjd(Double sgjd) {
+		this.sgjd = sgjd;
+	}
 }

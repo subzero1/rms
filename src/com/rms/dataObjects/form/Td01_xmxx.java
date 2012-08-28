@@ -325,7 +325,7 @@ public class Td01_xmxx implements Serializable {
 	public void setYssj(Date yssj) {
 		this.yssj = yssj;
 	}
-	
+
 	/**
 	 * 合同编号
 	 */
@@ -2458,5 +2458,25 @@ public class Td01_xmxx implements Serializable {
 	public void setSdpgyy(String sdpgyy) {
 		this.sdpgyy = sdpgyy;
 	}
-	
+
+	/**
+	 * 施工进度
+	 */
+	private Double sgjd;
+
+	/**
+	 * @hibernate.property column="sgjd"
+	 * @return Returns the sgjd.
+	 */
+	public Double getSgjd() {
+		return sgjd;
+	}
+
+	/**
+	 * @param sgjd
+	 *            The sgjd to set.
+	 */
+	public void setSgjd(Double sgjd) {
+		this.sgjd = sgjd;
+	}
 }
