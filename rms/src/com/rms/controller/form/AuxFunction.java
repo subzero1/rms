@@ -143,10 +143,40 @@ public class AuxFunction {
 				}
 			}
 			
+			/*
+			 * 同步预算金额及工日
+			 */
+			sql.delete(0, sql.length());
+			sql.append("select ");
+			sql.append("sum(ys_je) as ys_je,sum(ys_jaf) as ys_jaf,sum(ys_clf) as ys_clf,sum(ys_rgf) as ys_rgf,");
+			sql.append("sum(ys_jggr) as ys_jggr,sum(ys_pggr) as ys_pggr,sum(ys_sbf) as ys_sbf,");
+			sql.append("sum(ys_jxf) as ys_jxf,sum(ys_ybf) as ys_ybf,sum(ys_sjf) as ys_sjf,");
+			sql.append("sum(ys_jlf) as ys_jlf,sum(ys_qtf) as ys_qtf "); 
+			sql.append("from Td00_gcxx "); 
+			sql.append("where xm_id = ");
+			sql.append(xm_id);
+			ResultObject ro = queryService.search(sql.toString());
+			if(ro.next()){
+				Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, xm_id);
+				td01.setYs_je(convertUtil.toDouble(ro.get("ys_je"),0d));
+				td01.setYs_jaf(convertUtil.toDouble(ro.get("ys_jaf"),0d));
+				td01.setYs_clf(convertUtil.toDouble(ro.get("ys_clf"),0d));
+				td01.setYs_rgf(convertUtil.toDouble(ro.get("ys_rgf"),0d));
+				td01.setYs_jggr(convertUtil.toDouble(ro.get("ys_jggr"),0d));
+				td01.setYs_pggr(convertUtil.toDouble(ro.get("ys_pggr"),0d));
+				td01.setYs_sbf(convertUtil.toDouble(ro.get("ys_sbf"),0d));
+				td01.setYs_jxf(convertUtil.toDouble(ro.get("ys_jxf"),0d));
+				td01.setYs_ybf(convertUtil.toDouble(ro.get("ys_ybf"),0d));
+				td01.setYs_sjf(convertUtil.toDouble(ro.get("ys_sjf"),0d));
+				td01.setYs_jlf(convertUtil.toDouble(ro.get("ys_jlf"),0d));
+				td01.setYs_qtf(convertUtil.toDouble(ro.get("ys_qtf"),0d));
+				saveService.save(td01);
+			}
+			
 			response
 					.getWriter()
 					.print(
-							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
+							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"autoform101"+xm_id+"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			log.error("saveXzgcForDblx.do[com.rms.controller.form.AuxFunction]"+e.getMessage()+e);
 			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
