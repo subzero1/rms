@@ -1111,7 +1111,7 @@ public class Wxdw {
 		modelMap.put("orderDirection", orderDirection);
 
 		StringBuffer hsql = new StringBuffer();
-		hsql.append(" from Tf08_clmxb clmxb where zhxx_id=" + project_id + " and dz=" + dz);
+		hsql.append(" from Tf08_clmxb clmxb where flag=1 and zhxx_id=" + project_id + " and dz=" + dz);
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
@@ -1635,6 +1635,7 @@ public class Wxdw {
 		// .append(" and (case when tbrq is null then sjkgsj else tbrq
 		// end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq
 		// end)");
+		System.out.println(hsql);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
