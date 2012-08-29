@@ -66,8 +66,8 @@
 				<c:forEach var="obj" items="${gcxxList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr style="background-color: ${obj[1] }">
-						<td>${obj[0].gcbh }</td>
-						<td>${obj[0].gcmc }</td>
+						<td>${obj[0].xmbh }</td>
+						<td>${obj[0].xmmc }</td>
 						<td>${obj[0].jldw }</td>
 						<td><c:if test="${not empty param.canedit}"><a href="wxdw/jlrj.do?project_id=${obj[0].id}<c:if test="${obj[1] == '' }">&id=${obj[0].jlrj_id }</c:if>" target="dialog" rel="jlrj" width="528" height="297" title="监理日志">${empty obj[0].jlrjtbzq ? '默认3' : obj[0].jlrjtbzq}天</a></c:if>
 							<c:if test="${empty param.canedit}">${empty obj[0].jlrjtbzq ? '默认3' : obj[0].jlrjtbzq}天</c:if>

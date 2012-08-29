@@ -326,57 +326,6 @@ public class Vc3_gcxx_jlrj implements Serializable {
 	}
 
 	/**
-	 * 合同编号
-	 */
-	private String htbh;
-
-	/**
-	 * @hibernate.property column="htbh"
-	 * @return Returns the htbh.
-	 */
-	public String getHtbh() {
-		return htbh;
-	}
-
-	public void setHtbh(String htbh) {
-		this.htbh = htbh;
-	}
-
-	/**
-	 * 合同金额
-	 */
-	private Double htje;
-
-	/**
-	 * @hibernate.property column="htje"
-	 * @return Returns the htje.
-	 */
-	public Double getHtje() {
-		return htje;
-	}
-
-	public void setHtje(Double htje) {
-		this.htje = htje;
-	}
-
-	/**
-	 * 合同签订日期
-	 */
-	private Date htqdrq;
-
-	/**
-	 * @hibernate.property column="htqdrq"
-	 * @return Returns the htqdrq.
-	 */
-	public Date getHtqdrq() {
-		return htqdrq;
-	}
-
-	public void setHtqdrq(Date htqdrq) {
-		this.htqdrq = htqdrq;
-	}
-
-	/**
 	 * 设计合同编号
 	 */
 	private String sjhtbh;
