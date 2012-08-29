@@ -9,7 +9,7 @@
 <input type="hidden" name="Td03_jlzj.ID" value="${param.doc_id}">
 <input type="hidden" name="Td03_jlzj.PROJECT_ID" value="${param.project_id}">
 
-<div class="pageFormContent">
+
 	<p>
 		<label>发文部门：</label>
 		<input type="text" readOnly name="Td03_jlzj.FWBM" value="<c:out value="${td03_jlzj.fwbm}" default="${user.dept_name}"/>" style="width:407px;"/>
