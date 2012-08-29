@@ -132,19 +132,19 @@ public class Htgl {
 		while (ro.next()) {
 			Td01_xmxx td01 = (Td01_xmxx)ro.get("td01");
 			if("sj".equals(htlb)){	//设计			
-				td01.setHtbh(td01.getSjhtbh());
-				td01.setHtje(td01.getSjhtje());
-				td01.setHtqdrq(td01.getSjhtqdrq());
+				td01.setSjhtbh(td01.getSjhtbh());
+				td01.setSjhtje(td01.getSjhtje());
+				td01.setSjhtqdrq(td01.getSjhtqdrq());
 				
 			}else if("sg".equals(htlb)){	//施工			
-				td01.setHtbh(td01.getSghtbh());
-				td01.setHtje(td01.getSghtje());
-				td01.setHtqdrq(td01.getSghtqdrq());
+				td01.setSghtbh(td01.getSghtbh());
+				td01.setSghtje(td01.getSghtje());
+				td01.setSghtqdrq(td01.getSghtqdrq());
 							
 			}else if("jl".equals(htlb)){	//监理			
-				td01.setHtbh(td01.getJlhtbh());
-				td01.setHtje(td01.getJlhtje());
-				td01.setHtqdrq(td01.getJlhtqdrq());
+				td01.setJlhtbh(td01.getJlhtbh());
+				td01.setJlhtje(td01.getJlhtje());
+				td01.setJlhtqdrq(td01.getJlhtqdrq());
 						
 			}
 			htList.add(td01);
@@ -303,19 +303,19 @@ public class Htgl {
 		Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, id);
 		
 		if("sj".equals(htlb)){	//设计			
-			td01.setHtbh(td01.getSjhtbh());
-			td01.setHtje(td01.getSjhtje());
-			td01.setHtqdrq(td01.getSjhtqdrq());
+			td01.setSjhtbh(td01.getSjhtbh());
+			td01.setSjhtje(td01.getSjhtje());
+			td01.setSjhtqdrq(td01.getSjhtqdrq());
 			
 		}else if("sg".equals(htlb)){	//施工			
-			td01.setHtbh(td01.getSghtbh());
-			td01.setHtje(td01.getSghtje());
-			td01.setHtqdrq(td01.getSghtqdrq());
+			td01.setSghtbh(td01.getSghtbh());
+			td01.setSghtje(td01.getSghtje());
+			td01.setSghtqdrq(td01.getSghtqdrq());
 						
 		}else if("jl".equals(htlb)){	//监理			
-			td01.setHtbh(td01.getJlhtbh());
-			td01.setHtje(td01.getJlhtje());
-			td01.setHtqdrq(td01.getJlhtqdrq());
+			td01.setJlhtbh(td01.getJlhtbh());
+			td01.setJlhtje(td01.getJlhtje());
+			td01.setJlhtqdrq(td01.getJlhtqdrq());
 					
 		}
 		modelMap.put("td01", td01);
