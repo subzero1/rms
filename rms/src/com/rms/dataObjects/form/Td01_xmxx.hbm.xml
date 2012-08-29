@@ -163,30 +163,6 @@
         />
 
         <property
-            name="htbh"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="htbh"
-        />
-
-        <property
-            name="htje"
-            type="java.lang.Double"
-            update="true"
-            insert="true"
-            column="htje"
-        />
-
-        <property
-            name="htqdrq"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="htqdrq"
-        />
-
-        <property
             name="sjhtbh"
             type="java.lang.String"
             update="true"
