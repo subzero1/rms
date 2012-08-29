@@ -47,7 +47,7 @@
 	</p>
 	<p>
 		<label>开工日期：</label>
-		<input type="text" name="Td01_xmxx.SJKGRQ" value="<fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
+		<input type="text" name="Td01_xmxx.SJKGSJ" value="<fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>

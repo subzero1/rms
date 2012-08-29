@@ -36,13 +36,13 @@
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">施工单位</p></td>
 			<td border="1px solid black" colspan="3"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td01_xmxx.sgdw}</p></td>
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">开工日期</p></td>
-			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px"><fmt:formatDate value="${td01_xmxx.sjkgrq}" pattern="yyyy-MM-dd"/></p></td>
+			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px"><fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/></p></td>
 		</tr>
 	    <tr height="10mm">
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">监理单位</p></td>
 			<td border="1px solid black" colspan="3"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td01_xmxx.jldw}</p></td>
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">竣工日期</p></td>
-			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px"><fmt:formatDate value="${td01_xmxx.sjjgrq}" pattern="yyyy-MM-dd"/></p></td>
+			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px"><fmt:formatDate value="${td01_xmxx.sjjgsj}" pattern="yyyy-MM-dd"/></p></td>
 		</tr>
 		<tr height="40mm">
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">完成的主要<br/>工程内容</p></td>
