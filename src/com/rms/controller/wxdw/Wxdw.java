@@ -41,6 +41,7 @@ import com.rms.controller.base.ExcelRead;
 import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.form.Td00_gcxx;
+import com.rms.dataObjects.form.Td01_xmxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf02_sgd;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
@@ -1942,7 +1943,7 @@ public class Wxdw {
 	public ModelAndView jlrj(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, project_id);
+		Td01_xmxx gcxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
 		modelMap.put("gcxx", gcxx);
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		if (!id.equals(-1L)) {

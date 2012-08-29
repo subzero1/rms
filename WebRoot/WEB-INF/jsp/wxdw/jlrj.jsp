@@ -17,12 +17,12 @@
 			
 			<div class="pageFormContent" layoutH="53">
 				<p>
-					<label>工程编号：</label>
-					<input type="text" readonly="readonly" style="width:120px;" value="${gcxx.gcbh }" />
+					<label>项目编号：</label>
+					<input type="text" readonly="readonly" style="width:120px;" value="${gcxx.xmbh }" />
 				</p>
 				<p>
-					<label>工程名称：</label>
-					<input type="text" readonly="readonly" style="width:120px;" value="${gcxx.gcmc }" />
+					<label>项目名称：</label>
+					<input type="text" readonly="readonly" style="width:120px;" value="${gcxx.xmmc }" />
 				</p>
 				<p>
 					<label>填报日期：</label>
@@ -34,8 +34,8 @@
 					<input type="text" readonly="readonly" style="width:120px;" value="${user.name }" />
 				</p>
 				<p>
-					<label>工程状态：</label>
-					<input type="text" readonly="readonly" name="Tf14_jlrj.GCZT" style="width:120px;" value="${gcxx.gczt }"/>
+					<label>项目状态：</label>
+					<input type="text" readonly="readonly" name="Tf14_jlrj.GCZT" style="width:120px;" value="${gcxx.xmzt }"/>
 				</p>
 				<div style="width:100%;height:0px;"></div>
 				<p>
