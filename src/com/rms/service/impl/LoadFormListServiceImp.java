@@ -359,8 +359,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			 * 项目信息单和工程信息单中的公共附件******************************************************
 			 */
 
-			if (module_id == 101 || module_id == 102) {
-
+			if (module_id == 102) {
 				
 				/**
 				 * 施工进度
@@ -377,12 +376,16 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}
-				
+			}
+			
+			
+			if (module_id == 101) {
+
 				/**
 				 * 监理总结
 				 */
 				hsql.delete(0, hsql.length());
-				hsql.append("select count(id) from Td00_gcxx where jldw is not null and id =");
+				hsql.append("select count(id) from Td01_xmxx where jldw is not null and id =");
 				hsql.append(project_id);
 				ro = queryService.search(hsql.toString());
 				ro.next();
