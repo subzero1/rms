@@ -393,7 +393,6 @@ function docPrint(){
 	var doc_id = $form.find("#doc_id").val();	
 	var pars = "project_id="+project_id+"&module_id="+module_id+"&doc_id="+doc_id;
 	var url = "print.do?"+ pars;
-	alert(url);
 	var pop = window.open('','print','width=700,height=470,scrollbars=1');
 	pop.moveTo((screen.width-700)/2,(screen.height-470)/2);
 	pop.location.href = url;
