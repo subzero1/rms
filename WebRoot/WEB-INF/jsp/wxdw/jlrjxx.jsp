@@ -12,8 +12,7 @@
 	<div class="pageHeader">
 		<div class="searchBar">
 			<!-- 表单名称 -->
-			<h1>资源信息单</h1>
-			
+			<h1>监理日志</h1>
 		</div>
 	</div>
 	
@@ -31,12 +30,12 @@
 	<div class="pageContent" layouth="48">
 			<div class="pageFormContent">
 				<p>
-					<label>工程编号：</label>
-					<input readonly="readonly" type="text" style="width:150px;" value="${gcxx.gcbh}"/>
+					<label>项目编号：</label>
+					<input readonly="readonly" type="text" style="width:150px;" value="${gcxx.xmbh}"/>
 				</p>
 				<p>
-					<label>工程名称：</label>
-					<input readonly="readonly" type="text" style="width:376px;" value="${gcxx.gcmc}" />
+					<label>项目名称：</label>
+					<input readonly="readonly" type="text" style="width:376px;" value="${gcxx.xmmc}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
