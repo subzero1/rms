@@ -32,7 +32,7 @@
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">要求完成时间</p></td>
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px"><fmt:formatDate value="${td00_gcxx.yqwcsj}" pattern="yyyy-MM-dd"/></p></td>
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">项目编号</p></td>
-			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td00_gcxx.xmbh}</p></td>
+			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td01_xmxx.xmbh}</p></td>
 		</tr>
 		<tr height="10mm">
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">工程类别</p></td>
