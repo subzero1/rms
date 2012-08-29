@@ -52,6 +52,7 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
+					<th style="width:35px;"></th>
 					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th orderField="gcmc">工程名称</th>
 					<th style="width: 100px;" orderField="jldw">监理单位</th>
@@ -66,6 +67,9 @@
 				<c:forEach var="obj" items="${gcxxList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr style="background-color: ${obj[1] }">
+						<td>
+								<a href="showTree.do?project_id=${obj[0].id }&doc_id=${obj[0].id }&module_id=101" target="navTab" rel="showTree" title="流程图[${obj[0].id}]"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+						</td>
 						<td>${obj[0].xmbh }</td>
 						<td>${obj[0].xmmc }</td>
 						<td>${obj[0].jldw }</td>
