@@ -29,9 +29,9 @@
 		</tr>
 	    <tr height="10mm">
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">项目名称</p></td>
-			<td border="1px solid black" colspan="3"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${Td01_xmxx.xmmc}</p></td>
+			<td border="1px solid black" colspan="3"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td01_xmxx.xmmc}</p></td>
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">项目编号</p></td>
-			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${Td01_xmxx.xmbh}</p></td>
+			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td01_xmxx.xmbh}</p></td>
 		</tr>
 	    <tr height="10mm">
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">监理单位</p></td>
