@@ -37,6 +37,7 @@
 					</tr>
 				</table>
 				<div class="subBar">
+				<div style="float:left;"><div style="float:left;height:25px;line-height: 25px;">图例：</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: white;">&nbsp;已填报进度（可修改）&nbsp;</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: lightgreen;">&nbsp;当天应填报进度&nbsp;</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: yellow;">&nbsp;超期未填报（超期一个周期内）&nbsp;</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: red;">&nbsp;超期未填报（超期一个周期以上）&nbsp;</div></div>
 					<ul>
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'${url }',navTabSearch);">检 索</button></div></div></li>
 					</ul>
@@ -52,6 +53,7 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
+					<th style="width:35px;"></th>
 					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th orderField="gcmc">工程名称</th>
 					<th style="width: 100px;" orderField="sgdw">施工单位</th>
@@ -67,8 +69,13 @@
 				<c:forEach var="obj" items="${gcxxList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr style="background-color: ${obj[1] }">
+						<td>
+								<a href="showTree.do?project_id=${obj[0].id }&doc_id=${obj[0].id }&module_id=102" target="navTab" rel="showTree" title="流程图[${obj[0].id}]"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+						</td>
 						<td>${obj[0].gcbh }</td>
-						<td>${obj[0].gcmc }</td>
+						<td>
+						<c:if test="${param.canedit == 'true'}"><a href="wxdw/jdfk.do?project_id=${obj[0].id}&jhjd=${obj[3] }<c:if test="${obj[1] == '' }">&id=${obj[0].gzltb_id }</c:if>" target="dialog" rel="jdfk" width="528" height="297" title="进度反馈">${obj[0].gcmc }</a></c:if>
+						<c:if test="${param.canedit != 'true'}">${obj[0].gcmc }</c:if></td>
 						<td>${obj[0].sgdw }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].jhjgsj }"/></td>
 						<td>${empty obj[0].sgjdtbzq ? '默认3' : obj[0].sgjdtbzq}天</td>
