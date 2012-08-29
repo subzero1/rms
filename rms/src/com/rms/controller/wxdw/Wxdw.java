@@ -1829,7 +1829,7 @@ public class Wxdw {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
 		hsql
-				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10109,10211) and tb15.user_id="
+				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10108,10211) and tb15.user_id="
 						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
 		// hsql
 		// .append(" and (case when create_date is null then sjkgsj else
