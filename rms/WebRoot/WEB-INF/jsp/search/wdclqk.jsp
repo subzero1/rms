@@ -94,10 +94,10 @@ function open(zh,node_name){
 		<table class="table" width="100%" layouth="85">
 			<thead>
 				<tr>
-					<th width="50px">
-						序号
+					<th >
+						表单
 					</th>
-					<th width="100px">
+					<th  >
 						流程图
 					</th>
 					<!-- 初始化标题名称 -->
@@ -117,11 +117,11 @@ function open(zh,node_name){
 				<c:forEach var="obj" items="${resultList }">
 					<c:set var="offset" value="${offset + 1}" scope="page" />
 					<tr>
-						<td>${offset }</td>
+						<td><img border="0" src="Images/form.gif" style="cursor:pointer"/></td>
 						<td align="center">
-							<input type="button" value="${obj[1][0] }" class="node"
-								style="background: url('../${obj[1][1] }') no-repeat center;"
-								onclick="javascript:popFlowTree('${obj[1][2] }');" />
+							<c:if test="${obj[1] != null}">								
+								<a href="showTree.do${obj[1][2]}" target="navTab" rel="showTree" title="流程图"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+							</c:if>	
 						</td>
 						<c:forEach items="${obj[0]}" var="o">
 							<td>
