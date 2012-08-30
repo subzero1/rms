@@ -234,6 +234,10 @@ public class NodeDealSearch {
 //		返回的VIEW
 		String view = "/WEB-INF/jsp/search/jdcltj.jsp";
 		// 获取搜索条件及结果显示参数
+		String bdmc_id = convertUtil.toString(request.getParameter("bdmc_id"), "");
+		String doc_status = request.getParameter("doc_status");
+		modelMap.put("doc_status", doc_status);
+		/*
 		String ssdq = convertUtil.toString(request.getParameter("5"), convertUtil.toString(request.getParameter("ssdq"), ""));
 		String zydl = convertUtil.toString(request.getParameter("9"), convertUtil.toString(request.getParameter("zydl"), ""));
 		String qkdl = convertUtil.toString(request.getParameter("11"), convertUtil.toString(request.getParameter("qkdl"), ""));
@@ -241,7 +245,7 @@ public class NodeDealSearch {
 		String zyxx = convertUtil.toString(request.getParameter("9"), convertUtil.toString(request.getParameter("zyxx"), ""));
 		String tzlb = convertUtil.toString(request.getParameter("18"), convertUtil.toString(request.getParameter("tzlb"), ""));
 		String gclb = convertUtil.toString(request.getParameter("8"), convertUtil.toString(request.getParameter("gclb"), ""));
-		String bdmc_id = convertUtil.toString(request.getParameter("bdmc_id"), "");
+		
 		modelMap.put("ssdq", ssdq);
 		modelMap.put("zydl", zydl);
 		modelMap.put("qkdl", qkdl);
@@ -258,8 +262,7 @@ public class NodeDealSearch {
 		qkdl = paramUtil(qkdl, ",","'");
 		tzlb = paramUtil(tzlb, ",","'");
 		gclb = paramUtil(gclb, ",","'");
-		String doc_status = request.getParameter("doc_status");
-		modelMap.put("doc_status", doc_status);
+		*/
 		
 		
 		// 是否具体到人
@@ -296,7 +299,8 @@ public class NodeDealSearch {
 				.append(", count(doc.id) as wdsl from Tb15_docflow doc,Ta03_user u ,Tb12_opernode tb12,Ta06_module ta06,Td00_gcxx td00");
 		hsql
 				.append(" where doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
-		//hsql.append(" and doc.module_id = " + bdmc_id);
+		hsql.append(" and doc.module_id = " + bdmc_id);
+		/*
 		if (!"''".equals(ssdq))
 		hsql.append(" and td00.ssdq in(" + ssdq + ")");
 		if (!"''".equals(zydl))
@@ -311,14 +315,15 @@ public class NodeDealSearch {
 			hsql.append(" and td00.zyxx in(" + zyxx + ")");
 		if (!"''".equals(gclb))
 		hsql.append(" and td00.gclb in(" + gclb + ")");
+		
+		*/
 		if (!"".equals(doc_status))
 		hsql.append(" and doc.doc_status in(" + doc_status + ")");
 		hsql
 				.append(" group by ta06.name,tb12.node_name ");
 		if (toperson){
 			hsql.append(",u.login_id,u.name,u.mobile_tel");
-		}
-//		System.out.println(new Date() + " " + hsql);
+		} 
 		ResultObject ro = null;
 		
 		
@@ -334,7 +339,7 @@ public class NodeDealSearch {
 				e.printStackTrace();
 				System.out.println("没有结果");
 			}
-		}
+		} 
 		List<Map<String, Object>> resultList = new ArrayList<Map<String,Object>>();
 		while(ro != null && ro.next()){
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -402,6 +407,8 @@ public class NodeDealSearch {
 				hsql
 						.append(" where "+(toperson?"u.login_id='"+map.get("zh")+"' and":"")+"  doc.node_id in (select node_id from tb12 where node_name='"+map.get("jdmc")+"') and "+" td00.id = tb11.project_id and doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
 				hsql.append(" and doc.module_id = " + bdmc_id);
+				
+				/*
 				if (!"''".equals(ssdq))
 				hsql.append(" and td00.ssdq in(" + ssdq + ")");
 				if (!"''".equals(zydl))
@@ -416,6 +423,7 @@ public class NodeDealSearch {
 					hsql.append(" and td00.zyxx in(" + zyxx + ")");
 				if (!"''".equals(gclb))
 				hsql.append(" and td00.gclb in(" + gclb + ")");
+				*/
 				if (!"".equals(doc_status))
 				hsql.append(" and doc.doc_status in(" + doc_status + ")");
 				ro = queryService.search(hsql.toString());
@@ -475,7 +483,9 @@ public class NodeDealSearch {
 			view = "/export/toExcelWhithList.do";
 		}
 		// 获取搜索所需内容
-		String searchhsql = "from Ta08_reportfield where module_id = 100 and name in ('ssdq','zydl','zyxx','qkdl','qkxl','gclb','tzlb')";
+//		String searchhsql = "from Ta08_reportfield where module_id = 100 and name in ('ssdq','zydl','zyxx','qkdl','qkxl','gclb','tzlb')";
+		//100得到的是空值
+		String searchhsql = "from Ta08_reportfield where module_id = 100 ";
 		List<Ta08_reportfield> searchList = (List<Ta08_reportfield>)queryService.searchList(searchhsql);
 		List<Ta06_module> bdmcList = (List<Ta06_module>)queryService.searchList("from Ta06_module where type = 1 and id like '1__' order by id");
 		modelMap.put("bdmcList",bdmcList);
@@ -506,124 +516,124 @@ public class NodeDealSearch {
 		
 		
 	}
-//	@RequestMapping("/search/wdclqk.do")
-//	public ModelAndView wdclqk(HttpServletRequest request,
-//			HttpServletResponse response) throws Exception {
-//		ModelMap modelMap = new ModelMap();
+	@RequestMapping("/search/wdclqk.do")
+	public ModelAndView wdclqk(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
 //		request.setCharacterEncoding("GBK");
-//		String view = "/WEB-INF/jsp/search/wdclqk.jsp";
-//		String node_name = request.getParameter("node_name");
-//		String zh = request.getParameter("zh");
-//		String ssdq = convertUtil.toString(request.getParameter("5"), convertUtil.toString(request.getParameter("ssdq"), ""));
-//		String zydl = convertUtil.toString(request.getParameter("9"), convertUtil.toString(request.getParameter("zydl"), ""));
-//		String qkdl = convertUtil.toString(request.getParameter("11"), convertUtil.toString(request.getParameter("qkdl"), ""));
-//		String qkxl = convertUtil.toString(request.getParameter("12"), convertUtil.toString(request.getParameter("qkxl"), ""));
-//		String zyxx = convertUtil.toString(request.getParameter("9"), convertUtil.toString(request.getParameter("zyxx"), ""));
-//		String tzlb = convertUtil.toString(request.getParameter("18"), convertUtil.toString(request.getParameter("tzlb"), ""));
-//		String gclb = convertUtil.toString(request.getParameter("8"), convertUtil.toString(request.getParameter("gclb"), ""));
-//		ssdq = paramUtil(ssdq, ",","'");
-//		zydl = paramUtil(zydl, ",","'");
-//		
-//		qkxl = paramUtil(qkxl, ",","'");
-//		zyxx = paramUtil(zyxx, ",","'");
-//		
-//		qkdl = paramUtil(qkdl, ",","'");
-//		tzlb = paramUtil(tzlb, ",","'");
-//		gclb = paramUtil(gclb, ",","'");
-//		String bdmc_id = request.getParameter("bdmc_id");
-//		String doc_status = request.getParameter("doc_status");
-//		boolean toperson = "yes".equals(convertUtil.toString(request
-//				.getParameter("toperson"), "no"));
-//		StringBuffer hsql = new StringBuffer("");
-//		hsql.append("select td00,tb11,doc from Tb11_operflow tb11,Tb15_docflow doc,Ta03_user u ,Tb12_opernode tb12,Ta06_module ta06,Td00_gcxx td00");
-//		hsql
-//				.append(" where "+(toperson?"u.login_id='"+zh+"' and":"")+"  doc.node_id in (select node_id from tb12 where node_name='"+node_name+"') and "+" td00.id = tb11.project_id and doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
-//		hsql.append(" and doc.module_id = " + bdmc_id);
-//		if (!"''".equals(ssdq))
-//		hsql.append(" and td00.ssdq in(" + ssdq + ")");
-//		if (!"''".equals(zydl))
-//		hsql.append(" and td00.zydl in(" + zydl + ")");
-//		if (!"''".equals(qkdl))
-//		hsql.append(" and td00.qkdl in(" + qkdl + ")");
-//		if (!"''".equals(tzlb))
-//		hsql.append(" and td00.tzlb in(" + tzlb + ")");
-//		if (!"''".equals(qkxl))
-//			hsql.append(" and td00.qkxl in(" + qkxl + ")");
-//		if (!"''".equals(zyxx))
-//			hsql.append(" and td00.zyxx in(" + zyxx + ")");
-//		if (!"''".equals(gclb))
-//		hsql.append(" and td00.gclb in(" + gclb + ")");
-//		if (!"".equals(doc_status))
-//		hsql.append(" and doc.doc_status in(" + doc_status + ")");
-////		System.out.println(hsql);
-//		Integer page = convertUtil.toInteger(request.getParameter("page"), 1);
-//		Integer pageRowSize = convertUtil.toInteger(request
-//				.getAttribute("pageRowSize"),convertUtil.toInteger(request
-//						.getParameter("pageRowSize")));
-//		int totalPages = 1;
-//		int totalRows = 0;
-//		ResultObject ro = null;
-//		if ("yes".equals(request.getParameter("toexcel"))){
-//			ro = queryService.search(hsql.toString());
-//		} else
-//		ro = queryService.searchByPage(hsql.toString(), page, pageRowSize);
-//		totalPages = ro.getTotalPages();
-//		totalRows = ro.getTotalRows();
-////		List<Td00_gcxx> tmpList = new ArrayList<Td00_gcxx>();
-//		List<Object[]> resultList = new ArrayList<Object[]>();
-//		List<Ta08_reportfield> entityList = (List<Ta08_reportfield>)queryService.searchList("from Ta08_reportfield where module_id=100 and showflag=1");
-//		while (ro.next()){
-//			Td00_gcxx td00 = (Td00_gcxx)ro.get("td00");
-//			Tb11_operflow tb11 = (Tb11_operflow)ro.get("tb11");
-//			Tb15_docflow doc = (Tb15_docflow)ro.get("doc");
-////			tmpList.add(td00);
-//		
-//		List<Object> list = new ArrayList<Object>();
-//		Object[] o = new Object[2];
-//		
-//		for (Ta08_reportfield ta08: entityList) {
-//			String string = ta08.getName();
-//			list.add(PropertyInject.getProperty(td00, string));
-//		}
-//		o[0] = list;
-//		Object[] obj = new Object[3];
-//		obj[0] = tb11.getName().substring(0,1);
-//		obj[1] = tb11.getDisplay();
-//		obj[2] = "?project_id="+tb11.getProject_id()+"&module_id="+doc.getModule_id()+"&doc_id="+doc.getDoc_id();
-////		System.out.println(obj[2]);
-//		o[1] = obj;
-//		resultList.add(o);
-//		}
-//		if ("yes".equals(request.getParameter("toexcel"))){
-//			Map<String,List> sheetMap = new HashMap<String,List>();
-//			List sheetList = new LinkedList();
-//			List<List<String>> contentList = new ArrayList<List<String>>();
-//			for (Object[] o : resultList) {
-//				List list = (List)o[0];
-//				List<String> tempList = new ArrayList<String>();
-//				for (Object object : list) {
-//					tempList.add(""+(object==null?"":object));
-//				}
-//				contentList.add(tempList);
-//			}
-//			List<String> titleList = new ArrayList<String>();
-//			for (Ta08_reportfield ta08 : entityList) {
-//				titleList.add(ta08.getComments());
-//			}
-//			sheetList.add(titleList);
-//			sheetList.add(contentList);
-//			sheetMap.put("文档处理情况", sheetList);
-//			
-//			request.setAttribute("ExcelName", "文档处理情况" );
-//			request.setAttribute("sheetMap", sheetMap);
-//			view = "/export/toExcelWhithList.do";
-//		}
-//		modelMap.put("entityList", entityList);
-//		modelMap.put("resultList", resultList);
-//		modelMap.put("totalPages", totalPages);
-//		modelMap.put("totalRows", totalRows);
-//		modelMap.put("page", page);
-//		modelMap.put("pageRowSize", pageRowSize);
-//		return new ModelAndView(view, modelMap);
-//	}
+		String view = "/WEB-INF/jsp/search/wdclqk.jsp";
+		String node_name = request.getParameter("node_name");
+		String zh = request.getParameter("zh");
+		String ssdq = convertUtil.toString(request.getParameter("5"), convertUtil.toString(request.getParameter("ssdq"), ""));
+		String zydl = convertUtil.toString(request.getParameter("9"), convertUtil.toString(request.getParameter("zydl"), ""));
+		String qkdl = convertUtil.toString(request.getParameter("11"), convertUtil.toString(request.getParameter("qkdl"), ""));
+		String qkxl = convertUtil.toString(request.getParameter("12"), convertUtil.toString(request.getParameter("qkxl"), ""));
+		String zyxx = convertUtil.toString(request.getParameter("9"), convertUtil.toString(request.getParameter("zyxx"), ""));
+		String tzlb = convertUtil.toString(request.getParameter("18"), convertUtil.toString(request.getParameter("tzlb"), ""));
+		String gclb = convertUtil.toString(request.getParameter("8"), convertUtil.toString(request.getParameter("gclb"), ""));
+		ssdq = paramUtil(ssdq, ",","'");
+		zydl = paramUtil(zydl, ",","'");
+		
+		qkxl = paramUtil(qkxl, ",","'");
+		zyxx = paramUtil(zyxx, ",","'");
+		
+		qkdl = paramUtil(qkdl, ",","'");
+		tzlb = paramUtil(tzlb, ",","'");
+		gclb = paramUtil(gclb, ",","'");
+		String bdmc_id = request.getParameter("bdmc_id");
+		String doc_status = request.getParameter("doc_status");
+		boolean toperson = "yes".equals(convertUtil.toString(request
+				.getParameter("toperson"), "no"));
+		StringBuffer hsql = new StringBuffer("");
+		hsql.append("select td00,tb11,doc from Tb11_operflow tb11,Tb15_docflow doc,Ta03_user u ,Tb12_opernode tb12,Ta06_module ta06,Td00_gcxx td00");
+		hsql
+				.append(" where "+(toperson?"u.login_id='"+zh+"' and":"")+"  doc.node_id in (select node_id from tb12 where node_name='"+node_name+"') and "+" td00.id = tb11.project_id and doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
+		hsql.append(" and doc.module_id = " + bdmc_id);
+		if (!"''".equals(ssdq))
+		hsql.append(" and td00.ssdq in(" + ssdq + ")");
+		if (!"''".equals(zydl))
+		hsql.append(" and td00.zydl in(" + zydl + ")");
+		if (!"''".equals(qkdl))
+		hsql.append(" and td00.qkdl in(" + qkdl + ")");
+		if (!"''".equals(tzlb))
+		hsql.append(" and td00.tzlb in(" + tzlb + ")");
+		if (!"''".equals(qkxl))
+			hsql.append(" and td00.qkxl in(" + qkxl + ")");
+		if (!"''".equals(zyxx))
+			hsql.append(" and td00.zyxx in(" + zyxx + ")");
+		if (!"''".equals(gclb))
+		hsql.append(" and td00.gclb in(" + gclb + ")");
+		if (!"".equals(doc_status))
+		hsql.append(" and doc.doc_status in(" + doc_status + ")");
+		System.out.println(hsql);
+		Integer page = convertUtil.toInteger(request.getParameter("page"), 1);
+		Integer pageRowSize = convertUtil.toInteger(request
+				.getAttribute("pageRowSize"),convertUtil.toInteger(request
+						.getParameter("pageRowSize")));
+		int totalPages = 1;
+		int totalRows = 0;
+		ResultObject ro = null;
+		if ("yes".equals(request.getParameter("toexcel"))) {
+			ro = queryService.search(hsql.toString());
+		} else
+		ro = queryService.searchByPage(hsql.toString(), page, pageRowSize);
+		totalPages = ro.getTotalPages();
+		totalRows = ro.getTotalRows();
+//		List<Td00_gcxx> tmpList = new ArrayList<Td00_gcxx>();
+		List<Object[]> resultList = new ArrayList<Object[]>();
+		List<Ta08_reportfield> entityList = (List<Ta08_reportfield>)queryService.searchList("from Ta08_reportfield where module_id=101  and name in ('ssdq','zydl','zyxx','qkdl','qkxl','gclb','tzlb')");
+		while (ro.next()){
+			Td00_gcxx td00 = (Td00_gcxx)ro.get("td00");
+			Tb11_operflow tb11 = (Tb11_operflow)ro.get("tb11");
+			Tb15_docflow doc = (Tb15_docflow)ro.get("doc");
+//			tmpList.add(td00);
+		
+		List<Object> list = new ArrayList<Object>();
+		Object[] o = new Object[2];
+		
+		for (Ta08_reportfield ta08: entityList) {
+			String string = ta08.getName();
+			list.add(PropertyInject.getProperty(td00, string));
+		}
+		o[0] = list;
+		Object[] obj = new Object[3];
+		obj[0] = tb11.getName().substring(0,1);
+		obj[1] = tb11.getDisplay();
+		obj[2] = "?project_id="+tb11.getProject_id()+"&module_id="+doc.getModule_id()+"&doc_id="+doc.getDoc_id();
+//		System.out.println(obj[2]);
+		o[1] = obj;
+		resultList.add(o);
+		}
+		if ("yes".equals(request.getParameter("toexcel"))){
+			Map<String,List> sheetMap = new HashMap<String,List>();
+			List sheetList = new LinkedList();
+			List<List<String>> contentList = new ArrayList<List<String>>();
+			for (Object[] o : resultList) {
+				List list = (List)o[0];
+				List<String> tempList = new ArrayList<String>();
+				for (Object object : list) {
+					tempList.add(""+(object==null?"":object));
+				}
+				contentList.add(tempList);
+			}
+			List<String> titleList = new ArrayList<String>();
+			for (Ta08_reportfield ta08 : entityList) {
+				titleList.add(ta08.getComments());
+			}
+			sheetList.add(titleList);
+			sheetList.add(contentList);
+			sheetMap.put("文档处理情况", sheetList);
+			
+			request.setAttribute("ExcelName", "文档处理情况" );
+			request.setAttribute("sheetMap", sheetMap);
+			view = "/export/toExcelWhithList.do";
+		}
+		modelMap.put("entityList", entityList);
+		modelMap.put("resultList", resultList);
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalRows", totalRows);
+		modelMap.put("page", page);
+		modelMap.put("pageRowSize", pageRowSize);
+		return new ModelAndView(view, modelMap);
+	}
 }
