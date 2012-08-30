@@ -34,7 +34,7 @@ $(document).ready(function(){
 					<label>
 						有效年度：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND" value="<c:out value="${tc03.yxnd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readonly/>
+					<input type="text" name="Tc03_gczy.YXND" value="<c:out value="${tc03.yxnd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readOnly/>
 				</p>
 				<p>
 					<label>
