@@ -596,11 +596,18 @@ public class NodeDealSearch {
 			list.add(PropertyInject.getProperty(td00, string));
 		}
 		o[0] = list;
-		Object[] obj = new Object[3];
+		Object[] obj = new Object[10];
 		obj[0] = tb11.getName().substring(0,1);
 		obj[1] = tb11.getDisplay();
 		obj[2] = "?project_id="+tb11.getProject_id()+"&module_id="+doc.getModule_id()+"&doc_id="+doc.getDoc_id();
-//		System.out.println(obj[2]);
+		//附加参数
+		obj[3]=String.valueOf(tb11.getProject_id());
+		obj[4]=String.valueOf(doc.getModule_id());
+		obj[5]=String.valueOf(doc.getDoc_id());
+		obj[6]=String.valueOf(doc.getOpernode_id());
+		obj[7]=String.valueOf(doc.getNode_id());
+		obj[8]=String.valueOf(doc.getUser_id());
+		System.out.println(obj[2]);
 		o[1] = obj;
 		resultList.add(o);
 		}
