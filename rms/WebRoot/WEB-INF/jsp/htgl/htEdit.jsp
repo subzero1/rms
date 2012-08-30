@@ -19,20 +19,57 @@
 				<div class="divider"></div>
 				<c:choose>				
 					<c:when test="${param.act=='ht'}">
-						<p>
-							<label>${htlbmc }合同编号：</label>
-							<input  type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTBH" style="width:240px;" value="${td01.sghtbh }" class="required"/>
-						</p>
-						<div style="height:0px;"></div>
-						<p>
-							<label>${htlbmc }签订日期：</label>
-							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.sghtqdrq }" class="required date" />
-						</p>
-						<div style="height:0px;"></div>
-						<p>
-							<label>${htlbmc }合同金额：</label>
-							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.sghtje }" class="required number" />
-						</p>
+					   <c:choose>
+						   <c:when test="${htlb == 'sj'}">
+								<p>
+									<label>${htlbmc }合同编号：</label>
+									<input  type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTBH" style="width:240px;" value="${td01.sjhtbh }" class="required"/>
+								</p>
+								<div style="height:0px;"></div>
+								<p>
+									<label>${htlbmc }签订日期：</label>
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.sjhtqdrq }" class="required date" />
+								</p>
+								<div style="height:0px;"></div>
+								<p>
+									<label>${htlbmc }合同金额：</label>
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.sjhtje }" class="required number" />
+								</p>
+							</c:when>
+							<c:when test="${htlb == 'sg'}">
+								<p>
+									<label>${htlbmc }合同编号：</label>
+									<input  type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTBH" style="width:240px;" value="${td01.sghtbh }" class="required"/>
+								</p>
+								<div style="height:0px;"></div>
+								<p>
+									<label>${htlbmc }签订日期：</label>
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.sghtqdrq }" class="required date" />
+								</p>
+								<div style="height:0px;"></div>
+								<p>
+									<label>${htlbmc }合同金额：</label>
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.sghtje }" class="required number" />
+								</p>
+								
+							</c:when>
+							<c:when test="${htlb == 'jl'}">
+								<p>
+									<label>${htlbmc }合同编号：</label>
+									<input  type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTBH" style="width:240px;" value="${td01.jlhtbh }" class="required"/>
+								</p>
+								<div style="height:0px;"></div>
+								<p>
+									<label>${htlbmc }签订日期：</label>
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.jlhtqdrq }" class="required date" />
+								</p>
+								<div style="height:0px;"></div>
+								<p>
+									<label>${htlbmc }合同金额：</label>
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.jlhtje }" class="required number" />
+								</p>
+							</c:when>
+						</c:choose>
 					</c:when>
 					<c:when test="${param.act=='wss'}">
 						<p>
