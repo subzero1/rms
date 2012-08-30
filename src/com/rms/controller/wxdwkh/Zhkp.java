@@ -159,6 +159,8 @@ public class Zhkp {
 						}
 					}
 					int size = td01List.size();
+					tf18.setHte(hte);
+					tf18.setJse(jse);
 					tf18.setWgl((double) wgs / size);
 					tf18.setCql((double) cqs / size);
 					tf18.setJsl((double) jss / size);
