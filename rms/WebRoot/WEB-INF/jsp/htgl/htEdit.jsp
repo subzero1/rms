@@ -21,17 +21,17 @@
 					<c:when test="${param.act=='ht'}">
 						<p>
 							<label>${htlbmc }合同编号：</label>
-							<input  type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTBH" style="width:240px;" value="${td01.htbh }" class="required"/>
+							<input  type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTBH" style="width:240px;" value="${td01.sghtbh }" class="required"/>
 						</p>
 						<div style="height:0px;"></div>
 						<p>
 							<label>${htlbmc }签订日期：</label>
-							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.htqdrq }" class="required date" />
+							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.sghtqdrq }" class="required date" />
 						</p>
 						<div style="height:0px;"></div>
 						<p>
 							<label>${htlbmc }合同金额：</label>
-							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.htje }" class="required number" />
+							<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTJE" style="width:240px;" value="${td01.sghtje }" class="required number" />
 						</p>
 					</c:when>
 					<c:when test="${param.act=='wss'}">

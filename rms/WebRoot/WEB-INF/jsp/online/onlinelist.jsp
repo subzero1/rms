@@ -2,6 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
+$(function(){
+	$("#ztgjz",navTab.getCurrentPanel()).keyup(function(e){
+		if (e.which == 13){
+			$("#searchButton",navTab.getCurrentPanel()).click();
+		}
+	});
+});
+
 function phoneMsg(tel,name){
 	$.pdialog.open('MessageWrite.do?type=phone&phonenum='+tel+'&name='+encodeURI(encodeURI(name)), 'messageWrite', '手机短信',{data:{}, mask:true, width:670, height:350})
 }
@@ -63,13 +71,14 @@ function phoneMsg(tel,name){
 						</c:if>
 						<td>关键字：</td>
 						<td>
+						    <input type="text" style="display:none"/>
 							<input type="text" name="ztgjz" id="ztgjz" value="${ztgjz }" size="30" class="td-input-nowidth"/>
 						</td>
 					</tr>						
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'OnLineList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button id="searchButton" type="button" onClick="javascript:searchOrExcelExport(this,'OnLineList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 		</div>

@@ -57,9 +57,23 @@
 						<td>${obj.xmbh }</td>
 						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="230" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
 						<td><fmt:formatDate value="${obj.lxsj }" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td>${obj.htbh }</td>
-						<td><fmt:formatDate value="${obj.htqdrq }" pattern="yyyy-MM-dd"/></td>
-						<td>${obj.htje }</td>
+						<c:choose>
+							<c:when test="${htlb == 'sj'}">
+								<td>${obj.sjhtbh }</td>
+								<td><fmt:formatDate value="${obj.sjhtqdrq }" pattern="yyyy-MM-dd"/></td>
+								<td>${obj.sjhtje }</td>
+							</c:when>
+							<c:when test="${htlb == 'sg'}">
+								<td>${obj.sghtbh }</td>
+								<td><fmt:formatDate value="${obj.sghtqdrq }" pattern="yyyy-MM-dd"/></td>
+								<td>${obj.sghtje }</td>
+							</c:when>
+							<c:when test="${htlb == 'jl'}">
+								<td>${obj.jlhtbh }</td>
+								<td><fmt:formatDate value="${obj.jlhtqdrq }" pattern="yyyy-MM-dd"/></td>
+								<td>${obj.jlhtje }</td>
+							</c:when>
+						</c:choose>
 						<td></td>
 					</tr>
 				</c:forEach>
