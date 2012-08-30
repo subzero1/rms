@@ -41,7 +41,7 @@ $(document).ready(function(){
 					<label>
 						所属年度：
 					</label>
-					<input type="text" name="Tc06_tzqk.ND" value="<c:out value="${tc06.nd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readonly/>
+					<input type="text" name="Tc06_tzqk.ND" value="<c:out value="${tc06.nd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readOnly/>
 				</p>
 				<p>
 					<label>
@@ -54,13 +54,13 @@ $(document).ready(function(){
 			</div>
 			<div class="formBar">
 				<div  style="float:left;">
-					<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="infoManage/qkwhEdit.do?year=${param.year }">新建专业</button></div></div>
+					<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="infoManage/qkwhEdit.do?year=${param.year }">新建切块</button></div></div>
 				</div>
 				<ul>
 					<li>
 						<div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div>
 					</li>
-					<c:if test="${not empty tc03}">
+					<c:if test="${not empty tc06}">
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" id="delTzqk">删 除</button></div></div>
 					</li>

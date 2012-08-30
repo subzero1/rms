@@ -2,14 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready(function(){	
-	$("#year").change(function(){
+	$("#year2").change(function(){
 		navTab.reload('infoManage/qkwhList.do',{data:{"year":$(this).val()}, navTabId:"qkwhList"});
 	});
 });
 </script>
 
 <h2 class="contentTitle">投资切块维护
-<select id="year" style="width:110px;">
+<select id="year2" style="width:110px;">
 		<c:forEach var="i" begin="2012" end="${curYear+1}">
 			<c:choose>
 				<c:when test="${year == i }">
