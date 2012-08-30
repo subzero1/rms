@@ -31,6 +31,7 @@ function act(){
 function checkandsave(){
 	var flag = true;
 	var flag1 = true;
+	var flag2 = true;
 	var ids = [];
 	$("select[name=Tf08_clmxb\\.CLMC]").each(function(){
 		if ($(this).closest("tr").css("display") != "none" && $.trim($(this).val())==""){
@@ -60,9 +61,16 @@ function checkandsave(){
 			flag = false;
 			return;
 		}
+		if ("${type }"!="入库" && parseInt($(this).val())>parseInt($(this).attr("flag"))) {
+			flag2 = false;
+		}
 	});
 	if (!flag){
 		alertMsg.error("请在数量栏填入正整数");
+		return;
+	}
+	if (!flag2){
+		alertMsg.error("数量不能超过库存上限");
 		return;
 	}
 	if ($("select[name=Tf08_clmxb\\.CLLX]").size() == 0){
@@ -99,6 +107,7 @@ $(function(){
 			xh.val(msgs[1]);
 			dw.val(msgs[2]);
 			sl.val(msgs[3]);
+			sl.attr("flag",msgs[3]);
 		}});
 	});
 });
@@ -170,7 +179,7 @@ $(function(){
 						<td><input class="" type="text" name="Tf08_clmxb.GG" value="${obj.gg}" style="width:0px;"/></td>
 						<td><input class="" type="text" name="Tf08_clmxb.XH" value="${obj.xh}" style="width:0px;"/></td>
 						<td><input class="" type="text" name="Tf08_clmxb.DW" value="${obj.dw}" style="width:0px;"/></td>
-						<td><input class="" type="text" name="Tf08_clmxb.SL" value="${obj.sl}" style="width:0px;"/></td>
+						<td><input class="" type="text" name="Tf08_clmxb.SL" value="${obj.sl}" flag="${obj.sl }" style="width:0px;"/></td>
 						<td><a href="javascript:fsd" class="btnDel emptyInput" title="确认删除此明细">删除</a></td>
 					</tr>
 					<c:set var="offset" value="${offset+1}"/>
