@@ -87,38 +87,11 @@ $(function(){
 														<pss:htmlSelect style="width:286px"
 															objectForOption="bdmcList" showForOption="name"
 															valueForOption="id" name="bdmc_id" value="" />
+															<input type="hidden" name="doc_status" value="0,1,2,4">
 													</td>
 												</tr>
-												<c:forEach var="obj" items="${selectList}">
-
-													<tr>
-														<td width="90" class="t-right">
-															${obj.comments }：
-															<input type="hidden" name="ids" value="${obj.id }" />
-														</td>
-														<td width="310">
-															<input name="${obj.id }" fieldName="${obj.name }"
-																value="" style="width: 280px;"
-																title="双击选择${obj.comments }"
-																ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400});" />
-														</td>
-													</tr>
-												</c:forEach>
-												<tr>
-													<td width="90" class="t-right">
-														文档状态：
-													</td>
-													<td width="310">
-														<select name="doc_status">
-															<option value="0,1,2,4">
-																未处理
-															</option>
-															<option value="8">
-																已处理
-															</option>
-														</select>
-													</td>
-												</tr>
+												 
+											 
 											</table>
 										</div>
 
@@ -149,42 +122,7 @@ $(function(){
 						</div>
 					</div>
 					<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
-					<div class="contentc">
-						<div style="height: 24px;">
-							<table width="400" height="23" border="0" cellspacing="0"
-								cellpadding="0" style="border-collapse: collapse;">
-								<tr>
-									<td>
-										<div style="position: absolute;">
-											<input type="hidden" name="type" value="2" />
-											<input id="template_name" name="template_name" value=""
-												style="width: 136px;" />
-										</div>
-										<div>
-											<select id="template_sel" name="template_id"
-												style="width: 160px"
-												onchange="javascript:changeTemplate(searchCtCallback);">
-												<option value="">
-													新建模板
-												</option>
-												<c:forEach var="obj" items="${templateList}">
-													<option value="${obj.id }">
-														${obj.name }
-													</option>
-												</c:forEach>
-											</select>
-											&nbsp;
-											<input type="button" value="保存模板"
-												onclick="javascript:saveTemplate(this,1);" />
-											<input type="button" value="删除模板"
-												onclick="javascript:delTemplate(this);" />
-										</div>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
+			  
 				</div>
 			</div>
 			<div class="formBar">

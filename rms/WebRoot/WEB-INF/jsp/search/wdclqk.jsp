@@ -97,54 +97,51 @@ function open(zh,node_name){
 					<th width="50px">
 						序号
 					</th>
+					<th width="100px">
+						流程图
+					</th>
+					<!-- 初始化标题名称 -->
 					<c:set var="offset1" value="0" scope="page" />
-					<c:forEach items="${docColsList}" var="title">
+					<c:forEach items="${entityList}" var="title">
 						<c:set var="offset1" value="${offset1+1}" scope="page" />
 						<th>
-							${title }
+							${title .comments}
 						</th>
 					</c:forEach>
-					<c:forEach begin="1" end="${6-offset1}">
-						<th align="center">
-							<c:set var="offset1" value="${offset1+1}" scope="page" />
-						</th>
-					</c:forEach>
+
 				</tr>
 			</thead>
 			<tbody>
-				<c:set var="offset" scope="page" value="0" />
+
+				<c:set var="offset" value="0" scope="page" />
 				<c:forEach var="obj" items="${resultList }">
 					<c:set var="offset" value="${offset + 1}" scope="page" />
 					<tr>
+						<td>${offset }</td>
 						<td align="center">
-							${offset}
+							<input type="button" value="${obj[1][0] }" class="node"
+								style="background: url('../${obj[1][1] }') no-repeat center;"
+								onclick="javascript:popFlowTree('${obj[1][2] }');" />
 						</td>
-						<td align="center">
-							${obj["bdmc"] }
-						</td>
-						<td align="center">
-							${obj["jdmc"] }
-						</td>
-						<td align="center">
-							<a
-								href="search/wdclqk.do?pageRowSize=${pageRowSize}&bdmc_id=${param.bdmc_id}&doc_status=${doc_status }&toperson=${param.toperson }"
-								target="navTab" rel="jdcltj" title="待处理文档统计" data="{node_name:'${obj["jdmc"] }'}">${obj["wdsl"] }</a>
-						</td>
-						<td align="center">
-							${obj["zh"] }
-						</td>
-						<td align="center">
-							${obj["xm"] }
-						</td>
-						<td align="center">
-							${obj["dh"] }
-						</td>
+						<c:forEach items="${obj[0]}" var="o">
+							<td>
+								${o }
+							</td>
+						</c:forEach>
 					</tr>
 				</c:forEach>
 
-				<tr>
-					<td></td>
-				</tr>
+				<c:if test="${offset<pageRowSize }">
+
+					<c:forEach begin="1" end="${pageRowSize-offset}">
+						<tr>
+							<c:forEach begin="0" end="15">
+								<td align="center">
+								</td>
+							</c:forEach>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<div class="panelBar">
@@ -176,48 +173,26 @@ function open(zh,node_name){
 		</div>
 	</div>
 </div>
-
-<form name="form2" id="form2" action="jdcltj.do" method="post">
-	<input type="hidden" name="pageRowSize" value="${pageRowSize}" />
-	<input type="hidden" id="page" name="page" value="${page}" />
-	<input type="hidden" id="totalPages" name="totalPages"
-		value="${totalPages}" />
-	<input type="hidden" id="totalRows" name="totalRows"
-		value="${totalRows}" />
-
-	<input type="hidden" id="bdmc_id" name="bdmc_id"
-		value="${param.bdmc_id}" />
-	<input type="hidden" name="ssdq" value="${ssdq }" />
-	<input type="hidden" name="zydl" value="${zydl }" />
-	<input type="hidden" name="qkdl" value="${qkdl }" />
-	<input type="hidden" name="tzlb" value="${tzlb }" />
-	<input type="hidden" name="gclb" value="${gclb }" />
-	<input type="hidden" name="zyxx" value="${zyxx }" />
-	<input type="hidden" name="qkxl" value="${qkxl }" />
-	<input type="hidden" name="doc_status" value="${doc_status }" />
-	<input type="hidden" name="toperson" value="${param.toperson }" />
-
-	<input type="hidden" name="toexcel" id="toexcel" value="" />
+ 
+<form name="form1" id="form1" action="wdclqk.do" method="post">
+		<input type="hidden" name="toexcel" id="toexcel"/>
+	  <input type="hidden" name="pageRowSize" value="${pageRowSize}"/>
+	  <input type="hidden" id="page" name="page" value="${page}"/>
+	  <input type="hidden" id="totalPages" name="totalPages" value="${totalPages}"/>
+	  <input type="hidden" id="totalRows" name="totalRows" value="${totalRows}"/>
+	  <input type="hidden" name="ssdq"  value="${ssdq }" />
+	  <input type="hidden" name="zydl"  value="${zydl }" />	
+	  <input type="hidden" name="qkdl"  value="${qkdl }" />	
+	  <input type="hidden" name="tzlb"  value="${tzlb }" />	
+	  <input type="hidden" name="gclb"  value="${gclb }" />	
+	   <input type="hidden" name="zyxx"  value="${zyxx }" />	
+	    <input type="hidden" name="qkxl"  value="${qkxl }" />	
+	  <input type="hidden" name="zh" value="${param.zh }"/>
+	  <input type="hidden" name="doc_status" value="${param.doc_status }"/>
+	  <input type="hidden" name="node_name" value="${param.node_name }"/>
+	   <input type="hidden" name="bdmc_id" value="${param.bdmc_id }"/>
+	   <input type="hidden" name="toperson" value="${param.toperson }"/>
+	  
 </form>
-
-<form name="form3" id="form3" action="search/wdclqk.do" method="post">
-	<input type="hidden" name="pageRowSize" value="${pageRowSize}" />
-	<input type="hidden" id="bdmc_id" name="bdmc_id"
-		value="${param.bdmc_id}" />
-	<input type="hidden" name="ssdq" value="${ssdq }" />
-	<input type="hidden" name="zydl" value="${zydl }" />
-	<input type="hidden" name="qkdl" value="${qkdl }" />
-	<input type="hidden" name="tzlb" value="${tzlb }" />
-	<input type="hidden" name="gclb" value="${gclb }" />
-	<input type="hidden" name="zyxx" value="${zyxx }" />
-	<input type="hidden" name="qkxl" value="${qkxl }" />
-	<input type="hidden" name="doc_status" value="${doc_status }" />
-	<input type="hidden" name="toperson" value="${param.toperson }" />
-	<input type="hidden" id="zh" name="zh" value="" />
-	<input type="hidden" id="node_name" name="node_name" value="" />
-
-</form>
-
-
 
 <iframe style="height: 0px; width: 0px;" name="template"></iframe>
