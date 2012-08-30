@@ -11,7 +11,7 @@ function act(){
 	if (change){
 		alertMsg.info("先点保存按钮。");
 	} else {
-		alertMsg.confirm("入库后将不能修改，请确认后再执行此动作，是否确认入库？",{
+		alertMsg.confirm("${type }后将不能修改，请确认后再执行此动作，是否确认${type }？",{
 			okCall:function(){
 				$.ajax({
 						type: 'POST',
@@ -39,7 +39,7 @@ function checkandsave(){
 		}
 		var id = $(this).children(":selected").attr("flag");
 		for(var i =0;i!=ids.length;i++){
-			if (id == ids[i]){
+			if (id!=undefined && id == ids[i]){
 				flag1 = false;
 				return;
 			}
@@ -148,14 +148,14 @@ $(function(){
 				<tbody>
 				<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${tf08List}">
-				<input type="hidden" name="Tf08_clmxb.ID" value="${obj.id}"/>
+					<tr>
+					<input type="hidden" name="Tf08_clmxb.ID" value="${obj.id}"/>
 				<input type="hidden" name="Tf08_clmxb.FLAG" value="${obj.flag}"/>
 				<input type="hidden" name="Tf08_clmxb.ZHXX_ID" value="${obj.zhxx_id}"/>
 				<input type="hidden" name="Tf08_clmxb.DZ" value="${obj.dz}"/>
 				<input type="hidden" name="Tf08_clmxb.CZSJ" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${obj.czsj}"/>"/>
 				<input type="hidden" name="Tf08_clmxb.SGDW_ID" value="${obj.sgdw_id}"/>
 				<input type="hidden" name="Tf08_clmxb.CZRY" value="${obj.czry}"/>
-					<tr>
 						<td>
 							<netsky:htmlSelect name="Tf08_clmxb.CLLX" objectForOption="cllxList" valueForOption="" showForOption="" value="${obj.cllx}" extend="" extendPrefix="true" style="width:0px;"/>
 						</td>
