@@ -175,7 +175,7 @@ $(function(){
 <div style="height:0px;"></div>
 <p>
 	<label>设计单位：</label>
-	<netsky:htmlSelect name="Td01_xmxx.SJDW" objectForOption="sjdwList" style="width:410px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.sjdw}" htmlClass="td-select"/>
+	<netsky:htmlSelect name="Td01_xmxx.SJDW" objectForOption="sjdwList" style="width:412px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.sjdw}" htmlClass="td-select"/>
 </p>
 <p>
 	<label>设计派发时间：</label>
@@ -194,7 +194,7 @@ $(function(){
 <div style="height:0px;"></div>
 <p>
 	<label>监理单位：</label>
-	<netsky:htmlSelect name="Td01_xmxx.JLDW" objectForOption="jldwList" style="width:410px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.jldw}" htmlClass="td-select"/>
+	<netsky:htmlSelect name="Td01_xmxx.JLDW" objectForOption="jldwList" style="width:412px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.jldw}" htmlClass="td-select"/>
 </p>
 <p>
 	<label>监理派发时间：</label>
