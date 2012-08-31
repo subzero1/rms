@@ -233,9 +233,11 @@ public class NodeDealSearch {
 		ModelMap modelMap = new ModelMap();
 //		返回的VIEW
 		String view = "/WEB-INF/jsp/search/jdcltj.jsp";
+		
 		// 获取搜索条件及结果显示参数
 		String bdmc_id = convertUtil.toString(request.getParameter("bdmc_id"), "");
 		String doc_status = request.getParameter("doc_status");
+		
 		modelMap.put("doc_status", doc_status);
 		/*
 		String ssdq = convertUtil.toString(request.getParameter("5"), convertUtil.toString(request.getParameter("ssdq"), ""));
@@ -263,14 +265,17 @@ public class NodeDealSearch {
 		tzlb = paramUtil(tzlb, ",","'");
 		gclb = paramUtil(gclb, ",","'");
 		*/
-		
+		//保存即时参数
+		List<String> params=new ArrayList<String>();
+		params.add(bdmc_id);
+		params.add(doc_status);
 		
 		// 是否具体到人
 		boolean toperson = "yes".equals(convertUtil.toString(request
 				.getParameter("toperson"), "no"));
 		
 		// 分页条件
-		Integer page = convertUtil.toInteger(request.getParameter("page"), 1);
+		Integer page = convertUtil.toInteger(request.getParameter("numPerPage"), 1);
 		//Integer pageRowSize = convertUtil.toInteger(request
 		//		.getAttribute("pageRowSize"),convertUtil.toInteger(request
 			//			.getParameter("pageRowSize")));
@@ -497,6 +502,7 @@ public class NodeDealSearch {
 		modelMap.put("totalRows", totalRows);
 		modelMap.put("page", page);
 		modelMap.put("pageRowSize", pageRowSize);
+		modelMap.put("params", params);
 		return new ModelAndView(view, modelMap);
 	}
 	
@@ -574,6 +580,8 @@ public class NodeDealSearch {
 		int totalPages = 1;
 		int totalRows = 0;
 		ResultObject ro = null;
+		
+		//是否excel
 		if ("yes".equals(request.getParameter("toexcel"))) {
 			ro = queryService.search(hsql.toString());
 		} else

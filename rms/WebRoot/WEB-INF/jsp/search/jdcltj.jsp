@@ -57,6 +57,8 @@ function open(zh,node_name){
 	<input type="hidden" name="pageNum" value="${page}" />
 	<input type="hidden" name="numPerPage" value="${pageRowSize}" />
 	<input type="hidden" name="orderField" value="${orderField}" />
+	<input type="hidden" name="bdmc_id" value="${params[0] }"/>
+	<input type="hidden" name="doc_status" value="${params[1] }"/>
 	<input type="hidden" id="module_id" name="module_id"
 		value="${param.module_id}" />
 	<c:forEach var="obj" items="${searchField}">
