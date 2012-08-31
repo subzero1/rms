@@ -277,8 +277,8 @@ public class NodeDealSearch {
 		// 分页条件
 		Integer page = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer pageRowSize = convertUtil.toInteger(request
-				.getAttribute("pageRowSize"),convertUtil.toInteger(request
-						.getParameter("pageRowSize")));
+				.getAttribute("numPerPage"),convertUtil.toInteger(request
+						.getParameter("numPerPage")));
 		if(pageRowSize==null||pageRowSize<=0)
 			pageRowSize=2;
 		int totalPages = 1;

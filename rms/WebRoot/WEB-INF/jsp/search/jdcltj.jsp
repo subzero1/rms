@@ -156,7 +156,7 @@ function open(zh,node_name){
 				<span>显示</span>
 				<select class="combox" name="numPerPage"
 					onchange="navTabPageBreak({numPerPage:this.value})"
-					selectValue="${numPerPage}">
+					selectValue="${param.numPerPage}">
 					<option value="20">
 						20
 					</option>
