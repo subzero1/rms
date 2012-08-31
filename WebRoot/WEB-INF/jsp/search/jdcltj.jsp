@@ -55,7 +55,7 @@ function open(zh,node_name){
 
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="pageNum" value="${page}" />
-	<input type="hidden" name="numPerPage" value="${pageRowSize}" />
+	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${orderField}" />
 	<input type="hidden" name="bdmc_id" value="${params[0] }"/>
 	<input type="hidden" name="doc_status" value="${params[1] }"/>
@@ -174,8 +174,8 @@ function open(zh,node_name){
 			</div>
 
 			<div class="pagination" formId="searchPageForm" targetType="navTab"
-				totalCount="${totalRows}" numPerPage="${pageRowSize}"
-				currentPage="${page}"></div>
+				totalCount="${totalRows}" numPerPage="${numPerPage}"
+				currentPage="${param.pageNum}"></div>
 
 		</div>
 	</div>
