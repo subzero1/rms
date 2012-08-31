@@ -275,11 +275,12 @@ public class NodeDealSearch {
 				.getParameter("toperson"), "no"));
 		
 		// 分页条件
-		Integer page = convertUtil.toInteger(request.getParameter("numPerPage"), 1);
-		//Integer pageRowSize = convertUtil.toInteger(request
-		//		.getAttribute("pageRowSize"),convertUtil.toInteger(request
-			//			.getParameter("pageRowSize")));
-		Integer pageRowSize = 2;
+		Integer page = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer pageRowSize = convertUtil.toInteger(request
+				.getAttribute("pageRowSize"),convertUtil.toInteger(request
+						.getParameter("pageRowSize")));
+		if(pageRowSize==null||pageRowSize<=0)
+			pageRowSize=2;
 		int totalPages = 1;
 		int totalRows = 0; 
 		// 获取结果
@@ -369,129 +370,129 @@ public class NodeDealSearch {
 			map.put("node_id", node_id);
 			resultList.add(map);
 		}
-		if ("yes".equals(request.getParameter("toexcel"))){
-			Map<String,List> sheetMap = new HashMap<String,List>();
-			List sheetList = new ArrayList();
-			List<List<String>> contentList = new ArrayList<List<String>>();
-			for (Map map : resultList) {
-				List<String> tmpList = new ArrayList<String>();
-				tmpList.add(""+(map.get("bdmc")==null?"":map.get("bdmc")));
-				tmpList.add(""+(map.get("jdmc")==null?"":map.get("jdmc")));
-				tmpList.add(""+(map.get("wdsl")==null?"":map.get("wdsl")));
-				if (toperson){
-				tmpList.add(""+(map.get("zh")==null?"":map.get("zh")));
-				tmpList.add(""+(map.get("xm")==null?"":map.get("xm")));
-				tmpList.add(""+(map.get("dh")==null?"":map.get("dh")));
-				}
-				contentList.add(tmpList);
-			}
-			//同时将明细导出
-			List<String> blankLine = new ArrayList<String>();
-			blankLine.add("");
-			List<Ta08_reportfield> entityList = (List<Ta08_reportfield>)queryService.searchList("from Ta08_reportfield where module_id=100 and showflag=1");
-			List<String> titleList1 = new ArrayList<String>();
-			for (Ta08_reportfield ta08 : entityList) {
-				titleList1.add(ta08.getComments());
-			}
-			for (Map map : resultList) {
-				contentList.add(blankLine);
-				List<String> tmpList = new ArrayList<String>();
-				String s = "";
-				s+=("表单名称:"+(map.get("bdmc")==null?"":map.get("bdmc")));
-				s+=(" 节点名称:"+(map.get("jdmc")==null?"":map.get("jdmc")));
-				if (toperson){
-					s+=(" 帐号:"+(map.get("zh")==null?"":map.get("zh")));
-					s+=(" 姓名:"+(map.get("xm")==null?"":map.get("xm")));
-				}
-				s += " 明细";
-				tmpList.add(s);
-				contentList.add(tmpList);
-				contentList.add(titleList1);
-				//要具体数据
-				hsql = hsql.delete(0, hsql.length());
-				hsql.append("select td00,tb11,doc from Tb11_operflow tb11,Tb15_docflow doc,Ta03_user u ,Tb12_opernode tb12,Ta06_module ta06,Td00_gcxx td00");
-				hsql
-						.append(" where "+(toperson?"u.login_id='"+map.get("zh")+"' and":"")+"  doc.node_id in (select node_id from tb12 where node_name='"+map.get("jdmc")+"') and "+" td00.id = tb11.project_id and doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
-				hsql.append(" and doc.module_id = " + bdmc_id);
-				
-				/*
-				if (!"''".equals(ssdq))
-				hsql.append(" and td00.ssdq in(" + ssdq + ")");
-				if (!"''".equals(zydl))
-				hsql.append(" and td00.zydl in(" + zydl + ")");
-				if (!"''".equals(qkdl))
-				hsql.append(" and td00.qkdl in(" + qkdl + ")");
-				if (!"''".equals(tzlb))
-				hsql.append(" and td00.tzlb in(" + tzlb + ")");
-				if (!"''".equals(qkxl))
-					hsql.append(" and td00.qkxl in(" + qkxl + ")");
-				if (!"''".equals(zyxx))
-					hsql.append(" and td00.zyxx in(" + zyxx + ")");
-				if (!"''".equals(gclb))
-				hsql.append(" and td00.gclb in(" + gclb + ")");
-				*/
-				if (!"".equals(doc_status))
-				hsql.append(" and doc.doc_status in(" + doc_status + ")");
-				ro = queryService.search(hsql.toString());
-				List<Object[]> resultList1 = new ArrayList<Object[]>();
-				while (ro.next()){
-					Td00_gcxx td00 = (Td00_gcxx)ro.get("td00");
-					Tb11_operflow tb11 = (Tb11_operflow)ro.get("tb11");
-					Tb15_docflow doc = (Tb15_docflow)ro.get("doc");
-//					tmpList.add(td00);
-				
-				List<Object> list = new ArrayList<Object>();
-				Object[] o = new Object[2];
-				
-				for (Ta08_reportfield ta08: entityList) {
-					String string = ta08.getName();
-					list.add(PropertyInject.getProperty(td00, string));
-				}
-				o[0] = list;
-				Object[] obj = new Object[3];
-				obj[0] = tb11.getName().substring(0,1);
-				obj[1] = tb11.getDisplay();
-				obj[2] = "?project_id="+tb11.getProject_id()+"&module_id="+doc.getModule_id()+"&doc_id="+doc.getDoc_id();
-//				System.out.println(obj[2]);
-				o[1] = obj;
-				resultList1.add(o);
-				}
-				for (Object[] o : resultList1) {
-					List list = (List)o[0];
-					List<String> tempList = new ArrayList<String>();
-					for (Object object : list) {
-						tempList.add(""+(object==null?"":object));
-					}
-					contentList.add(tempList);
-				}
-			}
-			
-			
-			
-			
-			List<String> titleList = new ArrayList<String>();
-			titleList.add("表单名称");
-			titleList.add("节点名称");
-			titleList.add("文档数量");
-			if(toperson){
-			titleList.add("帐号");
-			titleList.add("姓名");
-			titleList.add("电话");
-			}
-			
-			
-			sheetList.add(titleList);
-			sheetList.add(contentList);
-			sheetMap.put("文档处理统计", sheetList);
-			
-			request.setAttribute("ExcelName", "文档处理统计" );
-			request.setAttribute("sheetMap", sheetMap);
-			view = "/export/toExcelWhithList.do";
-		}
+//		if ("yes".equals(request.getParameter("toexcel"))){
+//			Map<String,List> sheetMap = new HashMap<String,List>();
+//			List sheetList = new ArrayList();
+//			List<List<String>> contentList = new ArrayList<List<String>>();
+//			for (Map map : resultList) {
+//				List<String> tmpList = new ArrayList<String>();
+//				tmpList.add(""+(map.get("bdmc")==null?"":map.get("bdmc")));
+//				tmpList.add(""+(map.get("jdmc")==null?"":map.get("jdmc")));
+//				tmpList.add(""+(map.get("wdsl")==null?"":map.get("wdsl")));
+//				if (toperson){
+//				tmpList.add(""+(map.get("zh")==null?"":map.get("zh")));
+//				tmpList.add(""+(map.get("xm")==null?"":map.get("xm")));
+//				tmpList.add(""+(map.get("dh")==null?"":map.get("dh")));
+//				}
+//				contentList.add(tmpList);
+//			}
+//			//同时将明细导出
+//			List<String> blankLine = new ArrayList<String>();
+//			blankLine.add("");
+//			List<Ta08_reportfield> entityList = (List<Ta08_reportfield>)queryService.searchList("from Ta08_reportfield where module_id=100 and showflag=1");
+//			List<String> titleList1 = new ArrayList<String>();
+//			for (Ta08_reportfield ta08 : entityList) {
+//				titleList1.add(ta08.getComments());
+//			}
+//			for (Map map : resultList) {
+//				contentList.add(blankLine);
+//				List<String> tmpList = new ArrayList<String>();
+//				String s = "";
+//				s+=("表单名称:"+(map.get("bdmc")==null?"":map.get("bdmc")));
+//				s+=(" 节点名称:"+(map.get("jdmc")==null?"":map.get("jdmc")));
+//				if (toperson){
+//					s+=(" 帐号:"+(map.get("zh")==null?"":map.get("zh")));
+//					s+=(" 姓名:"+(map.get("xm")==null?"":map.get("xm")));
+//				}
+//				s += " 明细";
+//				tmpList.add(s);
+//				contentList.add(tmpList);
+//				contentList.add(titleList1);
+//				//要具体数据
+//				hsql = hsql.delete(0, hsql.length());
+//				hsql.append("select td00,tb11,doc from Tb11_operflow tb11,Tb15_docflow doc,Ta03_user u ,Tb12_opernode tb12,Ta06_module ta06,Td00_gcxx td00");
+//				hsql
+//						.append(" where "+(toperson?"u.login_id='"+map.get("zh")+"' and":"")+"  doc.node_id in (select node_id from tb12 where node_name='"+map.get("jdmc")+"') and "+" td00.id = tb11.project_id and doc.user_id = u.id and ta06.id = doc.module_id and td00.id = doc.project_id  and doc.opernode_id = tb12.id");
+//				hsql.append(" and doc.module_id = " + bdmc_id);
+//				
+//				/*
+//				if (!"''".equals(ssdq))
+//				hsql.append(" and td00.ssdq in(" + ssdq + ")");
+//				if (!"''".equals(zydl))
+//				hsql.append(" and td00.zydl in(" + zydl + ")");
+//				if (!"''".equals(qkdl))
+//				hsql.append(" and td00.qkdl in(" + qkdl + ")");
+//				if (!"''".equals(tzlb))
+//				hsql.append(" and td00.tzlb in(" + tzlb + ")");
+//				if (!"''".equals(qkxl))
+//					hsql.append(" and td00.qkxl in(" + qkxl + ")");
+//				if (!"''".equals(zyxx))
+//					hsql.append(" and td00.zyxx in(" + zyxx + ")");
+//				if (!"''".equals(gclb))
+//				hsql.append(" and td00.gclb in(" + gclb + ")");
+//				*/
+//				if (!"".equals(doc_status))
+//				hsql.append(" and doc.doc_status in(" + doc_status + ")");
+//				ro = queryService.search(hsql.toString());
+//				List<Object[]> resultList1 = new ArrayList<Object[]>();
+//				while (ro.next()){
+//					Td00_gcxx td00 = (Td00_gcxx)ro.get("td00");
+//					Tb11_operflow tb11 = (Tb11_operflow)ro.get("tb11");
+//					Tb15_docflow doc = (Tb15_docflow)ro.get("doc");
+////					tmpList.add(td00);
+//				
+//				List<Object> list = new ArrayList<Object>();
+//				Object[] o = new Object[2];
+//				
+//				for (Ta08_reportfield ta08: entityList) {
+//					String string = ta08.getName();
+//					list.add(PropertyInject.getProperty(td00, string));
+//				}
+//				o[0] = list;
+//				Object[] obj = new Object[3];
+//				obj[0] = tb11.getName().substring(0,1);
+//				obj[1] = tb11.getDisplay();
+//				obj[2] = "?project_id="+tb11.getProject_id()+"&module_id="+doc.getModule_id()+"&doc_id="+doc.getDoc_id();
+////				System.out.println(obj[2]);
+//				o[1] = obj;
+//				resultList1.add(o);
+//				}
+//				for (Object[] o : resultList1) {
+//					List list = (List)o[0];
+//					List<String> tempList = new ArrayList<String>();
+//					for (Object object : list) {
+//						tempList.add(""+(object==null?"":object));
+//					}
+//					contentList.add(tempList);
+//				}
+//			}
+//			
+//			
+//			
+//			
+//			List<String> titleList = new ArrayList<String>();
+//			titleList.add("表单名称");
+//			titleList.add("节点名称");
+//			titleList.add("文档数量");
+//			if(toperson){
+//			titleList.add("帐号");
+//			titleList.add("姓名");
+//			titleList.add("电话");
+//			}
+//			
+//			
+//			sheetList.add(titleList);
+//			sheetList.add(contentList);
+//			sheetMap.put("文档处理统计", sheetList);
+//			
+//			request.setAttribute("ExcelName", "文档处理统计" );
+//			request.setAttribute("sheetMap", sheetMap);
+//			view = "/export/toExcelWhithList.do";
+//		}
 		// 获取搜索所需内容
 //		String searchhsql = "from Ta08_reportfield where module_id = 100 and name in ('ssdq','zydl','zyxx','qkdl','qkxl','gclb','tzlb')";
 		//100得到的是空值
-		String searchhsql = "from Ta08_reportfield where module_id = 100 ";
+		String searchhsql = "from Ta08_reportfield where module_id = 101 ";
 		List<Ta08_reportfield> searchList = (List<Ta08_reportfield>)queryService.searchList(searchhsql);
 		List<Ta06_module> bdmcList = (List<Ta06_module>)queryService.searchList("from Ta06_module where type = 1 and id like '1__' order by id");
 		modelMap.put("bdmcList",bdmcList);
