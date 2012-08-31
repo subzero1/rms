@@ -96,6 +96,19 @@ public class Login {
 				Ta01_dept dept = (Ta01_dept) tmpList.get(0);
 				user.setDept_name(dept.getName());
 			}
+			
+			hsql.delete(0, hsql.length());
+			hsql.append("select tf01.mc as wxdw ");
+			hsql.append("from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01 "); 
+			hsql.append("where ta03.id = tf04.user_id "); 
+			hsql.append("and tf04.wxdw_id = tf01.id ");
+			hsql.append("and ta03.login_id = '");
+			hsql.append(login_id);
+			hsql.append("'");
+			tmpList = queryService.searchList(hsql.toString());
+			if(tmpList != null && tmpList.size() > 0){
+				user.setDept_name((String)tmpList.get(0));
+			}
 		}
 		tmpList.clear();
 
