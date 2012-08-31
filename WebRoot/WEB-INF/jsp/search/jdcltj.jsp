@@ -20,8 +20,7 @@ function open(zh,node_name){
 		var ps = main_window.getPageRowSize();
 		document.form3.target = "pop_ifrm_blankpageRowSize"+ps;
 	}
-	*/
-	alert("sfsfs");
+	*/ 
 	document.getElementById("zh").value=zh;
 	document.getElementById("node_name").value=node_name;
 	setTimeout("document.form3.submit()", 500);
@@ -48,6 +47,9 @@ function open(zh,node_name){
 		}
 	}
 }
+
+
+ 
 
 </script>
 
@@ -176,48 +178,6 @@ function open(zh,node_name){
 		</div>
 	</div>
 </div>
-
-<form name="form2" id="form2" action="jdcltj.do" method="post">
-	<input type="hidden" name="pageRowSize" value="${pageRowSize}" />
-	<input type="hidden" id="page" name="page" value="${page}" />
-	<input type="hidden" id="totalPages" name="totalPages"
-		value="${totalPages}" />
-	<input type="hidden" id="totalRows" name="totalRows"
-		value="${totalRows}" />
-
-	<input type="hidden" id="bdmc_id" name="bdmc_id"
-		value="${param.bdmc_id}" />
-	<input type="hidden" name="ssdq" value="${ssdq }" />
-	<input type="hidden" name="zydl" value="${zydl }" />
-	<input type="hidden" name="qkdl" value="${qkdl }" />
-	<input type="hidden" name="tzlb" value="${tzlb }" />
-	<input type="hidden" name="gclb" value="${gclb }" />
-	<input type="hidden" name="zyxx" value="${zyxx }" />
-	<input type="hidden" name="qkxl" value="${qkxl }" />
-	<input type="hidden" name="doc_status" value="${doc_status }" />
-	<input type="hidden" name="toperson" value="${param.toperson }" />
-
-	<input type="hidden" name="toexcel" id="toexcel" value="" />
-</form>
-
-<form name="form3" id="form3" action="search/wdclqk.do" method="post">
-	<input type="hidden" name="pageRowSize" value="${pageRowSize}" />
-	<input type="hidden" id="bdmc_id" name="bdmc_id"
-		value="${param.bdmc_id}" />
-	<input type="hidden" name="ssdq" value="${ssdq }" />
-	<input type="hidden" name="zydl" value="${zydl }" />
-	<input type="hidden" name="qkdl" value="${qkdl }" />
-	<input type="hidden" name="tzlb" value="${tzlb }" />
-	<input type="hidden" name="gclb" value="${gclb }" />
-	<input type="hidden" name="zyxx" value="${zyxx }" />
-	<input type="hidden" name="qkxl" value="${qkxl }" />
-	<input type="hidden" name="doc_status" value="${doc_status }" />
-	<input type="hidden" name="toperson" value="${param.toperson }" />
-	<input type="hidden" id="zh" name="zh" value="" />
-	<input type="hidden" id="node_name" name="node_name" value="" />
-
-</form>
-
-
+ 
 
 <iframe style="height: 0px; width: 0px;" name="template"></iframe>

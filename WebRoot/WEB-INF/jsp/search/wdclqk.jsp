@@ -127,7 +127,7 @@ function open(zh,node_name){
 						<td align="center">
 							<c:if test="${obj[1] != null}">
 								<a href="showTree.do${obj[1][2]}" target="navTab" rel="showTree"
-									title="流程图"><img border="0" src="Images/node.gif"
+									title="流程图[${obj[1][3]}]"><img border="0" src="Images/node.gif"
 										style="cursor: pointer" /> </a>
 							</c:if>
 						</td>

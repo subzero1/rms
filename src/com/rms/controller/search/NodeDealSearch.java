@@ -268,12 +268,13 @@ public class NodeDealSearch {
 		// 是否具体到人
 		boolean toperson = "yes".equals(convertUtil.toString(request
 				.getParameter("toperson"), "no"));
+		
 		// 分页条件
 		Integer page = convertUtil.toInteger(request.getParameter("page"), 1);
 		//Integer pageRowSize = convertUtil.toInteger(request
 		//		.getAttribute("pageRowSize"),convertUtil.toInteger(request
 			//			.getParameter("pageRowSize")));
-		Integer pageRowSize = 18;
+		Integer pageRowSize = 2;
 		int totalPages = 1;
 		int totalRows = 0; 
 		// 获取结果
