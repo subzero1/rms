@@ -13,7 +13,6 @@
 	</table>
 	<table width="165mm">
 		<tr height="10mm">
-	    <tr height="10mm">
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">发文部门</p></td>
 			<td border="1px solid black" colspan="3"><p font="Simsun" font-size="10pt" color="black" padding-left="8px">${td03_jlzj.fwbm}</p></td>
 			<td border="1px solid black"><p font="Simsun" font-size="10pt" color="black" align="center">表单编号</p></td>
