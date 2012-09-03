@@ -34,11 +34,12 @@ import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.RegExp;
 import com.netsky.base.controller.OperFile;
+import com.netsky.base.dataObjects.Tz06_help;
 
 /**
  * @description: 知识库管理
- * @class name:com.crht.controller.business.Repository
- * @author lee.xiangyu Apr. 2, 2011
+ * @class name:com.netsky.base.controller.help.Help
+ * @author lee.xiangyu Sep. 2, 2012
  */
 @Controller
 public class Help  {
@@ -144,18 +145,18 @@ public class Help  {
 	 * @return ModelAndView
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/business/repositoryEdit.do")
+	@RequestMapping("/help/helpEdit.do")
 	public ModelAndView repositoryEdit(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 
 		// 数据库相关变量
-//		QueryBuilder queryBuilder = null;
-//		StringBuffer sql = new StringBuffer("");
+		QueryBuilder queryBuilder = null;
+		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
-//		Class<?> clazz = null;
+		Class<?> clazz = null;
 //
 //		// 查询变量
-//		Long id = convertUtil.toLong(request.getParameter("id"), new Long(-1));
+		Long id = convertUtil.toLong(request.getParameter("id"), new Long(-1));
 //
 //		// 购建知识库分类下拉列表
 //		List<?> typeList = null;
@@ -167,15 +168,15 @@ public class Help  {
 //		modelMap.put("typeList", typeList);
 //
 //		// 当前时间
-//		modelMap.put("now", DateGetUtil.getCurTime());
-//
-//		// 获取知识库对象
-//		B07_repository b07 = null;
-//		clazz = B07_repository.class;
-//		b07 = (B07_repository) dao.getObject(clazz, id);
-//		modelMap.put("repository", b07);
+		modelMap.put("now", DateGetUtil.getCurTime());
 
-		return new ModelAndView("/jsp/business/repositoryEdit.jsp", modelMap);
+		// 获取知识库对象
+		Tz06_help tz06 = null;
+		clazz = Tz06_help.class;
+		tz06 = (Tz06_help) dao.getObject(clazz, id);
+		modelMap.put("help", tz06);
+
+		return new ModelAndView("/WEB-INF/jsp/help/helpEdit.jsp", modelMap);
 	}
 
 	/**
@@ -187,7 +188,7 @@ public class Help  {
 	 * @throws Exception
 	 *             ModelAndView
 	 */
-	@RequestMapping("/business/ajaxRepositoryDel.do")
+	@RequestMapping("/help/ajaxHelpDel.do")
 	public void ajaxRepositoryDel(HttpServletRequest request,
 			HttpServletResponse response) {
 		response.setCharacterEncoding(request.getCharacterEncoding());
@@ -234,7 +235,7 @@ public class Help  {
 	 * @throws Exception
 	 *             ModelAndView
 	 */
-	@RequestMapping("/business/ajaxRepositorySave.do")
+	@RequestMapping("/help/ajaxHelpSave.do")
 	public void ajaxRepositorySave(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		request.setCharacterEncoding("UTF-8");
@@ -328,7 +329,7 @@ public class Help  {
 	 * @throws Exception
 	 *             ModelAndView
 	 */
-	@RequestMapping("/business/ajaxRepDetailSave.do")
+	@RequestMapping("/help/ajaxRepDetailSave.do")
 	public void ajaxRepDetailSave(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		request.setCharacterEncoding("UTF-8");
@@ -466,7 +467,7 @@ public class Help  {
 	 * @param session
 	 * @return ModelAndView
 	 */
-	@RequestMapping("/business/repositoryDisp.do")
+	@RequestMapping("/help/helpDisp.do")
 	public ModelAndView repositoryDisp(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 

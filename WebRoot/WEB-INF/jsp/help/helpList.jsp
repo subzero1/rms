@@ -31,8 +31,8 @@ function setType()
 	$('#type').val(type_list);
 }
 function openDialog(butt){
-	var $form = $("#repositoryDelForm");
-	if($("#repository_tbody input:checked").size()>0){
+	var $form = $("#helpDelForm");
+	if($("#help_tbody input:checked").size()>0){
 		$.pdialog.open('business/billBack.do', '', '票据收回', {mask:true,width:480,height:350,data: $form.serializeArray()});
 	} else {
 	   alertMsg.error('请先选择待收回票据！')
@@ -40,10 +40,10 @@ function openDialog(butt){
 }
 function ajaxDelAll()
 {
-	if($("#repository_tbody input:checked").size()>0){
+	if($("#help_tbody input:checked").size()>0){
 		alertMsg.confirm("您确认删除吗！", {
             okCall: function(){
-			var $form = $("#repositoryDelForm");
+			var $form = $("#helpDelForm");
 			$.post("business/ajaxRepDelAll.do",$form.serializeArray(),function(){$("#form1").submit();},"json");
 			
             }
@@ -59,11 +59,11 @@ function isAll()
 	//alert($("#ckall").attr("checked"));
 	if($("#ckall").attr("checked")==true)
 	{
-		$("#repository_tbody input").attr("checked","checked");
+		$("#help_tbody input").attr("checked","checked");
 	}
 	else
 	{
-		$("#repository_tbody input").removeAttr("checked");
+		$("#help_tbody input").removeAttr("checked");
 	}
 }
 </script>
@@ -97,25 +97,25 @@ function isAll()
 		</form>
 	</div>
 	<div class="pageContent">
-	<form id="repositoryDelForm" onsubmit="return navTabCheckbox(this);" action="business/ajaxRepDelAll.do" method="post">
+	<form id="helpDelForm" onsubmit="return navTabCheckbox(this);" action="help/ajaxHelpDelAll.do" method="post">
 		<div class="panelBar">
 			<ul class="toolBar">
 			<li><a class="delete" href="javascript:;" onclick="ajaxDelAll();"><span>删除所选</span> </a>
 				</li>
 				<li>
-					<a class="add" href="business/repositoryEdit.do" target="navTab"
-						rel="repositoryEdit" title="添加知识库信息"><span>添加</span> </a>
+					<a class="add" href="help/helpEdit.do" target="navTab"
+						rel="helpEdit" title="添加知识库信息"><span>添加</span> </a>
 				</li>
 				<li>
 					<a class="edit"
-						href="business/repositoryEdit.do?id={repository_id}"
-						target="navTab" rel="repositoryEdit" title="知识库信息修改"><span>修改</span>
+						href="help/helpEdit.do?id={help_id}"
+						target="navTab" rel="helpEdit" title="在线帮助信息修改"><span>修改</span>
 					</a>
 				</li>
 				<li>
 					<a class="edit"
-						href="business/repositoryDisp.do?id={repository_id}"
-						target="navTab" rel="repositoryDisp" title="知识库信息查看"><span>查看</span>
+						href="help/helpDisp.do?id={help_id}"
+						target="navTab" rel="helpDisp" title="在线帮助信息查看"><span>查看</span>
 					</a>
 				</li>
 				<li class="line">
@@ -144,19 +144,19 @@ function isAll()
 			</thead>
 			<tbody id="help_tbody">
 				<c:forEach var="i" begin="0" end="${numPerPage}">
-					<tr target="help_id" rel="${repositoryList[i].id}">
-						<td><c:if test="${not empty repositoryList[i].title}"><input type="checkbox"  name="help_id" value="${helpList[i].id}"></c:if></td>
+					<tr target="help_id" rel="${helpList[i].id}">
+						<td><c:if test="${not empty helpList[i].title}"><input type="checkbox"  name="help_id" value="${helpList[i].id}"></c:if></td>
 						<td>
-							${repositoryList[i].title }
+							${helpList[i].title }
 						</td>
 						<td>
-							${repositoryList[i].keys }&nbsp;
+							${helpList[i].keys }&nbsp;
 						</td>
 						<td>
-							${repositoryList[i].recordor }
+							${helpList[i].recordor }
 						</td>
 						<td>
-							<fmt:formatDate value="${repositoryList[i].record_date }" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${helpList[i].record_date }" pattern="yyyy-MM-dd" />
 						</td>
 						<td>&nbsp;</td>
 					</tr>
