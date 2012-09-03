@@ -85,30 +85,8 @@ function isAll()
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>审核状态：</td>
-						<td><crht:htmlSelect name="check_status" id="check_status" objectForOption="statusList" extend="" extendPrefix="true"
-								value="${param.check_status}" /></td>
-						<td>标题查询：</td>
+						<td>标题：</td>
 						<td><input name="keywords" value="${param.keywords}" type="text" /></td>
-						<td>故障现象查询：</td>
-						<td><input name="question" value="${param.question}" type="text" size="40"/></td>
-					</tr>
-					<tr>
-						<td>分类查询：</td>
-						<td colspan="5">
-							<input type="text" name="type" id="type" size="50" readOnly value="${param.type}" onclick="javascript:fbtn2()" onDblclick="javascript:fbtn2(1)">
-						</td>
-					</tr>
-					<tr id="tr_type" style="display:none">
-						<td colspan="6"><c:set var="counter" value="0"/>
-							<c:forEach var="t" items="${typeList}">
-								<c:set var="counter" value="${counter + 1}"/>
-								<input type="checkbox" name="t_type" id="t_type" value="${t.name }" onclick="javascript:setType()" >${t.name}&nbsp;
-								<c:if test="${counter == 5}">
-									<br><c:set var="counter" value="0"/>
-								</c:if>
-							</c:forEach>
-						</td>
 					</tr>
 				</table>
 				<div class="subBar">
@@ -131,13 +109,6 @@ function isAll()
 					<a class="add" href="business/repositoryEdit.do" target="navTab"
 						rel="repositoryEdit" title="添加知识库信息"><span>添加</span> </a>
 				</li>
-				<!--
-				<li>
-					<a class="delete"
-						href="business/ajaxRepositoryDel.do?id={repository_id}"
-						target="navTabTodo" title="确认删除吗？"><span>删除</span> </a>
-				</li>
-				 -->
 				<li>
 					<a class="edit"
 						href="business/repositoryEdit.do?id={repository_id}"
@@ -159,53 +130,38 @@ function isAll()
 			<thead>
 				<tr>
 				<th style="width:30px;"><input  title="全选/全不选" type="checkbox" id="ckall" onclick="isAll();"/> </th>
-					<c:if test="${param.check_status == 1}">
-						<th style="width: 50px;" orderField="code">
-							编号
-						</th>
-					</c:if>
-					<th style="width: 180px;" orderField="key">
+					<th  style="width: 250px;" orderField="title">
 						标题
 					</th>
-					<th orderField="question">
-						故障现象
+					<th style="width: 180px;" orderField="keys">
+						关键字
 					</th>
-					<th style="width: 180px;" orderField="type">
-						分类
-					</th>
-					<th style="width: 60px;" orderField="creator">
+					<th style="width: 80px;" orderField="recordor">
 						创建人
 					</th>
-					<th style="width: 90px;" orderField="create_time">
+					<th style="width: 100px;" orderField="record_date">
 						创建时间
 					</th>
+					<th>&nbsp;</th>
 				</tr>
 			</thead>
-			<tbody id="repository_tbody">
+			<tbody id="help_tbody">
 				<c:forEach var="i" begin="0" end="${numPerPage}">
-					<tr target="repository_id" rel="${repositoryList[i].id}">
-					<td><c:if test="${not empty repositoryList[i]}"><input type="checkbox"  name="repository_id" value="${repositoryList[i].id}"></c:if></td>
-						<c:if test="${param.check_status == 1}">
-							<td style="text-align:center;">
-								${repositoryList[i].code }
-							</td>
-						</c:if>
+					<tr target="help_id" rel="${repositoryList[i].id}">
+						<td><c:if test="${not empty repositoryList[i].title}"><input type="checkbox"  name="help_id" value="${helpList[i].id}"></c:if></td>
 						<td>
-							${repositoryList[i].key }
+							${repositoryList[i].title }
 						</td>
 						<td>
-							${repositoryList[i].question }&nbsp;
+							${repositoryList[i].keys }&nbsp;
 						</td>
 						<td>
-							${repositoryList[i].type }
+							${repositoryList[i].recordor }
 						</td>
 						<td>
-							${repositoryList[i].creator }
+							<fmt:formatDate value="${repositoryList[i].record_date }" pattern="yyyy-MM-dd" />
 						</td>
-						<td>
-							<fmt:formatDate value="${repositoryList[i].create_time }"
-								pattern="yyyy-MM-dd" />
-						</td>
+						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
 			</tbody>
