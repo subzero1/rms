@@ -6,19 +6,6 @@
 <script type="text/javascript">
 <!--
 
-function aa(obj){
-alert('xx');
-	var	$obj = $(obj);
-	alert($obj.length);
-	var $span = $obj.find(".span");
-	alert($span.length);
-	//var $span=$($(obj) " > span");
-	//alert($span.length);
-	//$($span).each(function(i){
-		//$this.css("display","block");		
-	//});
-	$span.css("display","block");		
-}
 function fbtn1()
 {
 	if($("#btn1").attr('src') == 'Images/choosebox.gif'){
@@ -68,10 +55,6 @@ function repositorySave(butt){
 	$input = $("#b07_key", navTab.getCurrentPanel());
 	$input.focus();
 
-	//var tempv=$('#b07_solution').val();
-	//if(tempv.indexOf("id")==-1)
-	//$('#b07_solution').val(tempv.replace("table","table id='tt' "));
-	
 	//form提交
 	$form = $(butt).closest("form");
 	$form.submit();
@@ -83,8 +66,6 @@ function cancelEdit(){
 	$input.focus();
 	navTab.closeCurrentTab();
 }
-
-
 //-->
 </script>
 <style>
@@ -98,70 +79,31 @@ function cancelEdit(){
 
 	<div class="panel" style="width: 96%;; float: left; margin: 10px">
 		<h1>
-			知识库信息维护
+			在线帮助维护
 		</h1>
 		<div>
-			<form method="post" action="business/ajaxRepositorySave.do"
+			<form method="post" action="help/ajaxHelpSave.do"
 				class="pageForm required-validate"
 				onsubmit="return validateCallback(this,navTabAjaxDone)">
-				<input type="hidden" id="tableInfomation" name="tableInfomation"
-					value="noFatherTable:com.crht.dataObjects.base.B07_repository" keep="true" />
-				<input type="hidden" name="B07_repository.ID"
-					value="<c:out value="${repository.id}" default="${param.id}"/>" keep="true" />
+				<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Tz06_help" keep="true" />
+				<input type="hidden" name="Tz06_help.ID" value="<c:out value="${repository.id}" default="${param.id}"/>" keep="true" />
 				<input type="hidden" name="_callbackType" value="forward" keep="true" />
-				<input type="hidden" name="_forwardUrl"
-					value="business/repositoryList.do?repository_id=${repository.id}" keep="true" />
+				<input type="hidden" name="_forwardUrl" value="help/helpList.do?help_id=${tz06.id}" keep="true" />
 				<input type="hidden" name="_navTabId" value="templateList" keep="true" />
-
-				<input type="hidden" id="b07_creator" name="B07_repository.CREATOR" id="B07_repository.CREATOR" value="<c:out value="${repository.creator }" default="${user.name }"/>" />
-				<input type="hidden" id="b07_create_time" name="B07_repository.CREATE_TIME" id="B07_repository.CREATE_TIME" value="<c:choose><c:when test="${empty repository.create_time}">${now}</c:when><c:otherwise><fmt:formatDate value="${repository.create_time}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>" />
+				<input type="hidden" name="Tz06_help.RECORDOR" id="Tz06_help.RECORDOR" value="<c:out value="${tz06.recordor }" default="${user.name }"/>" />
+				<input type="hidden" name="Tz06_help.RECORD_DATE" id="Tz06_help.RECORD_DATE" value="<c:choose><c:when test="${empty repository.record_date}">${now}</c:when><c:otherwise><fmt:formatDate value="${tz06.record_date}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>" />
 				<div class="pageFormContent" layoutH="138">
 					<div class="unit">
 						<label>
 							标题：
 						</label>
-						<input id="b07_key" type="text" name="B07_repository.KEY" value="${repository.key}"	class="required" size="87" />
+						<input id="Tz06_help.TITLE" type="text" name="Tz06_help.TITLE" value="${tz06.title}" class="required" size="87" />
 					</div>
 					<div class="unit">
 						<label>
-							分类：
+							关键字：
 						</label>
-						<input type="text" id="b07_type" name="B07_repository.TYPE" readOnly size="78" value="${repository.type}"  />
-						<img onclick="javascript:fbtn1()" onmouseover="javascript:fbtn1()" id="btn1" name="btn1" style="cursor:hand;" src="Images/choosebox.gif" />
-						<br>
-						<fieldset id="fieldset1" style="width: 500px; height: 0px; overflow: auto;margin-left:89px;" >
-							<c:forEach items="${typeList}" var="t" varStatus="status">
-								<input onclick="setType()" type="checkbox" name="repository_TYPE" id="repository_TYPE" value="${t.name }"
-									 />${t.name }
-									<c:if test="${status.count%5==0}">
-									<br />
-								</c:if>
-							</c:forEach>
-						</fieldset>
-						<br>
-						<label>
-							审核状态：
-						</label>
-						<c:if test="${repository.status == ''&& not empty repository}">
-							<input type="radio" name="B07.STATUS" checked value="" />未审核
-						</c:if>
-						<input type="radio" name="B07.STATUS" <c:if test="${repository.status==1||empty repository}">checked</c:if> value="1" />
-						通过
-						<c:if test="${repository.status != 1}">
-							<input type="radio" name="B07.STATUS" <c:if test="${repository.status==0}">checked</c:if> value="0" />
-							未通过
-						</c:if>
-						<input type="hidden" id="b07_status" name="B07_repository.STATUS" value="${repository.status}" />
-						<c:if test="${repository.status==1}">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<font color="red">知识库编号：【${repository.code}】</font>
-						</c:if>
-					</div>
-					<div class="unit">
-						<label>
-							故障现象：
-						</label>
-						<textarea id="b07_question" name="B07_repository.QUESTION" rows="5" cols="85">${repository.question}</textarea>
+						<textarea id="Tz06_help.KEYS" name="Tz06_help.KEYS" rows="5" cols="85">${tz06.keys}</textarea>
 					</div>
 					<div style="clear:none">
 						<label>
