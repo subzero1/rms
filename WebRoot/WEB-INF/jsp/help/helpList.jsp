@@ -44,7 +44,7 @@ function ajaxDelAll()
 		alertMsg.confirm("您确认删除吗！", {
             okCall: function(){
 			var $form = $("#helpDelForm");
-			$.post("business/ajaxRepDelAll.do",$form.serializeArray(),function(){$("#form1").submit();},"json");
+			$.post("help/ajaxRepDelAll.do",$form.serializeArray(),function(){$("#form1").submit();},"json");
 			
             }
 
@@ -100,8 +100,7 @@ function isAll()
 	<form id="helpDelForm" onsubmit="return navTabCheckbox(this);" action="help/ajaxHelpDelAll.do" method="post">
 		<div class="panelBar">
 			<ul class="toolBar">
-			<li><a class="delete" href="javascript:;" onclick="ajaxDelAll();"><span>删除所选</span> </a>
-				</li>
+				<!-- <li><a class="delete" href="javascript:;" onclick="ajaxDelAll();"><span>删除所选</span> </a></li> -->
 				<li>
 					<a class="add" href="help/helpEdit.do" target="navTab"
 						rel="helpEdit" title="添加知识库信息"><span>添加</span> </a>
@@ -121,12 +120,13 @@ function isAll()
 				<li class="line">
 					line
 				</li>
+				<li><a class="delete" href="help/ajaxHelpDel.do?id={help_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li class="line">line</li>
 			</ul>
 		</div>
-		<table class="table" width="100%" layouth="170">
+		<table class="table" width="100%" layouth="140">
 			<thead>
 				<tr>
-				<th style="width:30px;"><input  title="全选/全不选" type="checkbox" id="ckall" onclick="isAll();"/> </th>
 					<th  style="width: 250px;" orderField="title">
 						标题
 					</th>
@@ -145,7 +145,6 @@ function isAll()
 			<tbody id="help_tbody">
 				<c:forEach var="i" begin="0" end="${numPerPage}">
 					<tr target="help_id" rel="${helpList[i].id}">
-						<td><c:if test="${not empty helpList[i].title}"><input type="checkbox"  name="help_id" value="${helpList[i].id}"></c:if></td>
 						<td>
 							${helpList[i].title }
 						</td>
