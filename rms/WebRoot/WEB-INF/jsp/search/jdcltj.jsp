@@ -131,7 +131,7 @@ function open(zh,node_name){
 						</td>
 						<td align="center">
 							<a
-								href="search/wdclqk.do?pageRowSize=${pageRowSize}&bdmc_id=${param.bdmc_id}&doc_status=${doc_status }&toperson=${param.toperson }"
+								href="search/wdclqk.do?pageRowSize=${pageRowSize}&bdmc_id=${params[0]}&doc_status=${doc_status }&toperson=${param.toperson }"
 								target="navTab" rel="jdcltj" title="待处理文档统计" data="{node_name:'${obj["jdmc"] }'}">${obj["wdsl"] }</a>
 						</td>
 						<td align="center">

@@ -47,14 +47,17 @@ function open(zh,node_name){
 			else return null;
 		}
 	}
-}
-
+} 
 </script>
 
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="pageNum" value="${page}" />
 	<input type="hidden" name="numPerPage" value="${pageRowSize}" />
 	<input type="hidden" name="orderField" value="${orderField}" />
+	<input type="hidden" name="bdmc_id" id="bdmc_id" value="${params[0]}"/>
+	<input type="hidden" name="doc_status" id="doc_status" value="${params[1]}"/>
+	<input type="hidden" name="node_name" id="node_name" value="${params[2] }"/>
+	<input type="hidden" name="topersion" value=""/>
 	<input type="hidden" id="module_id" name="module_id"
 		value="${param.module_id}" />
 	<c:forEach var="obj" items="${searchField}">
