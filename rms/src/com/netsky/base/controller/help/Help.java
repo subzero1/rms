@@ -35,6 +35,7 @@ import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.RegExp;
 import com.netsky.base.controller.OperFile;
 import com.netsky.base.dataObjects.Tz06_help;
+import com.netsky.base.dataObjects.Ta03_user;
 
 /**
  * @description: 知识库管理
@@ -127,12 +128,12 @@ public class Help  {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderType", orderType);
 
-		List<Object> repositoryList = new LinkedList<Object>();
+		List<Object> helpList = new LinkedList<Object>();
 		while (ro.next()) {
-			repositoryList.add(ro.get("obj"));
+			helpList.add(ro.get("obj"));
 		}
 
-		modelMap.put("repositoryList", repositoryList);
+		modelMap.put("helpList", helpList);
 		return new ModelAndView("/WEB-INF/jsp/help/helpList.jsp",modelMap);
 	}
 
@@ -150,31 +151,20 @@ public class Help  {
 			HttpServletResponse response, HttpSession session) {
 
 		// 数据库相关变量
-		QueryBuilder queryBuilder = null;
-		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
 		Class<?> clazz = null;
-//
-//		// 查询变量
+
+		// 查询变量
 		Long id = convertUtil.toLong(request.getParameter("id"), new Long(-1));
-//
-//		// 购建知识库分类下拉列表
-//		List<?> typeList = null;
-//		clazz = B05_property.class;
-//		queryBuilder = new HibernateQueryBuilder(clazz);
-//		queryBuilder.eq("type", "知识库分类");
-//		queryBuilder.addOrderBy(Order.asc("id"));
-//		typeList = queryService.searchList(queryBuilder);
-//		modelMap.put("typeList", typeList);
-//
-//		// 当前时间
+
+		// 当前时间
 		modelMap.put("now", DateGetUtil.getCurTime());
 
 		// 获取知识库对象
 		Tz06_help tz06 = null;
 		clazz = Tz06_help.class;
 		tz06 = (Tz06_help) dao.getObject(clazz, id);
-		modelMap.put("help", tz06);
+		modelMap.put("tz06", tz06);
 
 		return new ModelAndView("/WEB-INF/jsp/help/helpEdit.jsp", modelMap);
 	}
@@ -243,76 +233,53 @@ public class Help  {
 		PrintWriter out = null;
 		out = response.getWriter();
 		StringBuffer hsql = new StringBuffer("");
-
-		//S02_user user = (S02_user) session.getAttribute("user");
+		Ta03_user user = (Ta03_user) session.getAttribute("user");
 
 		try {
+			if (user != null) {
+				Long id = convertUtil.toLong(request.getParameter("Tz06_help.ID"), -1L);
+				String title = request.getParameter("Tz06_help.TITLE");
+				String keys = request.getParameter("Tz06_help.KEYS");
+				String content = request.getParameter("Tz06_help.CONTENT");
+				String recordor = request.getParameter("Tz06_help.RECORDOR");
+				String record_date = request.getParameter("Tz06_help.RECORD_DATE");
+				Transaction tx = null;
 
-//			if (user != null) {
-//
-//				Long id = convertUtil.toLong(request
-//						.getParameter("B07_repository.ID"), -1L);
-//				String key = request.getParameter("B07_repository.KEY");
-//				String type = request.getParameter("B07_repository.TYPE");
-//				String status = request.getParameter("B07.STATUS");
-//				String question = request
-//						.getParameter("B07_repository.QUESTION");
-//				String creator = request.getParameter("B07_repository.CREATOR");
-//				String create_time = request
-//						.getParameter("B07_repository.CREATE_TIME");
-//				Transaction tx = null;
-//
-//				/**
-//				 * 保存知识库
-//				 */
-//				B07_repository b07 = (B07_repository) dao.getObject(
-//						B07_repository.class, id);
-//				if (b07 == null) {
-//					b07 = new B07_repository();
-//				}
-//				b07.setKey(key);
-//				b07.setQuestion(question);
-//				b07.setStatus(convertUtil.toInteger(status));
-//				b07.setType(type);
-//				b07.setCreate_time(new SimpleDateFormat("yyyy-MM-dd")
-//						.parse(create_time));
-//				b07.setCreator(creator);
-//
-//				if (b07.getStatus() == 1 && b07.getCode() == null) {
-//
-//					/**
-//					 * 生成知识库编号
-//					 */
-//					String code = null;
-//					hsql.append("select max(code) ");
-//					hsql.append("from B07_repository ");
-//					List list = dao.search(hsql.toString());
-//					String max_code = (String) list.get(0);
-//
-//					if (max_code == null) {
-//						code = "0001";
-//					} else {
-//						Long tmpSerialCode = new Long(max_code) + 1;
-//						code = StringFormatUtil.getCompleteString(tmpSerialCode
-//								.toString(), 4);
-//					}
-//					b07.setCode(code);
-//				}
-//				dao.saveObject(b07);
-//				Long b07_id = b07.getId();
-//
-//				out
-//						.print("{\"statusCode\":\"200\",\"message\":\"保存知识库信息成功\",\"navTabId\":\"\",\"callbackType\":\"forward\",\"forwardUrl\":\"business/repositoryEdit.do?id="
-//								+ b07_id + "\"}");
-//			} else {
-//				out
-//						.print("{\"statusCode\":\"301\",\"message\":\"会话超时，重新登录\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
-//			}
+				/**
+				 * 保存知识库
+				 */
+				Long tz06_id = null;
+				Tz06_help tz06 = (Tz06_help) dao.getObject(Tz06_help.class, id);
+				if (tz06 == null) {
+					tz06 = new Tz06_help();
+				}
+				tz06.setTitle(title);
+				tz06.setKeys(keys);
+				tz06.setRecord_date(new SimpleDateFormat("yyyy-MM-dd").parse(record_date));
+				tz06.setRecordor(recordor);
+				
+				/*
+				 * 处理特殊字符
+				 */
+				content = content.replaceAll("</p><p\\s*[^>]*>", "<br>");// 回车
+				content = content.replaceAll("</p>", "");// 分段
+				content = content.replaceAll("<p\\s*[^>]*>", "");// 分段
+				content = content.replaceAll("<\\s*a\\s+[^>]*>", "");// 链接
+				content = content.replaceAll("<a>", "");// 链接
+				content = content.replaceAll("</a>", "");// 链接
+				
+				tz06.setContent(content);
+				dao.saveObject(tz06);
+				tz06_id = tz06.getId();
+
+				out.print("{\"statusCode\":\"200\",\"message\":\"保存在线帮助成功\",\"navTabId\":\"\",\"callbackType\":\"forward\",\"forwardUrl\":\"help/helpEdit.do?id="+ tz06_id + "\"}");
+			} else {
+				out.print("{\"statusCode\":\"301\",\"message\":\"会话超时，重新登录\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			out
-					.print("{\"statusCode\":\"300\",\"message\":\"保存知识库信息失败\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
+			out.print("{\"statusCode\":\"300\",\"message\":\"保存在线帮助失败\",\"navTabId\":\"\",\"callbackType\":\"\",\"forwardUrl\":\"\"}");
 		} finally {
 			// session.flush();
 			// tx.commit();
@@ -471,23 +438,22 @@ public class Help  {
 	public ModelAndView repositoryDisp(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 
-//		// 数据库相关变量
-//		QueryBuilder queryBuilder = null;
-//		StringBuffer sql = new StringBuffer("");
-//		ModelMap modelMap = new ModelMap();
-//		Class<?> clazz = null;
-//
-//		// 查询变量
-//		Long id = convertUtil.toLong(request.getParameter("id"), new Long(-1));
-//
-//		// 获取知识库对象
-//		B07_repository b07 = null;
-//		clazz = B07_repository.class;
-//		b07 = (B07_repository) dao.getObject(clazz, id);
-//		modelMap.put("repository", b07);
+		// 数据库相关变量
+		QueryBuilder queryBuilder = null;
+		StringBuffer sql = new StringBuffer("");
+		ModelMap modelMap = new ModelMap();
+		Class<?> clazz = null;
 
-		//return new ModelAndView("/jsp/business/repositoryDisp.jsp", modelMap);
-		return null;
+		// 查询变量
+		Long id = convertUtil.toLong(request.getParameter("id"), new Long(-1));
+
+		// 获取知识库对象
+		Tz06_help tz06 = null;
+		clazz = Tz06_help.class;
+		tz06 = (Tz06_help) dao.getObject(clazz, id);
+		modelMap.put("tz06", tz06);
+
+		return new ModelAndView("/WEB-INF/jsp/help/helpDisp.jsp", modelMap);
 	}
 
 	

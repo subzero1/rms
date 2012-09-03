@@ -63,9 +63,9 @@ function helpSave(butt){
 						<div class="unit">
 							<textarea class="editor" id="tz06_content" name="Tz06_help.CONTENT" rows="17"
 							cols="80" tools="simple" upLinkUrl="upload.do"
-							upLinkExt="zip,rar,txt" upImgUrl="help/ajaxXhEditorUpload.do"
+							upLinkExt="zip,rar,txt" upImgUrl="ajaxXhEditorUpload.do"
 							upImgExt="jpg,jpeg,gif,png" upFlashUrl="upload.do"
-							upFlashExt="swf" upMediaUrl="upload.do" upMediaExt:"avi">${repDetail.remark}</textarea>
+							upFlashExt="swf" upMediaUrl="upload.do" upMediaExt:"avi">${tz06.content}</textarea>
 						</div>
 					</div>
 					<div class="divider"></div>
