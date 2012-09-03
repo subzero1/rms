@@ -74,7 +74,7 @@ public class Help  {
 	 * @return ModelAndView
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/business/repositoryList.do")
+	@RequestMapping("/help/helpList.do")
 	public ModelAndView repositoryList(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 
@@ -87,99 +87,36 @@ public class Help  {
 		Integer pageNumShown = 0;
 
 		// 排序变量
-		String orderField = convertUtil.toString(request
-				.getParameter("orderField"), "id");
-		String orderType = convertUtil.toString(request
-				.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		String orderType = convertUtil.toString(request.getParameter("orderDirection"), "asc");
 
 		// 查询变量
-		String check_status = convertUtil.toString(request
-				.getParameter("check_status"), "-1");
-		String keywords = convertUtil.toString(
-				request.getParameter("keywords"), "");
-		String question = convertUtil.toString(
-				request.getParameter("question"), "");
-		String type = convertUtil.toString(request.getParameter("type"), "");
-		String[] types = null;
-		if (!type.equals("")) {
-			types = type.split(",");
-		}
-
-		// 显示变量
-		String quote = convertUtil.toString(request.getParameter("quote"), "");
+		String keywords = convertUtil.toString(request.getParameter("keywords"), "");
 
 		// 数据库相关变量
-		QueryBuilder queryBuilder = null;
 		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
-		Class<?> clazz = null;
 
-		// 购建审核状态下拉列表
-		List<Object> statusList = new LinkedList<Object>();
-		Properties p = new Properties();
-		p.setProperty("show", "未审核");
-		p.setProperty("value", "");
-		statusList.add(p);
-		p = new Properties();
-		p.setProperty("show", "审核通过");
-		p.setProperty("value", "1");
-		statusList.add(p);
-		p = new Properties();
-		p.setProperty("show", "审核未通过");
-		p.setProperty("value", "0");
-		statusList.add(p);
-		modelMap.put("statusList", statusList);
-
-		// 获得知识库列表
-		//clazz = B07_repository.class;
+		// 获得在线帮助列表
 		sql.delete(0, sql.length());
-		sql.append("from B07_repository obj ");
+		sql.append("from Tz06_help obj ");
 		sql.append("where 1 = 1 ");
-
-		// 审核状态，引用时只显示审核通过的
-		if (!quote.equals("")) {
-			sql.append("and status = 1 ");
-		} else if (!check_status.equals("-1")) {
-			sql.append("and status = ");
-			sql.append(check_status);
-			sql.append(" ");
-		} else if (check_status.equals("-1")) {
-			sql.append("and (status = -1 or status is null)");
-		}
-
-		// 分类
-		if (types != null && types.length > 0) {
-			sql.append(" and (");
-			for (int i = 0; i < types.length; i++) {
-				sql.append(" type like " + "'%");
-				sql.append(types[i]);
-				sql.append("%' or ");
-			}
-			sql.delete(sql.length() - 3, sql.length());
-			sql.append(")");
-			// sql.d
-		}
 
 		// 关键字、问题描述、解决方案
 		if (!keywords.equals("")) {
-			sql.append("and key like '%");
+			sql.append("and (keys like '%");
 			sql.append(keywords);
-			sql.append("%' ");
+			sql.append("%' or title like '%");
+			sql.append(keywords);
+			sql.append("%') ");
 		}
 
-		// 问题描述
-		if (!question.equals("")) {
-			sql.append(" and  question like '%");
-			sql.append(question);
-			sql.append("%'  ");
-		}
 		sql.append(" order by ");
 		sql.append(orderField);
 		sql.append(" ");
 		sql.append(orderType);
 
-		ResultObject ro = queryService.searchByPage(sql.toString(), pageNum,
-				numPerPage);
+		ResultObject ro = queryService.searchByPage(sql.toString(), pageNum,numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages();
 
@@ -195,14 +132,7 @@ public class Help  {
 		}
 
 		modelMap.put("repositoryList", repositoryList);
-
-		if (quote.equals("")) {
-			return new ModelAndView("/jsp/business/repositoryList.jsp",
-					modelMap);
-		} else {
-			return new ModelAndView("/jsp/business/repositoryQuote.jsp",
-					modelMap);
-		}
+		return new ModelAndView("/WEB-INF/jsp/help/helpList.jsp",modelMap);
 	}
 
 	/**
