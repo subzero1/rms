@@ -1,58 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="NetSkyTagLibs" prefix="crht"%>
+<%@ taglib uri="NetSkyTagLibs" prefix="rms"%>
 
 <script type="text/javascript">
 <!--
 
-function fbtn1()
-{
-	if($("#btn1").attr('src') == 'Images/choosebox.gif'){
-		$("#fieldset1").css({"height":"auto"});
-		$("#btn1").attr('src','Images/closebox.gif');
-		
-		//展开的时候回置checkbox
-		var type_list = $('#b07_type').val();
-		var types = type_list.split(',');
-		var obj_sel = $(':input[name=repository_TYPE]');
-		obj_sel.each(function(i){
-			for(var k = 0;k < types.length;k++){
-				if(types[k] == $(this).val()){
-					$(this).attr('checked','true');
-					break;
-				}
-			}
-		});	
-	  }
-	  else{
-		  $("#fieldset1").css({"height":"0px"});
-		  $("#btn1").attr('src','Images/choosebox.gif');
-	  }
-}
-
-function setType()
-{
-	var type_list = '';
-	var obj_sel = $(':input[name=repository_TYPE]');
-	obj_sel.each(function(i){
-		if($(this).attr('checked') == true){
-			type_list  = type_list + $(this).val() + ",";
-		}
-	});
-	if(type_list.length > 0){
-		type_list = type_list.substring(0,type_list.length -1);
-	}
-	$('#b07_type').val(type_list);
-}
-
-function repositorySave(butt){
-	//设置b07状态
-	var status = $("form>input:checked").val();
-	$('#B07_repository\\.STATUS').val(status);
+function helpSave(butt){
 	
 	//光标置入列表输入域(解决含有xheditor编辑器的navtab关闭后,失掉焦点问题)
-	$input = $("#b07_key", navTab.getCurrentPanel());
+	$input = $("#tz06_content", navTab.getCurrentPanel());
 	$input.focus();
 
 	//form提交
@@ -60,12 +17,6 @@ function repositorySave(butt){
 	$form.submit();
 }
 
-function cancelEdit(){
-	//光标置入列表输入域(解决含有xheditor编辑器的navtab关闭后,失掉焦点问题)
-	$input = $("#b07_key", navTab.getCurrentPanel());
-	$input.focus();
-	navTab.closeCurrentTab();
-}
 //-->
 </script>
 <style>
@@ -86,31 +37,35 @@ function cancelEdit(){
 				class="pageForm required-validate"
 				onsubmit="return validateCallback(this,navTabAjaxDone)">
 				<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Tz06_help" keep="true" />
-				<input type="hidden" name="Tz06_help.ID" value="<c:out value="${repository.id}" default="${param.id}"/>" keep="true" />
+				<input type="hidden" name="Tz06_help.ID" value="<c:out value="${tz06.id}" default="${param.id}"/>" keep="true" />
 				<input type="hidden" name="_callbackType" value="forward" keep="true" />
 				<input type="hidden" name="_forwardUrl" value="help/helpList.do?help_id=${tz06.id}" keep="true" />
 				<input type="hidden" name="_navTabId" value="templateList" keep="true" />
 				<input type="hidden" name="Tz06_help.RECORDOR" id="Tz06_help.RECORDOR" value="<c:out value="${tz06.recordor }" default="${user.name }"/>" />
-				<input type="hidden" name="Tz06_help.RECORD_DATE" id="Tz06_help.RECORD_DATE" value="<c:choose><c:when test="${empty repository.record_date}">${now}</c:when><c:otherwise><fmt:formatDate value="${tz06.record_date}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>" />
+				<input type="hidden" name="Tz06_help.RECORD_DATE" id="Tz06_help.RECORD_DATE" value="<c:choose><c:when test="${empty tz06.record_date}">${now}</c:when><c:otherwise><fmt:formatDate value="${tz06.record_date}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>" />
 				<div class="pageFormContent" layoutH="138">
 					<div class="unit">
 						<label>
 							标题：
 						</label>
-						<input id="Tz06_help.TITLE" type="text" name="Tz06_help.TITLE" value="${tz06.title}" class="required" size="87" />
+						<input id="Tz06_help.TITLE" type="text" name="Tz06_help.TITLE" value="${tz06.title}" class="required" size="125" />
 					</div>
 					<div class="unit">
 						<label>
 							关键字：
 						</label>
-						<textarea id="Tz06_help.KEYS" name="Tz06_help.KEYS" rows="5" cols="85">${tz06.keys}</textarea>
+						<input id="Tz06_help.KEYS" type="text" name="Tz06_help.KEYS" value="${tz06.keys}"  size="125" />
 					</div>
 					<div style="clear:none">
 						<label>
 							解决方案：
 						</label>
-						<div id="businessList" class="loadFileArea"
-							loadfile="business/repositoryTree.do?showEdit=yes&repository_id=${repository.id }">
+						<div class="unit">
+							<textarea class="editor" id="tz06_content" name="Tz06_help.CONTENT" rows="17"
+							cols="80" tools="simple" upLinkUrl="upload.do"
+							upLinkExt="zip,rar,txt" upImgUrl="help/ajaxXhEditorUpload.do"
+							upImgExt="jpg,jpeg,gif,png" upFlashUrl="upload.do"
+							upFlashExt="swf" upMediaUrl="upload.do" upMediaExt:"avi">${repDetail.remark}</textarea>
 						</div>
 					</div>
 					<div class="divider"></div>
@@ -120,7 +75,7 @@ function cancelEdit(){
 						<li>
 							<div class="buttonActive">
 								<div class="buttonContent">
-									<button type="button" onclick="javascript:repositorySave(this);">
+									<button type="button" onclick="javascript:helpSave(this);">
 										提 交
 									</button>
 								</div>
@@ -129,7 +84,7 @@ function cancelEdit(){
 						<li>
 							<div class="button">
 								<div class="buttonContent">
-									<button type="button" onclick="javascript:navTab.openTab('repositoryDisp', 'business/repositoryDisp.do?act=view&id=${repository.id}', { title:'知识库信息编辑预览', flesh:false, data:{} });">
+									<button type="button" onclick="javascript:navTab.openTab('helpDisp', 'help/helpDisp.do?act=view&id=${tz06.id}', { title:'在线帮助编辑预览', flesh:false, data:{} });">
 										预 览
 									</button>
 								</div>
@@ -138,7 +93,7 @@ function cancelEdit(){
 						<li>
 							<div class="button">
 								<div class="buttonContent">
-									<button type="button" onclick="javascript:cancelEdit();">
+									<button type="button" onclick="javascript:navTab.closeCurrentTab();">
 										取 消
 									</button>
 								</div>
