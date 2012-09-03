@@ -68,9 +68,6 @@ function isAll()
 }
 </script>
 <form id="pagerForm" method="post" action="">
-	<input type="hidden" name="check_status" value="${param.check_status}">
-	<input type="hidden" name="type" value="${param.type}">
-	<input type="hidden" name="question" value="${param.question}" />
 	<input type="hidden" name="keywords" value="${param.keywords}" />
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -81,7 +78,7 @@ function isAll()
 <div class="page">
 	<div class="pageHeader">
 		<form id="form1" onsubmit="return navTabSearch(this);"
-			action="business/repositoryList.do" method="post">
+			action="help/helpList.do" method="post">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
