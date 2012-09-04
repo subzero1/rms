@@ -23,10 +23,15 @@ function enterHelp(module_name)
 			success: function(json){
 				if(json.statusCode == DWZ.statusCode.ok){
 					if(json.adminRole == 'true'){
-						var input_info = "<p><input type=\"checkbox\"><label>重新选择</label></p>";
+						var input_info = "<p><input type=\"checkbox\" id=\"_reSel\"><label>重新选择</label></p>";
 						alertMsg.confirm(input_info, {			
 							okCall: function(){
-								navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
+								if($("#_reSel").attr('checked') == undefined){
+									navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
+								}
+								else{
+									$.pdialog.open('help/helpList.do?showPart=yes', '', '重新选择', {mask:true,width:480,height:350});
+								}
 							}
 						});
 					}
