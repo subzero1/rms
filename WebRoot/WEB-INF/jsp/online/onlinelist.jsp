@@ -23,14 +23,12 @@ function enterHelp(module_name)
 			success: function(json){
 				if(json.statusCode == DWZ.statusCode.ok){
 					if(json.adminRole == 'true'){
-						var input_info = "<p><label>用户名：</label><input type=\"text\" id=\"input_login_id\" name=\"input_login_id\"  class=\"required\" style=\"width:100px;\" />\
-						</p><p><label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input type=\"password\" id=\"input_password\" name=\"input_password\"  class=\"required\" style=\"width:100px;\" /></p>";
-						
-						alertMsg.confirm(input_info, {
-						okCall: function(){
-							alert('vvv');
-						}
-	});
+						var input_info = "<p><input type=\"checkbox\"><label>重新选择</label></p>";
+						alertMsg.confirm(input_info, {			
+							okCall: function(){
+								navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
+							}
+						});
 					}
 					else{
 						navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
