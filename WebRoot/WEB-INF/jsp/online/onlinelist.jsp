@@ -30,7 +30,7 @@ function enterHelp(module_name)
 									navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
 								}
 								else{
-									$.pdialog.open('help/helpList.do?showPart=yes', '', '重新选择', {mask:true,width:480,height:350});
+									$.pdialog.open('help/helpList.do?showPart=yes&module_name='+module_name, '', '重新选择', {mask:true,width:480,height:350});
 								}
 							}
 						});
