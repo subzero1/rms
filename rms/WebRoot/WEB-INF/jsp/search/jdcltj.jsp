@@ -7,6 +7,7 @@ function searchListExport(){
 		alertMsg.warn("没有可输出信息!");
 		return;
 	}
+	alert($form.find("input").size());
 	$form.attr("action","search/searchListExport.do");
 	$form.submit();
 	$form.attr("action","");
@@ -56,11 +57,13 @@ function open(zh,node_name){
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="pageNum" value="${page}" />
 	<input type="hidden" name="numPerPage" value="${pageRowSize}" />
+	
 	<input type="hidden" name="orderField" value="${orderField}" />
 	<input type="hidden" name="bdmc_id" value="${params[0] }"/>
 	<input type="hidden" name="doc_status" value="${params[1] }"/>
 	<input type="hidden" id="module_id" name="module_id"
 		value="${param.module_id}" />
+		
 	<c:forEach var="obj" items="${searchField}">
 		<input type="hidden" name="ids" value="${obj[0]}" />
 		<input type="hidden" name="${obj[0] }" value="${obj[2]}" />
