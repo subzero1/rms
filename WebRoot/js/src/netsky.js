@@ -313,3 +313,49 @@ function projectSlaveShow(project_id,module_id,doc_id,canDel,lb){
 	var url = 'form/designDocShow.do?project_id='+project_id+'&module_id='+module_id+'&doc_id='+doc_id+'&canDel='+canDel+'&lb='+lb;
 	$.pdialog.open(url,'_projectSlaveShow','附件显示',{width:600,height:400});
 }
+
+/**
+*功能中打开在线提问
+*module_name [tz08_help_map.module_name]
+*/
+function enterHelp(module_name)
+{
+    $.ajax({
+			type: "POST",
+			url: "help/ajaxGetHelp.do?module_name="+module_name,
+			dataType:"json",
+			success: function(json){
+				if(json.statusCode == DWZ.statusCode.ok){
+					if(json.adminRole == 'true'){
+						var input_info = "<p><input type=\"checkbox\" id=\"_reSel\"><label>重新选择</label></p>";
+						alertMsg.confirm(input_info, {			
+							okCall: function(){
+								if($("#_reSel").attr('checked') == undefined){
+									if(json.help_id != -1){
+										navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
+									}
+									else{
+										alertMsg.warn('暂无帮助，请与管理员联系');
+										return false;
+									}
+								}
+								else{
+									$.pdialog.open('help/helpList.do?showPart=yes&module_name='+module_name, '', '重新选择', {mask:true,width:480,height:350});
+								}
+							}
+						});
+					}
+					else{
+						if(json.help_id != -1){
+							navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
+						}
+						else{
+							alertMsg.warn('暂无帮助，请与管理员联系');
+							return false;
+						}
+					}
+				}
+			},
+			error: DWZ.ajaxError
+		});
+}
