@@ -94,6 +94,9 @@ public class Help  {
 
 		// 查询变量
 		String keywords = convertUtil.toString(request.getParameter("keywords"), "");
+		
+		// 转发变量
+		String showPart = convertUtil.toString(request.getParameter("showPart"), "");
 
 		// 数据库相关变量
 		StringBuffer sql = new StringBuffer("");
@@ -104,7 +107,7 @@ public class Help  {
 		sql.append("from Tz06_help obj ");
 		sql.append("where 1 = 1 ");
 
-		// 关键字、问题描述、解决方案
+		// 关键字
 		if (!keywords.equals("")) {
 			sql.append("and (keys like '%");
 			sql.append(keywords);
@@ -134,7 +137,10 @@ public class Help  {
 		}
 
 		modelMap.put("helpList", helpList);
-		return new ModelAndView("/WEB-INF/jsp/help/helpList.jsp",modelMap);
+		if(showPart.equals("yes"))
+			return new ModelAndView("/WEB-INF/jsp/help/helpPartList.jsp",modelMap);
+		else
+			return new ModelAndView("/WEB-INF/jsp/help/helpList.jsp",modelMap);
 	}
 
 	/**
