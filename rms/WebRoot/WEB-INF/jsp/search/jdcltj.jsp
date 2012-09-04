@@ -6,10 +6,11 @@ function searchListExport(){
 	if($form.find("input").size() == 4){
 		alertMsg.warn("没有可输出信息!");
 		return;
-	}
-	alert($form.find("input").size());
-	$form.attr("action","search/searchListExport.do");
+	} 
+	$form.attr("action","search/jdcltj.do");
+	document.getElementById("toexcel").value="yes";
 	$form.submit();
+	document.getElementById("toexcel").value="";
 	$form.attr("action","");
 }
 
@@ -50,7 +51,6 @@ function open(zh,node_name){
 }
 
 
- 
 
 </script>
 
@@ -63,7 +63,8 @@ function open(zh,node_name){
 	<input type="hidden" name="doc_status" value="${params[1] }"/>
 	<input type="hidden" id="module_id" name="module_id"
 		value="${param.module_id}" />
-		
+	<input type="hidden" name="toexcel" id="toexcel" value=""/>
+	<input type="hidden" name="toperson" id="toperson" value="${params[2] }"/>
 	<c:forEach var="obj" items="${searchField}">
 		<input type="hidden" name="ids" value="${obj[0]}" />
 		<input type="hidden" name="${obj[0] }" value="${obj[2]}" />
@@ -135,7 +136,7 @@ function open(zh,node_name){
 						<td align="center">
 							<a
 								href="search/wdclqk.do?pageRowSize=${pageRowSize}&bdmc_id=${params[0]}&doc_status=${doc_status }&toperson=${param.toperson }"
-								target="navTab" rel="jdcltj" title="待处理文档统计" data="{node_name:'${obj["jdmc"] }'}">${obj["wdsl"] }</a>
+								target="navTab" rel="jdcltj" title="待处理文档统计" data="{node_name:'${obj["jdmc"] }',zh:'${obj["zh"] }'}">${obj["wdsl"] }</a>
 						</td>
 						<td align="center">
 							${obj["zh"] }

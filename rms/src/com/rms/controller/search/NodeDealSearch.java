@@ -237,7 +237,7 @@ public class NodeDealSearch {
 		// 获取搜索条件及结果显示参数
 		String bdmc_id = convertUtil.toString(request.getParameter("bdmc_id"), "");
 		String doc_status = request.getParameter("doc_status");
-		
+		String toexcel=request.getParameter("toexcel");
 		modelMap.put("doc_status", doc_status);
 		/*
 		String ssdq = convertUtil.toString(request.getParameter("5"), convertUtil.toString(request.getParameter("ssdq"), ""));
@@ -265,10 +265,7 @@ public class NodeDealSearch {
 		tzlb = paramUtil(tzlb, ",","'");
 		gclb = paramUtil(gclb, ",","'");
 		*/
-		//保存即时参数
-		List<String> params=new ArrayList<String>();
-		params.add(bdmc_id);
-		params.add(doc_status);
+		
 		
 		// 是否具体到人
 		boolean toperson = "yes".equals(convertUtil.toString(request
@@ -283,6 +280,16 @@ public class NodeDealSearch {
 			pageRowSize=18;
 		int totalPages = 1;
 		int totalRows = 0; 
+		
+		//保存即时参数
+		List<String> params=new ArrayList<String>();
+		params.add(bdmc_id);
+		params.add(doc_status);
+		if(toperson==true)//是否到人标志位
+			params.add("yes");
+		else
+			params.add("no");
+		
 		// 获取结果
 		StringBuffer hsql = new StringBuffer("");
 		List<String> docColsList = new ArrayList<String>();
@@ -389,7 +396,7 @@ public class NodeDealSearch {
 			//同时将明细导出
 			List<String> blankLine = new ArrayList<String>();
 			blankLine.add("");
-			List<Ta08_reportfield> entityList = (List<Ta08_reportfield>)queryService.searchList("from Ta08_reportfield where module_id=100 and showflag=1");
+			List<Ta08_reportfield> entityList = (List<Ta08_reportfield>)queryService.searchList("from Ta08_reportfield where module_id="+bdmc_id+" and showflag=1");
 			List<String> titleList1 = new ArrayList<String>();
 			for (Ta08_reportfield ta08 : entityList) {
 				titleList1.add(ta08.getComments());
@@ -485,7 +492,7 @@ public class NodeDealSearch {
 			sheetList.add(contentList);
 			sheetMap.put("文档处理统计", sheetList);
 			
-			request.setAttribute("ExcelName", "文档处理统计" );
+			request.setAttribute("ExcelName", "文档处理统计.xls" );
 			request.setAttribute("sheetMap", sheetMap);
 			view = "/export/toExcelWhithList.do";
 		}
@@ -629,30 +636,30 @@ public class NodeDealSearch {
 		o[1] = obj;
 		resultList.add(o);
 		}
-//		if ("yes".equals(request.getParameter("toexcel"))){
-//			Map<String,List> sheetMap = new HashMap<String,List>();
-//			List sheetList = new LinkedList();
-//			List<List<String>> contentList = new ArrayList<List<String>>();
-//			for (Object[] o : resultList) {
-//				List list = (List)o[0];
-//				List<String> tempList = new ArrayList<String>();
-//				for (Object object : list) {
-//					tempList.add(""+(object==null?"":object));
-//				}
-//				contentList.add(tempList);
-//			}
-//			List<String> titleList = new ArrayList<String>();
-//			for (Ta08_reportfield ta08 : entityList) {
-//				titleList.add(ta08.getComments());
-//			}
-//			sheetList.add(titleList);
-//			sheetList.add(contentList);
-//			sheetMap.put("文档处理情况", sheetList);
-//			
-//			request.setAttribute("ExcelName", "文档处理情况" );
-//			request.setAttribute("sheetMap", sheetMap);
-//			view = "/export/toExcelWhithList.do";
-//		}
+		if ("yes".equals(request.getParameter("toexcel"))){
+			Map<String,List> sheetMap = new HashMap<String,List>();
+			List sheetList = new LinkedList();
+			List<List<String>> contentList = new ArrayList<List<String>>();
+			for (Object[] o : resultList) {
+				List list = (List)o[0];
+				List<String> tempList = new ArrayList<String>();
+				for (Object object : list) {
+					tempList.add(""+(object==null?"":object));
+				}
+				contentList.add(tempList);
+			}
+			List<String> titleList = new ArrayList<String>();
+			for (Ta08_reportfield ta08 : entityList) {
+				titleList.add(ta08.getComments());
+			}
+			sheetList.add(titleList);
+			sheetList.add(contentList);
+			sheetMap.put("文档处理情况", sheetList);
+			
+			request.setAttribute("ExcelName", "文档处理情况.xls" );
+			request.setAttribute("sheetMap", sheetMap);
+			view = "/export/toExcelWhithList.do";
+		}
 		modelMap.put("entityList", entityList);
 		modelMap.put("resultList", resultList);
 		modelMap.put("totalPages", totalPages);

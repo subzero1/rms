@@ -30,6 +30,7 @@ $(function(){
 		}
 	});
 });
+ 
 </script>
 
 <div class="page" style="overflow-x: hidden">
@@ -111,7 +112,7 @@ $(function(){
 										<div style="position: absolute;">
 											<input type="hidden" name="type" value="2" />
 											是否具体到人：
-											<input type="checkbox" name="toperson" value="yes" />
+											<input type="checkbox" name="toperson" id="toperson" value="yes" /> 
 										</div>
 										<div>
 
@@ -137,16 +138,7 @@ $(function(){
 							</div>
 						</div>
 					</li>
-					<li>
-						<div class="buttonActive">
-							<div class="buttonContent">
-								<button type="button"
-									onclick="javascript:searchOrExcelExport(this, 'search/searchListExport.do');">
-									EXCEL导出
-								</button>
-							</div>
-						</div>
-					</li>
+				 
 					<li>
 						<div class="button">
 							<div class="buttonContent">
