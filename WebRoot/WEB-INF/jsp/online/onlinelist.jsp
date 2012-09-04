@@ -14,36 +14,6 @@ function phoneMsg(tel,name){
 	$.pdialog.open('MessageWrite.do?type=phone&phonenum='+tel+'&name='+encodeURI(encodeURI(name)), 'messageWrite', '手机短信',{data:{}, mask:true, width:670, height:350})
 }
 
-function enterHelp(module_name)
-{
-    $.ajax({
-			type: "POST",
-			url: "help/ajaxGetHelp.do?module_name="+module_name,
-			dataType:"json",
-			success: function(json){
-				if(json.statusCode == DWZ.statusCode.ok){
-					if(json.adminRole == 'true'){
-						var input_info = "<p><input type=\"checkbox\" id=\"_reSel\"><label>重新选择</label></p>";
-						alertMsg.confirm(input_info, {			
-							okCall: function(){
-								if($("#_reSel").attr('checked') == undefined){
-									navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
-								}
-								else{
-									$.pdialog.open('help/helpList.do?showPart=yes&module_name='+module_name, '', '重新选择', {mask:true,width:480,height:350});
-								}
-							}
-						});
-					}
-					else{
-						navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
-					}
-				}
-			},
-			error: DWZ.ajaxError
-		});
-}
-
 </script>
 <c:choose>
 	<c:when test="${wtlx=='15'}">
