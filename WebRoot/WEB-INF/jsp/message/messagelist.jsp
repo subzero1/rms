@@ -64,6 +64,8 @@
 					<a class="edit"	href="MessageRead.do?message_id={form_param}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看短消息" width="500" height="300"><span>查看</span></a>
 				</li>
 				<li class="line">line</li>
+				<li><a class="exportexcel"	href="javascript:enterHelp('xtxx')"><span>在线帮助</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="128">

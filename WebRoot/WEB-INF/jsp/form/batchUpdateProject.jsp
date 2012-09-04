@@ -40,6 +40,9 @@
 						<option value="batch_update_gc">单项工程</option>
 					</select>
 				</p>
+				<p style="">
+					<a href="javascript:enterHelp('wssht')">在线帮助</a>
+				</p>
 				<div class="divider"></div>
 			</div>	
 			<div class="formBar">

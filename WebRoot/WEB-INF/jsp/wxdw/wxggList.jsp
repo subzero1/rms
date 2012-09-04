@@ -52,6 +52,8 @@
 				<li class="line">line</li>
 				<li><a class="delete" href="wxdw/delWxgg.do?id={wxgg_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 				<li class="line">line</li>
+				<li><a class="exportexcel"	href="javascript:enterHelp('wxdw')"><span>在线帮助</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
