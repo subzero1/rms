@@ -20,8 +20,7 @@ function open(zh,node_name){
 		var ps = main_window.getPageRowSize();
 		document.form3.target = "pop_ifrm_blankpageRowSize"+ps;
 	}
-	*/
-	alert("sfsfs");
+	*/  
 	document.getElementById("zh").value=zh;
 	document.getElementById("node_name").value=node_name;
 	setTimeout("document.form3.submit()", 500);

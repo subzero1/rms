@@ -1,5 +1,6 @@
 package com.netsky.base.controller.search;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,6 +121,12 @@ public class NodeCondition implements org.springframework.web.servlet.mvc.Contro
 			queryBuilder.in("name", values);
 			queryBuilder.addOrderBy(Order.asc("ord"));
 			selectList = queryService.searchList(queryBuilder);
+			
+			/**
+			 * 获取默认字段,searchtype=2;
+			 */
+			
+			
 		} catch (Exception e) {
 			return exceptionService.exceptionControl("ProjectReport", "获取报表选项错误", e);
 		}
@@ -127,6 +134,10 @@ public class NodeCondition implements org.springframework.web.servlet.mvc.Contro
 		/**
 		 * 表单名称下拉框选项
 		 */
+		List searchField=new ArrayList();
+		
+		
+		
 		List<Ta06_module> bdmcList = (List<Ta06_module>) queryService
 				.searchList("from Ta06_module where type = 1 and id like '1__' order by id");
 		modelMap.put("bdmcList", bdmcList);
