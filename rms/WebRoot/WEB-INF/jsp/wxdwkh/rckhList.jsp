@@ -68,6 +68,8 @@
 				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=false" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>查看</span></a></li>
 				<li class="line">line</li>
 				</c:if>
+				<li><a class="exportexcel"	href="javascript:enterHelp('rckh')"><span>在线帮助</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138" style="table-layout:fixed;">

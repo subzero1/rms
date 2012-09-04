@@ -56,6 +56,8 @@
 			<ul class="toolBar">
 				<li><a class="edit" href="wxdwkh/zhkp.do?id={zhkp_id}" target="navTab" rel="zhkp" title="综合考评"><span>查看</span></a></li>
 				<li class="line">line</li>
+				<li><a class="exportexcel"	href="javascript:enterHelp('zhkp')"><span>在线帮助</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138" style="table-layout:fixed;">
