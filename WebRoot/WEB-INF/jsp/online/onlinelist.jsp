@@ -13,6 +13,26 @@ $(function(){
 function phoneMsg(tel,name){
 	$.pdialog.open('MessageWrite.do?type=phone&phonenum='+tel+'&name='+encodeURI(encodeURI(name)), 'messageWrite', '手机短信',{data:{}, mask:true, width:670, height:350})
 }
+
+function enterHelp(module_name)
+{
+    $.ajax({
+			type: "POST",
+			url: "help/ajaxGetHelp.do?module_name="+module_name,
+			dataType:"json",
+			success: function(json){
+				if(json.statusCode == DWZ.statusCode.ok){
+					if(json.adminRole == 'true'){
+						alert('xxx');
+					}
+					else{
+						navTab.openTab('helpDisp', 'help/helpDisp.do?id='+json.help_id, {title:'在线帮助'});
+					}
+				}
+			},
+			error: DWZ.ajaxError
+		});
+}
 </script>
 <c:choose>
 	<c:when test="${wtlx=='15'}">
@@ -114,6 +134,11 @@ function phoneMsg(tel,name){
 				
 				<li>
 					<a class="edit"	href="OnLineanswer.do?wtlx=${wtlx}&aq_id={qa_id}" target="dialog" width="750" height="500" title="${web_title }"><span>查看</span></a>
+				</li>
+				<li class="line">line</li>
+				
+				<li>
+					<a class="edit"	href="javascript:enterHelp('xtgg')" ><span>在线帮助</span></a>
 				</li>
 				<li class="line">line</li>
 			</ul>

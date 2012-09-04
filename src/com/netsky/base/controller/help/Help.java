@@ -316,4 +316,52 @@ public class Help  {
 
 		return new ModelAndView("/WEB-INF/jsp/help/helpDisp.jsp", modelMap);
 	}
+	
+	/**
+	 * 显示在线提问
+	 * 
+	 * @param reqeust
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/help/ajaxGetHelp.do")
+	public void ajaxGetHelp(HttpServletRequest request,
+			HttpServletResponse response) {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		PrintWriter out = null;
+		response.setContentType("text/xml");
+
+		String module_name = convertUtil.toString(request.getParameter("module_name"));
+		StringBuffer sql = new StringBuffer("");
+		HttpSession session = request.getSession();
+		String adminRole = null;
+
+		// 获取用户对象
+		try {
+			Long help_id = -1l;
+			out = response.getWriter();
+			sql.delete(0, sql.length());
+			sql.append("select help_id from Tz08_help_map where module_name = '");
+			sql.append(module_name);
+			sql.append("'");
+			ResultObject ro = queryService.search(sql.toString());
+			if (ro.next()) {
+				help_id = (Long)ro.get("help_id");
+			}
+			if(session == null){
+				adminRole = "false";
+			}else{
+				adminRole = (String)session.getAttribute("admin");
+			}
+			
+			
+			out.print("{\"statusCode\":\"200\", \"message\":\"成功\", \"help_id\":\""+help_id+"\", \"adminRole\":\""+adminRole+"\"}");
+			//out.print("{\"statusCode\":\"200\", \"message\":\"成功\", \"navTabId\":\"\", \"forwardUrl\":\"help/helpList.do\", \"callbackType\":\"\"}");
+		} catch (Exception e) {
+			exceptionService.exceptionControl(
+					"com.rms.controller.help.Help.openHelpDisp()", "打开在线帮助失败", e);
+		}
+	}
 }
