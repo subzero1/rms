@@ -7,8 +7,10 @@ function searchListExport(){
 		alertMsg.warn("没有可输出信息!");
 		return;
 	}
-	$form.attr("action","search/searchListExport.do");
+	$form.attr("action","search/wdclqk.do");
+	document.getElementById("toexcel").value="yes";
 	$form.submit();
+	document.getElementById("toexcel").value="";
 	$form.attr("action","");
 }
 
@@ -56,9 +58,11 @@ function open(zh,node_name){
 	<input type="hidden" name="bdmc_id" id="bdmc_id" value="${params[0]}"/>
 	<input type="hidden" name="doc_status" id="doc_status" value="${params[1]}"/>
 	<input type="hidden" name="node_name" id="node_name" value="${params[2] }"/>
-	<input type="hidden" name="topersion" value=""/>
+	<input type="hidden" name="toperson" value=""/>
+	<input type="hidden" name="toexcel" value=""/>
 	<input type="hidden" id="module_id" name="module_id"
 		value="${param.module_id}" />
+	<input type="hidden" name="zh" value=""/>
 	<c:forEach var="obj" items="${searchField}">
 		<input type="hidden" name="ids" value="${obj[0]}" />
 		<input type="hidden" name="${obj[0] }" value="${obj[2]}" />
@@ -120,7 +124,7 @@ function open(zh,node_name){
 						<td>
 							<c:if test="${obj[1] != null }">
 								<a
-									href="javascript:openFlowForm('{project_id:${obj[1][3]},doc_id:${obj[1][5]},module_id:${obj[1][4]},opernode_id:${obj[1][6]},node_id:${obj[1][7]},user_id:${obj[1][8]}}');"
+									href="javascript:openFlowForm('{project_id:${obj[1][3]},doc_id:${obj[1][5]},module_id:${obj[1][4]},node_id:-1}');"
 									title="表单[${doc[cols].project_id}]"><img border="0"
 										src="Images/form.gif" style="cursor: pointer" />
 								</a>
@@ -141,17 +145,7 @@ function open(zh,node_name){
 					</tr>
 				</c:forEach>
 
-				<c:if test="${offset<pageRowSize }">
-
-					<c:forEach begin="1" end="${pageRowSize-offset}">
-						<tr>
-							<c:forEach begin="0" end="15">
-								<td align="center">
-								</td>
-							</c:forEach>
-						</tr>
-					</c:forEach>
-				</c:if>
+				 
 			</tbody>
 		</table>
 		<div class="panelBar">
