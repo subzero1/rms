@@ -33,6 +33,8 @@ function showtree(value){
 		 	</li>
 			<li class="line">line</li>
 		 </c:if>
+		 	<li><a class="exportexcel"	href="javascript:enterHelp('wssht')"><span>在线帮助</span></a></li>
+			<li class="line">line</li>
 		 </ul>
   	</div>	
 	<div class="pageContent" style="width:100%" layoutH="28">
@@ -106,6 +108,7 @@ function showtree(value){
 				<li> 8.办结</li>
 			</ul>
 		</div>
+		
 	</div>
 </div>
 
