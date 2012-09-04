@@ -35,6 +35,7 @@ import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.RegExp;
 import com.netsky.base.controller.OperFile;
 import com.netsky.base.dataObjects.Tz06_help;
+import com.netsky.base.dataObjects.Tz08_help_map;
 import com.netsky.base.dataObjects.Ta03_user;
 
 /**
@@ -365,6 +366,41 @@ public class Help  {
 			
 			out.print("{\"statusCode\":\"200\", \"message\":\"成功\", \"help_id\":\""+help_id+"\", \"adminRole\":\""+adminRole+"\"}");
 			//out.print("{\"statusCode\":\"200\", \"message\":\"成功\", \"navTabId\":\"\", \"forwardUrl\":\"help/helpList.do\", \"callbackType\":\"\"}");
+		} catch (Exception e) {
+			exceptionService.exceptionControl(
+					"com.rms.controller.help.Help.openHelpDisp()", "打开在线帮助失败", e);
+		}
+	}
+	
+	/**
+	 * 显示在线提问
+	 * 
+	 * @param reqeust
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/help/ajaxSetHelpMap.do")
+	public void ajaxSetHelpMap(HttpServletRequest request,
+			HttpServletResponse response) {
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		PrintWriter out = null;
+		response.setContentType("text/xml");
+
+		String module_name = convertUtil.toString(request.getParameter("module_name"));
+		Long help_id = convertUtil.toLong(request.getParameter("help_id"));
+		StringBuffer sql = new StringBuffer("");
+
+		// 获取用户对象
+		try {
+			out = response.getWriter();
+			saveService.updateByHSql("delete from Tz08_help_map where module_name = '"+module_name+"'");
+			Tz08_help_map tz08 = new Tz08_help_map();
+			tz08.setHelp_id(help_id);
+			tz08.setModule_name(module_name);
+			saveService.save(tz08);
+			out.print("{\"statusCode\":\"200\", \"message\":\"成功\", \"help_id\":\""+help_id+"\"}");
 		} catch (Exception e) {
 			exceptionService.exceptionControl(
 					"com.rms.controller.help.Help.openHelpDisp()", "打开在线帮助失败", e);

@@ -3,11 +3,26 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="crht"%>
 <script type="text/javascript">
-
-
+	function _sel(help_id,module_name){
+		
+		$.ajax({
+			type: "POST",
+			url: "help/ajaxSetHelpMap.do?help_id="+help_id+"&module_name="+module_name,
+			dataType:"json",
+			success: function(json){
+				if(json.statusCode == DWZ.statusCode.ok){
+					alertMsg.correct(json.message);
+					$.pdialog.closeCurrent();
+					return false;
+				}
+			},
+			error: DWZ.ajaxError
+		});
+	}
 </script>
 <form id="pagerForm" method="post" action="">
 	<input type="hidden" name="keywords" value="${param.keywords}" />
+	<input type="hidden" name="showPart" value="${param.showPart}" />
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${orderField}" />
@@ -49,7 +64,7 @@
 							${helpList[i].title }
 						</td>
 						<td>
-							<c:if test="${not empty helpList[i].title}"><a href=""><b>选择</b></a></c:if>
+							<c:if test="${not empty helpList[i].title}"><a href="javascript:_sel(${helpList[i].id },'${param.module_name}')"><b>选择</b></a></c:if>
 						</td>
 					</tr>
 				</c:forEach>
