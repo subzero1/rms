@@ -52,6 +52,8 @@
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/wxdwList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
+				<li><a class="exportexcel"	href="javascript:enterHelp('wxdw')"><span>在线帮助</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
