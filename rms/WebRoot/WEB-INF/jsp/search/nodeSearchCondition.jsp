@@ -29,8 +29,13 @@ $(function(){
 			});
 		}
 	});
+	$("input[name='doc_status']").val("0,1,2,4");
 });
  
+ function test(){ 
+ 	$("input[name='toperson']").val("yes");
+ 	var x=$("input[name='toperson']").val(); 
+ }
 </script>
 
 <div class="page" style="overflow-x: hidden">
@@ -112,7 +117,7 @@ $(function(){
 										<div style="position: absolute;">
 											<input type="hidden" name="type" value="2" />
 											是否具体到人：
-											<input type="checkbox" name="toperson" id="toperson" value="yes" /> 
+											<input type="checkbox" name="toperson" id="toperson" value="yes" onclick="test()"/> 
 										</div>
 										<div>
 
