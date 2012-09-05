@@ -376,6 +376,39 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}
+				
+				/**
+				 * 工程施工进度
+				 */
+				boolean haveSgdw = false;
+				boolean haveGlgc = false;
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Td00_gcxx where sgdw is not null and id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					haveSgdw = true;
+				}
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Td00_gcxx where ((glgc_id is not null and id =");
+				hsql.append(project_id);
+				hsql.append(") or glgc_id = ");
+				hsql.append(project_id);
+				hsql.append(")");
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					haveGlgc = true;
+				}
+				
+				if (haveSgdw && haveGlgc) {
+					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
+					tmp_gcsm_slave.put("slave_name", "工程施工进度");
+					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id="+ t_project_id +"', {title:'工程施工进度'});");
+					tmp_gcsm_slave.put("rw", "r");
+					v_slave.add(tmp_gcsm_slave);
+				}
 			}
 			
 			
@@ -393,6 +426,22 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
 					tmp_gcsm_slave.put("slave_name", "监理日记");
 					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('jlzj', 'wxdw/jlrjxx.do?id="+ t_project_id +"', {title:'监理日记'});");
+					tmp_gcsm_slave.put("rw", "r");
+					v_slave.add(tmp_gcsm_slave);
+				}
+				
+				/**
+				 * 项目施工进度
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Td01_xmxx where sgdw is not null and id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
+					tmp_gcsm_slave.put("slave_name", "项目施工进度");
+					tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id="+ t_project_id +"', {title:'项目施工进度'});");
 					tmp_gcsm_slave.put("rw", "r");
 					v_slave.add(tmp_gcsm_slave);
 				}
