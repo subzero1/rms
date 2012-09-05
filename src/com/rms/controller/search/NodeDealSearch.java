@@ -595,6 +595,7 @@ public class NodeDealSearch {
 		params.add(bdmc_id);
 		params.add(doc_status);
 		params.add(node_name);
+		params.add(zh);
 		ResultObject ro = null;
 		
 		//是否excel
