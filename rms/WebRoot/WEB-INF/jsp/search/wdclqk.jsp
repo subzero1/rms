@@ -62,7 +62,7 @@ function open(zh,node_name){
 	<input type="hidden" name="toexcel" value=""/>
 	<input type="hidden" id="module_id" name="module_id"
 		value="${param.module_id}" />
-	<input type="hidden" name="zh" value=""/>
+	<input type="hidden" name="zh" value="${params[3] }"/>
 	<c:forEach var="obj" items="${searchField}">
 		<input type="hidden" name="ids" value="${obj[0]}" />
 		<input type="hidden" name="${obj[0] }" value="${obj[2]}" />
