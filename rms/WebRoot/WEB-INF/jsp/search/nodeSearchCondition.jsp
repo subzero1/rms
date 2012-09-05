@@ -11,10 +11,11 @@
 $(function(){
 	//避免冲突,删除统计表的条件缓存;
 	$("#mainReportCondition").empty();
-	
+	/*
 	$p = $(navTab._getPanel("${param.navtab }") || document);
 	var src_o = $("#pagerForm input", $p);
 	var targ_o = $("#conditionForm input");
+	
 	src_o.each(function(){
 		var src_input = this;
 		if($(src_input).attr("name")=="fields_select"){
@@ -29,13 +30,16 @@ $(function(){
 			});
 		}
 	});
+	
 	$("input[name='doc_status']").val("0,1,2,4");
+	*/
 });
- 
+ /*
  function test(){ 
  	$("input[name='toperson']").val("yes");
  	var x=$("input[name='toperson']").val(); 
  }
+ */
 </script>
 
 <div class="page" style="overflow-x: hidden">
@@ -117,7 +121,7 @@ $(function(){
 										<div style="position: absolute;">
 											<input type="hidden" name="type" value="2" />
 											是否具体到人：
-											<input type="checkbox" name="toperson" id="toperson" value="yes" onclick="test()"/> 
+											<input type="checkbox" name="toperson" id="toperson" value="yes" /> 
 										</div>
 										<div>
 
