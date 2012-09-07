@@ -204,4 +204,13 @@ public class convertUtil {
 		}
 		return defaultValue;
 	}
+
+	/**
+	 * 首字母变大写
+	 * @param s
+	 * @return String
+	 */
+	public static String firstLetterToUpperCase(String s) {
+		return s.replaceFirst(s.substring(0, 1), s.substring(0, 1).toUpperCase());
+	}
 }
