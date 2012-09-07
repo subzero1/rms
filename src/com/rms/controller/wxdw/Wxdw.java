@@ -1429,7 +1429,8 @@ public class Wxdw {
 						"from Tf07_kcb where cllx='" + tf08.getCllx() + "' and clmc='" + tf08.getClmc() + "' and dw"
 								+ (tf08.getDw() == null ? " is null" : ("='" + tf08.getDw() + "'")) + " and gg"
 								+ (tf08.getGg() == null ? " is null" : ("='" + tf08.getGg() + "'")) + " and xh"
-								+ (tf08.getXh() == null ? " is null" : ("='" + tf08.getXh() + "'"))).list();
+								+ (tf08.getXh() == null ? " is null" : ("='" + tf08.getXh() + "'")) + " and project_id="
+								+ project_id + " and sgdw_id=" + tf04.getWxdw_id()).list();
 				Tf07_kcb tf07 = null;
 				if (tmpList.size() != 0) {
 					tf07 = tmpList.get(0);
