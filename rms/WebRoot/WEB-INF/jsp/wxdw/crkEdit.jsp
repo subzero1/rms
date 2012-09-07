@@ -61,16 +61,9 @@ function checkandsave(){
 			flag = false;
 			return;
 		}
-		if ("${type }"!="入库" && parseInt($(this).val())>parseInt($(this).attr("flag"))) {
-			flag2 = false;
-		}
 	});
 	if (!flag){
 		alertMsg.error("请在数量栏填入正整数");
-		return;
-	}
-	if (!flag2){
-		alertMsg.error("数量不能超过库存上限");
 		return;
 	}
 	if ($("select[name=Tf08_clmxb\\.CLLX]").size() == 0){
