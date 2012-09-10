@@ -680,17 +680,24 @@ public class AuxFunction {
 	public ModelAndView xmsgjd(HttpServletRequest request, HttpServletResponse response) {
 		ModelMap modelMap = new ModelMap();
 		String project_id = request.getParameter("id");
-		StringBuffer hql = new StringBuffer(""); 
+		StringBuffer hql = new StringBuffer("");
 
-		hql.append("from Td00_gcxx as td00 "); 
+		hql.append("from Td00_gcxx as td00 ");
 		if (project_id != null && project_id.length() != 0) {
-			hql.append("where td00.xm_id=" + project_id); 
-			Td01_xmxx project=(Td01_xmxx) dao.getObject(Td01_xmxx.class, convertUtil.toLong( project_id));
+			hql.append("where td00.xm_id=" + project_id);
+			Td01_xmxx project = (Td01_xmxx) dao.getObject(Td01_xmxx.class, convertUtil.toLong(project_id));
 			modelMap.put("project", project);
 		}
-		List<Td00_gcxx> projectList = (List<Td00_gcxx>) queryService.searchList(hql.toString()); 
+		List<Td00_gcxx> projectList = (List<Td00_gcxx>) queryService.searchList(hql.toString());
 		modelMap.put("projectList", projectList);
 		String view = "/WEB-INF/jsp/form/xmsgjd.jsp";
+		return new ModelAndView(view, modelMap);
+	}
+
+	@RequestMapping("/wxdw/gcsgjd.do")
+	public ModelAndView gcsgjd() {
+		String view = "/WEB-INF/jsp/form/gcsgjd.jsp";
+		ModelMap modelMap = new ModelMap();
 		return new ModelAndView(view, modelMap);
 	}
 
