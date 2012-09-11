@@ -90,11 +90,11 @@ public class Alarm implements org.springframework.web.servlet.mvc.Controller{
 		String obj="";
 		if(ro.next()){
 			obj=ro.get("po_id").toString()+",";
-		while(ro.next()){
-			obj=obj+ro.get("po_id").toString()+",";
-		}
-		String obj_new=obj.substring(0, obj.length()-1);
-		request.setAttribute("obj_new", obj_new);
+			while(ro.next()){
+				obj=obj+ro.get("po_id").toString()+",";
+			}
+			String obj_new=obj.substring(0, obj.length()-1);
+			request.setAttribute("obj_new", obj_new);
 		}
 		
 		String sql1_ta27="select mobile_flag,message_flag from Ta27_user_remind where remind_type=1 and user_id="+user_id;
