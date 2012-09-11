@@ -696,30 +696,40 @@ public class AuxFunction {
 
 	/**
 	 * 工程及关联工程进度统计图
+	 * 
 	 * @return ModelAndView
 	 */
 	@RequestMapping("/wxdw/gcsgjd.do")
-	public ModelAndView gcsgjd(HttpServletRequest request,HttpServletResponse response) {
+	public ModelAndView gcsgjd(HttpServletRequest request, HttpServletResponse response) {
 		String view = "/WEB-INF/jsp/form/gcsgjd.jsp";
 		ModelMap modelMap = new ModelMap();
-		Long glgc_id;//关联工程id
-		List<Td00_gcxx> engineerList=null;
-		String engineer_id=convertUtil.toString(request.getParameter("id"),"");
-		StringBuffer hql =new StringBuffer("from Td00_gcxx as td00 ");
-		hql.append("where td00.id="+engineer_id);
-		if(engineer_id!=null&&engineer_id.length()!=0){
-			Td00_gcxx td00=(Td00_gcxx) dao.getObject(Td00_gcxx.class,convertUtil.toLong(engineer_id)); 
-			glgc_id=td00.getGlgc_id();
-			if(glgc_id==null||glgc_id==0||glgc_id==-1){
-				hql.append(" or td00.glgc_id="+engineer_id);
-			}else{
-				hql.append(" or td00.id="+glgc_id+" and td00.glgc_id="+glgc_id);
+		Long glgc_id;// 关联工程id
+		String params = "";
+		List<Td00_gcxx> engineerList = null;
+		List<Object> paramList=new ArrayList<Object>();
+		String engineer_id = convertUtil.toString(request.getParameter("id"), "");
+		StringBuffer hql = new StringBuffer("from Td00_gcxx as td00 ");
+		hql.append("where td00.id=" + engineer_id);
+
+		if (engineer_id != null && engineer_id.length() != 0) {
+			Td00_gcxx td00 = (Td00_gcxx) dao.getObject(Td00_gcxx.class, convertUtil.toLong(engineer_id));
+			glgc_id = td00.getGlgc_id();
+			if (glgc_id == null || glgc_id == 0 || glgc_id == -1) {
+				hql.append(" or td00.glgc_id=" + engineer_id);
+			} else {
+				hql.append(" or td00.id=" + glgc_id + " and td00.glgc_id=" + glgc_id);
 			}
-			engineerList=(List<Td00_gcxx>) queryService.searchList(hql.toString());
-			
+			engineerList = (List<Td00_gcxx>) queryService.searchList(hql.toString());
+
 		}
+		for (int i = 0; i < engineerList.size(); i++) {
+			Td00_gcxx td00 = engineerList.get(i);
+			params="javascript:openFlowForm('{project_id:" + td00.getId() + ",doc_id:" + td00.getId()
+					+ ",module_id:102," + "node_id:-1}');";
+			paramList.add(params);
+		}
+		modelMap.put("paramList", paramList);
 		modelMap.put("engineerList", engineerList);
 		return new ModelAndView(view, modelMap);
 	}
-
 }

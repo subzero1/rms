@@ -61,6 +61,14 @@
                     dataLabels: {
                         enabled: true
                     }
+                },
+                series:{
+                	cursor:'pointer',
+                	events:{
+                		click:function(){
+                			alert(this.name); 
+                		}
+                	}
                 }
             },
             legend: {
@@ -88,29 +96,35 @@
 		var _xAxis_categories=new Array();
 		var _series_data=new Array();
 		var series=new Array();
+		var _params=new Array();//参数表
+		
 		var xAxis_categories=$("input[name='xAxis_categories']");
 		var series_data=$("input[name='series_data']");
 		var _title=$("#_title").val();
 		var subtitle=$("#subtitle").val();
+		var engineer_id=$("input[name='engineer_id']");
+		var params=$("input[name='paramX']");
 		
 		for(var i=0;i<series_data.length;i++){
 			_xAxis_categories[i]=xAxis_categories[i].value;
 			_series_data[i]=series_data[i].value;
+			_params[i]=params[i].value;
 		}
 		//设置data数据源
 		for(var j=0;j<_series_data.length;j++){ 
     		series[j]={};
     		series[j].data=new Array();
     		series[j].name=_xAxis_categories[j];
-    		series[j].data[0]=parseInt(100* _series_data[j]); 
+    		series[j].data[0]=parseInt(100* _series_data[j]);  
     	}  
     	dataSource._title=_title;
     	dataSource.subtitle=subtitle;
     	dataSource.series=series;
 		dataSource.xAxis_categories=_xAxis_categories;
-		dataSource.series_data=_series_data;   
+		dataSource.series_data=_series_data; 
+		 
 			return dataSource;
-	}
+	} 
 </script>
 	</head>
 
@@ -121,11 +135,15 @@
 			<input type="hidden" name="_title" id="_title" value="工程施工进度" />
 			<input type="hidden" name="_subtitle" id="subtitle" value="" />
 			<c:forEach var="engineer" items="${engineerList}">
-				<input type="hidden" name="xAxis_categories" value="${engineer.gcmc}" />
+				<input type="hidden" name="engineer_id" value="${engineer.id}" />
+				<input type="hidden" name="xAxis_categories"
+					value="${engineer.gcmc}" />
 				<input type="hidden" name="series_data" value="${engineer.sgjd}" />
 				<input type="hidden" name="series_name" value="${engineer.gcmc}" />
 			</c:forEach>
-			<input type="hidden" name="" value="" /> 
+			<c:forEach var="paramX" items="${paramList}">
+				<input type="text" name="paramX" value="${paramX}"/>
+			</c:forEach> 
 		</form>
 	</body>
 </html>
