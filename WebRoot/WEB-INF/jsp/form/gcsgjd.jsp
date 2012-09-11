@@ -66,7 +66,9 @@
                 	cursor:'pointer',
                 	events:{
                 		click:function(){
-                			alert(this.name); 
+                			var str=parseInt( this.name.split(".")[0]);
+                		window.location.href=''+dataSource._params[str-1]; 
+                			
                 		}
                 	}
                 }
@@ -114,15 +116,16 @@
 		for(var j=0;j<_series_data.length;j++){ 
     		series[j]={};
     		series[j].data=new Array();
-    		series[j].name=_xAxis_categories[j];
+    		series[j].name=(j+1)+"."+_xAxis_categories[j];
     		series[j].data[0]=parseInt(100* _series_data[j]);  
+    		series[j].dataURL="sggsgsgsgsgsgs";
     	}  
+    	dataSource._params=_params;
     	dataSource._title=_title;
     	dataSource.subtitle=subtitle;
     	dataSource.series=series;
 		dataSource.xAxis_categories=_xAxis_categories;
 		dataSource.series_data=_series_data; 
-		 
 			return dataSource;
 	} 
 </script>
@@ -142,7 +145,7 @@
 				<input type="hidden" name="series_name" value="${engineer.gcmc}" />
 			</c:forEach>
 			<c:forEach var="paramX" items="${paramList}">
-				<input type="text" name="paramX" value="${paramX}"/>
+				<input type="hidden" name="paramX" value="${paramX}"/>
 			</c:forEach> 
 		</form>
 	</body>
