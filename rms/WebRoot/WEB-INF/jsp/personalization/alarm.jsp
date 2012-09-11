@@ -46,8 +46,7 @@ function click_check1(obj,i){
 		</tr>
 		<tr>
 			<td width="100%" colspan="2" class="t-left">1、预警、超时文档提醒：&nbsp;&nbsp;
-							<input type="checkbox" name="mobile_flag1" id="mobile_flag1" onclick="javascript:click_check(this,0);" <c:if test="${mobile_flag1==1}">checked</c:if> value="1" />&nbsp;手机短信&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="message_flag1" id="message_flag1" onclick="javascript:click_check1(this,0);"<c:if test="${message_flag1==1}">checked</c:if> value="1" />&nbsp;系统短消息
+							<input type="checkbox" name="mobile_flag1" id="mobile_flag1" onclick="javascript:click_check(this,0);" <c:if test="${mobile_flag1==1}">checked</c:if> value="1" />&nbsp;短信提醒&nbsp;&nbsp;&nbsp;
 							<input type="hidden" name="Ta27_user_remind.ID" value=""/>
 							<input type="hidden" name="Ta27_user_remind.USER_ID" value="${user.id }"/>
 							<input type="hidden" name="Ta27_user_remind.REMIND_TYPE" value="1"/>
@@ -58,7 +57,7 @@ function click_check1(obj,i){
 		</tr>
 		<tr>
 			<td width="100%" colspan="2" class="t-left">2、待办、回复文档提醒：&nbsp;&nbsp;
-							<input type="checkbox" name="mobile_flag2" id="mobile_flag2" onclick="javascript:click_check(this,1);" <c:if test="${mobile_flag2==1}">checked</c:if> value="1" />&nbsp;手机短信&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="mobile_flag2" id="mobile_flag2" onclick="javascript:click_check(this,1);" <c:if test="${mobile_flag2==1}">checked</c:if> value="1" />&nbsp;短信提醒&nbsp;&nbsp;&nbsp;
 							<input type="hidden" name="Ta27_user_remind.ID" value=""/>
 							<input type="hidden" name="Ta27_user_remind.USER_ID" value="${user.id }"/>
 							<input type="hidden" name="Ta27_user_remind.REMIND_TYPE" value="2"/>
@@ -80,7 +79,7 @@ function click_check1(obj,i){
 		</tr>
 		<tr>
 			<td width="100%" colspan="2" class="t-left" height="30px;">3、在线提问、权限申请处理完成提醒：&nbsp;&nbsp;
-							<input type="checkbox" name="mobile_flag3" id="mobile_flag3" onclick="javascript:click_check(this,2);" <c:if test="${mobile_flag3==1}">checked</c:if> value="1" />&nbsp;手机短信&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="mobile_flag3" id="mobile_flag3" onclick="javascript:click_check(this,2);" <c:if test="${mobile_flag3==1}">checked</c:if> value="1" />&nbsp;短信提醒&nbsp;&nbsp;&nbsp;
 							<input type="hidden" name="Ta27_user_remind.ID" value=""/>
 							<input type="hidden" name="Ta27_user_remind.USER_ID" value="${user.id }"/>
 							<input type="hidden" name="Ta27_user_remind.REMIND_TYPE" value="3"/>
