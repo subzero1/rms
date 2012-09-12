@@ -186,6 +186,7 @@ if ($.browser.msie) {
 									<li><a href="userInfo.do" target="dialog" width="520" height="320" title="用户个人信息设置">个人设置</a></li>
 									<li><a href="commentsList.do" target="dialog" rel="commentsList" width="700" height="450" title="审批意见维护">审批意见维护</a></li>
 									<li><a href="alarm.do" target="dialog" width="480" height="200" title="超时提醒设置">超时提醒设置</a></li>
+									<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>
 								</ul>
 							</li>
 						</ul>

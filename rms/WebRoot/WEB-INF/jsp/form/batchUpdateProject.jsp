@@ -41,7 +41,7 @@
 					</select>
 				</p>
 				<p style="">
-					<a href="javascript:enterHelp('wssht')">在线帮助</a>
+					<a href="javascript:enterHelp('plgxgc')">在线帮助</a>
 				</p>
 				<div class="divider"></div>
 			</div>	
