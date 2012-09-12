@@ -101,16 +101,18 @@ function isAll()
 		<div class="panelBar">
 			<ul class="toolBar">
 				<!-- <li><a class="delete" href="javascript:;" onclick="ajaxDelAll();"><span>删除所选</span> </a></li> -->
-				<li>
-					<a class="add" href="help/helpEdit.do" target="navTab"
-						rel="helpEdit" title="添加知识库信息"><span>添加</span> </a>
-				</li>
-				<li>
-					<a class="edit"
-						href="help/helpEdit.do?id={help_id}"
-						target="navTab" rel="helpEdit" title="在线帮助信息修改"><span>修改</span>
-					</a>
-				</li>
+				<c:if test="${admin==true}">
+					<li>
+						<a class="add" href="help/helpEdit.do" target="navTab"
+							rel="helpEdit" title="添加知识库信息"><span>添加</span> </a>
+					</li>
+					<li>
+						<a class="edit"
+							href="help/helpEdit.do?id={help_id}"
+							target="navTab" rel="helpEdit" title="在线帮助信息修改"><span>修改</span>
+						</a>
+					</li>
+				</c:if>
 				<li>
 					<a class="edit"
 						href="help/helpDisp.do?id={help_id}"
@@ -120,8 +122,10 @@ function isAll()
 				<li class="line">
 					line
 				</li>
-				<li><a class="delete" href="help/ajaxHelpDel.do?id={help_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+				<c:if test="${admin==true}">
+					<li><a class="delete" href="help/ajaxHelpDel.do?id={help_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
+				</c:if>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="140">

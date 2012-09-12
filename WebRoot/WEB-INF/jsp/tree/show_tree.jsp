@@ -33,7 +33,7 @@ function showtree(value){
 		 	</li>
 			<li class="line">line</li>
 		 </c:if>
-		 	<li><a class="exportexcel"	href="javascript:enterHelp('wssht')"><span>在线帮助</span></a></li>
+		 	<li><a class="exportexcel"	href="javascript:enterHelp('xtlc')"><span>在线帮助</span></a></li>
 			<li class="line">line</li>
 		 </ul>
   	</div>	
