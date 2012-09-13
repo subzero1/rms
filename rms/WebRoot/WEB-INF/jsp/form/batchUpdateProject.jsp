@@ -18,6 +18,11 @@
 			});
 		});
 	});
+	
+	function dcxmgc(module_id){
+		navTab.openTab('searchList', 'search/searchList.do?module_id='+module_id, {title:'项目信息'});
+		$.pdialog.closeCurrent();
+	}
 </script>
 
 <div class="page">
@@ -40,10 +45,12 @@
 						<option value="batch_update_gc">单项工程</option>
 					</select>
 				</p>
-				<p style="">
-					<a href="javascript:enterHelp('plgxgc')">在线帮助</a>
-				</p>
-				<div class="divider"></div>
+				<div>
+					<p style="">
+						<a href="javascript:dcxmgc('101')"><font color='red'>导出项目信息</font></a>&nbsp;&nbsp;
+						<a href="javascript:dcxmgc('102')"><font color='red'>导出工程信息</font></a>
+					</p>
+				</div>
 			</div>	
 			<div class="formBar">
 				<ul>

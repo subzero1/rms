@@ -24,6 +24,7 @@ function reportDoCheck(butt,excel){
 		return;
 	}
 
+
 	if(excel == 0){
 		creatHiddenCondition($(butt).closest('form'));
 		searchOrExcelExport(butt, 'search/report.do', dialogToNavTabSearch, 'report');
