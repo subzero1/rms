@@ -11,7 +11,7 @@
 				<td><input type='text'  class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width:100%'/></td>\
 				<td><input type='text'   comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
 				<td><select name='Tf15_khxwh.LB' style='width:100%;' class='required' comments='类别'>\
-				<option value=''>---请选择类别---</option>\
+				<option value=''>---选择类别---</option>\
 					<option value='sj'>设计</option>\
 					<option value='sg' >施工</option>\
 					<option value='jl' >监理</option>\
@@ -116,27 +116,15 @@
 				<table class="table" width="100%">
 					<thead>
 						<tr>
-							<th>
-								考核项
-							</th>
-							<th>
-								描述
-							</th>
-							<th>
-								最高分数
-							</th>
-							<th>
-								计算方式
-							</th>
+							<th>考核项</th>
+							<th>描述</th>
+							<th>最高分数</th>
+							<th>计算方式</th>
 							<th>
 								<a id="lbie" target='navTab' rel="khxwh" title="考核信息项维护"  style="width:100%" href='infoManage/sortbyl.do?sort=${sort}' ><span >类别</span></a>
 							</th>
-							<th style='width: 30px;'>
-								&nbsp;
-							</th>
-							<th>
-								&nbsp;
-							</th>
+							<th style='width: 30px;'>&nbsp;</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody id="mainbodyx">
@@ -145,27 +133,22 @@
 							<tr>
 								<td style="width:200px">
 									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}">
-									<input type='text' class='required' comments='考核项'
-										name='Tf15_khxwh.KHX' style='width: 100%' value="${tf15.khx }" />
+									<input type='text' class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width: 100%' value="${tf15.khx }" />
 								</td>
 								<td style="width:200px">
-									<input type='text' class='required' comments='描述'
-										name='Tf15_khxwh.MS' style='width: 100%' value="${tf15.ms }" />
+									<input type='text' class='required' comments='描述' name='Tf15_khxwh.MS' style='width: 100%' value="${tf15.ms }" />
+								</td>
+								<td style="width:70px">
+									<input type='text' class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width: 100%' value="${tf15.fz}" />
+								</td>
+								<td style="width:200px">
+									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS' style='width: 100%' value="${tf15.jsfs }" />
 								</td>
 								<td style="width:100px">
-									<input type='text' class='required' comments='最高分数'
-										name='Tf15_khxwh.FZ' style='width: 100%' value="${tf15.fz}" />
-								</td>
-								<td style="width:200px">
-									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS'
-										style='width: 100%' value="${tf15.jsfs }" />
-								</td>
-								<td style="width:60px">
-									<select name='Tf15_khxwh.LB' style='width: 100%;'
-										class='required' comments='类别'>
+									<select name='Tf15_khxwh.LB' style='width: 100%;' class='required' comments='类别'>
 
 										<option value=''>
-											-----请选择类别-----
+											---选择类别---
 										</option>
 										<option value='sj'
 											<c:if test="${tf15.lb=='sj' }">selected</c:if>>
@@ -204,18 +187,14 @@
 					<li>
 						<div class="buttonActive">
 							<div class="buttonContent">
-								<button type="submit">
-									保 存
-								</button>
+								<button type="submit">保 存</button>
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="button">
 							<div class="buttonContent">
-								<button type="Button" class="close">
-									取 消
-								</button>
+								<button type="Button" class="close">取 消</button>
 							</div>
 						</div>
 					</li>
