@@ -90,6 +90,7 @@ public class CreateDataObjectsServiceImpl {
 		OperProperties op = new OperProperties();
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
 		String appPath = (String)paramMap.get("appPath");
+		String owner = (String)paramMap.get("owner");
 		
 		Long tz07_id = (Long)paramMap.get("tz07_id");
 		if(tz07_id == null){
@@ -150,11 +151,13 @@ public class CreateDataObjectsServiceImpl {
 		 * 根据TA07获得字段名
 		 */
 		String sql = "select col.column_name column_name,col.data_type data_type,com.comments comments "
-			       + "from user_tab_cols col,user_col_comments com "
+			       + "from dba_tab_cols col,dba_col_comments com "
 			       + "where col.table_name = com.table_name "
 			       + "and col.column_name = com.column_name "
+			       + "and col.owner = com.owner "
 			       + "and col.column_name <> 'ID' "
-			       + "and col.table_name = '"+tableName.toUpperCase()+"'";
+			       + "and col.table_name = '"+tableName.toUpperCase()+"' "
+				   + "and col.owner='"+owner+"'";
 		
 		StringBuffer t_fieldlist = new StringBuffer("");
 		List list = jdbcTemplate.queryForList(sql);
@@ -222,6 +225,7 @@ public class CreateDataObjectsServiceImpl {
 		OperProperties op = new OperProperties();
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
 		String appPath = (String)paramMap.get("appPath");
+		String owner = (String)paramMap.get("owner");
 		
 		Long tz07_id = (Long)paramMap.get("tz07_id");
 		if(tz07_id == null){
@@ -283,11 +287,13 @@ public class CreateDataObjectsServiceImpl {
 		 * 根据TA07获得字段名
 		 */
 		String sql = "select col.column_name column_name,col.data_type data_type,com.comments comments "
-			       + "from user_tab_cols col,user_col_comments com "
+			       + "from dba_tab_cols col,dba_col_comments com "
 			       + "where col.table_name = com.table_name "
 			       + "and col.column_name = com.column_name "
+			       + "and col.owner = com.owner "
 			       + "and col.column_name <> 'ID' "
-			       + "and col.table_name = '"+tableName.toUpperCase()+"'";
+			       + "and col.table_name = '"+tableName.toUpperCase()+"' "
+			       + "and col.owner='"+owner+"'";
 		
 		StringBuffer t_fieldlist = new StringBuffer("");
 		List list = jdbcTemplate.queryForList(sql);
