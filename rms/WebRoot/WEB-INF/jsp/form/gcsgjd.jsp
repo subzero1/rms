@@ -117,8 +117,7 @@
     		series[j]={};
     		series[j].data=new Array();
     		series[j].name=(j+1)+"."+_xAxis_categories[j];
-    		series[j].data[0]=parseInt(100* _series_data[j]);  
-    		series[j].dataURL="sggsgsgsgsgsgs";
+    		series[j].data[0]=parseInt(100* _series_data[j]);   
     	}  
     	dataSource._params=_params;
     	dataSource._title=_title;
