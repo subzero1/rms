@@ -681,6 +681,8 @@ public class AuxFunction {
 		ModelMap modelMap = new ModelMap();
 		String project_id = request.getParameter("id");
 		StringBuffer hql = new StringBuffer("");
+		List<Object> paramList=new ArrayList<Object>();//参数列表
+		String params="";
 
 		hql.append("from Td00_gcxx as td00 ");
 		if (project_id != null && project_id.length() != 0) {
@@ -689,7 +691,15 @@ public class AuxFunction {
 			modelMap.put("project", project);
 		}
 		List<Td00_gcxx> projectList = (List<Td00_gcxx>) queryService.searchList(hql.toString());
+		
+		for(int i=0;i<projectList.size();i++){
+			Td00_gcxx td00=projectList.get(i);
+			params="javascript:openFlowForm('{project_id:" + td00.getId() + ",doc_id:" + td00.getId()
+			+ ",module_id:102," + "node_id:-1}');";
+			paramList.add(params);
+		}
 		modelMap.put("projectList", projectList);
+		modelMap.put("paramList", paramList);
 		String view = "/WEB-INF/jsp/form/xmsgjd.jsp";
 		return new ModelAndView(view, modelMap);
 	}
