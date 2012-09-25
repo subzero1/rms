@@ -59,8 +59,7 @@
                 	events:{
                 		click:function(){
                 			var str=parseInt(this.name.split(".")[0]); 
-                			window.location.href=''+dataSource.params[str-1];
-                			alert(dataSource.params[str-1]);
+                			window.location.href=''+dataSource.params[str-1]; 
                 		}
                 	}
                 }
@@ -139,7 +138,7 @@
 	</c:forEach>
 
 	<c:forEach var="paramX" items="${paramList}">
-		<input type="text" name="paramX" value="${paramX}" />
+		<input type="hidden" name="paramX" value="${paramX}" />
 	</c:forEach>
 </form>
 
