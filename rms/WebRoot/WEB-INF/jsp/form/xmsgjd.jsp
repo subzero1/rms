@@ -12,31 +12,8 @@
  
 	
   $(document).ready(function() { 
-    var chart; 
-    var gcmc=$("input[name='gcmc']"); //工程名称
-    var sgjd=$("input[name='sgjd']");//施工进度
-    var xmmc=$("input[name='xmmc']").val();//项目名称
-    //设置x坐标标题
-    var _gcmc=new Array();
-    var _sgjd=new Array();
-    var _xmmc=new Array();
-    var _series=new Array();
-    for(var i=0;i<gcmc.length;i++){
-		_gcmc[i]=gcmc[i].value;
-		_sgjd[i]=sgjd[i].value;  
-		}   
-	_xmmc[0]=xmmc;
-     // 设置series数据源 
-    	for(var j=0;j<_gcmc.length;j++){ 
-    		_series[j]={};
-    		_series[j].data=new Array();
-    		_series[j].name=_gcmc[j];
-    		_series[j].data[0]=parseInt(100* _sgjd[j]); 
-    	}  
-     
-     
-     
-     
+  		    var chart; 
+  		    var dataSource=datas();  
     		var chart1 = {
             chart: {
                 renderTo: 'container1',
@@ -46,10 +23,10 @@
                 text: '项目施工进度'
             },
             subtitle: {
-                text: 'Source: Wikipedia.org'
+                text: null
             },
             xAxis: {
-                categories: _xmmc,
+                categories: dataSource.xmmc,
                 title: {
                     text: null
                 }
@@ -58,7 +35,7 @@
                 min: 0,
                 max:100,
                 title: {
-                    text: 'Process (%)',
+                    text: '施工进度 (%)',
                     align: 'high'
                 },
                 labels: {
@@ -76,6 +53,16 @@
                     dataLabels: {
                         enabled: true
                     }
+                },
+                series:{
+                	cursor:'pointer',
+                	events:{
+                		click:function(){
+                			var str=parseInt(this.name.split(".")[0]); 
+                			window.location.href=''+dataSource.params[str-1];
+                			alert(dataSource.params[str-1]);
+                		}
+                	}
                 }
             },
             legend: {
@@ -94,12 +81,43 @@
             },
             series: []
         };
-        chart1.series = _series;  
+        chart1.series = dataSource.series;  
 	    chart = new Highcharts.Chart(chart1);   
     
     }); 
 
-    
+    function datas(){ 
+    var dataSource={};
+    var gcmc=$("input[name='gcmc']"); //工程名称
+    var sgjd=$("input[name='sgjd']");//施工进度
+    var xmmc=$("input[name='xmmc']").val();//项目名称 
+    var params=$("input[name='paramX']");//链接参数列表
+    //设置x坐标标题
+    var _gcmc=new Array();
+    var _sgjd=new Array();
+    var _xmmc=new Array();
+    var _series=new Array();
+    var _params=new Array();
+    for(var i=0;i<gcmc.length;i++){
+		_gcmc[i]=gcmc[i].value;
+		_sgjd[i]=sgjd[i].value;
+		 _params[i]=params[i].value; 
+		}   
+	_xmmc[0]=xmmc;
+     // 设置series数据源 
+    	for(var j=0;j<_gcmc.length;j++){ 
+    		_series[j]={};
+    		_series[j].data=new Array();
+    		_series[j].name=(j+1)+"."+_gcmc[j];
+    		_series[j].data[0]=parseInt(100* _sgjd[j]); 
+    	}  
+    	dataSource.xmmc=_xmmc;
+    	dataSource.gcmc=_gcmc;
+    	dataSource.sgjd=_sgjd;
+    	dataSource.params=_params;
+    	dataSource.series=_series; 
+    	return dataSource;
+    };
 	 
 	
 		</script>
@@ -118,6 +136,10 @@
 		<input type="hidden" name="gcmc" value="${en.gcmc}">
 		<input type="hidden" name="xm_id" value="${en.xm_id}" />
 		<input type="hidden" name="sgjd" value="${en.sgjd}" />
+	</c:forEach>
+
+	<c:forEach var="paramX" items="${paramList}">
+		<input type="text" name="paramX" value="${paramX}" />
 	</c:forEach>
 </form>
 
