@@ -72,58 +72,52 @@ $(function(){
 			}
 		});
 	});
+	
+	//四方勘察
 	$("#tdrOrg\\.Kcry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=sfkc&ids='+$(this).val();
-		alertMsg.confirm("确认四方勘察吗？",{
-			okCall:function(){
-				$.ajax({
-					url:'mbk/mbkLz.do',
-					type:'post',
-					data:data,
-					dataType:"json",
-					cache: false,
-					success: function(json){
-						navTabAjaxDone(json);
-					},
-					error: DWZ.ajaxError
-				});
-			}
+		$.ajax({
+			url:'mbk/mbkLz.do',
+			type:'post',
+			data:data,
+			dataType:"json",
+			cache: false,
+			success: function(json){
+				navTabAjaxDone(json);
+			},
+			error: DWZ.ajaxError
 		});
 	});
+	
+	//方案会审
 	$("#tdrOrg\\.Hsry").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=fahs&ids='+$(this).val();
-		alertMsg.confirm("确认方案会审吗？",{
-			okCall:function(){
-				$.ajax({
-					url:'mbk/mbkLz.do',
-					type:'post',
-					data:data,
-					dataType:"json",
-					cache: false,
-					success: function(json){
-						navTabAjaxDone(json);
-					},
-					error: DWZ.ajaxError
-				});
-			}
+		$.ajax({
+			url:'mbk/mbkLz.do',
+			type:'post',
+			data:data,
+			dataType:"json",
+			cache: false,
+			success: function(json){
+				navTabAjaxDone(json);
+			},
+			error: DWZ.ajaxError
 		});
 	});
+	
+	//转建设
 	$("#tdrOrg\\.Xmgly").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=zjs&xmgly_id='+$(this).val();
-		alertMsg.confirm("确认转建设吗？",{
-			okCall:function(){
-				$.ajax({
-					url:'mbk/mbkLz.do',
-					type:'post',
-					data:data,
-					dataType:"json",
-					cache: false,
-					success: function(json){
-						navTabAjaxDone(json);
-					},
-					error: DWZ.ajaxError
-				});
-			}
+		$.ajax({
+			url:'mbk/mbkLz.do',
+			type:'post',
+			data:data,
+			dataType:"json",
+			cache: false,
+			success: function(json){
+				navTabAjaxDone(json);
+			},
+			error: DWZ.ajaxError
 		});
 	});
 });
