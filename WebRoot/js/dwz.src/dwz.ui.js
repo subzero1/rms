@@ -174,9 +174,9 @@ function initUI(_box){
 			ignore:".ignore",
 			errorPlacement: function(error, element) { //错误信息位置设置方法   modify at 2011/05/17
 				if(element.attr("comments")!=null){
-					alertMsg.error(element.attr("comments") + "：" + error.text());
+					alertMsg.info(element.attr("comments") + "：" + error.text());
 				}else{
-					alertMsg.error(element.prev().text() + error.text());
+					alertMsg.info(element.prev().text() + error.text());
 				}
 					
 				element.attr("title",error.text());
@@ -185,7 +185,7 @@ function initUI(_box){
 				var errors = validator.numberOfInvalids();
 				if (errors) {
 					var message = DWZ.msg("validateFormError",[errors]);
-					alertMsg.error(message);
+					alertMsg.info(message);
 				} 
 			}
 		});

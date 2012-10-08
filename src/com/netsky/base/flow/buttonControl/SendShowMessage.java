@@ -184,34 +184,8 @@ public class SendShowMessage extends ButtonControl {
 					noHaveYs = true;
 				} 
 				
-				hsql.delete(0, hsql.length());
-				hsql.append("select id ");
-				hsql.append("from Te01_slave te01 ");
-				hsql.append("where te01.slave_type = '工程图纸' and te01.project_id = ");
-				hsql.append(project_id);
-				list = queryService.searchList(hsql.toString());
-				if(list == null || list.size() == 0 ){
-					noHaveTz = true;
-				} 
-				
-				hsql.delete(0, hsql.length());
-				hsql.append("select id ");
-				hsql.append("from Te01_slave te01 ");
-				hsql.append("where te01.slave_type = '设计说明' and te01.project_id = ");
-				hsql.append(project_id);
-				list = queryService.searchList(hsql.toString());
-				if(list == null || list.size() == 0 ){
-					noHaveSm = true;
-				} 
-				
 				if(noHaveYs){
 					returnStr = "请先选择【预算上传】，导入预算!";
-				}
-				else if(noHaveTz){
-					returnStr = "请先选择【设计图纸】，上传图纸!";
-				}
-				else if(noHaveSm){
-					returnStr = "请先选择【设计说明】，上传说明!";
 				}
 				else{
 					returnStr ="OK";

@@ -14,7 +14,7 @@
 		$("#daihui",$.pdialog.getCurrent()).click(function(){
 			if ($("#ids",$.pdialog.getCurrent()).val().length>0){
 				var names = $("#names",$.pdialog.getCurrent()).val();
-				alertMsg.confirm("确认选择"+names+"为四方勘察人员吗？",{
+				alertMsg.confirm("确认选择【"+names+"】为四方勘察人员吗？",{
 					okCall:function(){
 						var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
 						$.bringBack({'Kcry':ids});
@@ -43,18 +43,18 @@
 	<div class="searchBar">
 		<ul class="searchContent">
 			<li>
-				<label>姓名:</label>
-				<input class="textInput" name="name" value="${param.name }" type="text"/>
+				<label>姓 名:</label>
+				<input class="textInput" name="name" style="width:200px;" value="${param.name }" type="text"/>
 			</li>
 		</ul>
 		<div class="subBar">
 		<div style="float:left">
-				<label>已选:</label>
-				<input class="textInput" name="name" readonly="readonly" id="names1" value="${param.names }" type="text"/>
+				<label>已 选:</label>
+				<input class="textInput" name="name" style="width:200px;" readonly="readonly" id="names1" value="${param.names }" type="text"/>
 		</div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="daihui">带回</button></div></div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="daihui">确定</button></div></div></li>
 			</ul>
 		</div>
 	</div>

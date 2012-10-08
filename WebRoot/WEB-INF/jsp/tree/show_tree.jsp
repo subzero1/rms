@@ -40,7 +40,7 @@ function showtree(value){
 	<div class="pageContent" style="width:100%" layoutH="28">
 	
 		<div id="tree-title">
-	  		<br/><h1 style="font-size:14px;">项目名称：${title}</h1>
+	  		<br/><h1 style="font-size:14px;">${title}</h1>
 	  	</div>
 		<div id="tree">
 			<c:forEach var="obj" items="${line_list}">
