@@ -36,7 +36,7 @@ $(function(){
 		var data = 'id=${Td21_mbk.id}&type='+flag;
 		if (flag == "zdxf") {
 			if ($("[name=Td21_mbk\\.TDR_ID]",navTab.getCurrentPanel()).val()==""){
-				alertMsg.error("请选择谈点人，并点击『保存』按钮");
+				alertMsg.info("请选择谈点人，并点击『保存』按钮");
 				return;
 			}
 		} else if (flag == "sfkc"){
@@ -51,9 +51,9 @@ $(function(){
 		}
 		var alertmsg = "";
 		if ("${not empty rolesMap['20101'] }"=="true" && change){
-		alertmsg = "警告！点击『保存』按钮之前，所有信息的改动都不会生效！如您尚未保存，请先保存后再进行操作！";
+		alertmsg = "警告！点击『保存』按钮之前，所有信息的改动都不会生效！如尚未保存，请先保存后再进行操作！";
 		}
-		alertMsg.confirm(alertmsg+"确认"+$(this).text()+"吗？",{
+		alertMsg.confirm((alertmsg+"确认【"+$(this).text()+"】吗？").replace(/\s/g,""),{
 			okCall:function(){
 				$.ajax({
 					url:'mbk/mbkLz.do',
