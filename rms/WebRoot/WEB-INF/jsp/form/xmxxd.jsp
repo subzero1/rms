@@ -109,7 +109,7 @@ $(function(){
 <p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
 <div style="height:0px;"></div>
 <p>
-	<label>工程总投资：</label>
+	<label>总投资：</label>
 	<input type="text"  name="Td01_xmxx.YS_JE" value="${td01_xmxx.ys_je}" style="width:150px;"/>
 </p>
 <p>

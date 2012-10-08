@@ -57,7 +57,7 @@ function openOnLineList(){
 						</tr>
 						<tr>
 							<th>部门</th>
-							<td colspan="2">${dept.name}</td>
+							<td colspan="2">${user.dept_name}</td>
 						</tr>
 						<tr>
 							<th>地区</th>
