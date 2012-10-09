@@ -88,7 +88,7 @@ $(function(){
 					</div>
 			   		<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc" style="height:158px;">
-						<table width="400" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+						<table width="400" border="0" cellspacing="0" cellpadding="0">
 		 		        	<tr>
 		 		          	  <td>
 		 		          		<table id="tab_table">	
@@ -113,9 +113,9 @@ $(function(){
 							</tr>
 							<tr>
 								<td>
-								 <div id="content_div" style="width:410px;height:135px;overflow-y:auto;" class="scroll-body">
+								 <div id="content_div" style="width:410px;height:135px;overflow-y:auto;line-height:12px;" class="scroll-body">
 									<div style="display:block;">
-										<table width="400" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
+										<table width="400" border="0" cellspacing="2" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 											<c:forEach var="obj" items="${keyList}">
 											<tr>
 												<td width="100" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
@@ -125,7 +125,7 @@ $(function(){
 										</table>
 									</div>
 									<div style="display:none;">
-										<table width="400" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
+										<table width="400" border="0" cellspacing="2" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 											<c:forEach var="obj" items="${selectList}">
 											<tr>
 												<td	width="90" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
@@ -135,7 +135,7 @@ $(function(){
 										</table>
 									</div>
 									<div style="display:none;">
-										<table width="400" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
+										<table width="400" border="0" cellspacing="2" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 											<c:forEach var="obj" items="${numberList}">
 												<tr>
 													<td width="100" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
@@ -147,7 +147,7 @@ $(function(){
 										</table>
 									</div>
 									<div style="display:none;">
-										<table width="400" border="0"  cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
+										<table width="400" border="0"  cellspacing="2" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 											<c:forEach var="obj" items="${userList}">
 												<tr>
 													<td width="100" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
@@ -157,7 +157,7 @@ $(function(){
 										</table>
 									</div>
 									<div style="display:none;">
-										<table width="400" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
+										<table width="400" border="0" cellspacing="2" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 											<c:forEach var="obj" items="${dateList}">
 												<tr><td style="width:140px" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }" /></td>
 													<td style="width:120px;text-align:center;"><input name="${obj.id }_low" value="" style="width:100px;" class="date"/></td>			
