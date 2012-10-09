@@ -82,6 +82,7 @@ _color:#FF0000; IE6支持
 .panelBar .toolBar a.finish span { background-position:-148px -821px;}/*办结*/
 .panelBar .toolBar a.cancelaccept span { background-position:-148px -846px;}/*取消受理*/
 .panelBar .toolBar a.newform span { background-position:-218px -846px;}/*新建表单*/
+.panelBar .toolBar a.helponline span{ background-position:-218px -821px;}/*在线帮助*/
 
 .listbutton{color:#fff;height:19px;width:60px;line-height:19px;padding:0px 5px;background:url(../themes/default/images/grid/grid.png) repeat-x; background-position:0px -603px;border-right:solid 1px #ccc;border-bottom:solid 1px #999;}/*----列表上的按钮---*/
 .listbutton:hover{height:19px;line-height:19px;width:60px;text-decoration:none;background:#2daebf;cursor:pointer;}
