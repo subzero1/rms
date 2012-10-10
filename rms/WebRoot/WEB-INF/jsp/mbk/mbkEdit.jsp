@@ -271,7 +271,6 @@ function printMbk(){
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value="mbk/mbkEdit.do"/>
 			<input type="hidden" name="_navTabId" value="mbkList"/>
-			<input type="hidden" name="validate" value="${validate}"/> 
 			<c:if test="${empty Td21_mbk.cjsj}">
 			<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			</c:if>
@@ -367,7 +366,7 @@ function printMbk(){
 				</p>
 				<p>
 					<label>租    金：</label>
-					<input type="text" name="Td21_mbk.ZJ" style="width:150px;" value="${Td21_mbk.zj}"/>
+					<input class="digits" type="text" name="Td21_mbk.ZJ" style="width:150px;" value="${Td21_mbk.zj}"/>
 				</p>
 				<p>
 					<label>年    限：</label>
