@@ -87,9 +87,9 @@ public class Sgpd {
 		// 判断计划份额占比与实际份额占比
 		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0   
 		//黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
-		long zgr = convertUtil.toLong(dao.search(
+		double zgr = convertUtil.toDouble(dao.search(
 				"select sum(ys_sgf ) from Td01_xmxx where sgdw is not null and ssdq='" + dq + "' and gclb='"
-						+ gclb + "'").get(0), 0L);
+						+ gclb + "'").get(0), 0D);
 		// flag:未通过检测的个数
 		int flag = 0;
 		// passedList 通过条件的外协单位 暂存入该LIST
@@ -98,11 +98,11 @@ public class Sgpd {
 			Tf05_wxdw_dygx tf05 = (Tf05_wxdw_dygx) objects[1];
 			// fezb:实际份额占比
 			Double fezb = 0D;
-			if (zgr != 0L) {
-				long gr = convertUtil.toLong(dao.search(
+			if (zgr != 0) {
+				double gr = convertUtil.toDouble(dao.search(
 						"select sum(ys_sgf) from Td01_xmxx where sgdw='" + tf01.getMc() + "' and ssdq='"
-								+ dq + "' and gclb='" + gclb + "'").get(0), 0L);
-				fezb = (double) gr / (double) zgr;
+								+ dq + "' and gclb='" + gclb + "'").get(0), 0D);
+				fezb =  gr /  zgr;
 			}
 			// tf05.getV1():预定份额占比
 			objects[6] = tf05.getV1();
