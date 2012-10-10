@@ -17,7 +17,7 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">td01_num</param>
+                <param name="sequence">td00_num</param>
               <!--  
                   To add non XDoclet generator parameters, create a file named 
                   hibernate-generator-params-Td01_xmxx.xml 
