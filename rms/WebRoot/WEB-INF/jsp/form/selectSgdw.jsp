@@ -24,15 +24,14 @@
 
 <div class="pageHeader">
 	<div class="searchBar">
-		<ul class="searchContent">
-			<li>
-				<label>手动选派原因:</label>
-				<input class="textInput" id="sdpgyy" name="name" value="" type="text" style="width:200px;"/>
-			</li>
-		</ul>
+		<table class="searchContent">
+			<tr>
+				<td>手动选派原因：<input class="textInput" id="sdpgyy" name="name" value="" type="text" style="width:500px;"/></td>
+			</tr>
+		</table>
 		<div class="subBar">
 			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查 询</button></div></div></li>
 			</ul>
 		</div>
 	</div>
