@@ -152,7 +152,8 @@
 	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
 	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 30 30 780");	
 	
-	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)/3));
+	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.25));
+	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.5));
 	
 	
 	//修改表单的tabid
