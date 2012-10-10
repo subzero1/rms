@@ -100,6 +100,11 @@ $(function(){
 	<label>所属区域：</label>
 	<netsky:htmlSelect name="Td01_xmxx.SSDQ" objectForOption="ssdqList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.ssdq}" htmlClass="td-select"/>
 </p>
+<div style="height:0px;"></div>
+<p>
+	<label>工程类别：</label>
+	<netsky:htmlSelect name="Td01_xmxx.GCLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.gclb}" htmlClass="td-select"/>
+</p>
 <div class="divider"></div>
 <p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
 <div style="height:0px;"></div>
