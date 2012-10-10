@@ -15,7 +15,7 @@
 			if (sgdw == "${zdxp.mc}"){
 				sdpgyy = "";
 			} else if (sdpgyy == ""){
-				alertMsg.error("请填写手动选派原因！");
+				alertMsg.info("请填写手动选派原因！");
 				return;
 			}
 			$.bringBack({'SGDW':sgdw, 'SDPGYY':sdpgyy});

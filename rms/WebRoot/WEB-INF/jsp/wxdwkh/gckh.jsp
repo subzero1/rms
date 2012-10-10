@@ -35,9 +35,9 @@
 			<table class="table" width="100%">
 				<thead>
 					<tr>
-						<th width="40%">考核项</th>
-						<th width="40%">描述</th>
-						<th width="20%">结果</th>
+						<th width="110">考核项</th>
+						<th>描述</th>
+						<th width="60">结果</th>
 					</tr>
 				</thead>
 				<tbody id="mainbody"><c:forEach var="gc" items="${gc1}">
@@ -69,14 +69,14 @@
 				</c:forEach>
 					<c:forEach var="gc" items="${gc2}">
 					<tr>
-						<td width="40%">
+						<td>
 							<input type="hidden" name="Tf16_xmkhdf.ID" value="${gc.id }" />
 							<input type="text" name="Tf16_xmkhdf.KHX" value="${gc.khx}" style="width:100%" disabled />
 						</td >
-						<td width="40%">
+						<td>
 							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}" style="width:100%" disabled />
 						</td>
-						<td width="20%"> 
+						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc.zdfz}"   /> 
 							<select name="Tf16_xmkhdf.JGXX"  onchange="pfjg(this)" style="width:100%">
 								<option value="" <c:if test="${gc.jgxx==''}">selected</c:if>>请评价</option>
@@ -99,7 +99,6 @@
 			</table>
 		</div>
 		<div class="formBar">
-			<div class="button" style="float:left;"></div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit" id="save">保 存</button></div></div></li>	
 				<li><div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div></li>
