@@ -85,9 +85,10 @@ public class Sgpd {
 			objectsList.add(o);
 		}
 		// 判断计划份额占比与实际份额占比
-		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0
+		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0   
+		//黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
 		long zgr = convertUtil.toLong(dao.search(
-				"select sum(ys_pggr + ys_jggr) from Td00_gcxx where sgdw is not null and ssdq='" + dq + "' and gclb='"
+				"select sum(ys_sgf ) from Td01_xmxx where sgdw is not null and ssdq='" + dq + "' and gclb='"
 						+ gclb + "'").get(0), 0L);
 		// flag:未通过检测的个数
 		int flag = 0;
@@ -99,7 +100,7 @@ public class Sgpd {
 			Double fezb = 0D;
 			if (zgr != 0L) {
 				long gr = convertUtil.toLong(dao.search(
-						"select sum(ys_pggr + ys_jggr) from Td00_gcxx where sgdw='" + tf01.getMc() + "' and ssdq='"
+						"select sum(ys_sgf) from Td01_xmxx where sgdw='" + tf01.getMc() + "' and ssdq='"
 								+ dq + "' and gclb='" + gclb + "'").get(0), 0L);
 				fezb = (double) gr / (double) zgr;
 			}
@@ -275,7 +276,7 @@ public class Sgpd {
 				gljye = convertUtil.toDouble(tmpGljyeList.get(0), 0D);
 			}
 			// jyed:交易额度
-			List<Double> tmpJyedList = (List<Double>) dao.search("select sum(ys_je) from Td00_gcxx td00 where sgdw='"
+			List<Double> tmpJyedList = (List<Double>) dao.search("select sum(ys_sgf) from Td01_xmxx td00 where sgdw='"
 					+ ((Tf01_wxdw) o[0]).getMc() + "' and ssnd=to_char(sysdate,'yyyy')");
 			Double jyed = 0D;
 			if (!tmpJyedList.isEmpty()) {
