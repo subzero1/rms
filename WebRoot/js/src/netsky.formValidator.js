@@ -36,7 +36,7 @@
 									break;
 								
 								case "number":
-									var dataL = field_op.datalength.split(".");
+									var dataL = field_op.datalength.split(",");
 									if(dataL.length==1 || (dataL.length>1 && dataL[1]=="0"))
 										$input.addClass("digits");
 									else
