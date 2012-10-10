@@ -5,9 +5,9 @@
 <script type="text/javascript">
 	$(function(){
 		if ("${param.errormsg}"=="tdnotfound"){
-		alertMsg.error("工程或项目未找到！");
+		alertMsg.info("工程或项目未找到！");
 		} else if ("${param.errormsg}"=="tfnotfound"){
-			alertMsg.error("未找到符合的施工单位！");
+			alertMsg.info("未找到符合的施工单位！");
 		}
 	});
 	function bringBack(sgdw){
