@@ -346,17 +346,17 @@ public class Td21_mbk implements Serializable {
 	/**
 	 * 租金
 	 */
-	private Long zj;
+	private Double zj;
 
 	/**
 	 * @hibernate.property column="zj"
 	 * @return Returns the zj.
 	 */
-	public Long getZj() {
+	public Double getZj() {
 		return zj;
 	}
 
-	public void setZj(Long zj) {
+	public void setZj(Double zj) {
 		this.zj = zj;
 	}
 

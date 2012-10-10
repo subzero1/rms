@@ -172,7 +172,7 @@
 
         <property
             name="zj"
-            type="java.lang.Long"
+            type="java.lang.Double"
             update="true"
             insert="true"
             column="zj"
