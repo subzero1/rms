@@ -123,7 +123,7 @@ $(function(){
 		<label>
 			<c:choose>
 				<c:when  test="${admin == true || param.node_id == '10206'}">
-					<a href="sgpd.do?project_id=${Td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：
+					<a href="sgpd.do?project_id=${td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：
 				</c:when>
 				<c:otherwise>
 					施工单位：
