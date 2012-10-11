@@ -288,7 +288,7 @@ function jilian(var0, var1, var2, var3, var4) {
 *后三个参数此处无意义
 */
 function showMsgBox(_msg,a,b,c){
-	alertMsg.warn(_msg);
+	alertMsg.info(_msg);
 }
 
 /**
