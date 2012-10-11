@@ -10,10 +10,11 @@
 </style>
 <script type="text/javascript">
 	$(function(){
-		var originalpwd = '${user.passwd}';
+		//var originalpwd = '${user.passwd}';
 		$("#AREA_NAME").change(function(){
 				jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name');
 			})
+			/*
 		$("#submitbutton").click(function(){
 				if ($("#pwd").val()!=""){
 					if ($("#pwd").val()!=$("#repwd").val()){
@@ -28,6 +29,7 @@
 					$("#pwd").val(originalpwd);
 				}
 			})
+			*/
 	})
 </script>
 <div class="page">
@@ -46,6 +48,7 @@
 					<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
 					<input type="text" name="Ta03_user.NAME" style="width:120px;" value="${user.name }" class="required" />
 				</p>
+				<!-- 
 				<p>
 					<label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
 					<input type="password" id="pwd" name="Ta03_user.PASSWD" style="width:120px;" value="" />
@@ -54,6 +57,7 @@
 					<label>确认密码：</label>
 					<input type="password" id="repwd" style="width:120px;" value="" />
 				</p>
+				 -->
 				<p>
 					<label>移动电话：</label>
 					<input type="text" name="Ta03_user.MOBILE_TEL" style="width:120px;" value="${user.mobile_tel }" class="required" />
