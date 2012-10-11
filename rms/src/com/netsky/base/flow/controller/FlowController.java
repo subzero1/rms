@@ -232,14 +232,14 @@ public class FlowController {
 			MapUtil.load(paraMap,request);
 			ModelAndView mv = approve.handleRequest(paraMap);
 			if("success".equals(mv.getModelMap().get("approve_return"))){
-				this.printJson(request, response, "200", "");
+				this.printJson(request, response, "200", "审批操作成功");
 			} else {
 				return mv;
 			}
 			
 		} catch(Exception e){
 			log.error(e);
-			printJson(request, response, "301", "");
+			printJson(request, response, "301", "审批操作失败");
 		}	
 		return  null;
 	}
