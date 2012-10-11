@@ -33,7 +33,7 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="exportexcel"	href="javascript:enterHelp('wssht')"><span>在线帮助</span></a></li>
+				<li><a class="helponline"	href="javascript:enterHelp('wssht')"><span>在线帮助</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
