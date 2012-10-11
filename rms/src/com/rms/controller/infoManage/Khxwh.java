@@ -87,7 +87,9 @@ public class Khxwh {
 	 */
 	@RequestMapping("/infoManage/khxwh.do")
 	public ModelAndView khunsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<Tf15_khxwh> tf15List = (List<Tf15_khxwh>) queryService.searchList("from Tf15_khxwh");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "lb");
+		String orderDirection = convertUtil.toString(request.getParameter("sort"), "desc");
+		List<Tf15_khxwh> tf15List = (List<Tf15_khxwh>) queryService.searchList("from Tf15_khxwh order by "+orderField + " " + orderDirection);
 		request.setAttribute("tf15List", tf15List);
 		request.setAttribute("sort", "ASC");
 		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwh.jsp");
