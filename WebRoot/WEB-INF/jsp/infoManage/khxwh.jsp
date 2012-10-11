@@ -4,18 +4,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript">
 	function addComments(){
-		$("#mainbodyx").append("<tr><td>\
-				<input type='hidden' name='Tf15_khxwh.ID' value='' />\
-				<input type='text'  class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width:100%'/></td>\
-				<td><input type='text'  class='required' comments='描述' name='Tf15_khxwh.MS' style='width:100%'/></td>\
-				<td><input type='text'  class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width:100%'/></td>\
-				<td><input type='text'   comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
+		$("#mainbodyx").append("<tr>\
 				<td><select name='Tf15_khxwh.LB' style='width:100%;' class='required' comments='类别'>\
 				<option value=''>---选择类别---</option>\
 					<option value='sj'>设计</option>\
 					<option value='sg' >施工</option>\
 					<option value='jl' >监理</option>\
 				</select></td>\
+				<td>\
+				<input type='hidden' name='Tf15_khxwh.ID' value='' />\
+				<input type='text'  class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width:100%'/></td>\
+				<td><input type='text'  class='required' comments='描述' name='Tf15_khxwh.MS' style='width:100%'/></td>\
+				<td><input type='text'  class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width:100%'/></td>\
+				<td><input type='text'   comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
 				<td><a href='#' onclick='javascript:delComments(this);'  class='btnDel'><span>删除</span></a></td></tr>");
 	}
 	function delComments(obj){
@@ -116,13 +117,13 @@
 				<table class="table" width="100%">
 					<thead>
 						<tr>
+							<th style="width:100px">
+								<a id="lbie" target='navTab' rel="khxwh" title="考核信息项维护"  style="width:100%" href='infoManage/sortbyl.do?sort=${sort}' ><span >类别</span></a>
+							</th>
 							<th style="width:200px">考核项</th>
 							<th style="width:200px">描述</th>
 							<th style="width:100px">最高分数</th>
 							<th style="width:200px">计算方式</th>
-							<th style="width:100px">
-								<a id="lbie" target='navTab' rel="khxwh" title="考核信息项维护"  style="width:100%" href='infoManage/sortbyl.do?sort=${sort}' ><span >类别</span></a>
-							</th>
 							<th style='width: 30px;'>&nbsp;</th>
 							<th>&nbsp;</th>
 						</tr>
@@ -131,19 +132,6 @@
 
 						<c:forEach var="tf15" items="${tf15List}">
 							<tr>
-								<td>
-									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}">
-									<input type='text' class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width: 100%' value="${tf15.khx }" />
-								</td>
-								<td>
-									<input type='text' class='required' comments='描述' name='Tf15_khxwh.MS' style='width: 100%' value="${tf15.ms }" />
-								</td>
-								<td>
-									<input type='text' class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width: 100%' value="${tf15.fz}" />
-								</td>
-								<td>
-									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS' style='width: 100%' value="${tf15.jsfs }" />
-								</td>
 								<td>
 									<select name='Tf15_khxwh.LB' style='width: 100%;' class='required' comments='类别'>
 
@@ -163,6 +151,19 @@
 											监理
 										</option>
 									</select>
+								</td>
+								<td>
+									<input type="hidden" name="Tf15_khxwh.ID" value="${tf15.id}">
+									<input type='text' class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width: 99%' value="${tf15.khx }" />
+								</td>
+								<td>
+									<input type='text' class='required' comments='描述' name='Tf15_khxwh.MS' style='width: 99%' value="${tf15.ms }" />
+								</td>
+								<td>
+									<input type='text' class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width: 99%' value="${tf15.fz}" />
+								</td>
+								<td>
+									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS' style='width: 99%' value="${tf15.jsfs }" />
 								</td>
 								<td>
 									<a href="#" onclick="javascript:delComments(this);"
