@@ -98,7 +98,7 @@ $(function(){
 					<th style="width:35px;"></th>
 					<!-- 初始化标题名称 -->
 					<c:forEach var="col" items="${docColsList}">
-						<th  <c:if test="${col.name != 'jfmc'}">style="width: ${col.width}px;"</c:if> orderField="${col.object_name}.${col.name}">${col.comments}</th>
+						<th  <c:if test="${col.name != 'jfmc'}"> style="width:${col.width}px;"</c:if> orderField="${col.object_name}.${col.name}">${col.comments}</th>
 					</c:forEach>
 				</tr>
 			</thead>
@@ -119,9 +119,9 @@ $(function(){
 						<c:forEach var="j" begin="0" end ="${cols-1}">
 							<c:choose>
 								<c:when test="${'名称' == docColsList[j].comments}">
-									<td style="text-align:${docColsList[j].align};width:${docColsList[j].width};"><a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');">${doc[j]}</a></td>
+									<td style="text-align:${docColsList[j].align};"><a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');">${doc[j]}</a></td>
 								</c:when>
-								<c:otherwise><td style="text-align:${docColsList[j].align};width:${docColsList[j].width};">${doc[j]}</td></c:otherwise>
+								<c:otherwise><td style="text-align:${docColsList[j].align};">${doc[j]}</td></c:otherwise>
 							</c:choose>
 						</c:forEach>
 					</tr>
