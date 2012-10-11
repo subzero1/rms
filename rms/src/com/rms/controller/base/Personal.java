@@ -1,5 +1,6 @@
 package com.rms.controller.base;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
@@ -188,4 +189,49 @@ public class Personal {
 			out.print("{\"statusCode\":\"300\",\"message\":\"信息更改失败！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		}
 	 }
+	
+	
+	/**
+	 * 密码修改
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/pwdSetting.do")
+	public ModelAndView pwdMSetting(HttpServletRequest request,HttpServletResponse response){
+		return new ModelAndView("/WEB-INF/jsp/personalization/pwdSetting.jsp");
+	}
+	
+	/**
+	 * 保存密码
+	 * @param request
+	 * @param response
+	 * @param session void
+	 * @throws IOException 
+	 */
+	@RequestMapping("/pwdSave.do")
+	public void pwdSave(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		Long id=new Long(request.getParameter("Ta03_user.ID"));
+		String passwd=convertUtil.toString(request.getParameter("Ta03_user.PASSWD"));
+		String newpwd=convertUtil.toString(request.getParameter("newpwd").trim());
+		Ta03_user user = (Ta03_user)dao.getObject(Ta03_user.class, id);
+		PrintWriter out=response.getWriter();
+	
+		try{
+			if(passwd.equals(user.getPasswd())){
+				user.setPasswd(newpwd);
+				user.setLast_pwd_date(new Date());
+				dao.saveObject(user);
+				session.setAttribute("user", user);	
+				out.print("{\"statusCode\":\"200\",\"message\":\"密码修改成功！\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}");
+			}else if(!passwd.equals(user.getPasswd())){
+				out.print("{\"statusCode\":\"300\",\"message\":\"原密码输入有误！\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}");
+			}
+			
+		}catch(Exception e){
+			out.print("{\"statusCode\":\"300\",\"message\":\"密码修改失败！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
+		}
+		
+	}
 }
