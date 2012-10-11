@@ -5,7 +5,7 @@
 	<h2 class="contentTitle">用户维护</h2>
 	<div class="sysmanage_left" style=" float:left; display:block; margin:10px; overflow:auto; width:22%; height:500px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 	<ul class="tree expand collapse">
-		<li><a href="">用户结构</a>
+		<li><a href="">用户列表</a>
 		 <ul>
 			<c:forEach var="menu" items="${areaList}">
 				<li>

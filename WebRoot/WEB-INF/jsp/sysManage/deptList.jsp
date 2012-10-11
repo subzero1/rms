@@ -5,7 +5,7 @@
 <h2 class="contentTitle">部门维护</h2>
 <div style=" float:left; display:block; margin:10px; overflow:auto; width:25%; height:320px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 <ul class="tree expand">
-	<li><a href="">部门结构</a>
+	<li><a href="">部门列表</a>
 	 <ul>
 		<c:forEach var="menu" items="${areaList}">
 			<li>
