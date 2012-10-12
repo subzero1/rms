@@ -51,9 +51,12 @@ $(function(){
 		}
 		var alertmsg = "";
 		if ("${not empty rolesMap['20101'] }"=="true" && change){
-		alertmsg = "警告！点击『保存』按钮之前，所有信息的改动都不会生效！如尚未保存，请先保存后再进行操作！";
+			alertmsg = "有数据未保存，请先保存后再进行操作！";
+			alertMsg.info(alertmsg);
+			return false;
 		}
-		alertMsg.confirm((alertmsg+"确认【"+$(this).text()+"】吗？").replace(/\s/g,""),{
+		else{
+			alertMsg.confirm((alertmsg+"确认【"+$(this).text()+"】吗？").replace(/\s/g,""),{
 			okCall:function(){
 				$.ajax({
 					url:'mbk/mbkLz.do',
@@ -70,7 +73,8 @@ $(function(){
 					error: DWZ.ajaxError
 				});
 			}
-		});
+		 });
+		}
 	});
 	
 	//四方勘察
