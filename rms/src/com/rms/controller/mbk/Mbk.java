@@ -82,9 +82,9 @@ public class Mbk {
 		Integer totalCount = 0;
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "zymc");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "cjsj");
 		if (orderField.equals("")) {
-			orderField = "zymc";
+			orderField = "cjsj";
 		}
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
