@@ -526,4 +526,19 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectXmgly.jsp", modelMap);
 	}
+	
+	/**
+	 * 目标库信息
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/mbk/lzjl.do")
+	public ModelAndView lzjl(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("mbk_id"));
+		if (id != -1) {
+			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id
+					+ " order by id asc"));
+		}
+		return new ModelAndView("/WEB-INF/jsp/mbk/lzjl.jsp", modelMap);
+	}
 }
