@@ -348,6 +348,17 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 			}
 			
+			if(module_id==104){
+				if(doc_id != -1){
+					//获取项目下的所有相关工程列表
+					queryBuilder = new HibernateQueryBuilder(Td00_gcxx.class);
+					queryBuilder.eq("xm_id", project_id);
+					queryBuilder.addOrderBy(Order.asc("id"));
+					tmpList = queryService.searchList(queryBuilder);
+					request.setAttribute("glgcList", tmpList);
+				}
+			}
+			
 			
 			/**
 			 * 以下为表单附件区域@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

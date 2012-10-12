@@ -74,17 +74,19 @@
 	<table class="table" width="100%" layouth="138">
 		<thead>
 			<tr>
-				<th style="width: 120px;">工程编号</th>
-				<th style="width: 260px;">工程名称</th>
-				<th>验收资料</th>
+				<th style="width: 140px;">工程编号</th>
+				<th style="width: 300px;">工程名称</th>
+				<th>&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach begin="0" end="8">
+			<c:set var="offset" value="0"/>
+			<c:forEach items="${glgcList}" var="obj">
+			<c:set var="offset" value="${offset+1}"/>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${obj.gcbh }</td>
+					<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:102,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.gcmc }</a></td>
+					<td>&nbsp;</td>
 				</tr>
 			</c:forEach>
 		</tbody>
