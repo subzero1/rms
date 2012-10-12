@@ -112,7 +112,8 @@ public class Mbk {
 
 		}
 		if (rolesMap.get("20102") != null) {
-			roleSql += " or (tdr_id=" + user.getId() + " and zt='开始谈点') or (zt='新建' and hdfs='派发')";
+			//roleSql += " or (tdr_id=" + user.getId() + " and zt='开始谈点') or (zt='新建' and hdfs='派发')";
+			roleSql += " or (tdr_id=" + user.getId() + ") or (zt='新建' and hdfs='派发')";
 
 		}
 		if (rolesMap.get("20103") != null) {
@@ -149,6 +150,7 @@ public class Mbk {
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
+		System.out.println(hsql.toString());
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Td21_mbk> mbkList = new ArrayList<Td21_mbk>();
