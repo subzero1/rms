@@ -173,7 +173,7 @@ function printMbk(){
 				<td style="font-size: 13px;text-align:center">建设等级</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.jsdj}</td>
 				<td style="font-size: 13px;text-align:center">资源状态</td><td style="font-size: 13px;text-align:center">&nbsp;${Td21_mbk.zt}</td>
 			</tr>
-			<tr style="height:120px;">
+			<tr style="height:100px;">
 				<td style="font-size: 13px;text-align:center">说 明</td><td colspan="5" style="line-height:18px;">&nbsp;${Td21_mbk.bz}</td>
 			</tr>
 			<tr style="height:50px;line-height:50px;"><td colspan="6">&nbsp;</td></tr>
