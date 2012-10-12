@@ -48,11 +48,11 @@ function checkandsave(){
 		ids.push(id);
 	});
 	if (!flag){
-		alertMsg.error("请选择材料类型及材料名称");
+		alertMsg.info("请选择材料类型及材料名称");
 		return;
 	}
 	if (!flag1){
-		alertMsg.error("发现重复的材料，请合并后重新保存");
+		alertMsg.info("发现重复的材料，请合并后重新保存");
 		return;
 	}
 	flag = true;
@@ -63,7 +63,7 @@ function checkandsave(){
 		}
 	});
 	if (!flag){
-		alertMsg.error("请在数量栏填入正整数");
+		alertMsg.info("请在数量栏填入正整数");
 		return;
 	}
 	if ($("select[name=Tf08_clmxb\\.CLLX]").size() == 0){

@@ -8,7 +8,7 @@
 	$(function(){
 		$("#importbutton",$.pdialog.getCurrent()).click(function(){
 			if ($("#file",$.pdialog.getCurrent()).val()==""){
-				alertMsg.error("请选择导入EXCEL文件！");
+				alertMsg.info("请选择导入EXCEL文件！");
 				return false;
 			}
 			alertMsg.confirm("该操作将删除所有原有信息，并进行全新的导入。建议您首先导出当前的基础材料信息到EXCEL文件后再进行导入操作。导入前请您先行下载EXCEL模板，根据模板格式进行数据录入，以避免因导入数据产生的问题。现在继续吗？", {

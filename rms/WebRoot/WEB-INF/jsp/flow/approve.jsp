@@ -21,7 +21,7 @@ function selResult(idea_str){
 function saveTemplate(butt){
 	var $form = $(butt).closest("form");
 	if($("#check_idea",$form).val().trim() == ""){
-		alertMsg.error("审批意见不能为空!");
+		alertMsg.info("审批意见不能为空!");
 		return;
 	}
 	
@@ -39,7 +39,7 @@ function saveTemplate(butt){
 }
 function saveTemplateCallback(html){
 	if(html == ""){
-		alertMsg.error("保存模板失败,请联系系统管理员!");
+		alertMsg.info("保存模板失败,请联系系统管理员!");
 	}else{
 		alertMsg.correct("保存模板成功!");
 		$("#yjxz").append(html);

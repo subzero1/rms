@@ -56,7 +56,7 @@
 				data:data,
 				success: function(msg){
 				if (!$.trim(msg)=="success"){
-					alertMsg.error('<font color=red><b>〖 错误 〗</b></font> <br/>&nbsp;短信通知管理员失败');
+					alertMsg.info('<font color=red><b>〖 错误 〗</b></font> <br/>&nbsp;短信通知管理员失败');
 					} 
 				$("#form1").submit();
 				}

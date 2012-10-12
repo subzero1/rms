@@ -12,7 +12,7 @@ $(function(){
 			cache: false,
 			success: function(xml){
 				if($(xml).text() == ""){
-					alertMsg.error("返回切块数据错误!");
+					alertMsg.info("返回切块数据错误!");
 					return;
 				}
 				$("#qkdl").text("");
@@ -33,7 +33,7 @@ $(function(){
 							cache: false,
 							success: function(xml){
 								if($(xml).text() == ""){
-									alertMsg.error("返回切块细项错误!");
+									alertMsg.info("返回切块细项错误!");
 									return;
 								}
 								

@@ -21,7 +21,7 @@
 					}
 				});
 			} else {
-				alertMsg.error("请选择会审人员！");
+				alertMsg.info("请选择会审人员！");
 			}
 		});
 		$("#clear",$.pdialog.getCurrent()).click(function(){

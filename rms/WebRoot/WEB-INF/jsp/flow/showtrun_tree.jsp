@@ -39,8 +39,8 @@ function do_click(tb02_id ,tb12_id,project_id,module_id,doc_id,node_status){
 						$.pdialog.closeCurrent();
 			        	docClose();
 			        }
-			        ,error:function(){alertMsg.error('错误！请重试'); }
-			        ,timeout:function(){alertMsg.error('处理超时！请重试'); }
+			        ,error:function(){alertMsg.info('错误！请重试'); }
+			        ,timeout:function(){alertMsg.info('处理超时！请重试'); }
 			    });	
 			    
 	        }

@@ -21,7 +21,7 @@
 					}
 				});
 			} else {
-				alertMsg.error("请选择四方勘察人员！");
+				alertMsg.info("请选择四方勘察人员！");
 			}
 		});
 	});

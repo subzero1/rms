@@ -89,7 +89,7 @@
 		
 		function save_jlfk(){
 			if ($.trim($("#jlfk_yj").val())=="") {
-				alertMsg.error("请填写反馈内容！");
+				alertMsg.info("请填写反馈内容！");
 			} else {
 				$.ajax({
 				url:'jlfk.do',

@@ -15,7 +15,7 @@ function saveQyzyConfig3(){
 	$(".gljye", navTab.getCurrentPanel()).each(function(){
 		if (isNaN($.trim($(this).val()))){
 			$(".jqueryadd").remove();
-			alertMsg.error('请输入正确的关联交易额（数值类型）！');
+			alertMsg.info('请输入正确的关联交易额（数值类型）！');
 			$(this).select();
 			validate = false;
 			return;

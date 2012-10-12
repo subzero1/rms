@@ -7,7 +7,7 @@
 function uploadSlave(butt){
 	var up_form = $(butt).closest("form");
 	if($("#the_file",up_form).val()==""){
-		alertMsg.error("请选择文件");
+		alertMsg.info("请选择文件");
 	}else{
 		up_form.submit();
 	}

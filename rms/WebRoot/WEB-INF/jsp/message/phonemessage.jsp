@@ -40,7 +40,7 @@
 		
 		$("#submitbutton").click(function(){
 			if(($("#reader_tel").val()==""||$("#reader_tel").val()==null)&&($("#additionTels").val()==""||$("#additionTels").val()==null)){
-				alertMsg.error('收件人不能为空!');
+				alertMsg.info('收件人不能为空!');
 				return;
 			}
 			$("#send_flag").val("1");

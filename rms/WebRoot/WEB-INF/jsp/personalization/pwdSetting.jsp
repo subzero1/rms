@@ -19,13 +19,13 @@
 					if ($("#newpwd").val()!=$("#repwd").val()){
 						$("#newpwd").val("");
 						$("#newrepwd").val("");
-						alertMsg.error('对不起,两次输入的密码不一致!');
+						alertMsg.info('对不起,两次输入的密码不一致!');
 						return false;
 					} else {
 						$("#pwddate").val('<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>');
 					}
 				}else if($("#newpwd").val()==""){ 
-					alertMsg.error('请您输入新密码！');
+					alertMsg.info('请您输入新密码！');
 					return false;
 				}
 			})

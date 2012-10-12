@@ -18,7 +18,7 @@ function saveQyzyConfig2(){
 	$(".zdgcs", navTab.getCurrentPanel()).each(function(){
 		if (isNaN($.trim($(this).val())) || $(this).val().indexOf(".")!=-1){
 			$(".jqueryadd").remove();
-			alertMsg.error('请输入正确的最大在建工程数（整数值类型）！');
+			alertMsg.info('请输入正确的最大在建工程数（整数值类型）！');
 			$(this).select();
 			validate = false;
 			return;

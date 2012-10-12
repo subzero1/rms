@@ -20,7 +20,7 @@
 					if ($("#pwd").val()!=$("#repwd").val()){
 						$("#pwd").val("");
 						$("#repwd").val("");
-						alertMsg.error('对不起,两次输入的密码不一致!');
+						alertMsg.info('对不起,两次输入的密码不一致!');
 						return false;
 					} else {
 						$("#pwddate").val('<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>');
