@@ -8,7 +8,7 @@
 	});
 	function zhuanchu(){
 		if ($.trim($("#zcsl").val())== "" || isNaN($("#zcsl").val()) || $("#zcsl").val().indexOf(".") != -1 ||parseInt($("#zcsl").val())<=0 || parseInt($("#zcsl").val())>parseInt("${tf07.kcsl}")){
-				alertMsg.error("转出数量必须为正整数且不能大于${tf07.kcsl}");
+				alertMsg.info("转出数量必须为正整数且不能大于${tf07.kcsl}");
 				return false;
 			}
 			$("#zhuanchubutton").attr("href",$("#zhuanchubutton").attr("href")+"&sl="+$("#zcsl").val());

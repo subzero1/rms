@@ -20,7 +20,7 @@
 		$(".preButt .save").click(function(){
 			var $data = $(this).closest("tr").find(":input");
 			if ($(this).closest("tr").find(":input[name=mc]").val()==""){
-				alertMsg.error('施工队名称不能为空！');
+				alertMsg.info('施工队名称不能为空！');
 				return false;
 			}
 			$.ajax({

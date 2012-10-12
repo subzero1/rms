@@ -12,7 +12,7 @@ $(function(){
 			cache: false,
 			success: function(xml){
 				if($(xml).text() == ""){
-					alertMsg.error("返回专业数据错误!");
+					alertMsg.info("返回专业数据错误!");
 					return;
 				}
 				$("#zydl").text("");
@@ -33,7 +33,7 @@ $(function(){
 							cache: false,
 							success: function(xml){
 								if($(xml).text() == ""){
-									alertMsg.error("返回专业细项错误!");
+									alertMsg.info("返回专业细项错误!");
 									return;
 								}
 								

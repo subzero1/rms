@@ -28,7 +28,7 @@
 			//alert($.trim(location) == "");
 			var location = document.getElementById('fuPhoto').value;
 		if ($.trim(location) == "") {
-			alertMsg.error('请选择上传的图片');
+			alertMsg.info('请选择上传的图片');
 			return false;
 		}
 		var point = location.lastIndexOf(".");
@@ -37,13 +37,13 @@
 			img = document.createElement("img");
 			img.src = location;
 			if (img.fileSize > 4194304) {
-				alertMsg.error('上传的图片不能大于4M');
+				alertMsg.info('上传的图片不能大于4M');
 				return false;
 			} else{
 				return true;
 			}
 		} else {
-			alertMsg.error('请上传JPG/JEPG格式的图片文件');
+			alertMsg.info('请上传JPG/JEPG格式的图片文件');
 			return false;
 		}
 		return true;

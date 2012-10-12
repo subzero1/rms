@@ -35,7 +35,7 @@ function openDialog(butt){
 	if($("#help_tbody input:checked").size()>0){
 		$.pdialog.open('business/billBack.do', '', '票据收回', {mask:true,width:480,height:350,data: $form.serializeArray()});
 	} else {
-	   alertMsg.error('请先选择待收回票据！')
+	   alertMsg.info('请先选择待收回票据！')
 	}
 }
 function ajaxDelAll()
@@ -51,7 +51,7 @@ function ajaxDelAll()
 });
 	}
 	else {
-		   alertMsg.error('请先选择待删除知识库记录！')
+		   alertMsg.info('请先选择待删除知识库记录！')
 		}
 }
 function isAll()

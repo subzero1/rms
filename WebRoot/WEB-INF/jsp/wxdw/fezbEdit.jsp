@@ -18,7 +18,7 @@ function saveQyzyConfig1(){
 	$(".fezb", navTab.getCurrentPanel()).each(function(){
 		if (isNaN($.trim($(this).val()))){
 			$(".jqueryadd", navTab.getCurrentPanel()).remove();
-			alertMsg.error('请输入正确的份额占比（数值类型）！');
+			alertMsg.info('请输入正确的份额占比（数值类型）！');
 			$(this).select();
 			validate = false;
 			return;

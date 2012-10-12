@@ -59,7 +59,7 @@
 						data:'id=${online.id}&chuli=${xhf}',
 						success: function(msg){
 						if (!$.trim(msg)=="true"){
-							alertMsg.error('<font color=red><b>〖 错误 〗</b></font> <br/>&nbsp;回复失败！请重新回复或联系管理员');
+							alertMsg.info('<font color=red><b>〖 错误 〗</b></font> <br/>&nbsp;回复失败！请重新回复或联系管理员');
 							} else {
 								$("#form1").submit();
 							}

@@ -8,7 +8,7 @@
 	$(function(){
 		$("#importbutton",$.pdialog.getCurrent()).click(function(){
 			if ($("#file",$.pdialog.getCurrent()).val()==""){
-				alertMsg.error("请选择导入EXCEL文件！");
+				alertMsg.info("请选择导入EXCEL文件！");
 				return false;
 			}
 			alertMsg.confirm("确定更新吗？", {

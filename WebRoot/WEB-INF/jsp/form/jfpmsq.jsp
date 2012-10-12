@@ -29,7 +29,7 @@ function autoSelectJfxx(inputObj){
 			cache: false,
 			success: function (xml) {
 				if($(xml).text() == ""){
-					alertMsg.error("未找到要查询的信息!");
+					alertMsg.info("未找到要查询的信息!");
 					return;
 				}
 				cur_tr.find("[name=Td12_gljf.JF_ID]").val($(xml).find("jf_id").text());
@@ -61,7 +61,7 @@ function zzlc(){
 				alertMsg.correct('流程中止成功');
 				docReload();
 			},
-			error:function(){alertMsg.error('操作失败，请重试'); }
+			error:function(){alertMsg.info('操作失败，请重试'); }
 		});	
 }
 </script>

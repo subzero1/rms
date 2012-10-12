@@ -94,10 +94,10 @@
 	
 	$("#submitbutton").click(function(){
 		if($("#reader_id").val()==""||$("#reader_id").val()==null){
-			alertMsg.error('收件人不能为空!');
+			alertMsg.info('收件人不能为空!');
 			return;
 		}if($("#title").val()==""||$("#title").val()==null){
-			alertMsg.error('主题不能为空!');
+			alertMsg.info('主题不能为空!');
 			return;
 		}
 		$("#send_flag").val("1");
