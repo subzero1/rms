@@ -3,6 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
+<script type="">
+	function lzjl(mbk_id){
+		var url = 'mbk/lzjl.do?mbk_id='+mbk_id;
+		$.pdialog.open(url,'_lzjl','流转记录',{width:700,height:400});
+	}
+</script>
 
 <form id="pagerForm" method="post" action="mbk/mbkList.do">
 	<input type="hidden" name="zymc" value="${param.zymc}">
@@ -56,6 +62,7 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
+					<th style="width:40px;"></th>
 					<th orderField="zymc">资源名称</th>
 					<th orderField="ssdq">地区</th>
 					<th style="width: 120px;" orderField="jsxz">建设性质</th>
@@ -70,6 +77,11 @@
 				<c:forEach var="obj" items="${mbkList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="mbk_id" rel="${obj.id}">
+						<td style="text-align:center;">
+							<c:if test="${obj != null}">								
+								<a href="javascript:lzjl('${obj.id }')" rel="lzjl" ><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+							</c:if>		
+						</td>
 						<td><a href="mbk/mbkEdit.do?id=${obj.id}" target="navTab" rel="mbk" title="目标库信息">${obj.zymc }</a></td>
 						<td>${obj.ssdq }&nbsp;</td>
 						<td>${obj.jsxz }</td>
@@ -82,6 +94,7 @@
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
