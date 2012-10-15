@@ -27,6 +27,9 @@ function uploadSlave(butt){
 	<c:when test="${param.slave_type==4}">
 		<c:set var="slave_type" value="竣工资料"/>
 	</c:when>
+	<c:when test="${param.slave_type==5}">
+		<c:set var="slave_type" value="目标库"/>
+	</c:when>
 	<c:when test="${param.slave_type==8}">
 		<c:set var="slave_type" value="其他附件"/>
 	</c:when>
