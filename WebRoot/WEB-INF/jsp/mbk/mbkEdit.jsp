@@ -242,9 +242,17 @@ function printMbk(){
 			<li><a class="icon" href="#"><span flag="dcxy" class="lzspan">达成协议</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-				<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '达成协议'}">
-			<li><a class="icon" href="#"><span flag="sfkc" class="lzspan">四方勘察</span></a></li>
-			<li class="line">line</li>
+			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '达成协议'}">
+				<c:choose>
+					<c:when test="${Td21_mbk.jsxz == '基站'}">
+					<li><a class="icon" href="#"><span flag="sfkc" class="lzspan">四方勘察</span></a></li>
+					<li class="line">line</li>
+					</c:when>
+					<c:otherwise>
+					<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
+					<li class="line">line</li>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">
 			<li><a class="icon" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
