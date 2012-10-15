@@ -105,7 +105,7 @@ $(document).ready(function(){
 			<ul>
 			<c:forEach var="user" items="${users}">
 				<li>
-					${user.name}
+					<a >${user.name}</a>
 				</li>
 			</c:forEach>
 			</ul>

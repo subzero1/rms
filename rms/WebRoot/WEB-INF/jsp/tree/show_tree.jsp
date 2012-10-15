@@ -73,6 +73,7 @@ function showtree(value){
 						</c:forEach>
 					</select>	
 				</c:if>
+				<p>&nbsp;</p>
 				<c:if test="${not empty moduleList}">
 					<c:forEach var="obj" items="${moduleList}">
 						<c:if test="${obj.doc_id == param.doc_id }">

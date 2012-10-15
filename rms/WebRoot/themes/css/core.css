@@ -420,19 +420,19 @@ label.alt {display:block; overflow:hidden; position:absolute;line-height:20px}
 #layout { text-align:left;}
 body { overflow:hidden;}
 #layout { display:block; height:100%; position:relative;}
-#header { display:block; overflow:hidden; height:50px; z-index:30}
-#leftside { position:absolute; top:55px; left:0; z-index:20;}
+#header { display:block; overflow:hidden; height:85px; z-index:30}/*height从50改为85*/
+#leftside { position:absolute; top:90px; left:0; z-index:20;}/*top从55改为90*/
 #sidebar { width:200px; position:absolute; top:0; left:5px; z-index:20; overflow:hidden;}
 #sidebar_s { display:none; width:24px; position:absolute; top:0; left:0; z-index:21;}
-#container { position:absolute; top:55px; left:210px;}
-#splitBar { display:block; overflow:hidden; width:5px; cursor:col-resize; position:absolute; top:55px; left:205px; z-index:20;}
-#splitBarProxy { display:none; overflow:hidden; width:3px; border-style:solid; border-width:1px; cursor:col-resize; position:absolute; top:55px; left:205px; z-index:20;}
+#container { position:absolute; top:90px; left:210px;}/*top从55改为90*/
+#splitBar { display:block; overflow:hidden; width:5px; cursor:col-resize; position:absolute; top:90px; left:205px; z-index:20;}/*top从55改为90*/
+#splitBarProxy { display:none; overflow:hidden; width:3px; border-style:solid; border-width:1px; cursor:col-resize; position:absolute; top:90px; left:205px; z-index:20;}/*top从55改为90*/
 #footer {position:absolute; bottom:0; left:0; text-align:center; width:100%; height:21px; padding:0 5px;z-index:-1}
 
-#header .headerNav { height:50px; background-repeat:no-repeat; background-position:100% -50px;}
-#header .logo { float:left; width:400px; height:50px; text-indent:-1000px;}
+#header .headerNav { height:85px; background-repeat:no-repeat; background-position:100% -50px;padding-top:35px;}/*height从50改为85*/
+#header .logo { float:left; width:400px; height:50px; text-indent:-1000px;position:absolute;top:35px;}
 
-#header .nav { display:block; height:21px; position:absolute; top:8px; right:0; z-index:31;}
+#header .nav { display:block; height:21px; position:absolute; top:43px; right:0; z-index:31;}/*top从8改为43*/
 #header .nav li { float:left; margin-left:-1px; padding:0 10px; line-height:12px; position:relative;}
 #header .nav li a { line-height:12px;}
 #header .nav ul { display:none; width:230px; border:solid 1px #06223e; overflow:hidden; background:#FFF; position:absolute; top:20px; right:0;}
@@ -440,7 +440,7 @@ body { overflow:hidden;}
 #header .nav ul li a { color:#000;}
 #header .nav .selected ul {display:block;}
 
-#header .themeList { position:absolute; top:30px; right:10px;}
+#header .themeList { position:absolute; top:65px; right:10px;}/*top从30改为65*/
 #header .themeList li { float:left; padding:0 3px;}
 #header .themeList li div { display:block; overflow:hidden; width:13px; height:11px; text-indent:-100px; cursor:pointer;}
 #header .themeList li.default div { background-position:0 0;}
@@ -494,7 +494,7 @@ body { overflow:hidden;}
 .dateRange .limit {text-align: center; width: 15px; line-height:21px; }
 
 /* Pages Form */
-.pageForm { display:block; overflow:auto;}
+.pageForm { display:block; overflow:auto;margin:35px;}
 .pageFormContent { display:block; overflow:auto; padding:10px 5px; position:relative;}
 .pageFormContent div { clear:both; display:block; overflow:hidden; height:auto;}
 .pageFormContent div.unit {display:block; _width:100%; margin:0; padding:5px 0; position:relative;}
