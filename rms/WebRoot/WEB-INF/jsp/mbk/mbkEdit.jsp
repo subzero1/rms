@@ -270,7 +270,7 @@ function printMbk(){
 			<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20105'] && Td21_mbk.zt == '转建设'}">
+			<c:if test="${not empty rolesMap['20105'] && (Td21_mbk.zt == '转建设' || Td21_mbk.zt == '建设中') && haveGlgc == 'no'}">
 			<li><a class="add" href="#"><span flag="jsz" class="lzspan">新建工程</span></a>
 			</li>
 			<li class="line">line</li>
