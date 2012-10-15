@@ -52,7 +52,7 @@
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/wxdwList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
-				<li><a class="exportexcel"	href="javascript:enterHelp('wxdw')"><span>在线帮助</span></a></li>
+				<li><a class="helponline"	href="javascript:enterHelp('wxdw')"><span>在线帮助</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
