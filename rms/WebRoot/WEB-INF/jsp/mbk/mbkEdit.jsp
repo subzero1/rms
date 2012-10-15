@@ -216,6 +216,12 @@ function printMbk(){
 			<li><a class="print" href="javascript:printMbk()"><span>打 印</span></a></li>
 			<li class="line">line</li>
 			<c:if test="${not empty Td21_mbk.id }">
+			 
+			<li><a class="attach" 
+			href="javascript:docSlave('slave.do?project_id=${project_id }&amp;doc_id=${project_id }&amp;module_id=90&amp;node_id=-1&amp;opernode_id=-1&amp;user_id=${user.id }&slave_type=5');">
+			<span>附 件</span></a></li>
+			<li class="line">line</li> 
+			
 			<c:if test="${not empty rolesMap['20101'] && empty Td21_mbk.hdfs }">
 			<li><a class="send" href="#"><span flag="zdrl" class="lzspan">派发</span></a></li>
 			<li class="line">line</li>

@@ -23,6 +23,10 @@
 		<folder>rmsSlaveData/yhtx</folder>
 	</typeFolder>
 	<typeFolder>
+		<type>目标库</type>
+		<folder>rmsSlaveData/mbk</folder>
+	</typeFolder>
+	<typeFolder>
 		<type>xhEditor上传</type>
 		<folder>rmsSlaveData/xhEditor</folder>
 	</typeFolder>

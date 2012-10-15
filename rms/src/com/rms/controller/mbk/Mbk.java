@@ -205,6 +205,7 @@ public class Mbk {
 			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id
 					+ " order by id asc"));
 		}
+		modelMap.put("project_id", id);
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 
