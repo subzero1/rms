@@ -193,23 +193,29 @@ public class Mbk {
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		Td21_mbk mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
 		modelMap.put("Td21_mbk", mbk);
-		List<String> jsxzList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='建设性质'");
+		List<String> jsxzList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设性质'");
 		modelMap.put("jsxzList", jsxzList);
-		List<String> lbList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='目标库类别'");
+		List<String> lbList = (List<String>) queryService.searchList("select name from Tc01_property where type='目标库类别'");
 		modelMap.put("lbList", lbList);
-		List<String> jsfsList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='建设方式'");
+		List<String> jsfsList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设方式'");
 		modelMap.put("jsfsList", jsfsList);
 		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area");
 		modelMap.put("dqList", dqList);
-		List<String> tdbmList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='谈点部门'");
+		List<String> tdbmList = (List<String>) queryService.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
 		if (mbk != null) {
-			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id
-					+ " order by id asc"));
+			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id + " order by id asc"));
+			
+			/*
+			 * 查看此目标库是否已经有关联工程
+			 */
+			List glgcList = (List<String>) queryService.searchList("select id from Td00_gcxx where mbk_id="+id);
+			if(glgcList == null || glgcList.size() == 0){
+				modelMap.put("haveGlgc","no");
+			}
+			else{
+				modelMap.put("haveGlgc","yes");
+			}
 		}
 		modelMap.put("project_id", id);
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
