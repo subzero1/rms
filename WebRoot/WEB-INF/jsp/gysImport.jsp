@@ -29,12 +29,9 @@
 					<input type="hidden" name="project_id" value="${param.project_id}"/>
 					<input type="hidden" name="module_id" value="${param.module_id}"/>
 				</p>
-				<p>
-					<label><a href="dispath.do?url=form/gysImport.xls" target="_blank"><font color="red"><b>模板下载</b></font></a></label>
-				</p>
 		</div>
 		<div class="formBar">
-			<div class="button" ><div class="buttonContent" ><button type="Button">模板下载</button></div></div>
+			<div class="button" ><div class="buttonContent" ><button type="Button" onclick="downloadMod()">模板下载</button></div></div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="javascript:uploadSlave(this);">上传文件</button>
 				</div></div></li>
