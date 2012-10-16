@@ -114,7 +114,7 @@ function isAll()
 					</li>
 				</c:if>
 				<li>
-					<a class="edit"
+					<a class="lookover"
 						href="help/helpDisp.do?id={help_id}"
 						target="navTab" rel="helpDisp" title="在线帮助信息查看"><span>查看</span>
 					</a>
