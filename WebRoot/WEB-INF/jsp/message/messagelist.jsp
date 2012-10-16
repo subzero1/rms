@@ -64,14 +64,14 @@
 					<a class="edit"	href="MessageRead.do?message_id={form_param}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看短消息" width="500" height="300"><span>查看</span></a>
 				</li>
 				<li class="line">line</li>
-				<li><a class="exportexcel"	href="javascript:enterHelp('xtxx')"><span>在线帮助</span></a></li>
+				<li><a class="helponline"	href="javascript:enterHelp('xtxx')"><span>在线帮助</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="128">
 			<thead>
 			<tr>
-				<th width="30" title="未读邮件" orderField="te04.read_flag"><img src='Images/message/email.png'></img></th>
+				<th width="30" title="未读邮件" orderField="te04.read_flag"><img src='Images/message/email.png' style="margin:4px;"></img></th>
 				<c:choose>
 					<c:when test="${param.messageState==3||param.messageState==2}">
 					<th width="60" orderField="te04.reader_name" style="cursor:hand">收件人</th>
