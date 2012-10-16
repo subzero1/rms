@@ -85,7 +85,7 @@ _color:#FF0000; IE6支持
 
 .panelBar .toolBar a.helponline span{ background-position:-218px -821px;}/*在线帮助*/
 .panelBar .toolBar a.lookover span{ background-position:-218px -796px;}/*查看*/  
-
+.panelBar .toolBar a.autonode span{background:url("../Images/autonode.png") no-repeat 0px 5px;}/*流程*/  
 
 .listbutton{color:#fff;height:19px;width:60px;line-height:19px;padding:0px 5px;background:url(../themes/default/images/grid/grid.png) repeat-x; background-position:0px -603px;border-right:solid 1px #ccc;border-bottom:solid 1px #999;}/*----列表上的按钮---*/
 .listbutton:hover{height:19px;line-height:19px;width:60px;text-decoration:none;background:#2daebf;cursor:pointer;}
