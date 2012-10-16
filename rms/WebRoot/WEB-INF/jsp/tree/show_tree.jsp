@@ -10,7 +10,7 @@ function do_click(node_id,opernode_id,project_id,module_id,doc_id,node_status){
 	}
 }
 function showtree(value){
-	navTab.reload(document.form1.action+value);
+	navTab.reload($('#treeform').attr("action")+value);
 }
 </script>
 
@@ -59,7 +59,7 @@ function showtree(value){
 			</c:forEach>
 		</div>
 		<div id="form-select">
-			<form name="form1" action="showTree.do" method="post">
+			<form id="treeform" action="showTree.do" method="post">
 				<!-- 表单选择 对于项目的,列出当前项目的所有表单,对于系统流程显示的,列出系统中配置的所有表单流程 -->
 				
 				<c:if test="${not empty moduleList}">
