@@ -4,14 +4,18 @@
 <jsp:useBean id="now" class="java.util.Date" />
 
 <script language="javascript">
-function uploadSlave(butt){
-	var up_form = $(butt).closest("form");
-	if($("#the_file",up_form).val()==""){
-		alertMsg.info("请选择文件");
-	}else{
-		up_form.submit();
+	function uploadSlave(butt){
+		var up_form = $(butt).closest("form");
+		if($("#the_file",up_form).val()==""){
+			alertMsg.info("请选择文件");
+		}else{
+			up_form.submit();
+		}
 	}
-}
+	
+	function downloadMod(){
+		window.open('dispath.do?url=form/gysImport.xls');
+	}
 </script>
 
 <div class="page">
@@ -30,9 +34,9 @@ function uploadSlave(butt){
 				</p>
 		</div>
 		<div class="formBar">
+			<div class="button" ><div class="buttonContent" ><button type="Button">模板下载</button></div></div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="javascript:uploadSlave(this);">上传文件</button>
-					<!-- <button type="Button" onclick="javascript:setAndUpload(this);">上传文件</button> -->
 				</div></div></li>
 				<li>
 					<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
