@@ -37,46 +37,36 @@
     <tr>
       <th height="19" width="30">序号</th>
       <th height="19" width="200">费用名称</th>
-      <c:if test="${gys_flag=='new'}">
       <th height="19" width="188">计算依据及方法</th>
-      </c:if>
-      <c:if test="${gys_flag=='old'}">
-      <th height="19" width="90">单位</th>
-      <th height="19" width="90">数量</th>
-      <th height="19" width="90">单价</th>
-      </c:if>
       <th height="19" width="90">合计</th>
       <th height="19" width="200">备注</th>
     </tr>
     <tr>
       <th>1</th>
       <th>2</th>
-      <c:if test="${gys_flag=='new'}">
-      <th>3</th>
-      </c:if>
-      <c:if test="${gys_flag=='old'}">
       <th>3</th>
       <th>4</th>
       <th>5</th>
-      </c:if>
-      <th><c:choose><c:when test="${gys_flag=='old'}">6</c:when><c:otherwise>4</c:otherwise></c:choose></th>
-      <th><c:choose><c:when test="${gys_flag=='old'}">7</c:when><c:otherwise>5</c:otherwise></c:choose></th>
     </tr>
     
+     <c:set var="offset" scope="page" value="0"/>
      <c:forEach var="obj" items="${gysList}">
      <tr>
+        <c:set var="offset" scope="page" value="${offset + 1}"/>
      	<td class="t-center">${obj.xh }</td>
      	<td>${obj.fymc }</td>
-     	<c:if test="${gys_flag=='new'}">
      	<td>${obj.yjsf }</td>
-     	</c:if>
-     	<c:if test="${gys_flag=='old'}">
-     	<td class="t-center">${obj.dw }</td>
-     	<td class="t-right">${obj.sl }</td>
-     	<td class="t-right">${obj.dj }</td>
-     	</c:if>
      	<td class="t-right">${obj.hj }</td>
      	<td>${obj.bz }</td>
+     </tr>
+     </c:forEach>
+     <c:forEach begin="1" end="${15-(offset>15?15:offset)}">
+      <tr>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
      </tr>
      </c:forEach>
   </table>
