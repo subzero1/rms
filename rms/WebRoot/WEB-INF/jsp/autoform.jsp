@@ -51,6 +51,10 @@
 					<a class="edit"	href="dispath.do?url=form/jlfk.jsp?project_id=${param.project_id }&module_id=${param.module_id }&user_id=${param.user_id }&doc_id=${param.doc_id }" rel="jlfk" title="交流反馈" target="dialog"><span>反 馈</span></a>
 			 	</li>
 			<li class="line">line</li>
+		 	<li class="f-right">
+				<a class="autonode"	href="showTree.do?project_id=${doc[cols].project_id}&doc_id=${doc[cols].doc_id}&module_id=${doc[cols].module_id}" rel="node" title="流程" target="dialog"><span>流程</span></a>
+		 	</li>
+		 	<li class="line f-right">line</li>
 		</ul>
 	</div>
 	<!-- 参数传递共享区 -->
