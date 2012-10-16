@@ -63,8 +63,10 @@
       <th height="19">9</th>
       <th height="19">10</th>
     </tr>
+    <c:set var="offset" scope="page" value="0"/>
      <c:forEach var="obj" items="${gysList}">
      <tr>
+        <c:set var="offset" scope="page" value="${offset + 1}"/>
      	<td class="t-center">${obj.xh }</td>
      	<td>${obj.debh }</td>
      	<td>${obj.xmmc }</td>
@@ -76,6 +78,21 @@
      	<td class="t-right">${obj.slhj }</td>
      	<td class="t-right">${obj.jehj }</td>
      	<td>${obj.bz }</td>
+     </tr>
+     </c:forEach>
+     <c:forEach begin="1" end="${15-(offset>15?15:offset)}">
+      <tr>
+     	<td class="t-center">&nbsp;</td>
+     	<td>&nbsp;</td>
+     	<td>&nbsp;</td>
+     	<td class="t-center">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
+     	<td class="t-right">&nbsp;</td>
      </tr>
      </c:forEach>
  </table>
