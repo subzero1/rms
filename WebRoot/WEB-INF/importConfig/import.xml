@@ -12,4 +12,8 @@
     <fileName>/importConfig/batch_update_gc.xml</fileName>  
     <user>default</user> 
   </config>
+  <config>
+  	<name>mbk_source</name>
+  	<fileName>/importConfig/mbk_source.xml</fileName>
+  </config>
 </configs>

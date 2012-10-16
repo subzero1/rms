@@ -55,6 +55,8 @@
 					<li><a class="edit" href="mbk/mbkEdit.do?id={mbk_id}" target="navTab" rel="mbk" title="目标库信息"><span>修改</span></a></li>
 					<li class="line">line</li>
 				</c:if>
+					<li> <a class="exportexcel" href="dispath.do?url=form/mbkImport.jsp" target="dialog" width="400" heigh="100"><span>导入</span></a></li>
+					<li class="line">line</li>
 					<li><a class="exportexcel"	href="javascript:enterHelp('mbk')"><span>在线帮助</span></a></li>
 					<li class="line">line</li>
 			</ul>
