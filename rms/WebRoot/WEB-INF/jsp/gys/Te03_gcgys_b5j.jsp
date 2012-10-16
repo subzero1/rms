@@ -22,6 +22,7 @@
  	<tr>
  		<th colspan="8" class="t-center"><h2>工程建设其他费概预算表（表五）甲</h2></th>
  	</tr>
+ 	<!-- 
     <tr>
         <th width="92">建设项目名称：</th>
         <td width="180">${jsxmmc }</td>
@@ -32,6 +33,7 @@
 	    <th width="72">表格编号：</th>
 	    <td width="90">${bgbh }</td>
     </tr>
+     -->
   </table>
    <table border="1" cellpadding="0" cellspacing="0" width="978" style="border-collapse:collapse;" class="black-box">
     <tr>
