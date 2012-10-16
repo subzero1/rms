@@ -95,7 +95,7 @@ $(function(){
 			<thead>
 				<tr>
 					<th style="width:20px;"></th>
-					<th style="width:35px;"></th>
+					<th style="width:20px;"></th>
 					<!-- 初始化标题名称 -->
 					<c:forEach var="col" items="${docColsList}">
 						<th  <c:if test="${col.name != 'jfmc'}"> style="width:${col.width}px;"</c:if> orderField="${col.object_name}.${col.name}">${col.comments}</th>
@@ -107,12 +107,12 @@ $(function(){
 					<tr>
 						<td>
 							<c:if test="${doc[cols] != null }">
-								<a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');" title="表单[${doc[cols].project_id}]"><img border="0" src="Images/form.gif" style="cursor:pointer"/></a>
+								<a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');" title="表单[${doc[cols].project_id}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
 							</c:if>				
 						</td>
 						<td>
 							<c:if test="${doc[cols] != null}">								
-								<a href="showTree.do?project_id=${doc[cols].project_id}&doc_id=${doc[cols].doc_id}&module_id=${doc[cols].module_id}" target="navTab" rel="showTree" title="流程图[${doc[cols].project_id}]"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+								<a href="showTree.do?project_id=${doc[cols].project_id}&doc_id=${doc[cols].doc_id}&module_id=${doc[cols].module_id}" target="navTab" rel="showTree" title="流程图[${doc[cols].project_id}]"><img border="0" src="Images/autonode.png" style="cursor:pointer;margin:4px 1px;"/></a>
 							</c:if>		
 						</td>
 						
