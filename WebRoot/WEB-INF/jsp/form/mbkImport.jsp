@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
 <script type="text/javascript">
@@ -17,6 +17,10 @@
 				}
 			});
 		});
+		$("#tempdownload").click(function(){
+			window.location.href="export/tempDownload.do?config=mbk_source"; 
+		});
+		
 	});
 	
 	function dcxmgc(module_id){
@@ -27,23 +31,53 @@
 
 <div class="page">
 	<div class="pageContent">
-		<form method="post" action="import.do" enctype="multipart/form-data" id="importform" onsubmit="return iframeCallback(this,dialogAjaxDone);">
-			<input type="hidden" name="packgePath" value="com.rms.dataObjects.mbk"/>
+		<form method="post" action="import.do" enctype="multipart/form-data"
+			id="importform"
+			onsubmit="return iframeCallback(this,dialogAjaxDone);">
+			<input type="hidden" name="packgePath"
+				value="com.rms.dataObjects.mbk" />
 			<input type="hidden" name="_callbackType" value="closeCurrent" />
 			<input type="hidden" name="_navTabId" value="" />
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
-			<input type="hidden" name="config" value="mbk_source"/>
+			<input type="hidden" name="config" value="mbk_source" />
 			<div class="pageFormContent" layoutH="56">
 				<p style="">
-					<label>EXCEL文件</label>
-					<input id="file" type="file" name="file" size="20"/>
+					<label>
+						EXCEL文件
+					</label>
+					<input id="file" type="file" name="file" size="20" />
 				</p>
-			</div>	
+			</div>
 			<div class="formBar">
 				<ul>
-					<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="importbutton">导 入</button></div></div></li>	
-					<li><div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div></li>
+					<li>
+						<div class="buttonActive"> 
+							<div class="buttonContent">
+							<button class="importbutton" id="tempdownload">
+								模板下载
+							</button>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="buttonActive">
+							<div class="buttonContent">
+								<button type="button" id="importbutton">
+									导 入
+								</button>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="button">
+							<div class="buttonContent">
+								<button type="Button" class="close">
+									取 消
+								</button>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</form>

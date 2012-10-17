@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -31,9 +32,15 @@ import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.export.ExportExcel;
@@ -52,6 +59,10 @@ public class ExportExcelController {
 
 	@Autowired
 	private QueryService queryService;
+
+	private static String CONFIG_FILE = "/importConfig/import.xml";
+	
+	private String webInfPatch="";
 
 	/**
 	 * 参数说明 fileName 导出Excel的名字 sheetMap 导出Excel的各sheet的名称及取sheet数据的hsql
@@ -214,7 +225,7 @@ public class ExportExcelController {
 										tmp_content = convertUtil.toString(o.getClass().getDeclaredMethod(
 												"get" + convertUtil.firstLetterToUpperCase(property), null).invoke(o));
 									} catch (NoSuchMethodException e) {
-										if (sheet.getName().equals("配置表")){
+										if (sheet.getName().equals("配置表")) {
 											tmp_content = "null";
 										}
 									}
@@ -278,9 +289,11 @@ public class ExportExcelController {
 				int j = convertUtil.toInteger(pkg.get(0).get("数据从第几行开始"));
 				for (Object o : list) {
 					for (Map<String, String> sheetxxMap : pkg) {
-						String content = convertUtil.toString(o.getClass().getDeclaredMethod(
-								"get" + convertUtil.firstLetterToUpperCase(sheetxxMap.get("对应数据库字段").toLowerCase()),
-								null).invoke(o)).trim();
+						String content = convertUtil.toString(
+								o.getClass().getDeclaredMethod(
+										"get"
+												+ convertUtil.firstLetterToUpperCase(sheetxxMap.get("对应数据库字段")
+														.toLowerCase()), null).invoke(o)).trim();
 						Label cell = new Label(convertUtil.toInteger(sheetxxMap.get("列编号")), j, content);
 						WritableCellFormat wcf = new WritableCellFormat();
 						Alignment a = null;
@@ -328,6 +341,122 @@ public class ExportExcelController {
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
 	}
+
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception ModelAndView
+	 */
+	@RequestMapping("/export/tempDownload.do")
+	public ModelAndView tempDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String ConfigName = new String(request.getParameter("config").getBytes("iso-8859-1"), "GBK");
+		this.webInfPatch = request.getSession().getServletContext().getRealPath("WEB-INF");
+		String t_packgePath = request.getParameter("packgePath");
+		String packgePath=""; 
+		if (t_packgePath != null) {
+			packgePath = t_packgePath;
+		}
+
+		if (ConfigName == null || ConfigName.equals("")) {
+			throw new Exception("缺少配置信息参数！");
+		}
+
+		String ConfigFileName = getConfinFileName(ConfigName);
+		if (ConfigFileName == null || ConfigFileName.equals("")) {
+			throw new Exception("未找到对应的导入信息" + ConfigName);
+		}
+
+		//Map configInfo = getConfigInfo(ConfigFileName);
+		List list=getConfigInfoList(ConfigFileName);  
+		String form_title="template";
+		Map sheetMap=new HashMap(); 
+		List sheetList=new LinkedList(); 
+		
+		sheetList.add(list);
+		sheetList.add(new LinkedList());
+		
+		sheetMap.put(form_title, sheetList); 
+		request.setAttribute("excelName", "template");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+	}
+	
+
+	/**
+	 * 根据名称返回对应的配置文件名称
+	 * 
+	 * @param ConfigName
+	 *            配置名称，存放于import.xml
+	 * @return 配置文件名称
+	 */
+	private String getConfinFileName(String ConfigName) throws Exception {
+		/**
+		 * 获取基本配置文件
+		 */
+		File f = new File(webInfPatch + CONFIG_FILE);
+		if (!f.exists()) {
+			throw new Exception("未找到基础配置文件");
+		}
+		SAXReader reader = new SAXReader();
+		Document doc = reader.read(f);
+		Element root = doc.getRootElement();
+		Element foo;
+		Iterator i;
+		for (i = root.elementIterator("config"); i.hasNext();) {
+			foo = (Element) i.next();
+			String configName = foo.elementText("name");
+			if (configName.equals(ConfigName)) {
+				return foo.elementText("fileName");
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	private List getConfigInfoList(String ConfigFileName) throws Exception{
+		List list=new LinkedList();
+		File file=new File(webInfPatch+ConfigFileName);
+		if(!file.exists()){
+			throw new Exception("未找到用户配置文件");
+		}
+		SAXReader reader=new SAXReader();
+		Document doc=reader.read(file);
+		Element root=doc.getRootElement();
+		Element foo;
+		Iterator i;
+		Iterator j;
+		for(i=root.elementIterator("tableInfo"); i.hasNext();){
+			foo=(Element) i.next(); 
+			for(Iterator it=foo.element("columns").elementIterator("column");it.hasNext();){ 
+				Element element=(Element) it.next();  
+				list.add(element.elementText("name"));
+			}
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 	public static void main(String[] args) {
 		// Pattern p =
