@@ -57,7 +57,7 @@
 				</c:if>
 					<li> <a class="exportexcel" href="dispath.do?url=form/mbkImport.jsp" target="dialog" width="400" heigh="100"><span>导入</span></a></li>
 					<li class="line">line</li>
-					<li><a class="exportexcel"	href="javascript:enterHelp('mbk')"><span>在线帮助</span></a></li>
+					<li><a class="helponline"	href="javascript:enterHelp('mbk')"><span>在线帮助</span></a></li>
 					<li class="line">line</li>
 			</ul>
 		</div>
