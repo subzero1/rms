@@ -463,7 +463,7 @@ function printMbk(){
 		</div>
 		</form>
 		
-		<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
+	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
 		<table class="table" width="100%">
 		<thead>
 			<tr>
@@ -492,5 +492,90 @@ function printMbk(){
 	</table>
 		
 		
-	</div>
+	</div>		
+		
+		<!---调整-不需要的那个box自行删除。--->
+		<div id="attachBody" layoutH="68">
+			<div class="panel">
+				<h1>审批信息 [${fn:length(approve)}]</h1>
+				<div  defH="150" style="background-color:#fff;">
+					<c:forEach var="item" items="${approve}">
+						<p class="approveList">
+							<b>${item.user_name }</b> [${item.station}][<fmt:formatDate value="${item.oper_time }" pattern="yyyy-MM-dd HH:mm"/>]&nbsp;&nbsp;
+							<font style="color:#666;" <c:if test="${item.check_result != 4}"> color="blue" </c:if> ><b>[${item.result_str }]</b></font>
+							<font style="color:#666;">${item.check_idea }</font>
+						</p>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="panel">
+				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
+				<div id="slaveDiv" defH="150" style="background-color:#fff;">
+					<c:set var="slaves" scope="page" value="0"/>
+					<c:forEach var="obj" items="${formslave}">
+						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:forEach>
+					
+					<c:forEach var="obj" items="${extslave}">
+						<p class="slaveList"><a href="javascript:return false;" onclick="${obj.formurl}">${obj.slave_name}</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:forEach>
+					
+					<c:forEach var="obj" items="${uploadslave}">
+						<p class="slaveList">
+							<a href="download.do?slave_id=${obj.slave_id}">${obj.slave_name}</a>
+							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览">在线预览</a>
+							<c:if test="${not empty obj.slave_remark}"><span style="color:#888">&nbsp;(${obj.slave_remark})</span></c:if>
+							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
+						</p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:forEach>
+				</div>
+			</div>
+			<div id="jlfkTitle" class="panel">
+				<h1>交流反馈 [${fn:length(jlfk)}]</h1>
+				<div id="jlfkdiv" defH="150" style="background-color:#fff;">
+					<c:forEach var="jlfk" items="${jlfk}">
+						<p class="jlfkList">
+							<b>${jlfk.name}</b> [<fmt:formatDate value="${jlfk.time}" pattern="yyyy-MM-dd HH:mm"/>] <c:if test="${jlfk.slave_id != null}"><a href="download.do?slave_id=${jlfk.slave_id}"><img src="Images/slave.gif" alt="下载附件"/></a></c:if><br/>
+							${jlfk.yj}&nbsp;<c:if test="${jlfk.rw == 'w'}"><a href="javascript:del_send('${jlfk.project_id}','${param.project_id}','${jlfk.slave_id}','${param.module_id }','${param.user_id }','${param.doc_id }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
+						</p>
+					</c:forEach>
+				</div>
+			</div>			
+		</div>	
+		<div  style="clear:both"></div> 
+		
+	
 </div>
+<script language="javascript">
+	//按照屏幕分配表单右侧信息
+	var max_w = $("#autoform_body",navTab.getCurrentPanel()).width();
+	var attach_w = navTab._panelBox.width() - 810;
+	var attach_h = navTab._panelBox.height() - 63;
+	if(max_w <1080){
+		//默认展开表单
+		var bar = $("#sidebar");
+		if(bar.is(":hidden") == false)	$(".toggleCollapse div", bar).click();
+		attach_w = attach_w+175;
+	}
+	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
+	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 30 30 790");	
+	
+	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.25));
+	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.5));
+	
+	
+	//修改表单的tabid
+	var  module_id = $("#module_id",navTab.getCurrentPanel()).val();
+	var  doc_id = $("#doc_id",navTab.getCurrentPanel()).val();
+	
+	if(doc_id != ""){
+		var tabid = navTab._getTabs().eq(navTab._currentIndex).attr("tabid");
+		if(tabid == "autoform"){
+			navTab._getTabs().eq(navTab._currentIndex).attr("tabid","autoform"+module_id+doc_id);
+		}
+	}
+</script>
+
