@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.tjnetsky.com.cn"
+xmlns="http://www.tjnetsky.com.cn"
+elementFormDefault="qualified">
+	<xs:simpleType name="stringtype">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="inttype">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:simpleType name="booltype">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	
+	<xs:complexType name="nullType" mixed="true">
+		<xs:attribute name="name" use="optional"/>
+		<xs:attribute name="value" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="columntype">
+		<xs:sequence>
+			<xs:element name="columnName" type="stringtype"/>
+			<xs:element name="index" type="nullType"/>
+			<xs:element name="name" type="stringtype"/>
+			<xs:element name="colName" type="stringtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="columnstype">
+		<xs:sequence>
+			<xs:element name="type" type="stringtype" />
+			<xs:element name="titleRow" type="inttype"/>
+			<xs:element name="column" type="columntype" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tableInfotype">
+		<xs:sequence>
+			<xs:element name="sheetNum" type="inttype"/>
+			<xs:element name="startRow" type="inttype"/>
+			<xs:element name="endRow" type="nullType" minOccurs="0"/>
+			<xs:element name="endFlag" type="nullType"/>
+			<xs:element name="tableName" type="stringtype"/>
+			<xs:element name="tableNameShow" type="stringtype"/>
+			<xs:element name="fatherTables" type="stringtype"/>
+			<xs:element name="columns" type="columnstype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="exceltype">
+		<xs:sequence>
+			<xs:element name="tableInfo" type="tableInfotype"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- the only element in the document-->
+	<xs:element name="excel" type="exceltype"/>
+</xs:schema>

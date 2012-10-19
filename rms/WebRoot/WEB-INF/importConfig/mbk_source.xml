@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="GBK"?>
-<excel>
+<excel
+xmlns="http://www.tjnetsky.com.cn"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
+>
 	<!-- 定义导入文件中表格信息 -->
 	<tableInfo>
 		<!-- 表格信息所在sheet位于excel文件中位置 -->
