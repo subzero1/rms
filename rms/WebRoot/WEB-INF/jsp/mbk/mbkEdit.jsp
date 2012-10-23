@@ -505,20 +505,8 @@ function printMbk(){
 		
 	</div>		
 		
-		<!---调整-不需要的那个box自行删除。--->
+		<!---调整---->
 		<div id="attachBody" layoutH="68">
-			<div class="panel">
-				<h1>审批信息 [${fn:length(approve)}]</h1>
-				<div  defH="150" style="background-color:#fff;">
-					<c:forEach var="item" items="${approve}">
-						<p class="approveList">
-							<b>${item.user_name }</b> [${item.station}][<fmt:formatDate value="${item.oper_time }" pattern="yyyy-MM-dd HH:mm"/>]&nbsp;&nbsp;
-							<font style="color:#666;" <c:if test="${item.check_result != 4}"> color="blue" </c:if> ><b>[${item.result_str }]</b></font>
-							<font style="color:#666;">${item.check_idea }</font>
-						</p>
-					</c:forEach>
-				</div>
-			</div>
 			<div class="panel">
 				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
@@ -544,7 +532,7 @@ function printMbk(){
 					</c:forEach>
 				</div>
 			</div>
-			<div id="jlfkTitle" class="panel">
+			<div id="jlfkTitle" class="panel" style="margin-top:10px;">
 				<h1>交流反馈 [${fn:length(jlfk)}]</h1>
 				<div id="jlfkdiv" defH="150" style="background-color:#fff;">
 					<c:forEach var="jlfk" items="${jlfk}">
@@ -574,7 +562,7 @@ function printMbk(){
 	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
 	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 30 30 790");	
 	
-	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.25));
+	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.5));
 	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.5));
 	
 	
