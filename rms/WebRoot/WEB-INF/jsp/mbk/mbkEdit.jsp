@@ -79,7 +79,16 @@ $(function(){
 	
 	//四方勘察
 	$("#tdrOrg\\.Kcry").change(function(){
-		var data = 'id=${Td21_mbk.id}&type=sfkc&ids='+$(this).val();
+		var kcsj=$("#kcsj").val();
+		var sm=$("#sm").val(); 
+		
+		var i=0;
+		while((kcsj==''||sm=='')&&(i++)<10){
+			setTimeout(function(){},500);
+			kcsj=$("#kcsj").val();
+		    sm=$("#sm").val();
+		}
+		var data = 'id=${Td21_mbk.id}&type=sfkc&ids='+$(this).val()+'&kcsj='+kcsj+'&sm='+sm; 
 		$.ajax({
 			url:'mbk/mbkLz.do',
 			type:'post',
@@ -288,7 +297,9 @@ function printMbk(){
 			<input type="hidden" name="perproty" value="id,Td21_mbk,id">
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value="mbk/mbkEdit.do"/>
-			<input type="hidden" name="_navTabId" value="mbkList"/>
+			<input type="hidden" name="_navTabId" value="mbkList"/> 
+			<input type="hidden" name="kcsj" id="tdrOrg.kcsj" value=""/>
+			<input type="hidden" name="sm"  id="tdrOrg.sm" value=""/>
 			<c:if test="${empty Td21_mbk.cjsj}">
 			<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			</c:if>

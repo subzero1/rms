@@ -11,17 +11,23 @@
 		}
 	}
 	$(function(){
-		$("#daihui",$.pdialog.getCurrent()).click(function(){
-			if ($("#ids",$.pdialog.getCurrent()).val().length>0){
+		$("#daihui",$.pdialog.getCurrent()).click(function(){ 
+			var kcsj=$("#kcsj",$.pdialog.getCurrent()).val();
+			var sm=$.trim($("#sm",$.pdialog.getCurrent()).val());  
+			if($("#kcsj",$.pdialog.getCurrent()).val().length<=0){
+				alertMsg.info("请输入勘察时间！");
+			}else if($("#sm",$.pdialog.getCurrent()).val().length<=0){
+				alertMsg.info("请输入说明！");
+			}else if($("#ids",$.pdialog.getCurrent()).val().length<=0){
+				alertMsg.info("请选择四方勘察人员！");
+			}else { 
 				var names = $("#names",$.pdialog.getCurrent()).val();
 				alertMsg.confirm("确认选择【"+names+"】为四方勘察人员吗？",{
 					okCall:function(){
-						var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
-						$.bringBack({'Kcry':ids});
+						var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);  
+						$.bringBack({'Kcry':ids,'sm':sm,'kcsj':kcsj});
 					}
 				});
-			} else {
-				alertMsg.info("请选择四方勘察人员！");
 			}
 		});
 		
@@ -46,11 +52,19 @@
 	<form rel="pagerForm" method="post" action="mbk/getKcry.do" onsubmit="return dwzSearch(this, 'dialog');">
 	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
 	<input type="hidden" name="names" id="names" value="${param.names }"/>
-	<div class="searchBar">
-		<ul class="searchContent">
+	<div class="searchBar" style="height:120px">
+		<ul class="searchContent" style="height:80px">
 			<li>
 				<label>姓 名:</label>
 				<input class="textInput" name="name" style="width:200px;" value="${param.name }" type="text"/>
+			</li>
+			<li>
+				<label>勘察时间:</label>
+				<input class="date" pattern="yyyy-MM-dd HH:mm:ss" name="kcsj" id="kcsj" style="width:200px;"  type="text"/>
+			</li>
+			<li>
+				<label>说明:</label>
+				<input class="textInput" name="smx" style="width:200px;" id="sm" type="text"/>
 			</li>
 		</ul>
 		<div class="subBar">
@@ -74,17 +88,19 @@
 		<thead>
 			<tr>
 				<th orderfield="name">姓名</th>
-				<th width="60">选择</th>
+				<th orderfield="name">部门</th>
+				<th width="30">选择</th>
 			</tr>
 		</thead>				
 		<tbody>
-			<c:forEach items="${kcryList }" var="kcry">
+			<c:forEach items="${staffList}" var="kcry"> 
 			<tr>
-				<td>${kcry.name }</td>
+				<td>${kcry[0].name }</td>
+				<td>${kcry[1].name }</td>
 				<td>
-						<a class="btnSelect" href="javascript:addKcry('${kcry.id }','${kcry.name }')" title="查找带回">
+						<a class="btnSelect" href="javascript:addKcry('${kcry[0].id }','${kcry[0].name }')" title="查找带回">
 				</td>
-			</tr>
+			</tr> 
 			</c:forEach>
 		</tbody>
 	</table>
