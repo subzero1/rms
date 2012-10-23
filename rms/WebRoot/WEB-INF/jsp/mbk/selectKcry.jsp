@@ -60,7 +60,7 @@
 			</li>
 			<li>
 				<label>勘察时间:</label>
-				<input class="date" pattern="yyyy-MM-dd HH:mm:ss" name="kcsj" id="kcsj" style="width:200px;"  type="text"/>
+				<input class="date" pattern="yyyy-MM-dd" name="kcsj" id="kcsj" style="width:200px;"  type="text"/>
 			</li>
 			<li>
 				<label>说明:</label>

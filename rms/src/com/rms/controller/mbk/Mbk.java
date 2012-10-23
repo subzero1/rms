@@ -342,13 +342,13 @@ public class Mbk {
 				word = "四方勘察";
 				td21.setZt("四方勘察");
 				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
+				td21.setKcsj(new SimpleDateFormat("yyyy-MM-dd").parse(kcsjStr));
 				for (String string : ids) {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
-					td21.setKcsj(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(kcsjStr));
 					
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-					td22.setSm("四方勘察" +sm);
+					td22.setSm("四方勘察" +" [勘察时间："+kcsjStr+","+sm+"]");
 					td22.setKssj(now);
 					td22.setXgr(ta03.getName());
 					td22.setXgr_bm(ta01.getName());
