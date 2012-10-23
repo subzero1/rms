@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -278,6 +279,9 @@ public class Mbk {
 		Session session = saveService.getHiberbateSession();
 		Transaction tx = session.beginTransaction();
 		Long id = convertUtil.toLong(request.getParameter("id"));
+		String sm=convertUtil.toString(request.getParameter("sm"));
+		String kcsjStr=convertUtil.toString(request.getParameter("kcsj"));
+		
 		Td21_mbk td21 = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		Ta01_dept dept = (Ta01_dept) queryService.searchById(Ta01_dept.class, user.getDept_id());
@@ -341,8 +345,10 @@ public class Mbk {
 				for (String string : ids) {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
+					td21.setKcsj(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(kcsjStr));
+					
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-					td22.setSm("四方勘察");
+					td22.setSm("四方勘察" +sm);
 					td22.setKssj(now);
 					td22.setXgr(ta03.getName());
 					td22.setXgr_bm(ta01.getName());
@@ -466,14 +472,26 @@ public class Mbk {
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
 
 		String name = convertUtil.toString(request.getParameter("name"));
-		StringBuffer hsql = new StringBuffer();
+		StringBuffer hsql = new StringBuffer(); 
+		
 		hsql
-				.append("select user from Ta03_user user where id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20103)) and name like '%"
-						+ name + "%'");
+				.append("select user,ta01 from Ta03_user user,Ta01_dept ta01 where user.id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20103)) and user.name like '%"
+						+ name + "%' and user.dept_id=ta01.id");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		totalCount = ro.getTotalRows();
-		pageNumShown = ro.getTotalPages();
-		modelMap.put("kcryList", ro.getList());
+		pageNumShown = ro.getTotalPages(); 
+		
+		List<Ta03_user> userList=new LinkedList<Ta03_user>();
+		List<Ta01_dept> deptList=new LinkedList<Ta01_dept>();
+		List staffList=ro.getList();
+		
+		while(ro.next()){
+			userList.add((Ta03_user) ro.get("user"));
+			deptList.add((Ta01_dept) ro.get("ta01"));
+		}
+		modelMap.put("kcryList", userList);
+		modelMap.put("deptList", deptList);
+		modelMap.put("staffList", staffList);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("pageNumShown", pageNumShown);
 		modelMap.put("numPerPage", numPerPage);

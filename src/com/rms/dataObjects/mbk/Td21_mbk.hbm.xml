@@ -321,6 +321,13 @@
             insert="true"
             column="cjsj"
         />
+        
+        <property
+        name="kcsj"
+         type="java.util.Date"
+         update="true"
+         insert="true"
+         column="kcsj"/>
 
         <!--
             To add non XDoclet property mappings, create a file named
