@@ -34,7 +34,7 @@ $(function(){
 			<c:forEach items="${newFormList}" var="formItem">
 				<c:if test="${fn:contains(formItem.url,'module_id=101')}">
 				<li style="float:right;">
-					<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="打包立项"><span>打包立项	</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="packageproject"	href="${formItem.url }" target="navTab" rel="autoform" title="打包立项"><span>打包立项	</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 				</li>
 				</c:if>
 				<c:if test="${fn:contains(formItem.url,'module_id=102')}">

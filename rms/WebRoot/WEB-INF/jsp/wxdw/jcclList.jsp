@@ -53,7 +53,7 @@
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/jcclList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
-				<li><a class="icon" href="dispath.do?url=wxdw/jcclImport.jsp" target="dialog" width="360" height="200"><span>导入</span></a></li>
+				<li><a class="import" href="dispath.do?url=wxdw/jcclImport.jsp" target="dialog" width="360" height="200"><span>导入</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>
