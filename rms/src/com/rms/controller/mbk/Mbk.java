@@ -36,6 +36,7 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Ta05_group;
+import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -204,6 +205,60 @@ public class Mbk {
 		modelMap.put("dqList", dqList);
 		List<String> tdbmList = (List<String>) queryService.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
+		
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		StringBuffer hsql=new StringBuffer("");
+		Long user_id=user.getId();
+		
+		/**
+		 * 获得交流反馈信息
+		 */			
+		List<Map> jlfkList = new LinkedList<Map>();
+		hsql.delete(0, hsql.length());
+		hsql.append("select te02.project_id,te02.id,ta03.name,ta03.id,te02.yj,te02.time ");
+		hsql.append("from Te02_jlfk te02,Ta03_user ta03 ");
+		hsql.append("where te02.user_id = ta03.id ");
+		hsql.append("and project_id = ");
+		hsql.append(id);
+		hsql.append(" and module_id = "); 
+		hsql.append(90);
+		hsql.append(" and document_id =  ");
+		hsql.append(id);
+		hsql.append(" order by te02.time ");
+		ResultObject ro = queryService.search(hsql.toString());
+		while(ro.next()){
+			HashMap<String,Object> jlfk = new HashMap<String,Object>();
+			Long tmp_user_id =  (Long)ro.get("ta03.id");
+			jlfk.put("name", ro.get("ta03.name"));
+			jlfk.put("project_id", ro.get("te02.id"));
+			jlfk.put("yj", ro.get("te02.yj"));
+			jlfk.put("time", ro.get("te02.time"));
+			if (user_id.equals(tmp_user_id)) {
+				jlfk.put("rw", "w");
+			}
+			else{
+				jlfk.put("rw", "r");
+			}
+			
+			Long te02_project_id = new Long(ro.get("te02.project_id").toString());
+			Long te02_id = new Long(ro.get("te02.id").toString());
+			QueryBuilder queryBuilder99 = new HibernateQueryBuilder(Te01_slave.class);
+			queryBuilder99.eq("doc_id", te02_id);
+			queryBuilder99.eq("project_id", te02_project_id);
+			queryBuilder99.eq("module_id", new Long(9003));
+			ResultObject ro99 = queryService.search(queryBuilder99);
+			if(ro99.next()){
+				Te01_slave te01 = (Te01_slave)ro99.get(Te01_slave.class.getName());
+				jlfk.put("slave_id", te01.getId());
+			}
+			jlfkList.add(jlfk);
+		}
+		if(jlfkList != null && jlfkList.size() > 0){
+			request.setAttribute("jlfk", jlfkList);
+		}
+		request.setAttribute("length_jlfk", jlfkList.size());
+		
+		
 		if (mbk != null) {
 			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id + " order by id asc"));
 			
