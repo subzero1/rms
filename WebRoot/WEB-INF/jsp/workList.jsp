@@ -66,7 +66,7 @@ $(function(){
 				<c:forEach items="${newFormList}" var="formItem">
 					<c:if test="${fn:contains(formItem.url,'module_id=101')}">
 					<li>
-						<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="打包立项"><span>打包立项	</span></a>
+						<a class="packageproject"	href="${formItem.url }" target="navTab" rel="autoform" title="打包立项"><span>打包立项	</span></a>
 					</li>
 					<li class="line">line</li>
 					</c:if>
@@ -78,7 +78,7 @@ $(function(){
 					</c:if>
 		     	</c:forEach> 
 				<li>
-					<a class="icon"	href="dispath.do?url=form/batchUpdateProject.jsp" target="dialog" rel="batchUpdateProject" width="400" height="200"><span>批量修改</span></a>
+					<a class="batchmodify"	href="dispath.do?url=form/batchUpdateProject.jsp" target="dialog" rel="batchUpdateProject" width="400" height="200"><span>批量修改</span></a>
 				</li>
 				<li class="line">line</li>
 				<li>
@@ -86,7 +86,7 @@ $(function(){
 				</li>
 				<li class="line">line</li>
 				<li>
-					<a class="icon"	href="workListCfg.do" target="dialog" rel="workListConfig" width="500" height="370"><span>设置</span></a>
+					<a class="setting"	href="workListCfg.do" target="dialog" rel="workListConfig" width="500" height="370"><span>设置</span></a>
 				</li>
 				<li class="line">line</li>
 			</ul>
