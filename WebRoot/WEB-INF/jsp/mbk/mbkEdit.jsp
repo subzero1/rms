@@ -284,6 +284,9 @@ function printMbk(){
 			</li>
 			<li class="line">line</li>
 			</c:if>
+			<li><a class="add" href="dispath.do?url=form/jlfk.jsp?project_id=${project_id}&module_id=90&user_id=${user.id }&doc_id=${project_id}" target="dialog"><span flag="jlfk" class="edit">交流反馈</span></a>
+			</li>
+			<li class="line">line</li>
 			</c:if>
 		</ul>
 	</div>
