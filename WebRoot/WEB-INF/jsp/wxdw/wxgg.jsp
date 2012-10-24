@@ -126,7 +126,7 @@
 				<c:if test="${wxgg.zt!='1'|| (wxgg.zt == '1' && modify == 'yes')}">
 					<c:if test="${not empty wxgg}">
 						<li>
-						<a class="icon" href="dispath.do?url=uploadFile.jsp&project_id=${wxgg.id}&doc_id=${wxgg.id}&module_id=3007&slave_type=8" target="dialog" rel="fjsc" width="460" height="300" title="附件上传"><span>附
+						<a class="attach" href="dispath.do?url=uploadFile.jsp&project_id=${wxgg.id}&doc_id=${wxgg.id}&module_id=3007&slave_type=8" target="dialog" rel="fjsc" width="460" height="300" title="附件上传"><span>附
 								件</span>
 						</a>
 					</li>
@@ -144,7 +144,7 @@
 				</c:if>
 				<c:if test="${wxgg.zt=='0'}">
 					<li>
-						<a class="save" href="javascript:fbgg();"><span>发 布</span>
+						<a class="release" href="javascript:fbgg();"><span>发 布</span>
 						</a>
 					</li>
 					<li class="line">

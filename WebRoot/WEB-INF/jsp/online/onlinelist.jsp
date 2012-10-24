@@ -108,7 +108,7 @@ function phoneMsg(tel,name){
 				</c:if>
 				<c:if test="${ggrole=='yes' && (wtlx=='15' || wtlx=='17' || wtlx=='601')}">
 					<li>
-						<a class="icon" href="onlinezdajax.do?wtlx=${wtlx}&id={qa_id}" target="ajaxTodo" title="确认进行反向置顶设置吗?' " ><span>置顶反设</span></a>
+						<a class="stickandre" href="onlinezdajax.do?wtlx=${wtlx}&id={qa_id}" target="ajaxTodo" title="确认进行反向置顶设置吗?' " ><span>置顶反设</span></a>
 					</li>
 					<li class="line">line</li>
 				</c:if>
