@@ -432,6 +432,7 @@ public class Mbk {
 				td21.setTdr_id(null);
 				td21.setTdrdh(null);
 				td21.setTdbm(null);
+				td21.setZypfsj(null);
 				td21.setBz(word);
 				session.createQuery(
 						"update Td22_mbk_lzjl set Jssj=sysdate,sm='" + user.getName() + "从'||xgr||'处收回"

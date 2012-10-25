@@ -707,6 +707,6 @@ public class Td21_mbk implements Serializable {
 	 * @param zypfsj The zypfsj to set.
 	 */
 	public void setZypfsj(Date zypfsj) {
-		this.kcsj = zypfsj;
+		this.zypfsj = zypfsj;
 	}
 }
