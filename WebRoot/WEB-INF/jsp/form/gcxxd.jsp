@@ -68,7 +68,7 @@ $(function(){
 	<div class="divider"></div>
 	<p>
 		<label>工程名称：</label>
-		<input type="text" name="Td00_gcxx.GCMC" value="${td00_gcxx.gcmc}" style="width:407px;"/>
+		<input type="text" name="Td00_gcxx.GCMC" value="<c:out value="${td00_gcxx.gcmc}" default="${mbk.zymc }"/>" style="width:407px;"/>
 	</p>
 	<p>
 		<label>工程编号：</label>
