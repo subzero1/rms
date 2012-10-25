@@ -161,7 +161,7 @@ public class Mbk {
 		 * 退回列表
 		 */
 		if(ht.equals("yes")){
-			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点')");
+			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
 		}
 		
 		// order排序
