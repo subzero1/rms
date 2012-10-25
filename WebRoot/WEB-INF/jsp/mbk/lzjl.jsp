@@ -4,7 +4,7 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 	
 <div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
-<div class="pageContent">	
+<div style="overflow:auto;height:300px;position:relative;">	
 	 <table class="table" width="100%">
 		<thead>
 			<tr>
