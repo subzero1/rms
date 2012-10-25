@@ -386,6 +386,7 @@ public class Mbk {
 				td21.setTdr_id(user.getId());
 				td21.setTdrdh(user.getMobile_tel());
 				td21.setTdbm(dept.getName());
+				td21.setZypfsj(now);
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 				td22.setSm(user.getName() + "开始谈点");
 				td22.setKssj(now);
@@ -398,6 +399,7 @@ public class Mbk {
 				word = "指定下发";
 				td21.setHdfs("指定下发");
 				td21.setZt("开始谈点");
+				td21.setZypfsj(now);
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 				td22.setSm(td21.getTdr() + "开始谈点");
 				td22.setKssj(now);
