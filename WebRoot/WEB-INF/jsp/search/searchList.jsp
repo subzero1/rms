@@ -79,7 +79,7 @@ function searchListExport(){
 								<c:when test="${offset_td == 1 && param.module_id == 101}">
 								<c:if test="${param.module_id == 101}">
 									<td>
-								<a href="javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id=${td.value}', {title:'项目施工进度'});" title="项目施工进度" ><img border="0" src="Images/project.png" /></a> 
+								<a href="javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id=${td.value}', {title:'项目施工进度'});" title="项目施工进度" ><img border="0" src="Images/station.png" /></a> 
 										</td>
 								</c:if>
 									<td>
@@ -89,7 +89,7 @@ function searchListExport(){
 								<c:when test="${offset_td == 1 && param.module_id == 102}">
 								<c:if test="${param.module_id == 102}">
 									<td>
-								<a href="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=${td.value}', {title:'工程施工进度'});" title="工程施工进度" ><img border="0" src="Images/project.png" /></a> 
+								<a href="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=${td.value}', {title:'工程施工进度'});" title="工程施工进度" ><img border="0" src="Images/station.png" /></a> 
 										</td>
 								</c:if>	
 									<td>
