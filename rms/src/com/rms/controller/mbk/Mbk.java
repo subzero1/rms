@@ -86,6 +86,7 @@ public class Mbk {
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "cjsj");
 		String drl = convertUtil.toString(request.getParameter("drl"), "no");
+		String ht = convertUtil.toString(request.getParameter("ht"), "no");
 		if (orderField.equals("")) {
 			orderField = "cjsj";
 		}
@@ -149,8 +150,18 @@ public class Mbk {
 			hsql.append(" and zymc like '%" + zymc + "%'");
 		}
 		
+		/*
+		 * 待认领列表
+		 */
 		if(drl.equals("yes")){
 			hsql.append(" and zt = '新建' and hdfs = '派发'");
+		}
+		
+		/*
+		 * 退回列表
+		 */
+		if(ht.equals("yes")){
+			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点')");
 		}
 		
 		// order排序
