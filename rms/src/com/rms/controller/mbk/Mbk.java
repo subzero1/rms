@@ -395,7 +395,23 @@ public class Mbk {
 				td22.setXgr_id(td21.getTdr_id());
 				td22.setXgr_bm(td21.getTdbm());
 				session.save(td22);
-			} else if ("cxtd".equals(type)) {// 重新谈点
+			}else if ("ht".equals(type)) {// 回退
+				word = "回退";
+				
+				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+				td22.setSm(td21.getTdr() + "回退");
+				td22.setKssj(now);
+				td22.setMbk_id(id);
+				session.save(td22);
+				
+				td21.setHdfs(null);
+				td21.setZt("新建");
+				td21.setTdr(null);
+				td21.setTdr_id(null);
+				td21.setTdrdh(null);
+				td21.setTdbm(null);
+				td21.setBz(word);
+			}else if ("cxtd".equals(type)) {// 重新谈点
 				word = "重新谈点";
 				td21.setHdfs(null);
 				td21.setZt("新建");
