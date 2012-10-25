@@ -56,8 +56,8 @@
 			<thead>
 				<tr>
 					<th style="width:35px;"></th>
-					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th orderField="gcmc">工程名称</th>
+					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th style="width: 100px;" orderField="sgdw">施工单位</th>
 					<th style="width: 100px;" orderField="jhjgsj">计划竣工</th>
 					<th style="width: 70px;" orderField="sgjdtbzq">填报周期</th>
@@ -74,10 +74,10 @@
 						<td>
 								<a href="showTree.do?project_id=${obj[0].id }&doc_id=${obj[0].id }&module_id=102" target="navTab" rel="showTree" title="流程图[${obj[0].id}]"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
 						</td>
-						<td>${obj[0].gcbh }</td>
 						<td>
 						<c:if test="${param.canedit == 'true'}"><a href="wxdw/jdfk.do?project_id=${obj[0].id}&jhjd=${obj[3] }<c:if test="${obj[1] == '' }">&id=${obj[0].gzltb_id }</c:if>" target="dialog" rel="jdfk" width="528" height="297" title="进度反馈">${obj[0].gcmc }</a></c:if>
 						<c:if test="${param.canedit != 'true'}">${obj[0].gcmc }</c:if></td>
+						<td>${obj[0].gcbh }</td>
 						<td>${obj[0].sgdw }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].jhjgsj }"/></td>
 						<td>${empty obj[0].sgjdtbzq ? '默认3' : obj[0].sgjdtbzq}天</td>

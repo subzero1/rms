@@ -55,8 +55,8 @@
 			<thead>
 				<tr>
 					<th style="width:35px;"></th>
-					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th orderField="gcmc">工程名称</th>
+					<th style="width: 150px;" orderField="gcbh">工程编号</th>
 					<th style="width: 100px;" orderField="jldw">监理单位</th>
 					<th style="width: 70px;" orderField="jlrjtbzq">填报周期</th>
 					<th style="width: 100px;" orderField="create_date">创建时间</th>
@@ -72,8 +72,8 @@
 						<td>
 								<a href="showTree.do?project_id=${obj[0].id }&doc_id=${obj[0].id }&module_id=101" target="navTab" rel="showTree" title="流程图[${obj[0].id}]"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
 						</td>
-						<td>${obj[0].xmbh }</td>
 						<td>${obj[0].xmmc }</td>
+						<td>${obj[0].xmbh }</td>
 						<td>${obj[0].jldw }</td>
 						<td><c:if test="${not empty param.canedit}"><a href="wxdw/jlrj.do?project_id=${obj[0].id}<c:if test="${obj[1] == '' }">&id=${obj[0].jlrj_id }</c:if>" target="dialog" rel="jlrj" width="528" height="297" title="监理日志">${empty obj[0].jlrjtbzq ? '默认3' : obj[0].jlrjtbzq}天</a></c:if>
 							<c:if test="${empty param.canedit}">${empty obj[0].jlrjtbzq ? '默认3' : obj[0].jlrjtbzq}天</c:if>
