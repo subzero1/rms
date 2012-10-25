@@ -690,4 +690,23 @@ public class Td21_mbk implements Serializable {
 		this.kcsj = kcsj;
 	}
 
+	/**
+	 * 
+	 */
+	private Date zypfsj;
+
+	/**
+	 * @hibernate.property column="zypfsj"
+	 * @return Returns the zypfsj.
+	 */
+	public Date getZypfsj() {
+		return zypfsj;
+	}
+
+	/**
+	 * @param zypfsj The zypfsj to set.
+	 */
+	public void setZypfsj(Date zypfsj) {
+		this.kcsj = zypfsj;
+	}
 }

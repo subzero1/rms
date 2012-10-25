@@ -328,6 +328,13 @@
          update="true"
          insert="true"
          column="kcsj"/>
+         
+        <property
+        name="zypfsj"
+         type="java.util.Date"
+         update="true"
+         insert="true"
+         column="zypfsj"/>
 
         <!--
             To add non XDoclet property mappings, create a file named
