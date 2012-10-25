@@ -243,7 +243,7 @@ function printMbk(){
 			<li><a class="send" href="#"><span flag="zdxf" class="lzspan">指定下发</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '开始谈点'}">
+			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt != '转建设' && Td21_mbk.zt != '建设中' && not empty Td21_mbk.hdfs}">
 			<li><a class="icon" href="#"><span flag="cxtd" class="lzspan">重新谈点</span></a></li>
 			<li class="line">line</li>
 			</c:if>
