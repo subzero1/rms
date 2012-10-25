@@ -26,6 +26,7 @@ import com.netsky.base.utils.DateGetUtil;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
+import com.rms.dataObjects.mbk.Td21_mbk;
 
 @Service("loadFormListService")
 public class LoadFormListServiceImp implements LoadFormListService {
@@ -300,6 +301,10 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			}
 			
 			if(module_id==102){
+				
+				Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"),-1l);
+				Td21_mbk mbk = (Td21_mbk)queryService.searchById(Td21_mbk.class, mbk_id);
+				request.setAttribute("mbk", mbk);
 				/*
 				 * 新建关联工程时把原来工程的数据写过去
 				 * 1.假设三个工程 A、B、C ，如果通过A生成B、C,则B、C的关联工程就是A；
