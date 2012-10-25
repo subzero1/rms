@@ -129,7 +129,7 @@ if ($.browser.msie) {
 							短信发送
 						</a>
 					</li>
-					<li><a href="pwdSetting.do" target="dialog" width="320" height="300" title="密码修改">密码修改</a></li>
+					<li><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改">密码修改</a></li>
 					<li><a href="logout.do">退出</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
