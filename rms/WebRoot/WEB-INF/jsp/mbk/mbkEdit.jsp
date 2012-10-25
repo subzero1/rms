@@ -247,6 +247,10 @@ function printMbk(){
 			<li><a class="icon" href="#"><span flag="cxtd" class="lzspan">重新谈点</span></a></li>
 			<li class="line">line</li>
 			</c:if>
+			<c:if test="${(not empty rolesMap['20102']) && Td21_mbk.zt == '开始谈点'}">
+			<li><a class="icon" href="#"><span flag="ht" class="lzspan">回 退</span></a></li>
+			<li class="line">line</li>
+			</c:if>
 			<c:if test="${(not empty rolesMap['20101'] || not empty rolesMap['20102']) && Td21_mbk.zt == '开始谈点'}">
 			<li><a class="icon" href="#"><span flag="dcxy" class="lzspan">达成协议</span></a></li>
 			<li class="line">line</li>
