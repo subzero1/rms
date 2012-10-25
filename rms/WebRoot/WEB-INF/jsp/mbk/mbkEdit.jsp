@@ -67,7 +67,7 @@ $(function(){
 					success: function(json){
 						navTabAjaxDone(json);
 						if (flag == "jsz"){
-							navTab.openTab('autoform', 'flowForm.do?module_id=102&node_id=10201&flow_id=102&mbk_id=${Td21_mbk.id}',{'title':'新建工程'});
+							navTab.openTab('autoform', 'flowForm.do?module_id=102&node_id=${firstNode}&flow_id=102&mbk_id=${Td21_mbk.id}',{'title':'新建工程'});
 						}
 					},
 					error: DWZ.ajaxError
