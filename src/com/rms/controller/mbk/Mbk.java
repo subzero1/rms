@@ -128,8 +128,8 @@ public class Mbk {
 					+ " and sm='方案会审' and jssj is null))";
 		}
 		if (rolesMap.get("20105") != null) {
-			roleSql += " or (zt='转建设' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm='转建设' and jssj is null))";
+			roleSql += " or ((zt='转建设' or zt='建设中') and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+					+ " and (sm='建设中' or sm='转建设') and jssj is null))";
 		}
 		hsql.append(" and (" + roleSql + ")");
 		// 类别
@@ -274,6 +274,24 @@ public class Mbk {
 			}
 		}
 		modelMap.put("project_id", id);
+		
+		/*
+		 * 判断当前人可以在哪个节点起草工程
+		 */
+		hsql.delete(0, hsql.length());
+		hsql.append("select  distinct ta13.node_id as node_id ");
+		hsql.append("from Ta11_sta_user,Ta11_sta_user ta11,Ta13_sta_node ta13 "); 
+		hsql.append("where ta11.station_id = ta13.station_id ");
+		hsql.append("and ta13.node_id in(10202,10201) ");
+		hsql.append("and ta11.user_id = " + user_id + " "); 
+		hsql.append("order by ta13.node_id desc");
+		ro = queryService.search(hsql.toString());
+		if(ro.next()){
+			modelMap.put("firstNode", ro.get("node_id"));
+		}else{
+			modelMap.put("firstNode", new Long(10201));
+		}
+		//while()
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 

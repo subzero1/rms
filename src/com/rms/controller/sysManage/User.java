@@ -72,7 +72,7 @@ public class User {
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		List<Ta03_user> all_user_list = (List<Ta03_user>) queryService
-				.searchList("from Ta03_user user where area_name in (select area.name from Tc02_area area)order by area_name,id");
+				.searchList("from Ta03_user user where area_name in (select area.name from Tc02_area area)order by area_name,name");
 		List<Ta03_user> tmp_user_list = new ArrayList<Ta03_user>();
 		Map<String, List<Ta03_user>> user_map = new HashMap<String, List<Ta03_user>>();
 		String area_name = "地区";
