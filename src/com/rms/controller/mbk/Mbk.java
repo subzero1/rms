@@ -3,6 +3,7 @@ package com.rms.controller.mbk;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.HibernateQueryBuilder;
+import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta01_dept;
@@ -41,6 +44,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.StringFormatUtil;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.rms.dataObjects.mbk.Td22_mbk_lzjl;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
@@ -64,10 +68,20 @@ public class Mbk {
 	 */
 	@Autowired
 	private SaveService saveService;
+	
+	/**
+	 * 表单模块配置表
+	 */
+	private String moduleTable="com.netsky.base.dataObjects.Ta06_module";
+	/**
+	 * 附件表
+	 */
+	private String slaveTable;
 
 	/**
 	 * 目标库信息列表
 	 */
+	
 	/**
 	 * 
 	 * @param request
@@ -198,10 +212,14 @@ public class Mbk {
 
 	/**
 	 * 目标库信息
+	 * @throws ClassNotFoundException 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/mbk/mbkEdit.do")
-	public ModelAndView mbkEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView mbkEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		ModelMap modelMap = new ModelMap();
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		Td21_mbk mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
@@ -222,6 +240,154 @@ public class Mbk {
 		Long user_id=user.getId();
 		
 		/**
+		 * 附件上传
+		 */
+		Long project_id = null;
+		Long doc_id = null;
+		Long module_id = new Long("90"); 
+		String loginClient = StringFormatUtil.format((String)request.getSession().getAttribute("loginClient"),""); 
+		Class<?> clazz = null; 
+  
+		String slaveModules = null; 
+		String[] slaveModuleArray = null;
+		QueryBuilder queryBuilder = null;
+		ResultObject ro=null;  
+		Vector<HashMap<String, String>> v_slave = null;
+		boolean canSave = false;
+		
+
+
+		/**
+		 * 读Ta06_module表,得到表名信息
+		 */
+		moduleTable="com.netsky.base.dataObjects.Ta06_module";
+		clazz = Class.forName(moduleTable);
+		Object o_module = queryService.searchById(clazz, module_id);
+		request.setAttribute("module",o_module);
+		/**
+		 * 获取表单类型附件module_id
+		 */
+		slaveModules = StringFormatUtil.format((String) PropertyInject.getProperty(o_module, "slave_module"));
+		if (!slaveModules.equals("")) {
+			slaveModuleArray = slaveModules.split(",");
+		}
+		
+		/**
+		 * 获得表单附件信息
+		 */
+		v_slave = new Vector<HashMap<String, String>>();
+		if (slaveModuleArray != null) {
+			for (int i = 0; i < slaveModuleArray.length; i++) {
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select distinct tb15.doc_id ,ta06.name ");
+				hsql.append("from Ta06_module ta06,Tb15_docflow tb15 ");
+				hsql.append("where ta06.id = tb15.module_id ");
+				hsql.append("and tb15.project_id = ");
+				hsql.append(project_id);
+				hsql.append(" and tb15.module_id = ");
+				hsql.append(new Long(slaveModuleArray[i]));
+				ro = queryService.search(hsql.toString());
+				while(ro.next()){
+					HashMap<String, String> tmp_hm_slave = new HashMap<String, String>();
+					String tmp_slave_name = (String)ro.get("ta06.name");
+					Long t_doc_id = (Long)ro.get("tb15.doc_id");
+					String tmp_formurl = "javascript:parent.popOperWeb('openForm.do?project_id=" + project_id + "&module_id=" + slaveModuleArray[i] + "&doc_id=" + t_doc_id+"')";
+					
+					if (!tmp_slave_name.equals("")) {
+						tmp_hm_slave.put("slave_name", tmp_slave_name);
+						tmp_hm_slave.put("formurl", tmp_formurl);
+						tmp_hm_slave.put("rw", "r");
+						v_slave.add(tmp_hm_slave);
+						request.setAttribute("formslave", v_slave);
+						request.setAttribute("length_formslave", v_slave.size());
+					}
+				}
+			}
+		}
+
+		/**
+		 * 获得上传附件信息
+		 */
+
+		
+		if(project_id==null){
+			project_id=id;
+			doc_id=project_id;}
+		slaveTable="com.netsky.base.dataObjects.Te01_slave";
+		v_slave = new Vector<HashMap<String, String>>();
+		clazz = Class.forName(slaveTable);
+		queryBuilder = new HibernateQueryBuilder(clazz);
+		queryBuilder.eq("doc_id", doc_id);
+		queryBuilder.eq("module_id", module_id);
+		queryBuilder.eq("project_id", project_id);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+		queryBuilder.eq("slave_type", "目标库");
+		ro = queryService.search(queryBuilder);
+		while (ro.next()) {
+			HashMap<String, String> tmp_hm_slave = new HashMap<String, String>();
+			
+			Object t_slave_obj = ro.get(clazz.getName());
+			Long tmp_slave_id = (Long)PropertyInject.getProperty(t_slave_obj,"id");
+			String tmp_slave_name = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"file_name"), "");
+			String tmp_slave_ext = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"ext_name"), "");
+			String tmp_ftp_url = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"ftp_url"), "");
+			String tmp_slave_remark = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"remark"), "");
+			Long tmp_user_id =  (Long)PropertyInject.getProperty(t_slave_obj,"user_id");
+			
+			tmp_hm_slave.put("slave_id", tmp_slave_id.toString());
+			tmp_hm_slave.put("slave_name", tmp_slave_name);
+			tmp_hm_slave.put("ftp_url", tmp_ftp_url);
+			tmp_hm_slave.put("slave_remark", tmp_slave_remark);
+			if (mbk.getZt()!="转建设"&& mbk.getZt()!="建设中"&& user_id.equals(tmp_user_id)) {
+				tmp_hm_slave.put("rw", "w");
+			} else {
+				tmp_hm_slave.put("rw", "r");
+			}
+			v_slave.add(tmp_hm_slave);
+		}
+		request.setAttribute("uploadslave", v_slave);
+		request.setAttribute("length_uploadslave", v_slave.size());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
 		 * 获得交流反馈信息
 		 */			
 		List<Map> jlfkList = new LinkedList<Map>();
@@ -236,7 +402,7 @@ public class Mbk {
 		hsql.append(" and document_id =  ");
 		hsql.append(id);
 		hsql.append(" order by te02.time ");
-		ResultObject ro = queryService.search(hsql.toString());
+	    ro = queryService.search(hsql.toString());
 		while(ro.next()){
 			HashMap<String,Object> jlfk = new HashMap<String,Object>();
 			Long tmp_user_id =  (Long)ro.get("ta03.id");
@@ -676,4 +842,35 @@ public class Mbk {
 		}
 		return new ModelAndView("/WEB-INF/jsp/mbk/lzjl.jsp", modelMap);
 	}
+
+	/**
+	 * @hibernate.property column="moduleTable"
+	 * @return Returns the moduleTable.
+	 */
+	public String getModuleTable() {
+		return moduleTable;
+	}
+
+	/**
+	 * @param moduleTable The moduleTable to set.
+	 */
+	public void setModuleTable(String moduleTable) {
+		this.moduleTable = moduleTable;
+	}
+
+	/**
+	 * @hibernate.property column="slaveTable"
+	 * @return Returns the slaveTable.
+	 */
+	public String getSlaveTable() {
+		return slaveTable;
+	}
+
+	/**
+	 * @param slaveTable The slaveTable to set.
+	 */
+	public void setSlaveTable(String slaveTable) {
+		this.slaveTable = slaveTable;
+	}
+	
 }
