@@ -65,7 +65,7 @@ public class CopyXmxxToGcService implements ThreadServiceInterface {
 				 * 办结工程流程节点
 				 */
 				saveService.updateByHSql("update Tb15_docflow set doc_status=8 where doc_status <> 8 and project_id = "+td00.getId());
-				saveService.updateByHSql("update tb12_opernode set node_status=8 where node_status <> 8 and project_id = "+td00.getId());
+				saveService.updateByHSql("update Tb12_opernode set node_status=8 where node_status <> 8 and project_id = "+td00.getId());
 			}
 		}
 	}

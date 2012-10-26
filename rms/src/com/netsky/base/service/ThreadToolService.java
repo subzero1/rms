@@ -34,8 +34,11 @@ public class ThreadToolService extends Thread implements ServletContextAware {
 		while (true) {
 			Session session = dao.getHibernateSession();
 			try {
-				Long nextval = ((BigDecimal) (session.createSQLQuery("select batch_num.nextval from dual")
-						.uniqueResult())).longValue();
+//				Long nextval = ((BigDecimal) (session.createSQLQuery("select batch_num.nextval from dual")
+//						.uniqueResult())).longValue();
+				
+				Long nextval = new Long(Math.round(Math.random() * 1000000));
+				
 				if (session
 						.createQuery(
 								"update Tz05_thread_queue set batchno='" + nextval
@@ -64,7 +67,7 @@ public class ThreadToolService extends Thread implements ServletContextAware {
 								try {
 									threadService.handle(paramMap);
 								} catch (Exception e) {
-									status = "处理失败:" + e;
+									status = "处理失败:" + e.getMessage();
 								}
 							}
 							thread.setHandletime(now);
