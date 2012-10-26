@@ -494,7 +494,7 @@ body { overflow:hidden;}
 .dateRange .limit {text-align: center; width: 15px; line-height:21px; }
 
 /* Pages Form */
-.pageForm { display:block; overflow:auto;margin:35px;}
+.pageForm { display:block; overflow:auto;}
 .pageFormContent { display:block; overflow:auto; padding:10px 5px; position:relative;}
 .pageFormContent div { clear:both; display:block; overflow:hidden; height:auto;}
 .pageFormContent div.unit {display:block; _width:100%; margin:0; padding:5px 0; position:relative;}
