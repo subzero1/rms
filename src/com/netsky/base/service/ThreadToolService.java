@@ -5,11 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletContext;
-
 import org.apache.log4j.Logger;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +14,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.dataObjects.Tz05_thread_queue;
 import com.netsky.base.dataObjects.interfaces.ThreadServiceInterface;
-import com.netsky.base.flow.utils.convertUtil;
+
 
 @Service("threadToolService")
 public class ThreadToolService extends Thread implements ServletContextAware {
