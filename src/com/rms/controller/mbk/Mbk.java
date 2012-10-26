@@ -618,7 +618,7 @@ public class Mbk {
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
 					
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-					td22.setSm("四方勘察" +" [勘察时间："+kcsjStr+","+sm+"]");
+					td22.setSm("四方勘察" +" [时间："+kcsjStr+","+sm+"]");
 					td22.setKssj(now);
 					td22.setXgr(ta03.getName());
 					td22.setXgr_bm(ta01.getName());
