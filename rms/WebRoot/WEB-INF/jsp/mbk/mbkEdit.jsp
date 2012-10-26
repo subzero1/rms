@@ -530,8 +530,9 @@ function printMbk(){
 					
 					<c:forEach var="obj" items="${uploadslave}">
 						<p class="slaveList">
-							<a href="download.do?slave_id=${obj.slave_id}">${obj.slave_name}</a>
-							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览">在线预览</a>
+							<a href="download.do?slave_id=${obj.slave_id}">${obj.slave_name}</a>&nbsp;&nbsp;
+							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
+							<a href="download.do?slave_id=${obj.slave_id}" title="下载"><font color=red>下载</font></a>
 							<c:if test="${not empty obj.slave_remark}"><span style="color:#888">&nbsp;(${obj.slave_remark})</span></c:if>
 							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 						</p>
