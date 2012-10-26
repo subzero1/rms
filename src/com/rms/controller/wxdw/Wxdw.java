@@ -1630,8 +1630,6 @@ public class Wxdw {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
 		hsql.append(" sgfzr = '"+user.getName()+"' and sjkgsj < sysdate and (sjjgsj is null or sgjd is null or sgjd < 1)");
-		
-		System.out.println(hsql);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
