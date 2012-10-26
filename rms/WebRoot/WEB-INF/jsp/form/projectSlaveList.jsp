@@ -53,7 +53,7 @@
 						<td>${obj.slave_type }</td>
 						<td>${obj.file_name }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${obj.ftp_date }"/></td>
-						<td style="text-align:center;"><a href="download.do?slave_id=${obj.id }" target="_blank">下载</a></td>
+						<td style="text-align:center;" class="finishdown"><a href="download.do?slave_id=${obj.id }" target="_blank">下载</a></td>
 						<td style="text-align:center;">
 						   <c:if test="${(param.canDel == 'yes' && curUserId == obj.user_id) || admin == 'true'}">	
 							<a href="javascript:del_slave(${obj.id }, ${offset - 1})">删除</a>
