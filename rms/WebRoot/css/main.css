@@ -83,7 +83,7 @@ _color:#FF0000; IE6支持
 .panelBar .toolBar a.cancelaccept span { background-position:-148px -846px;}/*取消受理*/
 .panelBar .toolBar a.newform span { background-position:-218px -846px;}/*新建表单*/
 
-.panelBar .toolBar a.helponline span{ background-position:-218px -821px;}/*在线帮助*/
+.panelBar .toolBar a.helponline span{ background-position:-218px -819px;}/*在线帮助*/
 .panelBar .toolBar a.lookover span{ background-position:-218px -796px;}/*查看*/  
 .panelBar .toolBar a.autonode span{background:url("../Images/autonode.png") no-repeat 0px 5px;}/*流程*/  
 
@@ -102,6 +102,8 @@ _color:#FF0000; IE6支持
 
 .listbutton{color:#fff;height:19px;width:60px;line-height:19px;padding:0px 5px;background:url(../themes/default/images/grid/grid.png) repeat-x; background-position:0px -603px;border-right:solid 1px #ccc;border-bottom:solid 1px #999;}/*----列表上的按钮---*/
 .listbutton:hover{height:19px;line-height:19px;width:60px;text-decoration:none;background:#2daebf;cursor:pointer;}
+
+.finishdown {background:url("../themes/default/images/grid/grid.png");background-position:-358px -746px;}
 
 
 /* ------------------------------------------------------------------------------------------------------
@@ -141,9 +143,20 @@ _color:#FF0000; IE6支持
 .b3 { height:1px; background:#f5f7f8; border-right:1px solid #cbcfd2; border-left:1px solid #cbcfd2; margin:0 2px; }
 .b4 { height:2px; background:#f5f7f8; border-right:1px solid #cbcfd2; border-left:1px solid #cbcfd2; margin:0 1px; }
  
+ b.rtop, b.rbottom{display:block;background: #FFF;}
+ b.rtop b, b.rbottom b{display:block;height: 1px;overflow: hidden; background: #f5f7f8;}
+ b.r00{margin: 0 7px 0 9px; padding:0px;border-top:solid 1px #e7e9ea; height:1px;border-right:solid 1px #e7e9ea;}/*阴影颜色*/
+ b.r0{margin: 0 5px 0 7px; padding:0px; border-bottom:solid 1px #cccecf;border-right:solid 1px #cbcfd2;}/*底边框颜色*/
+ b.r1{margin: 0 4px;border-right:solid 1px #cbcfd2;}
+ b.r2{margin: 0 3px;border-right:solid 1px #cbcfd2;}
+ b.r3{margin: 0 2px;border-right:solid 1px #cbcfd2;}
+ b.rtop b.r4, b.rbottom b.r4{margin: 0 1px;height: 2px;border-right:solid 1px #cbcfd2;}
+ 
 /*桌面主窗口内部div*/
 .contentc {background:#f5f7f8; border-right:1px solid #cbcfd2; border-left:1px solid #cbcfd2;padding:3px; margin:0px; font-size:12px;}
 .button-td{background:#f5f5f5;height:30px;}
+
+
 
 /* ------------------------------------------------------------------------------------------------------
 **表单变为table框架样式
@@ -255,7 +268,7 @@ desktop：桌面页
 			#win-boxr th{height:17px; line-height:17px; font-size:12px;font-weight:normal;}
 			
 			
-			.win-boxp{width:95%;overflow-y:auto;overflow-x:hidden; margin:0px; padding:2px 6px; background:#f5f7f8;}/*目前用作desktop右侧*/			
+			.win-boxp{width:97%;overflow-y:auto;overflow-x:hidden; margin:0px; padding:2px 6px; background:#f5f7f8;}/*目前用作desktop右侧*/			
 			.win-boxp caption{ background:#cbd7dc; height:10px; line-height:10px;}
 			.win-boxp th {background:#cbd7dc;height:14px; line-height:14px;font-weight:normal;border-bottom:solid 1px #bbc6cc;text-align:left;padding-left:10px;}/*porjectreport页面使用*/
 			.win-boxp td { height:18px; line-height:18px;}

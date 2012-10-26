@@ -104,6 +104,7 @@ function openOnLineList(){
 		<div class="title01">
               <h3>系统公告</h3>
            </div>
+        <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
 		<div class="win-boxp" style="height:104px;">
 			<table width="97%" border="0" cellspacing="0" cellpadding="0"  style="border-collapse:collapse;" id="reporttable">
 				<c:forEach var="i" begin="0" end="3">
@@ -131,10 +132,12 @@ function openOnLineList(){
 				</c:forEach>
 			</table>
 		</div>
-         <div class="title01">
+		<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b><b class="r0"></b><b class="r00"></b></b>
+          <div class="title01">
 				<span style="float:right;"><input class="red-message" type="button" onclick="javascript:navTab.openTab('messageList','MessageList.do?messageState=1');" value="${wcldxx}条未读"/></span>
                <h3>短消息</h3>
            </div>
+		<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
 		<div class="win-boxp" style="height:103px;">
 			<table width="97%" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="messagetable">
 				<c:forEach  var="i" begin="0" end="3">
@@ -162,7 +165,8 @@ function openOnLineList(){
 					</c:if>						
 				</c:forEach>					
 			</table>
-		</div>			  
+		</div>	
+		<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b><b class="r0"></b><b class="r00"></b></b>           		  
 	</div>
 </div>
 <div id="needWorkList_ui">
