@@ -1615,6 +1615,7 @@ public class Wxdw {
 			orderField = "gcmc";
 		}
 		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
 			orderDirection = "desc";
@@ -1624,18 +1625,12 @@ public class Wxdw {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		StringBuffer hsql = new StringBuffer();
-		hsql
-				.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+		hsql.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
-		hsql
-				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10107,10209) and tb15.user_id="
-						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
-		// hsql
-		// .append(" and (case when tbrq is null then sjkgsj else tbrq
-		// end)<=sysdate-(case when sgjdtbzq is null then 3 else sgjdtbzq
-		// end)");
+		hsql.append(" sgfzr = '"+user.getName()+"' and sjkgsj < sysdate and (sjjgsj is null or sgjd is null or sgjd < 1)");
+		
 		System.out.println(hsql);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
