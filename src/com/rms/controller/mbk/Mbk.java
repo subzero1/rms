@@ -834,7 +834,9 @@ public class Mbk {
 	 */
 	public void setSlaveTable(String slaveTable) {
 		this.slaveTable = slaveTable;
-	}@RequestMapping("/exportExcel/import.do")
+	}
+	
+	@RequestMapping("/exportExcel/import.do")
 	public void importExcel(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
 		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
@@ -847,18 +849,10 @@ public class Mbk {
 			ic.setQueryService(queryService);
 			ic.setExceptionService(exceptionService);
 			ic.handleRequest(request, response);
-//			return null;
 		}catch(Exception e){
-			response.getWriter().print(
-					
-					"{\"statusCode\":\"" + 300 + "\", \"message\":\"" + "" + "\", \"navTabId\":\"" + navTabId
-							+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\"}");
-
-//			return null;
+			System.out.print(e);
 		}
 	}
-	
-	
 }
 
 
