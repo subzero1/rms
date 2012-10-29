@@ -35,6 +35,7 @@ import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.controller.ImportController;
 import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
@@ -347,44 +348,6 @@ public class Mbk {
 		}
 		request.setAttribute("uploadslave", v_slave);
 		request.setAttribute("length_uploadslave", v_slave.size());
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		/**
@@ -871,6 +834,31 @@ public class Mbk {
 	 */
 	public void setSlaveTable(String slaveTable) {
 		this.slaveTable = slaveTable;
+	}@RequestMapping("/exportExcel/import.do")
+	public void importExcel(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
+		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
+		String callbackType = convertUtil.toString(request.getParameter("_callbackType"));
+		String message="温馨提示：您导入的数据异常，请重新校验";
+		try{ 
+			//return new ModelAndView("/import.do");
+			ImportController ic = new ImportController();
+			ic.setSaveService(saveService);
+			ic.setQueryService(queryService);
+			ic.setExceptionService(exceptionService);
+			ic.handleRequest(request, response);
+//			return null;
+		}catch(Exception e){
+			response.getWriter().print(
+					
+					"{\"statusCode\":\"" + 300 + "\", \"message\":\"" + "" + "\", \"navTabId\":\"" + navTabId
+							+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\"}");
+
+//			return null;
+		}
 	}
 	
+	
 }
+
+

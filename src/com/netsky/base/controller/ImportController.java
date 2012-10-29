@@ -259,7 +259,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
-			e.printStackTrace();
+			throw e;
 			//return exceptionService.exceptionControl(this.getClass().getName(), e.toString(), null);
 		} finally {
 			session.close();
@@ -560,5 +560,25 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 		response.getWriter().print(
 				"{\"statusCode\":\"" + statusCode + "\", \"message\":\"" + message + "\", \"navTabId\":\"" + navTabId
 						+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\"}");
+	}
+	/**
+	 * @param saveService The saveService to set.
+	 */
+	public void setSaveService(SaveService saveService) {
+		this.saveService = saveService;
+	}
+
+	/**
+	 * @param queryService The queryService to set.
+	 */
+	public void setQueryService(QueryService queryService) {
+		this.queryService = queryService;
+	}
+
+	/**
+	 * @param exceptionService The exceptionService to set.
+	 */
+	public void setExceptionService(ExceptionService exceptionService) {
+		this.exceptionService = exceptionService;
 	}
 }
