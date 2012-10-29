@@ -259,8 +259,13 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
-			throw e;
-			//return exceptionService.exceptionControl(this.getClass().getName(), e.toString(), null);
+			statusCode = "300";
+			message = e.getMessage();
+			if (message != null && message.indexOf("recognize OLE stream") != -1) {
+				message = "Excel格式非法，请将Excel另存为<font color=red>2003版</font>的<font color=red>标准</font>的Excel后再导入";
+			} else {
+				message = "Excel格式非法,请参考导入模板或联系系统管理员";
+			}
 		} finally {
 			session.close();
 			
