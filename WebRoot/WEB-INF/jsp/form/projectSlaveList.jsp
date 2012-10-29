@@ -40,8 +40,7 @@
 					<th style="width:100px;" orderField="slave_type">附件类型</th>
 					<th orderField="file_name">附件名称</th>
 					<th style="width: 100px;" orderField="ftp_date">上传时间</th>
-					<th style="width: 50px;"></th>
-					<th style="width: 50px;"></th>
+					<th style="width: 100px;"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,10 +52,10 @@
 						<td>${obj.slave_type }</td>
 						<td>${obj.file_name }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${obj.ftp_date }"/></td>
-						<td style="text-align:center;" class="finishdown"><a href="download.do?slave_id=${obj.id }" target="_blank">下载</a></td>
-						<td style="text-align:center;">
+						<td style="text-align:center;" class="finishdown"><a href="download.do?slave_id=${obj.id }" target="_blank"><img border="0" src="Images/down.png" style="cursor:pointer" alt="下载"></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
 						   <c:if test="${(param.canDel == 'yes' && curUserId == obj.user_id) || admin == 'true'}">	
-							<a href="javascript:del_slave(${obj.id }, ${offset - 1})">删除</a>
+							<a href="javascript:del_slave(${obj.id }, ${offset - 1})"><img border="0" src="Images/trash.gif" style="cursor:pointer" alt="删除"></a>
 						   </c:if>
 						</td>
 					</tr>
@@ -64,7 +63,6 @@
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
