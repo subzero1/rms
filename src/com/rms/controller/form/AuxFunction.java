@@ -691,6 +691,10 @@ public class AuxFunction {
 			modelMap.put("project", project);
 		}
 		List<Td00_gcxx> projectList = (List<Td00_gcxx>) queryService.searchList(hql.toString());
+		if(projectList.size()==0){
+			projectList.add(new Td00_gcxx());
+			projectList.add(new Td00_gcxx());
+		}
 		
 		for(int i=0;i<projectList.size();i++){
 			Td00_gcxx td00=projectList.get(i);
