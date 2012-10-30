@@ -518,6 +518,10 @@ function printMbk(){
 				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
 					<c:set var="slaves" scope="page" value="0"/>
+					<c:forEach var="obj" items="${_formslink}">
+						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:forEach>
 					<c:forEach var="obj" items="${formslave}">
 						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>

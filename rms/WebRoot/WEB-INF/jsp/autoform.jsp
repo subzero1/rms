@@ -111,7 +111,7 @@
 					</c:forEach>
 					
 					<c:forEach var="obj" items="${extslave}">
-						<p class="slaveList"><a href="javascript:return false;" onclick="${obj.formurl}">${obj.slave_name}${obj.formurl}</a></p>
+						<p class="slaveList"><a href="javascript:return false;" onclick="${obj.formurl}">${obj.slave_name}</a></p>
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
 					</c:forEach>
 					
