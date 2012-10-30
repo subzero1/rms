@@ -432,6 +432,32 @@ public class Mbk {
 			modelMap.put("firstNode", new Long(10201));
 		}
 		//while()
+		
+		/**
+		 * 处理表单链接显示问题
+		 */
+		hsql.delete(0, hsql.length());
+		hsql.append("select td00.id,td00.gcmc from Td00_gcxx td00 where td00.mbk_id="+id);
+		ro=queryService.search(hsql.toString());	
+		v_slave = new Vector<HashMap<String, String>>();
+		while(ro.next()){
+			HashMap<String, String> tmp_hm_slave = new HashMap<String, String>();
+			String tmp_slave_name = (String)ro.get("td00.gcmc");
+			Long t_doc_id = (Long)ro.get("td00.id");
+			String tmp_formurl = "javascript:navTab.openTab('autoform', 'flowForm.do?project_id="+t_doc_id+"&module_id=102&doc_id="+t_doc_id+"', {title:'表单'});";
+			
+			if (!tmp_slave_name.equals("")) {
+				tmp_hm_slave.put("slave_name", tmp_slave_name);
+				tmp_hm_slave.put("formurl", tmp_formurl);
+				tmp_hm_slave.put("rw", "r");
+				v_slave.add(tmp_hm_slave);
+				request.setAttribute("_formslink", v_slave);
+				request.setAttribute("length_formlink", v_slave.size());
+			}
+		}
+		
+		
+		
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 
