@@ -429,7 +429,7 @@ body { overflow:hidden;}
 #splitBarProxy { display:none; overflow:hidden; width:3px; border-style:solid; border-width:1px; cursor:col-resize; position:absolute; top:90px; left:205px; z-index:20;}/*top从55改为90*/
 #footer {position:absolute; bottom:0; left:0; text-align:center; width:100%; height:21px; padding:0 5px;z-index:-1}
 
-#header .headerNav { height:85px; background-repeat:no-repeat; background-position:100% -50px;padding-top:35px;}/*height从50改为85*/
+#header .headerNav { height:85px;padding-top:35px;}/*height从50改为85*/
 #header .logo { float:left; width:400px; height:50px; text-indent:-1000px;position:absolute;top:35px;}
 
 #header .nav { display:block; height:21px; position:absolute; top:43px; right:0; z-index:31;}/*top从8改为43*/
