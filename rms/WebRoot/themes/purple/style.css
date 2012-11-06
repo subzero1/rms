@@ -146,7 +146,7 @@ input.disabled, textarea.disabled { border-color:#9eabb3 #d5dbdf #d5dbdf #9eabb3
 body, #splitBar { background:#db5959;}/*改颜色*/
 #splitBarProxy { border-color:#c0c0c0; background:#CCC;}
 
-#header, #header .headerNav { background:#c90808;/*url(../purple/images/header_bg.png) repeat-x;*/}
+#header, #header .headerNav { background:url(../purple/images/menu_bg.gif) repeat-x #c90808;}
 #header { background-color:#5b9700;}
 #header .logo { background:url(../purple/images/logo.png) no-repeat;}
 #header .nav li { float:left; margin-left:-1px; padding:0 8px; line-height:11px; background:url(../purple/images/listLine.png) no-repeat;}
