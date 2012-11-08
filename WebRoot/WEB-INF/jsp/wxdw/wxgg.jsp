@@ -291,8 +291,8 @@
 													<span onclick="javascript:spanclick(this);" style="cursor: pointer">${list_mbdw.mc}</span>
 												</p>
 												<c:if test="${offset % 3 == 0}">
-													</div>
 													<div style="width: 100%; display: inline-block; margin-left: 100px;">
+													</div>
 												</c:if>
 											</c:forEach>
 										</div>
@@ -391,7 +391,7 @@
 		  				<c:set var="offset" value="${offset+1}"/>
 		  				
 						<p style="width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${list_mbdw }"><span class="wxdwmc">${list_mbdw }</span><c:if test="${cydw[list_mbdw]==list_mbdw}"><img src="Images/online_ok.gif" title="已读"/></c:if> </p>
-						<c:if test="${offset % 3 == 0}"></div><div style="width:100%;display:inline-block;"></c:if>
+						<c:if test="${offset % 3 == 0}"><div style="width:100%;display:inline-block;"></div></c:if>
 						</c:forEach>
 						</div>
 					</c:if>
