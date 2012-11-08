@@ -364,13 +364,13 @@ public class ExportExcelController {
 			throw new Exception("缺少配置信息参数！");
 		}
 
-		String ConfigFileName = getConfinFileName(ConfigName);
+		String ConfigFileName = this.getConfinFileName(ConfigName,webInfPatch,CONFIG_FILE);
 		if (ConfigFileName == null || ConfigFileName.equals("")) {
 			throw new Exception("未找到对应的导入信息" + ConfigName);
 		}
 
 		//Map configInfo = getConfigInfo(ConfigFileName);
-		List list=getConfigInfoList(ConfigFileName);  
+		List list=this.getConfigInfoList(ConfigFileName,webInfPatch);  
 		String form_title="template";
 		Map sheetMap=new HashMap(); 
 		List sheetList=new LinkedList(); 
@@ -379,7 +379,7 @@ public class ExportExcelController {
 		sheetList.add(new LinkedList());
 		
 		sheetMap.put(form_title, sheetList); 
-		request.setAttribute("excelName", "template");
+		request.setAttribute("ExcelName", "template.xls");
 		request.setAttribute("sheetMap", sheetMap);
 		return new ModelAndView("/export/toExcelWhithList.do");
 	}
@@ -392,7 +392,7 @@ public class ExportExcelController {
 	 *            配置名称，存放于import.xml
 	 * @return 配置文件名称
 	 */
-	private String getConfinFileName(String ConfigName) throws Exception {
+	public String getConfinFileName(String ConfigName,String webInfPatch,String configInfo) throws Exception {
 		/**
 		 * 获取基本配置文件
 		 */
@@ -417,7 +417,7 @@ public class ExportExcelController {
 	
 	
 	
-	private List getConfigInfoList(String ConfigFileName) throws Exception{
+	public List getConfigInfoList(String ConfigFileName,String webInfPatch) throws Exception{
 		List list=new LinkedList();
 		File file=new File(webInfPatch+ConfigFileName);
 		if(!file.exists()){
