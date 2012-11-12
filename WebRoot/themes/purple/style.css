@@ -156,8 +156,8 @@ body, #splitBar { background:#db5959;}/*改颜色*/
 .toggleCollapse, .toggleCollapse div { background:url(../purple/images/layout/toggleSidebar.png) no-repeat;}
 .toggleCollapse { border-style:solid; border-width:1px 1px 0 1px; border-color:#b8d0d6; background-color:#e7eff0;}
 .toggleCollapse h2 { color:#2d3f00;}
-#sidebar_s .collapse { border:solid 1px #b8d0d6; background:#F9E8F9;}
-#sidebar_s .collapse:hover { background:#F9E8F9;}
+#sidebar_s .collapse { border:solid 1px #b8d0d6; background:#db5959;}
+#sidebar_s .collapse:hover { background:#c90808;}
 
 #taskbar, #taskbar li, #taskbar li .taskbutton { background:url(../default/images/layout/taskbar.png) no-repeat;}
 #taskbar .close, #taskbar .restore, #taskbar .minimize { background:url(../default/images/layout/taskbar_icon.png) no-repeat;}
