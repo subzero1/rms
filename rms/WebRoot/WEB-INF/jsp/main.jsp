@@ -143,6 +143,11 @@ if ($.browser.msie) {
 			</div>
 		</div>
 
+    <!--Loginout-->
+    <div id="loginoutbar"> &nbsp;&nbsp;<a href="logout.do">注销登录</a> </div>
+    <hr class="noscreen" />
+    <!--/Loginout-->
+    
 		<div id="leftside">
 			<div id="sidebar_s">
 				<div class="collapse">

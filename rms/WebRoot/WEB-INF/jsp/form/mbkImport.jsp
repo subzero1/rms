@@ -50,7 +50,9 @@
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
 			<input type="hidden" name="config" value="mbk_source" />
-			<div class="pageFormContent" layoutH="56">
+			<div class="pageFormContent" layoutH="186">
+				<br/>
+				<br/>
 				<p style="">
 					<label>
 						EXCEL文件
