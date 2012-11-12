@@ -432,7 +432,7 @@ body { overflow:hidden;}
 #header .headerNav { height:85px;padding-top:35px;}/*height从50改为85*/
 #header .logo { float:left; width:400px; height:50px; text-indent:-1000px;position:absolute;top:35px;}
 
-#header .nav { display:block; height:21px; position:absolute; top:43px; right:0; z-index:31;}/*top从8改为43*/
+#header .nav { display:block; height:21px; position:absolute; top:15px; left:0; z-index:31;}/*top从8改为43,从右侧改到左侧timebar上*/
 #header .nav li { float:left; margin-left:-1px; padding:0 10px; line-height:12px; position:relative;}
 #header .nav li a { line-height:12px;}
 #header .nav ul { display:none; width:230px; border:solid 1px #06223e; overflow:hidden; background:#FFF; position:absolute; top:20px; right:0;}
