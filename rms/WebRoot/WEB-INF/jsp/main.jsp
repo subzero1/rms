@@ -123,7 +123,7 @@ if ($.browser.msie) {
 			<div class="headerNav">
 				<a class="logo" href="javascript:void(0)">标志</a>
 				<ul class="nav">
-					<li style="color: #FFF">您好，${user.name }（${user.login_id }）</li>
+					<li style="color: #FFF" class="ward">您好，${user.name }（${user.login_id }）</li>
 					<li style="color: #FFF">
 						<a	href="MessageWrite.do?type=phone" target="dialog" rel="messageWrite" title="手机短信" width="670" height="350">
 							短信发送
