@@ -130,7 +130,6 @@ if ($.browser.msie) {
 						</a>
 					</li>
 					<li><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改">密码修改</a></li>
-					<li><a href="logout.do">退出</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
@@ -144,7 +143,7 @@ if ($.browser.msie) {
 		</div>
 
     <!--Loginout-->
-    <div id="loginoutbar"> &nbsp;&nbsp;<a href="logout.do">注销登录</a> </div>
+    <div id="loginoutbar"> &nbsp;&nbsp;<a href="logout.do" style="font-size:14px;font-weight:bold">注销登录</a> </div>
     <hr class="noscreen" />
     <!--/Loginout-->
     
