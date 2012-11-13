@@ -50,13 +50,11 @@
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
 			<input type="hidden" name="config" value="mbk_source" />
-			<div class="pageFormContent" layoutH="186">
+			<div class="pageFormContent" layoutH="58">
 				<br/>
 				<br/>
 				<p style="">
-					<label>
-						EXCEL文件
-					</label>
+					<label>EXCEL文件</label>
 					<input id="file" type="file" name="file" size="20" />
 				</p>
 			</div>
