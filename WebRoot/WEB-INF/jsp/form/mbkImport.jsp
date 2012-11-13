@@ -8,15 +8,15 @@
 	$(function(){
 		$("#importbutton",$.pdialog.getCurrent()).click(function(){
 			if ($("#file",$.pdialog.getCurrent()).val()==""){
-				alertMsg.info("请选择导入EXCEL文件！");
+				alertMsg.info("温馨提示：请选择导入EXCEL文件！");
 				return false;
 			}
 			if(!/(.xls)$/.exec($("#file",$.pdialog.getCurrent()).val())){
 				if(/(.xlsx)$/.exec($("#file",$.pdialog.getCurrent()).val())){
-					alertMsg.info("系统不支持excel2007，请您选择excel2003文件");
+					alertMsg.info("温馨提示：系统不支持excel2007，请您选择excel2003文件");
 					return false;
 				}else{ 
-					alertMsg.info("并非excel文件，请您重新导入");
+					alertMsg.info("温馨提示：并非excel文件，请您重新导入");
 				}
 				return false;
 			}
