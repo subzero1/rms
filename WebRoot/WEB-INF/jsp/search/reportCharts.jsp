@@ -41,10 +41,10 @@
                 }
             },
                 series: [{
-                name: '预算金额',
+                name: 'option1',
                 data: [5, 3, 4, 7, 2,5]
             }, {
-                name: '变更金额',
+                name: 'option2',
                 data: [2, 2, 3, 2, 1,6]
             }]
         }; 
@@ -107,6 +107,10 @@
 		function createChart(chart_type){
 			highchart(chart_type);
 		}
+		
+		$(function(){
+			createChart('bar');
+		});
 		
 		</script>
 	</head>
