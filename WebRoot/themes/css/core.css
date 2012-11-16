@@ -430,7 +430,7 @@ body { overflow:hidden;}
 #footer {position:absolute; bottom:0; left:0; text-align:center; width:100%; height:21px; padding:0 5px;z-index:-1}
 
 #header .headerNav { height:85px;padding-top:35px;}/*height从50改为85*/
-#header .logo { float:left; width:400px; height:50px; text-indent:-1000px;position:absolute;top:35px;}
+#header .logo { float:left; width:470px; height:50px; text-indent:-1000px;position:absolute;top:35px;}
 
 #header .nav { display:block; height:21px; position:absolute; top:15px; left:0; z-index:31;}/*top从8改为43,从右侧改到左侧timebar上*/
 #header .nav li { float:left; margin-left:-1px; padding:0 10px; line-height:12px; position:relative;}
