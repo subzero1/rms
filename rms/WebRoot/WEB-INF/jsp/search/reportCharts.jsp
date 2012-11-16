@@ -5,13 +5,13 @@
 	<head>
 		<title>报表统计图</title>
 		<script type="text/javascript">
-		function highchart(chart_type) {
+		function createStackedBar(chart_type) {
 		var datasource=_chartdata(chart_type);
     	var chart; 
         var _chart ={
             chart: {
                 renderTo: 'containerDiv',
-                type: 'area'
+                type: 'bar'
             },
             title: {
                 text: 'Stacked bar chart'
@@ -57,6 +57,85 @@
       	}  
         chart=new Highcharts.Chart(_chart); 
 }
+//    basic bar   
+	function createBasicBar(chart_type){ 
+		var datasource=_chartdata(chart_type);
+    	var chart;  
+    	var _chart={
+            chart: {
+                renderTo: 'containerDiv',
+                type: 'column'
+            },
+            title: {
+                text: 'Historic World Population by Region'
+            },
+            subtitle: {
+                text: 'Source: Wikipedia.org'
+            },
+            xAxis: {
+                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Population (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.series.name +': '+ this.y +'';
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -100,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: ' 1800年',
+                data: [11071, 31, 635, 203, 2]
+            }, {
+                name: 'Year 1900',
+                data: [11331, 156, 947, 408, 6]
+            }, {
+                name: 'Year 2008',
+                data: [19731, 914, 4054, 732, 34]
+            }]
+        };
+        _chart.title.text=datasource.Chart_title_text;
+        _chart.xAxis.categories=datasource.Chart_xAxis_categories;
+        _chart.yAxis.title.text=datasource.Chart_yAxis_title; 
+      	_chart.series=datasource.Chart_series; 
+      	if(datasource.Chart_chart_type!=""){
+      		_chart.chart.type=datasource.Chart_chart_type;
+      	}  
+        chart=new Highcharts.Chart(_chart); 
+        
+     }
 		 
 		function _chartdata(chart_type){
 			var datasource={};//初始化datasource
@@ -103,13 +182,10 @@
 				}
 			}   
 			return datasource; 
-		}
-		function createChart(chart_type){
-			highchart(chart_type);
-		}
+		} 
 		
 		$(function(){
-			createChart('bar');
+			createStackedBar('bar');
 		});
 		
 		</script>
@@ -119,12 +195,14 @@
 		<br>
 		<div id="containerDiv"
 			style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-			<button onclick="createChart('bar')">横向</button>
-			<button onclick="createChart('line')">折线</button>
-			<button onclick="createChart('column')">纵向</button>  
+			<button onclick="createStackedBar('bar')">纵向堆栈图</button>
+			<button onclick="createStackedBar('column')">横向堆栈图</button>
+			<button onclick="createStackedBar('line')">折线图</button>
+			 <button onclick="createBasicBar('bar')">纵向柱状图</button> 
+			 <button onclick="createBasicBar('column')">横向柱状图</button>
 		<form action="" name="chartdataForm" id="chartdataForm">
 			<input type="hidden" name="Chart.title.text" value="信息统计情况" /> 
-			<input type="hidden" name="Chart.yAxis.title" value="各部分总计"/> 
+			<input type="hidden" name="Chart.yAxis.title" value=""/> 
 			<c:forEach var="result" items="${_resultList}" begin="1"> 
 				<input type="hidden" name="Chart.xAxis.categories" value="${result[0].value}" />
 			</c:forEach>
@@ -139,7 +217,5 @@
 				</c:forEach> 
 			</c:forEach> 
 		</form>
-		<div> </div>
-	 
-	</body>
+		<div> </div> </body>
 </html>
