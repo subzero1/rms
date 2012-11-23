@@ -325,7 +325,23 @@ public class HtmlSelect extends ChangeableWidget {
 		String tmp_type = null;
 
 		if (object_for_option != null && getName() != null) {
+			/*
+			 * 从request中取数据
+			 */
 			obj = pageContext.getRequest().getAttribute(object_for_option);
+			if(obj == null){
+				/*
+				 * 从session中取数据
+				 */
+				obj = pageContext.getSession().getAttribute(object_for_option);
+				if(obj == null){
+					/*
+					 * 从servletContext中取数据
+					 */
+					obj = pageContext.getServletContext().getAttribute(object_for_option);
+				}
+			}
+			
 			
 			if(obj instanceof Object[]){
 				Object[] objArray = (Object[])obj;
