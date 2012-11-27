@@ -4,7 +4,15 @@
 <html>
 	<head>
 		<title>报表统计图</title>
+		<style>
+		.chartBtn{
+			border:0px;
+			cursor:hand;
+			display:none;
+		}
+		</style>
 		<script type="text/javascript">
+		/**
 		function createStackedBar(chart_type) {
 		var datasource=_chartdata(chart_type);
     	var chart; 
@@ -57,6 +65,7 @@
       	}  
         chart=new Highcharts.Chart(_chart); 
 }
+	*/
 //    basic bar   
 	function createBasicBar(chart_type){ 
 		var datasource=_chartdata(chart_type);
@@ -80,6 +89,7 @@
             },
             yAxis: {
                 min: 0,
+                minRange: 4,
                 title: {
                     text: 'Population (millions)',
                     align: 'high'
@@ -185,7 +195,7 @@
 		} 
 		
 		$(function(){
-			createStackedBar('bar');
+			createBasicBar('column');
 		});
 		
 		</script>
@@ -195,11 +205,13 @@
 		<br>
 		<div id="containerDiv"
 			style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-			<button onclick="createStackedBar('bar')">纵向堆栈图</button>
-			<button onclick="createStackedBar('column')">横向堆栈图</button>
-			<button onclick="createStackedBar('line')">折线图</button>
-			 <button onclick="createBasicBar('bar')">纵向柱状图</button> 
-			 <button onclick="createBasicBar('column')">横向柱状图</button>
+			<!-- 
+			<button onclick="createStackedBar('bar')" class='chartBtn'>纵向堆栈图</button>
+			<button onclick="createStackedBar('column')"  class='chartBtn'>横向堆栈图</button>
+			<button onclick="createStackedBar('line')"  class='chartBtn'>折线图</button>
+			 <button onclick="createBasicBar('bar')"  class='chartBtn'>纵向柱状图</button> 
+			 <button onclick="createBasicBar('column')"  class='chartBtn'>横向柱状图</button>
+			  -->
 		<form action="" name="chartdataForm" id="chartdataForm">
 			<input type="hidden" name="Chart.title.text" value="信息统计情况" /> 
 			<input type="hidden" name="Chart.yAxis.title" value=""/> 
