@@ -123,13 +123,13 @@ if ($.browser.msie) {
 			<div class="headerNav">
 				<a class="logo" href="javascript:void(0)">标志</a>
 				<ul class="nav">
-					<li style="color: #FFF" class="ward">您好，${user.name }（${user.login_id }）</li>
-					<li style="color: #FFF">
+					<li style="color: #666" class="LoginId">您好：${user.name }（${user.login_id }）</li>
+					<li class="navBtn">
 						<a	href="MessageWrite.do?type=phone" target="dialog" rel="messageWrite" title="手机短信" width="670" height="350">
-							短信发送
+							<img src="Images/phone.png"  title="短信发送"/>
 						</a>
 					</li>
-					<li><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改">密码修改</a></li>
+					<li class="navBtn"><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改"><img src="Images/change_key.png"/></a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
