@@ -138,7 +138,7 @@ function openOnLineList(){
                <h3>短消息</h3>
            </div>
 		<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
-		<div class="win-boxp" style="height:103px;">
+		<div class="win-boxp" style="height:93px;">
 			<table width="97%" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="messagetable">
 				<c:forEach  var="i" begin="0" end="3">
 					<c:if test="${message_list[i] != null}">
