@@ -3,9 +3,9 @@
 	<!-- 默认路径 -->
 	<folder>rms/default</folder>
 	<!--  -->
-	<address>192.168.0.3</address>
-	<username>pubtools</username>
-	<password>netsky</password>
+	<address>132.229.154.215</address>
+	<username>tomcat</username>
+	<password>netsky123</password>
 	<typeFolder>
 		<type>普通附件</type>
 		<folder>rmsSlaveData/ptfj</folder>
