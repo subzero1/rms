@@ -675,7 +675,8 @@ public class SearchAndReportList {
 		/**
 		 * 处理表格宽度
 		 */
-		Integer tablewidth = new Integer(0);
+		//Integer tablewidth = new Integer(0);
+		Long tablewidth = new Long(0L);
 		for (int i = 0; i < fieldList.size(); i++) {
 			Ta08_reportfield ta08 = (Ta08_reportfield) fieldList.get(i);
 			tablewidth += ta08.getWidth();
@@ -959,7 +960,7 @@ public class SearchAndReportList {
 		/**
 		 * 处理表格宽度
 		 */
-		Integer tablewidth = new Integer(0);
+		Long tablewidth = new Long(0L);
 		for (int i = 0; i < fieldList.size(); i++) {
 			Ta08_reportfield ta08 = (Ta08_reportfield) fieldList.get(i);
 			tablewidth += ta08.getWidth();
