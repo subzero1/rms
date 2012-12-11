@@ -14,7 +14,7 @@
 	}
 	
 	function downloadMod(){
-		window.open('dispath.do?url=form/gysImport.xls');
+		window.open('dispath.do?url=form/gysImport.xls','newwindow');
 	}
 </script>
 
