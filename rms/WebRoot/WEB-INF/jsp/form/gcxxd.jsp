@@ -51,7 +51,7 @@ $(function(){
 <input type="hidden" name="XM_ID" value="${td00_gcxx.xm_id}">
 <input type="hidden" name="GLGC_ID" value="${td00_gcxx.glgc_id}">
 <input type="hidden" id="BG_JE" name="Td00_gcxx.BG_JE" value="">
-<input type="hidden" id="MBK_ID" name="Td00_gcxx.MBK_ID" value="${param.mbk_id }">
+<input type="hidden" id="MBK_ID" name="Td00_gcxx.MBK_ID" value="<c:out value="${td00_gcxx.mbk_id}" default="${param.mbk_id }"/>">
 
 	<p>
 		<label>需求部门：</label>
