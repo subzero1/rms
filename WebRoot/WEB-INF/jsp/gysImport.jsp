@@ -16,7 +16,6 @@
 	function downloadMod(){
 		window.open('dispath.do?url=form/gysImport.xls');
 	}
-	alert('${param.callback }');
 </script>
 
 <div class="page">
