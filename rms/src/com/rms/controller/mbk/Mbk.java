@@ -861,24 +861,7 @@ public class Mbk {
 	public void setSlaveTable(String slaveTable) {
 		this.slaveTable = slaveTable;
 	}
-	
-	@RequestMapping("/exportExcel/import.do")
-	public void importExcel(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
-		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
-		String callbackType = convertUtil.toString(request.getParameter("_callbackType"));
-		String message="温馨提示：您导入的数据异常，请重新校验";
-		try{ 
-			//return new ModelAndView("/import.do");
-			ImportController ic = new ImportController();
-			ic.setSaveService(saveService);
-			ic.setQueryService(queryService);
-			ic.setExceptionService(exceptionService);
-			ic.handleRequest(request, response);
-		}catch(Exception e){
-			System.out.print(e);
-		}
-	}
+	 
 }
 
 
