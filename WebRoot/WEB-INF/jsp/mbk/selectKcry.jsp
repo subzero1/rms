@@ -83,7 +83,7 @@
 </div>
 <div class="pageContent">
 
-	<table class="table" layoutH="118" targettype="dialog" width="100%">
+	<table class="table" layoutH="180" targettype="dialog" width="100%">
 		
 		<thead>
 			<tr>
