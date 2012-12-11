@@ -384,7 +384,7 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 					validateList.append("','datatype':'");
 					validateList.append(t_dayatype);
 					validateList.append("','datalength':'");
-					validateList.append(t_datalength_str.replace(".0",""));
+					validateList.append(t_datalength_str.replace(".0","").replace(".", ","));
 					validateList.append("','nullable':'");
 					validateList.append(t_nullable);
 					validateList.append("'}");
