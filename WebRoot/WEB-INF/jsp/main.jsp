@@ -131,6 +131,19 @@ if ($.browser.msie) {
 					</li>
 					<li class="navBtn"><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改"><img src="Images/change_key.png"/></a></li>
 				</ul>
+				
+		       <form name="pSearchForm" method="post" action="">
+		   		  <div id="searchbar">
+		   		  	<select class="search-sel">
+		   		  	 <option value ="volvo">Volvo</option>
+					  <option value ="saab">Saab</option>
+					  <option value="opel">Opel</option>
+					  <option value="audi">Audi</option>		   		  	
+		   		  	</select>
+			        <input type="text" name="" class="search-input" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:filterSpace(this,1);return searchProject(1);"/>
+			      </div>
+		       </form>
+       				
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
 					<li theme="green"><div>绿色</div></li>
