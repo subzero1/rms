@@ -119,6 +119,12 @@ _color:#FF0000; IE6支持
 .report td .panelBar li{padding:0 0 0 5px; background-position:0 -100px;}
 
 
+/*桌面查询部分*/
+#searchbar{position:absolute;right:150px;top:6px;margin:0px; padding:0px; width:300px; height:27px; line-height:22px; background:url(../Images/searchbar.png) 60px 2px no-repeat; }
+.search-input{width:200px; height:16px; line-height:16px; border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;padding:0;color:#666666;}
+.search-button{cursor:hand;border:0px;position:absolute;background:red;width:20px;height:28px;background:url(../images/search_button.png) left  no-repeat;}
+.search-sel{margin-top:2px;}
+
 
 /*弹出窗口滚动的div*/
 .scroll-body {width:100%;overflow-y:auto;overflow-x:hidden;}
@@ -236,7 +242,7 @@ desktop：桌面页
 
 	
 	.dbWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*待办文档*/
-	.zbWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*在办文档*/
+	.zbWds{width:90px;background:url("../Images/zbWds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*在办文档*/
 	.dfWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*待复文档*/
 	.hfWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*回复文档*/
 	
