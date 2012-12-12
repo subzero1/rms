@@ -8,6 +8,18 @@
 		var url = 'mbk/lzjl.do?mbk_id='+mbk_id;
 		$.pdialog.open(url,'_lzjl','流转记录',{width:700,height:400});
 	}
+
+function searchListExport(){
+	$form = $("#pagerForm", navTab.getCurrentPanel());
+	$mbk=$("#mbkdata",navTab.getCurrentPanel());
+	if($mbk.find("tr").size() == 0){
+		alertMsg.warn("没有可输出信息!");
+		return;
+	} 
+	$form.attr("action","mbk/mbkToExcel.do?config=mbk_source");  
+	$form.submit();  
+	$form.attr("action","");
+} 
 </script>
 
 <form id="pagerForm" method="post" action="mbk/mbkList.do">
@@ -57,6 +69,8 @@
 				</c:if>
 					<li> <a class="exportexcel" href="dispath.do?url=form/mbkImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li>
+					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
+					<li class="line">line</li>
 					<li><a class="helponline"	href="javascript:enterHelp('mbk')"><span>在线帮助</span></a></li>
 					<li class="line">line</li>
 			</ul>
@@ -74,7 +88,7 @@
 					<th style="width: 80px;" orderField="zt">状态</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="mbkdata">
 				<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${mbkList}">
 				<c:set var="offset" value="${offset+1}"/>

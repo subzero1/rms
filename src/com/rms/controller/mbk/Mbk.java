@@ -2,10 +2,8 @@ package com.rms.controller.mbk;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,8 +21,6 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,11 +31,10 @@ import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.controller.ImportController;
+import com.netsky.base.controller.ExportExcelController;
 import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
-import com.netsky.base.dataObjects.Ta05_group;
 import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
@@ -860,6 +855,72 @@ public class Mbk {
 	 */
 	public void setSlaveTable(String slaveTable) {
 		this.slaveTable = slaveTable;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response void
+	 * @throws Exception 
+	 */
+	@SuppressWarnings("unused")
+	@RequestMapping("/mbk/mbkToExcel.do")
+	public ModelAndView mbkToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String zymc=convertUtil.toString(request.getParameter("zymc"),"");
+		String ssdq=convertUtil.toString(request.getParameter("ssdq"),"");
+		String lb=convertUtil.toString(request.getParameter("lb"),"");
+		String zt=convertUtil.toString(request.getParameter("zt"),"");
+		String config=convertUtil.toString(request.getParameter("config"));
+		
+		int k=0;
+		ConfigXML configXML=new ConfigXMLImpl();//读取mbk配置文档
+		ResultObject ro=null;
+		StringBuffer hql=new StringBuffer(""); 
+		List mbkTitleList=new LinkedList(); //标题列表
+		List mbkColList=new LinkedList();//列的字段值
+		List mbkDocList=new LinkedList();//表单数据
+		Map <String,List>sheetMap=new HashMap<String, List>();
+		List sheetList=new LinkedList();
+		
+		//读取配置文件的标题列表
+		String webinfpath=request.getSession().getServletContext().getRealPath("WEB-INF");
+		mbkTitleList=configXML.getTagListByConfig(config, webinfpath,"name");
+		mbkColList=configXML.getTagListByConfig(config, webinfpath, "columnName");
+		Iterator it=mbkColList.iterator(); 
+		Object mbk=null;
+		hql.append("select ");
+		while(it.hasNext()){
+			if(k==0)
+			hql.append(" mbk."+((it.next().toString()).toLowerCase()));
+			else
+				hql.append(" ,mbk."+((it.next().toString()).toLowerCase()));
+			k++;
+		}
+		hql.append(" from Td21_mbk mbk ");
+		//条件
+		hql.append("where 1=1 ");
+		if(!ssdq.equals("")){
+			hql.append(" and mbk.ssdq="+ssdq);
+		}
+		if(!lb.equals("")){
+			hql.append(" and mbk.lb="+lb);
+		} 
+		if(!zt.equals("")){
+			hql.append(" and mbk.zt="+zt);
+		}
+		if(!zymc.equals("")){
+			hql.append(" and mbk.zymc like '%"+zymc+"%' ");
+		}
+		mbkDocList=queryService.searchList(hql.toString()); 
+		
+		
+		sheetList.add(mbkTitleList);
+		sheetList.add(mbkDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "目标库信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+		
 	}
 	 
 }
