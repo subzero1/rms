@@ -86,7 +86,7 @@ public class AuxFunction {
 		sql.append("from Td00_gcxx td00 ");
 		sql.append("where exists ( ");
 		sql.append("select 'x' from Tb15_docflow tb15 ");
-		sql.append("where td00.id = tb15.project_id and tb15.node_id in 10202 and tb15.user_id = ");
+		sql.append("where td00.id = tb15.project_id and tb15.node_id = 10202 and tb15.user_id = ");
 		sql.append(user_id.toString());
 		sql.append(")");
 		sql.append("and xm_id is null  order by gcmc ");
