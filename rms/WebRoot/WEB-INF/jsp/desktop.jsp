@@ -78,12 +78,14 @@ function openOnLineList(){
 							<td class="zxTws" onclick="javascript:navTab.openTab('onlineList', 'OnLineList.do?wtlx=15', {title:'在线提问'});"><font>${csMap.zxWdfs}</font><br/>在线提问(${csMap.zxTws})</td>
 							<td class="jjcs" onclick="javascript:navTab.openTab('remind', 'search/remindFlowList.do?remindType=jcs&user_id=${user.id }', {title:'超时提醒'});"><font> ${jcss}</font><br/>即将超时</td>
 							<td class="yjcs" onclick="javascript:navTab.openTab('remind', 'search/remindFlowList.do?remindType=cs&user_id=${user.id }', {title:'超时提醒'});"><font> ${css}</font><br/>已经超时</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td class="dbWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=1', {title:'待办文档'});"><font>${csMap.dbWds}</font><br/>待办文档</td>
 							<td class="zbWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=2', {title:'在办文档'});"><font>${csMap.zbWds}</font><br/>在办文档</td>
 							<td class="dfWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=3', {title:'待复文档'});"><font>${csMap.dfWds}</font><br/>待复文档</td>
 							<td class="hfWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=4', {title:'回复文档'});"><font>${csMap.hfWds}</font><br/>回复文档</td>
+							<td></td>
 						</tr>
 						<tr>
 							<th colspan="4">最后登录时间： <fmt:formatDate value="${csMap.zhdl}" pattern="yyyy-MM-dd HH:mm"/> 共 <a href="javascript:navTab.openTab('dljl', 'search/LoginLog.do', {title:'登录记录'});"><font color="#FF0000">${csMap.dlcs}</font></a> 次  <span style="cursor:hand" title="文档处理情况" onclick ="javascript:navTab.openTab('wdclqk', 'search/FormOperDetail.do?type=per', {title:'文档处理情况'});">	</span> </th>
