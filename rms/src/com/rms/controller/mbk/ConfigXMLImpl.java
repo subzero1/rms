@@ -20,6 +20,11 @@ public class ConfigXMLImpl implements ConfigXML {
 
 	private List g_elementList = null;
 
+	/**
+	 *　重载方法：getConfigFilePath
+	 * (non-Javadoc)
+	 * @see com.rms.controller.mbk.ConfigXML#getConfigFilePath(java.lang.String, java.lang.String)
+	 */
 	public String getConfigFilePath(String config, String webinfpath)
 			throws Exception {
 		/**
