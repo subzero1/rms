@@ -173,7 +173,6 @@ public class ConfigXMLImpl implements ConfigXML {
 	}
 
 	/**
-	 * 根据文件路径和节点名得到节点值的集合List
 	 *　重载方法：getElementsByName
 	 * (non-Javadoc)
 	 * @see com.rms.controller.mbk.ConfigXML#getElementsByName(java.lang.String, java.lang.String)
