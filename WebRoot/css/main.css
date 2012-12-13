@@ -231,20 +231,20 @@ desktop：桌面页
 #remind{}/*超时提醒*/
 	#remind th{border:solid 1px #fff;vertical-align:bottom;height:20px;line-height:18px;}
 	#remind th a img{margin:5px;padding:0px;border:solid 1px #fff;}
-	#remind td{height:50px;line-height:140%;vertical-align:bottom;text-align:center;border-right:solid 1px #fff;padding:0px 0px 10px 0px;}
-	#remind td font{color:#b00000;padding:1px 5px;font-weight:bold;font-size:12px;background:url("../Images/count.gif") no-repeat;border:solid 1px #949494;}
+	#remind td{height:70px;line-height:1.8em;vertical-align:bottom;text-align:center;padding:0px;}
+	#remind td font{color:#b00000;padding:1px 5px;font-weight:bold;font-size:12px;background:url("../Images/count.gif") no-repeat;border:solid 1px #949494;margin-bottom:1px;}
 
 
-	.jjcs{width:90px;background:url("../Images/jjcs.png") no-repeat;text-indent: 2em;cursor:pointer;}/*即将超时*/
-	.yjcs{width:90px;background:url("../Images/yjcs.png") no-repeat;text-indent: 2em;cursor:pointer;}/*已经超时*/
-	.zxTws{background:url("../Images/zxTws.png") no-repeat;text-indent: 1em;letter-spacing:-1px;cursor:pointer;}/*在线提问*/
-	.gxwd{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*共享文档*/
+	.jjcs{width:90px;background:url("../Images/jjcs.png") center no-repeat;text-indent: 2em;cursor:pointer;}/*即将超时*/
+	.yjcs{width:90px;background:url("../Images/yjcs.png") center no-repeat;text-indent: 2em;cursor:pointer;}/*已经超时*/
+	.zxTws{background:url("../Images/zxTws.png") center no-repeat;text-indent: 1em;letter-spacing:-1px;cursor:pointer;}/*在线提问*/
+	.gxwd{width:90px;background:url("../Images/Wds.png") center no-repeat;text-indent: 2em;cursor:pointer;}/*共享文档*/
 
 	
-	.dbWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*待办文档*/
-	.zbWds{width:90px;background:url("../Images/zbWds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*在办文档*/
-	.dfWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*待复文档*/
-	.hfWds{width:90px;background:url("../Images/Wds.png") no-repeat;text-indent: 2em;cursor:pointer;}/*回复文档*/
+	.dbWds{width:90px;background:url("../Images/dbWds.png") center no-repeat;text-indent: 2em;cursor:pointer;}/*待办文档*/
+	.zbWds{width:90px;background:url("../Images/zbWds.png") center no-repeat;text-indent: 2em;cursor:pointer;}/*在办文档*/
+	.dfWds{width:90px;background:url("../Images/dfWds.png") center 15px no-repeat;text-indent: 2em;cursor:pointer;}/*待复文档*/
+	.hfWds{width:90px;background:url("../Images/hfWds.png") center 15px no-repeat;text-indent: 2em;cursor:pointer;}/*回复文档*/
 	
 	
 	
