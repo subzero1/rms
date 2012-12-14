@@ -29,7 +29,7 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<c:if test="${param.type == 'xmgly'}"><td>外协单位：<netsky:htmlSelect name="wxdw_id" id="lb" objectForOption="tf01List" valueForOption="id" showForOption="mc" value="${param.wxdw_id}"/></td></c:if>
+						<c:if test="${param.type == 'xmgly'}"><td>合作单位：<netsky:htmlSelect name="wxdw_id" id="lb" objectForOption="tf01List" valueForOption="id" showForOption="mc" value="${param.wxdw_id}"/></td></c:if>
 						<td>材料名称：<input id="clmc" name="clmc" value="${param.clmc}" type="text" size="25" /></td>
 						<td>规格：<input style="width:80px;" id="gg" name="gg" value="${param.gg}" type="text" size="25" /></td>
 						<td>型号：<input style="width:80px;" id="xh" name="xh" value="${param.xh}" type="text" size="25" /></td>

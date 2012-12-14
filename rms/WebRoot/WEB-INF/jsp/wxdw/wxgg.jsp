@@ -237,7 +237,7 @@
 						<div style="height: 0px;"></div>
 						<p>
 							<label>
-								外协单位类别：
+								合作单位类别：
 							</label>
 							<select name="Tf09_wxgg.WXDW_LB" id="Tf09_wxgg.WXDW_LB"
 								onchange="ssdq(this);" style="width: 300px;"${ggLimit} >
@@ -273,7 +273,7 @@
 							<c:if test="${ggLimit ==''||ggLimit == null}">
 								<c:set var="offset" value="0" />
 									<label>
-										外协单位名称：
+										合作单位名称：
 									</label>
 									<div id="boxdiv">
 										<div style="width: 100%; display: inline-block; margin-left: 100px;">
@@ -380,7 +380,7 @@
 									<c:if test="${user_name==wxgg.fbr_mc}"><a href="delfile.do?slave_id=${fj.id}&callbackType=forward" target="ajaxTodo" title="确认删除吗？"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 								</div>
 							</c:forEach>
-						<div style="background-color:rgb(203,210,220);height:30px;line-height:30px;">外协单位[类别：${wxgg.wxdw_lb}单位]<font color="red" class="">有标记符号的单位已读过这篇公告</font></div>
+						<div style="background-color:rgb(203,210,220);height:30px;line-height:30px;">合作单位[类别：${wxgg.wxdw_lb}单位]<font color="red" class="">有标记符号的单位已读过这篇公告</font></div>
 						<div style="height: 0px;"></div>
 						<div>
 							<div style="height: 0px;"></div>

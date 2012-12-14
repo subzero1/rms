@@ -12,7 +12,7 @@ $(function(){
 	$("#submitbutton", navTab.getCurrentPanel()).click(function(){
 		var flag = false;
 	if ("${Tf01_wxdw.id}"==""){
-		alertMsg.confirm("您选择的该外协单位类别为"+$("input[name='Tf01_wxdw\\.LB']:checked").val()+"单位，确认保存吗？", {
+		alertMsg.confirm("您选择的该合作单位类别为"+$("input[name='Tf01_wxdw\\.LB']:checked").val()+"单位，确认保存吗？", {
 			okCall: function(){
 				$.ajax({
 					url:'wxdw/getWxdwNOAjax.do?',
@@ -27,7 +27,7 @@ $(function(){
 			}
 		});
 	} else if ("${Tf01_wxdw.lb}"!=$("input[name='Tf01_wxdw\\.LB']:checked").val()){
-		alertMsg.confirm("您更改了该外协单位的类别，确认保存吗？", {
+		alertMsg.confirm("您更改了该合作单位的类别，确认保存吗？", {
 			okCall: function(){
 					validateCallback($("#wxdw_form"),navTabAjaxDone);
 			}
