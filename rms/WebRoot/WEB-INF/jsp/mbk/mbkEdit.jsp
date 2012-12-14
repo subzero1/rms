@@ -425,14 +425,17 @@ $("#jsxz").change(function(){
 				</p>
 				<div style="height:0px;"></div>
 				<p>
-					<label>建设方式：</label> 
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSFS" style="width:156px;" objectForOption="jsfsList" valueForOption="name" showForOption="name" value="${Td21_mbk.jsfs}" extend="" extendPrefix="true" />
-				</p>
-				<p>
 					<label>是否共建：</label>
 					<input type="radio" name="Td21_mbk.SFGJ" <c:if test="${Td21_mbk.sfgj == '是' || empty Td21_mbk.sfgj }">checked="checked"</c:if> value="是" />
 					是
 					<input type="radio" name="Td21_mbk.SFGJ" <c:if test="${Td21_mbk.sfgj == '否' }">checked="checked"</c:if> value="否"/>
+					<span style="margin-right:74px;">否</span>
+				</p>
+				<p>
+					<label>是否付首款：</label> 
+					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '是' || empty Td21_mbk.sfsfk }">checked="checked"</c:if> value="是" />
+					是
+					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '否' }">checked="checked"</c:if> value="否"/>
 					<span style="margin-right:74px;">否</span>
 				</p>
 				<p>
@@ -466,13 +469,7 @@ $("#jsxz").change(function(){
 					<input type="text" name="Td21_mbk.YZDH" style="width:120px;" value="${Td21_mbk.yzdh}"/>
 				</p>
 				<div style="height:0px;"></div>
-				<p>
-					<label>是否付首款：</label> 
-					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '是' || empty Td21_mbk.sfsfk }">checked="checked"</c:if> value="是" />
-					是
-					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '否' }">checked="checked"</c:if> value="否"/>
-					<span style="margin-right:74px;">否</span>
-				</p>
+				
 				<p>
 					<label>建设等级：</label>
 					<input type="radio" name="Td21_mbk.JSDJ" <c:if test="${Td21_mbk.jsdj == 'A' || empty Td21_mbk.jsdj }">checked="checked"</c:if> value="A" />
@@ -484,11 +481,11 @@ $("#jsxz").change(function(){
 				</p>
 				<p>
 					<label>资源状态：</label>
-					<input type="text" name="Td21_mbk.ZT" readonly style="width:120px;" value="${empty Td21_mbk.zt ? '新建' : Td21_mbk.zt}"/>
+					<input type="text" name="Td21_mbk.ZT" readonly style="width:150px;" value="${empty Td21_mbk.zt ? '新建' : Td21_mbk.zt}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
-					<label>说    明：</label>
+					<label>谈点说明：</label>
 					<textarea class="td-textarea" style="width:630px;height:40px;" type="text" name="Td21_mbk.BZ">${Td21_mbk.bz}</textarea>
 				</p>
 				<div class="divider"></div>
