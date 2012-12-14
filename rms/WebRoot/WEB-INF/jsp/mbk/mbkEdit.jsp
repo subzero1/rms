@@ -605,16 +605,16 @@ $("#jsxz").change(function(){
 </div>
 <script language="javascript">
 	var jsxz = $("#jsxz").val();
-	if(jsxz == '' || jsxz == null || jsxz == '基站'){
-		$("#jz").css("display","block");
-		$("#xq").css("display","none");
-		$("input[ids=jz]").attr("class","required");
-		$("input[ids=xq]").attr("class","norequired");
-	}
-	else if(jsxz == '室分'){
+	if(jsxz == '' || jsxz == null || jsxz == '室分'){
 		$("#jz").css("display","none");
 		$("#xq").css("display","none");
 		$("input[ids=jz]").attr("class","norequired");
+		$("input[ids=xq]").attr("class","norequired");
+	}
+	else if(jsxz == 'undefine' || jsxz == '基站'){
+		$("#jz").css("display","block");
+		$("#xq").css("display","none");
+		$("input[ids=jz]").attr("class","required");
 		$("input[ids=xq]").attr("class","norequired");
 	}
 	else{
