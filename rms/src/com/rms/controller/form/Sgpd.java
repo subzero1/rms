@@ -64,7 +64,7 @@ public class Sgpd {
 			// System.out.println("找不到工程或项目");
 			return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp?errormsg=tdnotfound");
 		}
-		// 获得 所有相关地区专业 未停工 类别为施工的外协单位
+		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
 		List<Object[]> wxdwList = (List<Object[]>) dao
 				.search("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='"
 						+ gclb
@@ -72,7 +72,7 @@ public class Sgpd {
 						+ dq
 						+ "' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy') and tf01.lb='施工' and tf01.zt<>'停工'");
 		if (wxdwList == null || wxdwList.size() == 0) {
-			// System.out.println("没有符合的外协单位");
+			// System.out.println("没有符合的合作单位");
 			return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp?errormsg=tfnotfound");
 		}
 		// 建立数组o[11]
@@ -92,7 +92,7 @@ public class Sgpd {
 						+ gclb + "'").get(0), 0D);
 		// flag:未通过检测的个数
 		int flag = 0;
-		// passedList 通过条件的外协单位 暂存入该LIST
+		// passedList 通过条件的合作单位 暂存入该LIST
 		for (Object[] objects : objectsList) {
 			Tf01_wxdw tf01 = (Tf01_wxdw) objects[0];
 			Tf05_wxdw_dygx tf05 = (Tf05_wxdw_dygx) objects[1];

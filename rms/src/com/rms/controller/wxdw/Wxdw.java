@@ -73,7 +73,7 @@ public class Wxdw {
 	private SaveService saveService;
 
 	/**
-	 * 外协单位列表
+	 * 合作单位列表
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/wxdwList.do")
@@ -130,7 +130,7 @@ public class Wxdw {
 			Map<String, List> sheetMap = new HashMap<String, List>();
 			List sheetList = new LinkedList();
 			List titleList = new LinkedList();
-			String form_title = "外协单位信息.xls";
+			String form_title = "合作单位信息.xls";
 			titleList.add("类别");
 			titleList.add("单位名称");
 			titleList.add("地址");
@@ -172,7 +172,7 @@ public class Wxdw {
 	}
 
 	/**
-	 * 外协单位信息
+	 * 合作单位信息
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/wxdwEdit.do")
@@ -186,7 +186,7 @@ public class Wxdw {
 	}
 
 	/**
-	 * 新建外协单位时获取NO字段(LOGIN_ID前三位)
+	 * 新建合作单位时获取NO字段(LOGIN_ID前三位)
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/getWxdwNOAjax.do")
@@ -329,7 +329,7 @@ public class Wxdw {
 		}
 		Long dept_id = 4L;
 		try {
-			dept_id = convertUtil.toLong(queryService.searchList("select id from Ta01_dept where name ='外协单位'").get(0));
+			dept_id = convertUtil.toLong(queryService.searchList("select id from Ta01_dept where name ='合作单位'").get(0));
 		} catch (Exception e) {
 		}
 		modelMap.put("dept_id", dept_id);
@@ -691,7 +691,7 @@ public class Wxdw {
 			}
 		}
 		modelMap.put("dygxMap", dygxMap);
-		// 获得页面信息(该外协单位关联的业务类型)
+		// 获得页面信息(该合作单位关联的业务类型)
 		List<Tf05_wxdw_dygx> dygxList = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id + " order by zy,dq");
 		modelMap.put("dygxList", dygxList);
@@ -1483,7 +1483,7 @@ public class Wxdw {
 	}
 
 	/**
-	 * 外协单位列表
+	 * 合作单位列表
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/wxdw/zhuanchuList.do")

@@ -54,7 +54,7 @@ public class Tf05_wxdw_dygx implements Serializable {
 	}
 
 	/**
-	 * 外协单位tf01.ID (当lb='sgd'时，施工队标识tf02.id)
+	 * 合作单位tf01.ID (当lb='sgd'时，施工队标识tf02.id)
 	 */
 	private Long wxdw_id;
 

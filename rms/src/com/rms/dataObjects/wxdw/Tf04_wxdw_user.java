@@ -37,7 +37,7 @@ public class Tf04_wxdw_user implements Serializable{
 	}
 
 	 /**
- * 外协单位tf01.ID
+ * 合作单位tf01.ID
  */
  private Long wxdw_id;
 

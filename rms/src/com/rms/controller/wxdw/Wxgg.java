@@ -203,7 +203,7 @@ public class Wxgg {
 			String sql3 = "select tf01.mc as mc from Tf01_wxdw tf01,Tf04_wxdw_user tf04 where tf01.id=tf04.wxdw_id and tf04.user_id="
 					+ user.getId();
 			ResultObject ro3 = queryService.search(sql3);
-			// 如果是外协单位，判断是否属于目标单位
+			// 如果是合作单位，判断是否属于目标单位
 			if (ro3.next()) {
 				if ((wxgg.getCydw() != null && wxgg.getCydw().indexOf((String) ro3.get("mc")) == -1)
 						|| wxgg.getCydw() == null) {
@@ -240,7 +240,7 @@ public class Wxgg {
 			}
 			modelMap.put("list_jlfk", list_jlfk);
 		}
-		// 获取目标单位 --- 外协单位
+		// 获取目标单位 --- 合作单位
 
 		List<Tf01_wxdw> list_mbdw = (List<Tf01_wxdw>) queryService
 				.searchList("from Tf01_wxdw tf01 where 1=1 " + sql_tj);
@@ -255,7 +255,7 @@ public class Wxgg {
 	}
 
 	/**
-	 * 获得外协单位AJAX
+	 * 获得合作单位AJAX
 	 * 
 	 * @param request
 	 * @param response

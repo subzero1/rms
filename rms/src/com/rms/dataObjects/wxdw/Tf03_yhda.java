@@ -37,7 +37,7 @@ public class Tf03_yhda implements Serializable{
 	}
 
 	 /**
- * 外协单位tf01.ID
+ * 合作单位tf01.ID
  */
  private Long wxdw_id;
 

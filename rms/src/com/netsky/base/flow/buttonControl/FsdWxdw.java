@@ -16,7 +16,7 @@ import com.rms.dataObjects.form.Td01_xmxx;
 
 /**
  * @description:
- * 外协单位派工，派发到所选择的外协单位中去
+ * 合作单位派工，派发到所选择的合作单位中去
  * @class name:com.netsky.base.flow.buttonControl.FsdWxdw
  * @author Administrator Mar 22, 2010
  */
@@ -38,7 +38,7 @@ public class FsdWxdw extends ButtonControl {
 
 	/**
 	 *　重载方法：getUsers
-	 *  派发工单至外协单位，获得本项目对应外协单位接单人员
+	 *  派发工单至合作单位，获得本项目对应合作单位接单人员
 	 * (non-Javadoc)
 	 * @see com.netsky.base.flow.buttonControl.ButtonControl#getUsers(java.util.Map)
 	 */
