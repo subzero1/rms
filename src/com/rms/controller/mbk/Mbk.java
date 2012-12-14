@@ -871,6 +871,8 @@ public class Mbk {
 		String lb=convertUtil.toString(request.getParameter("lb"),"");
 		String zt=convertUtil.toString(request.getParameter("zt"),"");
 		String config=convertUtil.toString(request.getParameter("config"));
+		String orderField=convertUtil.toString(request.getParameter("orderField"),"cjsj");
+		String orderDirection=convertUtil.toString(request.getParameter("orderDirection"),"desc");
 		
 		int k=0;
 		ConfigXML configXML=new ConfigXMLImpl();//读取mbk配置文档
@@ -911,6 +913,9 @@ public class Mbk {
 		if(!zymc.equals("")){
 			hql.append(" and mbk.zymc like '%"+zymc+"%' ");
 		}
+		hql.append(" order by "+orderField+" ");
+		hql.append(orderDirection);
+		
 		mbkDocList=queryService.searchList(hql.toString()); 
 		
 		
