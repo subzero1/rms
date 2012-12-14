@@ -156,7 +156,7 @@ $("#jsxz").change(function(){
 			$("#jz").css("display","none");
 			$("#xq").css("display","block");
 			$("input[ids=jz]").attr("class","norequired");
-			$("input[ids=xq]").attr("class","required");
+			$("input[ids=xq]").attr("class","required digits");
 		}
 	});
 </script>
@@ -378,15 +378,15 @@ $("#jsxz").change(function(){
 					<div style="height:0px;"></div>
 					<p>
 						<label>幢    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.ZLDD" style="width:150px;" value="${Td21_mbk.zldd}"/>
+						<input type="text" ids="xq" name="Td21_mbk.ZS" style="width:150px;" value="${Td21_mbk.zs}"/>
 					</p> 
 					<p>
 						<label>层    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
+						<input type="text" ids="xq" name="Td21_mbk.CS" style="width:150px;" value="${Td21_mbk.cs}"/>
 					</p>
 					<p>
 						<label>户    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.WD" style="width:120px;" value="${Td21_mbk.wd}"/>
+						<input type="text" ids="xq" name="Td21_mbk.HS" style="width:120px;" value="${Td21_mbk.hs}"/>
 					</p>
 				</div>
 				<div class="divider"></div>
@@ -621,7 +621,7 @@ $("#jsxz").change(function(){
 		$("#jz").css("display","none");
 		$("#xq").css("display","block");
 		$("input[ids=jz]").attr("class","norequired");
-		$("input[ids=xq]").attr("class","required");
+		$("input[ids=xq]").attr("class","required digits");
 	}
 	
 	//按照屏幕分配表单右侧信息
