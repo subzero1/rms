@@ -114,6 +114,27 @@ $(function(){
 if ($.browser.msie) {
 	window.setInterval("CollectGarbage();", 10000);
 }
+function strTrim(str){
+	blankExp1=/^ +/;
+	blankExp2=/ +$/;
+	blankExp3=/^[\n\r]([\n\r]?)+/;	
+	blankExp4=/[\n\r]([\n\r]?)+$/;
+	str = str.replace(blankExp1,'');
+	str = str.replace(blankExp2,'');
+	str = str.replace(blankExp3,'');
+	str = str.replace(blankExp4,'');
+	return str;	
+}
+
+function filterSpace(obj,type){
+	if((event.keyCode == 13 && type==1) || type==2){
+		var tmpKey = obj.value;
+		if(tmpKey != null && tmpKey != ''){
+			tmpKey = strTrim(tmpKey);
+			obj.value = tmpKey;
+		}
+	}
+}
 </script>
 	</head>
 
@@ -140,7 +161,7 @@ if ($.browser.msie) {
 					  <option value="opel">Opel</option>
 					  <option value="audi">Audi</option>		   		  	
 		   		  	</select>
-			        <input type="text" name="" class="search-input" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:filterSpace(this,1);return searchProject(1);"/>
+			        <input type="text" name="" class="search-input" style="border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:filterSpace(this,1);return searchProject(1);"/>
 			      </div>
 		       </form>
        				

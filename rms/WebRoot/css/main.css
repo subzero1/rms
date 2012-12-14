@@ -120,7 +120,7 @@ _color:#FF0000; IE6支持
 
 
 /*桌面查询部分*/
-#searchbar{position:absolute;right:150px;top:6px;margin:0px; padding:0px; width:300px; height:27px; line-height:22px; background:url(../Images/searchbar.png) 60px 2px no-repeat; }
+#searchbar{position:absolute;right:150px;top:6px;margin:0px; padding:0px; width:300px; height:27px; line-height:22px; background:url(../Images/searchbar.png) right 2px no-repeat; }
 .search-input{width:200px; height:16px; line-height:16px; border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;padding:0;color:#666666;}
 .search-button{cursor:hand;border:0px;position:absolute;background:red;width:20px;height:28px;background:url(../images/search_button.png) left  no-repeat;}
 .search-sel{margin-top:2px;}
