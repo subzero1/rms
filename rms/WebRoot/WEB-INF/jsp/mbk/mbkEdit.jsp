@@ -137,6 +137,28 @@ $(function(){
 function printMbk(){
 	$("#printTable",navTab.getCurrentPanel()).jqprint();
 }
+
+$("#jsxz").change(function(){
+		var data = $(this).val();
+		if(data == '基站'){
+			$("#jz").css("display","block");
+			$("#xq").css("display","none");
+			$("input[ids=jz]").attr("class","required");
+			$("input[ids=xq]").attr("class","norequired");
+		}
+		else if(data == '室分' ){
+			$("#jz").css("display","none");
+			$("#xq").css("display","none");
+			$("input[ids=jz]").attr("class","norequired");
+			$("input[ids=xq]").attr("class","norequired");
+		}
+		else{
+			$("#jz").css("display","none");
+			$("#xq").css("display","block");
+			$("input[ids=jz]").attr("class","norequired");
+			$("input[ids=xq]").attr("class","required");
+		}
+	});
 </script>
 <div style="display: none">
 	<table style="margin-top:10px;width:630px;" cellspacing="0" border="1" cellpadding="0" bordercolor="#000000" id="printTable">
@@ -322,29 +344,51 @@ function printMbk(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>建设性质：</label>
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="" showForOption="" value="${Td21_mbk.jsxz}" extend="" extendPrefix="true" />
+					<netsky:htmlSelect htmlClass="required" id="jsxz" name="Td21_mbk.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="" showForOption="" value="${Td21_mbk.jsxz}" extend="" extendPrefix="true" />
 				</p>
 				<p>
-					<label width="90"> 分    类：</label>
+					<label> 分    类：</label>
 					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.LB" style="width:156px;" objectForOption="lbList" valueForOption="" showForOption="" value="${Td21_mbk.lb}" extend="" extendPrefix="true" />
 				</p>
 				<p>
-					<label>所属地区：</label>
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.SSDQ" style="width:126px;" objectForOption="dqList" valueForOption="" showForOption="" value="${Td21_mbk.ssdq}" extend="" extendPrefix="true" />
+					<label>建设方式：</label> 
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSFS" style="width:126px;" objectForOption="jsfsList" valueForOption="name" showForOption="name" value="${Td21_mbk.jsfs}" extend="" extendPrefix="true" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
+					<label>所属地区：</label>
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.SSDQ" style="width:156px;" objectForOption="dqList" valueForOption="" showForOption="" value="${Td21_mbk.ssdq}" extend="" extendPrefix="true" />
+				</p>
+				<p>
 					<label>坐落地点：</label>
-					<input type="text" name="Td21_mbk.ZLDD" style="width:150px;" value="${Td21_mbk.zldd}"/>
+					<input type="text" name="Td21_mbk.ZLDD" style="width:376px;" value="${Td21_mbk.zldd}"/>
 				</p> 
-				<p>
-					<label>经    度：</label>
-					<input type="text" name="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
-				</p>
-				<p>
-					<label>纬    度：</label>
-					<input type="text" name="Td21_mbk.WD" style="width:120px;" value="${Td21_mbk.wd}"/>
-				</p>
+				<div id="jz">
+					<div style="height:0px;"></div>
+					<p>
+						<label>经    度：</label>
+						<input type="text" ids="jz" name="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
+					</p>
+					<p>
+						<label>纬    度：</label>
+						<input type="text" ids="jz" name="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
+					</p>
+				</div>
+				<div id="xq">
+					<div style="height:0px;"></div>
+					<p>
+						<label>幢    数：</label>
+						<input type="text" ids="xq" name="Td21_mbk.ZLDD" style="width:150px;" value="${Td21_mbk.zldd}"/>
+					</p> 
+					<p>
+						<label>层    数：</label>
+						<input type="text" ids="xq" name="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
+					</p>
+					<p>
+						<label>户    数：</label>
+						<input type="text" ids="xq" name="Td21_mbk.WD" style="width:120px;" value="${Td21_mbk.wd}"/>
+					</p>
+				</div>
 				<div class="divider"></div>
 				<p>
 					<label>谈点部门：</label>
@@ -560,6 +604,26 @@ function printMbk(){
 	
 </div>
 <script language="javascript">
+	var jsxz = $("#jsxz").val();
+	if(jsxz == '' || jsxz == null || jsxz == '基站'){
+		$("#jz").css("display","block");
+		$("#xq").css("display","none");
+		$("input[ids=jz]").attr("class","required");
+		$("input[ids=xq]").attr("class","norequired");
+	}
+	else if(jsxz == '室分'){
+		$("#jz").css("display","none");
+		$("#xq").css("display","none");
+		$("input[ids=jz]").attr("class","norequired");
+		$("input[ids=xq]").attr("class","norequired");
+	}
+	else{
+		$("#jz").css("display","none");
+		$("#xq").css("display","block");
+		$("input[ids=jz]").attr("class","norequired");
+		$("input[ids=xq]").attr("class","required");
+	}
+	
 	//按照屏幕分配表单右侧信息
 	var max_w = $("#autoform_body",navTab.getCurrentPanel()).width();
 	var attach_w = navTab._panelBox.width() - 810;
