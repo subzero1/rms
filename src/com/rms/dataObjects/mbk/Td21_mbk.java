@@ -709,4 +709,55 @@ public class Td21_mbk implements Serializable {
 	public void setZypfsj(Date zypfsj) {
 		this.zypfsj = zypfsj;
 	}
+	
+	/**
+	 * 幢数
+	 */
+	private Long zs;
+	
+	/**
+	 * 层数
+	 */
+	private Long cs;
+	
+	/**
+	 * 户数
+	 */
+	private Long hs;
+
+	/**
+	 * @hibernate.property column="zs"
+	 * @return Returns the zs.
+	 */
+	public Long getZs() {
+		return zs;
+	}
+
+	public void setZs(Long zs) {
+		this.zs = zs;
+	}
+
+	/**
+	 * @hibernate.property column="cs"
+	 * @return Returns the cs.
+	 */
+	public Long getCs() {
+		return cs;
+	}
+
+	public void setCs(Long cs) {
+		this.cs = cs;
+	}
+
+	/**
+	 * @hibernate.property column="hs"
+	 * @return Returns the hs.
+	 */
+	public Long getHs() {
+		return hs;
+	}
+
+	public void setHs(Long hs) {
+		this.hs = hs;
+	}
 }

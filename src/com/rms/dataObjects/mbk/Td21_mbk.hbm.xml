@@ -313,6 +313,30 @@
             insert="true"
             column="tdr_id"
         />
+        
+        <property
+            name="zs"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zs"
+        />
+        
+        <property
+            name="cs"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="cs"
+        />
+        
+        <property
+            name="hs"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="hs"
+        />
 
         <property
             name="cjsj"
