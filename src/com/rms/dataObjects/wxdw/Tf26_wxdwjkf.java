@@ -88,7 +88,7 @@ public class Tf26_wxdwjkf implements Serializable{
   }
 
  /**
- * 外协单位ID
+ * 合作单位ID
  */
  private Long wxdw_id;
 
@@ -105,7 +105,7 @@ public class Tf26_wxdwjkf implements Serializable{
   }
 
  /**
- * 外协单位名称
+ * 合作单位名称
  */
  private String wxdw_name;
 

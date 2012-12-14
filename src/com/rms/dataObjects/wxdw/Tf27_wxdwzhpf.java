@@ -37,7 +37,7 @@ public class Tf27_wxdwzhpf implements Serializable{
 	}
 
 	 /**
- * 外协单位标识
+ * 合作单位标识
  */
  private Long wxdw_id;
 
@@ -54,7 +54,7 @@ public class Tf27_wxdwzhpf implements Serializable{
   }
 
  /**
- * 外协单位名称
+ * 合作单位名称
  */
  private String wxdw_mc;
 

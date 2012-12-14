@@ -88,7 +88,7 @@ public class Tc02_area implements Serializable{
   }
 
  /**
- * 功能过虑：1 工程地区选择；2 外协单位作业区域（保证金、外协公告）；3 部门所在区域
+ * 功能过虑：1 工程地区选择；2 合作单位作业区域（保证金、外协公告）；3 部门所在区域
  */
  private String type;
 

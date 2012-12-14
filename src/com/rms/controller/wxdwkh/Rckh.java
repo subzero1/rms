@@ -97,7 +97,7 @@ public class Rckh {
 		if (!khlb.equals("")) {
 			hsql.append(" and khlb='" + khlb + "'");
 		}
-		// 考核人员OR外协单位人员
+		// 考核人员OR合作单位人员
 		String type = convertUtil.toString(request.getParameter("type"));
 		String whereClause = "";
 		if (type.equals("khry")) {
@@ -116,7 +116,7 @@ public class Rckh {
 				user = (Ta03_user) request.getSession().getAttribute("user");
 				tf04 = (Tf04_wxdw_user) ((dao.search("from Tf04_wxdw_user where user_id=" + user.getId())).get(0));
 			} catch (Exception e) {
-				return exceptionService.exceptionControl("com.rms.controller.wxdwkh.Rckh", "用户登录超时或不是外协单位人员", e);
+				return exceptionService.exceptionControl("com.rms.controller.wxdwkh.Rckh", "用户登录超时或不是合作单位人员", e);
 			}
 			whereClause = " and wxdw_id=" + tf04.getWxdw_id();
 		}
@@ -146,7 +146,7 @@ public class Rckh {
 		modelMap.put("totalPages", totalPages);
 		modelMap.put("totalCount", totalCount);
 		// 页面所需内容
-		// 外协单位类别
+		// 合作单位类别
 		List<String> lbList = new ArrayList<String>();
 		lbList.add("设计");
 		lbList.add("施工");
@@ -186,7 +186,7 @@ public class Rckh {
 	}
 
 	/**
-	 * 外协单位查找带回
+	 * 合作单位查找带回
 	 * 
 	 * @param request
 	 * @param response
@@ -217,7 +217,7 @@ public class Rckh {
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
-		// 外协单位类别
+		// 合作单位类别
 		List<String> lbList = new ArrayList<String>();
 		lbList.add("设计");
 		lbList.add("施工");
