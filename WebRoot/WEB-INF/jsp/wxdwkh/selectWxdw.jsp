@@ -17,9 +17,9 @@
 	<div class="searchBar">
 		<ul class="searchContent">
 			<li>
-				<label style="width:95px;">外协单位名称:</label>
+				<label style="width:95px;">合作单位名称:</label>
 				<input class="textInput" name="mc" value="${param.mc }" type="text"/>
-			<label style="width:95px;">外协单位类别:</label>
+			<label style="width:95px;">合作单位类别:</label>
 				<netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.lb}" extend=""  extendPrefix="true" />
 			</li>
 		</ul>
@@ -38,7 +38,7 @@
 		<thead>
 			<tr>
 				<th width="80" orderfield="lb">单位类别</th>
-				<th orderfield="mc">外协单位名称</th>
+				<th orderfield="mc">合作单位名称</th>
 				<th width="60">查找带回</th>
 			</tr>
 		</thead>				

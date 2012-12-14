@@ -46,9 +46,9 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="add" href="wxdw/wxdwEdit.do" target="navTab" rel="wxdw" title="外协单位维护"><span>添加</span></a></li>
+				<li><a class="add" href="wxdw/wxdwEdit.do" target="navTab" rel="wxdw" title="合作单位维护"><span>添加</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="wxdw/wxdwEdit.do?id={wxdw_id}" target="navTab" rel="wxdw" title="外协单位维护"><span>修改</span></a></li>
+				<li><a class="edit" href="wxdw/wxdwEdit.do?id={wxdw_id}" target="navTab" rel="wxdw" title="合作单位维护"><span>修改</span></a></li>
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/wxdwList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
@@ -71,7 +71,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="wxdw_id" rel="${obj.id}">
 						<td>${obj.lb }</td>
-						<td><a href="wxdw/wxdwEdit.do?id=${obj.id}" target="navTab" rel="wxdw" title="外协单位维护">${obj.mc }</a></td>
+						<td><a href="wxdw/wxdwEdit.do?id=${obj.id}" target="navTab" rel="wxdw" title="合作单位维护">${obj.mc }</a></td>
 						<td>${obj.dwdz }</td>
 						<td>${obj.zt }</td>
 					</tr>
