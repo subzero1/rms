@@ -416,14 +416,9 @@ $("#jsxz").change(function(){
 					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="${Td21_mbk.tdzq}"/>
 				</p>
 				<p>
-					<label>对方联系人：</label> 
-					<input class="required" type="text" name="Td21_mbk.LXR" style="width:150px;" value="${Td21_mbk.lxr}"/>
+					<label width="90">谈点周期：</label>
+					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="${Td21_mbk.tdzq}"/>
 				</p>
-				<p>
-					<label>联系电话：</label>
-					<input class="required" type="text" name="Td21_mbk.LXRDH" style="width:120px;" value="${Td21_mbk.lxrdh}"/>
-				</p>
-				<div style="height:0px;"></div>
 				<p>
 					<label>是否共建：</label>
 					<input type="radio" name="Td21_mbk.SFGJ" <c:if test="${Td21_mbk.sfgj == '是' || empty Td21_mbk.sfgj }">checked="checked"</c:if> value="是" />
@@ -431,13 +426,17 @@ $("#jsxz").change(function(){
 					<input type="radio" name="Td21_mbk.SFGJ" <c:if test="${Td21_mbk.sfgj == '否' }">checked="checked"</c:if> value="否"/>
 					<span style="margin-right:74px;">否</span>
 				</p>
+				
+				<div style="height:0px;"></div>
 				<p>
-					<label>是否付首款：</label> 
-					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '是' || empty Td21_mbk.sfsfk }">checked="checked"</c:if> value="是" />
-					是
-					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '否' }">checked="checked"</c:if> value="否"/>
-					<span style="margin-right:74px;">否</span>
+					<label>对方联系人：</label> 
+					<input class="required" type="text" name="Td21_mbk.LXR" style="width:150px;" value="${Td21_mbk.lxr}"/>
 				</p>
+				<p>
+					<label>联系电话：</label>
+					<input class="required" type="text" name="Td21_mbk.LXRDH" style="width:150px;" value="${Td21_mbk.lxrdh}"/>
+				</p>
+				
 				<p>
 					<label>谈点协调费：</label>
 					<input type="text" name="Td21_mbk.TDXTF" style="width:120px;" value="${Td21_mbk.tdxtf}"/>
@@ -469,7 +468,13 @@ $("#jsxz").change(function(){
 					<input type="text" name="Td21_mbk.YZDH" style="width:120px;" value="${Td21_mbk.yzdh}"/>
 				</p>
 				<div style="height:0px;"></div>
-				
+				<p>
+					<label>是否付首款：</label> 
+					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '是' || empty Td21_mbk.sfsfk }">checked="checked"</c:if> value="是" />
+					是
+					<input type="radio" name="Td21_mbk.SFSFK" <c:if test="${Td21_mbk.sfsfk == '否' }">checked="checked"</c:if> value="否"/>
+					<span style="margin-right:74px;">否</span>
+				</p>
 				<p>
 					<label>建设等级：</label>
 					<input type="radio" name="Td21_mbk.JSDJ" <c:if test="${Td21_mbk.jsdj == 'A' || empty Td21_mbk.jsdj }">checked="checked"</c:if> value="A" />
@@ -481,7 +486,7 @@ $("#jsxz").change(function(){
 				</p>
 				<p>
 					<label>资源状态：</label>
-					<input type="text" name="Td21_mbk.ZT" readonly style="width:150px;" value="${empty Td21_mbk.zt ? '新建' : Td21_mbk.zt}"/>
+					<input type="text" name="Td21_mbk.ZT" readonly style="width:120px;" value="${empty Td21_mbk.zt ? '新建' : Td21_mbk.zt}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -498,7 +503,7 @@ $("#jsxz").change(function(){
 					<input type="text" name="Td21_mbk.SGGLY" style="width:150px;" value="${Td21_mbk.sggly}"/>
 				</p>
 				<p>
-					<label>提交施工管理员时间：</label>
+					<label>提交时间：</label>
 					<input type="text" name="Td21_mbk.TJSJ" style="width:120px;" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.tjsj}"/>" class="date" pattern="yyyy-MM-dd"/>
 				</p>
 				<div style="height:0px;"></div>
