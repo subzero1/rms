@@ -361,7 +361,7 @@ $("#jsxz").change(function(){
 				</p>
 				<p>
 					<label>坐落地点：</label>
-					<input type="text" name="Td21_mbk.ZLDD" style="width:376px;" value="${Td21_mbk.zldd}"/>
+					<input type="text" class="required" name="Td21_mbk.ZLDD" style="width:376px;" value="${Td21_mbk.zldd}"/>
 				</p> 
 				<div id="jz">
 					<div style="height:0px;"></div>
@@ -416,12 +416,12 @@ $("#jsxz").change(function(){
 					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="${Td21_mbk.tdzq}"/>
 				</p>
 				<p>
-					<label>联系人：</label> 
-					<input type="text" name="Td21_mbk.LXR" style="width:150px;" value="${Td21_mbk.lxr}"/>
+					<label>对方联系人：</label> 
+					<input class="required" type="text" name="Td21_mbk.LXR" style="width:150px;" value="${Td21_mbk.lxr}"/>
 				</p>
 				<p>
 					<label>联系电话：</label>
-					<input type="text" name="Td21_mbk.LXRDH" style="width:120px;" value="${Td21_mbk.lxrdh}"/>
+					<input class="required" type="text" name="Td21_mbk.LXRDH" style="width:120px;" value="${Td21_mbk.lxrdh}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
