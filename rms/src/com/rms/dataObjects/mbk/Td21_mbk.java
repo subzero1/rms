@@ -760,4 +760,38 @@ public class Td21_mbk implements Serializable {
 	public void setHs(Long hs) {
 		this.hs = hs;
 	}
+	
+	/*
+	 * 反馈周期
+	 */
+	private Long fkzq;
+	
+	/*
+	 * 覆盖属性
+	 */
+	private Long fgsx;
+
+	/**
+	 * @hibernate.property column="fkzq"
+	 * @return Returns the fkzq.
+	 */
+	public Long getFkzq() {
+		return fkzq;
+	}
+
+	public void setFkzq(Long fkzq) {
+		this.fkzq = fkzq;
+	}
+
+	/**
+	 * @hibernate.property column="fgsx"
+	 * @return Returns the fgsx.
+	 */
+	public Long getFgsx() {
+		return fgsx;
+	}
+
+	public void setFgsx(Long fgsx) {
+		this.fgsx = fgsx;
+	}
 }

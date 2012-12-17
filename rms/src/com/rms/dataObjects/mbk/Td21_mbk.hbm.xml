@@ -297,6 +297,14 @@
             insert="true"
             column="bz"
         />
+        
+        <property
+            name="fgsx"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fgsx"
+        />
 
         <property
             name="tdzq"
@@ -336,6 +344,14 @@
             update="true"
             insert="true"
             column="hs"
+        />
+        
+        <property
+            name="fkzq"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="fkzq"
         />
 
         <property
