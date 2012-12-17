@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.wxdw.Tf30_wxry"  table="Tf30_wxry">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tf30_wxry_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
+
+  <property
+  name="sex"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sex"
+  />
+
+  <property
+  name="mobile"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mobile"
+  />
+
+  <property
+  name="sfz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sfz"
+  />
+
+  <property
+  name="address"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="address"
+  />
+
+  <property
+  name="img"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="img"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
+
+  <property
+  name="status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="status"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
