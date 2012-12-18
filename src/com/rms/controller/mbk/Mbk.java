@@ -195,7 +195,7 @@ public class Mbk {
 		 * 谈点超期列表
 		 */
 		if(listType.equals("tdcq")){
-			hsql.append(" and zt='开始谈点' and zypfsj + (case when tdzq is null then 15 else fkzq end) < sysdate");
+			hsql.append(" and zt='开始谈点' and zypfsj + (case when tdzq is null then 15 else tdzq end) < sysdate");
 		}
 		
 		/*
