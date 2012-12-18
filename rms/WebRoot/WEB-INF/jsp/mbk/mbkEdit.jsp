@@ -269,6 +269,14 @@ $("#jsxz").change(function(){
 			<li><a class="icon" href="#"><span flag="cxtd" class="lzspan">重新谈点</span></a></li>
 			<li class="line">line</li>
 			</c:if>
+			<c:if test="${not empty rolesMap['20101'] && param.listType == 'fkcq'}">
+			<li><a class="icon" href="#"><span flag="jxtd" class="lzspan">继续谈点</span></a></li>
+			<li class="line">line</li>
+			</c:if>
+			<c:if test="${not empty rolesMap['20101'] && param.listType == 'tdcq'}">
+			<li><a class="icon" href="#"><span flag="ycqx" class="lzspan">延长期限</span></a></li>
+			<li class="line">line</li>
+			</c:if>
 			<c:if test="${(not empty rolesMap['20102']) && Td21_mbk.zt == '开始谈点'}">
 			<li><a class="icon" href="#"><span flag="ht" class="lzspan">回 退</span></a></li>
 			<li class="line">line</li>
