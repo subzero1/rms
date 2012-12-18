@@ -90,6 +90,14 @@ public class Mbk {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/mbk/mbkList.do")
 	public ModelAndView mbkList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		Ta03_user ta03 = (Ta03_user)session.getAttribute("user");
+		String user_name = null;
+		if(ta03 == null){
+			ta03 = new Ta03_user();
+		}
+		user_name = ta03.getName();
+		
 		ModelMap modelMap = new ModelMap();
 		// 分页
 		Integer totalPages = 1;
@@ -123,11 +131,10 @@ public class Mbk {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String roleSql = "1=0";
 		if (rolesMap.get("20101") != null) {
-			roleSql += " or 1=1";
+			roleSql += " or cjr = '"+user_name+"' ";
 
 		}
 		if (rolesMap.get("20102") != null) {
-			//roleSql += " or (tdr_id=" + user.getId() + " and zt='开始谈点') or (zt='新建' and hdfs='派发')";
 			roleSql += " or (tdr_id=" + user.getId() + ") or (zt='新建' and hdfs='派发')";
 
 		}
@@ -232,10 +239,10 @@ public class Mbk {
 			obj[0] = ro.get("mbk");
 			Map map = new HashMap();
 			if(listType.equals("fkcq")){
-				map.put("fkcq", "yes");
+				map.put("listType", "fkcq");
 			}
 			if(listType.equals("tdcq")){
-				map.put("tdcq", "yes");
+				map.put("listType", "tdcq");
 			}
 			obj[1] = map;
 			mbkList.add(obj);
