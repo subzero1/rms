@@ -301,8 +301,8 @@ $("#jsxz").change(function(){
 			<li><a class="icon" href="#"><span flag="kcsq" class="lzspan">勘察申请</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${param.listType == 'hssq'}">
-			<li><a class="icon" href="#"><span flag="hssq" class="lzspan">会审申请</span></a></li>
+			<c:if test="${param.listType == 'fahssq'}">
+			<li><a class="icon" href="#"><span flag="fahssq" class="lzspan">会审申请</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">

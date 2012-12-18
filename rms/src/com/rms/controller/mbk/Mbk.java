@@ -140,7 +140,7 @@ public class Mbk {
 		}
 		if (rolesMap.get("20103") != null) {
 			roleSql += " or (zt='四方勘察' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm='四方勘察' and jssj is null))";
+					+ " and sm like '%四方勘察%' and jssj is null))";
 		}
 		if (rolesMap.get("20104") != null) {
 			roleSql += " or (zt='方案会审' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
@@ -225,7 +225,7 @@ public class Mbk {
 		if(listType.equals("fahssq")){
 			hsql.append(" and (zt = '四方勘察' or zt = '勘察结束')");
 		}
-		
+		System.out.println(hsql.toString());
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
@@ -238,11 +238,8 @@ public class Mbk {
 			Object[] obj = new Object[2]; 
 			obj[0] = ro.get("mbk");
 			Map map = new HashMap();
-			if(listType.equals("fkcq")){
-				map.put("listType", "fkcq");
-			}
-			if(listType.equals("tdcq")){
-				map.put("listType", "tdcq");
+			if(!listType.equals("")){
+				map.put("listType", listType);
 			}
 			obj[1] = map;
 			mbkList.add(obj);
@@ -682,7 +679,7 @@ public class Mbk {
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
 						.executeUpdate();
 			} 
-			else if ("hssq".equals(type)) {// 会审申请
+			else if ("fahssq".equals(type)) {// 会审申请
 				word = "会审申请";
 				td21.setZt("会审申请");
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
