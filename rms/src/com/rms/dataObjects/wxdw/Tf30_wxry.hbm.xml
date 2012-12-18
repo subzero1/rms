@@ -14,7 +14,7 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">Tf30_wxry_num</param>
+                <param name="sequence">Tf30_num</param>
             </generator>
         </id>
 

@@ -7,7 +7,7 @@
 	<div class="pageContent">
 		<form method="post" action="wxdw/wxryAjaxSave.do" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone);">
 			<input type="hidden" name="ID" value="${wxry.id}" />
-			<input type="hidden" name="WXDW_ID" value="${wxry.wxdw_id}" />
+			<input type="hidden" name="WXDW_ID" value="${param.wxdw_id}" />
 			<div class="pageFormContent" layoutH="53">
 				
 				<p>
