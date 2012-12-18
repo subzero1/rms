@@ -664,6 +664,9 @@ public class Mbk {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
 					
+					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
+					.executeUpdate();
+					
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 					td22.setSm("四方勘察" +" [时间："+kcsjStr+","+sm+"]");
 					td22.setKssj(now);
@@ -678,13 +681,31 @@ public class Mbk {
 				td21.setZt("勘察结束");
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
 						.executeUpdate();
-			} else if ("fahs".equals(type)) {// 方案会审
+			} 
+			else if ("hssq".equals(type)) {// 会审申请
+				word = "会审申请";
+				td21.setZt("会审申请");
+				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+				
+				td22.setSm(user.getName()+"发起方案会审申请" );
+				td22.setKssj(now);
+				td22.setXgr(user.getName());
+				td22.setXgr_bm(dept.getName());
+				td22.setXgr_id(user.getId());
+				td22.setMbk_id(id);
+				session.save(td22);
+			}
+			else if ("fahs".equals(type)) {// 方案会审
 				word = "方案会审";
 				td21.setZt("方案会审");
 				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
 				for (String string : ids) {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
+					
+					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
+					.executeUpdate();
+					
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 					td22.setSm("方案会审");
 					td22.setKssj(now);
@@ -699,7 +720,11 @@ public class Mbk {
 				td21.setZt("会审完成");
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
 						.executeUpdate();
-			} else if ("zjs".equals(type)) {// 转建设
+			}
+			else if ("jxtd".equals(type)) {// 继续谈点
+				word = "继续谈点";
+				td21.setZhfksj(new Date());
+			}else if ("zjs".equals(type)) {// 转建设
 				word = "转建设";
 				td21.setZt("转建设");
 				Long xmgly_id = convertUtil.toLong(request.getParameter("xmgly_id"));
