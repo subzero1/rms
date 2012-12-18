@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="GBK"?>
+<excel
+xmlns="http://www.tjnetsky.com.cn"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
+>
+	<!-- 定义导入文件中表格信息 -->
+	<tableInfo>
+		<!-- 表格信息所在sheet位于excel文件中位置 -->
+		<sheetNum>0</sheetNum>
+		<!-- 数据开始行 -->
+		<startRow>1</startRow>
+		<endRow/>
+		<endFlag></endFlag>
+		<!-- 表名称，对应持久化对象名称 -->
+		<tableName>Tf30_wxyr</tableName>
+		<!-- 表名称,用于显示 -->
+		<tableNameShow>资源信息批量导入</tableNameShow>
+		<!-- 本表对应的父表信息 -->
+		<fatherTables>
+		</fatherTables>
+		<!-- 当前表字段信息 -->
+		<columns>
+			<!-- byIndex:按列所在位置获取,byName: 按标题行名称获取-->
+			<type>byName</type>
+			<!-- 标题行位置 -->
+			<titleRow>0</titleRow>
+			<column>
+					<columnName>NAME</columnName>
+					<index/>
+					<name>姓名</name>
+					<colName>姓名</colName>
+			</column>
+			<column>
+					<columnName>SEX</columnName>
+					<index/>
+					<name>性别</name>
+					<colName>性别</colName>
+			</column>
+			<column>
+					<columnName>MOBILE</columnName>
+					<index/>
+					<name>移动电话</name>
+					<colName>移动电话</colName>
+			</column>
+			<column>
+					<columnName>SFZ</columnName>
+					<index/>
+					<name>身份证</name>
+					<colName>身份证</colName>
+			</column>
+			<column>
+					<columnName>ADDRESS</columnName>
+					<index/>
+					<name>住址</name>
+					<colName>住址</colName>
+			</column>
+			<column>
+					<columnName>STATUS</columnName>
+					<index/>
+					<name>状态</name>
+					<colName>状态</colName>
+			</column>
+			<column>
+					<columnName>BZ</columnName>
+					<index/>
+					<name>备注</name>
+					<colName>备注</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>

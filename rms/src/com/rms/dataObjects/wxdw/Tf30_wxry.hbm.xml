@@ -60,7 +60,7 @@
 
   <property
   name="img"
-  type="java.lang.String"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="img"
