@@ -2439,16 +2439,21 @@ public class Wxdw {
 	 */
 	@RequestMapping("/wxdw/wxryList.do")
 	public ModelAndView wxryList(HttpServletRequest request,HttpServletResponse response){
-		ModelMap modelMap=new ModelMap();
+		ModelMap modelMap=new ModelMap();	
+		String view="/WEB-INF/jsp/wxdw/wxryList.jsp";
 		String wxdw_id=convertUtil.toString(request.getParameter("wxdw_id"));
 //		String pageNum=convertUtil.toString(request.getParameter("pageNum"));
 //		String numPerPage=convertUtil.toString(request.getParameter("numPerPage"));
 		String orderField=convertUtil.toString(request.getParameter("orderField"),"name");
 		String orderDirection=convertUtil.toString(request.getParameter("orderDirection"),"asc");
-		List wxryList=new LinkedList();
+		StringBuffer hql=null;
+		List wxryList=null;
+		
+		if(wxdw_id!=null&&!wxdw_id.equals("")){
+		hql=new StringBuffer("");
+		wxryList=new LinkedList();
 		Tf30_wxry wxry=null;
 		ResultObject ro=null;
-		StringBuffer hql=new StringBuffer("");
 		hql.append("select wxry from Tf30_wxry wxry where 1=1 ");
 		hql.append("and wxry.wxdw_id="+wxdw_id);
 		ro=queryService.search(hql.toString());
@@ -2458,7 +2463,7 @@ public class Wxdw {
 			wxry=(Tf30_wxry) ro.get("wxry");
 			wxryList.add(wxry);
 		}
-		String view="/WEB-INF/jsp/wxdw/wxryList.jsp";
+		}
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		modelMap.put("wxdw_id", wxdw_id);
