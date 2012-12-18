@@ -279,13 +279,13 @@ $("#jsxz").change(function(){
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '达成协议'}">
 				<c:choose>
-					<c:when test="${Td21_mbk.jsxz == '基站'}">
-					<li><a class="survey" href="#"><span flag="sfkc" class="lzspan">四方勘察</span></a></li>
+					<c:when test="${Td21_mbk.jsxz == '室分'}">
+					<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
 					<li class="line">line</li>
 					</c:when>
 					<c:otherwise>
-					<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
-					<li class="line">line</li>
+						<li><a class="survey" href="#"><span flag="sfkc" class="lzspan">四方勘察</span></a></li>
+						<li class="line">line</li>
 					</c:otherwise>
 				</c:choose>
 			</c:if>
@@ -373,6 +373,10 @@ $("#jsxz").change(function(){
 						<label>纬    度：</label>
 						<input type="text" ids="jz" name="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
 					</p>
+					<p>
+					<label>覆盖属性：</label> 
+					<netsky:htmlSelect name="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="name" showForOption="name" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" />
+				</p>
 				</div>
 				<div id="xq">
 					<div style="height:0px;"></div>
@@ -412,12 +416,12 @@ $("#jsxz").change(function(){
 				</p>
 				<div style="height:0px;"></div>
 				<p>
-					<label width="90">谈点周期：</label>
-					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="${Td21_mbk.tdzq}"/>
+					<label width="90">反馈周期：</label>
+					<input class="digits" type="text" name="Td21_mbk.FKZQ" style="width:150px;" value="<c:out value="${Td21_mbk.fkzq}" default="5"/>"/>
 				</p>
 				<p>
 					<label width="90">谈点周期：</label>
-					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="${Td21_mbk.tdzq}"/>
+					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="<c:out value="${Td21_mbk.tdzq}" default="30"/>"/>
 				</p>
 				<p>
 					<label>是否共建：</label>
