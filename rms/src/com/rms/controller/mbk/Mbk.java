@@ -95,8 +95,7 @@ public class Mbk {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "cjsj");
-		String drl = convertUtil.toString(request.getParameter("drl"), "no");
-		String ht = convertUtil.toString(request.getParameter("ht"), "no");
+		String listType = convertUtil.toString(request.getParameter("listType"));
 		if (orderField.equals("")) {
 			orderField = "cjsj";
 		}
@@ -163,14 +162,58 @@ public class Mbk {
 		/*
 		 * 待认领列表
 		 */
-		if(drl.equals("yes")){
+		if(listType.equals("drl")){
 			hsql.append(" and zt = '新建' and hdfs = '派发'");
 		}
 		
 		/*
 		 * 退回列表
 		 */
-		if(ht.equals("yes")){
+		if(listType.equals("ht")){
+			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+		}
+		
+		/*
+		 * 反馈超期列表
+		 * zhfksj 最后反馈时间
+		 * zypfsj 资源派发时间
+		 */
+		if(listType.equals("fkcq")){
+			hsql.append(" and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
+		}
+		
+		/*
+		 * 谈点超期列表
+		 */
+		if(listType.equals("tdcq")){
+			hsql.append(" and zypfsj + (case when tdzq is null then 15 else fkzq end) < sysdate");
+		}
+		
+		/*
+		 * 待四方勘察列表
+		 */
+		if(listType.equals("dkc")){
+			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+		}
+		
+		/*
+		 * 待方案会审列表
+		 */
+		if(listType.equals("dhs")){
+			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+		}
+		
+		/*
+		 * 四方勘察申请列表
+		 */
+		if(listType.equals("kcsq")){
+			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+		}
+		
+		/*
+		 * 方案会审申请列表
+		 */
+		if(listType.equals("fahssq")){
 			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
 		}
 		
