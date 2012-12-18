@@ -661,6 +661,22 @@ public class Mbk {
 				td22.setMbk_id(id);
 				session.save(td22);
 			} 
+			else if ("kcsq".equals(type)) {// 勘察申请
+				String sqkcsm = convertUtil.toString(request.getParameter("sqkcsm"));
+				word = "勘察申请";
+				td21.setZt("勘察申请");
+				td21.setSqkcsm(sqkcsm);
+				td21.setBz(word);
+				
+				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+				td22.setSm(user.getName()+"发起四方勘察申请" );
+				td22.setKssj(now);
+				td22.setXgr(user.getName());
+				td22.setXgr_bm(dept.getName());
+				td22.setXgr_id(user.getId());
+				td22.setMbk_id(id);
+				session.save(td22);
+			} 
 			else if ("dcxy".equals(type)) {// 达成协议
 				word = "达成协议";
 				td21.setZt("达成协议");
