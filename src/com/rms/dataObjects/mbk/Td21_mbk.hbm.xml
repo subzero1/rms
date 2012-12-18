@@ -400,6 +400,13 @@
             column="sqkcsm"
         />
         
+        <property
+            name="cjr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cjr"
+        />
 		
         <!--
             To add non XDoclet property mappings, create a file named

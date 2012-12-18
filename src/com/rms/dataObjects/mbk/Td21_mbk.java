@@ -863,4 +863,20 @@ public class Td21_mbk implements Serializable {
 		this.sqkcsm = sqkcsm;
 	}
 
+	/*
+	 * 创建人
+	 */
+	private String cjr;
+
+	/**
+	 * @hibernate.property column="cjr"
+	 * @return Returns the cjr.
+	 */
+	public String getCjr() {
+		return cjr;
+	}
+
+	public void setCjr(String cjr) {
+		this.cjr = cjr;
+	}
 }
