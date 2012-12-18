@@ -8,7 +8,7 @@
 	<ul class="toolBar">
 		<c:if test="${not empty param.wxdw_id }">
 			<li>
-				<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${wxdw_id }"
+				<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }"
 					target="dialog" width="500" height="330" rel="wxdwUser"
 					title="添加外协人员"><span>添加</span>
 				</a>
