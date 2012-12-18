@@ -434,11 +434,11 @@ $("#jsxz").change(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>对方联系人：</label> 
-					<input class="required" type="text" name="Td21_mbk.LXR" style="width:150px;" value="${Td21_mbk.lxr}"/>
+					<input type="text" name="Td21_mbk.LXR" style="width:150px;" value="${Td21_mbk.lxr}"/>
 				</p>
 				<p>
 					<label>联系电话：</label>
-					<input class="required" type="text" name="Td21_mbk.LXRDH" style="width:150px;" value="${Td21_mbk.lxrdh}"/>
+					<input type="text" name="Td21_mbk.LXRDH" style="width:150px;" value="${Td21_mbk.lxrdh}"/>
 				</p>
 				
 				<p>
