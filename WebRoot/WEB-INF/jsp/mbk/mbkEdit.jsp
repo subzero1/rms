@@ -69,7 +69,33 @@ $(function(){
 				}
 			});
 			return false;
-		} else if (flag == "zjs"){
+		} 
+		else if (flag == "kcsq"){//勘察申请
+			var input_info = "<p><label>说明： </label><textarea name=\"_sqkcsm\"></textarea></p>"
+			alertMsg.confirm(input_info, {
+				okCall: function(){
+					var sqkcsm = $("#_sqkcsm").val();
+					if(sqkcsm == ''){
+						alertMsg('说明必填');
+						return false;
+					}
+					data = data + '&sqkcsm=' + sqkcsm;
+					$.ajax({
+					url:'mbk/mbkLz.do',
+					type:'post',
+					data:data,
+					dataType:"json",
+					cache: false,
+					success: function(json){
+						navTabAjaxDone(json);
+					},
+					error: DWZ.ajaxError
+				 });
+				}
+			});
+			return false;
+		}
+		else if (flag == "zjs"){
 			$("#zjsa").click();
 			return false;
 		}
