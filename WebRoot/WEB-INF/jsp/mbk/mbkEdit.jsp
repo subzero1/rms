@@ -45,6 +45,30 @@ $(function(){
 		} else if (flag == "fahs"){
 			$("#fahsa").click();
 			return false;
+		} else if (flag == "ycqx"){
+			var input_info = "<p><label>谈点周期延期 </label><input type=\"text\" size=\"5\" value=\"10\" id=\"_ycqx\"><label> 天</label></p>";
+			alertMsg.confirm(input_info, {			
+				okCall: function(){
+					var ycqx = $("#_ycqx").val();
+					if(ycqx == ''){
+						alertMsg('延期天数必填');
+						return false;
+					}
+					data = data + '&ycqx=' + $("#_ycqx").val();
+					$.ajax({
+					url:'mbk/mbkLz.do',
+					type:'post',
+					data:data,
+					dataType:"json",
+					cache: false,
+					success: function(json){
+						navTabAjaxDone(json);
+					},
+					error: DWZ.ajaxError
+				 });
+				}
+			});
+			return false;
 		} else if (flag == "zjs"){
 			$("#zjsa").click();
 			return false;

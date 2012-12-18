@@ -647,7 +647,21 @@ public class Mbk {
 				session.createQuery(
 						"update Td22_mbk_lzjl set Jssj=sysdate,sm='" + user.getName() + "从'||xgr||'处收回"
 								+ "' where mbk_id=" + id + " and jssj is null").executeUpdate();
-			} else if ("dcxy".equals(type)) {// 达成协议
+			}
+			else if ("ycqx".equals(type)) {// 延长期限
+				Long ycqx = convertUtil.toLong(request.getParameter("ycqx"));
+				word = "延长期限";
+				td21.setTdzq(td21.getTdzq() == null ? 15 + ycqx : td21.getTdzq() + ycqx);
+				td21.setBz(word);
+				
+				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+				td22.setSm(user.getName() + "延长谈点期限【谈点人：" + td21.getTdr()+"】");
+				td22.setKssj(now);
+				td22.setJssj(now);
+				td22.setMbk_id(id);
+				session.save(td22);
+			} 
+			else if ("dcxy".equals(type)) {// 达成协议
 				word = "达成协议";
 				td21.setZt("达成协议");
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
