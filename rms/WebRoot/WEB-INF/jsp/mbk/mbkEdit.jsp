@@ -297,6 +297,14 @@ $("#jsxz").change(function(){
 					</c:otherwise>
 				</c:choose>
 			</c:if>
+			<c:if test="${param.listType == 'kcsq'}">
+			<li><a class="icon" href="#"><span flag="kcsq" class="lzspan">勘察申请</span></a></li>
+			<li class="line">line</li>
+			</c:if>
+			<c:if test="${param.listType == 'hssq'}">
+			<li><a class="icon" href="#"><span flag="hssq" class="lzspan">会审申请</span></a></li>
+			<li class="line">line</li>
+			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">
 			<li><a class="unsurvey" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
 			<li class="line">line</li>
@@ -337,6 +345,7 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="_navTabId" value="mbkList"/> 
 			<input type="hidden" name="kcsj" id="tdrOrg.kcsj" value=""/>
 			<input type="hidden" name="sm"  id="tdrOrg.sm" value=""/>
+			<input type="hidden" name="Td21_mbk.CJR" value="<c:out value="${Td21_mbk.cjr }" default="${user.name }"/>"/>
 			<c:if test="${empty Td21_mbk.cjsj}">
 			<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			</c:if>

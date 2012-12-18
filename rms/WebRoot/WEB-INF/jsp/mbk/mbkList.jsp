@@ -92,19 +92,19 @@ function searchListExport(){
 				<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${mbkList}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr target="mbk_id" rel="${obj.id}">
+					<tr target="mbk_id" rel="${obj[0].id}">
 						<td style="text-align:center;">
-							<c:if test="${obj != null}">								
-								<a href="javascript:lzjl('${obj.id }')" rel="lzjl" ><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+							<c:if test="${obj[0] != null}">								
+								<a href="javascript:lzjl('${obj[0].id }')" rel="lzjl" ><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
 							</c:if>		
 						</td>
-						<td><a href="mbk/mbkEdit.do?id=${obj.id}" target="navTab" rel="mbk" title="目标库信息">${obj.zymc }</a></td>
-						<td>${obj.ssdq }&nbsp;</td>
-						<td>${obj.jsxz }</td>
-						<td>${obj.lb }</td>
-						<td>${obj.tdr }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj.cjsj }"/></td>
-						<td>${obj.zt }</td>
+						<td><a href="mbk/mbkEdit.do?id=${obj[0].id}&listType=${obj[1].listType }" target="navTab" rel="mbk" title="目标库信息">${obj[0].zymc }</a></td>
+						<td>${obj[0].ssdq }&nbsp;</td>
+						<td>${obj[0].jsxz }</td>
+						<td>${obj[0].lb }</td>
+						<td>${obj[0].tdr }</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].cjsj }"/></td>
+						<td>${obj[0].zt }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
