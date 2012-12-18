@@ -826,11 +826,6 @@ public class Td21_mbk implements Serializable {
 	 * 申请勘察说明
 	 */
 	private String sqkcsm;
-	
-	/*
-	 * 申请会审说明
-	 */
-	private String sqhssm;
 
 	/**
 	 * @hibernate.property column="sqkcsj"
@@ -868,15 +863,4 @@ public class Td21_mbk implements Serializable {
 		this.sqkcsm = sqkcsm;
 	}
 
-	/**
-	 * @hibernate.property column="sqhssm"
-	 * @return Returns the sqhssm.
-	 */
-	public String getSqhssm() {
-		return sqhssm;
-	}
-
-	public void setSqhssm(String sqhssm) {
-		this.sqhssm = sqhssm;
-	}
 }

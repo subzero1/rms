@@ -391,14 +391,6 @@
             insert="true"
             column="sqkcsj"
         />
-        
-        <property
-            name="sqhssj"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="sqhssj"
-        />
 
 		 <property
             name="sqkcsm"
@@ -408,13 +400,6 @@
             column="sqkcsm"
         />
         
-        <property
-            name="sqhssm"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="sqhssm"
-        />
 		
         <!--
             To add non XDoclet property mappings, create a file named

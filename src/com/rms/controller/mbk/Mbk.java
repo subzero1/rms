@@ -179,42 +179,42 @@ public class Mbk {
 		 * zypfsj 资源派发时间
 		 */
 		if(listType.equals("fkcq")){
-			hsql.append(" and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
+			hsql.append(" and zt='开始谈点' and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
 		}
 		
 		/*
 		 * 谈点超期列表
 		 */
 		if(listType.equals("tdcq")){
-			hsql.append(" and zypfsj + (case when tdzq is null then 15 else fkzq end) < sysdate");
+			hsql.append(" and zt='开始谈点' and zypfsj + (case when tdzq is null then 15 else fkzq end) < sysdate");
 		}
 		
 		/*
 		 * 待四方勘察列表
 		 */
 		if(listType.equals("dkc")){
-			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+			hsql.append(" and zt = '勘察申请'");
 		}
 		
 		/*
 		 * 待方案会审列表
 		 */
 		if(listType.equals("dhs")){
-			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+			hsql.append(" and zt = '会审申请'");
 		}
 		
 		/*
 		 * 四方勘察申请列表
 		 */
 		if(listType.equals("kcsq")){
-			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+			hsql.append(" and zt = '达成协议' and jsxz != '室分'");
 		}
 		
 		/*
 		 * 方案会审申请列表
 		 */
 		if(listType.equals("fahssq")){
-			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+			hsql.append(" and (zt = '四方勘察' or zt = '勘察结束')");
 		}
 		
 		// order排序
