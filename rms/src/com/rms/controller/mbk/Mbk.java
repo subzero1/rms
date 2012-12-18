@@ -226,6 +226,8 @@ public class Mbk {
 		modelMap.put("lbList", lbList);
 		List<String> jsfsList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设方式'");
 		modelMap.put("jsfsList", jsfsList);
+		List<String> fgsxList = (List<String>) queryService.searchList("select name from Tc01_property where type='覆盖属性'");
+		modelMap.put("fgsxList", fgsxList);
 		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area");
 		modelMap.put("dqList", dqList);
 		List<String> tdbmList = (List<String>) queryService.searchList("select name from Tc01_property where type='谈点部门'");

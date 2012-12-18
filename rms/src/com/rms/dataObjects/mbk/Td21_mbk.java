@@ -769,7 +769,7 @@ public class Td21_mbk implements Serializable {
 	/*
 	 * 覆盖属性
 	 */
-	private Long fgsx;
+	private String fgsx;
 
 	/**
 	 * @hibernate.property column="fkzq"
@@ -787,11 +787,11 @@ public class Td21_mbk implements Serializable {
 	 * @hibernate.property column="fgsx"
 	 * @return Returns the fgsx.
 	 */
-	public Long getFgsx() {
+	public String getFgsx() {
 		return fgsx;
 	}
 
-	public void setFgsx(Long fgsx) {
+	public void setFgsx(String fgsx) {
 		this.fgsx = fgsx;
 	}
 }
