@@ -18,7 +18,7 @@
 			</li>
 			<li>
 				<a class="edit"
-					href="wxdw/wxryEdit.do?wxry_id={wxry_id}"
+					href="wxdw/wxryEdit.do?wxry_id={wxry_id}&wxdw_id=${param.wxdw_id}"
 					target="dialog" width="500" height="330" rel="wxdwUser"
 					title="修改外协人员信息"><span>修改</span>
 				</a>

@@ -2531,6 +2531,7 @@ public class Wxdw {
 			wxry=(Tf30_wxry) queryService.searchById(Tf30_wxry.class, wxry_id);
 			modelMap.put("wxry", wxry);
 			}
+		modelMap.put("wxdw_id", wxdw_id);
 		return new ModelAndView(view,modelMap);
 	}
 	/**
@@ -2555,7 +2556,8 @@ public class Wxdw {
 		String status=convertUtil.toString(request.getParameter("STATUS"),"");
 		
 		Tf30_wxry wxry=new Tf30_wxry();
-		wxry.setId(wxry_id);
+		if(wxry_id!=null)
+			wxry.setId(wxry_id);
 		wxry.setName(name);
 		wxry.setSex(sex);
 		wxry.setMobile(mobile);
