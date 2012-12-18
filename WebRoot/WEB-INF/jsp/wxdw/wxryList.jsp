@@ -10,7 +10,7 @@
 			<li>
 				<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }"
 					target="dialog" width="500" height="330" rel="wxdwUser"
-					title="添加外协人员"><span>添加</span>
+					title="外协人员信息"><span>添加</span>
 				</a>
 			</li>
 			<li class="line">
@@ -76,9 +76,9 @@
 		<c:forEach items="${wxryList}" var="wxry">
 			<tr target="wxry_id" rel="${wxry.id}">
 				<td>
-					<a href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }&id=${wxry.id}"
-						target="dialog" width="500" height="260" rel="wxdwUser"
-						title="外协人员">${wxry.name }</a>
+					<a href="wxdw/wxryEdit.do?wxry_id=${wxry.id}"
+						target="dialog" width="500" height="330" rel="wxry"
+						title="外协人员信息">${wxry.name }</a>
 				</td>
 				<td>
 					 ${wxry.sex } 
