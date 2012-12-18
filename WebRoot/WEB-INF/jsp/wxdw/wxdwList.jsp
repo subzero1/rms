@@ -54,6 +54,8 @@
 				<li class="line">line</li>
 				<li><a class="helponline"	href="javascript:enterHelp('wxdw')"><span>在线帮助</span></a></li>
 				<li class="line">line</li>
+				<li><a class="add" href="wxdw/wxdwEditX.do?id={wxdw_id}" target="navTab" rel="wxdw" title="合作单位维护"><span>非管理员添加</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">

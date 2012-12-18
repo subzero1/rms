@@ -202,6 +202,7 @@
 				<value>com/rms/dataObjects/wxdw/Tf17_rckh.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf18_zhkp.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf27_wxdwzhpf.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf30_wxry.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta02_station;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -37,6 +38,8 @@ import com.netsky.base.flow.vo.Vc3_gcxx_jlrj;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.ConfigXML;
+import com.netsky.base.utils.ConfigXMLImpl;
 import com.rms.controller.base.ExcelRead;
 import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.base.Tc02_area;
@@ -51,6 +54,7 @@ import com.rms.dataObjects.wxdw.Tf07_kcb;
 import com.rms.dataObjects.wxdw.Tf08_clmxb;
 import com.rms.dataObjects.wxdw.Tf10_gzltb;
 import com.rms.dataObjects.wxdw.Tf14_jlrj;
+import com.rms.dataObjects.wxdw.Tf30_wxry;
 
 @Controller
 public class Wxdw {
@@ -71,7 +75,12 @@ public class Wxdw {
 	 */
 	@Autowired
 	private SaveService saveService;
-
+	
+	/**
+	 * DAO
+	 */
+	@Autowired
+	private Dao dao;
 	/**
 	 * 合作单位列表
 	 */
@@ -184,6 +193,62 @@ public class Wxdw {
 		}
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwEdit.jsp", modelMap);
 	}
+	
+	
+	/**
+	 * 外协人员信息添加
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/wxdwEditX.do")
+	public ModelAndView wxdwEditX(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		ModelMap modelMap=new ModelMap();
+		Long id=convertUtil.toLong(request.getParameter("id"));
+		if(id!=-1L){
+			modelMap.put("Tf01_wxdw", queryService.searchById(Tf01_wxdw.class, id));
+		}
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwEditX.jsp", modelMap);
+	}
+	
+	
+	/**
+	 * 外协人员的列表
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/wxryList.do")
+	public ModelAndView wxryList(HttpServletRequest request,HttpServletResponse response){
+		ModelMap modelMap=new ModelMap();
+		String wxdw_id=convertUtil.toString(request.getParameter("wxdw_id"));
+//		String pageNum=convertUtil.toString(request.getParameter("pageNum"));
+//		String numPerPage=convertUtil.toString(request.getParameter("numPerPage"));
+		String orderField=convertUtil.toString(request.getParameter("orderField"),"name");
+		String orderDirection=convertUtil.toString(request.getParameter("orderDirection"),"asc");
+		List wxryList=new LinkedList();
+		Tf30_wxry wxry=null;
+		ResultObject ro=null;
+		StringBuffer hql=new StringBuffer("");
+		hql.append("select wxry from Tf30_wxry wxry where 1=1 ");
+		hql.append("and wxry.wxdw_id="+wxdw_id);
+		ro=queryService.search(hql.toString());
+		hql.append(" order by wxry."+orderField);
+		hql.append(" "+orderDirection);
+		while(ro.next()){
+			wxry=(Tf30_wxry) ro.get("wxry");
+			wxryList.add(wxry);
+		}
+		String view="/WEB-INF/jsp/wxdw/wxryList.jsp";
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("wxryList", wxryList);
+		return new ModelAndView(view,modelMap);
+	}
+	
+
 
 	/**
 	 * 新建合作单位时获取NO字段(LOGIN_ID前三位)
@@ -2399,5 +2464,108 @@ public class Wxdw {
 		dz = "0".equals(dz) ? "入库" : "1".equals(dz) ? "出库" : "缴料";
 		modelMap.put("dz", dz);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/xmkcfltjmx.jsp", modelMap);
+	}
+	
+	
+	/**
+	 * 外协人员导出
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception ModelAndView
+	 */
+	@RequestMapping("/wxdw/wxryToExcel.do")
+	public ModelAndView wxryToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String webinfpath=request.getSession().getServletContext().getRealPath("WEB-INF");
+		String config=convertUtil.toString(request.getParameter("config"),"");
+		List wxryDocList=null;//外协人员列表
+		List wxryColList=null;//外协人员需导出的字段
+		List wxryTitleList=null;//外协人员列表标题
+		StringBuffer hql=new StringBuffer("");
+		ConfigXML configXML=new ConfigXMLImpl();
+		Map sheetMap=new HashMap();
+		List sheetList=new LinkedList();
+		
+		wxryTitleList=configXML.getTagListByConfig(config, webinfpath, "name");
+		wxryColList=configXML.getTagListByConfig(config, webinfpath, "columnName");
+		
+		Iterator it=wxryColList.iterator();
+		int k=0;
+		hql.append("select ");
+		while(it.hasNext()){
+			if(k==0){
+				hql.append("wxry. "+it.next().toString().toLowerCase());
+			}else{
+				hql.append(" ,wxry."+it.next().toString().toLowerCase());
+			}
+			k++;
+		}
+		hql.append(" from Tf30_wxry wxry ");
+		wxryDocList=queryService.searchList(hql.toString());
+		
+		sheetList.add(wxryTitleList);
+		sheetList.add(wxryDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "外协人员信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		
+		return new ModelAndView("/export/toExcelWhithList.do");
+	}
+	
+	/**
+	 * 编辑和添加外协人员
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/wxryEdit.do")
+	public ModelAndView wxryEdit(HttpServletRequest request,HttpServletResponse response){
+		ModelMap modelMap=new ModelMap();
+		String view="/WEB-INF/jsp/wxdw/wxryEdit.jsp";
+		Long wxry_id=convertUtil.toLong(request.getParameter("wxry_id"),null);
+		Tf30_wxry wxry=null;
+		wxry=(Tf30_wxry) queryService.searchById(Tf30_wxry.class, wxry_id);
+		modelMap.put("wxry", wxry);
+		return new ModelAndView(view,modelMap);
+	}
+	/**
+	 * 保存外协人员信息
+	 * @param request
+	 * @param response void
+	 * @throws IOException 
+	 */
+	@RequestMapping("/wxdw/wxryAjaxSave.do")
+	public void wxryAjaxSave(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html;charset=utf-8;"); 
+		Long wxry_id=convertUtil.toLong(request.getParameter("ID"),null);
+		String name=convertUtil.toString(request.getParameter("NAME"),"");
+		String sex=convertUtil.toString(request.getParameter("SEX"),"");
+		String mobile=convertUtil.toString(request.getParameter("MOBILE"),"");
+		String sfz=convertUtil.toString(request.getParameter("SFZ"),"");
+		String address=convertUtil.toString(request.getParameter("ADDRESS"),"");
+		Long img=convertUtil.toLong(request.getParameter("IMG"),null);
+		String bz=convertUtil.toString(request.getParameter("BZ"),"");
+		Long wxdw_id=convertUtil.toLong(request.getParameter("WXDW_ID"),null);
+		String status=convertUtil.toString(request.getParameter("STATUS"),"");
+		
+		Tf30_wxry wxry=new Tf30_wxry();
+		wxry.setId(wxry_id);
+		wxry.setName(name);
+		wxry.setSex(sex);
+		wxry.setMobile(mobile);
+		wxry.setSfz(sfz);
+		wxry.setAddress(address);
+		wxry.setStatus(status);
+		wxry.setBz(bz);
+		wxry.setWxdw_id(wxdw_id);
+		try {
+			dao.saveObject(wxry);
+			out.print("{\"statusCode\":\"200\",\"message\":\"修改成功!\"}");
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			out.print("{\"statusCode\":\"300\",\"message\":\"修改失败!\"}");
+		}
+		
 	}
 }

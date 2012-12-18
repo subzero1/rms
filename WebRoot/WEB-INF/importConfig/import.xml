@@ -16,4 +16,9 @@
   	<name>mbk_source</name>
   	<fileName>/importConfig/mbk_source.xml</fileName>
   </config>
+  <config>
+  	<name>wxry_tmp</name>
+  	<fileName>/importConfig/wxry_tmp.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
