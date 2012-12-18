@@ -794,4 +794,89 @@ public class Td21_mbk implements Serializable {
 	public void setFgsx(String fgsx) {
 		this.fgsx = fgsx;
 	}
+	
+	/*
+	 * 最后反馈时间
+	 */
+	private Date zhfksj;
+
+	/**
+	 * @hibernate.property column="zhfksj"
+	 * @return Returns the zhfksj.
+	 */
+	public Date getZhfksj() {
+		return zhfksj;
+	}
+
+	public void setZhfksj(Date zhfksj) {
+		this.zhfksj = zhfksj;
+	}
+	
+	/*
+	 * 申请勘察时间
+	 */
+	private Date sqkcsj;
+	
+	/*
+	 * 申请会审时间
+	 */
+	private Date sqhssj;
+	
+	/*
+	 * 申请勘察说明
+	 */
+	private String sqkcsm;
+	
+	/*
+	 * 申请会审说明
+	 */
+	private String sqhssm;
+
+	/**
+	 * @hibernate.property column="sqkcsj"
+	 * @return Returns the sqkcsj.
+	 */
+	public Date getSqkcsj() {
+		return sqkcsj;
+	}
+
+	public void setSqkcsj(Date sqkcsj) {
+		this.sqkcsj = sqkcsj;
+	}
+
+	/**
+	 * @hibernate.property column="sqhssj"
+	 * @return Returns the sqhssj.
+	 */
+	public Date getSqhssj() {
+		return sqhssj;
+	}
+
+	public void setSqhssj(Date sqhssj) {
+		this.sqhssj = sqhssj;
+	}
+
+	/**
+	 * @hibernate.property column="sqkcsm"
+	 * @return Returns the sqkcsm.
+	 */
+	public String getSqkcsm() {
+		return sqkcsm;
+	}
+
+	public void setSqkcsm(String sqkcsm) {
+		this.sqkcsm = sqkcsm;
+	}
+
+	/**
+	 * @hibernate.property column="sqhssm"
+	 * @return Returns the sqhssm.
+	 */
+	public String getSqhssm() {
+		return sqhssm;
+	}
+
+	public void setSqhssm(String sqhssm) {
+		this.sqhssm = sqhssm;
+	}
 }
