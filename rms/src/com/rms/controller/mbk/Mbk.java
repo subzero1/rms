@@ -224,12 +224,21 @@ public class Mbk {
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
-		System.out.println(hsql.toString());
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
-		List<Td21_mbk> mbkList = new ArrayList<Td21_mbk>();
+		List<Object[]> mbkList = new ArrayList<Object[]>();
 		while (ro.next()) {
-			mbkList.add((Td21_mbk) ro.get("mbk"));
+			Object[] obj = new Object[2]; 
+			obj[0] = ro.get("mbk");
+			Map map = new HashMap();
+			if(listType.equals("fkcq")){
+				map.put("fkcq", "yes");
+			}
+			if(listType.equals("tdcq")){
+				map.put("tdcq", "yes");
+			}
+			obj[1] = map;
+			mbkList.add(obj);
 		}
 		modelMap.put("mbkList", mbkList);
 		// 获取总条数和总页数
@@ -251,135 +260,6 @@ public class Mbk {
 
 	}
 	
-	/**
-	 * 
-	 * @param request
-	 * @param response
-	 * @param session
-	 * @return ModelAndView
-	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping("/mbk/mbkFkcqList.do")
-	public ModelAndView mbkFkcqList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		ModelMap modelMap = new ModelMap();
-		// 分页
-		Integer totalPages = 1;
-		Integer totalCount = 0;
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "cjsj");
-		String listType = convertUtil.toString(request.getParameter("listType"));
-		if (orderField.equals("")) {
-			orderField = "cjsj";
-		}
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
-		if (orderDirection.equals("")) {
-			orderDirection = "desc";
-		}
-		modelMap.put("pageNum", pageNum);
-		modelMap.put("numPerPage", numPerPage);
-		modelMap.put("orderField", orderField);
-		modelMap.put("orderDirection", orderDirection);
-		// 查询条件
-		String zymc = convertUtil.toString(request.getParameter("zymc"));
-		String lb = convertUtil.toString(request.getParameter("lb"));
-		String ssdq = convertUtil.toString(request.getParameter("ssdq"));
-		String zt = convertUtil.toString(request.getParameter("zt"));
-
-		StringBuffer hsql = new StringBuffer();
-		hsql.append("select mbk from Td21_mbk mbk where 1=1");
-		// where条件
-		// 非20101角色
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
-		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		String roleSql = "1=0";
-		if (rolesMap.get("20101") != null) {
-			roleSql += " or 1=1";
-
-		}
-		if (rolesMap.get("20102") != null) {
-			//roleSql += " or (tdr_id=" + user.getId() + " and zt='开始谈点') or (zt='新建' and hdfs='派发')";
-			roleSql += " or (tdr_id=" + user.getId() + ") or (zt='新建' and hdfs='派发')";
-
-		}
-		if (rolesMap.get("20103") != null) {
-			roleSql += " or (zt='四方勘察' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm='四方勘察' and jssj is null))";
-		}
-		if (rolesMap.get("20104") != null) {
-			roleSql += " or (zt='方案会审' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm='方案会审' and jssj is null))";
-		}
-		if (rolesMap.get("20105") != null) {
-			roleSql += " or ((zt='转建设' or zt='建设中') and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and (sm='建设中' or sm='转建设') and jssj is null))";
-		}
-		hsql.append(" and (" + roleSql + ")");
-		// 类别
-		if (!lb.equals("")) {
-			hsql.append(" and lb='" + lb + "'");
-		}
-		// 所属地区
-		if (!ssdq.equals("")) {
-			hsql.append(" and ssdq='" + ssdq + "'");
-		}
-		// 状态
-		if (!zt.equals("")) {
-			hsql.append(" and zt='" + zt + "'");
-		}
-		// 资源名称
-		if (!zymc.equals("")) {
-			hsql.append(" and zymc like '%" + zymc + "%'");
-		}
-		
-		
-		/*
-		 * 反馈超期列表
-		 * zhfksj 最后反馈时间
-		 * zypfsj 资源派发时间
-		 */
-		if(listType.equals("fkcq")){
-			hsql.append(" and zt='开始谈点' and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
-		}
-		
-		// order排序
-		// orderField
-		hsql.append(" order by " + orderField);
-		// orderDirection
-		hsql.append(" " + orderDirection);
-		System.out.println(hsql.toString());
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
-		// 获取结果集
-		List<Td21_mbk> mbkList = new ArrayList<Td21_mbk>();
-		while (ro.next()) {
-			Object[] obj = new Object[2]; 
-			obj[0] = ro.get("mbk");
-			
-			Map map = new HashMap();
-			//map.put("", value)
-			obj[1] = map;
-			//mbkList.add((Td21_mbk) ro.get("mbk"));
-		}
-		modelMap.put("mbkList", mbkList);
-		// 获取总条数和总页数
-		totalPages = ro.getTotalPages();
-		totalCount = ro.getTotalRows();
-		modelMap.put("totalPages", totalPages);
-		modelMap.put("totalCount", totalCount);
-		// 页面所需内容
-		// 类别
-		List<String> lbList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='目标库类别'");
-		modelMap.put("lbList", lbList);
-		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area");
-		modelMap.put("dqList", dqList);
-		List<String> ztList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='目标库状态'");
-		modelMap.put("ztList", ztList);
-		return new ModelAndView("/WEB-INF/jsp/mbk/mbkList.jsp", modelMap);
-
-	}
-
 	/**
 	 * 目标库信息
 	 * @throws ClassNotFoundException 
