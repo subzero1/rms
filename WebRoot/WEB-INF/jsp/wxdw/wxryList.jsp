@@ -44,6 +44,7 @@
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection"
 		value="${param.orderDirection}" />
+		<input type="hidden" name="wxry_id" value="${param.wxdw_id}"/>
 </form>
 <form></form>
 <table class="table" width="100%" layouth="138">
