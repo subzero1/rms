@@ -45,8 +45,11 @@
 					<th style="width:40px;"></th>
 					<th orderField="xmmc">项目名称</th>
 					<th style="width: 120px;" orderField="gcbh">项目编号</th>
-					<th style="width: 100px;" orderField="ssdq">所属地区</th>
-					<th style="width: 100px;" orderField="lxje">立项金额</th>
+					<th style="width: 70px;" orderField="ssdq">所属地区</th>
+					<th style="width: 70px;" orderField="ssdq">工程类别</th>
+					<th style="width: 200px;" orderField="ssdq">设计单位</th>
+					<th style="width: 200px;" orderField="ssdq">施工单位</th>
+					<th style="width: 70px;" orderField="lxje">立项金额</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,12 +63,18 @@
 						<td><a href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }" target="navTab" rel="xmxx" title="项目信息单">${obj.xmmc }</a></td>
 						<td>${obj.xmbh }&nbsp;</td>
 						<td>${obj.ssdq }</td>
+						<td>${obj.gclb }</td>
+						<td>${obj.sjdw }</td>
+						<td>${obj.sgdw }</td>
 						<td>${obj.lxje }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
