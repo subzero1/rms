@@ -71,7 +71,8 @@ $(function(){
 			return false;
 		} 
 		else if (flag == "kcsq"){//勘察申请
-			var input_info = "<p><label>说明： </label><textarea name=\"_sqkcsm\"></textarea></p>"
+			var input_info = "<p><label>说明： </label></p>"
+							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"5\" style=\"overflow\:auto\"></textarea></p>"
 			alertMsg.confirm(input_info, {
 				okCall: function(){
 					var sqkcsm = $("#_sqkcsm").val();
