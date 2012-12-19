@@ -813,13 +813,57 @@ public class Mbk {
 
 		String name = convertUtil.toString(request.getParameter("name"));
 		StringBuffer hsql = new StringBuffer();
-		hsql
-				.append("select user from Ta03_user user where id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20102)) and name like '%"
-						+ name + "%'");
+		hsql.append("select ta03 ");
+		hsql.append("from Ta03_user ta03 ,Ta11_sta_user ta11,Ta12_sta_role ta12 "); 
+		hsql.append("where ta11.station_id = ta12.station_id "); 
+		hsql.append("and ta11.user_id = ta03.id ");
+		hsql.append("and ta12.role_id=20102 ");
+		
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages();
-		modelMap.put("tdrList", ro.getList());
+		
+		List list = ro.getList();
+		List resultList = new LinkedList();
+		for(int i = 0;i < list.size();i++){
+			Object[] obj = new Object[2];
+			Ta03_user ta03 = (Ta03_user)list.get(i);
+			obj[0] = ta03;
+			
+			Map map = new HashMap();
+			List<Ta01_dept> deptList = (List<Ta01_dept>) queryService.searchList("from Ta01_dept where id =" + ta03.getDept_id());
+			if(deptList == null || deptList.size() == 0){
+				map.put("dept_name", "部门未配置");
+			}
+			else{
+				String dept_name = deptList.get(0).getName();
+				if(convertUtil.toString(dept_name).equals("合作单位")){
+					List<Tf01_wxdw> wxdwList = (List<Tf01_wxdw>) queryService.searchList("from Tf01_wxdw where id in(select wxdw_id from Tf04_wxdw_user where user_id=" + ta03.getId() + ")");
+					if(list != null && list.size() > 0){
+						map.put("dept_name",wxdwList.get(0).getMc());
+					}
+					else{
+						map.put("dept_name", "单位未配置");
+					}
+				}
+				else{
+					map.put("dept_name",dept_name);
+				}
+			}
+			obj[1] = map;
+			
+			if(!name.equals("")){
+				if(ta03.getName().indexOf(name) != -1 || ((String)map.get("dept_name")).indexOf(name) != -1){
+					resultList.add(obj);
+				}
+			}
+			else{
+				resultList.add(obj);
+			}
+			
+		}
+		
+		modelMap.put("tdrList", resultList);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("pageNumShown", pageNumShown);
 		modelMap.put("numPerPage", numPerPage);

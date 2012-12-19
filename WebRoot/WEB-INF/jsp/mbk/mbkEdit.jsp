@@ -51,7 +51,7 @@ $(function(){
 				okCall: function(){
 					var ycqx = $("#_ycqx").val();
 					if(ycqx == ''){
-						alertMsg('延期天数必填');
+						alertMsg.info('延期天数必填');
 						return false;
 					}
 					data = data + '&ycqx=' + $("#_ycqx").val();
@@ -325,7 +325,7 @@ $("#jsxz").change(function(){
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && param.listType == 'tdcq'}">
-			<li><a class="icon" href="#"><span flag="ycqx" class="lzspan">延长期限</span></a></li>
+			<li><a class="icon" href="#"><span flag="ycqx" class="lzspan">延期谈点</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${(not empty rolesMap['20102']) && Td21_mbk.zt == '开始谈点'}">
@@ -465,11 +465,12 @@ $("#jsxz").change(function(){
 				<p>
 					<label>谈点部门：</label>
 					<input type="text" readonly="readonly" id="tdrOrg.TDBM" name="Td21_mbk.TDBM" style="width:150px;" value="${Td21_mbk.tdbm}"/>
+					
 				</p>
 				<p>
 					<label>谈点人：</label>
-							<input type="text" name="Td21_mbk.TDR" id="tdrOrg.TDR" style="width:125px" readonly="readonly" value="${Td21_mbk.tdr }" />
-							<a class="btnLook" href="mbk/getTdr.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<input type="text" name="Td21_mbk.TDR" id="tdrOrg.TDR" style="width:125px" readonly="readonly" value="${Td21_mbk.tdr }" />
+					<a class="btnLook" href="mbk/getTdr.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
 					<input type="hidden" name="Td21_mbk.TDR_ID" id="tdrOrg.TDR_ID" value="${Td21_mbk.tdr_id}"/>
 					<a style="display:none" id="sfkca" class="btnLook" href="mbk/getKcry.do" lookupGroup="tdrOrg" width="600" height="430">查找带回</a>
 					<input type="hidden" id="tdrOrg.Kcry"/>
