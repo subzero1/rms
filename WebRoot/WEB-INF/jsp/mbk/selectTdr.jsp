@@ -52,10 +52,10 @@
 		<tbody>
 			<c:forEach items="${tdrList }" var="tdr">
 			<tr>
-				<td>${tdr[1].dept_name }</td>
-				<td>${tdr[0].name }</td>
+				<td>${tdr.dept_name }</td>
+				<td>${tdr.name }</td>
 				<td>
-					<a class="btnSelect" href="javascript:bringBack('${tdr[0].name }','${tdr[0].id }','${tdr[0].mobile_tel }')" title="查找带回">
+					<a class="btnSelect" href="javascript:bringBack('${tdr.name }','${tdr.id }','${tdr.mobile_tel }')" title="查找带回">
 				</td>
 			</tr>
 			</c:forEach>
