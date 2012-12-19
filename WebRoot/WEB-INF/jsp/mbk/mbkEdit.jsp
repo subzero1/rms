@@ -71,14 +71,14 @@ $(function(){
 			return false;
 		} 
 		else if (flag == "kcsq"){//勘察申请
-			var input_info = "<p><label>说明： </label></p>"
+			var input_info = "<p><label>勘察申请说明： </label></p>"
 							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"5\" style=\"overflow\:auto\"></textarea></p>"
 			alertMsg.confirm(input_info, {
 				okCall: function(){
 					var sqkcsm = $("#_sqkcsm").val();
 					if(sqkcsm == ''){
-						alertMsg('说明必填');
-						return false;
+						alertMsg.info('必须填写【勘察申请说明】');
+						return;
 					}
 					data = data + '&sqkcsm=' + sqkcsm;
 					$.ajax({
