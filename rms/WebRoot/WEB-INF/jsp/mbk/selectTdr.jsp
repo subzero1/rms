@@ -27,7 +27,7 @@
 	<div class="searchBar">
 		<ul class="searchContent">
 			<li>
-				<label>姓名:</label>
+				<label>名  称:</label>
 				<input class="textInput" name="name" value="${param.name }" type="text"/>
 			</li>
 		</ul>
@@ -42,19 +42,20 @@
 <div class="pageContent">
 
 	<table class="table" layoutH="118" targettype="dialog" width="100%">
-		
 		<thead>
 			<tr>
-				<th orderfield="name">姓名</th>
+				<th orderfield="ta01.name" style="width: 100px;">部门</th>
+				<th orderfield="ta01.name">名称</th>
 				<th width="60">查找带回</th>
 			</tr>
 		</thead>				
 		<tbody>
 			<c:forEach items="${tdrList }" var="tdr">
 			<tr>
-				<td>${tdr.name }</td>
+				<td>${tdr[1].dept_name }</td>
+				<td>${tdr[0].name }</td>
 				<td>
-						<a class="btnSelect" href="javascript:bringBack('${tdr.name }','${tdr.id }','${tdr.mobile_tel }')" title="查找带回">
+					<a class="btnSelect" href="javascript:bringBack('${tdr[0].name }','${tdr[0].id }','${tdr[0].mobile_tel }')" title="查找带回">
 				</td>
 			</tr>
 			</c:forEach>
