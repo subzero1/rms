@@ -18,7 +18,7 @@ var alertMsg = {
 
 	_keydownOk: function(event){
 		if (event.keyCode == DWZ.keyCode.ENTER) event.data.target.trigger("click");
-		return false;
+		//return false; modify at2012-12-19 注销返回
 	},
 	_keydownEsc: function(event){
 		if (event.keyCode == DWZ.keyCode.ESC) event.data.target.trigger("click");
