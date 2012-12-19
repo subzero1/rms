@@ -8,7 +8,7 @@
 >
     <class
         name="com.netsky.base.flow.vo.V_ta03"
-        table="Ta03_user"
+        table="v_ta03"
     >
 
         <id
