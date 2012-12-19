@@ -45,10 +45,10 @@
 					<th style="width:40px;"></th>
 					<th orderField="xmmc">项目名称</th>
 					<th style="width: 120px;" orderField="gcbh">项目编号</th>
-					<th style="width: 70px;" orderField="ssdq">所属地区</th>
-					<th style="width: 70px;" orderField="ssdq">工程类别</th>
-					<th style="width: 200px;" orderField="ssdq">设计单位</th>
+					<th style="width: 65px;" orderField="ssdq">所属地区</th>
+					<th style="width: 65px;" orderField="ssdq">工程类别</th>
 					<th style="width: 200px;" orderField="ssdq">施工单位</th>
+					<th style="width: 140px;" orderField="ssdq">施工合同编号</th>
 					<th style="width: 70px;" orderField="lxje">立项金额</th>
 				</tr>
 			</thead>
@@ -64,8 +64,8 @@
 						<td>${obj.xmbh }&nbsp;</td>
 						<td>${obj.ssdq }</td>
 						<td>${obj.gclb }</td>
-						<td>${obj.sjdw }</td>
 						<td>${obj.sgdw }</td>
+						<td>${obj.sghtbh }</td>
 						<td>${obj.lxje }</td>
 					</tr>
 				</c:forEach>
