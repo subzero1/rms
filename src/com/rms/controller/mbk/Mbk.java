@@ -824,13 +824,13 @@ public class Mbk {
 		pageNumShown = ro.getTotalPages();
 		
 		List list = ro.getList();
-		List resultList = new LinkedList();
+		List<Object[]> resultList = new LinkedList<Object[]>();
 		for(int i = 0;i < list.size();i++){
 			Object[] obj = new Object[2];
 			Ta03_user ta03 = (Ta03_user)list.get(i);
 			obj[0] = ta03;
 			
-			Map map = new HashMap();
+			Map<String,String> map = new HashMap<String,String>();
 			List<Ta01_dept> deptList = (List<Ta01_dept>) queryService.searchList("from Ta01_dept where id =" + ta03.getDept_id());
 			if(deptList == null || deptList.size() == 0){
 				map.put("dept_name", "部门未配置");
