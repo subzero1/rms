@@ -45,8 +45,10 @@
 					<th style="width:40px;"></th>
 					<th orderField="gcmc">工程名称</th>
 					<th style="width: 120px;" orderField="xmbh">工程编号</th>
-					<th style="width: 100px;" orderField="ssdq">所属地区</th>
-					<th style="width: 100px;" orderField="lxje">立项金额</th>
+					<th style="width: 70px;" orderField="ssdq">所属地区</th>
+					<th style="width: 70px;" orderField="ssdq">工程类别</th>
+					<th style="width: 200px;" orderField="ssdq">设计单位</th>
+					<th style="width: 200px;" orderField="ssdq">施工单位</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,12 +62,16 @@
 						<td><a href="openForm.do?project_id=${obj.id }&module_id=102&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }" target="navTab" rel="gcxx" title="工程信息单">${obj.gcmc }</a></td>
 						<td>${obj.gcbh }&nbsp;</td>
 						<td>${obj.ssdq }</td>
-						<td>${obj.lxje }</td>
+						<td>${obj.gclb }</td>
+						<td>${obj.sjdw }</td>
+						<td>${obj.sgdw }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
