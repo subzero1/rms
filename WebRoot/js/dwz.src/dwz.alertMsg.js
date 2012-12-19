@@ -63,6 +63,7 @@ var alertMsg = {
 		//用于屏蔽点击回车，触发click事件，再次打开alert
 		$('<input type="text" style="width:0;height:0;" name="_alertFocusCtr"/>').appendTo(this._boxId).focus().hide();
 		
+			
 		var jButs = $(this._boxId).find("a.button");
 		var jCallButs = jButs.filter("[rel=callback]");
 		var jDoc = $(document);
@@ -70,12 +71,13 @@ var alertMsg = {
 		for (var i = 0; i < buttons.length; i++) {
 			if (buttons[i].call) jCallButs.eq(i).click(buttons[i].call);
 			if (buttons[i].keyCode == DWZ.keyCode.ENTER) {
-				jDoc.bind("keydown",{target:jButs.eq(i)}, this._keydownOk);
+				//jDoc.bind("keydown",{target:jButs.eq(i)}, this._keydownOk); modify at2012-12-19 不允许通过回车执行，和其他需要回车的情况冲突				
 			}
 			if (buttons[i].keyCode == DWZ.keyCode.ESC) {
 				jDoc.bind("keydown",{target:jButs.eq(i)}, this._keydownEsc);
 			}
 		}
+		
 	},
 	close: function(){
 		$(document).unbind("keydown", this._keydownOk).unbind("keydown", this._keydownEsc);
