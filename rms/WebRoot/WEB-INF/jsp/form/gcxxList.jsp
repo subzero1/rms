@@ -45,10 +45,10 @@
 					<th style="width:40px;"></th>
 					<th orderField="gcmc">工程名称</th>
 					<th style="width: 120px;" orderField="gcbh">工程编号</th>
-					<th style="width: 60px;" orderField="ssdq">所属地区</th>
-					<th style="width: 60px;" orderField="gclb">工程类别</th>
+					<th style="width: 70px;" orderField="ssdq">所属地区</th>
+					<th style="width: 70px;" orderField="gclb">工程类别</th>
 					<th style="width: 200px;" orderField="sgdw">施工单位</th>
-					<th style="width: 200px;" orderField="xqbm">需求部门</th>
+					<th style="width: 150px;" orderField="xqbm">需求部门</th>
 				</tr>
 			</thead>
 			<tbody>
