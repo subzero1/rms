@@ -71,7 +71,8 @@ var alertMsg = {
 		for (var i = 0; i < buttons.length; i++) {
 			if (buttons[i].call) jCallButs.eq(i).click(buttons[i].call);
 			if (buttons[i].keyCode == DWZ.keyCode.ENTER) {
-				//jDoc.bind("keydown",{target:jButs.eq(i)}, this._keydownOk); modify at2012-12-19 不允许通过回车执行，和其他需要回车的情况冲突				
+				if($(boxHtml).find("textarea").size()==0) //modify at2012-12-19 不允许通过回车执行，和textarea需要回车的情况冲突		
+				jDoc.bind("keydown",{target:jButs.eq(i)}, this._keydownOk); 		
 			}
 			if (buttons[i].keyCode == DWZ.keyCode.ESC) {
 				jDoc.bind("keydown",{target:jButs.eq(i)}, this._keydownEsc);
