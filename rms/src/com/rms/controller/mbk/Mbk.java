@@ -730,7 +730,7 @@ public class Mbk {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
 					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
 					
-					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and sm like '%方案会审申请%' and mbk_id=" + id)
+					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and (sm like '%方案会审申请%' or sm like '%勘察%') and mbk_id=" + id)
 					.executeUpdate();
 					
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
