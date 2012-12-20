@@ -137,7 +137,7 @@ public class DataSaveController implements org.springframework.web.servlet.mvc.C
 		if (arg0.getContentType().toLowerCase().indexOf("multipart/form-data") != -1) {
 			request = (MultipartHttpServletRequest) arg0;
 			slave = true;
-			fromEncode = "iso-8859-1";
+			fromEncode = "UTF-8";
 			targetEncode = "UTF-8";
 		} else {
 			request = arg0;
