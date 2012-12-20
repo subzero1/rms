@@ -867,6 +867,11 @@ public class Td21_mbk implements Serializable {
 	 * 创建人
 	 */
 	private String cjr;
+	
+	/*
+	 * 创建人电话
+	 */
+	private String cjrdh;
 
 	/**
 	 * @hibernate.property column="cjr"
@@ -879,4 +884,18 @@ public class Td21_mbk implements Serializable {
 	public void setCjr(String cjr) {
 		this.cjr = cjr;
 	}
+
+	/**
+	 * @hibernate.property column="cjrdh"
+	 * @return Returns the cjrdh.
+	 */
+	public String getCjrdh() {
+		return cjrdh;
+	}
+
+	public void setCjrdh(String cjrdh) {
+		this.cjrdh = cjrdh;
+	}
+	
+	
 }

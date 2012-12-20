@@ -407,6 +407,14 @@
             insert="true"
             column="cjr"
         />
+        
+                <property
+            name="cjrdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cjrdh"
+        />
 		
         <!--
             To add non XDoclet property mappings, create a file named
