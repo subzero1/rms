@@ -143,9 +143,9 @@ public class JlgtController {
 		Integer totalCount = 0;
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "fbsj");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "max(jlgt.fbsj)");
 		if (orderField.equals("")) {
-			orderField = "fbsj";
+			orderField = "max(jlgt.fbsj)";
 		}
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
@@ -158,23 +158,30 @@ public class JlgtController {
 		// 查询条件
 
 		StringBuffer hsql = new StringBuffer();
-		hsql.append("select jlgt,ta06 from Te09_jlgt jlgt,Ta06_module ta06 where ta06.id=jlgt.module_id");
+		hsql
+				.append("select jlgt.module_id as module_id,jlgt.doc_id as doc_id,max(jlgt.fbsj) as zhfbsj,count(jlgt.id) as fbs,jlgt.module_name as module_name,jlgt.comments as comments from Te09_view jlgt where exists");
 		// where条件
-		hsql.append(" and (fbr_id=" + ta03.getId() + " or tzr_names like '%" + ta03.getName() + "%')");
+		hsql.append("(select 'x' from Te09_view view where view.id=jlgt.id and (view.fbr_id=" + ta03.getId()
+				+ " or view.tzr_names like '%" + ta03.getName() + "%'))");
+		hsql.append("group by module_id,doc_id,module_name,comments");
 		// 类别
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
-
+		System.out.println(hsql);
 		ResultObject ro = dao.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> jlgtList = new ArrayList<Object[]>();
 		while (ro.next()) {
-			Object[] o = new Object[2];
-			o[0] = (Te09_jlgt) ro.get("jlgt");
-			o[1] = (Ta06_module) ro.get("ta06");
+			Object[] o = new Object[6];
+			o[0] = ro.get("module_id");
+			o[1] = ro.get("doc_id");
+			o[2] = ro.get("zhfbsj");
+			o[3] = ro.get("fbs");
+			o[4] = ro.get("module_name");
+			o[5] = ro.get("comments");
 			jlgtList.add(o);
 		}
 		modelMap.put("jlgtList", jlgtList);
@@ -291,7 +298,12 @@ public class JlgtController {
 			}
 
 		}
-
 		return new ModelAndView("/WEB-INF/jsp/jlgt/newJlgt.jsp", modelMap);
+	}
+
+	@RequestMapping("/test.do")
+	public void test() {
+		String testsql = "select te09.doc_id,te09.module_id from Te09_jlgt te09 where exists(select 'x' from Te09_jlgt jlgt where jlgt.fbr like '管理员') group by doc_id,module_id";
+		dao.searchByPage(testsql, 1, 1);
 	}
 }

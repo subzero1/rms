@@ -76,9 +76,6 @@ function huifu(up_id,title,bt){
 					</div>
 				</div>
 				<div class="right" style="margin-left: 130px; background: white;padding-right:15px;padding-bottom:10px;">
-					<div class="title" style="padding: 5px;font-size:16px;font-weight:bolder;font-style:italic;">
-						${yjJlgt[0].title }
-					</div>
 					<div class="content" style="min-height: 150px; padding: 10px;max-width: 650px;overflow-x:auto;overflow-y: hidden">
 						${fn:replace(fn:replace(yjJlgt[0].nr, '<img', x_img), x_n, '<br />')}
 					</div>
@@ -107,9 +104,6 @@ function huifu(up_id,title,bt){
 							<c:forEach items="${ejJlgtMap[yjJlgt[0]]}" var="ejJlgt">
 								<div
 									style="min-height: 80px; border-bottom: dashed rgb(204, 204, 204) 1px;">
-									<div class="title" style="padding: 5px;font-size:14px;font-weight:bolder;font-style:italic;">
-										${ejJlgt[0].title }
-									</div>
 									<div class="content" style="min-height: 50px; margin: 10px;max-width: 600px;overflow-x:auto;overflow-y: auto">
 										${fn:replace(ejJlgt[0].nr, x_n, '<br />')}
 									</div>
