@@ -391,11 +391,7 @@ $("#jsxz").change(function(){
 			</li>
 			<li class="line">line</li>
 			</c:if>
-			<li><a class="add" href="dispath.do?url=form/jlfk.jsp?project_id=${project_id}&module_id=90&user_id=${user.id }&doc_id=${project_id}" target="dialog"><span flag="jlfk" class="edit">交流反馈</span></a>
-			</li>
-			<li class="line">line</li>
 			<li><a class="add" href="jlgt/jlgtView.do?module_id=90&doc_id=${project_id}" target="navTab" rel="jlgtView"><span flag="jlfk" class="edit">交流反馈</span></a>
-
 			</li>
 			<li class="line">line</li>
 			</c:if>
@@ -415,6 +411,7 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="kcsj" id="tdrOrg.kcsj" value=""/>
 			<input type="hidden" name="sm"  id="tdrOrg.sm" value=""/>
 			<input type="hidden" name="Td21_mbk.CJR" value="<c:out value="${Td21_mbk.cjr }" default="${user.name }"/>"/>
+			<input type="hidden" name="Td21_mbk.CJRDH" value="<c:out value="${Td21_mbk.cjrdh }" default="${user.mobile_tel }"/>"/>
 			<c:if test="${empty Td21_mbk.cjsj}">
 				<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			</c:if>
