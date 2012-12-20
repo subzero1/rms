@@ -374,7 +374,7 @@ $("#jsxz").change(function(){
 			<li><a class="unsurvey" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '勘察结束'}">
+			<c:if test="${not empty rolesMap['20101'] && (Td21_mbk.zt == '勘察结束' || Td21_mbk.zt == '会审申请')}">
 			<li><a class="icon" href="#"><span flag="fahs" class="lzspan">方案会审</span></a></li>
 			<li class="line">line</li>
 			</c:if>
@@ -416,6 +416,9 @@ $("#jsxz").change(function(){
 			</c:if>
 			<c:if test="${Td21_mbk.zt=='勘察申请' && not empty rolesMap['20101']}">
 				<input type="hidden" id="show_sqkcsm" value="${Td21_mbk.sqkcsm }"/>
+			</c:if>
+			<c:if test="${Td21_mbk.zt=='会审申请' && not empty rolesMap['20101']}">
+				<input type="hidden" id="show_sqfahs" value="提醒"/>
 			</c:if>
 			<div class="pageFormContent">
 				<p>
@@ -748,10 +751,21 @@ $("#jsxz").change(function(){
 	//如果有勘察申请，则提示勘察申请的内容
 	var show_sqkcsm = $("#show_sqkcsm");
 	if(show_sqkcsm != null && show_sqkcsm != 'undefined' && show_sqkcsm.size() == 1 && show_sqkcsm.val() != ''){
-		var show_content = "<b>谈点人员已经发起谈点申请，内容如下：</b><br/>"+show_sqkcsm.val()+"<br/><b>是否现在发起四方勘察?</b>";
+		var show_content = "<b>谈点人员已经提出勘察申请，内容如下：</b><br/>"+show_sqkcsm.val()+"<br/><b>是否现在发起四方勘察?</b>";
 		alertMsg.confirm(show_content, {			
 				okCall: function(){
 					$("#sfkca").click();
+				}
+			});
+	}
+	
+	//如果有方案会审申请，则提示会审申请的内容
+	var show_sqfahs = $("#show_sqfahs");
+	if(show_sqfahs != null && show_sqfahs != 'undefined' && show_sqfahs.size() == 1 && show_sqfahs.val() != ''){
+		var show_content = "<b>设计人员已经提出会审申请，<br/>是否现在发起方案会审?</b>";
+		alertMsg.confirm(show_content, {			
+				okCall: function(){
+					$("#fahsa").click();
 				}
 			});
 	}
