@@ -214,7 +214,7 @@ var DWZ = {
 			});
 		},
 		loadUrl: function(url,data,callback){
-			$(this).ajaxUrl({url:url, data:data, callback:callback});
+			$(this).ajaxUrl({type:"POST" , url:url, data:data, callback:callback});
 		},
 		initUI: function(){
 			return this.each(function(){
