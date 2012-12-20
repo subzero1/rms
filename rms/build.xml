@@ -24,7 +24,7 @@
 		<taskdef name="hibernatedoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask" classpathref="lib.classpath" />
 		<hibernatedoclet destdir="src" excludedtags="@version,@author,@todo" force="src" verbose="false">
 			<fileset dir="src">
-				<include name="**/dataObjects/**/*.java" />
+				<include name="**/dataObjects/**/Te09*.java" />
 			</fileset>
 			<hibernate version="3.0" />
 		</hibernatedoclet>

@@ -91,10 +91,9 @@ public class PHSService {
 		String result = "success";
 		Transaction tx = saveService.getHiberbateSession().beginTransaction();
 		Connection connection = saveService.getHiberbateSession().connection();
-		Connection conn = connection;
 		CallableStatement st = null;
 		try {
-			st = conn.prepareCall("call p_send@msgSend('"+recvNum+"','"+msg+"')");
+			st = connection.prepareCall("call p_send@msgSend('"+recvNum+"','"+msg+"')");
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,7 +101,7 @@ public class PHSService {
 		} finally {
 			try {
 				st.close();
-				conn.close();
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

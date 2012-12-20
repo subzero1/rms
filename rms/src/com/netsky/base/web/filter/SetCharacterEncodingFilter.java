@@ -65,9 +65,7 @@ public class SetCharacterEncodingFilter implements Filter {
 			ServletException {
 
 		// Conditionally select and set the character encoding to be used
-		if ((ignore || (request.getCharacterEncoding() == null))
-				&& (request.getContentType() == null || request.getContentType().toLowerCase().indexOf(
-						"multipart/form-data") == -1)) {
+		if ((ignore || (request.getCharacterEncoding() == null))) {//&& (request.getContentType() == null || request.getContentType().toLowerCase().indexOf("multipart/form-data") == -1)
 			String encoding = selectEncoding(request);
 			if (encoding != null)
 				request.setCharacterEncoding(encoding);

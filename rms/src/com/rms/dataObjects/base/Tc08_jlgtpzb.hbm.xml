@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.rms.dataObjects.base.Tc08_jlgtpzb"
+        table="Tc08_jlgtpzb"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">TC08_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tc08_jlgtpzb.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="module_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="module_id"
+        />
+
+        <property
+            name="fieldname"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fieldname"
+        />
+
+        <property
+            name="xh"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="xh"
+        />
+
+        <property
+            name="lx"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="lx"
+        />
+
+        <property
+            name="tablename"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tablename"
+        />
+
+        <property
+            name="comments"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="comments"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tc08_jlgtpzb.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

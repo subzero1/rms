@@ -149,6 +149,7 @@
 				<value>com/netsky/base/dataObjects/Te06_remind_queue.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te07_qa.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te08_message.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te09_jlgt.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b1.hbm.xml</value>
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b2.hbm.xml</value>
@@ -176,6 +177,8 @@
 				<value>com/rms/dataObjects/base/Tc04_zyxx.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tc06_tzqk.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tc07_qkxx.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc08_jlgtpzb.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc09_jlgttzr.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tmp_zdxp.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/form/Td00_gcxx.hbm.xml</value>
