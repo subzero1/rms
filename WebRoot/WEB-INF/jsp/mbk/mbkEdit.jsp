@@ -71,8 +71,8 @@ $(function(){
 			return false;
 		} 
 		else if (flag == "kcsq"){//勘察申请
-			var input_info = "<p><label>勘察申请说明： </label></p>"
-							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"5\" style=\"overflow\:auto\"></textarea></p>"
+			var input_info = "<p id=\"_c_nums\">勘察申请说明：</p>"
+							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"6\" style=\"overflow\:auto\" onKeyUp=\"javascript:getCNum()\">${Td21_mbk.sqkcsm}</textarea></p>";
 			alertMsg.confirm(input_info, {
 				okCall: function(){
 					var sqkcsm = $("#_sqkcsm").val();
@@ -210,6 +210,19 @@ $("#jsxz").change(function(){
 			$("input[ids=xq]").attr("class","required digits");
 		}
 	});
+	
+	/*
+	 *计算还能输入多少汉字
+	 */
+	function getCNum(){
+		var a = $("#_sqkcsm").val();
+		var ac = 200 - a.length;
+		if(ac < 0){
+			ac = 0;
+		}
+		var at = "勘察申请说明： <font color=\"red\">还可以输入"+ac+"字</font>";
+		$("#_c_nums").html(at);
+	}
 </script>
 <div style="display: none">
 	<table style="margin-top:10px;width:630px;" cellspacing="0" border="1" cellpadding="0" bordercolor="#000000" id="printTable">
@@ -336,7 +349,7 @@ $("#jsxz").change(function(){
 			<li><a class="icon" href="#"><span flag="dcxy" class="lzspan">达成协议</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '达成协议'}">
+			<c:if test="${not empty rolesMap['20101'] && (Td21_mbk.zt == '达成协议' || Td21_mbk.zt == '勘察申请')}">
 				<c:choose>
 					<c:when test="${Td21_mbk.jsxz == '室分'}">
 					<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
@@ -398,7 +411,10 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="sm"  id="tdrOrg.sm" value=""/>
 			<input type="hidden" name="Td21_mbk.CJR" value="<c:out value="${Td21_mbk.cjr }" default="${user.name }"/>"/>
 			<c:if test="${empty Td21_mbk.cjsj}">
-			<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
+				<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
+			</c:if>
+			<c:if test="${Td21_mbk.zt=='勘察申请' && not empty rolesMap['20101']}">
+				<input type="hidden" id="show_sqkcsm" value="${Td21_mbk.sqkcsm }"/>
 			</c:if>
 			<div class="pageFormContent">
 				<p>
@@ -655,7 +671,7 @@ $("#jsxz").change(function(){
 						<p class="slaveList">
 							${obj.slave_name}&nbsp;&nbsp;
 							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
-							<a href="download.do?slave_id=${obj.slave_id}" title="下载"><font color=red>下载</font></a>
+							<a href="download.do?slave_id=${obj.slave_id}" title="下载"><font color="red">下载</font></a>
 							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 						</p>
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
@@ -679,6 +695,7 @@ $("#jsxz").change(function(){
 	
 </div>
 <script language="javascript">
+	//通过建设性质来区分显示哪些字段
 	var jsxz = $("#jsxz").val();
 	if(jsxz == '' || jsxz == null || jsxz == '室分'){
 		$("#jz").css("display","none");
@@ -725,6 +742,18 @@ $("#jsxz").change(function(){
 		if(tabid == "autoform"){
 			navTab._getTabs().eq(navTab._currentIndex).attr("tabid","autoform"+module_id+doc_id);
 		}
+	}
+	
+	//如果有勘察申请，则提示勘察申请的内容
+	var show_sqkcsm = $("#show_sqkcsm");
+	if(show_sqkcsm != null && show_sqkcsm != 'undefined' && show_sqkcsm.size() == 1 && show_sqkcsm.val() != ''){
+		
+		var show_content = "<b>谈点人员已经发起谈点申请，内容如下：</b><br/>"+show_sqkcsm.val()+"<br/><b>是否现在发起四方勘察?</b>";
+		alertMsg.confirm(show_content, {			
+				okCall: function(){
+					$("#sfkca").click();
+				}
+			});
 	}
 </script>
 
