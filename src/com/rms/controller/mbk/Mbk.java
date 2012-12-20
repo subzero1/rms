@@ -663,6 +663,9 @@ public class Mbk {
 			} 
 			else if ("kcsq".equals(type)) {// 勘察申请
 				String sqkcsm = convertUtil.toString(request.getParameter("sqkcsm"));
+				if(sqkcsm.indexOf("\\n") != -1){
+					System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+				}
 				word = "勘察申请";
 				td21.setZt("勘察申请");
 				td21.setSqkcsm(sqkcsm);

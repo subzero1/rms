@@ -11,6 +11,7 @@
 </style>
 <script language="javascript">
 var change = false;
+
 $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 		change = true;
 	});
@@ -72,7 +73,7 @@ $(function(){
 		} 
 		else if (flag == "kcsq"){//勘察申请
 			var input_info = "<p id=\"_c_nums\">勘察申请说明：</p>"
-							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"6\" style=\"overflow\:auto\" onKeyUp=\"javascript:getCNum()\">${Td21_mbk.sqkcsm}</textarea></p>";
+							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"6\" style=\"overflow\:auto\" onKeyUp=\"javascript:getCNum()\"></textarea></p>";
 			alertMsg.confirm(input_info, {
 				okCall: function(){
 					var sqkcsm = $("#_sqkcsm").val();
@@ -419,7 +420,7 @@ $("#jsxz").change(function(){
 			<div class="pageFormContent">
 				<p>
 					<label>资源编号：</label>
-					<input readonly="readonly" type="text" name="Td21_mbk.ZYBH" style="width:150px;" readonly value="${Td21_mbk.zybh}"/>
+					<input readonly="readonly" type="text" name="Td21_mbk.ZYBH" style="width:150px;" value="${Td21_mbk.zybh}"/>
 				</p>
 				<p>
 					<label>资源名称：</label>
@@ -747,7 +748,6 @@ $("#jsxz").change(function(){
 	//如果有勘察申请，则提示勘察申请的内容
 	var show_sqkcsm = $("#show_sqkcsm");
 	if(show_sqkcsm != null && show_sqkcsm != 'undefined' && show_sqkcsm.size() == 1 && show_sqkcsm.val() != ''){
-		
 		var show_content = "<b>谈点人员已经发起谈点申请，内容如下：</b><br/>"+show_sqkcsm.val()+"<br/><b>是否现在发起四方勘察?</b>";
 		alertMsg.confirm(show_content, {			
 				okCall: function(){
