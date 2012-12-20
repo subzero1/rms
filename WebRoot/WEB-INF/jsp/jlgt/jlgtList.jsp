@@ -47,11 +47,10 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th orderField="title">主题</th>
-					<th style="width: 100px;" orderField="ta06.name">表单名称</th>
+					<th style="width: 100px;" orderField="module_name">表单名称</th>
 					<th style="width: 300px;" orderField="comments">名称</th>
-					<th style="width: 80px;" orderField="fbr">发布人</th>
-					<th style="width: 120px;" orderField="fbsj">发布时间</th>
+					<th style="width: 80px;" orderField="count(jlgt.id)">发布数</th>
+					<th style="width: 120px;" orderField="max(jlgt.fbsj)">最后发布时间</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,17 +58,15 @@
 				<c:forEach var="obj" items="${jlgtList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
-						<td><a href="jlgt/jlgtView.do?module_id=${obj[0].module_id }&doc_id=${obj[0].doc_id }" target="navTab" rel="jlgtView" title="交流沟通" style="color:blue">${obj[0].title }</a></td>
-						<td>${obj[1].name }</td>
-						<td>${obj[0].comments }</td>
-						<td>${obj[0].fbr }</td>
-						<td><fmt:formatDate value="${obj[0].fbsj }" pattern="yyyy-MM-dd HH:mm"/></td>
+						<td>${obj[4]}</td>
+						<td><a href="jlgt/jlgtView.do?module_id=${obj[0] }&doc_id=${obj[1] }" target="navTab" rel="jlgtView" title="交流沟通" style="color:blue">${obj[5] }</a></td>
+						<td>${obj[3]}</td>
+						<td><fmt:formatDate value="${obj[2] }" pattern="yyyy-MM-dd HH:mm"/></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>

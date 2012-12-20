@@ -150,6 +150,7 @@
 				<value>com/netsky/base/dataObjects/Te07_qa.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te08_message.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te09_jlgt.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te09_view.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b1.hbm.xml</value>
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b2.hbm.xml</value>
