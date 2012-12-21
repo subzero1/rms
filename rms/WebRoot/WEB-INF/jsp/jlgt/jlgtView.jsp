@@ -47,27 +47,26 @@ function huifu(up_id,title,bt){
 		});
 	});
 </script>
-<div id="jlgt" style="padding-left:20px;background:rgb(244,241,226)" layoutH="0">
-	<div class="bdxxDiv" style="margin: 10px;">
+<div id="jlgt" style="padding-left:20px;background:#fafafa;" layoutH="0">
+	<div class="bdxxDiv" style="margin:20px 0px 0px 0px;">
 		<c:forEach items="${bdxxList}" var="bdxx">
-			<div style="margin: 5px;">
-				<span style="width: 150px; font-size: 16px; font-weight: bolder">${bdxx['key']
+			<div style="margin:0 5px;">
+				<span style="width: 150px; font-size: 14px; font-weight: bold">${bdxx['key']
 					}：</span>
 				<span
-					style="color: rgb(120, 120, 120); font-size: 16px; font-style: italic">${bdxx['value']
+					style="color: rgb(120, 120, 120); font-size: 14px;">${bdxx['value']
 					}</span>
 			</div>
 		</c:forEach>
 	</div>
 	<div style="text-align:right;width:800px;">
-		<a style="color: blue"
+		<a style="color: #2b96e1;"
 							href="javascript:huifu('','新的发言','');">发言</a>
 	</div>
 	<div class="jlgtDiv" style="margin-bottom:10px;">
 		<c:forEach items="${yjJlgtList}" var="yjJlgt">
 			<div
-				style="border: solid rgb(217, 217, 217) 1px; background: rgb(250, 250, 250); width: 800px;">
-				<div class="left" style="float: left; background: transparent;">
+				style="border: solid rgb(217, 217, 217) 1px; background:eef7fb;); width: 800px;">				<div class="left" style="float: left; background: transparent;">
 					<div style="margin: 10px; color: rgb(255, 127, 62)">
 						${yjJlgt[1].name }
 					</div>
@@ -81,11 +80,11 @@ function huifu(up_id,title,bt){
 					</div>
 					<c:if test="${not empty ejJlgtMap[yjJlgt[0]]}">
 						<div style="float: right; margin-left: 10px;">
-							<a style="color: blue" href="#" class="toggleA">展开</a>
+							<a style="color: #2b96e1;" href="#" class="toggleA">展开</a>
 						</div>
 					</c:if>
 					<div style="float: right; margin-left: 10px;">
-						<a style="color: blue"
+						<a style="color: #2b96e1;"
 							href="javascript:huifu('${yjJlgt[0].id }','回复','回复 ${yjJlgt[1].name }');">回复</a>
 					</div>
 					<div style="float: right; color: rgb(180,180,180);font:lighter 11px;">
@@ -95,7 +94,7 @@ function huifu(up_id,title,bt){
 					<div style="margin-left: 10px;">
 						&nbsp;<c:if test="${not empty yjJlgt[2]}">附件：</c:if>
 						<c:forEach items="${yjJlgt[2]}" var="slave">
-							<a style="color: blue" href="download.do?slave_id=${slave.id }">${slave.file_name}</a>
+							<a style="color: #2b96e1;" href="download.do?slave_id=${slave.id }">${slave.file_name}</a>
 						</c:forEach>
 					</div>
 					<c:if test="${not empty ejJlgtMap[yjJlgt[0]]}">
@@ -109,7 +108,7 @@ function huifu(up_id,title,bt){
 									</div>
 									<div
 										style="float: right; margin-left: 10px; margin-right: 10px;">
-										<a style="color: blue"
+										<a style="color: #2b96e1;"
 											href="javascript:huifu('${yjJlgt[0].id }','回复','回复 ${ejJlgt[1].name }');">回复</a>
 									</div>
 									<div style="float: right;color: rgb(180,180,180);font:lighter 11px;">
@@ -119,7 +118,7 @@ function huifu(up_id,title,bt){
 									<div style="margin-left: 10px;">
 										&nbsp;<c:if test="${not empty ejJlgt[2]}">附件：</c:if>
 										<c:forEach items="${ejJlgt[2]}" var="slave">
-											<a style="color: blue"
+											<a style="color: #2b96e1;"
 												href="download.do?slave_id=${slave.id }">${slave.file_name}</a>
 										</c:forEach>
 									</div>
