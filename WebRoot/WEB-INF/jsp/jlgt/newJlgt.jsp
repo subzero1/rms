@@ -119,13 +119,12 @@ function uploadSlave(butt){
 			<input type="hidden" name="Te09_jlgt.FBR" value="${user.name}"/>
 			<input type="hidden" name="Te09_jlgt.COMMENTS" value="${param.content}"/>
 			<div class="pageFormContent">
-			<input type="text" name="Te09_jlgt.TITLE" value="${param.bt}" class="required" maxlength="50" style="width:580px;margin-bottom:5px;"/>
 			<textarea class="editor required" id="Te09_jlgt.NR" name="Te09_jlgt.NR"
-				style="width:585px;height:130px;" tools="simple" upLinkUrl="upload.do"
+				style="width:585px;height:120px;" tools="simple" upLinkUrl="upload.do"
 				upLinkExt="zip,rar,txt" upImgUrl="ajaxXhEditorUpload.do"
 				upImgExt="jpg,jpeg,gif,png" upFlashUrl="upload.do"
 				upFlashExt="swf" upMediaUrl="upload.do"upMediaExt:"avi"></textarea>
-				<div><span style="">附 件</span><input type="file" name="the_file1" id="the_file1" size="30"/>
+				<p style=""><span style="">附 件</span><input type="file" name="the_file1" id="the_file1" size="30"/>
 					<input type="hidden" name="Te01_slave.ID" value=""/>
 					<input type="hidden" name="Te01_slave.MODULE_ID" value="80"/>
 					<input type="hidden" name="Te01_slave.USER_ID" value="${user.id}"/>
@@ -134,23 +133,12 @@ function uploadSlave(butt){
 					<input type="hidden" name="Te01_slave.FILE_NAME" value="1"/>
 					<input type="hidden" name="Te01_slave.EXT_NAME" value="1"/>
 					<input type="hidden" name="Te01_slave.FTP_URL" value="1"/>
-					<input type="hidden" name="Te01_slave.SLAVE_TYPE" value="其他附件" /></div>
+					<input type="hidden" name="Te01_slave.SLAVE_TYPE" value="其他附件" /></p>
 			</div>
-			<div style="width:100%;">
-				<div class="left" style="float:left;margin-left:10px;">
-				<div style="margin-bottom:5px;font-size:16px;">短信提醒</div>
-				<div style="">默认选择：</div>
-				<c:forEach items="${mrtzrList}" var="tzr">
-					<span style="margin-right:10px;"><input type="checkbox" checked="checked" class="mrtzr" tzrname="${tzr[0] }" value="${tzr[1] }"/>${tzr[0] }</span>
-				</c:forEach>
-				<div style="margin-top:15px;">通知人姓名：</div>
-				<p>
-				<input type="text" name="Te09_jlgt.TZR_NAMES" id="reader_name" style="width:350px;" value="${reader_name }" readonly="readonly"/>
-				<img src="Images/trash.gif" onclick="javascript:del();" style="cursor:pointer" title="清空内容" />
-				</p>
-				</div>
-				<div class="right" style="position:relative;top:-30px;;margin-left:380px;width:200px;text-align:right;padding:5px; 5px;">
-					 <select name="area" id="area" style="width:80px;">
+			<div style="width:98%;margin:0px 5px;">
+				<h3>短信提醒</h3>				
+				<div style="float:left;width:240px;">
+					 <select name="area" id="area" style="width:97px;">
 				    	<c:forEach var="area" items="${areaList}">
 							<c:choose>
 								<c:when test="${user.area_name == area.name}">
@@ -163,7 +151,7 @@ function uploadSlave(butt){
 						</c:forEach>
 				    </select>
 				    
-				    <select name="dept" id="dept" style="width:115px;">
+				    <select name="dept" id="dept" style="width:135px;">
 				    	<c:forEach var="dept" items="${user_dept_list}">
 							<c:choose>
 								<c:when test="${user_dept_id == dept[0]}">
@@ -175,12 +163,24 @@ function uploadSlave(butt){
 							</c:choose>
 						</c:forEach>
 				    </select>
-				    <select id="user_list" name="user_list" multiple="1" type="select-multiple" style="width:198px;height:120px;" ondblclick="javascript:selectToUser();">
+				    <select id="user_list" name="user_list" multiple="1" type="select-multiple" style="width:238px;height:110px;margin:2px 0;" ondblclick="javascript:selectToUser();">
 					<c:forEach var="user" items="${user_list}">
 						<option value="${user.mobile_tel }">${user.name }</option>
 					</c:forEach>
 					</select>
-			</div>
+				</div>
+
+				<div style="float:left;margin:0px 0px 0px 5px;">
+					<div style="">默认选择：</div>
+					<c:forEach items="${mrtzrList}" var="tzr">
+						<span style="margin-right:10px;"><input type="checkbox" checked="checked" class="mrtzr" tzrname="${tzr[0] }" value="${tzr[1] }"/>${tzr[0] }</span>
+					</c:forEach>
+					<div style="margin-top:15px;color:#2b96e1;font-weight:bold;">已选择通知人：</div>
+					<p>
+					<input type="text" name="Te09_jlgt.TZR_NAMES" id="reader_name" style="width:350px;border:0px;background:#fff;color:#2b96e1;" value="${reader_name }" readonly="readonly"/>
+					<img src="Images/trash.gif" onclick="javascript:del();" style="cursor:pointer" title="清空内容" />
+					</p>
+				</div>
 			</div>
 			<div class="formBar">
 				<ul>
