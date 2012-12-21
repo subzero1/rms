@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.base.Tc11_khpzmx"  table="Tc11_khpzmx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tc11_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="kh_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kh_id"
+  />
+
+  <property
+  name="khx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khx"
+  />
+
+  <property
+  name="pgnr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="pgnr"
+  />
+
+  <property
+  name="zgfz"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zgfz"
+  />
+
+  <property
+  name="pgbf"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="pgbf"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

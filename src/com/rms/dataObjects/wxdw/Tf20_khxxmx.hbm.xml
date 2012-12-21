@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.wxdw.Tf20_khxxmx"  table="Tf20_khxxmx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf20_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="kh_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kh_id"
+  />
+
+  <property
+  name="khx_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="khx_id"
+  />
+
+  <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
+
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="fz"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fz"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
