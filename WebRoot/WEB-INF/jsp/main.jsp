@@ -135,6 +135,44 @@ function filterSpace(obj,type){
 		}
 	}
 }
+function setCookie(name,value)
+{
+	var Days = 30;
+	var exp = new Date(); 
+	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
+function searchList(buttObj,submitCall, callParam){
+	var queryStr=$(buttObj).val(); 
+	var module_id=$("#search_id").val();
+	setCookie("m_id",module_id);
+	if(event.keyCode==13&&$.trim(queryStr)==""){
+		$(buttObj).val("输入工程名称或编号 按Enter键查询");
+	} 
+	if(event.keyCode==13&&$.trim(queryStr)!=""){
+		var url="search/searchListX.do?module_id="+module_id+"&navtab=navTab&queryStr="+queryStr;
+	 	searchOrExcelExport(buttObj, url, submitCall, callParam);
+	 } 
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		var m_id=getCookie("m_id");
+		var $search_id=$("#search_id"); 
+		$search_id.val(m_id); 
+		$("input[name='queryStr']").click(function(){
+			if($.trim($(this).val())=="输入工程名称或编号 按Enter键查询")
+			$(this).val(""); 
+		});
+	});
+	//读取cookies
+function getCookie(name)
+{
+	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	if(arr=document.cookie.match(reg)) return unescape(arr[2]);
+	else return null;
+}
 </script>
 	</head>
 
@@ -153,15 +191,16 @@ function filterSpace(obj,type){
 					<li class="navBtn"><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改"><img src="Images/change_key.png"/></a></li>
 				</ul>
 				
-		       <form name="pSearchForm" method="post" action="">
+		       <form name="pSearchForm" method="post" action="" >
 		   		  <div id="searchbar">
-		   		  	<select class="search-sel">
-		   		  	 <option value ="volvo">Volvo</option>
-					  <option value ="saab">Saab</option>
-					  <option value="opel">Opel</option>
-					  <option value="audi">Audi</option>		   		  	
+		   		  	<select class="search-sel" name="search_id" id="search_id">
+		   		  	 <!-- <option value ="80" >需求</option> -->
+					  <option value ="90" >目标库</option>
+					  <option value="101">项目</option>
+					  <option value="102">工程</option>		   		  	
 		   		  	</select>
-			        <input type="text" name="" class="search-input" style="border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:filterSpace(this,1);return searchProject(1);"/>
+		   		  	<input type="text" style="display:none"/>
+			        <input type="text" name="queryStr" class="search-input" style="border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:searchList(this,  dialogToNavTabSearch, '${param.navtab }|fields_select');" />
 			      </div>
 		       </form>
        				
@@ -204,7 +243,7 @@ function filterSpace(obj,type){
 							</li>
 							
 							<c:forEach var="menu" items="${menuList}">
-								<li>
+								<li> 
 									<a href="#">${menu.name}</a>
 									<ul>
 										<c:forEach var="nodeElement" items="${menuListMap[menu.id]}">
@@ -214,6 +253,7 @@ function filterSpace(obj,type){
 											</li>
 										</c:forEach>
 									</ul>
+								</li>
 							</c:forEach>
 							
 							<li>
