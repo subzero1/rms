@@ -58,7 +58,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-jdk14-1.5.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring.jar" sourcepath="D:/java doc/spring-framework-3.1.2.RELEASE-with-docs.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc.jar" sourcepath="D:/java doc/spring-framework-3.1.2.RELEASE-with-docs.zip"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc.jar" sourcepath="E:/java doc/spring-framework-3.1.2.RELEASE-with-docs.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/sqljdbc.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/toplink-essentials.jar"/>

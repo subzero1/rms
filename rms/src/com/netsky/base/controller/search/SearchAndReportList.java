@@ -3,6 +3,7 @@ package com.netsky.base.controller.search;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1073,7 +1074,9 @@ public class SearchAndReportList {
 		String ids[] = request.getParameterValues("ids");
 		String id = "";
 		if (ids == null || ids.length == 0) {
-			throw new Exception("未找到查询关键字");
+			ids=(String[]) request.getAttribute("ids");
+			if(ids == null || ids.length == 0)
+				throw new Exception("未找到查询关键字");
 		}
 		for (int i = 0; i < ids.length; i++) {
 			id += "," + ids[i];
@@ -1888,5 +1891,176 @@ public class SearchAndReportList {
 		wcf_Text.setVerticalAlignment(VerticalAlignment.CENTRE);
 		wcf_Text.setBorder(Border.ALL, BorderLineStyle.THIN);
 		return wcf_Text;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws UnsupportedEncodingException ModelAndView
+	 */
+	@RequestMapping("/search/searchListX.do")
+	public ModelAndView searchListX(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException{
+		long x=new Date().getTime();
+		request.setCharacterEncoding("utf-8");
+		String[] columns = request.getParameterValues("fields_select");
+		StringBuffer searchStr = new StringBuffer();
+		ResultObject ro;
+		QueryBuilder queryBuilder;
+		List<Ta08_reportfield> fieldList = null;
+		Long flow_id;
+		Long module_id;
+		String module_name = "";
+		
+		String queryStr=convertUtil.toString(new String(request.getParameter("queryStr").getBytes("iso-8859-1"),"gbk"),"");
+		/**
+		 * 每页记录数，默认20行
+		 */
+		int pageRowSize = 20;
+		int totalPages = 1;
+		int totalRows = 0;
+		Integer page = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		/**
+		 * 处理分页数据
+		 */
+
+		if (request.getParameter("numPerPage") != null && request.getParameter("numPerPage").length() > 0) {
+			pageRowSize = Integer.parseInt(request.getParameter("numPerPage"));
+		}
+
+		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
+			module_id = Long.valueOf(request.getParameter("module_id"));
+		} else {
+			module_id = new Long(100);
+		}
+
+		request.setAttribute("module_name", module_name);
+		request.setAttribute("module_id", module_id);
+
+		List<String[]> searchField = new ArrayList<String[]>();
+
+		
+		
+		
+		List<List<Td_Struct>> resultList = null;
+		/**
+		if (request.getParameterValues("ids") == null || request.getParameterValues("ids").length == 0) {
+			request.setAttribute("pageRowSize", pageRowSize);
+			request.setAttribute("totalRows", totalRows);
+			request.setAttribute("totalPages", totalPages);
+			request.setAttribute("page", page);
+			return new ModelAndView("/WEB-INF/jsp/search/searchList.jsp");
+		}
+		*/
+		if (request.getParameter("flow_id") != null && request.getParameter("flow_id").length() > 0) {
+			try {
+				flow_id = new Long(request.getParameter("flow_id"));
+			} catch (NumberFormatException e) {
+				return exceptionService.exceptionControl("searchList", "错误的flow_id格式", e);
+			}
+		} else {
+			flow_id = null;
+		}
+
+		try {
+			/**
+			 * 获取默认查询字段
+			 */
+			queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
+			queryBuilder.eq("showflag", new Long(1));
+			queryBuilder.eq("module_id", module_id);
+			queryBuilder.addOrderBy(Order.asc("ord"));
+			fieldList = (List<Ta08_reportfield>) queryService.searchList(queryBuilder);
+			
+			String ids[]=new String [fieldList.size()];
+			Ta08_reportfield report=null;
+			for(int k=0;k<ids.length;k++){
+				ids[k]=String.valueOf(fieldList.get(k).getId());
+			}
+			request.setAttribute("ids", ids);
+			
+			
+			String HSqlWhere = this.makeSearch(request, searchStr, searchField);
+			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(ids[0]));
+			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			String HSqlFrom = " from " + tableName + " " + tableName;
+			String HSqlSelect = "select " + tableName;
+			
+			String HqlStr=HSqlSelect+HSqlWhere+HSqlFrom;
+			if(!queryStr.equals("")){
+			if(module_id==90){//目标库
+				HqlStr+=" where "+tableName+".zybh like '%"+queryStr+"%' or "+tableName+".zymc like '%"+queryStr+"%'" ;
+			}else if(module_id==101){//项目信息查询
+				HqlStr+=" where "+tableName+".xmbh like '%"+queryStr+"%' or "+tableName+".xmmc like '%"+queryStr+"%'" ;
+			}else if(module_id==102){//工程信息查询
+				HqlStr+=" where "+tableName+".gcbh like '%"+queryStr+"%' or "+tableName+".gcmc like '%"+queryStr+"%'" ;
+			}
+			}
+			ro = queryService.searchByPage(HqlStr, page, pageRowSize);
+			totalRows = ro.getTotalRows();
+			totalPages = ro.getTotalPages();
+			request.setAttribute("totalRows", totalRows);
+			request.setAttribute("totalPages", totalPages);
+			request.setAttribute("page", page);
+			request.setAttribute("pageRowSize", pageRowSize);
+			resultList = new ArrayList<List<Td_Struct>>();
+			while (ro.next()) {
+				List<Td_Struct> rowList = new ArrayList<Td_Struct>();
+				Object o = ro.get(tableName);
+				Td_Struct field = new Td_Struct();
+				field.value = PropertyInject.getProperty(o, "id") + "";
+
+				rowList.add(field);
+				for (int i = 0; i < fieldList.size(); i++) {
+					ta08 = fieldList.get(i);
+					Object result = null;
+					result = PropertyInject.getProperty(o, ta08.getName());
+					field = new Td_Struct();
+					if (result instanceof Double) {
+						field.value = NumberFormatUtil.roundToString((Double) result);
+					} else if (result instanceof java.util.Date) {
+						field.value = DateFormatUtil.FormatDate((java.util.Date) result);
+					} else {
+						if (result != null)
+							field.value = StringFormatUtil.format(result.toString());
+						else
+							field.value = "";
+					}
+					field.align = StringFormatUtil.format(ta08.getAlign());
+					field.width = ta08.getWidth() + "";
+					rowList.add(field);
+				}
+				resultList.add(rowList);
+			}
+		} catch (Exception ex) {
+			return exceptionService.exceptionControl("SearchList", "查询列表错误", ex);
+		}
+
+		/**
+		 * 处理表格宽度
+		 */
+		Long tablewidth = new Long(0L);
+		for (int i = 0; i < fieldList.size(); i++) {
+			Ta08_reportfield ta08 = (Ta08_reportfield) fieldList.get(i);
+			tablewidth += ta08.getWidth();
+		}
+
+		/**
+		 * 显示流程和表单图标单元格默认70;
+		 */
+		tablewidth += 70;
+		/**
+		 * 设置返回对象
+		 */
+		request.setAttribute("fields_select", columns);
+		request.setAttribute("searchField", searchField);
+		request.setAttribute("total", ro.getLength());
+		request.setAttribute("searchStr", searchStr.toString());
+		request.setAttribute("fieldList", fieldList);
+		request.setAttribute("tablewidth", tablewidth);
+		request.setAttribute("resultList", resultList);
+		return new ModelAndView("/WEB-INF/jsp/search/searchList.jsp");
+	
 	}
 }
