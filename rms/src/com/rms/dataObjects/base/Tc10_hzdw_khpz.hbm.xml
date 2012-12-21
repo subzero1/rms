@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.base.Tc10_hzdw_khpz"  table="Tc10_hzdw_khpz">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tc10_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mc"
+  />
+
+  <property
+  name="jgts"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jgts"
+  />
+
+  <property
+  name="xckhsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="xckhsj"
+  />
+
+  <property
+  name="zhkhsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="zhkhsj"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="userflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="userflag"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
