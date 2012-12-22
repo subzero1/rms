@@ -10,7 +10,7 @@
 			<input type="hidden" name="WXDW_ID" value="${param.wxdw_id}" />
 			<div class="pageFormContent" layoutH="53">
 				<div style="width:200px;height:130px;float:right;text-align:center">
-					<div style="width:100px;height:120px;border:dotted 2px black;">
+					<div style="width:100px;height:120px;border:dotted 2px black;"><br><br>照<br><br><br>片
 					</div>
 				</div>
 				<p>
