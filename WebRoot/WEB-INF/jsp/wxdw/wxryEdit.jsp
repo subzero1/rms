@@ -9,7 +9,10 @@
 			<input type="hidden" name="ID" value="${wxry.id}" />
 			<input type="hidden" name="WXDW_ID" value="${param.wxdw_id}" />
 			<div class="pageFormContent" layoutH="53">
-				
+				<div style="width:200px;height:130px;float:right;text-align:center">
+					<div style="width:100px;height:120px;border:dotted 2px black;">
+					</div>
+				</div>
 				<p>
 					<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
 					<input type="text" name="NAME" style="width:120px;" value="${wxry.name }" class="required" />
@@ -34,7 +37,7 @@
 				</p>
 				<p>
 					<label>身份证号：</label>
-					<input  type="text" name="SFZ" style="width:150px;" value="${wxry.sfz}" />
+					<input  type="text" name="SFZ" style="width:330px;" value="${wxry.sfz}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
