@@ -6,7 +6,7 @@
 
 		<div class="panelBar">
 			<ul class="toolBar">
-				<c:if test="${not empty param.wxdw_id }">
+				<c:if test="${not empty param.wxdw_id && (empty param.role || param.role != 'wxdw')}">
 					<li><a class="add" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }" target="dialog" width="500" height="330" rel="wxdwUser" title="合作单位用户配置"><span>添加</span></a></li>
 					<li class="line">line</li>
 					<li><a class="edit" href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id={user_id}" target="dialog" width="500" height="330" rel="wxdwUser" title="合作单位用户配置"><span>修改</span></a></li>
@@ -31,8 +31,8 @@
 			<tbody>
 				<c:forEach items="${wxdwUserList}" var="wxdwUser">
 					<tr target="user_id" rel="${wxdwUser.id}">
-						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}" target="dialog" width="500" height="260" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.login_id }</a></td>
-						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}" target="dialog" width="500" height="260" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.name }</a></td>
+						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}&role=${param.role }" target="dialog" width="500" height="260" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.login_id }</a></td>
+						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}&role=${param.role }" target="dialog" width="500" height="260" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.name }</a></td>
 						<td>${wxdwUser.mobile_tel }</td>
 						<td>${wxdwUser.sex }</td>
 						<td>${wxdwUser.email }</td>

@@ -69,7 +69,7 @@
 	<tr>
 		<td class="preButt">
 			<input type="hidden" name="id" value=""/>
-			<c:if test="${not empty param.wxdw_id }">
+			<c:if test="${not empty param.wxdw_id}">
 			<a class="save" href="javascript:saveSgd();" ><span>创建</span></a>
 			</c:if>
 		</td>

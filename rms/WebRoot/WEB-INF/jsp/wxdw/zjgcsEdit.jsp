@@ -48,7 +48,7 @@ function saveQyzyConfig2(){
 
 	<div class="panelBar">
 		<ul class="toolBar">
-		<c:if test="${not empty param.wxdw_id }">
+		<c:if test="${not empty param.wxdw_id && (empty param.role || param.role != 'wxdw')}">
 			<li><a class="save" href="javascript:saveQyzyConfig2();" ><span>保 存</span></a></li>
 			<li class="line">line</li>
 			</c:if>

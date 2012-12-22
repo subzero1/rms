@@ -199,8 +199,8 @@ function getCookie(name)
 					  <option value="101">项目</option>
 					  <option value="102">工程</option>		   		  	
 		   		  	</select>
-		   		  	<input type="text" style="display:none"/>
 			        <input type="text" name="queryStr" class="search-input" style="border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:searchList(this,  dialogToNavTabSearch, '${param.navtab }|fields_select');" />
+			        <input type="text" style="display:none"/>
 			      </div>
 		       </form>
        				

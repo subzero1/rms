@@ -207,10 +207,23 @@ public class Wxdw {
 	public ModelAndView wxdwEditX(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		ModelMap modelMap=new ModelMap();
 		Long id=convertUtil.toLong(request.getParameter("id"));
+		String role = "";
+		
+		if(id == -1){
+			Ta03_user ta03 = (Ta03_user)session.getAttribute("user");
+			if(ta03 != null){
+				Long user_id = ta03.getId();
+				ResultObject ro = queryService.search("select wxdw_id from Tf04_wxdw_user where user_id = "+user_id);
+				if(ro.next()){
+					id = convertUtil.toLong(ro.get("wxdw_id"));
+				}
+			}
+			role = "wxdw";
+		}
 		if(id!=-1L){
 			modelMap.put("Tf01_wxdw", queryService.searchById(Tf01_wxdw.class, id));
 		}
-		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwEditX.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxdwEditX.jsp?role="+role, modelMap);
 	}
 	
 	

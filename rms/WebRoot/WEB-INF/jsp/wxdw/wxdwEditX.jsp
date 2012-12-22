@@ -80,11 +80,13 @@ $(function(){
 				</p>
 		</div>
 		<div class="formBar">
+		 <c:if test="${empty param.role || param.role != 'wxdw'}">
 			<ul>
 				<li>
 					<div class="buttonActive"><div class="buttonContent"><button type="button" id="submitbutton">保 存</button></div></div>
 				</li>
 			</ul>
+		 </c:if>
 		</div>
 	</form>
 </div>
@@ -117,25 +119,25 @@ $(function(){
 		</div>
 	</div>
 	<div id="wxdwpz_disp" class="tabsContent">
-		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}">
+		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="qyzy_tab" class="loadFileArea" loadfile="wxdw/qyZyEdit.do?lb=qyzy&wxdw_id=${Tf01_wxdw.id}">
+		<div id="qyzy_tab" class="loadFileArea" loadfile="wxdw/qyZyEdit.do?lb=qyzy&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="fezb_tab" class="loadFileArea" loadfile="wxdw/fezbEdit.do?lb=fezb&wxdw_id=${Tf01_wxdw.id}">
+		<div id="fezb_tab" class="loadFileArea" loadfile="wxdw/fezbEdit.do?lb=fezb&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="zdgcs_tab" class="loadFileArea" loadfile="wxdw/zjgcsEdit.do?lb=zdgcs&wxdw_id=${Tf01_wxdw.id}">
+		<div id="zdgcs_tab" class="loadFileArea" loadfile="wxdw/zjgcsEdit.do?lb=zdgcs&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="gljye_tab" class="loadFileArea" loadfile="wxdw/gljyeEdit.do?lb=gljye&wxdw_id=${Tf01_wxdw.id}">
+		<div id="gljye_tab" class="loadFileArea" loadfile="wxdw/gljyeEdit.do?lb=gljye&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do?lb=sgd&wxdw_id=${Tf01_wxdw.id}">
+		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do?lb=sgd&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}">
+		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
 	</div>

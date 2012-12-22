@@ -62,12 +62,14 @@
 				</p>
 			</div>
 			<div class="formBar">
+			<c:if test="${empty param.role || param.role != 'wxdw'}">
 				<ul>
 					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" type="submit">保存设置</button></div></div></li>
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>
 				</ul>
+			</c:if>
 			</div>
 		</form>
 		</div>
