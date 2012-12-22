@@ -122,6 +122,9 @@ $(function(){
 				<li>
 					<a href="javascript:void(0)"><span>施工队</span> </a>
 				</li>
+				<li>
+					<a href="javascript:void(0)"><span>外协人员</span> </a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -142,6 +145,9 @@ $(function(){
 
 		</div>
 		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do?lb=sgd&wxdw_id=${Tf01_wxdw.id}">
+
+		</div>
+		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}">
 
 		</div>
 	</div>

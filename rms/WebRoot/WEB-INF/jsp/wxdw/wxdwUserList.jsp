@@ -31,8 +31,8 @@
 			<tbody>
 				<c:forEach items="${wxdwUserList}" var="wxdwUser">
 					<tr target="user_id" rel="${wxdwUser.id}">
-						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}&role=${param.role }" target="dialog" width="500" height="260" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.login_id }</a></td>
-						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}&role=${param.role }" target="dialog" width="500" height="260" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.name }</a></td>
+						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}&role=${param.role }" target="dialog" width="520" height="300" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.login_id }</a></td>
+						<td><a href="wxdw/wxdwUserEdit.do?wxdw_id=${param.wxdw_id }&id=${wxdwUser.id}&role=${param.role }" target="dialog" width="520" height="300" rel="wxdwUser" title="合作单位用户配置">${wxdwUser.name }</a></td>
 						<td>${wxdwUser.mobile_tel }</td>
 						<td>${wxdwUser.sex }</td>
 						<td>${wxdwUser.email }</td>
