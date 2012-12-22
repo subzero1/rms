@@ -42,8 +42,7 @@
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection"
-		value="${param.orderDirection}" />
+	<input type="hidden" name="orderDirection"	value="${param.orderDirection}" />
 		<input type="hidden" name="wxry_id" value="${param.wxdw_id}"/>
 </form>
 <form></form>
@@ -77,7 +76,7 @@
 		<c:forEach items="${wxryList}" var="wxry">
 			<tr target="wxry_id" rel="${wxry.id}">
 				<td>
-					<a href="wxdw/wxryEdit.do?wxry_id=${wxry.id}"
+					<a href="wxdw/wxryEdit.do?wxry_id=${wxry.id}&wxdw_id=${param.wxdw_id}"
 						target="dialog" width="500" height="350" rel="wxry"
 						title="外协人员信息">${wxry.name }</a>
 				</td>
