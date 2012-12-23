@@ -102,9 +102,11 @@ public class Login {
 			hsql.append("from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01 "); 
 			hsql.append("where ta03.id = tf04.user_id "); 
 			hsql.append("and tf04.wxdw_id = tf01.id ");
-			hsql.append("and ta03.login_id = '");
+			hsql.append("and (ta03.login_id = '");
 			hsql.append(login_id);
-			hsql.append("'");
+			hsql.append("' or ta03.name = '");
+			hsql.append(login_id);
+			hsql.append("')");
 			tmpList = queryService.searchList(hsql.toString());
 			if(tmpList != null && tmpList.size() > 0){
 				user.setDept_name((String)tmpList.get(0));
@@ -141,7 +143,6 @@ public class Login {
 		tz03.setLogin_ip(request.getRemoteAddr());
 		String sys = request.getHeader("User-Agent");
 		String systeminfo = "";
-		System.out.print(sys+"**************************");
 		if (sys.split(";")[1].equals(" MSIE 8.0")) {
 			systeminfo += "IE 8.0 ;";
 		} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
