@@ -97,22 +97,33 @@ public class Gcgl {
 		// 获取结果集
 		List<Td01_xmxx> xmxxList = new ArrayList<Td01_xmxx>();
 		String limit = "";
+		Long node_id = -1L;
 		while (ro.next()) {	
 			Td01_xmxx td01 = (Td01_xmxx) ro.get("xmxx");
 			
 			if("".equals(limit)){
-				if(user_dept.equals(td01.getSgdw()))
+				if(user_dept.equals(td01.getSgdw())){
 					limit = "sgdw";
-				else if(user_dept.equals(td01.getJldw()))
+					node_id = 10103L;
+				}
+				else if(user_dept.equals(td01.getJldw())){
 					limit = "jldw";
-				else if(user_dept.equals(td01.getSjdw()))
+					node_id = 10104L;
+				}
+				else if(user_dept.equals(td01.getSjdw())){
 					limit = "sjdw";
-				else
+					node_id = 10102L;
+				}
+				else{
 					limit = "xmgly";
+					node_id = 10101L;
+				}
 			}
 			
 			xmxxList.add(td01);
 		}
+		
+		modelMap.put("node_id", node_id);
 		modelMap.put("limit", limit);
 		modelMap.put("xmxxList", xmxxList);
 		
@@ -190,21 +201,31 @@ public class Gcgl {
 		// 获取结果集
 		List<Td00_gcxx> gcxxList = new ArrayList<Td00_gcxx>();
 		String limit="";
+		Long node_id = -1L;
 		while (ro.next()) {
 			Td00_gcxx td00 = (Td00_gcxx) ro.get("gcxx");
 			if("".equals(limit)){
-				if(user_dept.equals(td00.getSgdw()))
+				if(user_dept.equals(td00.getSgdw())){
 					limit = "sgdw";
-				else if(user_dept.equals(td00.getJldw()))
+					node_id = 10203L;
+				}
+				else if(user_dept.equals(td00.getJldw())){
 					limit = "jldw";
-				else if(user_dept.equals(td00.getSjdw()))
+					node_id = 10204L;
+				}
+				else if(user_dept.equals(td00.getSjdw())){
 					limit = "sjdw";
-				else
+					node_id = 10202L;
+				}
+				else{
 					limit = "xmgly";
+					node_id = 10201L;
+				}
 			}
 			
 			gcxxList.add(td00);
 		}
+		modelMap.put("node_id", node_id);
 		modelMap.put("limit", limit);
 		modelMap.put("gcxxList", gcxxList);
 		
