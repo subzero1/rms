@@ -48,7 +48,7 @@
 			<li class="line">line</li>
 			 </c:forEach>
 			 	<li>
-					<a class="edit"	href="dispath.do?url=form/jlfk.jsp?project_id=${param.project_id }&module_id=${param.module_id }&user_id=${param.user_id }&doc_id=${param.doc_id }" rel="jlfk" title="交流反馈" target="dialog"><span>反 馈</span></a>
+					<a class="edit"	href="jlgt/jlgtView.do?module_id=${param.module_id }&doc_id=${param.doc_id}"  title="交流反馈" target="navTab"><span>反 馈</span></a>
 			 	</li>
 			<li class="line">line</li>
 		 	<li class="f-right">
@@ -122,8 +122,9 @@
 					<c:forEach var="obj" items="${uploadslave}">
 						<p class="slaveList">
 							<a href="download.do?slave_id=${obj.slave_id}">${obj.slave_name}</a>
-							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览">在线预览</a>
-							<c:if test="${not empty obj.slave_remark}"><span style="color:#888">&nbsp;(${obj.slave_remark})</span></c:if>
+							<c:if test="${fn:contains(obj.slave_name, 'xls')}">
+							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览"><b>在线预览</b></a>
+							</c:if>
 							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 						</p>
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
