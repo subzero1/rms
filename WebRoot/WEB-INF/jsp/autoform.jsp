@@ -122,7 +122,7 @@
 					<c:forEach var="obj" items="${uploadslave}">
 						<p class="slaveList">
 							<a href="download.do?slave_id=${obj.slave_id}">${obj.slave_name}</a>
-							<c:if test="${fn:contains(obj.slave_name, 'xls')}">
+							<c:if test="${fn:contains(obj.slave_name, 'xls') || fn:contains(obj.slave_name, 'doc') || fn:contains(obj.slave_name, 'pdf')}">
 							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览"><b>在线预览</b></a>
 							</c:if>
 							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
