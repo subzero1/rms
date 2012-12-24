@@ -191,7 +191,16 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label><a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：</label>
+	<label>
+		<c:choose>
+			<c:when test="${param.node_id == 10101}">
+				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：
+			</c:when>
+			<c:otherwise>
+				施工单位：
+			</c:otherwise>
+		</c:choose>
+	</label>
 	<input type="text"  name="Td01_xmxx.SGDW" id="sgdwOrg.SGDW" value="${td01_xmxx.sgdw}" style="width:407px;" readonly="readonly"/>
 	<input type="hidden"  name="Td01_xmxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${td01_xmxx.sdpgyy}" style="width:150px;"/>
 </p>

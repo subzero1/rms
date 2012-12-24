@@ -4,7 +4,7 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
 <form id="pagerForm" method="post" action="form/xmxxList.do">
-	<input type="hidden" name="keyword" value="${keyword}">
+	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
@@ -19,7 +19,7 @@
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
+						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
