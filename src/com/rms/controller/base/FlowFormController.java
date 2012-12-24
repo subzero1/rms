@@ -298,13 +298,20 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 				/*
 				 * 添加 “保存”按钮
 				 */
+				List new_btnList = new LinkedList();
 				Button btn = new Button("保 存");
 				btn.comment = "保存当前文档";
 				btn.picUri = "save";
 				btn.url = "javascript:docSave();";
-				
-				List new_btnList = new LinkedList();
 				new_btnList.add(btn);
+				
+				String urlParas = MapUtil.getUrl(paraMap, new String[] { "project_id", "doc_id", "module_id", "node_id","opernode_id","user_id"});
+				btn = new Button("附 件");
+				btn.comment = "上传附件";
+				btn.picUri = "attach";
+				btn.url = "javascript:docSlave('slave.do?" +urlParas +"');";
+				new_btnList.add(btn);
+				
 				Iterator a = buttonList.iterator();
 				while(a.hasNext()){
 					Button btn2 = (Button)a.next();
