@@ -60,7 +60,7 @@
 						<td style="text-align:center;">
 						
 						</td>
-						<td><a href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id2=${node_id }" target="navTab" rel="xmxx" title="项目信息单">${obj.xmmc }</a></td>
+						<td><a href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="xmxx" title="项目信息单">${obj.xmmc }</a></td>
 						<td>${obj.xmbh }&nbsp;</td>
 						<td>${obj.ssdq }</td>
 						<td>${obj.gclb }</td>

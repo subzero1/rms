@@ -1,6 +1,7 @@
 package com.rms.controller.base;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Vector;
@@ -289,6 +290,33 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 			 */
 			List buttonList = flowServiceImpl.listButtons(paraMap);
 			request.setAttribute("buttons", buttonList);
+			
+			/**
+			 * 只针对RMS系统有效，start-------------
+			 */
+			if(module_id == 101 || module_id == 102){
+				/*
+				 * 添加 “保存”按钮
+				 */
+				Button btn = new Button("保 存");
+				btn.comment = "保存当前文档";
+				btn.picUri = "save";
+				btn.url = "javascript:docSave();";
+				
+				List new_btnList = new LinkedList();
+				new_btnList.add(btn);
+				Iterator a = buttonList.iterator();
+				while(a.hasNext()){
+					Button btn2 = (Button)a.next();
+					new_btnList.add(btn2);
+				}
+				buttonList = new_btnList;
+				
+				request.setAttribute("buttons", buttonList);
+			}
+			/**
+			 * 只针对RMS系统有效，end-------------
+			 */
 			
 			/**
 			 * 判断是否有保存按钮(按钮列表第一个是否为'保存')
