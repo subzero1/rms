@@ -102,8 +102,12 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>工程类别：</label>
+	<label>项目类别：</label>
 	<netsky:htmlSelect name="Td01_xmxx.GCLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.gclb}" htmlClass="td-select"/>
+</p>
+<p>
+	<label>预算类型：</label>
+	<netsky:htmlSelect name="Td01_xmxx.YSLX" objectForOption="yslxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.yslx}" htmlClass="td-select"/>
 </p>
 <div class="divider"></div>
 <p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
@@ -255,7 +259,7 @@ $(function(){
 <div style="height:0px;"></div>
 <p>
 	<label>项目说明：</label>
-	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.GCSM">${Td01_xmxx.xmsm}</textarea>
+	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.XMSM">${Td01_xmxx.xmsm}</textarea>
 </p>
 
 <div class="divider"></div>
@@ -359,23 +363,6 @@ $(function(){
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJL_CLF" value="" style="width:120px;"/>
-</p>
-<div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">设备费</p>
-<p>
-	<input type="text"  name="Td01_xmxx.SS_SBF" value="<fmt:formatNumber value="${Td01_xmxx.ss_sbf}" pattern="##0.00"/>" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.CS_SBF" value="<fmt:formatNumber value="${Td01_xmxx.cs_sbf}" pattern="##0.00"/>" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.SD_SBF" value="<fmt:formatNumber value="${Td01_xmxx.sd_sbf}" pattern="##0.00"/>" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.HJE_SBF" value="" style="width:120px;"/>
-</p>
-<p>
-	<input type="text"  name="Td01_xmxx.HJL_SBF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">机械仪表费</p>
