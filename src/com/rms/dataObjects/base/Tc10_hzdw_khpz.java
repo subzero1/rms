@@ -124,18 +124,18 @@ public class Tc10_hzdw_khpz implements Serializable{
  /**
  * 1 有效 0 无效
  */
- private Long userflag;
+ private Long useflag;
 
  /**
- * @hibernate.property column="userflag"
- * @return Returns the userflag.
+ * @hibernate.property column="useflag"
+ * @return Returns the useflag.
  */
- public Long getUserflag() {
-    return userflag;
+ public Long getUseflag() {
+    return useflag;
  }
 
- public void setUserflag(Long userflag) {
-    this.userflag = userflag;
+ public void setUseflag(Long useflag) {
+    this.useflag = useflag;
   }
 
 
