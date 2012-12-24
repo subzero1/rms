@@ -26,6 +26,7 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.rms.dataObjects.form.Td01_xmxx;
+import com.netsky.base.dataObjects.Ta01_dept;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
@@ -224,6 +225,47 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				request.setAttribute("sjdwList", sjdwList);
 				request.setAttribute("jldwList", jldwList);	
 				
+				// 获取预算类型：Tc01_property type="预算类型"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "预算类型");
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc01_property> yslxList = new LinkedList<Tc01_property>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						yslxList.add((Tc01_property) itr.next());
+					}
+					request.setAttribute("yslxList", yslxList);
+				}
+				
+				//获取需求部门
+				queryBuilder = new HibernateQueryBuilder(Ta01_dept.class);
+				queryBuilder.notEq("name", "合作单位");
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Ta01_dept> deptList = new LinkedList<Ta01_dept>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						deptList.add((Ta01_dept) itr.next());
+					}
+					request.setAttribute("deptList", deptList);
+				}
+				
+				//获取项目状态
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "工程状态");
+				queryBuilder.addOrderBy(Order.asc("name"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						xmztList.add((Tc01_property) itr.next());
+					}
+					request.setAttribute("xmztList", xmztList);
+				}
 			}
 			
 			// 获取变更类别、变更种类
