@@ -250,7 +250,7 @@ $(function(){
 <div style="height:0px;"></div>
 <p>
 	<label>项目说明：</label>
-	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.XMSM">${Td01_xmxx.xmsm}</textarea>
+	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.XMSM">${td01_xmxx.xmsm}</textarea>
 </p>
 
 <div class="divider"></div>
@@ -307,13 +307,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">技工工日</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JGGR" value="<fmt:formatNumber value="${Td01_xmxx.ss_jggr}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JGGR" value="<fmt:formatNumber value="${td01_xmxx.ss_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JGGR" value="<fmt:formatNumber value="${Td01_xmxx.cs_jggr}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JGGR" value="<fmt:formatNumber value="${td01_xmxx.cs_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JGGR" value="<fmt:formatNumber value="${Td01_xmxx.sd_jggr}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JGGR" value="<fmt:formatNumber value="${td01_xmxx.sd_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_JGGR" value="" style="width:120px;"/>
@@ -324,13 +324,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">普工工日</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_PGGR" value="<fmt:formatNumber value="${Td01_xmxx.ss_pggr}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_PGGR" value="<fmt:formatNumber value="${td01_xmxx.ss_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_PGGR" value="<fmt:formatNumber value="${Td01_xmxx.cs_pggr}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_PGGR" value="<fmt:formatNumber value="${td01_xmxx.cs_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_PGGR" value="<fmt:formatNumber value="${Td01_xmxx.sd_pggr}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_PGGR" value="<fmt:formatNumber value="${td01_xmxx.sd_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_PGGR" value="" style="width:120px;"/>
@@ -341,13 +341,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">材料费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_CLF" value="<fmt:formatNumber value="${Td01_xmxx.ss_clf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_CLF" value="<fmt:formatNumber value="${td01_xmxx.ss_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_CLF" value="<fmt:formatNumber value="${Td01_xmxx.cs_clf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_CLF" value="<fmt:formatNumber value="${td01_xmxx.cs_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_CLF" value="<fmt:formatNumber value="${Td01_xmxx.sd_clf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_CLF" value="<fmt:formatNumber value="${td01_xmxx.sd_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_CLF" value="" style="width:120px;"/>
@@ -358,13 +358,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">机械仪表费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JXF" value="<fmt:formatNumber value="${Td01_xmxx.ss_jxf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JXF" value="<fmt:formatNumber value="${td01_xmxx.ss_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JXF" value="<fmt:formatNumber value="${Td01_xmxx.cs_jxf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JXF" value="<fmt:formatNumber value="${td01_xmxx.cs_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JXF" value="<fmt:formatNumber value="${Td01_xmxx.sd_jxf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JXF" value="<fmt:formatNumber value="${td01_xmxx.sd_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_JXF" value="" style="width:120px;"/>
@@ -375,13 +375,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">其它费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_QTF" value="<fmt:formatNumber value="${Td01_xmxx.ss_qtf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_QTF" value="<fmt:formatNumber value="${td01_xmxx.ss_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_QTF" value="<fmt:formatNumber value="${Td01_xmxx.cs_qtf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_QTF" value="<fmt:formatNumber value="${td01_xmxx.cs_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_QTF" value="<fmt:formatNumber value="${Td01_xmxx.sd_qtf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_QTF" value="<fmt:formatNumber value="${td01_xmxx.sd_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_QTF" value="" style="width:120px;"/>
@@ -392,13 +392,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">施工总费用</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_SGF" value="<fmt:formatNumber value="${Td01_xmxx.ss_sgf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_SGF" value="<fmt:formatNumber value="${td01_xmxx.ss_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_SGF" value="<fmt:formatNumber value="${Td01_xmxx.cs_sgf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_SGF" value="<fmt:formatNumber value="${td01_xmxx.cs_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_SGF" value="<fmt:formatNumber value="${Td01_xmxx.sd_sgf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_SGF" value="<fmt:formatNumber value="${td01_xmxx.sd_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_SGF" value="" style="width:120px;"/>
@@ -409,13 +409,13 @@ $(function(){
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">监理费</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JLF" value="<fmt:formatNumber value="${Td01_xmxx.ss_jlf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JLF" value="<fmt:formatNumber value="${td01_xmxx.ss_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JLF" value="<fmt:formatNumber value="${Td01_xmxx.cs_jlf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JLF" value="<fmt:formatNumber value="${td01_xmxx.cs_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JLF" value="<fmt:formatNumber value="${Td01_xmxx.sd_jlf}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JLF" value="<fmt:formatNumber value="${td01_xmxx.sd_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_JLF" value="" style="width:120px;"/>
@@ -426,13 +426,13 @@ $(function(){
 <div style="height:0px;"></div>
 <p style="width:105px;text-align:center;">结算总费用</p>
 <p>
-	<input type="text"  name="Td01_xmxx.SS_JE" value="<fmt:formatNumber value="${Td01_xmxx.ss_je}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SS_JE" value="<fmt:formatNumber value="${td01_xmxx.ss_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.CS_JE" value="<fmt:formatNumber value="${Td01_xmxx.cs_je}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.CS_JE" value="<fmt:formatNumber value="${td01_xmxx.cs_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
-	<input type="text"  name="Td01_xmxx.SD_JE" value="<fmt:formatNumber value="${Td01_xmxx.sd_je}" pattern="##0.00"/>" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.SD_JE" value="<fmt:formatNumber value="${td01_xmxx.sd_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
 <p>
 	<input type="text"  name="Td01_xmxx.HJE_JE" value="" style="width:120px;"/>
