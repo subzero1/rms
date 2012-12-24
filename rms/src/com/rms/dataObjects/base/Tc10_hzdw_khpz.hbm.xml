@@ -59,11 +59,11 @@
   />
 
   <property
-  name="userflag"
+  name="useflag"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="userflag"
+  column="useflag"
   />
 
 
