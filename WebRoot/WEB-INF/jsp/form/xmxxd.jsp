@@ -109,6 +109,10 @@ $(function(){
 	<label>预算类型：</label>
 	<netsky:htmlSelect name="Td01_xmxx.YSLX" objectForOption="yslxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.yslx}" htmlClass="td-select"/>
 </p>
+<p>
+	<label>项目状态：</label>
+	<netsky:htmlSelect name="Td01_xmxx.XMZT" objectForOption="xmztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xmzt}" htmlClass="td-select"/>
+</p>
 <div class="divider"></div>
 <p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
 <div style="height:0px;"></div>
@@ -165,16 +169,16 @@ $(function(){
 </p>	
 <div class="divider"></div>
 <p>
+	<label>需求部门：</label>
+	<netsky:htmlSelect name="Td01_xmxx.XQBM" objectForOption="deptList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xqbm}" htmlClass="td-select"/>
+</p>
+<p>
 	<label>立项金额：</label>
 	<input type="text"  name="Td01_xmxx.LXJE" value="${td01_xmxx.lxje}" style="width:150px;"/>
 </p>
 <p>
 	<label>立项时间：</label>
-	<input type="text"  name="Td01_xmxx.LXSJ" value="<fmt:formatDate value="${td01_xmxx.lxsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
-</p>
-<p>
-	<label>需求部门：</label>
-	<input type="text"  name="Td01_xmxx.XQBM" value="${td01_xmxx.xqbm}" style="width:120px;"/>
+	<input type="text"  name="Td01_xmxx.LXSJ" value="<fmt:formatDate value="${td01_xmxx.lxsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
@@ -242,19 +246,6 @@ $(function(){
 <p>
 	<label>验收时间：</label>
 	<input type="text"  name="Td01_xmxx.YSSJ" value="<fmt:formatDate value="${td01_xmxx.yssj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
-</p>
-<div style="height:0px;"></div>
-<p>
-	<label>预算类型：</label>
-	<input type="text"  name="Td01_xmxx.YSLX" value="${td01_xmxx.yslx}" style="width:150px;"/>
-</p>
-<p>
-	<label>项目阶段：</label>
-	<input type="text"  name="Td01_xmxx.XMJD" value="${td01_xmxx.xmjd}" style="width:150px;"/>
-</p>
-<p>
-	<label>项目状态：</label>
-	<input type="text"  name="Td01_xmxx.XMZT" value="${td01_xmxx.xmzt}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>

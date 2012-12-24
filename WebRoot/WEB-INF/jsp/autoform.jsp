@@ -89,6 +89,7 @@
 	
 		<!-- 表单附件 -->	
 		<div id="attachBody" layoutH="68">
+			<c:if test="${param.module_id != 101 && param.module_id != 102}">
 			<div class="panel">
 				<h1>审批信息 [${fn:length(approve)}]</h1>
 				<div  defH="150" style="background-color:#fff;">
@@ -101,6 +102,7 @@
 					</c:forEach>
 				</div>
 			</div>
+			</c:if>
 			<div class="panel">
 				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
@@ -126,6 +128,7 @@
 					</c:forEach>
 				</div>
 			</div>
+			<c:if test="${param.module_id != 101 && param.module_id != 102}">
 			<div id="jlfkTitle" class="panel">
 				<h1>交流反馈 [${fn:length(jlfk)}]</h1>
 				<div id="jlfkdiv" defH="150" style="background-color:#fff;">
@@ -137,6 +140,7 @@
 					</c:forEach>
 				</div>
 			</div>
+			</c:if>
 		</div>
 		<div  style="clear:both"></div>  
 	</div>
