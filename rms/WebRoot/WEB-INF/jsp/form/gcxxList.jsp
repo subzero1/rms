@@ -59,7 +59,7 @@
 						<td style="text-align:center;">
 						
 						</td>
-						<td><a href="openForm.do?project_id=${obj.id }&module_id=102&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }" target="navTab" rel="gcxx" title="工程信息单">${obj.gcmc }</a></td>
+						<td><a href="openForm.do?project_id=${obj.id }&module_id=102&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="gcxx" title="工程信息单">${obj.gcmc }</a></td>
 						<td>${obj.gcbh }&nbsp;</td>
 						<td>${obj.ssdq }</td>
 						<td>${obj.gclb }</td>
