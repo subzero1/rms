@@ -138,7 +138,10 @@ public class Tc10_hzdw_khpz implements Serializable{
     this.useflag = useflag;
   }
  
- private String dwlb;
+ /**
+ * 单位类别
+ */
+private String dwlb;
 
 public String getDwlb() {
 	return dwlb;
@@ -146,6 +149,16 @@ public String getDwlb() {
 
 public void setDwlb(String dwlb) {
 	this.dwlb = dwlb;
+}
+
+private Long dfts;
+
+public Long getDfts() {
+	return dfts;
+}
+
+public void setDfts(Long dfts) {
+	this.dfts = dfts;
 }
 
 
