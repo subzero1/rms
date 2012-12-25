@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready(function(){
-	initSysManageWeb();
-	
+	initSysManageWeb(); 
 	$("#delGczy").click(function(){
 		var tc03_id = $("#gczy_id",navTab.getCurrentPanel()).val();
 		ajaxTodo('infoManage/ajaxDelZydl.do', navTabAjaxDone ,{"id":tc03_id});
