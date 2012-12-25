@@ -146,6 +146,7 @@ public class Khxwh {
 		List khpzList=null;
 		StringBuffer HSql=new StringBuffer("");
 		HSql.append("select khpz from Tc10_hzdw_khpz khpz where 1=1");
+		HSql.append(" order by khpz.mc");
 		khpzList=queryService.searchList(HSql.toString());
 		modelMap.put("khpz_list", khpzList);
 		return new ModelAndView(view,modelMap);
