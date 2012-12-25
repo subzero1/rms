@@ -894,23 +894,18 @@ public class Mbk {
 		StringBuffer hsql = new StringBuffer(); 
 		
 		hsql
-				.append("select user,ta01 from Ta03_user user,Ta01_dept ta01 where user.id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20103)) and user.name like '%"
-						+ name + "%' and user.dept_id=ta01.id");
+				.append("select user from V_ta03 user where user.id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20103)) and user.name like '%"
+						+ name + "%' ");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages(); 
 		
-		List<Ta03_user> userList=new LinkedList<Ta03_user>();
-		List<Ta01_dept> deptList=new LinkedList<Ta01_dept>();
-		List staffList=ro.getList();
+		List userList=new LinkedList();
 		
 		while(ro.next()){
-			userList.add((Ta03_user) ro.get("user"));
-			deptList.add((Ta01_dept) ro.get("ta01"));
+			userList.add( ro.get("user"));
 		}
 		modelMap.put("kcryList", userList);
-		modelMap.put("deptList", deptList);
-		modelMap.put("staffList", staffList);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("pageNumShown", pageNumShown);
 		modelMap.put("numPerPage", numPerPage);
