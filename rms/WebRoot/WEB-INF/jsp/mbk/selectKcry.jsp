@@ -93,12 +93,12 @@
 			</tr>
 		</thead>				
 		<tbody>
-			<c:forEach items="${staffList}" var="kcry"> 
+			<c:forEach items="${kcryList}" var="kcry"> 
 			<tr>
-				<td>${kcry[0].name }</td>
-				<td>${kcry[1].name }</td>
+				<td>${kcry.name }</td>
+				<td>${kcry.dept_name }</td>
 				<td>
-						<a class="btnSelect" href="javascript:addKcry('${kcry[0].id }','${kcry[0].name }')" title="查找带回">
+						<a class="btnSelect" href="javascript:addKcry('${kcry.id }','${kcry.name }')" title="查找带回">
 				</td>
 			</tr> 
 			</c:forEach>
