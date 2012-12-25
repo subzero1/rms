@@ -112,7 +112,7 @@ function huifu(up_id,title,bt){
 											href="javascript:huifu('${yjJlgt[0].id }','回复','回复 ${ejJlgt[1].name }');">回复</a>
 									</div>
 									<div style="float: right;color: rgb(180,180,180);font:lighter 11px;">
-										<fmt:formatDate value="${ejJlgt[0].fbsj }"
+										${ejJlgt[0].fbr } <fmt:formatDate value="${ejJlgt[0].fbsj }"
 											pattern="yyyy-MM-dd HH:mm" />
 									</div>
 									<div style="margin-left: 10px;">

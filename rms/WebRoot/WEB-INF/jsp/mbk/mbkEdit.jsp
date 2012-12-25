@@ -683,6 +683,7 @@ $("#jsxz").change(function(){
 					</c:forEach>
 				</div>
 			</div>
+			<!-- 
 			<div id="jlfkTitle" class="panel" style="margin-top:10px;">
 				<h1>交流反馈 [${fn:length(jlfk)}]</h1>
 				<div id="jlfkdiv" defH="150" style="background-color:#fff;">
@@ -693,7 +694,8 @@ $("#jsxz").change(function(){
 						</p>
 					</c:forEach>
 				</div>
-			</div>			
+			</div>	
+			-->		
 		</div>	
 		<div  style="clear:both"></div> 
 		
