@@ -72,7 +72,13 @@
   insert="true"
   column="dwlb"
   />
-
+<property 
+name="dfts"
+type="java.lang.Long"
+update="true"
+insert="true"
+column="dfts"
+/>
     </class>
 
 </hibernate-mapping>
