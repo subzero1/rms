@@ -65,7 +65,13 @@
   insert="true"
   column="useflag"
   />
-
+ <property
+  name="dwlb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dwlb"
+  />
 
     </class>
 

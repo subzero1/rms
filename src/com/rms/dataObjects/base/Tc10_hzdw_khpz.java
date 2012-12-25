@@ -137,6 +137,16 @@ public class Tc10_hzdw_khpz implements Serializable{
  public void setUseflag(Long useflag) {
     this.useflag = useflag;
   }
+ 
+ private String dwlb;
+
+public String getDwlb() {
+	return dwlb;
+}
+
+public void setDwlb(String dwlb) {
+	this.dwlb = dwlb;
+}
 
 
 }
