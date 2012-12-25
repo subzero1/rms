@@ -26,6 +26,6 @@ $(document).ready(function(){
 	</ul>
 </div>
 <div id="zywhEdit" class="loadFileArea sysmanage_right"
-	loadfile="infoManage/khpzEdit.do?year=${year}&id=<c:out value="${param.id}" default="${gczy_list[0].id}"/>"
+	loadfile="infoManage/khpzEdit.do?id=${khpz.id }"
 	style="float: left; display: block; margin: 10px; overflow: hidden; width: 68%; height: 430px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
 </div>
