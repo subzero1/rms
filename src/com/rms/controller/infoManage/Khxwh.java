@@ -162,7 +162,7 @@ public class Khxwh {
 	@RequestMapping("/infoManage/khpzEdit.do")
 	public ModelAndView khpzEdit(HttpServletRequest request,HttpServletResponse response){
 		ModelMap modelMap=new ModelMap();
-		String view="/WEB-INF/jsp/infoManage/khpzEdit.jsp";
+		String view="/WEB-INF/jsp/infoManage/khpzEdit.jsp?a=b";
 		
 		Long id=convertUtil.toLong(request.getParameter("id"));
 		Tc10_hzdw_khpz khpz=(Tc10_hzdw_khpz) dao.getObject(Tc10_hzdw_khpz.class, id);
