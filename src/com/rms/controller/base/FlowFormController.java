@@ -312,11 +312,11 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 				btn.url = "javascript:docSlave('slave.do?" +urlParas +"');";
 				new_btnList.add(btn);
 				
-				Iterator a = buttonList.iterator();
-				while(a.hasNext()){
-					Button btn2 = (Button)a.next();
-					new_btnList.add(btn2);
-				}
+//				Iterator a = buttonList.iterator();
+//				while(a.hasNext()){
+//					Button btn2 = (Button)a.next();
+//					new_btnList.add(btn2);
+//				}
 				buttonList = new_btnList;
 				
 				request.setAttribute("buttons", buttonList);
