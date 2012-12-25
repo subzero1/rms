@@ -139,12 +139,12 @@ public class Mbk {
 
 		}
 		if (rolesMap.get("20103") != null) {
-			roleSql += " or (zt='四方勘察' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm like '%四方勘察%' and jssj is null))";
+			roleSql += " or ( id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+					+ " and sm like '%四方勘察%'))";
 		}
 		if (rolesMap.get("20104") != null) {
-			roleSql += " or (zt='方案会审' and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm='方案会审' and jssj is null))";
+			roleSql += " or (  id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+					+ " and sm='方案会审'))";
 		}
 		if (rolesMap.get("20105") != null) {
 			roleSql += " or ((zt='转建设' or zt='建设中') and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
@@ -225,7 +225,6 @@ public class Mbk {
 		if(listType.equals("fahssq")){
 			hsql.append(" and (zt = '四方勘察' or zt = '勘察结束')");
 		}
-		System.out.println(hsql.toString());
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
