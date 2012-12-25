@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -130,6 +131,37 @@ public class Khxwh {
 		else if(sort.equals("DESC"))
 			request.setAttribute("sort", "ASC");
 		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwh.jsp");
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/infoManage/khpz.do")
+	public ModelAndView khpz(HttpServletRequest request,HttpServletResponse response){
+		ModelMap modelMap=new ModelMap();
+		String view="/WEB-INF/jsp/infoManage/khpzList.jsp";
+		List khpzList=null;
+		StringBuffer HSql=new StringBuffer("");
+		HSql.append("select khpz from Tc10_hzdw_khpz khpz where 1=1");
+		khpzList=queryService.searchList(HSql.toString());
+		modelMap.put("khpz_list", khpzList);
+		return new ModelAndView(view,modelMap);
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/infoManage/khpzEdit.do")
+	public ModelAndView khpzEdit(HttpServletRequest request,HttpServletResponse response){
+		ModelMap modelMap=new ModelMap();
+		String view="/WEB-INF/jsp/infoManage/khpzEdit.jsp";
+		return new ModelAndView(view,modelMap);
 	}
 
 }
