@@ -1,7 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	initSysManageWeb();
+	
+	$("#delGczy").click(function(){
+		var tc03_id = $("#gczy_id",navTab.getCurrentPanel()).val();
+		ajaxTodo('infoManage/ajaxDelZydl.do', navTabAjaxDone ,{"id":tc03_id});
+	});
+});
 </script>
 
 <form method="post" action="save.do" class="pageForm required-validate"
@@ -27,7 +34,7 @@
 					<label>
 						名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
 					</label>
-					<input type="text" name="Tc10_hzdw_khpz.MC" value="${param.a}"
+					<input type="text" name="Tc10_hzdw_khpz.MC" value="${khpz.mc}"
 						class="required" style="width: 200px;" maxlength="15" />
 				</p>
 				<p>
