@@ -34,14 +34,14 @@ $(document).ready(function(){
 					<label>
 						名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
 					</label>
-					<input type="text" name="Tc03_gczy.ZYMC" value="${tc03.zymc}"
+					<input type="text" name="Tc10_hzdw_khpz.MC" value="${khpz.mc}"
 						class="required" style="width: 200px;" maxlength="15" />
 				</p>
 				<p>
 					<label>
 						间隔天数：
 					</label>
-					<input type="text" name="Tc03_gczy.ZYMC" value="${tc03.zymc}"
+					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
 						class="required" style="width: 50px;" maxlength="15" />
 				</p>
 				<div style="height: 0px;"></div>
@@ -49,39 +49,38 @@ $(document).ready(function(){
 					<label>
 						打分天数：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND"
-						value="<c:out value="${tc03.yxnd}" default="${param.year }"/>"
+					<input type="text" name="Tc10_hzdw_khpz.DFTS"
+						value="${khpz.dfts }"
 						class="required digits" style="width: 100px;" maxlength="4"
-						readOnly />
+						  />
 				</p>
 				<p>
 					<label>
 						下次考核：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND"
-						value="<c:out value="${tc03.yxnd}" default="${param.year }"/>"
-						class="required digits" style="width: 100px;" maxlength="4"
-						readOnly />
+					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
+						value="${khpz.xckhsj}"
+						class="required date" style="width: 100px;" maxlength="4"  />
 				</p>
 				<div style="height: 0px;"></div>
 				<p>
 					<label style="">
 						最后考核：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND"
-						value="<c:out value="${tc03.yxnd}" default="${param.year }"/>"
-						class="required digits" style="width: 100px;" maxlength="4"
-						readOnly />
+					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
+						value="${khpz.zhkhsj}""
+						 class="required date" style="width: 100px;" maxlength="4"
+						 readOnly/>
 				</p>
 				<p>
 					<label>
 						是否有效：
 					</label>
-					<input type="radio" name="Tc03_gczy.SFSK" value="1"
-						<c:if test="${tc03.sfsk=='1' }">checked</c:if> />
+					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="1"
+						<c:if test="${khpz.useflag=='1' }">checked</c:if> />
 					是
-					<input type="radio" name="Tc03.gczy.SFSK" value=""
-						<c:if test="${tc03.sfsk!='1' }">checked</c:if> />
+					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="0"
+						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
 					否
 				</p>
 				<div style="height: 0px;"></div>
@@ -89,9 +88,9 @@ $(document).ready(function(){
 					<label  >
 						单位类别：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND"
-						value="<c:out value="${tc03.yxnd}" default="${param.year }"/>"
-						class="required digits" style="width: 100px;" maxlength="4"
+					<input type="text" name="Tc10_hzdw_khpz.DWLB"
+						value="${khpz.dwlb}"
+						class="required " style="width: 100px;" maxlength="4"
 						readOnly />
 				</p>
 				
@@ -100,10 +99,10 @@ $(document).ready(function(){
 					<label  >
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
 					</label>
-					<input type="text" name="Tc03_gczy.YXND"
-						value="<c:out value="${tc03.yxnd}" default="${param.year }"/>"
-						class="required digits" style="width: 100px;" maxlength="4"
-						readOnly />
+					<input type="text" name="Tc10_hzdw_khpz.BZ"
+						value="${khpz.bz}"
+						    style="width: 100px;" maxlength="4"
+						 />
 				</p>
 			</div>
 

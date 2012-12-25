@@ -18,6 +18,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.rms.dataObjects.base.Tc10_hzdw_khpz;
 import com.rms.dataObjects.wxdw.Tf15_khxwh;
 
 @Controller
@@ -162,6 +163,10 @@ public class Khxwh {
 	public ModelAndView khpzEdit(HttpServletRequest request,HttpServletResponse response){
 		ModelMap modelMap=new ModelMap();
 		String view="/WEB-INF/jsp/infoManage/khpzEdit.jsp";
+		
+		Long id=convertUtil.toLong(request.getParameter("id"));
+		Tc10_hzdw_khpz khpz=(Tc10_hzdw_khpz) dao.getObject(Tc10_hzdw_khpz.class, id);
+		modelMap.put("khpz", khpz);
 		return new ModelAndView(view,modelMap);
 	}
 
