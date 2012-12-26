@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 	<ul class="tree expand">
 		<li>
-			<a href="">配置列表</a>
+			<a href="">配置列表${param.id}|${khpz_list[0].id}</a>
 			<ul id="node_li">
 				<c:forEach var="khpz" items="${khpz_list}">
 					<li>
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		</li>
 	</ul>
 </div>
-<div id="zywhEdit" class="loadFileArea sysmanage_right"
+<div id="khpzEdit" class="loadFileArea sysmanage_right"
 	loadfile="infoManage/khpzEdit.do?id=<c:out value="${param.id}" default="${khpz_list[0].id}"/>"
 	style="float: left; display: block; margin: 10px; overflow: hidden; width: 68%; height: 430px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
 </div>
