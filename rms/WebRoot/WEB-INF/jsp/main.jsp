@@ -182,7 +182,7 @@ function getCookie(name)
 			<div class="headerNav">
 				<a class="logo" href="javascript:void(0)">标志</a>
 				<ul class="nav">
-					<li style="color: #666" class="LoginId">您好：${user.name }（${user.login_id }）</li>
+					<li style="color: #666" class="LoginId">您好：${user.name }</li>
 					<li class="navBtn">
 						<a	href="MessageWrite.do?type=phone" target="dialog" rel="messageWrite" title="手机短信" width="670" height="350">
 							<img src="Images/phone.png"  title="短信发送"/>
