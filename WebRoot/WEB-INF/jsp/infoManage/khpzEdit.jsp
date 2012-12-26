@@ -38,7 +38,7 @@ $(document).ready(function(){
 						class="required" style="width: 200px;" maxlength="15" />
 				</p>
 				<p>
-					<label>
+					<label >
 						间隔天数：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
@@ -50,27 +50,31 @@ $(document).ready(function(){
 						打分天数：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.DFTS" value="${khpz.dfts }"
-						class="required digits" style="width: 100px;" maxlength="4" />
+						class="required digits" style="width: 200px;" maxlength="4" />
 				</p>
 				<p>
-					<label>
-						下次考核：
+					<label >
+						是否有效：
 					</label>
-					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
-					value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />" class="required date" style="width: 100px;"
-						 pattern="yyyy-MM-dd" readOnly/>
+					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="1"
+						<c:if test="${khpz.useflag=='1' }">checked</c:if> />
+					是
+					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="0"
+						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
+					否
 				</p>
+				
 				<div style="height: 0px;"></div>
 				<p>
 					<label style="">
 						最后考核：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
-						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>" class="required date" style="width: 100px;"
-						    pattern="yyyy-MM-dd" readOnly/>
+						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>" style="width: 200px;"
+						     readOnly/>
 				</p>
 				<p>
-					<label>
+					<label >
 						单位类别：
 					</label>
 					<select style="width: 100" name="Tc10_hzdw_khpz.DWLB">
@@ -88,15 +92,12 @@ $(document).ready(function(){
 				</p>
 				<div style="height: 0px;"></div>
 				<p>
-					<label>
-						是否有效：
+					<label >
+						下次考核：
 					</label>
-					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="1"
-						<c:if test="${khpz.useflag=='1' }">checked</c:if> />
-					是
-					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="0"
-						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
-					否
+					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
+					value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />" class="required date" style="width: 200px;"
+						 pattern="yyyy-MM-dd" readOnly/>
 				</p>
 
 				<div style="height: 0px;"></div>
@@ -105,7 +106,7 @@ $(document).ready(function(){
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.BZ" value="${khpz.bz}"
-						style="width: 100px;"  />
+						style="width: 520px;"  />
 				</p>
 			</div>
 
@@ -154,7 +155,7 @@ $(document).ready(function(){
 			<table class="list itemDetail">
 				<thead>
 					<tr>
-						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX">
+						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX" hideName="Tc11_khpzmx.ID">
 							考核项
 						</th>
 						<th type="text" style="width: 150px;" name="Tc11_khpzmx.PGNR">
@@ -183,7 +184,7 @@ $(document).ready(function(){
 									style="width: 0px;" />
 							</td>
 							<td>
-								<input type="text" name="Tc11_khpzmx.PGNR" value="${pzmx.pgbf}"
+								<input type="text" name="Tc11_khpzmx.PGNR" value="${pzmx.pgnr}"
 									style="width: 0px;" />
 							</td>
 							<td>
