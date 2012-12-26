@@ -1,5 +1,7 @@
 package com.rms.controller.form;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +23,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 
@@ -30,6 +35,8 @@ public class Gcgl {
 	@Autowired
 	private QueryService queryService;
 	
+	@Autowired
+	private SaveService saveService;
 	
 	/**
 	 *  项目信息列表
@@ -237,5 +244,55 @@ public class Gcgl {
 		
 		return new ModelAndView("/WEB-INF/jsp/form/gcxxList.jsp", modelMap);
 
+	}
+	
+	@RequestMapping("/form/ajaxGcxxDel.do")
+	public void ajaxMbkDel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		PrintWriter out = null;
+
+		response.setContentType("text/html;charset=UTF-8");
+		Session session = saveService.getHiberbateSession();
+		Transaction tx = session.beginTransaction();
+		tx.begin();
+		// 获取用户对象
+		try {
+			out = response.getWriter();
+			session.createQuery("delete from Td00_gcxx where id=" + id).executeUpdate();
+			session.createQuery("update Td00_gcxx set glgc_id = null where glgc_id = " + id).executeUpdate();
+			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+			session.flush();
+			tx.commit();
+		} catch (IOException e) {
+			tx.rollback();
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+		} finally {
+			session.close();
+		}
+	}
+	
+	@RequestMapping("/form/ajaxXmxxDel.do")
+	public void ajaxXmxxDel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		PrintWriter out = null;
+
+		response.setContentType("text/html;charset=UTF-8");
+		Session session = saveService.getHiberbateSession();
+		Transaction tx = session.beginTransaction();
+		tx.begin();
+		// 获取用户对象
+		try {
+			out = response.getWriter();
+			session.createQuery("delete from Td01_xmxx where id=" + id).executeUpdate();
+			session.createQuery("update Td00_gcxx set xm_id = null where xm_id = " + id).executeUpdate();
+			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+			session.flush();
+			tx.commit();
+		} catch (IOException e) {
+			tx.rollback();
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+		} finally {
+			session.close();
+		}
 	}
 }
