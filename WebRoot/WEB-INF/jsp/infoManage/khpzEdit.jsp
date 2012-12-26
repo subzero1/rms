@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	initSysManageWeb(); 
@@ -16,12 +17,12 @@ $(document).ready(function(){
 		value="noFatherTable:com.rms.dataObjects.base.Tc10_hzdw_khpz" />
 	<input type="hidden" name="tableInfomation"
 		value="Tc10_hzdw_khpz,id,kh_id:com.rms.dataObjects.base.Tc11_khpzmx" />
-	<input type="hidden" id="gczy_id" name="Tc03_gczy.ID"
-		value="${tc03.id}" />
-	<input type="hidden" name="perproty" value="id,Tc03_gczy,id">
+	<input type="hidden" id="kh_id" name="Tc10_hzdw_khpz.ID"
+		value="${khpz.id}" />
+	<input type="hidden" name="perproty" value="id,Tc10_hzdw_khpz,id">
 	<input type="hidden" name="_callbackType" value="forward" />
-	<input type="hidden" name="_forwardUrl" value="infoManage/zywhList.do" />
-	<input type="hidden" name="_navTabId" value="zywhList" />
+	<input type="hidden" name="_forwardUrl" value="infoManage/khpzList.do" />
+	<input type="hidden" name="_navTabId" value="khpz" />
 	<div class="panel sysmanage_max" defH="213"
 		style="width: 97%; float: left; margin: 5px">
 		<h1>
@@ -48,18 +49,16 @@ $(document).ready(function(){
 					<label>
 						打分天数：
 					</label>
-					<input type="text" name="Tc10_hzdw_khpz.DFTS"
-						value="${khpz.dfts }"
-						class="required digits" style="width: 100px;" maxlength="4"
-						  />
+					<input type="text" name="Tc10_hzdw_khpz.DFTS" value="${khpz.dfts }"
+						class="required digits" style="width: 100px;" maxlength="4" />
 				</p>
 				<p>
 					<label>
 						下次考核：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
-						value="${khpz.xckhsj}"
-						class="required date" style="width: 100px;" maxlength="4"  />
+					value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />" class="required date" style="width: 100px;"
+						 pattern="yyyy-MM-dd" readOnly/>
 				</p>
 				<div style="height: 0px;"></div>
 				<p>
@@ -67,18 +66,24 @@ $(document).ready(function(){
 						最后考核：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
-						value="${khpz.zhkhsj}""
-						 class="required date" style="width: 100px;" maxlength="4"
-						 readOnly/>
+						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>" class="required date" style="width: 100px;"
+						    pattern="yyyy-MM-dd" readOnly/>
 				</p>
 				<p>
-					<label  >
+					<label>
 						单位类别：
 					</label>
-					<select style="width:100" name="Tc10_hzdw_khpz.DWLB" >
-						<option <c:if test="${khpz.dwlb=='设计'||empty khpz.dwlb}"> selected</c:if>>设计</option>
-						<option <c:if test="${khpz.dwlb=='施工'}"> selected</c:if>>施工</option>
-						<option <c:if test="${khpz.dwlb=='监理'}"> selected</c:if>>监理</option>
+					<select style="width: 100" name="Tc10_hzdw_khpz.DWLB">
+						<option
+							<c:if test="${khpz.dwlb=='设计'||empty khpz.dwlb}"> selected</c:if>>
+							设计
+						</option>
+						<option <c:if test="${khpz.dwlb=='施工'}"> selected</c:if>>
+							施工
+						</option>
+						<option <c:if test="${khpz.dwlb=='监理'}"> selected</c:if>>
+							监理
+						</option>
 					</select>
 				</p>
 				<div style="height: 0px;"></div>
@@ -93,16 +98,14 @@ $(document).ready(function(){
 						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
 					否
 				</p>
-				
+
 				<div style="height: 0px;"></div>
 				<p>
-					<label  >
+					<label>
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
 					</label>
-					<input type="text" name="Tc10_hzdw_khpz.BZ"
-						value="${khpz.bz}"
-						    style="width: 100px;" maxlength="4"
-						 />
+					<input type="text" name="Tc10_hzdw_khpz.BZ" value="${khpz.bz}"
+						style="width: 100px;"  />
 				</p>
 			</div>
 
@@ -127,7 +130,7 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</li>
-					<c:if test="${not empty tc03}">
+					<c:if test="${not empty khpz}">
 						<li>
 							<div class="button">
 								<div class="buttonContent">
@@ -151,24 +154,19 @@ $(document).ready(function(){
 			<table class="list itemDetail">
 				<thead>
 					<tr>
-						<th type="text" style="width: 100px;" name="Tc04_zyxx.MC"
-							hideName="Tc04_zyxx.ID">
+						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX">
 							考核项
 						</th>
-						<th type="text" style="width: 150px;" name="Tc04_zyxx.MC"
-							hideName="Tc04_zyxx.ID">
+						<th type="text" style="width: 150px;" name="Tc11_khpzmx.PGNR">
 							评估内容
 						</th>
-						<th type="text" style="width: 80px;" name="Tc04_zyxx.MC"
-							hideName="Tc04_zyxx.ID">
+						<th type="text" style="width: 80px;" name="Tc11_khpzmx.ZGFZ">
 							最高得分
 						</th>
-						<th type="text" style="width: 150px;" name="Tc04_zyxx.MC"
-							hideName="Tc04_zyxx.ID">
+						<th type="text" style="width: 150px;" name="Tc11_khpzmx.PGBF">
 							评估办法
 						</th>
-						<th type="text" style="width: 250px;" name="Tc04_zyxx.MC"
-							hideName="Tc04_zyxx.ID">
+						<th type="text" style="width: 250px;" name="Tc11_khpzmx.BZ">
 							备注
 						</th>
 						<th type="del" style="width: 30px;">
@@ -177,11 +175,26 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="tc04" items="${zyxx_list}">
+					<c:forEach var="pzmx" items="${pzmxList}">
 						<tr>
 							<td>
-								<input type="hidden" name="Tc04_zyxx.ID" value="${tc04.id}" />
-								<input type="text" name="Tc04_zyxx.MC" value="${tc04.mc}"
+								<input type="hidden" name="Tc11_khpzmx.ID" value="${pzmx.id}" />
+								<input type="text" name="Tc11_khpzmx.KHX" value="${pzmx.khx}"
+									style="width: 0px;" />
+							</td>
+							<td>
+								<input type="text" name="Tc11_khpzmx.PGNR" value="${pzmx.pgbf}"
+									style="width: 0px;" />
+							</td>
+							<td>
+								<input type="text" name="Tc11_khpzmx.ZGFZ" value="${pzmx.zgfz}"
+									style="width: 0px;" />
+							</td><td>
+							<input type="text" name="Tc11_khpzmx.PGBF" value="${pzmx.pgbf}"
+								style="width: 0px;" />
+							</td>
+							<td>
+								<input type="text" name="Tc11_khpzmx.BZ" value="${pzmx.bz}"
 									style="width: 0px;" />
 							</td>
 							<td>

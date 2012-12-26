@@ -140,7 +140,7 @@ public class Khxwh {
 	 * @param response
 	 * @return ModelAndView
 	 */
-	@RequestMapping("/infoManage/khpz.do")
+	@RequestMapping("/infoManage/khpzList.do")
 	public ModelAndView khpz(HttpServletRequest request,HttpServletResponse response){
 		ModelMap modelMap=new ModelMap();
 		String view="/WEB-INF/jsp/infoManage/khpzList.jsp";
@@ -163,10 +163,18 @@ public class Khxwh {
 	public ModelAndView khpzEdit(HttpServletRequest request,HttpServletResponse response){
 		ModelMap modelMap=new ModelMap();
 		String view="/WEB-INF/jsp/infoManage/khpzEdit.jsp?a=b";
-		
+		StringBuffer HSql=new StringBuffer();
+		List pzmxList=null;
 		Long id=convertUtil.toLong(request.getParameter("id"));
 		Tc10_hzdw_khpz khpz=(Tc10_hzdw_khpz) dao.getObject(Tc10_hzdw_khpz.class, id);
+		if(id!=null){
+			HSql.append("select pzmc from Tc11_khpzmx pzmc where 1=1");
+			HSql.append(" and pzmc.kh_id="+id);
+			pzmxList=dao.search(HSql.toString());
+		}
+		modelMap.put("id", id);
 		modelMap.put("khpz", khpz);
+		modelMap.put("pzmxList", pzmxList);
 		return new ModelAndView(view,modelMap);
 	}
 
