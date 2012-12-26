@@ -71,11 +71,13 @@ public class AuxFunction {
 		ModelMap modelMap = new ModelMap();
 		StringBuffer sql = new StringBuffer("");
 		Long user_id = null;
+		String user_name = null;
 		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
 		HttpSession session = request.getSession();
 		if (session != null) {
 			Ta03_user ta03 = (Ta03_user) session.getAttribute("user");
 			user_id = ta03.getId();
+			user_name = ta03.getName();
 		}
 
 		/*
@@ -84,12 +86,9 @@ public class AuxFunction {
 		sql.delete(0, sql.length());
 		sql.append("select td00 ");
 		sql.append("from Td00_gcxx td00 ");
-		sql.append("where exists ( ");
-		sql.append("select 'x' from Tb15_docflow tb15 ");
-		sql.append("where td00.id = tb15.project_id and tb15.node_id = 10202 and tb15.user_id = ");
-		sql.append(user_id.toString());
-		sql.append(")");
-		sql.append("and xm_id is null  order by gcmc ");
+		sql.append("where xmgly = '");
+		sql.append(user_name);
+		sql.append("' and xm_id is null  order by gcmc ");
 		List list = queryService.searchList(sql.toString());
 		modelMap.put("unselect_groups", list);
 
