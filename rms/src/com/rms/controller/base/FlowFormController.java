@@ -350,7 +350,7 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 			buttonList = flowServiceImpl.listActions(paraMap);
 			
 			//不走流程的ACTION
-			if(buttonList == null || buttonList.size() == 0){
+			if((buttonList == null || buttonList.size() == 0) && doc_id != -1){
 				
 				buttonList = new LinkedList();
 				hsql = new StringBuffer("");

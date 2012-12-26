@@ -220,7 +220,7 @@ $(function(){
 <div class="divider"></div>
 <p>
 	<label>项目管理员：</label>
-	<input type="text"  name="Td01_xmxx.XMGLY" value="${td01_xmxx.xmgly}" style="width:150px;"/>
+	<input type="text"  name="Td01_xmxx.XMGLY" value="<c:out value="${td01_xmxx.xmgly}" default="${user.name}" />" style="width:150px;"/>
 </p>
 <p>
 	<label>施工管理员：</label>
