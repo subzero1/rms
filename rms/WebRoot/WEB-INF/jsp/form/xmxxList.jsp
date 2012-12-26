@@ -36,7 +36,7 @@
 			<c:if test="${node_id == '10101'}">
 					<li><a class="add" href="flowForm.do?module_id=101&node_id=10101&flow_id=101" target="navTab" rel="xmxx" title="项目信息单"><span>添加</span></a></li>
 					<li class="line">line</li>
-					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xmxx_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xm_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 					<!-- 
 					<li> <a class="exportexcel" href="dispath.do?url=form/xmxxImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>

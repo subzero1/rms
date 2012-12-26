@@ -317,6 +317,21 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 				btn.url = "javascript:docSlave('slave.do?" +urlParas +"');";
 				new_btnList.add(btn);
 				
+				urlParas = MapUtil.getUrl(paraMap, new String[] { "project_id", "doc_id", "module_id", "node_id","opernode_id","user_id"});
+				btn = new Button("新建变更流程");
+				btn.url = "javascript:docNew('flowForm.do?module_id=" + module_id + "&node_id=" + node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+				btn.comment = "新建变更流程";
+				btn.picUri = "newform";
+				new_btnList.add(btn);
+				
+				urlParas = MapUtil.getUrl(paraMap, new String[] { "project_id", "doc_id", "module_id", "node_id","opernode_id","user_id"});
+				btn = new Button("新建验收流程");
+				btn.url = "javascript:docNew('flowForm.do?module_id=" + module_id + "&node_id=" + node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+				btn.comment = "新建变更流程";
+				btn.picUri = "newform";
+				new_btnList.add(btn);
+
+				
 //				Iterator a = buttonList.iterator();
 //				while(a.hasNext()){
 //					Button btn2 = (Button)a.next();
