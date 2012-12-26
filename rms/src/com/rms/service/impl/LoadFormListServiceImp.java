@@ -525,6 +525,22 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 				
 				/**
+				 * 现场照片
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Te01_slave where slave_type = '现场照片' and project_id =");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_gcsm_slave = new HashMap<String, String>();
+					tmp_gcsm_slave.put("slave_name", "现场照片");
+					tmp_gcsm_slave.put("formurl", "javascript:projectSlaveShow("+t_project_id+","+t_module_id+","+t_doc_id+",'"+cansave+"','xczp')");
+					tmp_gcsm_slave.put("rw", "r");
+					v_slave.add(tmp_gcsm_slave);
+				}
+				
+				/**
 				 * 工程预算(单机)
 				 */
 				hsql.delete(0, hsql.length());
