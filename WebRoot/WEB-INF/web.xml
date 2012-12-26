@@ -36,7 +36,7 @@
 
 	<!-- session 有效时间 -1为永久有效。非-1单位为分-->
 	<session-config>
-		<session-timeout>180</session-timeout>
+		<session-timeout>1800</session-timeout>
 	</session-config>
 
 	<!-- 缓存问题 -->

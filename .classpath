@@ -27,7 +27,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/fop.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hessian-3.0.20.jar" sourcepath="D:/java doc/hibernate-release-4.1.6.Final.zip"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate3.jar" sourcepath="D:/java doc/hibernate-release-4.1.6.Final.zip"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate3.jar" sourcepath="E:/java doc/hibernate-release-4.1.6.Final.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-annotations.jar" sourcepath="D:/java doc/hibernate-release-4.1.6.Final.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-commons-annotations.jar" sourcepath="D:/java doc/hibernate-release-4.1.6.Final.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-entitymanager.jar" sourcepath="D:/java doc/hibernate-release-4.1.6.Final.zip"/>
