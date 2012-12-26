@@ -1,11 +1,15 @@
 package com.rms.controller.infoManage;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -168,14 +172,58 @@ public class Khxwh {
 		Long id=convertUtil.toLong(request.getParameter("id"));
 		Tc10_hzdw_khpz khpz=(Tc10_hzdw_khpz) dao.getObject(Tc10_hzdw_khpz.class, id);
 		if(id!=null){
-			HSql.append("select pzmc from Tc11_khpzmx pzmc where 1=1");
-			HSql.append(" and pzmc.kh_id="+id);
+			HSql.append("select pzmx from Tc11_khpzmx pzmx where 1=1");
+			HSql.append(" and pzmx.kh_id="+id);
 			pzmxList=dao.search(HSql.toString());
 		}
 		modelMap.put("id", id);
 		modelMap.put("khpz", khpz);
 		modelMap.put("pzmxList", pzmxList);
 		return new ModelAndView(view,modelMap);
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response void
+	 * @throws IOException 
+	 */
+	@RequestMapping("/infoManage/ajaxKhpzDel.do")
+	public void ajaxKhpzDel(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String kh_id=convertUtil.toString(request.getParameter("kh_id"),"");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		StringBuffer HSql=null;
+		PrintWriter out=null;
+		Session session=null;
+		Transaction tx=null;
+		if(!kh_id.equals("")){
+			session=saveService.getHiberbateSession();
+			tx=session.beginTransaction();
+			tx.begin();
+			out=response.getWriter();
+			HSql=new StringBuffer("");
+			HSql.append("delete from Tc10_hzdw_khpz khpz where khpz.id="+kh_id);
+			try {
+				session.createQuery(HSql.toString()).executeUpdate();
+				HSql.delete(0, HSql.length());
+				HSql.append("delete from  Tc11_khpzmx pzmx where pzmx.kh_id="+kh_id);
+				session.createQuery(HSql.toString()).executeUpdate();
+				session.flush();
+				tx.commit();
+				out.print("{\"statusCode\":\"200\",\"message\":\"删除成功!\"}");
+			} catch (RuntimeException e) {
+				log.error(e.getMessage());
+				tx.rollback();
+				out.print("{\"statusCode\":\"300\"," +
+						"\"message\":\"删除失败!\"," +
+						" \"navTabId\":\"khpz\", " +
+						"\"forwardUrl\":\"infoManage/khpzList.do\"," +
+						" \"callbackType\":\"forward\"}");
+			}finally{
+				session.close();
+			}
+		}
 	}
 
 }

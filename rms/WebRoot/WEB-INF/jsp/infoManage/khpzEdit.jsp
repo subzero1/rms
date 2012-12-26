@@ -5,8 +5,8 @@
 $(document).ready(function(){
 	initSysManageWeb(); 
 	$("#delKhpz").click(function(){
-		var tc03_id = $("#gczy_id",navTab.getCurrentPanel()).val();
-		ajaxTodo('infoManage/ajaxDelZydl.do', navTabAjaxDone ,{"id":tc03_id});
+		var kh_id = $("#kh_id",navTab.getCurrentPanel()).val();
+		ajaxTodo('infoManage/ajaxKhpzDel.do', navTabAjaxDone ,{"kh_id":kh_id});
 	});
 });
 </script>
