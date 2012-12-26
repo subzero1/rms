@@ -655,7 +655,11 @@ public class AuxFunction {
 		sql.append(module_id);
 		if (lb.equals("jgzl")) {
 			sql.append(" and slave_type in('竣工资料')");
-		} else {
+		}
+		else if (lb.equals("xczp")) {
+			sql.append(" and slave_type in('现场照片')");
+		}
+		else {
 			sql.append(" and slave_type in('工程图纸','设计说明')");
 		}
 		if (!keywords.equals("")) {
