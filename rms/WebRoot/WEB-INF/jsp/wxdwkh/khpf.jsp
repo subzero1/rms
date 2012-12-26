@@ -7,11 +7,10 @@
 <script language="javascript">
 function setPfbz(tdObj){
 	var $bz = $(tdObj).find(".bz");
-	var input_info = "<p><label>评分说明 </label><textarea  style=\"width:200px;height:150px;\" id=\"_bz\">"+$bz.val()+"</textarea></p>";
+	var input_info = "<p><label>评分说明 </label><textarea  style=\"width:220px;height:100px;\" id=\"_bz\">"+$bz.val()+"</textarea></p>";
 	alertMsg.confirm(input_info, {			
 		okCall: function(){
 			var _bz = $("#_bz").val();
-			$(tdObj).attr("title",_bz);
 			$bz.val(_bz);
 		}
 	});
