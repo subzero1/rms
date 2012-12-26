@@ -30,6 +30,9 @@ function uploadSlave(butt){
 	<c:when test="${param.slave_type==5}">
 		<c:set var="slave_type" value="目标库"/>
 	</c:when>
+	<c:when test="${param.slave_type==6}">
+		<c:set var="slave_type" value="现场照片"/>
+	</c:when>
 	<c:when test="${param.slave_type==8}">
 		<c:set var="slave_type" value="其他附件"/>
 	</c:when>
