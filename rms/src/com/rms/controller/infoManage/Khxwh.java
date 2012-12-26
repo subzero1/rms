@@ -238,14 +238,15 @@ public class Khxwh {
 				session.createQuery(HSql.toString()).executeUpdate();
 				session.flush();
 				tx.commit();
-				out.print("{\"statusCode\":\"200\",\"message\":\"删除成功!\"}");
+
+				out.print("{\"statusCode\":\"200\"," + "\"message\":\"删除成功!\","
+						+ " \"navTabId\":\"khpzList\", "
+						+ "\"forwardUrl\":\"infoManage/khpzList.do\","
+						+ " \"callbackType\":\"forward\"}");
 			} catch (RuntimeException e) {
 				log.error(e.getMessage());
 				tx.rollback();
-				out.print("{\"statusCode\":\"300\"," + "\"message\":\"删除失败!\","
-						+ " \"navTabId\":\"khpz\", "
-						+ "\"forwardUrl\":\"infoManage/khpzList.do\","
-						+ " \"callbackType\":\"forward\"}");
+				out.print("{\"statusCode\":\"300\"," + "\"message\":\"删除失败!\"}");
 			} finally {
 				session.close();
 			}
