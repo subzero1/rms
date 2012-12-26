@@ -36,14 +36,9 @@
 		<label> 需求名称：</label>
 		<input class="required" type="text" name="Td06_xqs.ZYMC" style="width:376px;" value="${td06_xqs.zymc}" />
 	</p>
-	<div style="height:0px;"></div>
 	<p>
 		<label>建设性质：</label>
 		<netsky:htmlSelect htmlClass="required" id="jsxz" name="Td06_xqs.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="" showForOption="" value="${td06_xqs.jsxz}" extend="" extendPrefix="true" />
-	</p>
-	<p>
-		<label>建设方式：</label> 
-		<netsky:htmlSelect htmlClass="required" name="Td06_xqs.JSFS" style="width:126px;" objectForOption="jsfsList" valueForOption="name" showForOption="name" value="${td06_xqs.jsfs}" extend="" extendPrefix="true" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
