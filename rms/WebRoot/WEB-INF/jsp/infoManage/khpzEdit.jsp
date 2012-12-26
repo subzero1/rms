@@ -3,7 +3,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	initSysManageWeb(); 
-	$("#delGczy").click(function(){
+	$("#delKhpz").click(function(){
 		var tc03_id = $("#gczy_id",navTab.getCurrentPanel()).val();
 		ajaxTodo('infoManage/ajaxDelZydl.do', navTabAjaxDone ,{"id":tc03_id});
 	});
@@ -13,9 +13,9 @@ $(document).ready(function(){
 <form method="post" action="save.do" class="pageForm required-validate"
 	onsubmit="return validateCallback(this, navTabAjaxDone);">
 	<input type="hidden" name="tableInfomation"
-		value="noFatherTable:com.rms.dataObjects.base.Tc03_gczy" />
+		value="noFatherTable:com.rms.dataObjects.base.Tc10_hzdw_khpz" />
 	<input type="hidden" name="tableInfomation"
-		value="Tc03_gczy,id,gczy_id:com.rms.dataObjects.base.Tc04_zyxx" />
+		value="Tc10_hzdw_khpz,id,kh_id:com.rms.dataObjects.base.Tc11_khpzmx" />
 	<input type="hidden" id="gczy_id" name="Tc03_gczy.ID"
 		value="${tc03.id}" />
 	<input type="hidden" name="perproty" value="id,Tc03_gczy,id">
@@ -72,6 +72,17 @@ $(document).ready(function(){
 						 readOnly/>
 				</p>
 				<p>
+					<label  >
+						单位类别：
+					</label>
+					<select style="width:100" name="Tc10_hzdw_khpz.DWLB" >
+						<option <c:if test="${khpz.dwlb=='设计'||empty khpz.dwlb}"> selected</c:if>>设计</option>
+						<option <c:if test="${khpz.dwlb=='施工'}"> selected</c:if>>施工</option>
+						<option <c:if test="${khpz.dwlb=='监理'}"> selected</c:if>>监理</option>
+					</select>
+				</p>
+				<div style="height: 0px;"></div>
+				<p>
 					<label>
 						是否有效：
 					</label>
@@ -81,16 +92,6 @@ $(document).ready(function(){
 					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="0"
 						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
 					否
-				</p>
-				<div style="height: 0px;"></div>
-				<p>
-					<label  >
-						单位类别：
-					</label>
-					<input type="text" name="Tc10_hzdw_khpz.DWLB"
-						value="${khpz.dwlb}"
-						class="required " style="width: 100px;" maxlength="4"
-						readOnly />
 				</p>
 				
 				<div style="height: 0px;"></div>
@@ -130,7 +131,7 @@ $(document).ready(function(){
 						<li>
 							<div class="button">
 								<div class="buttonContent">
-									<button type="Button" id="delGczy">
+									<button type="Button" id="delKhpz">
 										删 除
 									</button>
 								</div>
