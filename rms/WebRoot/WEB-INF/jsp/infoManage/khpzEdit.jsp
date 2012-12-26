@@ -157,16 +157,16 @@ $(document).ready(function(){
 						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX" hideName="Tc11_khpzmx.ID">
 							考核项
 						</th>
-						<th type="text" style="width: 150px;" name="Tc11_khpzmx.PGNR">
+						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGNR">
 							评估内容
 						</th>
 						<th type="text" style="width: 80px;" name="Tc11_khpzmx.ZGFZ">
 							最高得分
 						</th>
-						<th type="text" style="width: 150px;" name="Tc11_khpzmx.PGBF">
+						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGBF">
 							评估办法
 						</th>
-						<th type="text" style="width: 230px;" name="Tc11_khpzmx.BZ">
+						<th type="textarea" style="width: 230px;" name="Tc11_khpzmx.BZ">
 							备注
 						</th>
 						<th type="del" style="width: 50px;">
