@@ -42,6 +42,19 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
+		<label>所属地区：</label>
+		<input type="text" name="Td01_xmxx.SSDQ" value="${td01_xmxx.ssdq}" style="width:150px;"/>
+	</p>
+	<p>
+		<label>工程类别：</label>
+		<input type="text" name="Td01_xmxx.GCLB" value="${td01_xmxx.gclb}" style="width:150px;"/>
+	</p>
+	<p>
+		<label>项目管理员：</label>
+		<input type="text" name="Td01_xmxx.XMGLY" value="${td01_xmxx.xmgly}" style="width:120px;"/>
+	</p>
+	<div style="height:0px;"></div>
+	<p>
 		<label>项目说明：</label>
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td01_xmxx.XMSM">${td01_xmxx.xmsm}</textarea>
 	</p>
