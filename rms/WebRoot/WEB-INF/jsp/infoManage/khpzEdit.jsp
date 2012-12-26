@@ -23,7 +23,7 @@ $(document).ready(function(){
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/khpzList.do" />
 	<input type="hidden" name="_navTabId" value="khpz" />
-	<div class="panel sysmanage_max" defH="213"
+	<div class="panel sysmanage_max" defH="182"
 		style="width: 97%; float: left; margin: 5px">
 		<h1>
 			配置信息
@@ -44,13 +44,21 @@ $(document).ready(function(){
 					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
 						class="required" style="width: 50px;" maxlength="15" />
 				</p>
-				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						打分天数：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.DFTS" value="${khpz.dfts }"
-						class="required digits" style="width: 200px;" maxlength="4" />
+						class="required digits" style="width: 50px;" maxlength="4" />
+				</p>
+				<div style="height: 0px;"></div>
+				<p>
+					<label style="">
+						最后考核：
+					</label>
+					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
+						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>" style="width: 200px;"
+						     readOnly/>
 				</p>
 				<p>
 					<label >
@@ -66,13 +74,14 @@ $(document).ready(function(){
 				
 				<div style="height: 0px;"></div>
 				<p>
-					<label style="">
-						最后考核：
+					<label >
+						下次考核：
 					</label>
-					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
-						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>" style="width: 200px;"
-						     readOnly/>
+					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
+					value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />" class="required date" style="width: 200px;"
+						 pattern="yyyy-MM-dd" readOnly/>
 				</p>
+				
 				<p>
 					<label >
 						单位类别：
@@ -90,17 +99,7 @@ $(document).ready(function(){
 						</option>
 					</select>
 				</p>
-				<div style="height: 0px;"></div>
-				<p>
-					<label >
-						下次考核：
-					</label>
-					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
-					value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />" class="required date" style="width: 200px;"
-						 pattern="yyyy-MM-dd" readOnly/>
-				</p>
-
-				<div style="height: 0px;"></div>
+				<div style="height: 0px;"></div> 
 				<p>
 					<label>
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
@@ -167,10 +166,10 @@ $(document).ready(function(){
 						<th type="text" style="width: 150px;" name="Tc11_khpzmx.PGBF">
 							评估办法
 						</th>
-						<th type="text" style="width: 250px;" name="Tc11_khpzmx.BZ">
+						<th type="text" style="width: 230px;" name="Tc11_khpzmx.BZ">
 							备注
 						</th>
-						<th type="del" style="width: 30px;">
+						<th type="del" style="width: 50px;">
 							操作
 						</th>
 					</tr>

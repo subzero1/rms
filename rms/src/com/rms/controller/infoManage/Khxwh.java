@@ -183,7 +183,7 @@ public class Khxwh {
 	}
 	
 	/**
-	 * 
+	 * 级联删除
 	 * @param request
 	 * @param response void
 	 * @throws IOException 
