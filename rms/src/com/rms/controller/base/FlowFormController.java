@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.LoadFormListService;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.baseObject.PropertyInject;
@@ -27,6 +28,7 @@ import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.flow.service.FlowService;
 import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.flow.buttonControl.Button;
+import com.netsky.base.flow.buttonControl.ButtonControl;
 import com.netsky.base.dataObjects.Ta03_user;
 
 /**
@@ -81,6 +83,9 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 
 	@Autowired
 	private QueryService queryService;
+	
+	@Autowired
+	private SaveService saveService;
 
 	@Autowired
 	private LoadFormListService loadFormListService;
@@ -338,10 +343,101 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 					}
 				}
 			}
+			
 			/**
 			 * 获得表单Actions
 			 */
 			buttonList = flowServiceImpl.listActions(paraMap);
+			
+			//不走流程的ACTION
+			if(buttonList == null || buttonList.size() == 0){
+				
+				buttonList = new LinkedList();
+				hsql = new StringBuffer("");
+				hsql.append("select tb03.id ");
+				hsql.append("from Tb03_relation tb03 ");
+				hsql.append("where tb03.source_id = ");
+				hsql.append(node_id);
+				hsql.append(" or tb03.dest_id =");
+				hsql.append(node_id);
+				List t_list = queryService.searchList(hsql.toString());
+				if(t_list == null || t_list.size() == 0){
+					Map<String,String> urlParaMap = new HashMap<String,String>();
+					String urlParaStr = MapUtil.getUrl(paraMap, new String[] { "project_id", "node_id", "module_id", "doc_id",
+							"user_id", "user_name", "opernode_id" });
+					MapUtil.load(urlParaMap, urlParaStr);
+					hsql = new StringBuffer(" select tb05.name,tb05.doclass,tb05.description,tb05.paras as tb05_paras ,tb14.parameters as tb14_paras,tb05.id ");
+					hsql.append(" from Tb05_affair tb05,Tb14_even_affair tb14");
+					hsql.append(" where tb05.id = tb14.affair_id");
+					hsql.append(" and tb05.affair_type = 'show_action'");
+					hsql.append(" and tb14.even_id =");
+					hsql.append(node_id);
+					hsql.append(" order by tb14.seq");
+					t_list = queryService.searchList(hsql.toString());
+					Button m_button = null;
+					
+					for (Object row : t_list) {
+						if (row instanceof Object[]) {
+							
+							Object[] arr = (Object[]) row;
+							// 把action相关参数串到window_pro
+							Map<String, String> proMap = new HashMap<String, String>();
+							MapUtil.load(proMap, (String) arr[3]);
+							MapUtil.load(proMap, (String) arr[4]);
+							MapUtil.load(proMap, urlParaStr);
+							/**
+							 * 判断action是否显示
+							 */
+							
+							try {
+								// 判断是否可以显示
+								if (proMap.containsKey("showClass")) {
+									Class c = Class.forName(MapUtil.getString(proMap, "showClass"));
+									ButtonControl bc;
+									bc = (ButtonControl) c.newInstance();
+									bc.setQueryService(queryService);
+									bc.setSaveService(saveService);
+									if (!bc.isShow(proMap))
+										continue;
+								}
+							} catch (ClassNotFoundException e) {
+								//log.error("showClass配置类不存在，配置信息：" + proMap.toString());
+							} catch (InstantiationException e) {
+								//log.error("showClass配置类调用时错误，配置信息：" + proMap.toString());
+							} catch (IllegalAccessException e) {
+								//log.error("showClass配置类不能有效访问，配置信息：" + proMap.toString());
+							}
+							
+							m_button = new Button((String) arr[0]);
+							String tmp_str = "";
+							if (proMap.containsKey("height")) {// 窗口高度
+								tmp_str = "height=" + proMap.get("height");
+							}
+							if (proMap.containsKey("width")) {// 窗口宽度
+								tmp_str += "width=" + proMap.get("width");
+							}
+							if (proMap.containsKey("scrollbars")) {// 窗口是否可以滚动
+								tmp_str += "scrollbars=" + proMap.get("scrollbars");
+							}
+							
+							m_button.comment = (String) arr[2];
+							m_button.window_pro = tmp_str;
+							
+							//URL参数处理
+							 tmp_str = arr[1] == null ?"":(String) arr[1];
+							if(tmp_str.indexOf("javascript:") != -1&&tmp_str.indexOf('(') != -1&&tmp_str.indexOf(')') != -1){
+								for (String key : urlParaMap.keySet()) {
+									tmp_str = tmp_str.replace("${" + key + "}", urlParaMap.get(key));
+								}
+							}else if(!proMap.containsKey("notHasFlowPara")){
+								tmp_str += "&" + urlParaStr;
+							}
+							m_button.url = tmp_str;
+							buttonList.add(m_button);
+						}
+					}
+				}
+			}
 			request.setAttribute("actions", buttonList);			
 
 			
