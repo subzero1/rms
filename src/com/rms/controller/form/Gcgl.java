@@ -247,7 +247,7 @@ public class Gcgl {
 	}
 	
 	@RequestMapping("/form/ajaxGcxxDel.do")
-	public void ajaxMbkDel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void ajaxGcxxDel(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		PrintWriter out = null;
 

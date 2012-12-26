@@ -36,7 +36,7 @@
 				<c:if test="${node_id == '10201'}">
 					<li><a class="add" href="flowForm.do?module_id=102&node_id=10201&flow_id=102" target="navTab" rel="gcxx" title="工程信息单"><span>添加</span></a></li>
 					<li class="line">line</li>
-					<li><a class="delete" href="form/ajaxGcxxDel.do?id={gcxx_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li><a class="delete" href="form/ajaxGcxxDel.do?id={gc_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 					<!-- 
 					<li> <a class="exportexcel" href="dispath.do?url=form/gcxxImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
