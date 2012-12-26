@@ -52,20 +52,9 @@ $(function(){
 <input type="hidden" name="GLGC_ID" value="${td00_gcxx.glgc_id}">
 <input type="hidden" id="BG_JE" name="Td00_gcxx.BG_JE" value="">
 <input type="hidden" id="MBK_ID" name="Td00_gcxx.MBK_ID" value="<c:out value="${td00_gcxx.mbk_id}" default="${param.mbk_id }"/>">
-
-	<p>
-		<label>需求部门：</label>
-		<input type="text" readOnly name="Td00_gcxx.XQBM" value="<c:out value="${td00_gcxx.xqbm}" default="${user.dept_name}"/>" style="width:150px;"/>
-	</p>
-	<p>
-		<label>需求提出人：</label> 
-		<input type="text" readOnly name="Td00_gcxx.CJR" value="<c:out value="${td00_gcxx.cjr}" default="${user.name}"/>" style="width:150px;"/>
-	</p>
-	<p>
-		<label>提出日期：</label>
-		<input readonly type="text" name="Td00_gcxx.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td00_gcxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
-	</p>
-	<div class="divider"></div>
+<input type="hidden"  name="Td00_gcxx.XQBM" value="<c:out value="${td00_gcxx.xqbm}" default="${user.dept_name}"/>" style="width:150px;"/>
+<input type="hidden"  name="Td00_gcxx.CJR" value="<c:out value="${td00_gcxx.cjr}" default="${user.name}"/>" style="width:150px;"/>
+<input type="hidden" name="Td00_gcxx.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td00_gcxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
 	<p>
 		<label>工程名称：</label>
 		<input type="text" name="Td00_gcxx.GCMC" value="<c:out value="${td00_gcxx.gcmc}" default="${mbk.zymc }"/>" style="width:407px;"/>
@@ -179,7 +168,7 @@ $(function(){
 	<div style="height:0px;"></div>
 	<p>
 		<label>项目管理员：</label>
-		<input type="text"  name="Td00_gcxx.XMGLY" value="${td00_gcxx.xmgly}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" default="${user.name}" />" style="width:150px;"/>
 	</p>
 	<p>
 		<label>实际开工时间：</label>

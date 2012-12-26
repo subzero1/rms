@@ -32,12 +32,24 @@
 	</div>
 	<div class="pageContent">
 		<div class="panelBar">
-			<!-- 
 			<ul class="toolBar">
-				<li><a class="helponline"	href="javascript:enterHelp('xmgl')"><span>在线帮助</span></a></li>
-				<li class="line">line</li>
-			</ul>
-			 -->
+			<c:if test="${node_id == '10101'}">
+					<li><a class="add" href="flowForm.do?module_id=101&node_id=10101&flow_id=101" target="navTab" rel="xmxx" title="项目信息单"><span>添加</span></a></li>
+					<li class="line">line</li>
+					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xmxx_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li class="line">line</li>
+					<!-- 
+					<li> <a class="exportexcel" href="dispath.do?url=form/xmxxImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
+					<li class="line">line</li>
+					-->
+				</c:if>
+					<!-- 
+					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
+					<li class="line">line</li>
+					-->
+					<li><a class="helponline"	href="javascript:enterHelp('xmxx')"><span>在线帮助</span></a></li>
+					<li class="line">line</li>
+				</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
 			<thead>
