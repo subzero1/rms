@@ -28,6 +28,7 @@ import com.netsky.base.utils.DateGetUtil;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta01_dept;
 import com.rms.dataObjects.form.Td00_gcxx;
+import com.rms.dataObjects.form.Td02_xmbgd;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.netsky.base.flow.utils.MapUtil;
@@ -195,7 +196,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					}
 					
 					if(node_id == 10101){//项目管理员起草立项资料送审单
-						btn = new Button("立项资料送审");
+						btn = new Button("资料送审");
 						btn.url = "javascript:docNew('flowForm.do?module_id=108&node_id=10801&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
 						btn.comment = "立项资料送审流程";
 						btn.picUri = "newform";
@@ -345,7 +346,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			}
 			
 			// 获取变更类别、变更种类
-			if (module_id == 103) {
+			if (module_id == 103 || module_id == 106) {
 				
 				// 获取变更类别：Tc01_property type="变更类别"
 				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
@@ -373,6 +374,15 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						bgzlList.add((Tc01_property) itr.next());
 					}
 					request.setAttribute("bgzlList", bgzlList);
+				}
+				
+				// 获取当前项目下所有变更单
+				queryBuilder = new HibernateQueryBuilder(Td02_xmbgd.class);
+				queryBuilder.eq("project_id", project_id);
+				queryBuilder.addOrderBy(Order.desc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					request.setAttribute("bgList", tmpList);
 				}
 				
 			}
@@ -473,7 +483,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 			}
 			
-			if(module_id==104){
+			if(module_id==104 || module_id == 107){
 				if(doc_id != -1){
 					//获取项目下的所有相关工程列表
 					queryBuilder = new HibernateQueryBuilder(Td00_gcxx.class);
