@@ -30,6 +30,7 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
+import com.netsky.base.flow.utils.MapUtil;
 
 @Service("loadFormListService")
 public class LoadFormListServiceImp implements LoadFormListService {
@@ -128,6 +129,81 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					ssdqList.add((Tc02_area) itr.next());
 				}
 				request.setAttribute("ssdqList", ssdqList);
+			}
+			
+			/*
+			 * 处理按钮
+			 */
+			if(module_id == 101 || module_id == 102){
+				
+				List buttonList = (List)request.getAttribute("buttons");
+				
+				String urlParas = MapUtil.getUrl(paraMap, new String[] { "project_id", "doc_id", "module_id", "node_id","opernode_id","user_id"});
+				Button btn = new Button("附 件");
+				btn.comment = "上传附件";
+				btn.picUri = "attach";
+				btn.url = "javascript:docSlave('slave.do?" +urlParas +"');";
+				buttonList.add(btn);
+				
+				if(doc_id != -1){
+					if(node_id == 10101 || node_id == 10103 || node_id == 10201 || node_id == 10203){
+						Long bg_module_id = -1L;
+						Long bg_node_id = -1L;
+						Long ys_module_id = -1L;
+						Long ys_node_id = -1L;
+						switch(node_id.intValue())	{
+							case 10101:{//项目经理起草项目变更单、项目验收单
+								bg_module_id = 103L;
+								bg_node_id = 10304L;
+								ys_module_id = 104L;
+								ys_node_id = 10402L;
+								break;
+							}
+							case 10103:{//施工单位起草项目变更单、项目验收单
+								bg_module_id = 103L;
+								bg_node_id = 10301L;
+								ys_module_id = 104L;
+								ys_node_id = 10401L;
+								break;
+							}
+							case 10201:{//项目经理起草工程变更单、工程验收单
+								bg_module_id = 106L;
+								bg_node_id = 10604L;
+								ys_module_id = 107L;
+								ys_node_id = 10702L;
+								break;
+							}
+							case 10203:{//施工单位起草工程变更单、工程验收单
+								bg_module_id = 106L;
+								bg_node_id = 10601L;
+								ys_module_id = 107L;
+								ys_node_id = 10701L;
+								break;
+							}
+						}
+						btn = new Button("起草变更");
+						btn.url = "javascript:docNew('flowForm.do?module_id=" + bg_module_id + "&node_id=" + bg_node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+						btn.comment = "新建变更流程";
+						btn.picUri = "newform";
+						buttonList.add(btn);
+						
+						btn = new Button("起草验收");
+						btn.url = "javascript:docNew('flowForm.do?module_id=" + ys_module_id + "&node_id=" + ys_node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+						btn.comment = "新建变更流程";
+						btn.picUri = "newform";
+						buttonList.add(btn);
+					}
+					
+					if(node_id == 10101){//项目管理员起草立项资料送审单
+						btn = new Button("立项资料送审");
+						btn.url = "javascript:docNew('flowForm.do?module_id=108&node_id=10801&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+						btn.comment = "立项资料送审流程";
+						btn.picUri = "newform";
+						buttonList.add(btn);
+					}
+				}
+				
+				request.setAttribute("buttons", buttonList);
 			}
 			
 			// 获取专业大类和专业小类，获取工程年度下所有专业，默认当前年
