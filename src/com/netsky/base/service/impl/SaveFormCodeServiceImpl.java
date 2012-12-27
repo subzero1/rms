@@ -163,7 +163,7 @@ public class SaveFormCodeServiceImpl implements SaveFormCodeService {
 			hsql.append(formTable);
 			hsql.append(" set bdbh = '");
 			hsql.append(this.formCode);
-			hsql.append("',project_id=id where bdbh is null and id = ");
+			hsql.append("' where bdbh is null and id = ");
 			hsql.append(doc_id);
 			dao.update(hsql.toString());
 		} catch (Exception e) {
