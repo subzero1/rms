@@ -1153,7 +1153,13 @@
             insert="true"
             column="xmglydh"
         />
-
+		<property 
+			name="ysbm"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ysbm"
+		/>
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td01_xmxx.xml

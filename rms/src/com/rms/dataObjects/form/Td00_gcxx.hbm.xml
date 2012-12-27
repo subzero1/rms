@@ -761,6 +761,27 @@
             insert="true"
             column="sgjd"
         />
+        <property
+        	name="ysry"
+        	type="java.lang.String"
+        	update="true"
+        	insert="true"
+        	column="ysry"
+        />
+         <property
+            name="ysbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ysbm"
+        />
+         <property
+            name="yssj"
+            type="java.lang.Date"
+            update="true"
+            insert="true"
+            column="yssj"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
