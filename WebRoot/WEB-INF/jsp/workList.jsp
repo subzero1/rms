@@ -64,27 +64,19 @@ $(function(){
 		<div class="panelBar">
 			<ul class="toolBar">
 				<c:forEach items="${newFormList}" var="formItem">
-					<c:if test="${fn:contains(formItem.url,'module_id=101')}">
+					<c:if test="${fn:contains(formItem.url,'module_id=109')}">
 					<li>
-						<a class="packageproject"	href="${formItem.url }" target="navTab" rel="autoform" title="打包立项"><span>打包立项	</span></a>
-					</li>
-					<li class="line">line</li>
-					</c:if>
-					<c:if test="${fn:contains(formItem.url,'module_id=102')}">
-					<li>
-						<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建工程"><span>新建工程</span></a>
+						<a class="add" href="${formItem.url }" target="navTab" rel="autoform" title="新建需求"><span>新建需求</span></a>
 					</li>
 					<li class="line">line</li>
 					</c:if>
 		     	</c:forEach> 
+		     	<!--
 				<li>
 					<a class="batchmodify"	href="dispath.do?url=form/batchUpdateProject.jsp" target="dialog" rel="batchUpdateProject" width="400" height="200"><span>批量修改</span></a>
 				</li>
 				<li class="line">line</li>
-				<li>
-					<a class="exportexcel"	href="workList.do?toExcel=yes" target="dwzExport" targetType="navTab"><span>导出</span></a>
-				</li>
-				<li class="line">line</li>
+				 -->
 				<li>
 					<a class="setting"	href="workListCfg.do" target="dialog" rel="workListConfig" width="500" height="370"><span>设置</span></a>
 				</li>

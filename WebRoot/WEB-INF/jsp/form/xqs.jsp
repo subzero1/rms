@@ -34,16 +34,16 @@
 	<div class="divider"></div>
 	<p>
 		<label> 需求名称：</label>
-		<input class="required" type="text" name="Td06_xqs.ZYMC" style="width:376px;" value="${td06_xqs.zymc}" />
+		<input class="required" type="text" name="Td06_xqs.ZYMC" style="width:376px;" value="${td06_xqs.xqmc}" />
 	</p>
 	<p>
 		<label>建设性质：</label>
-		<netsky:htmlSelect htmlClass="required" id="jsxz" name="Td06_xqs.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="" showForOption="" value="${td06_xqs.jsxz}" extend="" extendPrefix="true" />
+		<netsky:htmlSelect htmlClass="required" id="jsxz" name="Td06_xqs.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="name" showForOption="name" value="${td06_xqs.jsxz}" extend="" extendPrefix="true" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>所属地区：</label>
-		<netsky:htmlSelect htmlClass="required" name="Td06_xqs.SSDQ" style="width:156px;" objectForOption="dqList" valueForOption="" showForOption="" value="${td06_xqs.ssdq}" extend="" extendPrefix="true" />
+		<netsky:htmlSelect htmlClass="required" name="Td06_xqs.SSDQ" style="width:156px;" objectForOption="ssdqList" valueForOption="name" showForOption="name" value="${td06_xqs.ssdq}" extend="" extendPrefix="true" />
 	</p>
 	<p>
 		<label>坐落地点：</label>
