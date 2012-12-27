@@ -78,7 +78,7 @@ function searchListExport(){
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width:40px;"></th>
+					<th style="width:70px;"></th>
 					<th orderField="zymc">资源名称</th>
 					<th orderField="ssdq">地区</th>
 					<th style="width: 120px;" orderField="jsxz">建设性质</th>
@@ -96,6 +96,8 @@ function searchListExport(){
 						<td style="text-align:center;">
 							<c:if test="${obj[0] != null}">								
 								<a href="javascript:lzjl('${obj[0].id }')" rel="lzjl" ><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>
+								&nbsp;
+								<a class="add" href="jlgt/jlgtView.do?module_id=90&doc_id=${obj[0].id }" target="navTab" rel="jlgtView"><img border="0" src="Images/track_record.png" style="cursor:pointer"/></a>
 							</c:if>		
 						</td>
 						<td><a href="mbk/mbkEdit.do?id=${obj[0].id}&listType=${obj[1].listType }" target="navTab" rel="mbk" title="目标库信息">${obj[0].zymc }</a></td>
