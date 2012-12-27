@@ -7,8 +7,8 @@
 <script language="javascript">
 function setPfbz(tdObj){
 	var $bz = $(tdObj).find(".bz");
-	var input_info = "<p><label>评分说明 </label><textarea  style=\"width:220px;height:100px;\" id=\"_bz\">"+$bz.val()+"</textarea></p>";
-	alertMsg.confirm(input_info, {			
+	var input_info = "<p><textarea  style=\"width:220px;height:100px;\" id=\"_bz\">"+$bz.val()+"</textarea></p>";
+	alertMsg.input(input_info, {title:'评分说明',		
 		okCall: function(){
 			var _bz = $("#_bz").val();
 			$bz.val(_bz);
@@ -38,7 +38,7 @@ function saveFz(){
 				<li><a class="save"	href="javascript:saveFz();"><span>保 存</span></a></li>
 				<li class="line">line</li>
 			</ul>
-			<div style="float:right;"><a href="wxdwkh/khsm.do?kh_id=${tf19.kh_id }" target="dialog" width="600" height="450" rel="khsm"><font color="blue">查看考核说明</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div style="float:right;"><a href="wxdwkh/khsm.do?kh_id=${tf19.kh_id }" target="dialog" width="800" height="550" rel="khsm"><font color="blue">查看考核说明</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		</div>
 	
 		<form id="khpf_form" method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">

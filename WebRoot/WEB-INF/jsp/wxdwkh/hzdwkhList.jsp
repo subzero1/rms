@@ -3,7 +3,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-<form id="pagerForm" method="post" action="form/xmxxList.do">
+<script language="javascript">
+function modifyTitle(td_id,tf19_id,tf19_khmc){	
+	var input_info = "<p><textarea  style=\"width:220px;height:100px;\" id=\"_khmc\">"+tf19_khmc+"</textarea></p>";
+	alertMsg.input(input_info, {title:'考核名称修改',
+		okCall: function(){
+			var khmc = $("#_khmc").val();
+			var data = {'id':tf19_id,'khmc':khmc};
+			$.ajax({
+				url:'wxdwkh/ajaxModifyKhmc.do',
+				type:'post',
+				data:data,
+				dataType:"text",
+				cache: false,
+				success: function(text){
+					if(text=="ok"){
+						var khmcTd = $("#"+td_id);
+						khmcTd.html(khmc);
+					}
+				},
+				error: DWZ.ajaxError
+			 });
+		}
+	});
+}
+</script>
+
+<form id="pagerForm" method="post" action="wxdwkh/hzdwkhList.do">
 	<input type="hidden" name="khnr" value="${khnr}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -55,11 +81,12 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="khxx_id" rel="${obj["tf19"].id}">
 						<td style="text-align:center;">${obj["tc10"].dwlb }</td>
-						<td>${obj["tf19"].khmc }</td>
+						<td id="khmc${offset }">${obj["tf19"].khmc }</td>
 						<td><fmt:formatDate value="${obj[\"tf19\"].khkssj }" pattern="yyyy-MM-dd"/></td>
 						<td><fmt:formatDate value="${obj[\"tf19\"].khjssj }" pattern="yyyy-MM-dd"/></td>
 						<td><a href="wxdwkh/khpf.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="khpf"><font color="blue"><u>打分</u></font></a> 
-						&nbsp;&nbsp;&nbsp;&nbsp;    <a href="wxdwkh/khpfView.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="ckkhpf"><font color="blue"><u>查看结果</u></font></a>&nbsp;</td>
+						&nbsp;&nbsp;&nbsp;&nbsp;<a href="wxdwkh/khpfView.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="ckkhpf"><font color="blue"><u>查看结果</u></font></a>
+						&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:modifyTitle('khmc${offset }','${obj["tf19"].id }','${obj["tf19"].khmc }');"><font color="blue"><u>修改标题</u></font></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
