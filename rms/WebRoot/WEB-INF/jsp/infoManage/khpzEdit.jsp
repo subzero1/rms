@@ -1,6 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<
+<style>
+.txt_dw {
+	border-width: 0px;
+	width: 0px;
+	overflow-y: auto;
+	border-bottom:1px solid ;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	initSysManageWeb(); 
@@ -38,7 +47,7 @@ $(document).ready(function(){
 						class="required" style="width: 200px;" maxlength="15" />
 				</p>
 				<p>
-					<label >
+					<label>
 						间隔天数：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
@@ -57,11 +66,11 @@ $(document).ready(function(){
 						最后考核：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
-						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>" style="width: 200px;"
-						     readOnly/>
+						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>"
+						style="width: 200px;" readOnly />
 				</p>
 				<p>
-					<label >
+					<label>
 						是否有效：
 					</label>
 					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="1"
@@ -71,19 +80,20 @@ $(document).ready(function(){
 						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
 					否
 				</p>
-				
+
 				<div style="height: 0px;"></div>
 				<p>
-					<label >
+					<label>
 						下次考核：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
-					value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />" class="required date" style="width: 200px;"
-						 pattern="yyyy-MM-dd" readOnly/>
+						value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />"
+						class="required date" style="width: 200px;" pattern="yyyy-MM-dd"
+						readOnly />
 				</p>
-				
+
 				<p>
-					<label >
+					<label>
 						单位类别：
 					</label>
 					<select style="width: 100" name="Tc10_hzdw_khpz.DWLB">
@@ -99,13 +109,13 @@ $(document).ready(function(){
 						</option>
 					</select>
 				</p>
-				<div style="height: 0px;"></div> 
+				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.BZ" value="${khpz.bz}"
-						style="width: 520px;"  />
+						style="width: 520px;" />
 				</p>
 			</div>
 
@@ -154,14 +164,15 @@ $(document).ready(function(){
 			<table class="list itemDetail">
 				<thead>
 					<tr>
-						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX" hideName="Tc11_khpzmx.ID">
+						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX"
+							hideName="Tc11_khpzmx.ID">
 							考核项
 						</th>
 						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGNR">
 							评估内容
 						</th>
-						<th type="text" style="width: 80px;" name="Tc11_khpzmx.ZGFZ">
-							最高得分
+						<th type="text" style="width: 40px;" name="Tc11_khpzmx.ZGFZ">
+							得分
 						</th>
 						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGBF">
 							评估办法
@@ -183,19 +194,20 @@ $(document).ready(function(){
 									style="width: 0px;" />
 							</td>
 							<td>
-								<input type="text" name="Tc11_khpzmx.PGNR" value="${pzmx.pgnr}"
-									style="width: 0px;" />
+								<textarea name="Tc11_khpzmx.PGNR"
+									class="txt_dw">${pzmx.pgnr}</textarea>
 							</td>
 							<td>
 								<input type="text" name="Tc11_khpzmx.ZGFZ" value="${pzmx.zgfz}"
 									style="width: 0px;" />
-							</td><td>
-							<input type="text" name="Tc11_khpzmx.PGBF" value="${pzmx.pgbf}"
-								style="width: 0px;" />
 							</td>
 							<td>
-								<input type="text" name="Tc11_khpzmx.BZ" value="${pzmx.bz}"
-									style="width: 0px;" />
+								<textarea name="Tc11_khpzmx.PGBF"
+									class="txt_dw">${pzmx.pgbf}</textarea>
+							</td>
+							<td>
+								<textarea name="Tc11_khpzmx.BZ"
+									class="txt_dw">${pzmx.bz}</textarea>
 							</td>
 							<td>
 								<a href="javascript:" class="btnDel emptyInput" title="确认删除此明细">删除</a>
