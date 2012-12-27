@@ -397,10 +397,10 @@
 							+'<a class="inputDateButton" href="javascript:void(0)">选择</a>';
 						break;
 					case 'textarea':
-						html = '<textarea id="' + field.id + '" name="'+field.name+'" value="'+field.defaultVal+'" size="'+field.size+'" style="border-width:1;width:0px;overflow-y:auto;" class="' + field.fieldClass + '" comments="' + field.comments + '">'+field.defaultVal+'</textarea>';
+						html = '<textarea id="' + field.id + '" name="'+field.name+'" value="'+field.defaultVal+'" size="'+field.size+'" style="border-width:0px;width:0px;overflow-y:auto;" class="' + field.fieldClass + '" comments="' + field.comments + '">'+field.defaultVal+'</textarea>';
 						break;	
 					default:
-						html = '<input type="text" name="'+field.name+'" value="'+field.defaultVal+'" size="'+field.size+'" class="'+field.fieldClass+'" style="width:0px;" comments="' + field.comments + '" '+attrFrag+'/>';
+						html = '<input type="text" name="'+field.name+'"  size="'+field.size+'" class="'+field.fieldClass+'" style="width:0px;" comments="' + field.comments + '" '+attrFrag+'/>';
 						break;
 				}
 				if(field.hideName!="" || field.hideId!="" ) html = '<input type="hidden" id="' + field.hideId + '" name="' + field.hideName + '" value="'+field.hideValue+'"/>' + html;	//modify at 2011-08-08 表单主从结构中增加隐藏域
