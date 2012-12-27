@@ -118,6 +118,7 @@ a:hover {text-decoration:underline;}
 .alert .warn h1 { background-position:2px 8px;}
 .alert .correct h1 { background-position:2px -92px;}
 .alert .confirm h1 { background-position:2px 8px;}
+.alert .input h1 { background-position:2px 8px;}
 .alert p { margin:10px;}
 
 .alert .toolBar { display:block; overflow:hidden; height:25px; padding-top:5px; text-align:right;}

@@ -42,6 +42,7 @@
 .alert .error .alertInner { border-color:#e50000; background:#fefacf;}
 .alert .correct .alertInner, .alert .info .alertInner { border-color:#99bbe8; background:#fefacf;}
 .alert .confirm .alertInner { border-color:#99bbe8; background:#fefacf;}
+.alert .input .alertInner { border-color:#99bbe8; background:#fefacf;}
 .alert h1 { border-color:#CCC; background:url(./images/alert/alertpanel_icon.png) no-repeat;}
 
 /* Dialog */
