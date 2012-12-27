@@ -58,28 +58,5 @@
 		<label>项目说明：</label>
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td01_xmxx.XMSM">${td01_xmxx.xmsm}</textarea>
 	</p>
-	<div style="height:0px;"></div>
-	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关工程列表</p>
-	
-	<table class="table" width="100%" layouth="138">
-		<thead>
-			<tr>
-				<th style="width: 140px;">工程编号</th>
-				<th style="width: 300px;">工程名称</th>
-				<th>&nbsp;</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:set var="offset" value="0"/>
-			<c:forEach items="${glgcList}" var="obj">
-			<c:set var="offset" value="${offset+1}"/>
-				<tr>
-					<td>${obj.gcbh }</td>
-					<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:102,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.gcmc }</a></td>
-					<td>&nbsp;</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
 </div>
 
