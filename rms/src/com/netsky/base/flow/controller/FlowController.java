@@ -430,7 +430,8 @@ public class FlowController {
 							remark += "[" +user.getRemark() +"]"; ;
 						}
 						
-						out.println("<name>"+user.getLogin_id()+" " + user.getName()  + remark + "</name>");		
+						//out.println("<name>"+user.getLogin_id()+" " + user.getName()  + remark + "</name>");		
+						out.println("<name>"+ user.getName()  + remark + "</name>");
 						out.println("</option>");	
 				
 					}
@@ -676,7 +677,7 @@ public class FlowController {
 						out.println("<option>");
 						out.println("<option_id>" + user.getId() + "</option_id>");
 						;
-						out.println("<option_name>" + user.getLogin_id() + " " + user.getName() + "</option_name>");
+						out.println("<option_name>" + user.getName() + "</option_name>");
 						out.println("</option>");
 					}
 					out.println("</to_user>");

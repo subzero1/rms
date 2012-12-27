@@ -111,13 +111,13 @@
 				<th style="width: 30px;">序号</th>
 				<th style="width: 90px;">变更日期</th>
 				<th style="width: 80px;">变更金额</th>
-				<th style="width: 120px;">变更后立项金额</th>
-				<th style="width: 80px;">变更比例</th>
+				<th style="width: 80px;">变更类别</th>
+				<th style="width: 80px;">变更种类</th>
 				<th>变更原因</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach begin="0" end="8">
+			<c:forEach var="obj" items="${bgList}">
 				<tr>
 					<td></td>
 					<td></td>
