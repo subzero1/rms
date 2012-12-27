@@ -76,6 +76,7 @@ $(function(){
 <input type="hidden" name="profile" value="xmxxd.xml"/>
 <input type="hidden" name="Td01_xmxx.ID" value="${param.doc_id}">
 <input type="hidden" name="Td01_xmxx.CJR" value="<c:out value="${td01_xmxx.cjr}" default="${user.name}"/>">
+<input type="hidden" name="Td01_xmxx.XMGLYDH" value="<c:out value="${td01_xmxx.xmglydh}" default="${user.mobile_tel}"/>">
 <input type="hidden" name="Td01_xmxx.CJRQ" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td01_xmxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>">
 <input type="hidden" id="BG_JE_XM" name="Td01_xmxx.BG_JE" value="">
 

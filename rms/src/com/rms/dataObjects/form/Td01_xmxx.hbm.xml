@@ -1145,6 +1145,14 @@
             insert="true"
             column="sgjd"
         />
+        
+        <property
+            name="xmglydh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xmglydh"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
