@@ -2,12 +2,15 @@ package com.rms.controller.infoManage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.service.ExceptionService;
@@ -25,6 +29,7 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.base.Tc10_hzdw_khpz;
 import com.rms.dataObjects.wxdw.Tf15_khxwh;
+import com.rms.dataObjects.wxdw.Tf19_khxx;
 
 @Controller
 public class Khxwh {
@@ -247,6 +252,66 @@ public class Khxwh {
 				log.error(e.getMessage());
 				tx.rollback();
 				out.print("{\"statusCode\":\"300\"," + "\"message\":\"删除失败!\"}");
+			} finally {
+				session.close();
+			}
+		}
+	}
+	
+	/**
+	 * 定时调用
+	 * @param request
+	 * @param response void
+	 */
+	@RequestMapping("/infoManage/khxUpdate.do")
+	public void khxUpdate(HttpServletRequest request,
+			HttpServletResponse response) {
+		Long kh_id = convertUtil.toLong(request.getParameter("kh_id"), null);
+		StringBuffer tc10_hql = new StringBuffer(
+				"select hzdw_khpz from Tc10_hzdw_khpz hzdw_khpz where 1=1 ");
+		StringBuffer tf19_hql = new StringBuffer("");
+		StringBuffer hql = new StringBuffer();
+
+		Tc10_hzdw_khpz hzdw_khpz = null;
+		Tf19_khxx khxx = null;
+		List hzdw_khpz_list = null;
+		List khxxList = null;
+		Session session = null;
+		Transaction tx = null;
+
+		if (kh_id == null)
+			tc10_hql.append(" and trunc(hzdw_khpz.xckhsj)=trunc(sysdate)");
+		else
+			tc10_hql.append(" and hzdw_khpz.id=" + kh_id);
+		hzdw_khpz_list = queryService.searchList(tc10_hql.toString());
+		
+		if (hzdw_khpz_list != null && hzdw_khpz_list.size() > 0) {
+			Date date = new Date();
+			session=saveService.getHiberbateSession();
+			tx=session.beginTransaction();
+			tx.begin();
+			Iterator it = hzdw_khpz_list.iterator();
+			try {
+				while (it.hasNext()) {
+					hzdw_khpz = (Tc10_hzdw_khpz) it.next();
+					hzdw_khpz.setXckhsj(DateGetUtil.addDay(date, hzdw_khpz.getJgts().intValue()));
+					hzdw_khpz.setZhkhsj(date);
+					session.saveOrUpdate(hzdw_khpz);
+					
+					khxx = new Tf19_khxx();
+					khxx.setKhmc("考核[" + DateGetUtil.getYear() + "年"
+							+ DateGetUtil.getMonth() + "月]");
+					khxx.setKhkssj(date);
+					khxx.setKhjssj(DateGetUtil.addDay(date, hzdw_khpz.getDfts()
+							.intValue()));
+					khxx.setKh_id(hzdw_khpz.getId());
+					session.save(khxx);
+					tx.commit();
+				}
+			} catch (Exception e) {
+				// log.error(e.getMessage());
+				e.printStackTrace();
+				tx.rollback();
 			} finally {
 				session.close();
 			}
