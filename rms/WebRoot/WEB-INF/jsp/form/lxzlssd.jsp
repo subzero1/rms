@@ -21,7 +21,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>起 草 人：</label> 
-		<input type="text" readOnly name="Td04_xmysd.CJR" value="<c:out value="${td05_lxzlssd.cjr}" default="${user.name}"/>" style="width:150px;"/>
+		<input type="text" readOnly name="Td05_lxzlssd.CJR" value="<c:out value="${td05_lxzlssd.cjr}" default="${user.name}"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>电话：</label>
