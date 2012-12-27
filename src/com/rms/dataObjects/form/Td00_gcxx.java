@@ -325,7 +325,7 @@ public class Td00_gcxx implements Serializable {
 	public void setXmgly(String xmgly) {
 		this.xmgly = xmgly;
 	}
-	
+
 	/**
 	 * 设计要求
 	 */
@@ -1597,7 +1597,7 @@ public class Td00_gcxx implements Serializable {
 	}
 
 	private String xmglydh;
-	
+
 	/**
 	 * @hibernate.property column="xmglydh"
 	 * @return Returns the xmglydh.
@@ -1608,5 +1608,44 @@ public class Td00_gcxx implements Serializable {
 
 	public void setXmglydh(String xmglydh) {
 		this.xmglydh = xmglydh;
+	}
+
+	/**
+	 * 验收人员
+	 */
+	private String ysry;
+	
+	/**
+	 * 验收部门
+	 */
+	private String ysbm;
+	
+	/**
+	 * 验收时间
+	 */
+	private Date yssj;
+
+	public String getYsry() {
+		return ysry;
+	}
+
+	public void setYsry(String ysry) {
+		this.ysry = ysry;
+	}
+
+	public String getYsbm() {
+		return ysbm;
+	}
+
+	public void setYsbm(String ysbm) {
+		this.ysbm = ysbm;
+	}
+
+	public Date getYssj() {
+		return yssj;
+	}
+
+	public void setYssj(Date yssj) {
+		this.yssj = yssj;
 	}
 }

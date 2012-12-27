@@ -2443,4 +2443,18 @@ public class Td01_xmxx implements Serializable {
 	public void setXmglydh(String xmglydh) {
 		this.xmglydh = xmglydh;
 	}
+	
+	/**
+	 * 验收部门
+	 */
+	private String ysbm;
+
+	public String getYsbm() {
+		return ysbm;
+	}
+
+	public void setYsbm(String ysbm) {
+		this.ysbm = ysbm;
+	}
+	
 }
