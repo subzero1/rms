@@ -131,7 +131,7 @@
 					</c:forEach>
 				</div>
 			</div>
-			<c:if test="${param.module_id != 101 && param.module_id != 102}">
+			<!--
 			<div id="jlfkTitle" class="panel">
 				<h1>交流反馈 [${fn:length(jlfk)}]</h1>
 				<div id="jlfkdiv" defH="150" style="background-color:#fff;">
@@ -143,7 +143,7 @@
 					</c:forEach>
 				</div>
 			</div>
-			</c:if>
+			 -->
 		</div>
 		<div  style="clear:both"></div>  
 	</div>
