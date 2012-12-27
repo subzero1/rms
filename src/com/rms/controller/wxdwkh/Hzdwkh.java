@@ -1,5 +1,6 @@
 package com.rms.controller.wxdwkh;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -16,10 +17,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netsky.base.baseObject.HibernateQueryBuilder;
+import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta22_user_idea;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.base.Tc10_hzdw_khpz;
 import com.rms.dataObjects.wxdw.Tf19_khxx;
 import com.rms.dataObjects.wxdw.Tf20_khxxmx;
@@ -32,12 +37,15 @@ public class Hzdwkh {
 	@Autowired
 	private QueryService queryService;
 	
+	/**
+	 * 保存服务
+	 */
+	@Autowired
+	private SaveService saveService;
+	
 	
 	/**
 	 *  考核信息列表
-	 */
-	
-	/**
 	 * 
 	 * @param request
 	 * @param response
@@ -102,7 +110,7 @@ public class Hzdwkh {
 		
 		// 考核内容
 		List<String> khnrList = (List<String>) queryService
-				.searchList("select id,mc from Tc10_hzdw_khpz where useflag=1 order by id");
+				.searchList("select tc10 from Tc10_hzdw_khpz tc10 where useflag=1 order by id");
 		modelMap.put("khnrList", khnrList);
 		
 		// 获取总条数和总页数
@@ -117,9 +125,6 @@ public class Hzdwkh {
 	
 	/**
 	 *  考核评分
-	 */
-	
-	/**
 	 * 
 	 * @param request
 	 * @param response
@@ -182,9 +187,6 @@ public class Hzdwkh {
 	
 	/**
 	 *  查看评分结果
-	 */
-	
-	/**
 	 * 
 	 * @param request
 	 * @param response
@@ -221,7 +223,7 @@ public class Hzdwkh {
 		modelMap.put("hzdwList", hzdwList);
 				
 		ResultObject rs =  queryService
-					.search("select khx_id,wxdw_id,sum(fz) as fzhj from Tf20_khxxmx where kh_id=" + khxx_id + " group by khx_id,wxdw_id");
+					.search("select khx_id,wxdw_id,sum(fz)/count(fz) as fzhj from Tf20_khxxmx where kh_id=" + khxx_id + " group by khx_id,wxdw_id");
 		Long wxdw = -1L;
 		Map<String, Map<String, Tf20_khxxmx>> khpfMap = new HashMap<String, Map<String, Tf20_khxxmx>>();
 		Map<String, Tf20_khxxmx> khMap = new HashMap<String, Tf20_khxxmx>();
@@ -251,9 +253,6 @@ public class Hzdwkh {
 	
 	/**
 	 *  考核说明
-	 */
-	
-	/**
 	 * 
 	 * @param request
 	 * @param response
@@ -277,5 +276,34 @@ public class Hzdwkh {
 		
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/khsm.jsp", modelMap);
 
+	}
+	
+	/**
+	 * 修改考核名称
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdwkh/ajaxModifyKhmc.do")
+	public void ajaxModifyKhmc(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/xml");
+				
+		String id = convertUtil.toString(request.getParameter("id"));
+		String khmc = convertUtil.toString(request.getParameter("khmc"));
+		
+		try {
+			saveService.updateByHSql("update Tf19_khxx set khmc='"+ khmc +"' where id="+id);
+			out.print("ok");
+		
+		} catch (Exception e) {
+			out.print("");
+			System.out.println(e);
+		}
+		out.flush();
+		out.close();
 	}
 }
