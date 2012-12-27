@@ -54,7 +54,7 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width:60px;"></th>
+					<th style="width:50px;"></th>
 					<th orderField="gcmc">工程名称</th>
 					<th style="width: 120px;" orderField="gcbh">工程编号</th>
 					<th style="width: 70px;" orderField="ssdq">所属地区</th>
@@ -69,7 +69,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="gc_id" rel="${obj.id}">
 						<td style="text-align:center;">
-							<a class="add" href="jlgt/jlgtView.do?module_id=102&doc_id=${obj.id }" target="navTab" rel="jlgtView"><img border="0" src="Images/chart_bar.png" style="cursor:pointer"/></a>&nbsp;&nbsp;
+							<a class="add" href="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=${obj.id }', {title:'工程施工进度'});"  rel="gcsgjd"><img border="0" src="Images/chart_bar.png" style="cursor:pointer"/></a>&nbsp;&nbsp;
 							<a class="add" href="jlgt/jlgtView.do?module_id=102&doc_id=${obj.id }" target="navTab" rel="jlgtView"><img border="0" src="Images/track_record.png" style="cursor:pointer"/></a>
 						</td>
 						<td><a href="openForm.do?project_id=${obj.id }&module_id=102&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="gcxx" title="工程信息单">${obj.gcmc }</a></td>

@@ -2429,4 +2429,18 @@ public class Td01_xmxx implements Serializable {
 	public void setSgjd(Double sgjd) {
 		this.sgjd = sgjd;
 	}
+	
+	private String xmglydh;
+	
+	/**
+	 * @hibernate.property column="xmglydh"
+	 * @return Returns the xmglydh.
+	 */
+	public String getXmglydh() {
+		return xmglydh;
+	}
+
+	public void setXmglydh(String xmglydh) {
+		this.xmglydh = xmglydh;
+	}
 }

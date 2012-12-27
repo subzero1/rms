@@ -737,6 +737,14 @@
             insert="true"
             column="sdpgyy"
         />
+        
+        <property
+            name="xmglydh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xmglydh"
+        />
 
         <property
             name="mbk_id"
