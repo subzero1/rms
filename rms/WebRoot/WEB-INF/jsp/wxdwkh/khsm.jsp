@@ -9,27 +9,27 @@
 		<span style="font-size:14px;font-weight:bold;">${tc10.mc }</span>
 	</div>
 	<div class="pageContent">	
-		<table width="580" class="report" layouth="38" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+		<table width="780" class="report" layouth="38" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 			<thead>
 				<tr>
 					<th style="width:100px;">考核项</th>
 					<th style="width:300px;">评估内容</th>
 					<th style="width:80px;">最高分值</th>
-					<th style="width:100px;">考核办法</th>
+					<th style="width:300px;">考核办法</th>
 				</tr>
 			</thead>
 			<tbody id="pfbody">
 				<c:forEach var="obj" items="${khxList}">
 				<tr>
 					<td>${obj.khx }</td>
-					<td>${obj.pgnr }</td>
+					<td><textarea style="width:295px;overflow-y:hidden;border:0px;background-color:#fff;" readOnly onpropertychange='this.style.posHeight=this.scrollHeight' onfocus='textarea.style.posHeight=this.scrollHeight'>${obj.pgnr }</textarea></td>
 					<td>${obj.zgfz }</td>
-					<td>${obj.pgbf }</td>
+					<td><textarea style="width:295px;overflow-y:hidden;border:0px;background-color:#fff;" readOnly onpropertychange='this.style.posHeight=this.scrollHeight' onfocus='textarea.style.posHeight=this.scrollHeight'>${obj.pgbf }</textarea></td>
 				</tr>
 				</c:forEach>
-				<tr style="background-color:#F0EFF0">
-					<td style="text-align:center;">备 注</td>
-					<td colspan="3">${tc10.bz }</td>
+				<tr style="height:60px;">
+					<td>备 注</td>
+					<td colspan="3"><textarea style="width:650px;overflow-y:hidden;border:0px;background-color:#fff;" readOnly onpropertychange='this.style.posHeight=this.scrollHeight' onfocus='textarea.style.posHeight=this.scrollHeight'>${tc10.bz }</textarea></td>
 				</tr>
 			</tbody>
 		</table>	
