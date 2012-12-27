@@ -1118,15 +1118,17 @@ public class FlowBussines {
 				}
 				
 				//保存TB11
-				tb11 = new Tb11_operflow();
-				tb11.setProject_id(MapUtil.getLong(paraMap,"project_id"));
-			    tb11.setFlow_id(tb01.getId());
-			    tb11.setName(tb01.getName());
-			    tb11.setDescription(tb01.getDescription());
-			    tb11.setDisplay(tb01.getDisplay());
-			    tb11.setStart_time(new Date());
-			    tb11.setStatus(FlowConstant.FLOW_STATUS_RUN);
-			    session.saveOrUpdate(tb11);
+				if (tb11 == null) {
+					tb11 = new Tb11_operflow();
+					tb11.setProject_id(MapUtil.getLong(paraMap,"project_id"));
+				    tb11.setFlow_id(tb01.getId());
+				    tb11.setName(tb01.getName());
+				    tb11.setDescription(tb01.getDescription());
+				    tb11.setDisplay(tb01.getDisplay());
+				    tb11.setStart_time(new Date());
+				    tb11.setStatus(FlowConstant.FLOW_STATUS_RUN);
+				    session.saveOrUpdate(tb11);
+				}
 			    //保存tb12
 			    tb12 = new Tb12_opernode();
 			    tb12.setDoc_id(MapUtil.getLong(paraMap,"doc_id"));
