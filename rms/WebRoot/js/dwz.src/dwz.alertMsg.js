@@ -2,7 +2,7 @@
  * @author ZhangHuihua@msn.com
  */
 $.setRegional("alertMsg", {
-	title:{error:"Error", info:"Information", warn:"Warning", correct:"Successful", confirm:"Confirmation"},
+	title:{error:"Error", info:"Information", warn:"Warning", correct:"Successful", confirm:"Confirmation", input:"Input"},
 	butMsg:{ok:"OK", yes:"Yes", no:"No", cancel:"Cancel"}
 });
 var alertMsg = {
@@ -10,7 +10,7 @@ var alertMsg = {
 	_bgId: "#alertBackground",
 	_closeTimer: null,
 
-	_types: {error:"error", info:"info", warn:"warn", correct:"correct", confirm:"confirm"},
+	_types: {error:"error", info:"info", warn:"warn", correct:"correct", confirm:"confirm", input:"input"},
 
 	_getTitle: function(key){
 		return $.regional.alertMsg.title[key];
@@ -106,7 +106,7 @@ var alertMsg = {
 			{name:op.okName, call: op.okCall, keyCode:DWZ.keyCode.ENTER}
 		];
 		this._open(type, msg, buttons);
-	},
+	},	
 	/**
 	 * 
 	 * @param {Object} msg
@@ -119,7 +119,27 @@ var alertMsg = {
 			{name:op.okName, call: op.okCall, keyCode:DWZ.keyCode.ENTER},
 			{name:op.cancelName, call: op.cancelCall, keyCode:DWZ.keyCode.ESC}
 		];
+		
 		this._open(this._types.confirm, msg, buttons);
+	},	
+	/**
+	 * modify at 2012-12-27 弹出消息录入数据确认
+	 * @param {Object} msg
+	 * @param {Object} options {okName, okCal, cancelName, cancelCall}
+	 */
+	input: function(msg, options) {
+		var op = {okName:$.regional.alertMsg.butMsg.ok, okCall:null, cancelName:$.regional.alertMsg.butMsg.cancel, cancelCall:null};
+		$.extend(op, options);
+		var buttons = [
+			{name:op.okName, call: op.okCall, keyCode:DWZ.keyCode.ENTER},
+			{name:op.cancelName, call: op.cancelCall, keyCode:DWZ.keyCode.ESC}
+		];
+		if(options.title!=null)
+			$.regional.alertMsg.title.input = options.title;
+		else
+			$.regional.alertMsg.title.input = "";
+		
+		this._open(this._types.input, msg, buttons);
 	}
 };
 
