@@ -494,6 +494,26 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 			}
 			
+			if(module_id== 109){
+			   // 获取建设性质：Tc01_property type="建设性质"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "建设性质");
+				queryBuilder.addOrderBy(Order.asc("name"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					request.setAttribute("jsxzList", tmpList);
+				}
+				
+				// 获取覆盖属性：Tc01_property type="覆盖属性"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "覆盖属性");
+				queryBuilder.addOrderBy(Order.asc("name"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					request.setAttribute("fgsxList", tmpList);
+				}
+			}
+			
 			
 			/**
 			 * 以下为表单附件区域@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
