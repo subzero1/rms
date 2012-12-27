@@ -34,11 +34,11 @@
 	<div class="divider"></div>
 	<p>
 		<label>项目名称：</label>
-		<input type="text" name="Td00_gcxx.GCMC" value="${td00_gcxx.xmmc}" style="width:407px;"/>
+		<input type="text" name="Td00_gcxx.GCMC" value="${td00_gcxx.gcmc}" style="width:407px;"/>
 	</p>
 	<p>
 		<label>项目编号：</label>
-		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.xmbh}" style="width:120px;"/>
+		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.form.Td06_xqs"  table="Td06_xqs">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td06_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+
+  <property
+  name="fwbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fwbm"
+  />
+
+  <property
+  name="bdbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bdbh"
+  />
+
+  <property
+  name="cjr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjr"
+  />
+
+  <property
+  name="cjrdh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjrdh"
+  />
+
+  <property
+  name="cjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjrq"
+  />
+
+  <property
+  name="xqmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xqmc"
+  />
+
+  <property
+  name="jsxz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsxz"
+  />
+
+  <property
+  name="zldd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zldd"
+  />
+
+  <property
+  name="ssdq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ssdq"
+  />
+
+  <property
+  name="jd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jd"
+  />
+
+  <property
+  name="wd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wd"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="zs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zs"
+  />
+
+  <property
+  name="cs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="cs"
+  />
+
+  <property
+  name="hs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="hs"
+  />
+
+  <property
+  name="fgsx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fgsx"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

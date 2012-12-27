@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.form.Td05_lxzlssd"  table="Td05_lxzlssd">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td05_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+
+  <property
+  name="fwbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fwbm"
+  />
+
+  <property
+  name="bdbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bdbh"
+  />
+
+  <property
+  name="cjr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjr"
+  />
+
+  <property
+  name="cjrdh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjrdh"
+  />
+
+  <property
+  name="cjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjrq"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
