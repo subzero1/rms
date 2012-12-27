@@ -117,14 +117,16 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:set var="offset" value="0"/>
 			<c:forEach var="obj" items="${bgList}">
+				<c:set var="offset" value="${offset + 1}"/>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td style="text-align:center">${offset}</td>
+					<td><a href="javascript:openFlowForm('{project_id:${obj.project_id},doc_id:${obj.id},module_id:106,opernode_id:-1,node_id:-1,user_id:-1}');"><fmt:formatDate value="${obj.cjrq }" pattern="yyyy-MM-dd"/></a></td>
+					<td>${obj.bgje }</td>
+					<td>${obj.bglb }</td>
+					<td>${obj.bgzl }</td>
+					<td>${obj.bgyysm }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
