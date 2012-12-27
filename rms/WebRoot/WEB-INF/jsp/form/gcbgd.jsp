@@ -60,7 +60,7 @@
 	</p>
 	<p>
 		<label>立项金额：</label>
-		<input type="text"  name="Td02_xmbgd.LXJE" value="${td00_gcxx.lxje}" style="width:150px;"/>
+		<input type="text"  name="Td02_xmbgd.LXJE" value="${td00_gcxx2.lxje}" style="width:150px;"/>
 	</p>
 	<p>
 		<label>变更金额：</label>

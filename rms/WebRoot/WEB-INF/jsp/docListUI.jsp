@@ -54,7 +54,7 @@ $(function(){
 					<th width="100">表单类别</th>
 					<th width="">名称</th>
 					<th width="140">处理时间</th>
-					<th width="60">节点</th>
+					<th width="80">节点</th>
 					<th width="45">状态</th>
 				</tr>
 			</thead>
