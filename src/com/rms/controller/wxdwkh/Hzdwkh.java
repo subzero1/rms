@@ -1,8 +1,11 @@
 package com.rms.controller.wxdwkh;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -144,6 +147,12 @@ public class Hzdwkh {
 		//获取tf19信息
 		Tf19_khxx tf19 = (Tf19_khxx) queryService.searchById(Tf19_khxx.class, khxx_id);
 		modelMap.put("tf19", tf19);
+		
+		//控制打分时间
+		Integer canSave = 0;
+		if(tf19.getKhkssj().before(new Date()) && tf19.getKhjssj().after(new Date()))
+			canSave = 1;
+		modelMap.put("canSave", canSave);
 		
 		Long kh_id = tf19==null?-1L:tf19.getKh_id();
 		//获取tc10信息

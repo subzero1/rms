@@ -85,9 +85,12 @@ function modifyTitle(td_id,tf19_id,tf19_khmc){
 						<td><fmt:formatDate value="${obj[\"tf19\"].khkssj }" pattern="yyyy-MM-dd"/></td>
 						<td><fmt:formatDate value="${obj[\"tf19\"].khjssj }" pattern="yyyy-MM-dd"/></td>
 						<td><a href="wxdwkh/khpf.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="khpf"><font color="blue"><u>打分</u></font></a> 
-						&nbsp;&nbsp;&nbsp;&nbsp;<a href="wxdwkh/khpfView.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="ckkhpf"><font color="blue"><u>查看结果</u></font></a>
-						&nbsp;&nbsp;&nbsp;&nbsp;<a href="wxdwkh/khpfMx.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="ckkhpf"><font color="blue"><u>查看明细</u></font></a>
-						&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:modifyTitle('khmc${offset }','${obj["tf19"].id }','${obj["tf19"].khmc }');"><font color="blue"><u>修改标题</u></font></td>
+						<c:if test="${not empty rolesMap['50106']}">
+							&nbsp;&nbsp;&nbsp;&nbsp;<a href="wxdwkh/khpfView.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="ckkhpf"><font color="blue"><u>查看结果</u></font></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;<a href="wxdwkh/khpfMx.do?khxx_id=${obj["tf19"].id }" target="navTab" rel="ckkhpf"><font color="blue"><u>查看明细</u></font></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:modifyTitle('khmc${offset }','${obj["tf19"].id }','${obj["tf19"].khmc }');"><font color="blue"><u>修改标题</u></font>
+						</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
