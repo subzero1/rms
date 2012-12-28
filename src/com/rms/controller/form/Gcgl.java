@@ -26,6 +26,7 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
+import com.rms.dataObjects.form.Td06_xqs;
 
 @Controller
 public class Gcgl {
@@ -294,5 +295,73 @@ public class Gcgl {
 		} finally {
 			session.close();
 		}
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/form/xqxxList.do")
+	public ModelAndView xqxxList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		
+		// 查询条件
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select xqxx from Td06_xqs ta06 gcxx where ");
+		hsql.append(" exists (select 'x' from Tb15_docflow tb15 where module_id = 109 and user_id = ");
+		hsql.append(user.getId());
+		hsql.append(" and ta06.project_id = tb15.project_id ");	
+		
+		// 关键字
+		if (!keyword.equals("")) {
+			hsql.append(" and (xqmc like '%" + keyword + "%')");
+		}		
+				
+		// order排序
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+		
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Td06_xqs> xqxxList = new ArrayList<Td06_xqs>();
+		while (ro.next()) {
+			Td06_xqs td06 = (Td06_xqs) ro.get("xqxx");
+			xqxxList.add(td06);
+		}
+		modelMap.put("xqxxList", xqxxList);
+		
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		
+		return new ModelAndView("/WEB-INF/jsp/form/gcxxList.jsp", modelMap);
+
 	}
 }
