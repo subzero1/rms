@@ -33,15 +33,15 @@ function saveFz(){
 		&nbsp;&nbsp;<span style="color:#888;font-weight:bold;">[ <fmt:formatDate value="${tf19.khkssj }" pattern="yyyy年MM月dd日"/> —— <fmt:formatDate value="${tf19.khjssj }" pattern="yyyy年MM月dd日"/> ]</span>
 	</div>
 	<div class="pageContent">
-		<c:if test="${canSave==1}">
-			<div class="panelBar">
-				<ul class="toolBar">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<c:if test="${canSave==1}">
 					<li><a class="save"	href="javascript:saveFz();"><span>保 存</span></a></li>
 					<li class="line">line</li>
-				</ul>
-				<div style="float:right;"><a href="wxdwkh/khsm.do?kh_id=${tf19.kh_id }" target="dialog" width="800" height="550" rel="khsm"><font color="blue">查看考核说明</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-			</div>
-		</c:if>
+				</c:if>
+			</ul>
+			<div style="float:right;"><a href="wxdwkh/khsm.do?kh_id=${tf19.kh_id }" target="dialog" width="800" height="550" rel="khsm"><font color="blue">查看考核说明</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
 		<form id="khpf_form" method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf20_khxxmx" keep="true"/>
 			<input type="hidden" name="_navTabId" value="" keep="true"/>
@@ -75,12 +75,12 @@ function saveFz(){
 									<c:when  test="${not empty khpfMap[hzdw_id][khx_id] }">
 										<input type="hidden" name="Tf20_khxxmx.ID" class="id" value="${khpfMap[hzdw_id][khx_id].id }"/>
 										<input type="hidden" name="Tf20_khxxmx.BZ" class="bz" value="${khpfMap[hzdw_id][khx_id].bz }"/>
-										<input type="text"  name="Tf20_khxxmx.FZ" style="width:90%;text-align:center;" class="fz digits" max="${khx.zgfz }" min="0" value="${khpfMap[hzdw_id][khx_id].fz }"/>
+										<input type="text"  name="Tf20_khxxmx.FZ" style="width:90%;text-align:center;" class="fz request digits" max="${khx.zgfz }" min="0" value="${khpfMap[hzdw_id][khx_id].fz }"/>
 									</c:when>
 									<c:otherwise>
 										<input type="hidden" name="Tf20_khxxmx.ID" class="id" value=""/>
 										<input type="hidden" name="Tf20_khxxmx.BZ" class="bz" value=""/>
-										<input type="text" name="Tf20_khxxmx.FZ" style="width:90%;text-align:center;" class="fz digits" max="${khx.zgfz }" min="0" value=""/>
+										<input type="text" name="Tf20_khxxmx.FZ" style="width:90%;text-align:center;" class="fz request digits" max="${khx.zgfz }" min="0" value=""/>
 									</c:otherwise>
 								</c:choose>
 							</td>
