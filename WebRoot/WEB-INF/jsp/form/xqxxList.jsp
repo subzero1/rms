@@ -64,11 +64,13 @@
 					<th style="width: 65px;" orderField="zs">幢数</th>
 					<th style="width: 65px;" orderField="cs">层数</th>
 					<th style="width: 65px;" orderField="hs">户数</th>
+					<th style="width: 80px;" orderField="cjr">提出人</th>
+					<th style="width: 80px;" orderField="cjrq">提出时间</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:set var="offset" value="0"/>
-				<c:forEach var="obj" items="${xmxxList}">
+				<c:forEach var="obj" items="${xqxxList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="xq_id" rel="${obj.id}">
 						<td style="text-align:center;">
@@ -84,11 +86,15 @@
 						<td>${obj.zs }</td>
 						<td>${obj.cs }</td>
 						<td>${obj.hs }</td>
+						<td>${obj.cjr }</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj.cjrq }"/></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
