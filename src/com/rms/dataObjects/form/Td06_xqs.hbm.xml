@@ -14,7 +14,7 @@
             type="java.lang.Long"
         >
             <generator class="sequence">
-                <param name="sequence">td06_num</param>
+                <param name="sequence">td00_num</param>
             </generator>
         </id>
 

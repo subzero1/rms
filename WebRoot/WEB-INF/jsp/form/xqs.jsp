@@ -21,7 +21,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>起 草 人：</label> 
-		<input type="text" readOnly name="Td04_xmysd.CJR" value="<c:out value="${td06_xqs.cjr}" default="${user.name}"/>" style="width:150px;"/>
+		<input type="text" readOnly name="Td06_xqs.CJR" value="<c:out value="${td06_xqs.cjr}" default="${user.name}"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>电话：</label>
@@ -34,7 +34,7 @@
 	<div class="divider"></div>
 	<p>
 		<label> 需求名称：</label>
-		<input class="required" type="text" name="Td06_xqs.ZYMC" style="width:376px;" value="${td06_xqs.xqmc}" />
+		<input class="required" type="text" name="Td06_xqs.XQMC" style="width:376px;" value="${td06_xqs.xqmc}" />
 	</p>
 	<p>
 		<label>建设性质：</label>
@@ -82,7 +82,7 @@
 	<div class="divider"></div>
 	<p>
 		<label>需求说明：</label>
-		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td06_xqs.XQSM">${td06_xqs.xqsm}</textarea>
+		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td06_xqs.BZ">${td06_xqs.bz}</textarea>
 	</p>
 	<div style="height:0px;"></div>
 	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关工程列表</p>
