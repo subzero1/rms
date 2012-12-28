@@ -65,7 +65,7 @@
 			if(sys.split(';')[1]==' MSIE 6.0'){
 				var msg = confirm('您的浏览器版本是6.0，是否升级？');
 				if(msg){
-					window.open('download.do?slave_id=827','','');
+					window.open('download.do?slave_id=1','','');
 				}
 			}
 		}
@@ -141,7 +141,7 @@
 			</div>
 			<div class="login_bottom">
 				<div class="login_copyright">
-					研发单位：网天信息技术有限公司 | 服务热线：022-83946861/62  <a href="download.do?slave_id=827" target="_blank" style="color:#c00;font-weight:bold;">[ 下载 IE7 安装包 ]</a>
+					研发单位：网天信息技术有限公司 | 服务热线：022-83946861/62  <a href="download.do?slave_id=1" target="_blank" style="color:#c00;font-weight:bold;">[ 下载 IE7 安装包 ]</a>
 				</div>
 			</div>
 		</div>
