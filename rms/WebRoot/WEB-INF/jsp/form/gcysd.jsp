@@ -60,6 +60,22 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
+		<label>验收部门：</label>
+		<input type="text" name="Td00_gcxx.YSBM" value="${td00_gcxx.ysbm}" style="width:381px;" id="deptOrg.YSBM"/>
+		<a class="btnLook" lookupGroup="deptOrg" href="form/selectDept.do" width="600" height="371"></a>
+	</p>
+	<p>
+		<label>验收时间：</label>
+		<input class="date" type="text" name="Td00_gcxx.YSSJ" value="<fmt:formatDate value="${td00_gcxx.yssj}" pattern="yyyy-MM-dd"/>" />
+	</p>
+	<div style="height:0px;"></div>
+	<p>
+		<label>验收人员：</label>
+		<input type="text" name="Td00_gcxx.YSRY" value="${td00_gcxx.ysry}" style="width:381px;" id="ysryOrg.YSRY"/>
+		<a class="btnLook" lookupGroup="ysryOrg" href="form/selectYsry.do" width="600" height="371"></a>
+	</p>
+	<div style="height:0px;"></div>
+	<p>
 		<label>完成的主要<br/>工程内容：</label>
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td04_xmysd.WCZYGZNR">${td04_xmysd.wczygznr}</textarea>
 	</p>
