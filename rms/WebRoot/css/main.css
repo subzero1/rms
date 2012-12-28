@@ -120,7 +120,7 @@ _color:#FF0000; IE6Ö§³Ö
 
 
 /*×ÀÃæ²éÑ¯²¿·Ö*/
-#searchbar{position:absolute;right:150px;top:6px;margin:0px; padding:0px; width:300px; height:27px; line-height:22px; background:url(../Images/searchbar.png) right 2px no-repeat; }
+#searchbar{position:absolute;right:150px;top:6px;margin:0px; padding:0px; width:310px; height:27px; line-height:22px; background:url(../Images/searchbar.png) right 2px no-repeat; }
 .search-input{width:200px; height:16px; line-height:16px; border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;padding:0;color:#666666;}
 .search-button{cursor:hand;border:0px;position:absolute;background:red;width:20px;height:28px;background:url(../images/search_button.png) left  no-repeat;}
 .search-sel{margin-top:2px;}
@@ -162,7 +162,6 @@ _color:#FF0000; IE6Ö§³Ö
 .contentc {background:#f5f7f8; border-right:1px solid #cbcfd2; border-left:1px solid #cbcfd2;padding:3px; margin:0px; font-size:12px;}
 .button-td{background:#f5f5f5;height:30px;}
 html #loginoutbar{position:absolute; right:0px; top:0px; z-index:1;width:150px; height:38px; float:right; padding:10px 0px;background:url(../Images/loginout_bg.gif) no-repeat right -22px;text-align:center;}
-	.ward {float:left;background:url(../Images/backward.gif) no-repeat;line-height:32px; font-size:12px;font-family:Î¢ÈíÑÅºÚ;color:#385366;padding:3px 0 0 25px;}
 
 
 /* ------------------------------------------------------------------------------------------------------
@@ -184,7 +183,7 @@ html #loginoutbar{position:absolute; right:0px; top:0px; z-index:1;width:150px; 
 .node{width:27px; height:18px; background:url(../Images/node/node.gif) no-repeat center;font-size:12px; border: 0px; margin:0 0 0px 0px; cursor:pointer;}
 
 .approveList{padding-left:25px;line-height:23px;border-bottom:dashed 1px #ccc;background:url(../Images/doc.gif) no-repeat 5px 1px;}
-.slaveList{padding-left:25px;height:17px;line-height:23px;border-bottom:dashed 1px #ccc;background:url(../Images/slave.gif) no-repeat 5px -4px;}
+.slaveList{padding-left:25px;height:17px;line-height:20px;border-bottom:dashed 1px #ccc;background:url(../Images/slave.gif) no-repeat 5px -4px;}
 .jlfkList{padding-left:25px;border-bottom:dashed 1px #ccc;background:url(../Images/user_comment.png) no-repeat 5px 1px;}
 /*------------------------------------------------------------------------------------------------------------
 desktop£º×ÀÃæÒ³
@@ -246,19 +245,6 @@ desktop£º×ÀÃæÒ³
 	.dfWds{width:90px;background:url("../Images/dfWds.png") center 15px no-repeat;text-indent: 2em;cursor:pointer;}/*´ý¸´ÎÄµµ*/
 	.hfWds{width:90px;background:url("../Images/hfWds.png") center 15px no-repeat;text-indent: 2em;cursor:pointer;}/*»Ø¸´ÎÄµµ*/
 	
-	
-	
-	#timebar{position:relative;width:100%; height:4px; float:left; background:url(../images/top_bg.gif) repeat-x;}
-	/*.date {dislpay:none;position:absolute; top:0; left:0; margin:0; width:250px; height:25px; text-align:left;background: url(../images/time_bg.gif) repeat-x; border-right:#8c9e85}*/	
-	/*#datearea{dislpay:none; height:25px; line-height:25px; vertical-align:middle; color:#2f3128; padding:0 0 0 50px; margin:0; background:url(../images/icon01.gif) no-repeat 10px -2px;background-attachment:fixed;}*/
-	.nom {dislpay:none;margin:0; padding:0; font-size:10px; vertical-align:middle;}
-
-	#ward {float:left;width:122px;height:100%;background:url(../images/backward.gif) no-repeat;line-height:32px; font-size:11px;font-family:Î¢ÈíÑÅºÚ;color:#385366;padding:3px 0 0 25px;}
-	#home img {border-right:solid 1px #adb4bc;}
-	.menu-l{float:left;margin:6px 0px 4px 4px; padding:0 0 0 5px; height:27px; line-height:20px; cursor:pointer; background:url(../images/button-bg.gif) -10px -218px;}
-	.menu-r{float:left; width:5px; margin:6px 0px; padding:0px; height:27px; background:url(../images/button-bg.gif) -284px -218px;}
-	.menu-m{font-size:11px; padding:2px 4px 2px 10px;font-family:Î¢ÈíÑÅºÚ;}
-	.menu-l img{margin:2px 1px 2px 0px;}
 
 
  	/*-----head ½áÊø---------------*/
