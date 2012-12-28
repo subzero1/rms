@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,10 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.base.Tc10_hzdw_khpz;
+import com.rms.dataObjects.base.Tc11_khpzmx;
 import com.rms.dataObjects.wxdw.Tf19_khxx;
 import com.rms.dataObjects.wxdw.Tf20_khxxmx;
+import com.rms.dataObjects.wxdw.Tf01_wxdw;
 
 @Controller
 public class Hzdwkh {
@@ -248,6 +251,84 @@ public class Hzdwkh {
 		modelMap.put("khpfMap", khpfMap);
 		
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/khpfView.jsp", modelMap);
+
+	}
+	
+	/**
+	 *  查看考核评分明细
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdwkh/khpfMx.do")
+	public ModelAndView khpfMx(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		Long khxx_id = convertUtil.toLong(request.getParameter("khxx_id"),-1L); //tf19.id
+		Long dfr_id = convertUtil.toLong(request.getParameter("dfr_id"),-1L); 
+		
+		//获取tf19信息
+		Tf19_khxx tf19 = (Tf19_khxx) queryService.searchById(Tf19_khxx.class, khxx_id);
+		modelMap.put("tf19", tf19);
+		
+		// 所有考核评分情况
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select tc11,tf01,tf20,ta03 from Tc11_khpzmx tc11,Tf01_wxdw tf01,Tf20_khxxmx tf20,Ta03_user ta03");
+		hsql.append(" where tf20.kh_id=");
+		hsql.append(khxx_id);
+		hsql.append(" and tf20.user_id= ta03.id");
+		hsql.append(" and tf20.wxdw_id=tf01.id");
+		hsql.append(" and tf20.khx_id=tc11.id");
+		hsql.append(" order by tf01.id");
+		
+		ResultObject ro = queryService.search(hsql.toString());
+				
+		List<Tc11_khpzmx> khxList = new LinkedList<Tc11_khpzmx>();
+		List<Tf01_wxdw> hzdwList = new LinkedList<Tf01_wxdw>();
+		List<Ta03_user> dfrList = new LinkedList<Ta03_user>();
+		
+		Map<String, Map<String, Tf20_khxxmx>> khpfMap = new HashMap<String, Map<String, Tf20_khxxmx>>();
+		Map<String, Tf20_khxxmx> khMap = new HashMap<String, Tf20_khxxmx>();
+		Long wxdw = -1L;
+		Integer i=0;
+		while(ro.next()){
+			Ta03_user dfr = (Ta03_user)ro.get("ta03");			
+			if(!dfrList.contains(dfr)) 
+				dfrList.add(dfr);
+			
+			//默认显示第一个打分人的打分情况
+			i++;
+			if(i==1 && dfr_id == -1)
+				dfr_id = dfr.getId();
+			
+			if(dfr.getId() == dfr_id){
+				//获取当前查询的打分情况
+				khxList.add((Tc11_khpzmx)ro.get("tc11"));
+				hzdwList.add((Tf01_wxdw)ro.get("tf01"));
+				Tf20_khxxmx tf20 = (Tf20_khxxmx)ro.get("tf20");
+				if (wxdw != tf20.getWxdw_id()) {
+					if (!khMap.isEmpty()) {
+						khpfMap.put(wxdw.toString(), khMap);
+						khMap = new HashMap<String, Tf20_khxxmx>();
+					}
+					wxdw = tf20.getWxdw_id();
+				}
+				khMap.put(tf20.getKhx_id().toString(), tf20);
+			}
+		}
+		modelMap.put("khxList", khxList);
+		modelMap.put("hzdwList", hzdwList);
+		
+		if (!khMap.isEmpty()) {
+			khpfMap.put(wxdw.toString(), khMap);
+		}
+		modelMap.put("khpfMap", khpfMap);
+		modelMap.put("dfr_id", dfr_id);
+		modelMap.put("dfrList", dfrList);	
+		
+		return new ModelAndView("/WEB-INF/jsp/wxdwkh/khpfMx.jsp", modelMap);
 
 	}
 	
