@@ -30,6 +30,7 @@ import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.form.Td01_xmxx;
+import com.netsky.base.dataObjects.Ta03_user;
 
 @Controller
 public class Htgl {
@@ -61,6 +62,8 @@ public class Htgl {
 		//数据库相关变量
 		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
+		
+		Ta03_user user = (Ta03_user)session.getAttribute("user");
 		
 		//分页变量
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
@@ -98,7 +101,7 @@ public class Htgl {
 		//获得待签合同信息列表
 		sql.delete(0, sql.length());
 		sql.append(" from Td01_xmxx td01");
-		sql.append(" where " + htlb +"htbh is null ");
+		sql.append(" where xmgly = '"+user.getName()+"' and " + htlb +"htbh is null ");
 				
 		 //关键字
 		if(!keywords.equals("")){
@@ -163,6 +166,7 @@ public class Htgl {
 		//数据库相关变量
 		StringBuffer sql = new StringBuffer("");
 		ModelMap modelMap = new ModelMap();
+		Ta03_user user = (Ta03_user)session.getAttribute("user");
 		
 		//分页变量
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
@@ -180,7 +184,7 @@ public class Htgl {
 		//获得待送审项目列表，施工合同已签
 		sql.delete(0, sql.length());
 		sql.append(" from Td01_xmxx td01");
-		sql.append(" where sghtbh is not null ");
+		sql.append(" where xmgly = '"+user.getName()+"' and sghtbh is not null ");
 		sql.append(" and ssrq is null");
 				
 		 //关键字
@@ -222,7 +226,6 @@ public class Htgl {
 		
 	}
 	
-
 	/**
 	 * 待挂账列表
 	 */
@@ -238,6 +241,7 @@ public class Htgl {
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
 		Integer totalCount = 0;
 		Integer pageNumShown  = 0;
+		Ta03_user user = (Ta03_user)session.getAttribute("user");
 		
 		//排序变量
 		String orderField = convertUtil.toString(request.getParameter("orderField"),"id");
@@ -249,7 +253,7 @@ public class Htgl {
 		//获得待挂账信息列表
 		sql.delete(0, sql.length());
 		sql.append(" from Td01_xmxx td01");
-		sql.append(" where ssrq is not null");
+		sql.append(" where xmgly = '"+user.getName()+"' and ssrq is not null");
 		sql.append(" and gzrq is null");
 				
 		 //关键字
