@@ -777,7 +777,7 @@
         />
          <property
             name="yssj"
-            type="java.lang.Date"
+            type="java.util.Date"
             update="true"
             insert="true"
             column="yssj"
