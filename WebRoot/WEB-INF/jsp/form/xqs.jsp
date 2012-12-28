@@ -87,4 +87,49 @@
 	<div style="height:0px;"></div>
 	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关工程列表</p>
 </div>
-
+<script language="javascript">
+	
+	$("#jsxz").change(function(){
+		var data = $(this).val();
+		if(data == '基站'){
+			$("#jz").css("display","block");
+			$("#xq").css("display","none");
+			$("input[ids=jz]").attr("class","required");
+			$("input[ids=xq]").attr("class","norequired");
+		}
+		else if(data == '室分' ){
+			$("#jz").css("display","none");
+			$("#xq").css("display","none");
+			$("input[ids=jz]").attr("class","norequired");
+			$("input[ids=xq]").attr("class","norequired");
+		}
+		else{
+			$("#jz").css("display","none");
+			$("#xq").css("display","block");
+			$("input[ids=jz]").attr("class","norequired");
+			$("input[ids=xq]").attr("class","required digits");
+		}
+	});
+	
+	//通过建设性质来区分显示哪些字段
+	var jsxz = $("#jsxz").val();
+	if(jsxz == '' || jsxz == null || jsxz == '室分'){
+		$("#jz").css("display","none");
+		$("#xq").css("display","none");
+		$("input[ids=jz]").attr("class","norequired");
+		$("input[ids=xq]").attr("class","norequired");
+	}
+	else if(jsxz == 'undefine' || jsxz == '基站'){
+		$("#jz").css("display","block");
+		$("#xq").css("display","none");
+		$("input[ids=jz]").attr("class","required");
+		$("input[ids=xq]").attr("class","norequired");
+	}
+	else{
+		$("#jz").css("display","none");
+		$("#xq").css("display","block");
+		$("input[ids=jz]").attr("class","norequired");
+		$("input[ids=xq]").attr("class","required digits");
+	}
+	
+</script>
