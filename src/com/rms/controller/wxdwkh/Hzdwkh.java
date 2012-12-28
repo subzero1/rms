@@ -312,7 +312,7 @@ public class Hzdwkh {
 			if(i==1 && dfr_id == -1)
 				dfr_id = dfr.getId();
 			
-			if(dfr.getId() == dfr_id){
+			if(dfr.getId().longValue() == dfr_id.longValue()){
 				//获取当前查询的打分情况
 				khxList.add((Tc11_khpzmx)ro.get("tc11"));
 				hzdwList.add((Tf01_wxdw)ro.get("tf01"));

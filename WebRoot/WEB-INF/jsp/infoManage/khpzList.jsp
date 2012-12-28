@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 	<ul class="tree expand">
 		<li>
-			<a href="">配置列表${param.id}|${khpz_list[0].id}</a>
+			<a href="">配置列表</a>
 			<ul id="node_li">
 				<c:forEach var="khpz" items="${khpz_list}">
 					<li>
