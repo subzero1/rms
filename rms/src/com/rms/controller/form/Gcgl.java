@@ -332,14 +332,14 @@ public class Gcgl {
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		
 		StringBuffer hsql = new StringBuffer();
-		hsql.append("select xqxx from Td06_xqs ta06 gcxx where ");
-		hsql.append(" exists (select 'x' from Tb15_docflow tb15 where module_id = 109 and user_id = ");
+		hsql.append("select xqxx from Td06_xqs xqxx where ");
+		hsql.append(" exists (select 'x' from Tb15_docflow tb15 where tb15.module_id = 109 and tb15.user_id = ");
 		hsql.append(user.getId());
-		hsql.append(" and ta06.project_id = tb15.project_id ");	
+		hsql.append(" and xqxx.project_id = tb15.project_id) ");	
 		
 		// 关键字
 		if (!keyword.equals("")) {
-			hsql.append(" and (xqmc like '%" + keyword + "%')");
+			hsql.append(" and (xqxx.xqmc like '%" + keyword + "%')");
 		}		
 				
 		// order排序
@@ -361,7 +361,7 @@ public class Gcgl {
 		modelMap.put("totalPages", totalPages);
 		modelMap.put("totalCount", totalCount);
 		
-		return new ModelAndView("/WEB-INF/jsp/form/gcxxList.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/form/xqxxList.jsp", modelMap);
 
 	}
 }
