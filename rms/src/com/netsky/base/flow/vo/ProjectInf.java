@@ -2739,5 +2739,122 @@ public class ProjectInf implements Serializable{
     this.lxsj = lxsj;
   }
 
+	/**
+	 * 坐落地点
+	 */
+	 private String zldd;
+	
+	 /**
+	  * 纬度
+	  */
+	 private String jd;
+	 
+	 /**
+	  * 纬度
+	  */
+	 private String wd;
+	 
+	 /**
+	  * 覆盖属性
+	  */
+	 private String fgsx;
+	 
+	 /**
+	  * 幢数
+	  */
+	 private Long zs;
+	 
+	 /**
+	  * 层数
+	  */
+	 private Long cs;
+	 
+	 /**
+	  * 户数
+	  */
+	 private Long hs;
 
+	 /**
+	  * @hibernate.property column="zldd"
+	  * @return Returns the zldd.
+	  */
+		public String getZldd() {
+			return zldd;
+		}
+		
+		public void setZldd(String zldd) {
+			this.zldd = zldd;
+		}
+		
+		/**
+		 * @hibernate.property column="jd"
+		 * @return Returns the jd.
+		 */
+		public String getJd() {
+			return jd;
+		}
+		
+		public void setJd(String jd) {
+			this.jd = jd;
+		}
+		
+		/**
+		 * @hibernate.property column="wd"
+		 * @return Returns the wd.
+		 */
+		public String getWd() {
+			return wd;
+		}
+		
+		public void setWd(String wd) {
+			this.wd = wd;
+		}
+		
+		/**
+		 * @hibernate.property column="lxsj"
+		 * @return Returns the lxsj.
+		 */
+		public String getFgsx() {
+			return fgsx;
+		}
+		
+		public void setFgsx(String fgsx) {
+			this.fgsx = fgsx;
+		}
+		
+		/**
+		 * @hibernate.property column="zs"
+		 * @return Returns the zs.
+		 */
+		public Long getZs() {
+			return zs;
+		}
+		
+		public void setZs(Long zs) {
+			this.zs = zs;
+		}
+		
+		/**
+		 * @hibernate.property column="cs"
+		 * @return Returns the cs.
+		 */
+		public Long getCs() {
+			return cs;
+		}
+		
+		public void setCs(Long cs) {
+			this.cs = cs;
+		}
+		
+		/**
+		 * @hibernate.property column="hs"
+		 * @return Returns the hs.
+		 */
+		public Long getHs() {
+			return hs;
+		}
+		
+		public void setHs(Long hs) {
+			this.hs = hs;
+		}
 }

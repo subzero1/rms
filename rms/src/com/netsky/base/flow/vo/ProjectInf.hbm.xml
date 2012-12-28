@@ -1290,7 +1290,61 @@
   column="lxsj"
   />
 
-
+ <property
+  name="zldd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zldd"
+  />
+  
+  <property
+  name="jd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jd"
+  />
+  
+  <property
+  name="wd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wd"
+  />
+  
+  <property
+  name="fgsx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fgsx"
+  />
+  
+  <property
+  name="zs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zs"
+  />
+  
+  <property
+  name="cs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="cs"
+  />
+  
+  <property
+  name="hs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="hs"
+  />
     </class>
 
 </hibernate-mapping>
