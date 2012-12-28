@@ -150,7 +150,8 @@ public class Hzdwkh {
 		
 		//控制打分时间
 		Integer canSave = 0;
-		if(tf19.getKhkssj().before(new Date()) && tf19.getKhjssj().after(new Date()))
+		Date currDate = new Date();
+		if((tf19.getKhkssj().before(currDate) || tf19.getKhkssj().equals(currDate)) && (tf19.getKhjssj().after(currDate) || tf19.getKhjssj().equals(currDate)))
 			canSave = 1;
 		modelMap.put("canSave", canSave);
 		
