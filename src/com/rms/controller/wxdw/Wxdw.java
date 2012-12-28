@@ -999,6 +999,7 @@ public class Wxdw {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		if (orderField.equals("")) {
 			orderField = "gcmc";
 		}
@@ -1014,9 +1015,7 @@ public class Wxdw {
 		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
 
 		StringBuffer hsql = new StringBuffer();
-		hsql
-				.append("select distinct(gcxx) as gcxx from Td00_gcxx gcxx where exists (select tb15 from Tb15_docflow tb15 where tb15.project_id=gcxx.id and tb15.user_id="
-						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ")");
+		hsql.append("select distinct(gcxx) as gcxx from Td00_gcxx gcxx where (xmgly = '"+user.getName()+"' or sgdw = '"+user.getDept_name()+"')");
 		// where条件
 		// 名称
 		if (!gcmc.equals("")) {
@@ -1096,13 +1095,6 @@ public class Wxdw {
 			} else if (dz == 1L || dz == 2L) {// 出库 缴料
 				List<Tf07_kcb> kcbList = (List<Tf07_kcb>) queryService.searchList("from Tf07_kcb where cllx='"
 						+ tf08.getCllx() + "' and project_id=" + project_id + " and kcsl<>0");
-				// for (Tf07_kcb kcb : kcbList) {
-				// s += "<option flag=\"" + kcb.getId() + "\" value=\""
-				// + kcb.getClmc() + "\">" + kcb.getClmc() + "—"
-				// + convertUtil.toString(kcb.getGg(), "（无规格说明）") + "—"
-				// + convertUtil.toString(kcb.getXh(), "（无型号说明）")
-				// + "</option>";
-				// }
 				clmcselectList.add(kcbList);
 			}
 		}
@@ -1671,7 +1663,6 @@ public class Wxdw {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
 		hsql.append(" sgdw = '"+user.getDept_name()+"' and sjkgsj < sysdate and (sjjgsj is null or sgjd is null or sgjd < 1)");
-		System.out.println(hsql);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
@@ -1714,6 +1705,7 @@ public class Wxdw {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
 		if (orderField.equals("")) {
 			orderField = "gcmc";
 		}
@@ -1728,23 +1720,17 @@ public class Wxdw {
 		modelMap.put("orderDirection", orderDirection);
 		boolean allproject = request.getParameter("allproject") != null;
 		StringBuffer hsql = new StringBuffer();
-		hsql
-				.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+		hsql.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
-		hsql
-				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10101,10202) and tb15.user_id="
-						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ")");
+		hsql.append(" xmgly = '"+user.getName()+"'");
+		
 		if (!allproject) {
 			hsql.append(" and sjjgsj is null");
 		}
-		// hsql
-		// .append(" and (case when tbrq is null then sjkgsj end)<=sysdate-(case
-		// when sgjdtbzq is null then 3 else sgjdtbzq end)");
-		// orderField
+		
 		hsql.append(" order by " + orderField);
-		// orderDirection
 		hsql.append(" " + orderDirection);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
@@ -1754,8 +1740,8 @@ public class Wxdw {
 			Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) ro.get("gcxx");
 			o[0] = gcxx;
 			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
-			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red"
-					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "#cd0005"
+					: d.equals(0L) ? "#8db92e" : d > 0L ? "#ffd34e" : "";
 			o[2] = ro.get("a2");
 			o[3] = ro.get("a3");
 			gcxxList.add(o);
@@ -1848,6 +1834,7 @@ public class Wxdw {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
 		if (orderField.equals("")) {
 			orderField = "gcmc";
 		}
@@ -1866,13 +1853,7 @@ public class Wxdw {
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
-		hsql
-				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10108,10211) and tb15.user_id="
-						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ") and sjjgsj is null");
-		// hsql
-		// .append(" and (case when create_date is null then sjkgsj else
-		// create_date end)<=sysdate-(case when jlrjtbzq is null then 3 else
-		// jlrjtbzq end)");
+		hsql.append(" sgdw = '"+user.getDept_name()+"' and sjkgsj < sysdate and sjjgsj is null");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
@@ -1881,8 +1862,8 @@ public class Wxdw {
 			Vc3_gcxx_jlrj gcxx = (Vc3_gcxx_jlrj) ro.get("gcxx");
 			o[0] = gcxx;
 			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
-			o[1] = d >= convertUtil.toLong(((Vc3_gcxx_jlrj) o[0]).getJlrjtbzq(), 3L) ? "red"
-					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+			o[1] = d >= convertUtil.toLong(((Vc3_gcxx_jlrj) o[0]).getJlrjtbzq(), 3L) ? "#cd0005"
+					: d.equals(0L) ? "#8db92e" : d > 0L ? "#ffd34e" : "";
 			o[2] = ro.get("a2");
 			gcxxList.add(o);
 		}
@@ -1915,6 +1896,7 @@ public class Wxdw {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
+		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
 		if (orderField.equals("")) {
 			orderField = "gcmc";
 		}
@@ -1929,21 +1911,14 @@ public class Wxdw {
 		modelMap.put("orderDirection", orderDirection);
 		StringBuffer hsql = new StringBuffer();
 		boolean allproject = request.getParameter("allproject") != null;
-		hsql
-				.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
+		hsql.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
-		hsql
-				.append("exists (select id from Tb15_docflow tb15 where tb15.project_id=gcxx.id and node_id in (10101,10202) and tb15.user_id="
-						+ ((Ta03_user) request.getSession().getAttribute("user")).getId() + ")");
+		hsql.append(" xmgly = '"+user.getName()+"'");
 		if (!allproject) {
 			hsql.append(" and sjjgsj is null");
 		}
-		// hsql
-		// .append(" and (case when create_date is null then sjkgsj else
-		// create_date end)<=sysdate-(case when jlrjtbzq is null then 3 else
-		// jlrjtbzq end)");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
@@ -1952,8 +1927,8 @@ public class Wxdw {
 			Vc3_gcxx_jlrj gcxx = (Vc3_gcxx_jlrj) ro.get("gcxx");
 			o[0] = gcxx;
 			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
-			o[1] = d >= convertUtil.toLong(((Vc3_gcxx_jlrj) o[0]).getJlrjtbzq(), 3L) ? "red"
-					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+			o[1] = d >= convertUtil.toLong(((Vc3_gcxx_jlrj) o[0]).getJlrjtbzq(), 3L) ? "#cd0005"
+					: d.equals(0L) ? "#8db92e" : d > 0L ? "#ffd34e" : "";
 			o[2] = ro.get("a2");
 			gcxxList.add(o);
 		}
