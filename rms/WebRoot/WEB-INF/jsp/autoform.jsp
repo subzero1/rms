@@ -125,7 +125,7 @@
 							<c:if test="${fn:contains(obj.slave_name, 'xls') || fn:contains(obj.slave_name, 'doc') || fn:contains(obj.slave_name, 'pdf')}">
 							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览"><b>在线预览</b></a>
 							</c:if>
-							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
+							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"> <img src="Images/icon10.gif" alt="删除" align="absmiddle"/></a></c:if>
 						</p>
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
 					</c:forEach>
@@ -163,8 +163,8 @@
 	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
 	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 30 30 780");	
 	
-	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.25));
-	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.5));
+	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.29));
+	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.32));
 	
 	
 	//修改表单的tabid
