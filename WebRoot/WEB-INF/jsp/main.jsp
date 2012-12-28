@@ -183,7 +183,8 @@ function getCookie(name)
 				<a class="logo" href="javascript:void(0)">标志</a>
 				<ul class="nav">
 					<li style="color: #666" class="LoginId">您好：${user.name }</li>
-					<li class="navBtn">
+  
+	  					<li class="navBtn">
 						<a	href="MessageWrite.do?type=phone" target="dialog" rel="messageWrite" title="手机短信" width="670" height="350">
 							<img src="Images/phone.png"  title="短信发送"/>
 						</a>
@@ -207,7 +208,6 @@ function getCookie(name)
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
 					<li theme="green"><div>绿色</div></li>
-					<!--<li theme="red"><div>红色</div></li>-->
 					<li theme="purple"><div>红色</div></li>
 					<li theme="silver"><div>黄色</div></li>
 					<li theme="azure"><div>天蓝</div></li>

@@ -434,7 +434,7 @@ body { overflow:hidden;}
 #header .logo { float:left; width:470px; height:50px; text-indent:-1000px;position:absolute;top:35px;}
 
 #header .nav { display:block; height:35px; position:absolute; top:3px; left:0; z-index:31;}/*top从8改为2,从右侧改到左侧timebar上*/
-#header .nav .LoginId{width:160px;height:35px;background:url(../../Images/backward.png) no-repeat 15px -2px;padding:10px 0 0 20px;text-align:center;}/*新增*/
+#header .nav .LoginId{width:160px;height:35px;background:url(../../Images/backward.png) no-repeat 15px -2px;padding:12px 0 0 20px;text-align:center;}/*新增*/
 #header .nav .navBtn {background:url(../../Images/backbtn.png) no-repeat right -1px;}/*添加*/
 #header .nav .navBtn a{display:inline-block;height:35px;background:url(../../Images/backbtn.png) no-repeat left -1px;padding: 7px 5px 10px 15px;}/*新增*/
 #header .nav li { float:left; margin-left:-1px; padding:0 10px; line-height:12px; position:relative;}
