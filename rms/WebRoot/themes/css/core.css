@@ -435,7 +435,7 @@ body { overflow:hidden;}
 
 #header .nav { display:block; height:35px; position:absolute; top:3px; left:0; z-index:31;}/*top从8改为2,从右侧改到左侧timebar上*/
 #header .nav .LoginId{width:160px;height:35px;background:url(../../Images/backward.png) no-repeat 15px -2px;padding:10px 0 0 20px;text-align:center;}/*新增*/
-#header .nav .navBtn {background:url(../../Images/backbtn.png) no-repeat right -1px;}
+#header .nav .navBtn {background:url(../../Images/backbtn.png) no-repeat right -1px;}/*添加*/
 #header .nav .navBtn a{display:inline-block;height:35px;background:url(../../Images/backbtn.png) no-repeat left -1px;padding: 7px 5px 10px 15px;}/*新增*/
 #header .nav li { float:left; margin-left:-1px; padding:0 10px; line-height:12px; position:relative;}
 #header .nav li a { line-height:12px;}
@@ -443,6 +443,12 @@ body { overflow:hidden;}
 #header .nav ul li { margin-top:10px; height:21px;}
 #header .nav ul li a { color:#000;}
 #header .nav .selected ul {display:block;}
+
+		/*后加的*/
+		.menu-l{float:left;margin:6px 0px 4px 4px; padding:0 0 0 5px; height:27px; line-height:20px; cursor:pointer; border:solid 1px #f00;background:url(../Images/backbtn.png);}
+		.menu-r{float:left; width:5px; margin:6px 0px; padding:0px; height:27px; background:url(../images/button-bg.gif) -284px -218px;}
+		.menu-m{font-size:11px; padding:2px 4px 2px 10px;font-family:微软雅黑;}
+		.menu-l img{margin:2px 1px 2px 0px;}
 
 #header .themeList { position:absolute; top:65px; right:10px;}/*top从30改为65*/
 #header .themeList li { float:left; padding:0 3px;}
