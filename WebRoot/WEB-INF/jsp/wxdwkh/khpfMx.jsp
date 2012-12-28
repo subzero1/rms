@@ -21,7 +21,15 @@ $(function(){
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						打分人：<netsky:htmlSelect name="dfr_id" id="dfrId" objectForOption="dfrList" valueForOption="id" showForOption="name" value="${dfr_id}" extendPrefix="true" /></td>
+						<c:choose>
+						<c:when test="${not empty dfrList}">
+							打分人：<netsky:htmlSelect name="dfr_id" id="dfrId" objectForOption="dfrList" valueForOption="id" showForOption="name" value="${dfr_id}" extendPrefix="true" />
+						</c:when>
+						<c:otherwise>
+							<font color="red"><b>还没有人打分！</b></font>
+						</c:otherwise>
+						</c:choose>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -31,7 +39,7 @@ $(function(){
 		<table class="table" layouth="82">
 			<thead>
 				<tr>
-					<th style="width: 240px;">合作单位</th>
+					<th style="width: 240px;"> </th>
 					<c:forEach items="${khxList}" var="khx">
 						<th style="width: 120px;">${khx.khx }</th>
 					</c:forEach>
