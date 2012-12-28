@@ -1670,7 +1670,8 @@ public class Wxdw {
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
-		hsql.append(" sgfzr = '"+user.getName()+"' and sjkgsj < sysdate and (sjjgsj is null or sgjd is null or sgjd < 1)");
+		hsql.append(" sgdw = '"+user.getDept_name()+"' and sjkgsj < sysdate and (sjjgsj is null or sgjd is null or sgjd < 1)");
+		System.out.println(hsql);
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
@@ -1679,8 +1680,8 @@ public class Wxdw {
 			Vc2_gcxx_gzltb gcxx = (Vc2_gcxx_gzltb) ro.get("gcxx");
 			o[0] = gcxx;
 			Long d = new BigDecimal(convertUtil.toDouble(ro.get("a1"))).setScale(0, BigDecimal.ROUND_FLOOR).longValue();
-			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "red"
-					: d.equals(0L) ? "lightgreen" : d > 0L ? "yellow" : "";
+			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "#cd0005"
+					: d.equals(0L) ? "#8db92e" : d > 0L ? "#ffd34e" : "";
 			o[2] = ro.get("a2");
 			o[3] = ro.get("a3");
 			gcxxList.add(o);
