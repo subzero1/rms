@@ -70,7 +70,7 @@ function saveFz(){
 								<input type="hidden" name="Tf20_khxxmx.USER_ID" value="${user.id }"/>
 								
 								<c:set var="hzdw_id" ><c:out value="${hzdw.id}"/></c:set>
-								<c:set var="khx_id" ><c:out value="${khx.id}"/></c:set>									
+								<c:set var="khx_id" ><c:out value="${khx.id}"/></c:set>	
 								<c:choose>
 									<c:when  test="${not empty khpfMap[hzdw_id][khx_id] }">
 										<input type="hidden" name="Tf20_khxxmx.ID" class="id" value="${khpfMap[hzdw_id][khx_id].id }"/>
