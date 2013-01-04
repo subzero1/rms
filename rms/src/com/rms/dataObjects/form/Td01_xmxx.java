@@ -2456,5 +2456,20 @@ public class Td01_xmxx implements Serializable {
 	public void setYsbm(String ysbm) {
 		this.ysbm = ysbm;
 	}
-	
+	/*
+	 * 需求书标识
+	 */
+	private Long xqs_id;
+
+	/**
+	 * @hibernate.property column="xqs_id"
+	 * @return Returns the xqs_id.
+	 */
+	public Long getXqs_id() {
+		return xqs_id;
+	}
+
+	public void setXqs_id(Long xqs_id) {
+		this.xqs_id = xqs_id;
+	}
 }

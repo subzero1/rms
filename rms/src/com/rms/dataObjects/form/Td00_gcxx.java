@@ -1648,4 +1648,21 @@ public class Td00_gcxx implements Serializable {
 	public void setYssj(Date yssj) {
 		this.yssj = yssj;
 	}
+	
+	/*
+	 * 需求书标识
+	 */
+	private Long xqs_id;
+
+	/**
+	 * @hibernate.property column="xqs_id"
+	 * @return Returns the xqs_id.
+	 */
+	public Long getXqs_id() {
+		return xqs_id;
+	}
+
+	public void setXqs_id(Long xqs_id) {
+		this.xqs_id = xqs_id;
+	}
 }
