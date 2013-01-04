@@ -77,7 +77,7 @@
 							<a class="add" href="javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id=${obj.id }', {title:'项目施工进度'});"  rel="gcsgjd"><img border="0" src="Images/chart_bar.png" style="cursor:pointer"/></a>&nbsp;&nbsp;
 							<a class="add" href="jlgt/jlgtView.do?module_id=101&doc_id=${obj.id }" target="navTab" rel="jlgtView"><img border="0" src="Images/track_record.png" style="cursor:pointer"/></a>
 						</td>
-						<td><a href="openForm.do?project_id=${obj.id }&module_id=106&doc_id=${obj.id }&user_id=${user.id }&node_id=10902" target="navTab" rel="xqxx" title="需求书">${obj.xqmc }</a></td>
+						<td><a href="openForm.do?project_id=${obj.id }&module_id=109&doc_id=${obj.id }&user_id=${user.id }&node_id=10902" target="navTab" rel="xqxx" title="需求书">${obj.xqmc }</a></td>
 						<td>${obj.jsxz }&nbsp;</td>
 						<td>${obj.ssdq }</td>
 						<td>${obj.jd }</td>
