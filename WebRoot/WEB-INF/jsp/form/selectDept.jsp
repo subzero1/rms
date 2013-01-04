@@ -15,7 +15,7 @@
 			var names = $("#names",$.pdialog.getCurrent()).val(); 
 			var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
 			var names=$("#names",$.pdialog.getCurrent()).val();  
-			$.bringBack({'YSBM':names,'OBJ_ID':ids}); 
+			$.bringBack({'YSBM':names,'DEPT_IDS':ids}); 
 		});
 		
 		$("#clear",$.pdialog.getCurrent()).click(function(){
