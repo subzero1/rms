@@ -3,7 +3,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
-
+<script type="text/javascript">
+$(function(){
+	$ysry=$('#ysry',navTab.getCurrentPanel());
+	$dept_id=$("#deptOrg\\.DEPT_IDS",navTab.getCurrentPanel());
+	var init_url=$ysry.attr('href');
+	$dept_id.change(function(){
+		var url=init_url+'?dept_ids='+$dept_id.val();
+		$ysry.attr('href',url);  
+	});
+	
+}); 
+</script>
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmysd.xml"/>
 <input type="hidden" name="Td04_xmysd.ID" value="${param.doc_id}">
@@ -63,6 +74,7 @@
 		<label>验收部门：</label>
 		<input type="text" name="Td01_xmxx.YSBM" value="${td01_xmxx.ysbm}" style="width:381px;" id="deptOrg.YSBM"/>
 		<a class="btnLook" lookupGroup="deptOrg" href="form/selectDept.do" width="600" height="371"></a>
+		<input type="hidden" name="Ta01_dept.DEPT_IDS" id="deptOrg.DEPT_IDS" value=""/>
 	</p>
 	<p>
 		<label>验收时间：</label>
@@ -72,7 +84,7 @@
 	<p>
 		<label>验收人员：</label>
 		<input type="text" name="Td01_xmxx.YSRY" value="${td01_xmxx.ysry}" style="width:381px;" id="ysryOrg.YSRY"/>
-		<a class="btnLook" lookupGroup="ysryOrg" href="form/selectYsry.do" width="600" height="371"></a>
+		<a id="ysry" class="btnLook" lookupGroup="ysryOrg" href="form/selectYsry.do" width="600" height="371"></a>
 	</p>
 	<div style="height:0px;"></div>
 	<p>

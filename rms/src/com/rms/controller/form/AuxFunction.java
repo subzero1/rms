@@ -884,11 +884,15 @@ public class AuxFunction {
 				.getParameter("orderField"), "name");
 		String searchStr = convertUtil.toString(request
 				.getParameter("searchStr"));
+		String dept_ids=convertUtil.toString(request.getParameter("dept_ids"));
+		
 		StringBuffer hql = new StringBuffer();
 		hql.append("select ysry from Ta03_user ysry where 1=1 ");
 		// 条件
 		if(!searchStr.equals(""))
 			hql.append("and ysry.name like '%"+searchStr+"%' ");
+		if(!dept_ids.equals(""))
+			hql.append(" and ysry.dept_id in("+dept_ids+")");
 		hql.append(" order by ysry." + orderField);
 		hql.append(" " + orderDirection);
 		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
