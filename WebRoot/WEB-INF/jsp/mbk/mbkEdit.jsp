@@ -661,9 +661,11 @@ $("#jsxz").change(function(){
 					<c:set var="slaves" scope="page" value="0"/>
 					
 					<!-- temp -->
-					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=5026', {title:'工程施工进度'});">相关工程施工进度</a></p>
+					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=5026', {title:'工程施工进度'});">相关工程施工进度（示例）</a></p>
 					<c:set var="slaves" scope="page" value="1"/>
 					<!-- temp -->
+					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjdForMbk.do?mbk_id=${Td21_mbk.id }', {title:'工程施工进度'});">相关工程施工进度</a></p>
+					<c:set var="slaves" scope="page" value="2"/>
 					
 					<c:forEach var="obj" items="${_formslink}">
 						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>

@@ -806,6 +806,36 @@ public class AuxFunction {
 		modelMap.put("engineerList", engineerList);
 		return new ModelAndView(view, modelMap);
 	}
+	
+	/**
+	 * 工程及关联工程进度统计图
+	 * 
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/gcsgjdForMbk.do")
+	public ModelAndView gcsgjdForMbk(HttpServletRequest request,
+			HttpServletResponse response) {
+		String view = "/WEB-INF/jsp/form/gcsgjd.jsp";
+		ModelMap modelMap = new ModelMap();
+		String params = "";
+		List<Td00_gcxx> engineerList = null;
+		List<Object> paramList = new ArrayList<Object>();
+		String mbk_id = convertUtil.toString(request.getParameter("mbk_id"),"");
+		StringBuffer hql = new StringBuffer("from Td00_gcxx as td00 ");
+		hql.append("where td00.mbk_id=" + mbk_id);
+		engineerList = (List<Td00_gcxx>) queryService.searchList(hql.toString());
+
+		for (int i = 0; i < engineerList.size(); i++) {
+			Td00_gcxx td00 = engineerList.get(i);
+			params = "javascript:openFlowForm('{project_id:" + td00.getId()
+					+ ",doc_id:" + td00.getId() + ",module_id:102,"
+					+ "node_id:-1}');";
+			paramList.add(params);
+		}
+		modelMap.put("paramList", paramList);
+		modelMap.put("engineerList", engineerList);
+		return new ModelAndView(view, modelMap);
+	}
 
 	/**
 	 * 选择部门 查找带回
