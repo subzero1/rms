@@ -132,11 +132,12 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				request.setAttribute("ssdqList", ssdqList);
 			}
 			
-			/*
-			 * 处理按钮
-			 */
+			
 			if(module_id == 101 || module_id == 102){
 				
+				/*
+				 * 处理按钮
+				 */
 				List buttonList = (List)request.getAttribute("buttons");
 				
 				String urlParas = MapUtil.getUrl(paraMap, new String[] { "project_id", "doc_id", "module_id", "node_id","opernode_id","user_id"});
@@ -205,51 +206,8 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 				
 				request.setAttribute("buttons", buttonList);
-			}
-			
-			/*
-			 * 处理需求书按钮
-			 */
-			if(module_id == 109){
-				List buttonList = (List)request.getAttribute("buttons");
 				
-				if(doc_id != -1){
-					if(node_id == 10902){//
-						Button btn = new Button("转目标库");
-						btn.url = "javascript:navTab.open('mbkEdit.do?xqs_id=" + project_id + "&user_id=" + user_id	+ "');";
-						btn.comment = "转入目标库";
-						btn.picUri = "newform";
-						buttonList.add(btn);
-						
-						hsql.delete(0, hsql.length());
-						hsql.append("select id from Td21_mbk where xqs_id = ");
-						hsql.append(project_id);
-						List list = queryService.searchList(hsql.toString());
-						
-						/*
-						 * 如果没有转入目标库就可以起草项目和工程
-						 */
-						if(list == null || list.size() == 0){
-							btn = new Button("新建工程");
-							btn.url = "javascript:docNew('flowForm.do?module_id=102&node_id=10201&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-							btn.comment = "新建单项工程";
-							btn.picUri = "newform";
-							buttonList.add(btn);
-							
-							btn = new Button("新建项目");
-							btn.url = "javascript:docNew('flowForm.do?module_id=101&node_id=10101&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-							btn.comment = "新建建设项目";
-							btn.picUri = "newform";
-							buttonList.add(btn);
-						}
-					}
-				}
-				
-				request.setAttribute("buttons", buttonList);
-			}
-			
-			// 获取专业大类和专业小类，获取工程年度下所有专业，默认当前年
-			if (module_id == 101 || module_id == 102) {
+				// 获取专业大类和专业小类，获取工程年度下所有专业，默认当前年
 				if (doc_id != -1) {
 					if(module_id==101){
 						clazz = Td01_xmxx.class;
@@ -535,7 +493,46 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 			}
 			
-			if(module_id== 109){
+			
+			if(module_id == 109){
+				/*
+				 * 处理需求书按钮
+				 */
+				List buttonList = (List)request.getAttribute("buttons");
+				
+				if(doc_id != -1){
+					if(node_id == 10902){//
+						Button btn = new Button("转目标库");
+						btn.url = "javascript:navTab.reload('mbk/mbkEdit.do?xqs_id=" + project_id + "&user_id=" + user_id	+ "');";
+						btn.comment = "转入目标库";
+						btn.picUri = "newform";
+						buttonList.add(btn);
+						
+						hsql.delete(0, hsql.length());
+						hsql.append("select id from Td21_mbk where xqs_id = ");
+						hsql.append(project_id);
+						List list = queryService.searchList(hsql.toString());
+						
+						/*
+						 * 如果没有转入目标库就可以起草项目和工程
+						 */
+						if(list == null || list.size() == 0){
+							btn = new Button("新建工程");
+							btn.url = "javascript:docNew('flowForm.do?module_id=102&node_id=10201&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+							btn.comment = "新建单项工程";
+							btn.picUri = "newform";
+							buttonList.add(btn);
+							
+							btn = new Button("新建项目");
+							btn.url = "javascript:docNew('flowForm.do?module_id=101&node_id=10101&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+							btn.comment = "新建建设项目";
+							btn.picUri = "newform";
+							buttonList.add(btn);
+						}
+					}
+				}
+				request.setAttribute("buttons", buttonList);
+			
 			   // 获取建设性质：Tc01_property type="建设性质"
 				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
 				queryBuilder.eq("type", "建设性质");
