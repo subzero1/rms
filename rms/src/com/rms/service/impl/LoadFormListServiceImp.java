@@ -29,6 +29,7 @@ import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta01_dept;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td02_xmbgd;
+import com.rms.dataObjects.form.Td06_xqs;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.netsky.base.flow.utils.MapUtil;
@@ -427,6 +428,25 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					tmpList = queryService.searchList(queryBuilder);
 					request.setAttribute("glgcList", tmpList);
 				}
+
+				/*
+				 * 新建工程时如果来自需求书则默认将需求书的信息写过去
+				 */
+				Long xqs_id = convertUtil.toLong(request.getParameter("xqs_id"),-1l);
+				if(xqs_id != null && xqs_id != -1){
+					Td06_xqs td06 = (Td06_xqs)queryService.searchById(Td06_xqs.class, xqs_id);
+					if(td06 == null){
+						td06 = new Td06_xqs();
+					}
+					Td01_xmxx t_td01 = new Td01_xmxx();
+					t_td01.setId(null);
+					t_td01.setXmmc(td06.getXqmc()+"【来自需求】");
+					t_td01.setXqs_id(xqs_id);
+					t_td01.setXmsm(td06.getBz());
+					t_td01.setSsdq(td06.getSsdq());
+					t_td01.setJsxz(td06.getJsxz());
+					request.setAttribute("td01_xmxx", t_td01);
+				}
 			}
 			
 			if(module_id==102){
@@ -434,6 +454,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"),-1l);
 				Td21_mbk mbk = (Td21_mbk)queryService.searchById(Td21_mbk.class, mbk_id);
 				request.setAttribute("mbk", mbk);
+				
 				/*
 				 * 新建关联工程时把原来工程的数据写过去
 				 * 1.假设三个工程 A、B、C ，如果通过A生成B、C,则B、C的关联工程就是A；
@@ -457,6 +478,25 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("td00_gcxx", glgc);
 				}
 				
+				/*
+				 * 新建工程时如果来自需求书则默认将需求书的信息写过去
+				 */
+				Long xqs_id = convertUtil.toLong(request.getParameter("xqs_id"),-1l);
+				if(xqs_id != null && xqs_id != -1){
+					Td06_xqs td06 = (Td06_xqs)queryService.searchById(Td06_xqs.class, xqs_id);
+					if(td06 == null){
+						td06 = new Td06_xqs();
+					}
+					Td00_gcxx t_td00 = new Td00_gcxx();
+					t_td00.setId(null);
+					t_td00.setGcmc(td06.getXqmc()+"【来自需求】");
+					t_td00.setXqs_id(xqs_id);
+					t_td00.setGcsm(td06.getBz());
+					t_td00.setSsdq(td06.getSsdq());
+					t_td00.setJsxz(td06.getJsxz());
+					request.setAttribute("td00_gcxx", t_td00);
+				}
+
 				//获取关联工程
 				if(doc_id != -1){
 					Td00_gcxx gcxx = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,doc_id);
