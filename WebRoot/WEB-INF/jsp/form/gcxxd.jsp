@@ -56,6 +56,7 @@ $(function(){
 <input type="hidden"  name="Td00_gcxx.CJR" value="<c:out value="${td00_gcxx.cjr}" default="${user.name}"/>" style="width:150px;"/>
 <input type="hidden" name="Td00_gcxx.XMGLYDH" value="<c:out value="${td00_gcxx.xmglydh}" default="${user.mobile_tel}"/>">
 <input type="hidden" name="Td00_gcxx.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td00_gcxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
+<input type="hidden" name="Td00_gcxx.XQS_ID" value="${td00_gcxx.xqs_id }"/>
 	<p>
 		<label>工程名称：</label>
 		<input type="text" name="Td00_gcxx.GCMC" value="<c:out value="${td00_gcxx.gcmc}" default="${mbk.zymc }"/>" style="width:407px;"/>
