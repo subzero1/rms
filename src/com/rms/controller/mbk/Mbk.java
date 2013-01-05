@@ -43,6 +43,8 @@ import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.ConfigXML;
 import com.netsky.base.utils.ConfigXMLImpl;
 import com.netsky.base.utils.StringFormatUtil;
+import com.rms.dataObjects.form.Td01_xmxx;
+import com.rms.dataObjects.form.Td06_xqs;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.rms.dataObjects.mbk.Td22_mbk_lzjl;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
@@ -275,8 +277,34 @@ public class Mbk {
 	public ModelAndView mbkEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		ModelMap modelMap = new ModelMap();
 		Long id = convertUtil.toLong(request.getParameter("id"));
-		Td21_mbk mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
+		Long xqs_id = convertUtil.toLong(request.getParameter("xqs_id"));
+		Td21_mbk mbk = null;
+		
+		if(xqs_id != null && xqs_id != -1){
+			Td06_xqs td06 = (Td06_xqs)queryService.searchById(Td06_xqs.class, xqs_id);
+			if(td06 == null){
+				td06 = new Td06_xqs();
+			}
+			mbk = new Td21_mbk();
+			mbk.setId(null);
+			mbk.setZymc(td06.getXqmc()+"【来自需求】");
+			mbk.setXqs_id(xqs_id);
+			mbk.setBz(td06.getBz());
+			mbk.setSsdq(td06.getSsdq());
+			mbk.setJsxz(td06.getJsxz());
+			mbk.setZldd(td06.getZldd());
+			mbk.setJd(td06.getJd());
+			mbk.setWd(td06.getWd());
+			mbk.setFgsx(td06.getFgsx());
+			mbk.setZs(td06.getZs());
+			mbk.setHs(td06.getHs());
+			mbk.setCs(td06.getCs());
+		}
+		else{
+			mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
+		}
 		modelMap.put("Td21_mbk", mbk);
+		
 		List<String> jsxzList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设性质'");
 		modelMap.put("jsxzList", jsxzList);
 		List<String> lbList = (List<String>) queryService.searchList("select name from Tc01_property where type='目标库类别'");
