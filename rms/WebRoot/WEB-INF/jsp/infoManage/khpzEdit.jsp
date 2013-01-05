@@ -31,7 +31,7 @@ $(document).ready(function(){
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/khpzList.do" />
 	<input type="hidden" name="_navTabId" value="khpz" />
-	<div class="panel sysmanage_max" defH="182"
+	<div class="panel sysmanage_max" defH="155"
 		style="width: 97%; float: left; margin: 5px">
 		<h1>
 			配置信息
@@ -50,14 +50,14 @@ $(document).ready(function(){
 						间隔天数：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
-						class="required" style="width: 50px;" maxlength="15" />
+						class="required" style="width: 40px;" maxlength="15" />
 				</p>
 				<p>
 					<label>
 						打分天数：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.DFTS" value="${khpz.dfts }"
-						class="required digits" style="width: 50px;" maxlength="4" />
+						class="required digits" style="width: 40px;" maxlength="4" />
 				</p>
 				<div style="height: 0px;"></div>
 				<p>
@@ -66,36 +66,38 @@ $(document).ready(function(){
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
 						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>"
-						style="width: 200px;" readOnly />
+						style="width: 70px;" readOnly />
 				</p>
 				<p>
 					<label>
 						是否有效：
 					</label>
-					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="1"
-						<c:if test="${khpz.useflag=='1' }">checked</c:if> />
-					是
-					<input type="radio" name="Tc10_hzdw_khpz.USEFLAG" value="0"
-						<c:if test="${khpz.useflag!='1' }">checked</c:if> />
-					否
+					<select style="width: 78" name="Tc10_hzdw_khpz.USEFLAG">
+						<option
+							<c:if test="${khpz.useflag=='1'||empty khpz.useflag}"> selected</c:if> value="1" >
+							有效
+						</option>
+						<option <c:if test="${khpz.useflag=='0'}"> selected</c:if> value="0">
+							有效
+						</option>
+					</select>
 				</p>
 
-				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						下次考核：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
 						value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />"
-						class="required date" style="width: 200px;" pattern="yyyy-MM-dd"
+						class="required date" style="width: 70px;" pattern="yyyy-MM-dd"
 						readOnly />
 				</p>
-
+				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						单位类别：
 					</label>
-					<select style="width: 100" name="Tc10_hzdw_khpz.DWLB">
+					<select style="width: 78" name="Tc10_hzdw_khpz.DWLB">
 						<option
 							<c:if test="${khpz.dwlb=='设计'||empty khpz.dwlb}"> selected</c:if>>
 							设计
@@ -108,13 +110,12 @@ $(document).ready(function(){
 						</option>
 					</select>
 				</p>
-				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.BZ" value="${khpz.bz}"
-						style="width: 520px;" />
+						style="width: 320px;" />
 				</p>
 			</div>
 
