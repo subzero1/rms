@@ -79,6 +79,7 @@ $(function(){
 <input type="hidden" name="Td01_xmxx.XMGLYDH" value="<c:out value="${td01_xmxx.xmglydh}" default="${user.mobile_tel}"/>">
 <input type="hidden" name="Td01_xmxx.CJRQ" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td01_xmxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>">
 <input type="hidden" id="BG_JE_XM" name="Td01_xmxx.BG_JE" value="">
+<input type="hidden" name="Td01_xmxx.XQS_ID" value="${td01_xmxx.xqs_id }"/>
 
 <p>
 	<label>项目名称：</label>
