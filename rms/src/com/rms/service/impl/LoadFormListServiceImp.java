@@ -590,6 +590,39 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				if (tmpList != null) {
 					request.setAttribute("fgsxList", tmpList);
 				}
+				
+				/*
+				 * 获取工程信息、项目信息、目标库信息
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("from Td21_mbk where xqs_id = ");
+				hsql.append(t_doc_id);
+				List mbkList = queryService.searchList(hsql.toString());
+				if(mbkList != null && mbkList.size() > 0){
+					request.setAttribute("mbkList", mbkList);
+					request.setAttribute("mbkLength", mbkList.size());
+					
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("from Td00_gcxx where xqs_id = ");
+				hsql.append(t_doc_id);
+				List gcxxList = queryService.searchList(hsql.toString());
+				if(gcxxList != null && gcxxList.size() > 0){
+					request.setAttribute("gcxxList", gcxxList);
+					request.setAttribute("gcxxLength", gcxxList.size());
+					
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("from Td01_xmxx where xqs_id = ");
+				hsql.append(t_doc_id);
+				List xmxxList = queryService.searchList(hsql.toString());
+				if(xmxxList != null && xmxxList.size() > 0){
+					request.setAttribute("xmxxList", xmxxList);
+					request.setAttribute("xmxxLength", xmxxList.size());
+					
+				}
 			}
 			
 			
