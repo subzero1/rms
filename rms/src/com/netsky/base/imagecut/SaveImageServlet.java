@@ -27,6 +27,7 @@ import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.dataObjects.Tz01_exception;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.convertUtil;
 
 public class SaveImageServlet extends HttpServlet {
 	/**
@@ -43,7 +44,10 @@ public class SaveImageServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		String str = "";
+		Long module_id = null;
 		try {
+			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
+			System.out.println(module_id);
 			String file_separator = System.getProperty("file.separator");
 			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 			ApplicationContext actx = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
@@ -70,7 +74,7 @@ public class SaveImageServlet extends HttpServlet {
 				QueryBuilder queryBuilder2 = new HibernateQueryBuilder(Te01_slave.class);
 				queryBuilder2.eq("doc_id", user.getId());
 				queryBuilder2.eq("user_id", user.getId());
-				queryBuilder2.eq("module_id", new Long(0));
+				queryBuilder2.eq("module_id",module_id);
 				ResultObject ro_te01 = queryService.search(queryBuilder2);
 				Te01_slave te01 = new Te01_slave();
 				if(ro_te01.next()){
@@ -85,7 +89,7 @@ public class SaveImageServlet extends HttpServlet {
 					te01.setFtp_date(new Date());
 					te01.setExt_name("."+FileType);
 					te01.setUser_id(user.getId());	
-					te01.setModule_id(new Long(0));
+					te01.setModule_id(module_id);
 					saveService.save(te01);
 				}
 //				queryBuilder2 = new HibernateQueryBuilder(Te01_slave.class);

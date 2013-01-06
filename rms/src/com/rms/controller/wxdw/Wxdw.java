@@ -2589,7 +2589,7 @@ public class Wxdw {
 			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
 		}
 				
-		String sql_salve="select id,file_name,ext_name,ftp_url from Te01_slave where doc_id="+user.getId()+" and module_id=0 and user_id="+user.getId()+" order by ftp_date desc";
+		String sql_salve="select id,file_name,ext_name,ftp_url from Te01_slave where doc_id="+user.getId()+" and module_id=1000 and user_id="+user.getId()+" order by ftp_date desc";
 		ResultObject ro_salve = queryService.search(sql_salve);
 		if(ro_salve.next()){
 			Map<String,Object> mo_salve = ro_salve.getMap();
