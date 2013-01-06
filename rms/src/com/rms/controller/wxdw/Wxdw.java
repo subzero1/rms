@@ -1848,12 +1848,11 @@ public class Wxdw {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		StringBuffer hsql = new StringBuffer();
-		hsql
-				.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
+		hsql.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
-		hsql.append(" sgdw = '"+user.getDept_name()+"' and sjkgsj < sysdate and sjjgsj is null");
+		hsql.append(" jldw = '"+user.getDept_name()+"' and sjkgsj < sysdate and sjjgsj is null");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		// 获取结果集
 		List<Object[]> gcxxList = new ArrayList<Object[]>();
@@ -1955,8 +1954,13 @@ public class Wxdw {
 	public ModelAndView jlrj(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		Td01_xmxx gcxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
-		modelMap.put("gcxx", gcxx);
+		Object td01 = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
+		modelMap.put("td01", td01);
+		if(td01 == null){
+			Object td00 = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, project_id);
+			modelMap.put("td00", td00);
+		}
+		
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		if (!id.equals(-1L)) {
 			Tf14_jlrj tf14 = (Tf14_jlrj) queryService.searchById(Tf14_jlrj.class, id);

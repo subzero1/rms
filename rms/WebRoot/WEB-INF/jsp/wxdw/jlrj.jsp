@@ -12,17 +12,21 @@
 		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf14_jlrj" />
 			<input type="hidden" name="Tf14_jlrj.ID" value="${jlrj.id }" />
-			<input type="hidden" name="Tf14_jlrj.PROJECT_ID" value="${gcxx.id }"/>
+			<input type="hidden" name="Tf14_jlrj.PROJECT_ID" value="${td01.id }${td00.id }"/>
 			<input type="hidden" name="_navTabId" value="jlgcList"/>
 			
 			<div class="pageFormContent" layoutH="53">
 				<p>
-					<label>项目编号：</label>
-					<input type="text" readonly="readonly" style="width:120px;" value="${gcxx.xmbh }" />
+					<label>项目名称：</label>
+					<input type="text" readonly="readonly" style="width:346px;" value="${td01.xmmc }${td00.gcmc }" />
 				</p>
 				<p>
-					<label>项目名称：</label>
-					<input type="text" readonly="readonly" style="width:120px;" value="${gcxx.xmmc }" />
+					<label>项目编号：</label>
+					<input type="text" readonly="readonly" style="width:120px;" value="${td01.xmbh }${td00.gcbh }" />
+				</p>
+				<p>
+					<label>项目状态：</label>
+					<input type="text" readonly="readonly" name="Tf14_jlrj.GCZT" style="width:120px;" value="${td01.xmzt }${td00.gczt }"/>
 				</p>
 				<p>
 					<label>填报日期：</label>
@@ -32,10 +36,6 @@
 					<label>填报人员：</label>
 					<input type="hidden" name="Tf14_jlrj.USER_ID" value="${user.id }" />
 					<input type="text" readonly="readonly" style="width:120px;" value="${user.name }" />
-				</p>
-				<p>
-					<label>项目状态：</label>
-					<input type="text" readonly="readonly" name="Tf14_jlrj.GCZT" style="width:120px;" value="${gcxx.xmzt }"/>
 				</p>
 				<div style="width:100%;height:0px;"></div>
 				<p>
