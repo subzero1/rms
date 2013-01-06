@@ -1850,7 +1850,7 @@ public class Wxdw {
 		StringBuffer hsql = new StringBuffer();
 		hsql.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
 		if (!"".equals(gcmc)) {
-			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
+			hsql.append("(gcxx.xmmc like '%" + gcmc + "%') and ");
 		}
 		hsql.append(" jldw = '"+user.getDept_name()+"' and sjkgsj < sysdate and sjjgsj is null");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
@@ -1897,7 +1897,7 @@ public class Wxdw {
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "gcmc");
 		Ta03_user user = (Ta03_user)request.getSession().getAttribute("user");
 		if (orderField.equals("")) {
-			orderField = "gcmc";
+			orderField = "xmmc";
 		}
 		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
@@ -1912,7 +1912,7 @@ public class Wxdw {
 		boolean allproject = request.getParameter("allproject") != null;
 		hsql.append("select distinct(gcxx) as gcxx,sysdate-((case when create_date is null then sjkgsj else create_date end))-((case when jlrjtbzq is null then 3 else jlrjtbzq end)) as a1,(((case when create_date is null then sjkgsj else create_date end))+((case when jlrjtbzq is null then 3 else jlrjtbzq end))) as a2 from Vc3_gcxx_jlrj gcxx where ");
 		if (!"".equals(gcmc)) {
-			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
+			hsql.append("(gcxx.xmmc like '%" + gcmc + "%') and ");
 		}
 		hsql.append(" xmgly = '"+user.getName()+"'");
 		if (!allproject) {
