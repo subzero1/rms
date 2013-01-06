@@ -21,6 +21,7 @@ import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.convertUtil;
 
 @Controller("/cutImage.do")
 public class CutImageServlet implements org.springframework.web.servlet.mvc.Controller {
@@ -44,12 +45,14 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 		response.setCharacterEncoding("GBK");
 		String json = "{\"statusCode\":\"200\", \"message\":\"头像修改成功\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}";
 		PrintWriter out = null;
+		Long module_id = null;
 		try {
 			out = response.getWriter();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		try {
+			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
 			String file_separator = System.getProperty("file.separator");
 			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 			int width=150;
@@ -74,7 +77,7 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 			        
 			QueryBuilder queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
 			queryBuilder.eq("user_id", user.getId());
-			queryBuilder.eq("module_id", new Long(0));
+			queryBuilder.eq("module_id", module_id);
 			ResultObject ro_te01 = queryService.search(queryBuilder);
 			Te01_slave te01 = new Te01_slave();
 			if(ro_te01.next()){
