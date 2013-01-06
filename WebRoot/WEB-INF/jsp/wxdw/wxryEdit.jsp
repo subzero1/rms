@@ -3,12 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" /> 
-<script type="">
+<script language="javascript">
 	function upPic(){
 		$.pdialog.open("personalHead.do",'_upPic','上传头像',{width:600,height:380});
-		$.pdialog.switchDialog($("body").data('_upPic'));
-		alert($("body").data('_upPic').style.zIndex);
-		//alert('s');
+		var dialog = $("body").data('_upPic');
+		setTimeout(function(){$.pdialog.switchDialog(dialog);}, 100);
 	}
 </script>
 <div class="page">
