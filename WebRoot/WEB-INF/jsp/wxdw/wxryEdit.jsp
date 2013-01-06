@@ -3,6 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" /> 
+<script type="">
+	function upPic(){
+		$.pdialog.open("personalHead.do",'_upPic','上传头像',{width:600,height:380});
+		$.pdialog.switchDialog($("body").data('_upPic'));
+		alert($("body").data('_upPic').style.zIndex);
+		//alert('s');
+	}
+</script>
 <div class="page">
 	<div class="pageContent">
 		<form method="post" action="wxdw/wxryAjaxSave.do" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone);">
@@ -56,6 +64,7 @@
 			<div class="formBar">
 				<ul>
 					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" type="submit">保存设置</button></div></div></li>
+					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" onclick="javascript:upPic()">上传照片</button></div></div></li>
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>
