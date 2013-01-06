@@ -36,6 +36,7 @@
 						</td>
 					</tr>
 				</table>
+				<div style="float:left;"><div style="float:left;height:25px;line-height: 25px;">图例：</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: white;border:solid 2px #ccc;padding:0px 5px;">&nbsp;已填报进度（可修改）&nbsp;</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background:#8db92e;border:solid 2px #ccc;padding:0px 5px;">&nbsp;当天应填报进度&nbsp;</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: #ffd34e;border:solid 2px #ccc;padding:0px 5px;">&nbsp;超期未填报（超期一个周期内）&nbsp;</div><div style="margin-left:5px;height:25px;line-height: 25px;float:left;background: #cd0005;border:solid 2px #ccc;padding:0px 5px;color:#fff;">&nbsp;超期未填报（超期一个周期以上）&nbsp;</div></div>
 				<div class="subBar">
 					<ul>
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="searchButton" onClick="javascript:searchOrExcelExport(this,'${url }',navTabSearch);">检 索</button></div></div></li>
