@@ -315,6 +315,15 @@ function projectSlaveShow(project_id,module_id,doc_id,canDel,lb){
 }
 
 /**
+*工程材料出入库情况查看
+*/
+function projectClmx(project_id){
+	var url = 'wxdw/projectClmx.do?project_id='+project_id;
+	//$.pdialog.open(url,'_projectSlaveShow','材料出入库情况',{width:600,height:400});
+	navTab.openTab('_projectClmxShow', url, {title:'材料出入库情况'});
+}
+
+/**
 *功能中打开在线提问
 *module_name [tz08_help_map.module_name]
 */
