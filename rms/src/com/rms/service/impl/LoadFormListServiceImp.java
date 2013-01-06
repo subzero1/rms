@@ -805,6 +805,15 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					v_slave.add(tmp_gcsm_slave);
 				}
 				
+				/**
+				 * 材料出入库情况
+				 */
+				HashMap<String, String> tmp_clmx_slave = new HashMap<String, String>();
+				tmp_clmx_slave.put("slave_name", "材料出入库情况");
+				tmp_clmx_slave.put("formurl", "javascript:projectClmx("+t_project_id+")");
+				tmp_clmx_slave.put("rw", "r");
+				v_slave.add(tmp_clmx_slave);
+				
 			}
 			if (v_slave.size() > 0) {
 				request.setAttribute("extslave", v_slave);

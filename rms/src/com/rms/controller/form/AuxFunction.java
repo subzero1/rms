@@ -808,11 +808,71 @@ public class AuxFunction {
 	}
 	
 	/**
+	 * 工程及项目的出入库明细///////////////////////////////////////////////////////
+	 * 
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/wxdw/projectClmx.do")
+	public ModelAndView projectClmx(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelMap modelMap = new ModelMap();
+		ResultObject ro = null;
+		
+		int totalCount=0;
+		int pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		int numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "dz");
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		
+		Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
+		if(td00 == null){
+			Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, project_id);
+			if(td01 != null){
+				modelMap.put("gcmc", td01.getXmmc());
+			}
+		}
+		else{
+			modelMap.put("gcmc", td00.getGcmc());
+		}
+		
+		StringBuffer hql = new StringBuffer("select tf08,tf01 ");
+		hql.append("from Tf08_clmxb tf08,Tf01_wxdw tf01 ");
+		hql.append("where tf08.sgdw_id = tf01.id and tf08.zhxx_id = ");
+		hql.append(project_id);
+		hql.append("order by ");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection);
+		ro = queryService.searchByPage(hql.toString(),  pageNum, numPerPage);
+		List clmxList = null;
+		if (ro != null) {
+			totalCount=ro.getTotalRows();
+			clmxList = new LinkedList();
+			while (ro.next()) {
+				Object[] o = new Object[2];
+				o[0] = ro.get("tf08");
+				o[1] = ro.get("tf01");
+				clmxList.add(o);
+			}
+		}
+		
+		modelMap.put("clmxList", clmxList);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("totalCount", totalCount);
+		return new ModelAndView("/WEB-INF/jsp/form/projectClmx.jsp", modelMap);
+	}
+
+	/**
 	 * 工程及关联工程进度统计图
 	 * 
 	 * @return ModelAndView
 	 */
-	@RequestMapping("/wxdw/gcsgjdForMbk.do")
+	@RequestMapping("/form/gcsgjdForMbk.do")
 	public ModelAndView gcsgjdForMbk(HttpServletRequest request,
 			HttpServletResponse response) {
 		String view = "/WEB-INF/jsp/form/gcsgjd.jsp";
@@ -836,7 +896,7 @@ public class AuxFunction {
 		modelMap.put("engineerList", engineerList);
 		return new ModelAndView(view, modelMap);
 	}
-
+	
 	/**
 	 * 选择部门 查找带回
 	 * 
