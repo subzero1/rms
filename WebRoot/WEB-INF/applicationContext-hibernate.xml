@@ -226,6 +226,7 @@
 				<value>com/netsky/base/flow/vo/Vc1_sgpftst.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Vc2_gcxx_gzltb.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/Vc3_gcxx_jlrj.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/V_gcxmxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/V_ta03.hbm.xml</value>
 			</list>
 		</property>
