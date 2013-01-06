@@ -2573,4 +2573,29 @@ public class Wxdw {
 		}
 		
 	}
+	
+	/**
+	 * 上传外协人员照片
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/upWxryHead.do")
+	public ModelAndView upWxryHead(HttpServletRequest request,HttpServletResponse response){
+		//用户头像获取
+		Ta03_user user = null;
+		user = (Ta03_user) request.getSession().getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
+		}
+				
+		String sql_salve="select id,file_name,ext_name,ftp_url from Te01_slave where doc_id="+user.getId()+" and module_id=0 and user_id="+user.getId()+" order by ftp_date desc";
+		ResultObject ro_salve = queryService.search(sql_salve);
+		if(ro_salve.next()){
+			Map<String,Object> mo_salve = ro_salve.getMap();
+			request.setAttribute("fj", mo_salve);
+		}
+		if(request.getParameter("save")!=null)request.setAttribute("save", "1");
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxryHead.jsp");
+	}
 }
