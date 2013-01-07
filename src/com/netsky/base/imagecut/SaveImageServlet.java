@@ -45,11 +45,15 @@ public class SaveImageServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		String str = "";
 		Long module_id = null;
+		Long doc_id = null;
+		Long project_id = null;
 		try {
-			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
-			System.out.println(module_id);
-			String file_separator = System.getProperty("file.separator");
 			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
+			doc_id = convertUtil.toLong(request.getParameter("doc_id"),user.getId());
+			project_id = convertUtil.toLong(request.getParameter("project_id"),user.getId());
+			
+			String file_separator = System.getProperty("file.separator");
 			ApplicationContext actx = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
 			queryService =(QueryService) actx.getBean("queryService");
 			saveService = (SaveService) actx.getBean("saveService");
@@ -72,16 +76,16 @@ public class SaveImageServlet extends HttpServlet {
 				
 				// 保存te01表数据
 				QueryBuilder queryBuilder2 = new HibernateQueryBuilder(Te01_slave.class);
-				queryBuilder2.eq("doc_id", user.getId());
-				queryBuilder2.eq("user_id", user.getId());
+				queryBuilder2.eq("doc_id", doc_id);
+				//queryBuilder2.eq("user_id", user.getId());
 				queryBuilder2.eq("module_id",module_id);
 				ResultObject ro_te01 = queryService.search(queryBuilder2);
 				Te01_slave te01 = new Te01_slave();
 				if(ro_te01.next()){
 					te01 = (Te01_slave)ro_te01.get(Te01_slave.class.getName());
 				}else{
-					te01.setProject_id(user.getId());
-					te01.setDoc_id(user.getId());
+					te01.setProject_id(project_id);
+					te01.setDoc_id(doc_id);
 					te01.setSlave_type("用户头像");
 					te01.setFile_name(user.getName()+"."+FileType);
 					te01.setFtp_url(user.getName()+"."+FileType);
@@ -92,17 +96,10 @@ public class SaveImageServlet extends HttpServlet {
 					te01.setModule_id(module_id);
 					saveService.save(te01);
 				}
-//				queryBuilder2 = new HibernateQueryBuilder(Te01_slave.class);
-//				te01.setFtp_url(te01.getId()+"Slave."+FileType);
-//				te01.setFtp_date(new Date());
-//				te01.setExt_name("."+FileType);
-//				saveService.save(te01);
-				
 				BufferedImage image = ImageIO.read(new File(newFileName));
 				int width = image.getWidth();
 				int height = image.getHeight();
 				response.sendRedirect("dispath.do?url=personalization/upload_ok.html?url="+personal_head+","+width+","+height);
-				//response.sendRedirect("/rms/openupl.do");
 			}
 		} catch (Exception e) {
 			Tz01_exception tz01 = new Tz01_exception();
@@ -116,7 +113,6 @@ public class SaveImageServlet extends HttpServlet {
 			p.write(b);
 			tz01.setStacktrace(new String(b));
 			saveService.save(tz01);
-			System.out.println(e);
 		}
 	}
 

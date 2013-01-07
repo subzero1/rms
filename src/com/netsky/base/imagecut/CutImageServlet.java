@@ -46,15 +46,17 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 		String json = "{\"statusCode\":\"200\", \"message\":\"头像修改成功\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}";
 		PrintWriter out = null;
 		Long module_id = null;
+		Long doc_id = null;
 		try {
 			out = response.getWriter();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		try {
-			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
-			String file_separator = System.getProperty("file.separator");
 			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
+			doc_id = convertUtil.toLong(request.getParameter("doc_id"),user.getId());
+			String file_separator = System.getProperty("file.separator");
 			int width=150;
 			int height=113;
 			//获取缩放和剪切参数
@@ -76,7 +78,7 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 		    ImageHepler.cut(user_image_a, user_image_b, imageWidth, imageHeight, rec);
 			        
 			QueryBuilder queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
-			queryBuilder.eq("user_id", user.getId());
+			queryBuilder.eq("doc_id", doc_id);
 			queryBuilder.eq("module_id", module_id);
 			ResultObject ro_te01 = queryService.search(queryBuilder);
 			Te01_slave te01 = new Te01_slave();

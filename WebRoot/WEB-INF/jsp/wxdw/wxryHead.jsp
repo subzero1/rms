@@ -10,6 +10,7 @@
 <script type="text/javascript">
 	//回调函数
 	function callback(url, width, height) {
+
 		var imgD = document.getElementById('ImageDrag');
 		var imgI = document.getElementById('ImageIcon');
 		imgD.src = "upload/"+url + "?" + Math.round(Math.random() * 10000);
@@ -49,7 +50,12 @@
 		return true;
 		return false;
 	})
-		})
+});
+		
+	function autoUpload(){
+		var $form = $("#picForm");
+		$form.submit();
+	}
    </script>
 </head>
 <body>
@@ -103,7 +109,7 @@
 					</tr>
 				</table>
 			</div>
-			<form action="cutImage.do?module_id=1000" method="post" id="saveHead" name="saveHead" onsubmit="return iframeCallback(this, loadFileAreaAjaxDone);">
+			<form action="cutImage.do?module_id=1000&doc_id=${param.wxry_id }&project_id=${param.wxry_id }" method="post" id="saveHead" name="saveHead" onsubmit="return iframeCallback(this, loadFileAreaAjaxDone);">
 				<input type="hidden" name="picture" id="picture" value="" />
 				<div style="display:none;">
 					图片实际宽度：<input name="txt_width" type="hidden" value="1" id="txt_width"/><br/>
@@ -119,7 +125,7 @@
 	</div>
 	
 	<div class="right">
-	<form name="picForm" id="picForm" action="faceUpload.do?module_id=1000" method="post" enctype="multipart/form-data" target="hidden_frame">
+	<form name="picForm" id="picForm" action="faceUpload.do?module_id=1000&doc_id=${param.wxry_id }&project_id_id=${param.wxry_id }" method="post" enctype="multipart/form-data" target="hidden_frame">
 		<!--Step 1-->
 		<div id="Step1Container">
 			<div class="title">
@@ -130,10 +136,10 @@
 					文件大小不能超过4MB，格式为 <b>JPG</b> 或 <b>JPEG</b>。
 				</div>
 				<div class="uploaddiv">
-					<input type="file" name="fuPhoto" id="fuPhoto" title="选择照片" />
+					<input type="file" name="fuPhoto" id="fuPhoto" title="选择照片"  onChange="javascript:autoUpload()"/>
 				</div>
 				<div class="uploaddiv">
-					<input type="submit" name="btnUpload" value=" 上 传 " id="btnUpload" />
+					<!--<input type="submit" name="btnUpload" value=" 上 传 " id="btnUpload" />-->
 					<iframe name='hidden_frame'	id="hidden_frame" style='display:none'></iframe>
 				</div>
 						<div class="uploaddiv" id="save" style="display: none;">
@@ -146,6 +152,8 @@
 	</div>
 	
 </div>
-
+<script type="">
+	
+</script>
 </body>
 </html>

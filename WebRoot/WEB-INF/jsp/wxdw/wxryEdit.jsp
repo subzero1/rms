@@ -4,8 +4,8 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" /> 
 <script language="javascript">
-	function upPic(){
-		$.pdialog.open("wxdw/upWxryHead.do",'_upPic','上传头像',{width:600,height:380});
+	function upPic(wxry_id){
+		$.pdialog.open("wxdw/upWxryHead.do?wxry_id="+wxry_id,'_upPic','上传头像',{width:600,height:380});
 		var dialog = $("body").data('_upPic');
 		setTimeout(function(){$.pdialog.switchDialog(dialog);}, 100);
 	}
@@ -16,8 +16,16 @@
 			<input type="hidden" name="ID" value="${wxry.id}" />
 			<input type="hidden" name="WXDW_ID" value="${param.wxdw_id}" />
 			<div class="pageFormContent" layoutH="53">
-				<div style="width:200px;height:130px;float:right;text-align:center">
-					<div style="width:100px;height:120px;border:dotted 2px black;"><br><br>照<br><br><br>片
+				<div style="width:200px;height:130px;float:right;text-align:left">
+					<div style="width:150px;height:110px;border:dotted 2px black;">
+						<c:choose>
+							<c:when test="${not empty pic_id && pic_id != -1}">
+								<img id="personal_head" src="download.do?slave_id=${pic_id}&radom=<%=new Random().nextInt()%>"/>
+							</c:when>
+							<c:otherwise>
+								
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<p>
@@ -63,7 +71,7 @@
 			<div class="formBar">
 				<ul>
 					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" type="submit">保存设置</button></div></div></li>
-					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" onclick="javascript:upPic()">上传照片</button></div></div></li>
+					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" onclick="javascript:upPic(${wxry.id })">上传照片</button></div></div></li>
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>
