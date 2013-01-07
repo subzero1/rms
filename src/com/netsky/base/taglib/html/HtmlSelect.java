@@ -455,7 +455,7 @@ public class HtmlSelect extends ChangeableWidget {
 					} else if (tmp_type.equals("String")) {
 						show_tmp = tmp_obj.toString();
 						value_tmp = tmp_obj.toString();
-					} else if (tmp_type.equals("Ingeger")) {
+					} else if (tmp_type.equals("Integer")) {
 						show_tmp = tmp_obj.toString();
 						value_tmp = tmp_obj.toString();
 					} else if (tmp_type.equals("Long")) {
