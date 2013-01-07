@@ -71,7 +71,9 @@
 			<div class="formBar">
 				<ul>
 					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" type="submit">保存设置</button></div></div></li>
-					<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" onclick="javascript:upPic(${wxry.id })">上传照片</button></div></div></li>
+					<c:if test="${not empty wxry}">
+						<li><div class="buttonActive"><div class="buttonContent"><button id="submitbutton" onclick="javascript:upPic(${wxry.id })">上传照片</button></div></div></li>
+					</c:if>
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>

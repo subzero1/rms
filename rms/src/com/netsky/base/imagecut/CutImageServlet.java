@@ -43,10 +43,12 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 	
 	public ModelAndView handleRequest(HttpServletRequest request,HttpServletResponse response){
 		response.setCharacterEncoding("GBK");
-		String json = "{\"statusCode\":\"200\", \"message\":\"头像修改成功\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}";
+		
 		PrintWriter out = null;
 		Long module_id = null;
 		Long doc_id = null;
+		String navTabId = null;
+		String json = null;
 		try {
 			out = response.getWriter();
 		} catch (IOException e1) {
@@ -56,6 +58,7 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 			module_id = convertUtil.toLong(request.getParameter("module_id"),0L);
 			doc_id = convertUtil.toLong(request.getParameter("doc_id"),user.getId());
+			navTabId = convertUtil.toString(request.getParameter("navTabId"),"desktop");
 			String file_separator = System.getProperty("file.separator");
 			int width=150;
 			int height=113;
@@ -88,7 +91,7 @@ public class CutImageServlet implements org.springframework.web.servlet.mvc.Cont
 			FtpService ftp = new FtpService();
 
 		    String ftpUrl = ftp.FileFtpUpload(request, url+ file_separator + "upload" + file_separator +picture_o ,te01.getId()+"Slave"+te01.getExt_name(),te01.getSlave_type());
-
+		    json = "{\"statusCode\":\"200\", \"message\":\"头像修改成功\", \"navTabId\":\""+navTabId+"\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}";
 		    if(!"failed".equals(ftpUrl)){
 		    	te01.setFtp_url(ftpUrl);
 		    	te01.setFtp_date(new Date());
