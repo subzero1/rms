@@ -51,7 +51,7 @@
 		return false;
 	})
 });
-		
+	
 	function autoUpload(){
 		var $form = $("#picForm");
 		$form.submit();
@@ -109,7 +109,7 @@
 					</tr>
 				</table>
 			</div>
-			<form action="cutImage.do?module_id=1000&doc_id=${param.wxry_id }&project_id=${param.wxry_id }" method="post" id="saveHead" name="saveHead" onsubmit="return iframeCallback(this, loadFileAreaAjaxDone);">
+			<form action="cutImage.do?module_id=1000&doc_id=${param.wxry_id }&project_id=${param.wxry_id }&navTabId=desktop" method="post" id="saveHead" name="saveHead" onsubmit="return iframeCallback(this, loadFileAreaAjaxDone);">
 				<input type="hidden" name="picture" id="picture" value="" />
 				<div style="display:none;">
 					图片实际宽度：<input name="txt_width" type="hidden" value="1" id="txt_width"/><br/>
