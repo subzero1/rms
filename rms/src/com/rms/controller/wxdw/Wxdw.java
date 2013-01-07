@@ -2524,11 +2524,17 @@ public class Wxdw {
 		String view="/WEB-INF/jsp/wxdw/wxryEdit.jsp";
 		Long wxry_id=convertUtil.toLong(request.getParameter("wxry_id"),null);
 		Long wxdw_id=convertUtil.toLong(request.getParameter("wxdw_id"),null);
+		ResultObject ro = null;
 		Tf30_wxry wxry=null;
 		if(wxry_id!=null){
 			wxry=(Tf30_wxry) queryService.searchById(Tf30_wxry.class, wxry_id);
 			modelMap.put("wxry", wxry);
+			ro = queryService.search("select id from Te01_slave where module_id = 1000 and doc_id = "+wxry_id);
+			if(ro.next()){
+				Long pic_id = convertUtil.toLong(ro.get("id"));
+				modelMap.put("pic_id", pic_id);
 			}
+		}
 		modelMap.put("wxdw_id", wxdw_id);
 		return new ModelAndView(view,modelMap);
 	}
@@ -2583,13 +2589,8 @@ public class Wxdw {
 	@RequestMapping("/wxdw/upWxryHead.do")
 	public ModelAndView upWxryHead(HttpServletRequest request,HttpServletResponse response){
 		//用户头像获取
-		Ta03_user user = null;
-		user = (Ta03_user) request.getSession().getAttribute("user");
-		if (user == null) {
-			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
-		}
-				
-		String sql_salve="select id,file_name,ext_name,ftp_url from Te01_slave where doc_id="+user.getId()+" and module_id=1000 and user_id="+user.getId()+" order by ftp_date desc";
+		Long wxry_id = convertUtil.toLong(request.getParameter("wxry_id"));		
+		String sql_salve="select id,file_name,ext_name,ftp_url from Te01_slave where doc_id="+wxry_id+" and module_id=1000  order by ftp_date desc";
 		ResultObject ro_salve = queryService.search(sql_salve);
 		if(ro_salve.next()){
 			Map<String,Object> mo_salve = ro_salve.getMap();
