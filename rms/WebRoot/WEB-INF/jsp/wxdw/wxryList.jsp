@@ -66,6 +66,9 @@
 			<th style="width: 150px;" orderField="status">
 				状态
 			</th>
+			<th style="width: 60px;">
+				照片
+			</th>
 			<th style="width: 150px;" orderField="bz">
 				备注
 			</th>
@@ -73,29 +76,34 @@
 	</thead>
 	<tbody>
 		<c:forEach items="${wxryList}" var="wxry">
-			<tr target="wxry_id" rel="${wxry.id}">
+			<tr target="wxry_id" rel="${wxry[0].id}">
 				<td>
-					<a href="wxdw/wxryEdit.do?wxry_id=${wxry.id}&wxdw_id=${param.wxdw_id}"
+					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
 						target="dialog" width="500" height="350" rel="wxry"
-						title="外协人员信息">${wxry.name }</a>
+						title="外协人员信息">${wxry[0].name }</a>
 				</td>
 				<td>
-					 ${wxry.sex } 
+					 ${wxry[0].sex } 
 				</td>
 				<td>
-					${wxry.mobile}
+					${wxry[0].mobile}
 				</td>
 				<td>
-					${wxry.sfz }
+					${wxry[0].sfz }
 				</td>
 				<td>
-					${wxry.address }
+					${wxry[0].address }
 				</td>
 				<td>
-					${wxry.status }
+					${wxry[0].status }
 				</td>
 				<td>
-					${wxry.bz }
+					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
+						target="dialog" width="500" height="350" rel="wxry"
+						title="外协人员信息">${wxry[1].havePic }</a>
+				</td>
+				<td>
+					${wxry[0].bz }
 				</td>
 			</tr>
 		</c:forEach>

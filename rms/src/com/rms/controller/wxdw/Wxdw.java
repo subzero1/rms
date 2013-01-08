@@ -2453,8 +2453,20 @@ public class Wxdw {
 		hql.append(" order by wxry."+orderField);
 		hql.append(" "+orderDirection);
 		while(ro.next()){
+			Object[] o = new Object[2];
 			wxry=(Tf30_wxry) ro.get("wxry");
-			wxryList.add(wxry);
+			o[0] = wxry;
+			
+			List list = queryService.searchList("from Te01_slave where module_id = 1000 and doc_id ="+wxry.getId());
+			Map map = new HashMap();
+			if(list == null || list.size() == 0){
+				map.put("havePic", "");
+			}
+			else{
+				map.put("havePic", "有");
+			}
+			o[1] = map;
+			wxryList.add(o);
 		}
 		}
 		modelMap.put("orderField", orderField);
