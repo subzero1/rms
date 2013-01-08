@@ -7,7 +7,7 @@ $(document).ready(function(){
 	});
 });
 </script>
- 
+<h2 class="contentTitle">集中考核配置</h2>
 <div class="sysmanage_left"
 	style="float: left; display: block; margin: 10px; overflow: auto; width: 22%; height: 430px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
 
@@ -27,5 +27,5 @@ $(document).ready(function(){
 </div>
 <div id="khpzEdit" class="loadFileArea sysmanage_right"
 	loadfile="infoManage/khpzEdit.do?id=<c:out value="${param.id}" default="${khpz_list[0].id}"/>"
-	style="float: left; display: block; margin: 10px; overflow: hidden; width: 68%; border: solid 1px #CCC;  background: #FFF;">
+	style="float: left; display: block; margin: 10px; overflow: hidden; width: 73%; border: solid 1px #CCC;  background: #FFF;">
 </div>
