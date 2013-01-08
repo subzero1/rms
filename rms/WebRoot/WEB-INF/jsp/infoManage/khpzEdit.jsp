@@ -4,9 +4,8 @@
 <style>
 .txt_dw {
 	border-width: 0px;
-	width: 0px;
+	width: 99%;
 	overflow-y: auto;
-	border-bottom:1px solid ;
 }
 </style>
 <script type="text/javascript">
@@ -164,23 +163,23 @@ $(document).ready(function(){
 			<table class="list itemDetail">
 				<thead>
 					<tr>
-						<th type="text" style="width: 100px;" name="Tc11_khpzmx.KHX"
+						<th type="textarea" style="width: 120px;" name="Tc11_khpzmx.KHX"
 							hideName="Tc11_khpzmx.ID">
 							考核项
 						</th>
 						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGNR">
 							评估内容
 						</th>
-						<th type="text" style="width: 40px;" name="Tc11_khpzmx.ZGFZ">
+						<th type="textarea" style="width: 40px;" name="Tc11_khpzmx.ZGFZ">
 							得分
 						</th>
 						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGBF">
 							评估办法
 						</th>
-						<th type="textarea" style="width: 230px;" name="Tc11_khpzmx.BZ">
+						<th type="textarea"  name="Tc11_khpzmx.BZ">
 							备注
 						</th>
-						<th type="del" style="width: 50px;">
+						<th type="del" style="width: 40px;">
 							操作
 						</th>
 					</tr>
@@ -190,24 +189,19 @@ $(document).ready(function(){
 						<tr>
 							<td>
 								<input type="hidden" name="Tc11_khpzmx.ID" value="${pzmx.id}" />
-								<input type="text" name="Tc11_khpzmx.KHX" value="${pzmx.khx}"
-									style="width: 0px;" />
+								<textarea name="Tc11_khpzmx.KHX" class="txt_dw">${pzmx.khx}</textarea>
 							</td>
 							<td>
-								<textarea name="Tc11_khpzmx.PGNR"
-									class="txt_dw">${pzmx.pgnr}</textarea>
+								<textarea name="Tc11_khpzmx.PGNR" class="txt_dw">${pzmx.pgnr}</textarea>
 							</td>
 							<td>
-								<input type="text" name="Tc11_khpzmx.ZGFZ" value="${pzmx.zgfz}"
-									style="width: 0px;" />
+								<textarea name="Tc11_khpzmx.ZGFZ" class="txt_dw">${pzmx.zgfz}</textarea>
 							</td>
 							<td>
-								<textarea name="Tc11_khpzmx.PGBF"
-									class="txt_dw">${pzmx.pgbf}</textarea>
+								<textarea name="Tc11_khpzmx.PGBF" class="txt_dw">${pzmx.pgbf}</textarea>
 							</td>
 							<td>
-								<textarea name="Tc11_khpzmx.BZ"
-									class="txt_dw">${pzmx.bz}</textarea>
+								<textarea name="Tc11_khpzmx.BZ" class="txt_dw">${pzmx.bz}</textarea>
 							</td>
 							<td>
 								<a href="javascript:" class="btnDel emptyInput" title="确认删除此明细">删除</a>
