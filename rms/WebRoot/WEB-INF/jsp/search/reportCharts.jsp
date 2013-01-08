@@ -12,61 +12,7 @@
 		}
 		</style>
 		<script type="text/javascript">
-		/**
-		function createStackedBar(chart_type) {
-		var datasource=_chartdata(chart_type);
-    	var chart; 
-        var _chart ={
-            chart: {
-                renderTo: 'containerDiv',
-                type: 'bar'
-            },
-            title: {
-                text: 'Stacked bar chart'
-            },
-            xAxis: {
-                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Total fruit consumption'
-                }
-            },
-            legend: {
-                backgroundColor: '#FFFFFF',
-                reversed: true
-            },
-            tooltip: {
-                formatter: function() {
-                    return ''+
-                        this.series.name +': '+ this.y +'';
-                }
-            },
-            plotOptions: {
-                series: {
-                    stacking: 'normal'
-                }
-            },
-                series: [{
-                name: 'option1',
-                data: [5, 3, 4, 7, 2,5]
-            }, {
-                name: 'option2',
-                data: [2, 2, 3, 2, 1,6]
-            }]
-        }; 
-        _chart.title.text=datasource.Chart_title_text;
-        _chart.xAxis.categories=datasource.Chart_xAxis_categories;
-        _chart.yAxis.title.text=datasource.Chart_yAxis_title; 
-      	_chart.series=datasource.Chart_series; 
-      	if(datasource.Chart_chart_type!=""){
-      		_chart.chart.type=datasource.Chart_chart_type;
-      	}  
-        chart=new Highcharts.Chart(_chart); 
-}
-	*/
-//    basic bar   
+		 
 	function createBasicBar(chart_type){ 
 		var datasource=_chartdata(chart_type);
     	var chart;  
@@ -205,13 +151,6 @@
 		<br>
 		<div id="containerDiv"
 			style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-			<!-- 
-			<button onclick="createStackedBar('bar')" class='chartBtn'>纵向堆栈图</button>
-			<button onclick="createStackedBar('column')"  class='chartBtn'>横向堆栈图</button>
-			<button onclick="createStackedBar('line')"  class='chartBtn'>折线图</button>
-			 <button onclick="createBasicBar('bar')"  class='chartBtn'>纵向柱状图</button> 
-			 <button onclick="createBasicBar('column')"  class='chartBtn'>横向柱状图</button>
-			  -->
 		<form action="" name="chartdataForm" id="chartdataForm">
 			<input type="hidden" name="Chart.title.text" value="信息统计情况" /> 
 			<input type="hidden" name="Chart.yAxis.title" value=""/> 
