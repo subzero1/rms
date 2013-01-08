@@ -3,13 +3,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-
 <div class="panelBar">
 	<ul class="toolBar">
 		<c:if test="${not empty param.wxdw_id }">
 			<li>
 				<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }"
-					target="dialog" width="500" height="350" rel="wxdwUser"
+					target="dialog" width="500" height="350" rel="wxry"
 					title="外协人员信息"><span>添加</span>
 				</a>
 			</li>
@@ -19,7 +18,7 @@
 			<li>
 				<a class="edit"
 					href="wxdw/wxryEdit.do?wxry_id={wxry_id}&wxdw_id=${param.wxdw_id}"
-					target="dialog" width="500" height="350" rel="wxdwUser"
+					target="dialog" width="500" height="350" rel="wxry"
 					title="修改外协人员信息"><span>修改</span>
 				</a>
 			</li>
