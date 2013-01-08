@@ -31,7 +31,7 @@ $(document).ready(function(){
 	<input type="hidden" name="_forwardUrl" value="infoManage/khpzList.do" />
 	<input type="hidden" name="_navTabId" value="khpz" />
 	<div class="panel sysmanage_max" defH="185"
-		style="width: 97%; float: left; margin: 5px">
+		style="width: 98%; float: left; margin: 5px">
 		<h1>
 			配置信息
 		</h1>
@@ -156,15 +156,15 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div class="panel sysmanage_min" defH="110"
-		style="width: 97%; float: left; margin: 5px">
+		style="width: 98%; float: left; margin: 5px">
 		<h1>
 			配置明细
 		</h1>
 		<div>
-			<table class="list itemDetail" style="width:97%">
+			<table class="list itemDetail" style="width:98%">
 				<thead>
 					<tr>
-						<th type="textarea" style="width: 120px;" name="Tc11_khpzmx.KHX"
+						<th type="textarea" style="width: 100px;" name="Tc11_khpzmx.KHX"
 							hideName="Tc11_khpzmx.ID">
 							考核项
 						</th>
@@ -174,7 +174,7 @@ $(document).ready(function(){
 						<th type="textarea" style="width: 40px;" name="Tc11_khpzmx.ZGFZ">
 							得分
 						</th>
-						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGBF">
+						<th type="textarea" style="width: 130px;" name="Tc11_khpzmx.PGBF">
 							评估办法
 						</th>
 						<th type="textarea"  name="Tc11_khpzmx.BZ">
