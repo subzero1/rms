@@ -5,7 +5,7 @@
 .txt_dw {
 	border-width: 0px;
 	width: 99%;
-	overflow-y: auto;
+	overflow-y: hidden;
 }
 </style>
 <script type="text/javascript">
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/khpzList.do" />
 	<input type="hidden" name="_navTabId" value="khpz" />
-	<div class="panel sysmanage_max" defH="155"
+	<div class="panel sysmanage_max" defH="185"
 		style="width: 97%; float: left; margin: 5px">
 		<h1>
 			配置信息
@@ -44,54 +44,6 @@ $(document).ready(function(){
 					<input type="text" name="Tc10_hzdw_khpz.MC" value="${khpz.mc}"
 						class="required" style="width: 200px;" maxlength="15" />
 				</p>
-				<p>
-					<label>
-						间隔天数：
-					</label>
-					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
-						class="required" style="width: 40px;" maxlength="15" />
-				</p>
-				<p>
-					<label>
-						打分天数：
-					</label>
-					<input type="text" name="Tc10_hzdw_khpz.DFTS" value="${khpz.dfts }"
-						class="required digits" style="width: 40px;" maxlength="4" />
-				</p>
-				<div style="height: 0px;"></div>
-				<p>
-					<label style="">
-						最后考核：
-					</label>
-					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
-						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>"
-						style="width: 70px;" readOnly />
-				</p>
-				<p>
-					<label>
-						是否有效：
-					</label>
-					<select style="width: 78" name="Tc10_hzdw_khpz.USEFLAG">
-						<option
-							<c:if test="${khpz.useflag=='1'||empty khpz.useflag}"> selected</c:if> value="1" >
-							有效
-						</option>
-						<option <c:if test="${khpz.useflag=='0'}"> selected</c:if> value="0">
-							有效
-						</option>
-					</select>
-				</p>
-
-				<p>
-					<label>
-						下次考核：
-					</label>
-					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
-						value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />"
-						class="required date" style="width: 70px;" pattern="yyyy-MM-dd"
-						readOnly />
-				</p>
-				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						单位类别：
@@ -109,12 +61,61 @@ $(document).ready(function(){
 						</option>
 					</select>
 				</p>
+				<div style="height: 0px;"></div>
+				<p>
+					<label>
+						间隔天数：
+					</label>
+					<input type="text" name="Tc10_hzdw_khpz.JGTS" value="${khpz.jgts}"
+						class="required" style="width: 47px;" maxlength="15" />
+				</p>
+				<p>
+					<label>
+						打分天数：
+					</label>
+					<input type="text" name="Tc10_hzdw_khpz.DFTS" value="${khpz.dfts }"
+						class="required digits" style="width: 47px;" maxlength="4" />
+				</p>
+				<p>
+					<label>
+						是否有效：
+					</label>
+					<select style="width: 78" name="Tc10_hzdw_khpz.USEFLAG">
+						<option
+							<c:if test="${khpz.useflag=='1'||empty khpz.useflag}"> selected</c:if> value="1" >
+							有效
+						</option>
+						<option <c:if test="${khpz.useflag=='0'}"> selected</c:if> value="0">
+							有效
+						</option>
+					</select>
+				</p>
+				<div style="height: 0px;"></div>
+				<p>
+					<label style="">
+						最后考核：
+					</label>
+					<input type="text" name="Tc10_hzdw_khpz.ZHKHSJ"
+						value="<fmt:formatDate value='${khpz.zhkhsj}' pattern='yyyy-MM-dd'/>"
+						style="width: 135px;" readOnly />
+				</p>
+				
+				<p>
+					<label>
+						下次考核：
+					</label>
+					<input type="text" name="Tc10_hzdw_khpz.XCKHSJ"
+						value="<fmt:formatDate	value="${khpz.xckhsj}" pattern="yyyy-MM-dd" />"
+						class="required date" style="width: 135px;" pattern="yyyy-MM-dd"
+						readOnly />
+				</p>
+				<div style="height: 0px;"></div>
 				<p>
 					<label>
 						备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
 					</label>
 					<input type="text" name="Tc10_hzdw_khpz.BZ" value="${khpz.bz}"
-						style="width: 320px;" />
+						style="width: 380px;" />
 				</p>
 			</div>
 
@@ -160,7 +161,7 @@ $(document).ready(function(){
 			配置明细
 		</h1>
 		<div>
-			<table class="list itemDetail">
+			<table class="list itemDetail" style="width:97%">
 				<thead>
 					<tr>
 						<th type="textarea" style="width: 120px;" name="Tc11_khpzmx.KHX"
@@ -179,7 +180,7 @@ $(document).ready(function(){
 						<th type="textarea"  name="Tc11_khpzmx.BZ">
 							备注
 						</th>
-						<th type="del" style="width: 40px;">
+						<th type="del" style="width: 50px;">
 							操作
 						</th>
 					</tr>

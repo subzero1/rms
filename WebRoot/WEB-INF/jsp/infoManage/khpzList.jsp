@@ -27,5 +27,5 @@ $(document).ready(function(){
 </div>
 <div id="khpzEdit" class="loadFileArea sysmanage_right"
 	loadfile="infoManage/khpzEdit.do?id=<c:out value="${param.id}" default="${khpz_list[0].id}"/>"
-	style="float: left; display: block; margin: 10px; overflow: hidden; width: 68%; height: 430px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
+	style="float: left; display: block; margin: 10px; overflow: hidden; width: 68%; border: solid 1px #CCC;  background: #FFF;">
 </div>
