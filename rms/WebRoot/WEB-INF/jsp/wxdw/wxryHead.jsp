@@ -56,6 +56,22 @@
 		var $form = $("#picForm");
 		$form.submit();
 	}
+	function gameOver(json){
+		if(json.statusCode == 200){
+			var dialog = $("body").data('_upPic');
+			$.pdialog.close(dialog);
+			dialog = $("body").data('wxry');
+			if(dialog != 'undefined' && dialog != null){
+				$.pdialog.close(dialog);
+			}
+			$.pdialog.open("wxdw/wxryEdit.do?wxry_id="+${param.wxry_id},'wxry','外协人员',{width:500,height:350});
+		}
+		else{
+			alertMsg.info(json.message);
+			return false;
+		}
+		
+	}
    </script>
 </head>
 <body>
@@ -109,7 +125,7 @@
 					</tr>
 				</table>
 			</div>
-			<form action="cutImage.do?module_id=1000&doc_id=${param.wxry_id }&project_id=${param.wxry_id }&navTabId=desktop" method="post" id="saveHead" name="saveHead" onsubmit="return iframeCallback(this, loadFileAreaAjaxDone);">
+			<form action="cutImage.do?module_id=1000&doc_id=${param.wxry_id }&project_id=${param.wxry_id }&navTabId=desktop" method="post" id="saveHead" name="saveHead" onsubmit="return iframeCallback(this, gameOver);">
 				<input type="hidden" name="picture" id="picture" value="" />
 				<div style="display:none;">
 					图片实际宽度：<input name="txt_width" type="hidden" value="1" id="txt_width"/><br/>
