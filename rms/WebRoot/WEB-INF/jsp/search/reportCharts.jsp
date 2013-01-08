@@ -25,7 +25,7 @@
                 text: 'Historic World Population by Region'
             },
             subtitle: {
-                text: 'Source: Wikipedia.org'
+                text: ''
             },
             xAxis: {
                 categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
@@ -110,8 +110,8 @@
 			datasource.Chart_yAxis_title=Chart_yAxis_title; 
 			datasource.Chart_chart_type=chart_type;
 			
-			//分类值
-			for(var i=0;i<Chart_xAxis_categories.length;i++){
+			//分类值   修改:length-1 ,取消最有一列的统计值  2013/1/8
+			for(var i=0;i<Chart_xAxis_categories.length-1;i++){
 				datasource.Chart_xAxis_categories[i]=Chart_xAxis_categories[i].value;
 			} 
 			//data数组初始化
@@ -127,8 +127,8 @@
 			if(Chart_xAxis_categories.length>=20){
 				alertMsg.info("温馨提示：您的统计项超出了范围，可能会显示不清晰！"); 
 			}
-			//data属性值 
-			for(var i=0;i<Chart_xAxis_categories.length;i++){ 
+			//data属性值 修改:.length-1   取消合计 2013/1/8
+			for(var i=0;i<Chart_xAxis_categories.length-1;i++){ 
 				for(var j=0;j<Chart_series_name.length;j++){ 
 				if(Chart_series_data[i*Chart_series_name.length+j].value==""){
 					datasource.Chart_series[j].data[i]="0";
