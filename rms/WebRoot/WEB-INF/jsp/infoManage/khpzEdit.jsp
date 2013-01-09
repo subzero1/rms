@@ -151,6 +151,17 @@ $(document).ready(function(){
 							</div>
 						</li>
 					</c:if>
+					<c:if test="${not empty khpz.id}">
+					<li>
+							<div class="button">
+								<div class="buttonContent">
+									<button type="Button" id="delKhpz">
+										发起审核
+									</button>
+								</div>
+							</div>
+						</li>
+						</c:if>
 				</ul>
 			</div>
 		</div>
@@ -161,7 +172,7 @@ $(document).ready(function(){
 			配置明细
 		</h1>
 		<div>
-			<table class="list itemDetail" style="width:98%">
+			<table class="list itemDetail" style="width:96% ;overflow: hidden">
 				<thead>
 					<tr>
 						<th type="textarea" style="width: 100px;" name="Tc11_khpzmx.KHX"
