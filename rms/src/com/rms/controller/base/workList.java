@@ -66,7 +66,7 @@ public class workList {
 	@RequestMapping("/workList.do")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {
-			
+			ModelMap modelMap = new ModelMap();
 			Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
 			Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
 			String keyWord = convertUtil.toString(request.getParameter("keyWord"));
@@ -83,13 +83,22 @@ public class workList {
 			
 			year = year < 1900 ? Calendar.getInstance().get(Calendar.YEAR) : year;
 						
+			/*
+			 * 取年度列表
+			 */
+			List yearList = new LinkedList();
+			for(int y = 2012;y < Calendar.getInstance().get(Calendar.YEAR)+1;y++){
+				yearList.add(new Integer(y));
+			}
+			//request.setAttribute("yearList", yearList);
+			modelMap.put("yearList", yearList);
+			modelMap.put("showYear", year);
+			
 			Integer docTabWitdh = convertUtil.toInteger(session.getAttribute("docTabWitdh"));
 						
 			int totalPages = 1;
 			int totalCount = 1;
 			
-			ModelMap modelMap = new ModelMap();
-
 			modelMap.put("pageNum", pageNum);
 			modelMap.put("curYear", Calendar.getInstance().get(Calendar.YEAR));
 			modelMap.put("numPerPage", numPerPage);

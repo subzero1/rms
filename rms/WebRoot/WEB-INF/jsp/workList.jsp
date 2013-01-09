@@ -50,6 +50,11 @@ $(function(){
 						<td>
 						<input type="text" style="display:none"/>
 						关键字：<input id="keyword" name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
+						<td>
+							<c:if test="${param.workState == 5}">
+								<netsky:htmlSelect name="year" objectForOption="yearList"  value="${showYear}" htmlClass="td-select"/>
+							</c:if>
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">
