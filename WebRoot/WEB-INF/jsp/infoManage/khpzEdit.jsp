@@ -15,6 +15,16 @@ $(document).ready(function(){
 		var kh_id = $("#kh_id",navTab.getCurrentPanel()).val();
 		ajaxTodo('infoManage/ajaxKhpzDel.do', navTabAjaxDone ,{"kh_id":kh_id});
 	});
+	$("#fqsh",navTab.getCurrentPanel().val()).click(function(){
+		$.ajax({
+			type:'post',
+			dataType:'html',
+			url:'infoManage/khxUpdate.do',
+			success:function(msg){ 
+			}
+		});
+	});
+	
 });
 </script>
 
@@ -155,7 +165,7 @@ $(document).ready(function(){
 					<li>
 							<div class="button">
 								<div class="buttonContent">
-									<button type="Button" id="delKhpz">
+									<button type="Button" id="fqsh" >
 										发起审核
 									</button>
 								</div>
