@@ -36,7 +36,7 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Te01_slave;
-import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -1053,6 +1053,7 @@ public class Mbk {
 	@SuppressWarnings("unused")
 	@RequestMapping("/mbk/mbkToExcel.do")
 	public ModelAndView mbkToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String zymc=convertUtil.toString(request.getParameter("zymc"),"");
 		String ssdq=convertUtil.toString(request.getParameter("ssdq"),"");
 		String lb=convertUtil.toString(request.getParameter("lb"),"");
@@ -1087,7 +1088,7 @@ public class Mbk {
 		}
 		hql.append(" from Td21_mbk mbk ");
 		//条件
-		hql.append("where 1=1 ");
+		hql.append("where 1=1 and mbk.cjr='"+user.getName()+"' ");
 		if(!ssdq.equals("")){
 			hql.append(" and mbk.ssdq="+ssdq);
 		}
