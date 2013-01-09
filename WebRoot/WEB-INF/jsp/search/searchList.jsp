@@ -20,7 +20,7 @@ function searchListExport(){
 	<input type="hidden" id="module_id" name="module_id" value="${param.module_id}"/>
 	<c:forEach var="obj" items="${searchField}">
 		<input type="hidden" name="ids" value="${obj[0]}" />
-		<input type="hidden" name="${obj[0] }" value="${obj[2]}" />
+		<input type="hidden" name="${obj[1] }" value="${obj[2]}" />
 	</c:forEach>
 	<c:forEach var="obj" items="${fields_select}">
 		<input type="hidden" name="fields_select" value="${obj}" />
