@@ -85,84 +85,83 @@
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td06_xqs.BZ">${td06_xqs.bz}</textarea>
 	</p>
 	<c:if test="${not empty mbkLength && mbkLength > 0}">
-	<div style="height:10px;"></div>
-	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关目标库列表</p>
-	<div style="width:780px;">
-	<table class="table" width="100%">
-		<thead>
-			<tr>
-				<th style="width: 30px;">序号</th>
-				<th style="width: 120px;">资源编号</th>
-				<th >资源名称</th>
-			</tr>
-		</thead>
-		<tbody>
-		<c:set var="offset" value="0"/>
-			<c:forEach items="${mbkList}" var="obj">
-			<c:set var="offset" value="${offset+1}"/>
+		<div style="height:10px;"></div>
+		<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关目标库列表</p>
+		<div style="width:780px;">
+		<table class="table" width="100%">
+			<thead>
 				<tr>
-					<td>${offset }</td>
-					<td>${obj.zybh }</td>
-					<td><a href="javascript:navTab.openTab('mbk', 'mbk/mbkEdit.do?id=${obj.id }',{'title':'目标库'});">${obj.zymc }</a></td>
+					<th style="width: 30px;">序号</th>
+					<th style="width: 120px;">资源编号</th>
+					<th >资源名称</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
-</c:if>
-<c:if test="${not empty xmxxLength && xmxxLength > 0}">
-<div style="height:10px;"></div>
-	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关项目列表</p>
-	<div style="width:780px;">
-	<table class="table" width="100%">
-		<thead>
-			<tr>
-				<th style="width: 30px;">序号</th>
-				<th style="width: 120px;">项目编号</th>
-				<th >项目名称</th>
-			</tr>
-		</thead>
-		<tbody>
-		<c:set var="offset" value="0"/>
-			<c:forEach items="${xmxxList}" var="obj">
-			<c:set var="offset" value="${offset+1}"/>
+			</thead>
+			<tbody>
+			<c:set var="offset" value="0"/>
+				<c:forEach items="${mbkList}" var="obj">
+				<c:set var="offset" value="${offset+1}"/>
+					<tr>
+						<td>${offset }</td>
+						<td>${obj.zybh }</td>
+						<td><a href="javascript:navTab.openTab('mbk', 'mbk/mbkEdit.do?id=${obj.id }',{'title':'目标库'});">${obj.zymc }</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
+	</c:if>
+	<c:if test="${not empty xmxxLength && xmxxLength > 0}">
+		<div style="height:10px;"></div>
+		<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关项目列表</p>
+		<div style="width:780px;">
+		<table class="table" width="100%">
+			<thead>
 				<tr>
-					<td>${offset }</td>
-					<td>${obj.xmbh }</td>
-					<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:101,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.xmmc }</a></td>
+					<th style="width: 30px;">序号</th>
+					<th style="width: 120px;">项目编号</th>
+					<th >项目名称</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
-</c:if>
-<c:if test="${not empty gcxxLength && gcxxLength > 0}">
-<div style="height:10px;"></div>
-	<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关工程列表</p>
-	<div style="width:780px;">
-	<table class="table" width="100%">
-		<thead>
-			<tr>
-				<th style="width: 30px;">序号</th>
-				<th style="width: 120px;">工程编号</th>
-				<th >工程名称</th>
-			</tr>
-		</thead>
-		<tbody>
-		<c:set var="offset" value="0"/>
-			<c:forEach items="${gcxxList}" var="obj">
-			<c:set var="offset" value="${offset+1}"/>
+			</thead>
+			<tbody>
+			<c:set var="offset" value="0"/>
+				<c:forEach items="${xmxxList}" var="obj">
+				<c:set var="offset" value="${offset+1}"/>
+					<tr>
+						<td>${offset }</td>
+						<td>${obj.xmbh }</td>
+						<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:101,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.xmmc }</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
+	</c:if>
+	<c:if test="${not empty gcxxLength && gcxxLength > 0}">
+		<div style="height:10px;"></div>
+		<p style="color:blue;font-weight:bold;">&nbsp;&nbsp;&nbsp;相关工程列表</p>
+		<div style="width:780px;">
+		<table class="table" width="100%">
+			<thead>
 				<tr>
-					<td>${offset }</td>
-					<td>${obj.gcbh }</td>
-					<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:102,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.gcmc }</a></td>
+					<th style="width: 30px;">序号</th>
+					<th style="width: 120px;">工程编号</th>
+					<th >工程名称</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
-</div>
-</c:if>
+			</thead>
+			<tbody>
+			<c:set var="offset" value="0"/>
+				<c:forEach items="${gcxxList}" var="obj">
+				<c:set var="offset" value="${offset+1}"/>
+					<tr>
+						<td>${offset }</td>
+						<td>${obj.gcbh }</td>
+						<td><a href="javascript:openFlowForm('{project_id:${obj.id },doc_id:${obj.id },module_id:102,opernode_id:-1,node_id:-1,user_id:${user.id }}');">${obj.gcmc }</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
+	</c:if>
 <script language="javascript">
 	
 	$("#jsxz").change(function(){
