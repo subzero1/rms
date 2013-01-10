@@ -35,7 +35,7 @@ function netskyInitWeb(_box){
 				alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
 				return false;
 			}
-			$("#"+divid).loadUrl(url);
+			$("#"+divid,$p).loadUrl(url);//modify zy 2013-1-10 $p
 			event.preventDefault();
 		});
 	});
