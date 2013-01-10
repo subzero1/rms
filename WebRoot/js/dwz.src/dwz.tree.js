@@ -35,7 +35,7 @@
 								ckbox.click(function(){
 									var checked = $(ckbox).hasClass("checked");
 									var items = [];
-									if(checked){
+									if(true){//old:if(checked) modify:zy 2013-1-7 取消选中树中节点时，也应传点击树的items，应按照checked来判断是否选中，而不是依照有无items来判断。
 										var tnode = $(ckbox).parent().parent();
 										var boxes = $("input", tnode);
 										if(boxes.size() > 1) {
