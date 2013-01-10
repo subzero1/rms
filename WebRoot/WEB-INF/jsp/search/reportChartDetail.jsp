@@ -10,11 +10,35 @@
 			cursor:hand;
 			display:none;
 		}
+		.pageBtn{
+			width:30px;
+			cursor:hand;
+		}
 		</style>
 		<script type="text/javascript">
 		 
-	function createBasicBar(chart_type){ 
-		var datasource=_chartdata(chart_type);
+	function createBasicBar(chart_type,op){
+		var $data_down=$('#data_down',navTab.getCurrentPanel()); 
+		var $data_up=$('#data_up',navTab.getCurrentPanel());
+		var $data_size=$('#data_size',navTab.getCurrentPanel());
+		var cxc=$("#chartdataForm input[name='Chart.xAxis.categories']",navTab.getCurrentPanel());
+		if((parseInt($data_size.val())+parseInt($data_down.val()))<(cxc.length-1))
+			var datasource=_chartdata(chart_type,parseInt($data_down.val()),
+		
+		parseInt($data_up.val()),parseInt($data_size.val()));
+		if(op=='-1'){
+			if(parseInt($data_down.val())>0){
+					$data_up.val(parseInt($data_up.val())-1);
+					$data_down.val(parseInt($data_down.val())-1); 
+				}
+		}else if(op=='+1'){ 
+			if((parseInt($data_size.val())+parseInt($data_down.val()))<(cxc.length-1)){
+				$data_up.val(1+parseInt($data_up.val()));
+				$data_down.val(1+parseInt($data_down.val())); 
+			}
+		}
+		
+		//绘图
     	var chart;  
     	var _chart={
             chart: {
@@ -25,7 +49,7 @@
                 text: 'Historic World Population by Region'
             },
             subtitle: {
-                text: ''
+                text: '部分显示'
             },
             xAxis: {
                 categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
@@ -93,7 +117,9 @@
         
      }
 		 
-		function _chartdata(chart_type){
+		 
+		 //处理数据源
+		function _chartdata(chart_type,d_down,d_up,d_size){
 			var datasource={};//初始化datasource
 			datasource.Chart_title_text="";
 			datasource.Chart_yAxis_title="";
@@ -111,8 +137,9 @@
 			datasource.Chart_chart_type=chart_type;
 			
 			//分类值   修改:length-1 ,取消最有一列的统计值  2013/1/8
-			for(var i=0;i<Chart_xAxis_categories.length-1;i++){
-				datasource.Chart_xAxis_categories[i]=Chart_xAxis_categories[i].value;
+			//  修改:分页式显示,每组8(d_size)个 2013/1/10
+			for(var i=0;i<d_size;i++){
+				datasource.Chart_xAxis_categories[i]=Chart_xAxis_categories[i+d_down].value;
 			} 
 			//data数组初始化
 			for(var i=0;i<Chart_series_name.length;i++){ 
@@ -123,34 +150,34 @@
 			//name属性值
 			for(var i=0;i<Chart_series_name.length;i++){
 				datasource.Chart_series[i].name=Chart_series_name[i].value; 
-			}   
+			}  
 			//data属性值 修改:.length-1   取消合计 2013/1/8
-			for(var i=0;i<Chart_xAxis_categories.length-1;i++){ 
+			for(var i=0;i<d_size;i++){ //i代表图标组,j代表每组的分类至
 				for(var j=0;j<Chart_series_name.length;j++){ 
-				if(Chart_series_data[i*Chart_series_name.length+j].value==""){
+				if(Chart_series_data[(i+d_down)*Chart_series_name.length+j].value==""){
 					datasource.Chart_series[j].data[i]="0";
 				}else{
-					 datasource.Chart_series[j].data[i]=parseInt(Chart_series_data[i*Chart_series_name.length+j].value);
+					 datasource.Chart_series[j].data[i]=parseInt(Chart_series_data[(i+d_down)*Chart_series_name.length+j].value);
 					}  
 				}
 			}   
 			return datasource; 
 		} 
 		
-		//主函数
-		$(function(){
-			var cxc=$("#chartdataForm input[name='Chart.xAxis.categories']",navTab.getCurrentPanel());
-			if(cxc.length>=20){
-				navTab.openTab('cacu','dispath.do?url=search/reportChartDetail.jsp',{title:'统计图'});
-			}else{
-				createBasicBar('column');
-			}
+		$(function(){ 
+			createBasicBar('column','0');
 		});
 		
 		</script>
 	</head>
 
 	<body>
+	
+	<div><button class="pageBtn"  onclick="createBasicBar('column','-1')">-</button> 
+	<input type="hidden" id="data_down" name="data_size" style="width:25px;" value="0"/>
+	<input type="hidden" id="data_size" name="data_size" style="width:25px;" value="7"/>
+	<input type="hidden" id="data_up" name="data_size" style="width:25px;" value="8"/>
+	<button class="pageBtn" onclick="createBasicBar('column','+1')">+</button></div>
 		<br>
 		<div id="containerDiv"
 			style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -171,5 +198,5 @@
 				</c:forEach> 
 			</c:forEach> 
 		</form>
-		</body>
+		<div> </div> </body>
 </html>
