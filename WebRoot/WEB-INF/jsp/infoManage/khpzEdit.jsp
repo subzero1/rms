@@ -16,9 +16,12 @@ $(document).ready(function(){
 		ajaxTodo('infoManage/ajaxKhpzDel.do', navTabAjaxDone ,{"kh_id":kh_id});
 	});
 	$("#fqsh",navTab.getCurrentPanel().val()).click(function(){
+		var $kh_id=$('#kh_id',navTab.getCurrentPanel().val());
+		var params="kh_id="+$kh_id.val(); 
 		$.ajax({
 			type:'post',
 			dataType:'html',
+			data:params,
 			url:'infoManage/khxUpdate.do',
 			success:function(msg){ 
 			}
