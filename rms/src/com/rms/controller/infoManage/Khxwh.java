@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
-import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.utils.DateGetUtil;
-import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.base.Tc10_hzdw_khpz;
@@ -38,9 +34,6 @@ public class Khxwh {
 	 */
 	@Autowired
 	private Dao dao;
-
-	@Autowired
-	private ExceptionService exceptionService;
 
 	/**
 	 * 查询服务
@@ -258,19 +251,23 @@ public class Khxwh {
 		}
 	}
 	
+	
 	/**
 	 * 定时调用
 	 * @param request
 	 * @param response void
+	 * @throws IOException 
 	 */
 	@RequestMapping("/infoManage/khxUpdate.do")
 	public void khxUpdate(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 		Long kh_id = convertUtil.toLong(request.getParameter("kh_id"), null);
 		StringBuffer tc10_hql = new StringBuffer(
 				"select hzdw_khpz from Tc10_hzdw_khpz hzdw_khpz where 1=1 ");
 		StringBuffer tf19_hql = new StringBuffer("");
 		StringBuffer hql = new StringBuffer();
+		String msg="success";
+		PrintWriter out=null;
 
 		Tc10_hzdw_khpz hzdw_khpz = null;
 		Tf19_khxx khxx = null;
@@ -286,6 +283,7 @@ public class Khxwh {
 		hzdw_khpz_list = queryService.searchList(tc10_hql.toString());
 		
 		if (hzdw_khpz_list != null && hzdw_khpz_list.size() > 0) {
+			out=response.getWriter();
 			Date date = new Date();
 			session=saveService.getHiberbateSession();
 			tx=session.beginTransaction();
@@ -308,6 +306,7 @@ public class Khxwh {
 					session.save(khxx);
 					tx.commit();
 				}
+				out.print(msg);
 			} catch (Exception e) {
 				// log.error(e.getMessage());
 				e.printStackTrace();
