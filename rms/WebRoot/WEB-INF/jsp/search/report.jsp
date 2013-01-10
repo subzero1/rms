@@ -32,7 +32,7 @@ function mainReportExport(){
 				<ul>
 					<li><a class="button" href="search/condition.do?type=report&module_id=${param.module_id }" target="dialog" width="800" height="350" rel="reportCondition" title="设置统计条件"><span>条件过滤</span></a></li>
 					<li><a class="button" href="javascript:mainReportExport();" title="EXCEL导出"><span>EXCEL导出</span></a></li>
-					<li><a class="button" href="dispath.do?url=search/reportCharts.jsp;" title="统计图" target="navTab"><span>统计图</span></a></li>
+					<li><a class="button" href="dispath.do?url=search/reportCharts.jsp;" title="统计图" target="navTab" rel="cacu"><span>统计图</span></a></li>
 				</ul>
 			</div>
 		</div>
