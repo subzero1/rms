@@ -51,36 +51,7 @@ public class Khxwh {
 	 * 日志处理类
 	 */
 	private Logger log = Logger.getLogger(this.getClass());
-
-	/**
-	 * 保存考核
-	 * 
-	 * @param request
-	 * @param response
-	 * @return ModelAndView
-	 * @throws Exception
-	 *             ModelAndView
-	 */
-	@RequestMapping("/infoManage/khxsave.do")
-	public ModelAndView khedit(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding(request.getCharacterEncoding());
-		String khx = request.getParameter("khx");
-		String ms = request.getParameter("ms");
-		Long fz = convertUtil.toLong(request.getParameter("fz"));
-		String jsfs = request.getParameter("jsfs");
-		String lb = request.getParameter("lb");
-		Tf15_khxwh tf15_khxwh = new Tf15_khxwh();
-		tf15_khxwh.setKhx(khx);
-		tf15_khxwh.setMs(ms);
-		tf15_khxwh.setFz(fz);
-		tf15_khxwh.setLb(lb);
-		tf15_khxwh.setJsfs(jsfs);
-		dao.saveObject(tf15_khxwh);
-		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwh.jsp");
-	}
+ 
 
 	/**
 	 * 转到考核项维护页面
