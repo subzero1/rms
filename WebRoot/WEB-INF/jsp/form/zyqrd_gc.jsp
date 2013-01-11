@@ -7,7 +7,7 @@
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="zyqrd_gc.xml"/>
 <input type="hidden" name="Td07_zyqrd.ID" value="${param.doc_id}">
-<input type="hidden" name="Td07_zyqrd.PROJECT_ID" value="${param.project_id}">
+<input type="hidden" name="Td00_gcxx.ID" value="${param.project_id}">
 
 <div class="pageFormContent">
 	<p>

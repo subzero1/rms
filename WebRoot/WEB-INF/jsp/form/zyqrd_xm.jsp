@@ -7,7 +7,7 @@
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="zyqrd_xm.xml"/>
 <input type="hidden" name="Td07_zyqrd.ID" value="${param.doc_id}">
-<input type="hidden" name="Td07_zyqrd.PROJECT_ID" value="${param.project_id}">
+<input type="hidden" name="Td01_xmxx.ID" value="${param.project_id}">
 
 <div class="pageFormContent">
 	<p>
@@ -34,11 +34,11 @@
 	<div class="divider"></div>
 	<p>
 		<label> 工程名称：</label>
-		<input class="required" type="text" name="Td01_xmxx.XMMC1" style="width:405px;" value="${td01_xmxx.xmmc}" />
+		<input class="required" type="text" name="Td01_xmxx.XMMC" style="width:405px;" value="${td01_xmxx.xmmc}" />
 	</p>
 	<p>
 		<label>工程编号：</label>
-		<input class="required" type="text" name="Td01_xmxx.XMBH1" style="width:120px;" value="${td01_xmxx.xmbh}" />
+		<input class="required" type="text" name="Td01_xmxx.XMBH" style="width:120px;" value="${td01_xmxx.xmbh}" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
