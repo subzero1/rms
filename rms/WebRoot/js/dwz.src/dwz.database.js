@@ -25,7 +25,7 @@
 				for (var key in args) {
 					var name = (_lookup.pk == key) ? _util.lookupPk(key) : _util.lookupField(key);
 
-					if (name == inputId) {
+					if (name == inputName) {
 						$input.val(args[key]);
 						$input.change(); //modify:2012-7-6 ZY 查找带回时,调用输入域的onchange事件
 						break;
@@ -96,15 +96,16 @@
 				});
 				
 				var suggestFields=$input.attr('suggestFields').split(",");
+				var targetType = $input.attr('targetType')==null? "navTab":$input.attr('targetType');  //modify at 2012-01-31
 				
 				function _show(event){
 					if($input.val()=="") return;	//输入域的值为空时不显示 modify at 2011-12-16
 					
 					var offset = $input.offset();
-					var iTop = offset.top+this.offsetHeight;
+					var iTop = offset.top+$input.height();	//this.offsetHeight; modify at 2011-12-16
 					var $suggest = $(op.suggest$);
 					if ($suggest.size() == 0) $suggest = $('<div id="suggest"></div>').appendTo($('body'));
-
+										
 					$suggest.css({
 						left:offset.left+'px',
 						top:iTop+'px'
@@ -145,7 +146,7 @@
 								}
 								for (var key in this) {
 									if (liAttr) liAttr += ',';
-									liAttr += key+":'"+this[key]+"'";
+									liAttr += "'"+key+"':'"+this[key]+"'";
 								}
 								html += '<li lookupAttrs="'+liAttr+'">' + liLabel + '</li>';
 							});
