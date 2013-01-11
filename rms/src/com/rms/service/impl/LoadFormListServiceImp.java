@@ -208,7 +208,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					if(node_id == 10103 || node_id == 10203){
 						Long zy_module_id = null;
 						Long zy_node_id = null;
-						btn = new Button("资源确认单");
+						btn = new Button("资源确认");
 						if(node_id == 10103){
 							zy_module_id = 110L;
 							zy_node_id = 11001L;
