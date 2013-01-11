@@ -105,6 +105,29 @@ $(function(){
 	});
 });
 
+//自动选择机房信息
+function autoSelectClxx(inputObj){
+	if ($(inputObj).val()!="" && event.keyCode == DWZ.keyCode.ENTER){
+		var cur_tr = $(inputObj).closest("tr");
+		$.ajax({
+			type: 'post',
+			url: 'ajaxSelectJfxx.do',
+			data: {'keyword':$(inputObj).val()},
+			dataType:'xml',
+			cache: false,
+			success: function (xml) {
+				if($(xml).text() == ""){
+					alertMsg.info("未找到要查询的信息!");
+					return;
+				}
+				cur_tr.find("[name=Td12_gljf.JF_ID]").val($(xml).find("jf_id").text());
+				cur_tr.find("[name=Td12_gljf.JDMC]").val($(xml).find("jdmc").text());
+				cur_tr.find("[name=Td12_gljf.JFMC]").val($(xml).find("jfmc").text());
+			},
+			error: DWZ.ajaxError
+		});	
+	}
+}
 </script>
 
 <div class="page">
@@ -160,6 +183,8 @@ $(function(){
 				<input type="hidden" name="Tf08_clmxb.CZRY" value="${obj.czry}"/>
 						<td>
 							<netsky:htmlSelect name="Tf08_clmxb.CLLX" objectForOption="cllxList" valueForOption="" showForOption="" value="${obj.cllx}" extend="" extendPrefix="true" style="width:0px;"/>
+							<input type="text" id="gljfDetail[${offset }].dwz_gljfLookup.Td12_gljf.JDMC" name="Td12_gljf.JDMC" value="${obj.jdmc}" style="width:0px;" index="${offset }" lookupGroup="gljfDetail"  lookupName="gljfLookup" suggestUrl="ajaxAutocompleteJfxx.do" suggestFields="Td12_gljf.JF_ID,Td12_gljf.JDMC,Td12_gljf.JFMC" autocomplete="off"/>
+							<a class="btnLook" href="selectJfxx.do" index="${offset }" lookupGroup="gljfDetail"  lookupName="gljfLookup">查找带回</a>
 						</td>
 						<td>
 							<select name="Tf08_clmxb.CLMC" style="width:0px;">

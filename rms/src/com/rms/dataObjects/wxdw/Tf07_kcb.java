@@ -223,5 +223,17 @@ public class Tf07_kcb implements Serializable{
     this.jlsl = jlsl;
   }
 
+ private String clbm;
 
+ /**
+ * @hibernate.property column="clbm"
+ * @return Returns the clbm.
+ */
+ public String getClbm() {
+    return clbm;
+ }
+
+ public void setClbm(String clbm) {
+    this.clbm = clbm;
+  }
 }

@@ -25,6 +25,14 @@
   insert="true"
   column="clmc"
   />
+  
+  <property
+  name="clbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clbm"
+  />
 
   <property
   name="dw"
