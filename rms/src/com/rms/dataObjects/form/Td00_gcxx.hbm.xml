@@ -785,6 +785,14 @@
         />
         
         <property
+            name="zylrydh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zylrydh"
+        />
+        
+        <property
             name="zygly"
             type="java.lang.String"
             update="true"

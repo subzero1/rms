@@ -1666,11 +1666,13 @@ public class Td00_gcxx implements Serializable {
 		this.xqs_id = xqs_id;
 	}
 	
-private String zylry;
+	private String zylry;
 	
 	private String zygly;
 	
 	private Date zyqrsj;
+	
+	private String zylrydh;
 
 	/**
 	 * @hibernate.property column="zylry"
@@ -1707,4 +1709,17 @@ private String zylry;
 	public void setZyqrsj(Date zyqrsj) {
 		this.zyqrsj = zyqrsj;
 	}
+
+	/**
+	 * @hibernate.property column="zylrydh"
+	 * @return Returns the zylrydh.
+	 */
+	public String getZylrydh() {
+		return zylrydh;
+	}
+
+	public void setZylrydh(String zylrydh) {
+		this.zylrydh = zylrydh;
+	}
+	
 }

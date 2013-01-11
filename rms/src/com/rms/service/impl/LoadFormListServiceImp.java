@@ -218,7 +218,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 							zy_node_id = 11101L;
 						}
 						btn.url = "javascript:docNew('flowForm.do?module_id="+zy_module_id+"&node_id="+zy_node_id+"&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-						btn.comment = "立项资料送审流程";
+						btn.comment = "资源确认流程";
 						btn.picUri = "newform";
 						buttonList.add(btn);
 					}

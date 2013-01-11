@@ -2514,6 +2514,18 @@ public class Td01_xmxx implements Serializable {
 	public void setZyqrsj(Date zyqrsj) {
 		this.zyqrsj = zyqrsj;
 	}
-	
-	
+
+	private String zylrydh;
+
+	/**
+	 * @hibernate.property column="zylrydh"
+	 * @return Returns the zylrydh.
+	 */
+	public String getZylrydh() {
+		return zylrydh;
+	}
+
+	public void setZylrydh(String zylrydh) {
+		this.zylrydh = zylrydh;
+	}
 }
