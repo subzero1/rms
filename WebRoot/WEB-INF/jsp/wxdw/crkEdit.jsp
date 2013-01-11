@@ -105,13 +105,14 @@ $(function(){
 	});
 });
 
-//自动选择机房信息
+//自动选择材料
 function autoSelectClxx(inputObj){
 	if ($(inputObj).val()!="" && event.keyCode == DWZ.keyCode.ENTER){
 		var cur_tr = $(inputObj).closest("tr");
+		alert('s');
 		$.ajax({
 			type: 'post',
-			url: 'ajaxSelectJfxx.do',
+			url: 'ajaxSelectClxx.do',
 			data: {'keyword':$(inputObj).val()},
 			dataType:'xml',
 			cache: false,
@@ -120,9 +121,9 @@ function autoSelectClxx(inputObj){
 					alertMsg.info("未找到要查询的信息!");
 					return;
 				}
-				cur_tr.find("[name=Td12_gljf.JF_ID]").val($(xml).find("jf_id").text());
-				cur_tr.find("[name=Td12_gljf.JDMC]").val($(xml).find("jdmc").text());
-				cur_tr.find("[name=Td12_gljf.JFMC]").val($(xml).find("jfmc").text());
+				cur_tr.find("[name=Tf08_clmxb.CLBM]").val($(xml).find("clbm").text());
+				cur_tr.find("[name=Tf08_clmxb.CLMC]").val($(xml).find("clmc").text());
+				cur_tr.find("[name=Tf08_clmxb.XH]").val($(xml).find("xh").text());
 			},
 			error: DWZ.ajaxError
 		});	
