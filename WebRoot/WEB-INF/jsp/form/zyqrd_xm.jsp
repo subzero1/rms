@@ -5,7 +5,7 @@
 <jsp:useBean id="now" class="java.util.Date" />
 
 <input type="hidden" name="configType" value="byxml"/>
-<input type="hidden" name="profile" value="zyqrd_gc.xml"/>
+<input type="hidden" name="profile" value="zyqrd_xm.xml"/>
 <input type="hidden" name="Td07_zyqrd.ID" value="${param.doc_id}">
 <input type="hidden" name="Td07_zyqrd.PROJECT_ID" value="${param.project_id}">
 
@@ -34,23 +34,23 @@
 	<div class="divider"></div>
 	<p>
 		<label> 工程名称：</label>
-		<input class="required" type="text" name="Td01_xmxx.GCMC" style="width:376px;" value="${td01_xmxx.gcmc}" />
+		<input class="required" type="text" name="Td01_xmxx.XMMC1" style="width:405px;" value="${td01_xmxx.xmmc}" />
 	</p>
 	<p>
 		<label>工程编号：</label>
-		<input class="required" type="text" name="Td01_xmxx.GCBH" style="width:376px;" value="${td01_xmxx.gcbh}" />
+		<input class="required" type="text" name="Td01_xmxx.XMBH1" style="width:120px;" value="${td01_xmxx.xmbh}" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>资源填录人：</label>
-		<input class="required" type="text" name="Td01_xmxx.ZYLRY" style="width:376px;" value="${td01_xmxx.zylry}" />
+		<input class="required" type="text" name="Td01_xmxx.ZYLRY" style="width:150px;" value="${td01_xmxx.zylry}" />
 	</p>
 	<p>
-		<label>资源填录人电话：</label>
-		<input type="text" class="required" name="Td01_xmxx.ZYLRYDH" style="width:376px;" value="${td01_xmxx.zylrydh}"/>
+		<label>填录人电话：</label>
+		<input type="text" class="required" name="Td01_xmxx.ZYLRYDH" style="width:150px;" value="${td01_xmxx.zylrydh}"/>
 	</p> 
 	<div class="divider"></div>
 	<p>
-		<label>需求说明：</label>
+		<label>说明：</label>
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td07_zyqrd.BZ">${td07_zyqrd.bz}</textarea>
 	</p>

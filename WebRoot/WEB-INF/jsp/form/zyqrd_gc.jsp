@@ -34,23 +34,23 @@
 	<div class="divider"></div>
 	<p>
 		<label> 工程名称：</label>
-		<input class="required" type="text" name="Td00_gcxx.GCMC" style="width:376px;" value="${td00_gcxx.gcmc}" />
+		<input class="required" type="text" name="Td00_gcxx.GCMC" style="width:405px;" value="${td00_gcxx.gcmc}" />
 	</p>
 	<p>
 		<label>工程编号：</label>
-		<input class="required" type="text" name="Td00_gcxx.GCBH" style="width:376px;" value="${td00_gcxx.gcbh}" />
+		<input class="required" type="text" name="Td00_gcxx.GCBH" style="width:120px;" value="${td00_gcxx.gcbh}" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>资源填录人：</label>
-		<input class="required" type="text" name="Td00_gcxx.ZYLRY" style="width:376px;" value="${td00_gcxx.zylry}" />
+		<input class="required" type="text" name="Td00_gcxx.ZYLRY" style="width:150px;" value="${td00_gcxx.zylry}" />
 	</p>
 	<p>
-		<label>资源填录人电话：</label>
-		<input type="text" class="required" name="Td00_gcxx.ZYLRYDH" style="width:376px;" value="${td00_gcxx.zylrydh}"/>
+		<label>填录人电话：</label>
+		<input type="text" class="required" name="Td00_gcxx.ZYLRYDH" style="width:150px;" value="${td00_gcxx.zylrydh}"/>
 	</p> 
 	<div class="divider"></div>
 	<p>
-		<label>需求说明：</label>
+		<label>说明：</label>
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td07_zyqrd.BZ">${td07_zyqrd.bz}</textarea>
 	</p>
