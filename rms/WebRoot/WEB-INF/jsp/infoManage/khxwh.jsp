@@ -130,6 +130,7 @@
 							<th style="width:200px" orderField="khx">考核项</th>
 							<th style="width:200px" orderField="ms">描述</th>
 							<th style="width:100px" orderField="fz">最高分数</th>
+							<th style="width:100px" orderField="fksx">最高罚款</th>
 							<th style="width:200px" orderField="jsfs">计算方式</th>
 							<th style='width: 30px;'>&nbsp;</th>
 							<th>&nbsp;</th>
@@ -168,6 +169,9 @@
 								</td>
 								<td>
 									<input type='text' class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width: 99%' value="${tf15.fz}" />
+								</td>
+								<td>
+									<input type='text'  comments='最高罚款' name='Tf15_khxwh.FKSX' style='width: 99%' value="${tf15.fksx}" />
 								</td>
 								<td>
 									<input type='text' comments='计算方式' name='Tf15_khxwh.JSFS' style='width: 99%' value="${tf15.jsfs }" />

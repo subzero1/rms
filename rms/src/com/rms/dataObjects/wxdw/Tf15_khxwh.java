@@ -1,7 +1,6 @@
 package com.rms.dataObjects.wxdw;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author cmp_auto 2012-06-04
@@ -121,6 +120,16 @@ public String getLb() {
  */
 public void setLb(String lb) {
 	this.lb = lb;
+}
+
+private Long fksx;
+
+public Long getFksx() {
+	return fksx;
+}
+
+public void setFksx(Long fksx) {
+	this.fksx = fksx;
 }
 
 

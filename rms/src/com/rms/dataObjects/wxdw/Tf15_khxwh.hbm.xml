@@ -55,7 +55,14 @@
  update="true"
  insert="true"
  column="lb"/>
-
+ 
+ <property
+ name="fksx"
+ type="java.lang.Long"
+ update="true"
+ insert="true"
+ column="fksx"
+ />
     </class>
 
 </hibernate-mapping>
