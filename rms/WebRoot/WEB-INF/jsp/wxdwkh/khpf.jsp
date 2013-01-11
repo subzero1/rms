@@ -54,7 +54,7 @@ function saveFz(){
 					<tr>
 						<th style="width: 240px;">合作单位</th>
 						<c:forEach items="${khxList}" var="khx">
-							<th style="width: 120px;">${khx.khx }</th>
+							<th style="width: 120px;">${khx.khx }（${khx.zgfz }）</th>
 						</c:forEach>
 					</tr>
 				</thead>
