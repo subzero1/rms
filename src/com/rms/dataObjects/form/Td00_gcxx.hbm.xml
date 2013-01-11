@@ -775,6 +775,31 @@
             insert="true"
             column="ysbm"
         />
+        
+        <property
+            name="zylry"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zylry"
+        />
+        
+        <property
+            name="zygly"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zygly"
+        />
+        
+        <property
+            name="zyqrsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="zyqrsj"
+        />
+        
          <property
             name="yssj"
             type="java.util.Date"
