@@ -97,7 +97,7 @@ public class Khxwh {
 		String orderField = convertUtil.toString(request
 				.getParameter("orderField"), "lb");
 		String orderDirection = convertUtil.toString(request
-				.getParameter("sort"), "desc");
+				.getParameter("orderDirection"), "asc");
 		List<Tf15_khxwh> tf15List = (List<Tf15_khxwh>) queryService
 				.searchList("from Tf15_khxwh order by " + orderField + " "
 						+ orderDirection);
@@ -107,48 +107,7 @@ public class Khxwh {
 
 	}
 
-	/**
-	 * 按类别排序
-	 * 
-	 * @param request
-	 * @param response
-	 * @return ModelAndView
-	 */
-	@RequestMapping("/infoManage/sortbyl.do")
-	public ModelAndView sortByLB(HttpServletRequest request,
-			HttpServletResponse response) {
-		String sort = request.getParameter("sort");
-		List<Tf15_khxwh> tf15List = (List<Tf15_khxwh>) queryService
-				.searchList("from Tf15_khxwh order by lb " + sort);
-		request.setAttribute("tf15List", tf15List);
-		if (sort.equals("ASC"))
-			request.setAttribute("sort", "DESC");
-		else if (sort.equals("DESC"))
-			request.setAttribute("sort", "ASC");
-		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwh.jsp");
-	}
-
-	/**
-	 * 按分值排序
-	 * 
-	 * @param request
-	 * @param response
-	 * @return ModelAndView
-	 */
-	@RequestMapping("/infoManage/sortbyfz.do")
-	public ModelAndView sortByFZ(HttpServletRequest request,
-			HttpServletResponse response) {
-		String sort = request.getParameter("sort");
-		List<Tf15_khxwh> tf15List = (List<Tf15_khxwh>) queryService
-				.searchList("from Tf15_khxwh order by lb " + sort);
-		request.setAttribute("tf15List", tf15List);
-		if (sort.equals("ASC"))
-			request.setAttribute("sort", "DESC");
-		else if (sort.equals("DESC"))
-			request.setAttribute("sort", "ASC");
-		return new ModelAndView("/WEB-INF/jsp/infoManage/khxwh.jsp");
-	}
-
+  
 	/**
 	 * 
 	 * @param request
@@ -204,7 +163,7 @@ public class Khxwh {
 
 	/**
 	 * 级联删除
-	 * 
+	 * 异步
 	 * @param request
 	 * @param response
 	 *            void

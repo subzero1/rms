@@ -100,6 +100,13 @@
 }
  
 </script>   
+<form id="pagerForm" method="post" action="infoManage/khxwh.do">
+	<input type="hidden" name="keyword" value="${param.keyword}">
+	<input type="hidden" name="pageNum" value="${param.pageNum}" />
+	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
 <div class="page">
 	<div class="pageContent">
 		<form id="khxForm" action="save.do" method="post"
@@ -117,13 +124,13 @@
 				<table class="table" width="100%">
 					<thead>
 						<tr>
-							<th style="width:100px">
-								<a id="lbie" target='navTab' rel="khxwh" title="考核信息项维护"  style="width:100%" href='infoManage/sortbyl.do?sort=${sort}' ><span >类别</span></a>
+							<th style="width:100px" orderField="lb">
+								<span >类别</span>
 							</th>
-							<th style="width:200px">考核项</th>
-							<th style="width:200px">描述</th>
-							<th style="width:100px">最高分数</th>
-							<th style="width:200px">计算方式</th>
+							<th style="width:200px" orderField="khx">考核项</th>
+							<th style="width:200px" orderField="ms">描述</th>
+							<th style="width:100px" orderField="fz">最高分数</th>
+							<th style="width:200px" orderField="jsfs">计算方式</th>
 							<th style='width: 30px;'>&nbsp;</th>
 							<th>&nbsp;</th>
 						</tr>
