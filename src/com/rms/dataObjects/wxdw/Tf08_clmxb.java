@@ -257,5 +257,17 @@ public class Tf08_clmxb implements Serializable{
     this.bz = bz;
   }
 
+ private String clbm;
 
+ /**
+ * @hibernate.property column="clbm"
+ * @return Returns the clbm.
+ */
+ public String getClbm() {
+    return clbm;
+ }
+
+ public void setClbm(String clbm) {
+    this.clbm = clbm;
+  }
 }

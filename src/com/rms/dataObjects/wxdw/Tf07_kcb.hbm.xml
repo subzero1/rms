@@ -18,6 +18,14 @@
             </generator>
         </id>
 
+  <property
+  name="clbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="clbm"
+  />
+  
    <property
   name="clmc"
   type="java.lang.String"

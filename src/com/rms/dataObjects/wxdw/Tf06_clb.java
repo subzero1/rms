@@ -122,4 +122,18 @@ public class Tf06_clb implements Serializable{
   }
 
 
+  private String clbm;
+
+  /**
+  * @hibernate.property column="clbm"
+  * @return Returns the clbm.
+  */
+  public String getClbm() {
+     return clbm;
+  }
+
+  public void setClbm(String clbm) {
+     this.clbm = clbm;
+   }
+
 }
