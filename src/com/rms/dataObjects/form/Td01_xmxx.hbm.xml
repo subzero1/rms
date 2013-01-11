@@ -1170,6 +1170,14 @@
         />
         
         <property
+            name="zylrydh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zylrydh"
+        />
+        
+        <property
             name="zylry"
             type="java.lang.String"
             update="true"
