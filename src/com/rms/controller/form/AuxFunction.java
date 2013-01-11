@@ -78,7 +78,6 @@ public class AuxFunction {
 		sql.append("' and xm_id is null  order by gcmc ");
 		List list = queryService.searchList(sql.toString());
 		modelMap.put("unselect_groups", list);
-
 		/*
 		 * 获得已选工程列表
 		 */
