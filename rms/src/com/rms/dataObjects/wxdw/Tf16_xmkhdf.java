@@ -209,4 +209,33 @@ public void setLb(String lb) {
 	this.lb = lb;
 }
 
+/**
+ * 罚款金额
+ */
+private Long fkje;
+
+/**
+ * 说明
+ */
+private String explain;
+
+public Long getFkje() {
+	return fkje;
+}
+
+public void setFkje(Long fkje) {
+	this.fkje = fkje;
+}
+
+public String getExplain() {
+	return explain;
+}
+
+public void setExplain(String explain) {
+	this.explain = explain;
+}
+
+
+
+
 }

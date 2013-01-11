@@ -37,17 +37,25 @@
 					<tr>
 						<th width="110">考核项</th>
 						<th>描述</th>
-						<th width="60">结果</th>
+						<th width="110">罚款金额</th>
+						<th>说明</th>
+						<th width="80">结果</th>
 					</tr>
 				</thead>
 				<tbody id="mainbody"><c:forEach var="gc" items="${gc1}">
 					<tr>
 						<td>
 							<input type="hidden"  name="Tf16_xmkhdf.ID" value="" />
-							<input type="text"  style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.KHX" value="${gc[0]}" />
+							<input type="text"  style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.KHX" value="${gc[0]}" readonly/>
 						</td>
 						<td>
-							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.MS" value="${gc[1]}" />
+							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.MS" value="${gc[1]}" readonly/>
+						</td>
+						<td>
+							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.FKJE" />
+						</td>
+						<td>
+							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.EXPLAIN" />
 						</td>
 						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc[2] }"  /> 
@@ -71,10 +79,16 @@
 					<tr>
 						<td>
 							<input type="hidden" name="Tf16_xmkhdf.ID" value="${gc.id }" />
-							<input type="text" name="Tf16_xmkhdf.KHX" value="${gc.khx}" style="width:100%" disabled />
+							<input type="text" name="Tf16_xmkhdf.KHX" value="${gc.khx}" style="width:100%" readonly />
 						</td >
 						<td>
-							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}" style="width:100%" disabled />
+							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}" style="width:100%" readonly />
+						</td>
+						<td>
+							<input type="text"   name="Tf16_xmkhdf.FKJE" value="${gc.fkje}" style="width:100%"  />
+						</td>
+						<td>
+							<input type="text"   name="Tf16_xmkhdf.EXPLAIN" value="${gc.explain}" style="width:100%"  />
 						</td>
 						<td> 
 							<input type="hidden" name="Tf16_xmkhdf.ZDFZ" value="${gc.zdfz}"   /> 
