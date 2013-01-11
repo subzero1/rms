@@ -161,8 +161,8 @@ function autoSelectClxx(inputObj){
 			<table width="100%" class="list  itemDetail" width="100%">
 				<thead>
 					<tr>
-						<th type="enum" style="width:85px;" name="Tf08_clmxb.CLLX" enumName="cllx" enumUrl="wxdw/cllxSelect.do" enumData="{'type':'材料类型','dz':'${dz }','project_id':'${gcxx.id }'}" hideName="Tf08_clmxb.ID">材料类别</th>
-						<th type="enum" style="width:320px;" name="Tf08_clmxb.CLMC" enumName="clmc" enumUrl="wxdw/clmcSelect.do" enumData="{'dz':'${dz }'}" hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
+						<th type="lookup" style="width:100px;" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH" autocomplete="off">材料类别</th>
+						<th type="text" style="width:320px;" name="Tf08_clmxb.CLMC"  hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
 						<th type="text" style="width:60px;" name="Tf08_clmxb.DW" hideName="Tf08_clmxb.CZSJ" hideValue="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>">单位</th>
@@ -175,24 +175,18 @@ function autoSelectClxx(inputObj){
 				<c:forEach var="obj" items="${tf08List}">
 					<tr>
 					<input type="hidden" name="Tf08_clmxb.ID" value="${obj.id}"/>
-				<input type="hidden" name="Tf08_clmxb.FLAG" value="${obj.flag}"/>
-				<input type="hidden" name="Tf08_clmxb.ZHXX_ID" value="${obj.zhxx_id}"/>
-				<input type="hidden" name="Tf08_clmxb.DZ" value="${obj.dz}"/>
-				<input type="hidden" name="Tf08_clmxb.CZSJ" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${obj.czsj}"/>"/>
-				<input type="hidden" name="Tf08_clmxb.SGDW_ID" value="${obj.sgdw_id}"/>
-				<input type="hidden" name="Tf08_clmxb.CZRY" value="${obj.czry}"/>
+					<input type="hidden" name="Tf08_clmxb.FLAG" value="${obj.flag}"/>
+					<input type="hidden" name="Tf08_clmxb.ZHXX_ID" value="${obj.zhxx_id}"/>
+					<input type="hidden" name="Tf08_clmxb.DZ" value="${obj.dz}"/>
+					<input type="hidden" name="Tf08_clmxb.CZSJ" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${obj.czsj}"/>"/>
+					<input type="hidden" name="Tf08_clmxb.SGDW_ID" value="${obj.sgdw_id}"/>
+					<input type="hidden" name="Tf08_clmxb.CZRY" value="${obj.czry}"/>
 						<td>
-							<netsky:htmlSelect name="Tf08_clmxb.CLLX" objectForOption="cllxList" valueForOption="" showForOption="" value="${obj.cllx}" extend="" extendPrefix="true" style="width:0px;"/>
-							<input type="text" id="gljfDetail[${offset }].dwz_gljfLookup.Td12_gljf.JDMC" name="Td12_gljf.JDMC" value="${obj.jdmc}" style="width:0px;" index="${offset }" lookupGroup="gljfDetail"  lookupName="gljfLookup" suggestUrl="ajaxAutocompleteJfxx.do" suggestFields="Td12_gljf.JF_ID,Td12_gljf.JDMC,Td12_gljf.JFMC" autocomplete="off"/>
-							<a class="btnLook" href="selectJfxx.do" index="${offset }" lookupGroup="gljfDetail"  lookupName="gljfLookup">查找带回</a>
+							<input type="text" id="clxxDetail[${offset }].dwz_clxxLookup.Tf08_clmxb.CLBM" name="Tf08_clmxb.CLBM" value="${obj.clbm}" style="width:0px;" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH" autocomplete="off"/>
+							<a class="btnLook" href="selectClxx.do" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup">查找带回</a>
 						</td>
 						<td>
-							<select name="Tf08_clmxb.CLMC" style="width:0px;">
-								<option></option>
-								<c:forEach items="${clmcselectList[offset] }" var="clmc">
-									<option flag="${clmc.id }" title="${clmc.clmc}—${empty clmc.gg ? '（无规格说明）' : clmc.gg}—${empty clmc.xh ? '（无型号说明）' : clmc.xh}" value="${clmc.clmc }" <c:if test="${clmc.clmc == obj.clmc && clmc.gg == obj.gg && clmc.xh == obj.xh}">selected="selected"</c:if>>${clmc.clmc}—${empty clmc.gg ? '（无规格说明）' : clmc.gg}—${empty clmc.xh ? '（无型号说明）' : clmc.xh}</option> 
-								</c:forEach>
-							</select>
+							<td><input class="" type="text" name="Tf08_clmxb.CLMC" value="${obj.clmc}" style="width:0px;"/>
 						</td>
 						<td><input class="" type="text" name="Tf08_clmxb.GG" value="${obj.gg}" style="width:0px;"/></td>
 						<td><input class="" type="text" name="Tf08_clmxb.XH" value="${obj.xh}" style="width:0px;"/></td>
