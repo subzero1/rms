@@ -96,9 +96,22 @@
  update="true"
  insert="true"
  column="lb"
->
-
-</property>
+/>
+   <property
+  name="fkje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fkje"
+  />
+  
+  <property
+ name="explain" 
+ type="java.lang.String"
+ update="true"
+ insert="true"
+ column="explain"
+/>
     </class>
 
 </hibernate-mapping>

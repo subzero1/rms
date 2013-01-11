@@ -16,6 +16,7 @@
 				<input type='text'  class='required' comments='考核项' name='Tf15_khxwh.KHX' style='width:100%'/></td>\
 				<td><input type='text'  class='required' comments='描述' name='Tf15_khxwh.MS' style='width:100%'/></td>\
 				<td><input type='text'  class='required' comments='最高分数' name='Tf15_khxwh.FZ' style='width:100%'/></td>\
+				<td><input type='text'  class='required' comments='最高罚款' name='Tf15_khxwh.FKSX' style='width:100%'/></td>\
 				<td><input type='text'   comments='计算方式' name='Tf15_khxwh.JSFS' style='width:100%'/></td>\
 				<td><a href='#' onclick='javascript:delComments(this);'  class='btnDel'><span>删除</span></a></td></tr>");
 	}

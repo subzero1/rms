@@ -35,7 +35,7 @@ $(function(){
 	function gcdf(project_id,lb){
 		//选择打包工程
 		var url = 'wxdwkh/gcdf.do?project_id='+project_id+'&lb='+lb;
-		$.pdialog.open(url,'_gcdf','工程考核',{width:500,height:309});
+		$.pdialog.open(url,'_gcdf','工程考核',{width:700,height:433});
 	}
 	
 	/*
