@@ -102,7 +102,7 @@
 					if($input.val()=="") return;	//输入域的值为空时不显示 modify at 2011-12-16
 					
 					var offset = $input.offset();
-					var iTop = offset.top+this.offsetHeight;
+					var iTop = offset.top+$input.height();	//this.offsetHeight; modify at 2011-12-16
 					var $suggest = $(op.suggest$);
 					if ($suggest.size() == 0) $suggest = $('<div id="suggest"></div>').appendTo($('body'));
 
