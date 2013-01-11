@@ -2472,4 +2472,48 @@ public class Td01_xmxx implements Serializable {
 	public void setXqs_id(Long xqs_id) {
 		this.xqs_id = xqs_id;
 	}
+	
+	private String zylry;
+	
+	private String zygly;
+	
+	private Date zyqrsj;
+
+	/**
+	 * @hibernate.property column="zylry"
+	 * @return Returns the zylry.
+	 */
+	public String getZylry() {
+		return zylry;
+	}
+
+	public void setZylry(String zylry) {
+		this.zylry = zylry;
+	}
+
+	/**
+	 * @hibernate.property column="zygly"
+	 * @return Returns the zygly.
+	 */
+	public String getZygly() {
+		return zygly;
+	}
+
+	public void setZygly(String zygly) {
+		this.zygly = zygly;
+	}
+
+	/**
+	 * @hibernate.property column="zyqrsj"
+	 * @return Returns the zyqrsj.
+	 */
+	public Date getZyqrsj() {
+		return zyqrsj;
+	}
+
+	public void setZyqrsj(Date zyqrsj) {
+		this.zyqrsj = zyqrsj;
+	}
+	
+	
 }
