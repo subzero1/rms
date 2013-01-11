@@ -143,14 +143,19 @@ public class Login {
 		tz03.setLogin_ip(request.getRemoteAddr());
 		String sys = request.getHeader("User-Agent");
 		String systeminfo = "";
-		if (sys.split(";")[1].equals(" MSIE 8.0")) {
-			systeminfo += "IE 8.0 ;";
-		} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
-			systeminfo += "IE 7.0 ;";
-		} else if (sys.split(";")[1].equals(" MSIE 6.0")) {
-			systeminfo += "IE 6.0 ;";
-		} else {
-			systeminfo += sys.split(";")[1] + " ;";
+		if(sys.split(";").length > 1){
+			if (sys.split(";")[1].equals(" MSIE 8.0")) {
+				systeminfo += "IE 8.0 ;";
+			} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
+				systeminfo += "IE 7.0 ;";
+			} else if (sys.split(";")[1].equals(" MSIE 6.0")) {
+				systeminfo += "IE 6.0 ;";
+			} else {
+				systeminfo += sys.split(";")[1] + " ;";
+			}
+		}
+		else{
+			systeminfo  = "其它";
 		}
 
 		if (sys.indexOf("Windows NT 6.0") != -1) {
@@ -202,14 +207,19 @@ public class Login {
 			tz03.setLogout_date(new Date());
 			String sys = request.getHeader("User-Agent");
 			String systeminfo = "";
-			if (sys.split(";")[1].equals(" MSIE 8.0")) {
-				systeminfo += "IE 8.0 ;";
-			} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
-				systeminfo += "IE 7.0 ;";
-			} else if (sys.split(";")[1].equals(" MSIE 6.0")) {
-				systeminfo += "IE 6.0 ;";
-			} else {
-				systeminfo += sys.split(";")[1] + " ;";
+			if(sys.split(";").length > 1){
+				if (sys.split(";")[1].equals(" MSIE 8.0")) {
+					systeminfo += "IE 8.0 ;";
+				} else if (sys.split(";")[1].equals(" MSIE 7.0")) {
+					systeminfo += "IE 7.0 ;";
+				} else if (sys.split(";")[1].equals(" MSIE 6.0")) {
+					systeminfo += "IE 6.0 ;";
+				} else {
+					systeminfo += sys.split(";")[1] + " ;";
+				}
+			}
+			else{
+				systeminfo  = "其它";
 			}
 
 			if (sys.indexOf("Windows NT 6.0") != -1) {
