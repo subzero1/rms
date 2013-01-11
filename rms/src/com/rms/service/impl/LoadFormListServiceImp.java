@@ -204,6 +204,24 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						btn.picUri = "newform";
 						buttonList.add(btn);
 					}
+					
+					if(node_id == 10103 || node_id == 10203){
+						Long zy_module_id = null;
+						Long zy_node_id = null;
+						btn = new Button("资源确认单");
+						if(node_id == 10103){
+							zy_module_id = 110L;
+							zy_node_id = 11001L;
+						}
+						else{
+							zy_module_id = 111L;
+							zy_node_id = 11101L;
+						}
+						btn.url = "javascript:docNew('flowForm.do?module_id="+zy_module_id+"&node_id="+zy_node_id+"&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+						btn.comment = "立项资料送审流程";
+						btn.picUri = "newform";
+						buttonList.add(btn);
+					}
 				}
 				
 				request.setAttribute("buttons", buttonList);
