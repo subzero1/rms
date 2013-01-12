@@ -180,7 +180,19 @@ $(function(){
 		<label>实际竣工时间：</label>
 		<input type="text"  name="Td00_gcxx.SJJGSJ" value="<fmt:formatDate value="${td00_gcxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
-	
+	<div style="height:0px;"></div>
+	<p>
+	<label>资源录入人：</label>
+	<input type="text"  name="Td00_gcxx.ZYLRY" value="${td00_gcxx.zylry}" style="width:150px;"/>
+	</p>
+	<p>
+		<label>资源管理员：</label>
+		<input type="text"  name="Td00_gcxx.ZYGLY" value="${td00_gcxx.zygly}" style="width:150px;"/>
+	</p>
+	<p>
+		<label>资源确认时间：</label>
+		<input type="text"  name="Td00_gcxx.ZYQRSJ" value="<fmt:formatDate value="${td00_gcxx.zyqrsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
+	</p>
 	<div class="divider"></div>
 	<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
 	<div style="height:0px;"></div>
