@@ -33,8 +33,8 @@
 			dataType:"html",
 			success:function(msg){
 				if(parseFloat($fkje.val())>parseFloat(msg)&&parseFloat(msg)>0){
-					alertMsg.info("罚款上限为"+msg+"元"
-					+"	 已经超过"+(parseFloat($fkje.val())-parseFloat(msg))+"元,请您重新填写!");
+					alertMsg.info("罚款上限为"+msg+"元 <br>"
+					+"已经超过<font color='red'>"+(parseFloat($fkje.val())-parseFloat(msg))+"</font>元,请您重新填写!");
 					$fkje.val(msg);
 					return false;
 				}
