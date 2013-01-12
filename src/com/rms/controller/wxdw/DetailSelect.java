@@ -209,6 +209,12 @@ public class DetailSelect {
 			out.println("<xh>");
 			out.println(tf06.getXh());
 			out.println("</xh>");
+			out.println("<gg>");
+			out.println(tf06.getGg());
+			out.println("</gg>");
+			out.println("<dw>");
+			out.println(tf06.getDw());
+			out.println("</dw>");
 			out.print("</root>");
 		}else{
 			out.print("<?xml version=\"1.0\" encoding=\"GBK\"?>");
@@ -265,6 +271,10 @@ public class DetailSelect {
 				outStr.append(tf06.getClmc());
 				outStr.append("\", \"Tf08_clmxb.XH\":\"");
 				outStr.append(tf06.getXh());
+				outStr.append("\", \"Tf08_clmxb.GG\":\"");
+				outStr.append(tf06.getGg());
+				outStr.append("\", \"Tf08_clmxb.DW\":\"");
+				outStr.append(tf06.getDw());
 				outStr.append("\"");
 				outStr.append("},");
 			}
