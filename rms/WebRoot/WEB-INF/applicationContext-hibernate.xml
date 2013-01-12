@@ -182,6 +182,7 @@
 				
 				<value>com/rms/dataObjects/base/Tc10_hzdw_khpz.hbm.xml</value>
 				<value>com/rms/dataObjects/base/Tc11_khpzmx.hbm.xml</value>
+				<value>com/rms/dataObjects/base/Tc12_jsfs.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/base/Tmp_zdxp.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td00_gcxx.hbm.xml</value>
