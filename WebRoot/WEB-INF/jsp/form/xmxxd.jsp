@@ -260,6 +260,19 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
+	<label>资源录入人：</label>
+	<input type="text"  name="Td01_xmxx.ZYLRY" value="${td01_xmxx.zylry}" style="width:150px;"/>
+</p>
+<p>
+	<label>资源管理员：</label>
+	<input type="text"  name="Td01_xmxx.ZYGLY" value="${td01_xmxx.zygly}" style="width:150px;"/>
+</p>
+<p>
+	<label>资源确认时间：</label>
+	<input type="text"  name="Td01_xmxx.ZYQRSJ" value="<fmt:formatDate value="${td01_xmxx.zyqrsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
+</p>
+<div style="height:0px;"></div>
+<p>
 	<label>项目说明：</label>
 	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.XMSM">${td01_xmxx.xmsm}</textarea>
 </p>
