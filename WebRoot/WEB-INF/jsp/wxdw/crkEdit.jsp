@@ -66,44 +66,12 @@ function checkandsave(){
 		alertMsg.info("请在数量栏填入正整数");
 		return;
 	}
-	if ($("select[name=Tf08_clmxb\\.CLLX]").size() == 0){
-		return;
-	}
+	//if ($("select[name=Tf08_clmxb\\.CLLX]").size() == 0){
+		//return;
+	//}
 	$("#rkckjl",navTab.getCurrentPanel()).trigger("onsubmit");
 }
-$(function(){
-	$("#rkckjl :input").live("change",function(){
-		change = true;
-	});
-	$("select[name=Tf08_clmxb\\.CLLX]").die("change");
-	$("select[name=Tf08_clmxb\\.CLLX]").live("change",function(){
-		var params = "cllx="+$(this).val()+"&dz=${dz}&project_id=${gcxx.id}";
-		var $this = $(this);
-		$.ajax({type:"post",async:false,url:"wxdw/getClmc.do",data:params, success:function (msg) {
-			$this.closest("tr").find("[name=Tf08_clmxb\\.CLMC]").empty();
-			$this.closest("tr").find("[name=Tf08_clmxb\\.CLMC]").append(msg);
-			$this.closest("tr").find("[name=Tf08_clmxb\\.CLMC]").change();
-		}});
-	});
-	$("select[name=Tf08_clmxb\\.CLMC]").die("change");
-	$("select[name=Tf08_clmxb\\.CLMC]").live("change",function(){
-		var $this = $(this);
-		var id = $this.children(':selected').attr('flag');
-		var gg = $this.closest('tr').find('[name=Tf08_clmxb\\.GG]');
-		var xh = $this.closest('tr').find('[name=Tf08_clmxb\\.XH]');
-		var dw = $this.closest('tr').find('[name=Tf08_clmxb\\.DW]');
-		var sl = $this.closest('tr').find('[name=Tf08_clmxb\\.SL]');
-		var params = "id="+id+"&dz=${dz}";
-		$.ajax({type:"post",async:false,url:"wxdw/setClxx.do",data:params, success:function (msg) {
-			msgs = $.trim(msg).split("@#$");
-			gg.val(msgs[0]);
-			xh.val(msgs[1]);
-			dw.val(msgs[2]);
-			sl.val(msgs[3]);
-			sl.attr("flag",msgs[3]);
-		}});
-	});
-});
+
 
 //自动选择材料
 function autoSelectClxx(inputObj){
@@ -164,7 +132,7 @@ function autoSelectClxx(inputObj){
 			<table width="100%" class="list  itemDetail" width="100%">
 				<thead>
 					<tr>
-						<th type="lookup" style="width:180px;" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off">材料类别</th>
+						<th type="lookup" style="width:180px;" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off">材料编码</th>
 						<th type="text" style="width:320px;" name="Tf08_clmxb.CLMC"  hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
@@ -188,9 +156,7 @@ function autoSelectClxx(inputObj){
 							<input type="text" id="clxxDetail[${offset }].dwz_clxxLookup.Tf08_clmxb.CLBM" name="Tf08_clmxb.CLBM" value="${obj.clbm}" style="width:0px;" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off"/>
 							<a class="btnLook" href="selectClxx.do" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup">查找带回</a>
 						</td>
-						<td>
-							<td><input class="" type="text" name="Tf08_clmxb.CLMC" value="${obj.clmc}" style="width:0px;"/>
-						</td>
+						<td><input class="" type="text" name="Tf08_clmxb.CLMC" value="${obj.clmc}" style="width:0px;"/></td>
 						<td><input class="" type="text" name="Tf08_clmxb.GG" value="${obj.gg}" style="width:0px;"/></td>
 						<td><input class="" type="text" name="Tf08_clmxb.XH" value="${obj.xh}" style="width:0px;"/></td>
 						<td><input class="" type="text" name="Tf08_clmxb.DW" value="${obj.dw}" style="width:0px;"/></td>
