@@ -154,7 +154,13 @@
   column="fgsx"
   />
 
-
+  <property
+  name="jsfs"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsfs"
+  />
     </class>
 
 </hibernate-mapping>

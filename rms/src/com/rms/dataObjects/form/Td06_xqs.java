@@ -325,5 +325,20 @@ public class Td06_xqs implements Serializable{
     this.fgsx = fgsx;
   }
 
+ /**
+  * 建设方式
+  */
+  private String jsfs;
 
+  /**
+   * @hibernate.property column="jsfs"
+   * @return Returns the jsfs.
+   */
+	public String getJsfs() {
+		return jsfs;
+	}
+	
+	public void setJsfs(String jsfs) {
+		this.jsfs = jsfs;
+	}
 }
