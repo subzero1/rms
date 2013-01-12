@@ -42,10 +42,8 @@
 					<a class="batchmodify"	href="dispath.do?url=form/batchUpdateProject.jsp" target="dialog" rel="batchUpdateProject" width="400" height="200"><span>批量修改</span></a>
 					</li>
 					<li class="line">line</li>
-					<!-- 
-					<li> <a class="exportexcel" href="dispath.do?url=form/xmxxImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
+					<li> <a class="exportexcel" href="dispath.do?url=form/xlsImport.jsp?config=batch_update_xm" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li>
-					-->
 				</c:if>
 					<!-- 
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>

@@ -1,4 +1,4 @@
-package com.netsky.base.utils;
+package com.rms.base.util;
 
 import java.io.File;
 import java.util.Iterator;
@@ -8,6 +8,7 @@ import java.util.List;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+
 
 /**
  * @description:Reader the XML file;
@@ -23,7 +24,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 *　重载方法：getConfigFilePath
 	 * (non-Javadoc)
-	 * @see com.netsky.base.utils.ConfigXML#getConfigFilePath(java.lang.String, java.lang.String)
+	 * @see com.rms.base.util.ConfigXML#getConfigFilePath(java.lang.String, java.lang.String)
 	 */
 	public String getConfigFilePath(String config, String webinfpath)
 			throws Exception {
@@ -52,7 +53,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getConfigFilePath (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getConfigFilePath(java.lang.String,
+	 * @see com.rms.base.util.ConfigXML#getConfigFilePath(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
 	public String getConfigFilePath(String config, String webinfpath,
@@ -84,7 +85,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getTagList (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getTagList(java.lang.String,
+	 * @see com.rms.base.util.ConfigXML#getTagList(java.lang.String,
 	 *      java.lang.String)
 	 */
 	public List getTagList(String configFilePath, String webinfpath)
@@ -114,7 +115,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getTagList (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getTagList(java.lang.String,
+	 * @see com.rms.base.util.ConfigXML#getTagList(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
 	public List getTagList(String configFilePath, String webinfpath,
@@ -144,7 +145,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getTagListByConfig (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getTagListByConfig(java.lang.String,
+	 * @see com.rms.base.util.ConfigXML#getTagListByConfig(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
 	public List getTagListByConfig(String config, String webinfpath,
@@ -175,7 +176,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 *　重载方法：getElementsByName
 	 * (non-Javadoc)
-	 * @see com.netsky.base.utils.ConfigXML#getElementsByName(java.lang.String, java.lang.String)
+	 * @see com.rms.base.util.ConfigXML#getElementsByName(java.lang.String, java.lang.String)
 	 */
 	public List getElementsByName(String XMLPath, String tagName)
 			throws Exception {
