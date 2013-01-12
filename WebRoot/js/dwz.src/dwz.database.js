@@ -25,7 +25,7 @@
 				for (var key in args) {
 					var name = (_lookup.pk == key) ? _util.lookupPk(key) : _util.lookupField(key);
 
-					if (name == inputName) {
+					if (name == inputId) {
 						$input.val(args[key]);
 						$input.change(); //modify:2012-7-6 ZY 查找带回时,调用输入域的onchange事件
 						break;
