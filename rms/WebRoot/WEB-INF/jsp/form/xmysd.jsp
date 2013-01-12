@@ -18,7 +18,7 @@ $(function(){
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmysd.xml"/>
 <input type="hidden" name="Td04_xmysd.ID" value="${param.doc_id}">
-<input type="hidden" name="Td04_xmysd.PROJECT_ID" value="${param.project_id}">
+<input type="hidden" name="Td01_xmxx.ID" value="${param.project_id}">
 
 <div class="pageFormContent">
 	<p>
