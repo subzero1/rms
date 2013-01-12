@@ -614,6 +614,19 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("jsxzList", tmpList);
 				}
 				
+				// 获取建设方式：Tc12_jsfs
+				hsql.delete(0, hsql.length());
+				hsql.append("select tc12 ");
+				hsql.append("from Tc12_jsfs tc12,Tc01_property tc01,Td06_xqs td06 ");
+				hsql.append("where tc01.id = tc12.jsxz_id ");
+				hsql.append("and td06.jsxz = tc01.name ");
+				hsql.append("and td06.project_id = ");
+				hsql.append(project_id);
+				tmpList = queryService.searchList(hsql.toString());
+				if (tmpList != null) {
+					request.setAttribute("jsfsList", tmpList);
+				}
+				
 				// 获取覆盖属性：Tc01_property type="覆盖属性"
 				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
 				queryBuilder.eq("type", "覆盖属性");
