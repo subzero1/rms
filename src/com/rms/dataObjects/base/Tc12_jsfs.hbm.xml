@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.base.Tc12_jsfs"  table="Tc12_jsfs">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tc12_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="jsxz_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jsxz_id"
+  />
+
+  <property
+  name="mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mc"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
