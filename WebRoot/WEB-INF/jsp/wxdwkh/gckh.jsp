@@ -22,6 +22,22 @@
 	}
 	//点DEL DEL 隐 ROLLBACK现 JQUERY 选择器 实现???
 	
+	function checkPenalty(obj,hxhx,lbx){ 
+		var $fkje=$(obj);
+		var params={khx:hxhx,lb:lbx};
+		$.ajax({
+			type: 'POST',
+			url:'wxdwkh/checkPenalty.do',
+			async:false,
+			data:params,
+			dataType:"html",
+			success:function(msg){
+				if(parseFloat($fkje.val())>parseFloat(msg)&&parseFloat(msg)>0)
+					alertMsg.info("罚款上限为"+msg+"元"
+					+"	 已经超过"+(parseFloat($fkje.val())-parseFloat(msg))+"元,请您重新填写!");
+			}
+		});
+	}
 </script>
 <!-- 当前时间 -->
 <input type="hidden" name="curTime"  id="curTime" value="<fmt:formatDate value="${curDate}" pattern="yyyy-MM-dd HH:mm"/>"/> 
@@ -52,7 +68,7 @@
 							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.MS" value="${gc[1]}" readonly/>
 						</td>
 						<td>
-							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.FKJE" />
+							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.FKJE" onBlur="checkPenalty(this,'${gc[0]}','${gc[4]}')">
 						</td>
 						<td>
 							<input type="text" style="width:100%;border:1px solid #aaa;"  name="Tf16_xmkhdf.EXPLAIN" />
@@ -85,7 +101,7 @@
 							<input type="text"   name="Tf16_xmkhdf.MS" value="${gc.ms}" style="width:100%" readonly />
 						</td>
 						<td>
-							<input type="text"   name="Tf16_xmkhdf.FKJE" value="${gc.fkje}" style="width:100%"  />
+							<input type="text"   name="Tf16_xmkhdf.FKJE" value="${gc.fkje}" style="width:100%"  onBlur="checkPenalty(this,'${gc.khx}','${gc.lb}')"/>
 						</td>
 						<td>
 							<input type="text"   name="Tf16_xmkhdf.EXPLAIN" value="${gc.explain}" style="width:100%"  />

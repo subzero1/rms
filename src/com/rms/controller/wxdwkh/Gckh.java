@@ -1,5 +1,7 @@
 package com.rms.controller.wxdwkh;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -16,10 +18,7 @@ import com.netsky.base.baseDao.Dao;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
-import com.netsky.base.service.SaveService;
-import com.rms.dataObjects.wxdw.Tf15_khxwh;
 import com.rms.dataObjects.wxdw.Tf16_xmkhdf;
-import com.netsky.base.dataObjects.Ta03_user;
 
 @Controller
 public class Gckh {
@@ -37,12 +36,6 @@ public class Gckh {
 	 */
 	@Autowired
 	private QueryService queryService;
-
-	/**
-	 * 保存服务
-	 */
-	@Autowired
-	private SaveService saveService;
 
 	/**
 	 * 日志处理类
@@ -76,6 +69,37 @@ public class Gckh {
 		request.setAttribute("curDate", new Date());
 		request.setAttribute("project_id", project_id); 
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/gckh.jsp");
+	}
+	
+	/**
+	 * 异步检查罚款是否超过上限 
+	 * @param request
+	 * @param response void
+	 */
+	@RequestMapping("/wxdwkh/checkPenalty.do")
+	public void checkPenalty(HttpServletRequest request,HttpServletResponse response){
+		String lb=convertUtil.toString(request.getParameter("lb"));
+		String khx=convertUtil.toString(request.getParameter("khx"));
+		StringBuffer HSql=new StringBuffer();
+		PrintWriter out=null;
+		
+		HSql.append("select k.fksx from Tf15_khxwh k where 1=1");
+		HSql.append(" and k.lb='");
+		HSql.append(lb+"'");
+		HSql.append(" and k.khx='");
+		HSql.append(khx+"'");
+		List fksx=queryService.searchList(HSql.toString());
+		try {
+			out=response.getWriter();
+			Object fk=null;
+			if(fksx.size()>0&&fksx!=null)
+				 fk=fksx.get(0);
+			out.print(convertUtil.toInteger(fk));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }
