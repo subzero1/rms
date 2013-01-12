@@ -3,13 +3,13 @@
 	<tables>
 		<fatherTable/>
 		<table>
-			<name>com.rms.dataObjects.form.Td01_xmxx</name>
+			<name>com.rms.dataObjects.form.Td00_gcxx</name>
 		</table>
 	</tables>
 		<tables>
 		<fatherTable>
 			<table>
-				<name>Td01_xmxx</name>
+				<name>Td00_gcxx</name>
 				<column>id</column>
 				<injectColumn>project_id</injectColumn>
 			</table>

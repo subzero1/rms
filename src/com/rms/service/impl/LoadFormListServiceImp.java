@@ -190,11 +190,25 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						btn.picUri = "newform";
 						buttonList.add(btn);
 						
-						btn = new Button("起草验收");
-						btn.url = "javascript:docNew('flowForm.do?module_id=" + ys_module_id + "&node_id=" + ys_node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-						btn.comment = "新建变更流程";
-						btn.picUri = "newform";
-						buttonList.add(btn);
+						/*
+						 * 资源不确认不能起草验收单
+						 */
+						boolean isAlreadyZyConfirm = false;
+						if(module_id == 101){
+							Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class,project_id);
+							isAlreadyZyConfirm = (td01.getZyqrsj() != null);
+						}
+						else{
+							Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,project_id);
+							isAlreadyZyConfirm = (td00.getZyqrsj() != null);
+						}
+						if(isAlreadyZyConfirm){
+							btn = new Button("起草验收");
+							btn.url = "javascript:docNew('flowForm.do?module_id=" + ys_module_id + "&node_id=" + ys_node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+							btn.comment = "新建变更流程";
+							btn.picUri = "newform";
+							buttonList.add(btn);
+						}
 					}
 					
 					if(node_id == 10101){//项目管理员起草立项资料送审单
