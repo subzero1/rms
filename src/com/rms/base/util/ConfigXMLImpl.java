@@ -174,6 +174,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	}
 
 	/**
+	 * 根据标签得到列表
 	 *　重载方法：getElementsByName
 	 * (non-Javadoc)
 	 * @see com.rms.base.util.ConfigXML#getElementsByName(java.lang.String, java.lang.String)
