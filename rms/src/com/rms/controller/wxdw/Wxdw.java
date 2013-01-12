@@ -1508,7 +1508,7 @@ public class Wxdw {
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
-			out.print("{\"statusCode\":\"300\",\"message\":\"保存失败！\"}");
+			out.print("{\"statusCode\":\"300\",\"message\":\"保存失败::"+e.getMessage()+"\"}");
 		} finally {
 			session.close();
 		}
