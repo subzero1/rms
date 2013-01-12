@@ -166,13 +166,13 @@
 	
 	$("#jsxz").change(function(){
 		var data = $(this).val();
-		if(data == '基站'){
+		if(data.indexOf('基站')!=-1){
 			$("#jz").css("display","block");
 			$("#xq").css("display","none");
 			$("input[ids=jz]").attr("class","required");
 			$("input[ids=xq]").attr("class","norequired");
 		}
-		else if(data == '室分' ){
+		else if(data.indexOf('室分')!=-1 ){
 			$("#jz").css("display","none");
 			$("#xq").css("display","none");
 			$("input[ids=jz]").attr("class","norequired");
@@ -188,13 +188,13 @@
 	
 	//通过建设性质来区分显示哪些字段
 	var jsxz = $("#jsxz").val();
-	if(jsxz == '' || jsxz == null || jsxz == '室分'){
+	if(jsxz == '' || jsxz == null || jsxz.indexOf('室分')!=-1){
 		$("#jz").css("display","none");
 		$("#xq").css("display","none");
 		$("input[ids=jz]").attr("class","norequired");
 		$("input[ids=xq]").attr("class","norequired");
 	}
-	else if(jsxz == 'undefine' || jsxz == '基站'){
+	else if(jsxz == 'undefine' || jsxz.indexOf('基站')!=-1){
 		$("#jz").css("display","block");
 		$("#xq").css("display","none");
 		$("input[ids=jz]").attr("class","required");
