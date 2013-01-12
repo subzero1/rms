@@ -158,7 +158,7 @@ public class DetailSelect {
 		
 		modelMap.put("clxxList", clxxList);
 
-		return new ModelAndView("/WEB-INF/jsp/form/selectClxx.jsp",modelMap);		
+		return new ModelAndView("/WEB-INF/jsp/wxdw/selectClxx.jsp",modelMap);		
 	}
 	
 	/**
