@@ -124,6 +124,8 @@ function autoSelectClxx(inputObj){
 				cur_tr.find("[name=Tf08_clmxb.CLBM]").val($(xml).find("clbm").text());
 				cur_tr.find("[name=Tf08_clmxb.CLMC]").val($(xml).find("clmc").text());
 				cur_tr.find("[name=Tf08_clmxb.XH]").val($(xml).find("xh").text());
+				cur_tr.find("[name=Tf08_clmxb.GG]").val($(xml).find("gg").text());
+				cur_tr.find("[name=Tf08_clmxb.DW]").val($(xml).find("dw").text());
 			},
 			error: DWZ.ajaxError
 		});	
@@ -162,7 +164,7 @@ function autoSelectClxx(inputObj){
 			<table width="100%" class="list  itemDetail" width="100%">
 				<thead>
 					<tr>
-						<th type="lookup" style="width:100px;" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH" autocomplete="off">材料类别</th>
+						<th type="lookup" style="width:180px;" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off">材料类别</th>
 						<th type="text" style="width:320px;" name="Tf08_clmxb.CLMC"  hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
 						<th type="text" style="width:120px;" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
@@ -183,7 +185,7 @@ function autoSelectClxx(inputObj){
 					<input type="hidden" name="Tf08_clmxb.SGDW_ID" value="${obj.sgdw_id}"/>
 					<input type="hidden" name="Tf08_clmxb.CZRY" value="${obj.czry}"/>
 						<td>
-							<input type="text" id="clxxDetail[${offset }].dwz_clxxLookup.Tf08_clmxb.CLBM" name="Tf08_clmxb.CLBM" value="${obj.clbm}" style="width:0px;" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH" autocomplete="off"/>
+							<input type="text" id="clxxDetail[${offset }].dwz_clxxLookup.Tf08_clmxb.CLBM" name="Tf08_clmxb.CLBM" value="${obj.clbm}" style="width:0px;" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off"/>
 							<a class="btnLook" href="selectClxx.do" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup">查找带回</a>
 						</td>
 						<td>
