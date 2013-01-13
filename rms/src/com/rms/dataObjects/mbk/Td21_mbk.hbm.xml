@@ -391,6 +391,14 @@
             insert="true"
             column="sqkcsj"
         />
+        
+        <property
+            name="kcfksj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="kcfksj"
+        />
 
 		 <property
             name="sqkcsm"
@@ -408,7 +416,7 @@
             column="cjr"
         />
         
-                <property
+        <property
             name="cjrdh"
             type="java.lang.String"
             update="true"
