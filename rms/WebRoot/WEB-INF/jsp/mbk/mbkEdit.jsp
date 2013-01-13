@@ -11,7 +11,20 @@
 </style>
 <script language="javascript">
 var change = false;
-
+$(function(){
+	   		$("#jsxz",navTab.getCurrentPanel()).cascade({
+				childSelect:$("#jsfs",navTab.getCurrentPanel()),
+				tableName:'Tc12_jsfs',
+				conditionColumn:'jsxz_id',
+				valueForOption:'mc',
+				key:'id',
+				orderBy:'id',
+				showForOption:{
+					pattern:'[mc]',
+					mc:'mc'
+				}
+			});	
+	   	});
 $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 		change = true;
 	});
@@ -192,13 +205,13 @@ function printMbk(){
 
 $("#jsxz").change(function(){
 		var data = $(this).val();
-		if(data == '基站'){
+		if(data.indexOf('基站') != -1){
 			$("#jz").css("display","block");
 			$("#xq").css("display","none");
 			$("input[ids=jz]").attr("class","required");
 			$("input[ids=xq]").attr("class","norequired");
 		}
-		else if(data == '室分' ){
+		else if(data.indexOf('室分') != -1){
 			$("#jz").css("display","none");
 			$("#xq").css("display","none");
 			$("input[ids=jz]").attr("class","norequired");
@@ -434,15 +447,15 @@ $("#jsxz").change(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>建设性质：</label>
-					<netsky:htmlSelect htmlClass="required" id="jsxz" name="Td21_mbk.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="" showForOption="" value="${Td21_mbk.jsxz}" extend="" extendPrefix="true" />
-				</p>
-				<p>
-					<label> 分    类：</label>
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.LB" style="width:156px;" objectForOption="lbList" valueForOption="" showForOption="" value="${Td21_mbk.lb}" extend="" extendPrefix="true" />
+					<netsky:htmlSelect htmlClass="required" id="jsxz" name="Td21_mbk.JSXZ" style="width:156px;" objectForOption="jsxzList" valueForOption="name" showForOption="name" value="${Td21_mbk.jsxz}" valueForExtend="{'id':'[id]'}"  extend="" extendPrefix="true" />
 				</p>
 				<p>
 					<label>建设方式：</label> 
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSFS" style="width:126px;" objectForOption="jsfsList" valueForOption="name" showForOption="name" value="${Td21_mbk.jsfs}" extend="" extendPrefix="true" />
+					<netsky:htmlSelect htmlClass="required" id="jsfs" name="Td21_mbk.JSFS" style="width:156px;" objectForOption="jsfsList" valueForOption="mc" showForOption="mc" value="${Td21_mbk.jsfs}" extend="" extendPrefix="true" />
+				</p>
+				<p>
+					<label> 分    类：</label>
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.LB" style="width:126px;" objectForOption="lbList" valueForOption="" showForOption="" value="${Td21_mbk.lb}" extend="" extendPrefix="true" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -711,15 +724,17 @@ $("#jsxz").change(function(){
 	
 </div>
 <script language="javascript">
+	
+	   	
 	//通过建设性质来区分显示哪些字段
 	var jsxz = $("#jsxz").val();
-	if(jsxz == '' || jsxz == null || jsxz == '室分'){
+	if(jsxz == '' || jsxz == null || jsxz.indexOf('室分') != -1){
 		$("#jz").css("display","none");
 		$("#xq").css("display","none");
 		$("input[ids=jz]").attr("class","norequired");
 		$("input[ids=xq]").attr("class","norequired");
 	}
-	else if(jsxz == 'undefine' || jsxz == '基站'){
+	else if(jsxz == 'undefine' || jsxz.indexOf('基站') != -1){
 		$("#jz").css("display","block");
 		$("#xq").css("display","none");
 		$("input[ids=jz]").attr("class","required");
