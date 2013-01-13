@@ -208,25 +208,26 @@ public class Mbk {
 		}
 		
 		/*
-		 * 待方案会审列表
+		 * 待四方勘察列表(给四方勘察人员使用)
 		 */
-		if(listType.equals("dhs")){
-			hsql.append(" and zt = '会审申请'");
+		if(listType.equals("dkcForKcry")){
+			hsql.append(" and zt = '四方勘察'");
+		}
+		
+		/*
+		 * 待四方勘察列表(给四方勘察人员使用)
+		 */
+		if(listType.equals("ksg")){
+			hsql.append(" and zt = '转建设'");
 		}
 		
 		/*
 		 * 四方勘察申请列表
 		 */
 		if(listType.equals("kcsq")){
-			hsql.append(" and zt = '达成协议' and jsxz != '室分'");
+			hsql.append(" and zt = '开始谈点' and jsxz != '室分'");
 		}
 		
-		/*
-		 * 方案会审申请列表
-		 */
-		if(listType.equals("fahssq")){
-			hsql.append(" and (zt = '四方勘察' or zt = '勘察结束')");
-		}
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
