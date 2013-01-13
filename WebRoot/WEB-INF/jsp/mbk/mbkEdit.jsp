@@ -387,15 +387,7 @@ $("#jsxz").change(function(){
 			<li><a class="unsurvey" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && (Td21_mbk.zt == '勘察结束' || Td21_mbk.zt == '会审申请')}">
-			<li><a class="icon" href="#"><span flag="fahs" class="lzspan">方案会审</span></a></li>
-			<li class="line">line</li>
-			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '方案会审'}">
-			<li><a class="icon" href="#"><span flag="hswc" class="lzspan">会审完成</span></a></li>
-			<li class="line">line</li>
-			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '会审完成'}">
+			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '签约完成'}">
 			<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
 			<li class="line">line</li>
 			</c:if>
