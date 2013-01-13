@@ -279,6 +279,7 @@ public class Mbk {
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		Long xqs_id = convertUtil.toLong(request.getParameter("xqs_id"));
 		Td21_mbk mbk = null;
+		StringBuffer hsql = new StringBuffer();
 		
 		if(xqs_id != null && xqs_id != -1){
 			Td06_xqs td06 = (Td06_xqs)queryService.searchById(Td06_xqs.class, xqs_id);
@@ -305,12 +306,22 @@ public class Mbk {
 		}
 		modelMap.put("Td21_mbk", mbk);
 		
-		List<String> jsxzList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设性质'");
+		List<String> jsxzList = (List<String>) queryService.searchList("from Tc01_property where type='建设性质'");
 		modelMap.put("jsxzList", jsxzList);
 		List<String> lbList = (List<String>) queryService.searchList("select name from Tc01_property where type='目标库类别'");
 		modelMap.put("lbList", lbList);
-		List<String> jsfsList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设方式'");
-		modelMap.put("jsfsList", jsfsList);
+		// 获取建设方式：Tc12_jsfs
+		hsql.delete(0, hsql.length());
+		hsql.append("select tc12 ");
+		hsql.append("from Tc12_jsfs tc12,Tc01_property tc01,Td21_mbk td21 ");
+		hsql.append("where tc01.id = tc12.jsxz_id ");
+		hsql.append("and td21.jsxz = tc01.name ");
+		hsql.append("and td21.id = ");
+		hsql.append(id);
+		List jsfsList = queryService.searchList(hsql.toString());
+		if (jsfsList != null) {
+			modelMap.put("jsfsList", jsfsList);
+		}
 		List<String> fgsxList = (List<String>) queryService.searchList("select name from Tc01_property where type='覆盖属性'");
 		modelMap.put("fgsxList", fgsxList);
 		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area where type like '%[1]%'");
@@ -319,7 +330,6 @@ public class Mbk {
 		modelMap.put("tdbmList", tdbmList);
 		
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		StringBuffer hsql=new StringBuffer("");
 		Long user_id=user.getId();
 		
 		/**
