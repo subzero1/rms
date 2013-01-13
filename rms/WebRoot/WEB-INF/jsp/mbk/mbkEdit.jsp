@@ -357,7 +357,7 @@ $("#jsxz").change(function(){
 			<li><a class="icon" href="#"><span flag="ht" class="lzspan">回 退</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && (Td21_mbk.zt == '开始谈点' || Td21_mbk.zt == '勘察申请')}">
+			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '开始谈点'}">
 				<c:choose>
 					<c:when test="${fn:contains(Td21_mbk.jsxz,'室分')}">
 					<li><a class="icon" href="#"><span flag="qywc" class="lzspan">签约完成</span></a></li>

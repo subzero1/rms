@@ -225,7 +225,7 @@ public class Mbk {
 		 * 四方勘察申请列表
 		 */
 		if(listType.equals("kcsq")){
-			hsql.append(" and zt = '开始谈点' and jsxz != '室分'");
+			hsql.append(" and zt = '开始谈点' and instr(jsxz,'室分',1) = 0");
 		}
 		
 		// order排序

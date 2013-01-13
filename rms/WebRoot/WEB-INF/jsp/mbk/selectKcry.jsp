@@ -53,24 +53,23 @@
 	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
 	<input type="hidden" name="names" id="names" value="${param.names }"/>
 	<div class="searchBar" style="height:120px">
-		<ul class="searchContent" style="height:80px">
-			<li>
+			<p>
 				<label>姓 名:</label>
-				<input class="textInput" name="name" style="width:200px;" value="${param.name }" type="text"/>
-			</li>
-			<li>
+				<input class="textInput" name="name" style="width:300px;" value="${param.name }" type="text"/>
+			</p>
+			<p>
 				<label>勘察时间:</label>
-				<input class="date" pattern="yyyy-MM-dd" name="kcsj" id="kcsj" style="width:200px;"  type="text"/>
-			</li>
-			<li>
+				<input class="date" pattern="yyyy-MM-dd" name="kcsj" id="kcsj" style="width:300px;"  type="text"/>
+			</p>
+			
+		<p>
 				<label>说明:</label>
-				<input class="textInput" name="smx" style="width:200px;" id="sm" type="text"/>
-			</li>
-		</ul>
+				<textarea name="smx" style="width:300px;" rows="3" id="sm" >sdfsdfsdfsdfsfdsf</textarea>
+			</p>
 		<div class="subBar">
 		<div style="float:left">
 				<label>已 选:</label>
-				<input class="textInput" name="name" style="width:200px;" readonly="readonly" id="names1" value="${param.names }" type="text"/>
+				<input class="textInput" name="name" style="width:300px;" readonly="readonly" id="names1" value="${param.names }" type="text"/>
 		</div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
