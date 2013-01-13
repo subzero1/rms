@@ -325,12 +325,10 @@ $("#jsxz").change(function(){
 			<li><a class="print" href="javascript:printMbk()"><span>打 印</span></a></li>
 			<li class="line">line</li>
 			<c:if test="${not empty Td21_mbk.id }">
-			 
 			<li><a class="attach" 
 			href="javascript:docSlave('slave.do?project_id=${project_id }&amp;doc_id=${project_id }&amp;module_id=90&amp;node_id=-1&amp;opernode_id=-1&amp;user_id=${user.id }&slave_type=5');">
 			<span>附 件</span></a></li>
 			<li class="line">line</li> 
-			
 			<c:if test="${not empty rolesMap['20101'] && empty Td21_mbk.hdfs }">
 			<li><a class="send" href="#"><span flag="zdrl" class="lzspan">派发</span></a></li>
 			<li class="line">line</li>
@@ -359,14 +357,10 @@ $("#jsxz").change(function(){
 			<li><a class="icon" href="#"><span flag="ht" class="lzspan">回 退</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${(not empty rolesMap['20101'] || not empty rolesMap['20102']) && Td21_mbk.zt == '开始谈点'}">
-			<li><a class="icon" href="#"><span flag="dcxy" class="lzspan">达成协议</span></a></li>
-			<li class="line">line</li>
-			</c:if>
-			<c:if test="${not empty rolesMap['20101'] && (Td21_mbk.zt == '达成协议' || Td21_mbk.zt == '勘察申请')}">
+			<c:if test="${not empty rolesMap['20101'] && (Td21_mbk.zt == '开始谈点' || Td21_mbk.zt == '勘察申请')}">
 				<c:choose>
-					<c:when test="${Td21_mbk.jsxz == '室分'}">
-					<li><a class="icon" href="#"><span flag="zjs" class="lzspan">转建设</span></a></li>
+					<c:when test="${fn:contains(Td21_mbk.jsxz,'室分')}">
+					<li><a class="icon" href="#"><span flag="qywc" class="lzspan">签约完成</span></a></li>
 					<li class="line">line</li>
 					</c:when>
 					<c:otherwise>
@@ -375,12 +369,20 @@ $("#jsxz").change(function(){
 					</c:otherwise>
 				</c:choose>
 			</c:if>
+			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '勘察申请'}">
+			<li><a class="survey" href="#"><span flag="sfkc" class="lzspan">四方勘察</span></a></li>
+			<li class="line">line</li>
+			</c:if>
 			<c:if test="${param.listType == 'kcsq'}">
 			<li><a class="icon" href="#"><span flag="kcsq" class="lzspan">勘察申请</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">
 			<li><a class="unsurvey" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
+			<li class="line">line</li>
+			</c:if>
+			<c:if test="${(not empty rolesMap['20101']) && Td21_mbk.zt == '勘察结束'}">
+			<li><a class="icon" href="#"><span flag="qywc" class="lzspan">签约完成</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '签约完成'}">
@@ -398,7 +400,6 @@ $("#jsxz").change(function(){
 			</c:if>
 		</ul>
 	</div>
-	
 	
 	<div class="pageContent" layouth="48">
 		<form id="mbk_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
