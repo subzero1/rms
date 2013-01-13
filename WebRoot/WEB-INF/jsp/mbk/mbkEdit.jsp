@@ -318,7 +318,7 @@ $("#jsxz").change(function(){
 	<!-- 主操作按钮 -->
 	<div class="panelBar">
 		<ul class="toolBar">
-		 	<c:if test="${not empty rolesMap['20101']}">
+		 	<c:if test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
 		 	<li><a class="save"	href="javascript:saveMbk();"><span>保 存</span></a></li>
 			<li class="line">line</li>
 		 	</c:if>
