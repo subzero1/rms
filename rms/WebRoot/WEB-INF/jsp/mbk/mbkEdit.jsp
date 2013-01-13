@@ -12,19 +12,19 @@
 <script language="javascript">
 var change = false;
 $(function(){
-	   		$("#jsxz",navTab.getCurrentPanel()).cascade({
-				childSelect:$("#jsfs",navTab.getCurrentPanel()),
-				tableName:'Tc12_jsfs',
-				conditionColumn:'jsxz_id',
-				valueForOption:'mc',
-				key:'id',
-				orderBy:'id',
-				showForOption:{
-					pattern:'[mc]',
-					mc:'mc'
-				}
-			});	
-	   	});
+   		$("#jsxz",navTab.getCurrentPanel()).cascade({
+			childSelect:$("#jsfs",navTab.getCurrentPanel()),
+			tableName:'Tc12_jsfs',
+			conditionColumn:'jsxz_id',
+			valueForOption:'mc',
+			key:'id',
+			orderBy:'id',
+			showForOption:{
+				pattern:'[mc]',
+				mc:'mc'
+			}
+		});	
+   	});
 $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 		change = true;
 	});
@@ -379,10 +379,6 @@ $("#jsxz").change(function(){
 			<li><a class="icon" href="#"><span flag="kcsq" class="lzspan">勘察申请</span></a></li>
 			<li class="line">line</li>
 			</c:if>
-			<c:if test="${param.listType == 'fahssq'}">
-			<li><a class="icon" href="#"><span flag="fahssq" class="lzspan">会审申请</span></a></li>
-			<li class="line">line</li>
-			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">
 			<li><a class="unsurvey" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
 			<li class="line">line</li>
@@ -654,8 +650,6 @@ $("#jsxz").change(function(){
 			</c:forEach>
 		</tbody>
 	</table>
-		
-		
 	</div>		
 		
 		<!---调整---->
@@ -716,7 +710,6 @@ $("#jsxz").change(function(){
 	
 </div>
 <script language="javascript">
-	
 	   	
 	//通过建设性质来区分显示哪些字段
 	var jsxz = $("#jsxz").val();
@@ -778,15 +771,5 @@ $("#jsxz").change(function(){
 			});
 	}
 	
-	//如果有方案会审申请，则提示会审申请的内容
-	var show_sqfahs = $("#show_sqfahs");
-	if(show_sqfahs != null && show_sqfahs != 'undefined' && show_sqfahs.size() == 1 && show_sqfahs.val() != ''){
-		var show_content = "<b>设计人员已经提出会审申请，<br/>是否现在发起方案会审?</b>";
-		alertMsg.confirm(show_content, {			
-				okCall: function(){
-					$("#fahsa").click();
-				}
-			});
-	}
 </script>
 
