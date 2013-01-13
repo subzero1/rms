@@ -714,9 +714,9 @@ public class Mbk {
 				td22.setMbk_id(id);
 				session.save(td22);
 			} 
-			else if ("dcxy".equals(type)) {// 达成协议
-				word = "达成协议";
-				td21.setZt("达成协议");
+			else if ("qywc".equals(type)) {// 签约完成
+				word = "签约完成";
+				td21.setZt("签约完成");
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
 						.executeUpdate();
 			} else if ("sfkc".equals(type)) {// 四方勘察
@@ -746,45 +746,45 @@ public class Mbk {
 				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
 						.executeUpdate();
 			} 
-			else if ("fahssq".equals(type)) {// 会审申请
-				word = "会审申请";
-				td21.setZt("会审申请");
-				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-				
-				td22.setSm(user.getName()+"发起方案会审申请" );
-				td22.setKssj(now);
-				td22.setXgr(user.getName());
-				td22.setXgr_bm(dept.getName());
-				td22.setXgr_id(user.getId());
-				td22.setMbk_id(id);
-				session.save(td22);
-			}
-			else if ("fahs".equals(type)) {// 方案会审
-				word = "方案会审";
-				td21.setZt("方案会审");
-				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
-				for (String string : ids) {
-					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
-					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
-					
-					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and (sm like '%方案会审申请%' or sm like '%勘察%') and mbk_id=" + id)
-					.executeUpdate();
-					
-					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-					td22.setSm("方案会审");
-					td22.setKssj(now);
-					td22.setXgr(ta03.getName());
-					td22.setXgr_bm(ta01.getName());
-					td22.setXgr_id(ta03.getId());
-					td22.setMbk_id(id);
-					session.save(td22);
-				}
-			} else if ("hswc".equals(type)) {// 会审完成
-				word = "会审完成";
-				td21.setZt("会审完成");
-				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
-						.executeUpdate();
-			}
+//			else if ("fahssq".equals(type)) {// 会审申请
+//				word = "会审申请";
+//				td21.setZt("会审申请");
+//				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+//				
+//				td22.setSm(user.getName()+"发起方案会审申请" );
+//				td22.setKssj(now);
+//				td22.setXgr(user.getName());
+//				td22.setXgr_bm(dept.getName());
+//				td22.setXgr_id(user.getId());
+//				td22.setMbk_id(id);
+//				session.save(td22);
+//			}
+//			else if ("fahs".equals(type)) {// 方案会审
+//				word = "方案会审";
+//				td21.setZt("方案会审");
+//				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
+//				for (String string : ids) {
+//					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
+//					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
+//					
+//					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and (sm like '%方案会审申请%' or sm like '%勘察%') and mbk_id=" + id)
+//					.executeUpdate();
+//					
+//					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+//					td22.setSm("方案会审");
+//					td22.setKssj(now);
+//					td22.setXgr(ta03.getName());
+//					td22.setXgr_bm(ta01.getName());
+//					td22.setXgr_id(ta03.getId());
+//					td22.setMbk_id(id);
+//					session.save(td22);
+//				}
+//			} else if ("hswc".equals(type)) {// 会审完成
+//				word = "会审完成";
+//				td21.setZt("会审完成");
+//				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
+//						.executeUpdate();
+//			}
 			else if ("jxtd".equals(type)) {// 继续谈点
 				word = "继续谈点";
 				td21.setZhfksj(new Date());
