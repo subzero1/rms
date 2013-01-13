@@ -914,5 +914,20 @@ public class Td21_mbk implements Serializable {
 		this.xqs_id = xqs_id;
 	}
 	
-	
+	/*
+	 * 勘察反馈时间
+	 */
+	private Date kcfksj;
+
+	/**
+	 * @hibernate.property column="kcfksj"
+	 * @return Returns the kcfksj.
+	 */
+	public Date getKcfksj() {
+		return kcfksj;
+	}
+
+	public void setKcfksj(Date kcfksj) {
+		this.kcfksj = kcfksj;
+	}
 }
