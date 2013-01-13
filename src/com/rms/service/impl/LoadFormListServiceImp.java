@@ -121,7 +121,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			
 			// 获取地区
 			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
-			queryBuilder.like("type", "[1]");
+			queryBuilder.like("type", "[1]",MatchMode.ANYWHERE);
 			queryBuilder.addOrderBy(Order.asc("seq"));
 			tmpList = queryService.searchList(queryBuilder);
 			if (tmpList != null) {
