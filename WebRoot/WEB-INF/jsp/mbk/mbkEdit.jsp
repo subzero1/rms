@@ -415,6 +415,9 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="Td21_mbk.CJR" value="<c:out value="${Td21_mbk.cjr }" default="${user.name }"/>"/>
 			<input type="hidden" name="Td21_mbk.CJRDH" value="<c:out value="${Td21_mbk.cjrdh }" default="${user.mobile_tel }"/>"/>
 			<input type="hidden" name="Td21_mbk.XQS_ID" value="${Td21_mbk.xqs_id }"/>
+			<c:if test="${not empty rolesMap['20102']}">
+				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.ZYMC,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ"/>
+			</c:if>
 			<c:if test="${empty Td21_mbk.cjsj}">
 				<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			</c:if>
@@ -431,7 +434,7 @@ $("#jsxz").change(function(){
 				</p>
 				<p>
 					<label>资源名称：</label>
-					<input class="required" type="text" name="Td21_mbk.ZYMC" style="width:376px;" value="${Td21_mbk.zymc}" />
+					<input class="required" type="text" name="Td21_mbk.ZYMC" id="Td21_mbk.ZYMC" style="width:376px;" value="${Td21_mbk.zymc}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -444,26 +447,26 @@ $("#jsxz").change(function(){
 				</p>
 				<p>
 					<label> 分    类：</label>
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.LB" style="width:126px;" objectForOption="lbList" valueForOption="" showForOption="" value="${Td21_mbk.lb}" extend="" extendPrefix="true" />
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.LB" id="Td21_mbk.LB" style="width:126px;" objectForOption="lbList" valueForOption="" showForOption="" value="${Td21_mbk.lb}" extend="" extendPrefix="true" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>所属地区：</label>
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.SSDQ" style="width:156px;" objectForOption="dqList" valueForOption="" showForOption="" value="${Td21_mbk.ssdq}" extend="" extendPrefix="true" />
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.SSDQ" id="Td21_mbk.SSDQ" style="width:156px;" objectForOption="dqList" valueForOption="" showForOption="" value="${Td21_mbk.ssdq}" extend="" extendPrefix="true" />
 				</p>
 				<p>
 					<label>坐落地点：</label>
-					<input type="text" class="required" name="Td21_mbk.ZLDD" style="width:376px;" value="${Td21_mbk.zldd}"/>
+					<input type="text" class="required" name="Td21_mbk.ZLDD" id="Td21_mbk.ZLDD" style="width:376px;" value="${Td21_mbk.zldd}"/>
 				</p> 
 				<div id="jz">
 					<div style="height:0px;"></div>
 					<p>
 						<label>经    度：</label>
-						<input type="text" ids="jz" name="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
+						<input type="text" ids="jz" name="Td21_mbk.JD" id="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
 					</p>
 					<p>
 						<label>纬    度：</label>
-						<input type="text" ids="jz" name="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
+						<input type="text" ids="jz" name="Td21_mbk.WD" id="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
 					</p>
 					<p>
 					<label>覆盖属性：</label> 
@@ -474,15 +477,15 @@ $("#jsxz").change(function(){
 					<div style="height:0px;"></div>
 					<p>
 						<label>幢    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.ZS" style="width:150px;" value="${Td21_mbk.zs}"/>
+						<input type="text" ids="xq" name="Td21_mbk.ZS"  id="Td21_mbk.ZS" style="width:150px;" value="${Td21_mbk.zs}"/>
 					</p> 
 					<p>
 						<label>层    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.CS" style="width:150px;" value="${Td21_mbk.cs}"/>
+						<input type="text" ids="xq" name="Td21_mbk.CS" id="Td21_mbk.CS" style="width:150px;" value="${Td21_mbk.cs}"/>
 					</p>
 					<p>
 						<label>户    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.HS" style="width:120px;" value="${Td21_mbk.hs}"/>
+						<input type="text" ids="xq" name="Td21_mbk.HS" id="Td21_mbk.HS" style="width:120px;" value="${Td21_mbk.hs}"/>
 					</p>
 				</div>
 				<div class="divider"></div>
@@ -510,11 +513,11 @@ $("#jsxz").change(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label width="90">反馈周期：</label>
-					<input class="digits" type="text" name="Td21_mbk.FKZQ" style="width:150px;" value="<c:out value="${Td21_mbk.fkzq}" default="5"/>"/>
+					<input class="digits" type="text" name="Td21_mbk.FKZQ" id="Td21_mbk.FKZQ" style="width:150px;" value="<c:out value="${Td21_mbk.fkzq}" default="5"/>"/>
 				</p>
 				<p>
 					<label width="90">谈点周期：</label>
-					<input class="digits" type="text" name="Td21_mbk.TDZQ" style="width:150px;" value="<c:out value="${Td21_mbk.tdzq}" default="30"/>"/>
+					<input class="digits" type="text" name="Td21_mbk.TDZQ" id="Td21_mbk.TDZQ" style="width:150px;" value="<c:out value="${Td21_mbk.tdzq}" default="30"/>"/>
 				</p>
 				<p>
 					<label>是否共建：</label>
@@ -770,6 +773,22 @@ $("#jsxz").change(function(){
 					$("#sfkca").click();
 				}
 			});
+	}
+	
+	/*
+	 *控制字段的读写权限
+	 */
+	var tdr_readonly_fields = $("#tdr_readonly_fields");
+	if(tdr_readonly_fields.size()>0){
+		var t_fields = tdr_readonly_fields.val().split(",");
+		if(t_fields != null){
+			for(var ii = 0;ii < t_fields.length;ii++){
+				var tt_fields = $("#"+t_fields[ii].replace(/\./g,'\\.'));
+				if(tt_fields != null){
+					tt_fields.attr("disabled",true);
+				}
+			}
+		}
 	}
 	
 </script>
