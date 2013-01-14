@@ -38,7 +38,7 @@
 			id="importform"
 			onsubmit="return iframeCallback(this,dialogAjaxDone);">
 			<input type="hidden" name="packgePath"
-				value="com.rms.dataObjects.mbk" />
+				value="com.rms.dataObjects.form" />
 			<input type="hidden" name="_callbackType" value="closeCurrent" />
 			<input type="hidden" name="_navTabId" value="" />
 			<input type="hidden" name="_forwardUrl" value="" />
