@@ -266,6 +266,7 @@ public class ImportController implements org.springframework.web.servlet.mvc.Con
 			} else {
 				message = "Excel格式非法,请参考导入模板或联系系统管理员";
 			}
+			e.printStackTrace();
 		} finally {
 			session.close();
 			
