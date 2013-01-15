@@ -51,7 +51,7 @@ public class Gxwd {
 		// 获得MODULE_ID
 		List<Ta06_module> module_list = (List<Ta06_module>) queryService
 				.searchList("from Ta06_module where name='共享文档'");
-		Long module_id = 0L;
+		Long module_id = -100L;
 		if (module_list != null && module_list.size() != 0) {
 			Ta06_module ta06 = module_list.get(0);
 			module_id = ta06.getId();
