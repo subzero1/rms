@@ -31,6 +31,20 @@ $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 function saveMbk(){ 
 	$("#mbk_form",navTab.getCurrentPanel()).submit(); 
 }
+function setCommunicate(_this,condition){
+	$p=$(_this).closest("p");
+	$input=$("input[name='Td23_KCSQB\."+condition+"']",$p);
+	var span_text= $(_this).text();  
+	if(span_text=='√'){
+		$(_this).html('×');
+		$(_this).css({color:"red"});
+		$input.val('0');
+	}else if(span_text=='×'||span_text==''){
+		$(_this).html('√'); 
+		$(_this).css({color:"green"});
+		$input.val('1');
+	} 
+}
  
 </script>
 <div class="page"> 
@@ -115,15 +129,27 @@ function saveMbk(){
 				<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;沟通情况（房子、天面、楼层）</h3></div><div class="divider" style="height:1px;"></div>
 				<p>
 					<label>提供机房&nbsp;&nbsp;&nbsp;&nbsp;：</label>
-					<input type="text" id="tdrOrg.TDRDH" name="Td23_KCSQB.SFTGJF" style="width:120px;" value="${Td23_kcsqb.sftgjf}"/>
+					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否同意提供机房" >
+					<c:if test="${Td23_kcsqb.sftgjf==0||empty Td23_kcsqb.sftgjf}"><b onclick="setCommunicate(this,'SFTGJF')">×</b></c:if>
+					<c:if test="${Td23_kcsqb.sftgjf==1}"><b onclick="setCommunicate(this,'SFTGJF')">√</b></c:if>
+					</span>
+					<input type="hidden"   name="Td23_KCSQB.SFTGJF" style="width:120px;" value="${Td23_kcsqb.sftgjf}"/>
 				</p>
 				<p>
-					<label>房顶间房&nbsp;&nbsp;&nbsp;&nbsp;：</label>
-					<input type="text" id="tdrOrg.TDRDH" name="Td23_KCSQB.SFTYLD" style="width:120px;" value="${Td23_kcsqb.sftyld}" title="同意在房顶建房"/>
+					<label>房顶建房&nbsp;&nbsp;&nbsp;&nbsp;：</label>
+					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否同意在房顶建房">
+					<c:if test="${Td23_kcsqb.sftyld==0||empty Td23_kcsqb.sftyld}"><b onclick="setCommunicate(this,'SFTYLD')">×</b></c:if>
+					<c:if test="${Td23_kcsqb.sftyld==1}"><b onclick="setCommunicate(this,'SFTYLD')">√</b></c:if>
+					</span>
+					<input type="hidden"   name="Td23_KCSQB.SFTYLD" style="width:120px;" value="${Td23_kcsqb.sftyld}" />
 				</p>
 				<p>
 					<label>美化天线&nbsp;&nbsp;&nbsp;&nbsp;：</label>
-					<input type="text" id="tdrOrg.TDRDH" name="Td23_KCSQB.SFMHTX" style="width:120px;" value="${Td23_kcsqb.sfmhtx}"/>
+					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否美化天线">
+					<c:if test="${Td23_kcsqb.sfmhtx==0||empty Td23_kcsqb.sfmhtx}"><b onclick="setCommunicate(this,'SFMHTX')">×</b></c:if>
+					<c:if test="${Td23_kcsqb.sfmhtx==1}"><b onclick="setCommunicate(this,'SFTYLD')">√</b></c:if>
+					</span>
+					<input type="hidden"  name="Td23_KCSQB.SFMHTX" style="width:120px;" value="${Td23_kcsqb.sfmhtx}"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
