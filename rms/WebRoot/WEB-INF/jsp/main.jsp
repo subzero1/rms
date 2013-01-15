@@ -266,8 +266,9 @@ function getCookie(name)
 									<li><a href="commentsList.do" target="dialog" rel="commentsList" width="700" height="450" title="审批意见维护">审批意见维护</a></li>
 									<li><a href="alarm.do" target="dialog" width="480" height="200" title="超时提醒设置">超时提醒设置</a></li>
 									<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>
-									<li><a href="jlgt/jlgtView.do?module_id=102&doc_id=5040" target="navTab" rel="jlgtView">交流沟通测试！</a></li>
 									<li><a href="jlgt/jlgtList.do" target="navTab" rel="jlgtList">交流沟通列表</a></li>
+									<li><a href="form/xmxxListForNeed.do" target="navTab" rel="jlgtList">待办项目列表</a></li>
+									<li><a href="form/gcxxListForNeed.do" target="navTab" rel="jlgtList">待办工程列表</a></li>
 								</ul>
 							</li>
 						</ul>
