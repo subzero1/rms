@@ -85,6 +85,7 @@ $(function(){
 			return false;
 		} 
 		else if (flag == "kcsq"){//勘察申请
+		/**
 			var input_info = "<p id=\"_c_nums\">勘察申请说明：</p>"
 							+"<p><textarea id=\"_sqkcsm\" cols=\"25\" rows=\"6\" style=\"overflow\:auto\" onKeyUp=\"javascript:getCNum()\"></textarea></p>";
 			alertMsg.confirm(input_info, {
@@ -108,7 +109,9 @@ $(function(){
 				 });
 				}
 			});
-			return false;
+			*/
+			navTab.openTab('kcsq', 'mbk/kcsqEdit.do?', {title:'勘察申请'});
+			//return false;
 		}
 		else if (flag == "zjs"){
 			$("#zjsa").click();
@@ -374,7 +377,7 @@ $("#jsxz").change(function(){
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${param.listType == 'kcsq'}">
-			<li><a class="icon" href="#"><span flag="kcsq" class="lzspan">勘察申请</span></a></li>
+			<li><a class="icon" href="mbk/kcsqEdit.do?mbk_id=${Td21_mbk.id}" target="navTab"><span >勘察申请</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">

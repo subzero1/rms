@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,11 @@ import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.controller.ExportExcelController;
 import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Te01_slave;
+import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -43,20 +44,14 @@ import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
 import com.rms.base.util.ConfigXML;
 import com.rms.base.util.ConfigXMLImpl;
-import com.rms.dataObjects.form.Td01_xmxx;
 import com.rms.dataObjects.form.Td06_xqs;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.rms.dataObjects.mbk.Td22_mbk_lzjl;
+import com.rms.dataObjects.mbk.Td23_kcsqb;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 
 @Controller
 public class Mbk {
-	/**
-	 * 异常捕捉
-	 */
-	@Autowired
-	private ExceptionService exceptionService;
-
 	/**
 	 * 查询服务
 	 */
@@ -68,21 +63,23 @@ public class Mbk {
 	 */
 	@Autowired
 	private SaveService saveService;
-	
+
 	/**
 	 * 表单模块配置表
 	 */
-	private String moduleTable="com.netsky.base.dataObjects.Ta06_module";
+	private String moduleTable = "com.netsky.base.dataObjects.Ta06_module";
 	/**
 	 * 附件表
 	 */
 	private String slaveTable;
 
 	/**
-	 * 目标库信息列表
+	 * 日志处理
 	 */
-	
+	private Logger log = Logger.getLogger(this.getClass());
+
 	/**
+	 * 目标库信息列表
 	 * 
 	 * @param request
 	 * @param response
@@ -91,27 +88,33 @@ public class Mbk {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/mbk/mbkList.do")
-	public ModelAndView mbkList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
-		Ta03_user ta03 = (Ta03_user)session.getAttribute("user");
+	public ModelAndView mbkList(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+
+		Ta03_user ta03 = (Ta03_user) session.getAttribute("user");
 		String user_name = null;
-		if(ta03 == null){
+		if (ta03 == null) {
 			ta03 = new Ta03_user();
 		}
 		user_name = ta03.getName();
-		
+
 		ModelMap modelMap = new ModelMap();
 		// 分页
 		Integer totalPages = 1;
 		Integer totalCount = 0;
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "cjsj");
-		String listType = convertUtil.toString(request.getParameter("listType"));
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "cjsj");
+		String listType = convertUtil
+				.toString(request.getParameter("listType"));
 		if (orderField.equals("")) {
 			orderField = "cjsj";
 		}
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
 			orderDirection = "desc";
 		}
@@ -129,27 +132,30 @@ public class Mbk {
 		hsql.append("select mbk from Td21_mbk mbk where 1=1");
 		// where条件
 		// 非20101角色
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request
+				.getSession().getAttribute("rolesMap");
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String roleSql = "1=0";
 		if (rolesMap.get("20101") != null) {
-			roleSql += " or cjr = '"+user_name+"' ";
+			roleSql += " or cjr = '" + user_name + "' ";
 
 		}
 		if (rolesMap.get("20102") != null) {
-			roleSql += " or (tdr_id=" + user.getId() + ") or (zt='新建' and hdfs='派发')";
+			roleSql += " or (tdr_id=" + user.getId()
+					+ ") or (zt='新建' and hdfs='派发')";
 
 		}
 		if (rolesMap.get("20103") != null) {
-			roleSql += " or ( id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm like '%四方勘察%'))";
+			roleSql += " or ( id in (select mbk_id from Td22_mbk_lzjl where xgr_id="
+					+ user.getId() + " and sm like '%四方勘察%'))";
 		}
 		if (rolesMap.get("20104") != null) {
-			roleSql += " or (  id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
-					+ " and sm='方案会审'))";
+			roleSql += " or (  id in (select mbk_id from Td22_mbk_lzjl where xgr_id="
+					+ user.getId() + " and sm='方案会审'))";
 		}
 		if (rolesMap.get("20105") != null) {
-			roleSql += " or ((zt='转建设' or zt='建设中') and id in (select mbk_id from Td22_mbk_lzjl where xgr_id=" + user.getId()
+			roleSql += " or ((zt='转建设' or zt='建设中') and id in (select mbk_id from Td22_mbk_lzjl where xgr_id="
+					+ user.getId()
 					+ " and (sm='建设中' or sm='转建设') and jssj is null))";
 		}
 		hsql.append(" and (" + roleSql + ")");
@@ -169,78 +175,80 @@ public class Mbk {
 		if (!zymc.equals("")) {
 			hsql.append(" and zymc like '%" + zymc + "%'");
 		}
-		
+
 		/*
 		 * 待认领列表
 		 */
-		if(listType.equals("drl")){
+		if (listType.equals("drl")) {
 			hsql.append(" and zt = '新建' and hdfs = '派发'");
 		}
-		
+
 		/*
 		 * 退回列表
 		 */
-		if(listType.equals("ht")){
-			hsql.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+		if (listType.equals("ht")) {
+			hsql
+					.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
 		}
-		
+
 		/*
-		 * 反馈超期列表
-		 * zhfksj 最后反馈时间
-		 * zypfsj 资源派发时间
+		 * 反馈超期列表 zhfksj 最后反馈时间 zypfsj 资源派发时间
 		 */
-		if(listType.equals("fkcq")){
-			hsql.append(" and zt='开始谈点' and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
+		if (listType.equals("fkcq")) {
+			hsql
+					.append(" and zt='开始谈点' and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
 		}
-		
+
 		/*
 		 * 谈点超期列表
 		 */
-		if(listType.equals("tdcq")){
-			hsql.append(" and zt='开始谈点' and zypfsj + (case when tdzq is null then 15 else tdzq end) < sysdate");
+		if (listType.equals("tdcq")) {
+			hsql
+					.append(" and zt='开始谈点' and zypfsj + (case when tdzq is null then 15 else tdzq end) < sysdate");
 		}
-		
+
 		/*
 		 * 待四方勘察列表
 		 */
-		if(listType.equals("dkc")){
+		if (listType.equals("dkc")) {
 			hsql.append(" and zt = '勘察申请'");
 		}
-		
+
 		/*
 		 * 待四方勘察列表(给四方勘察人员使用)
 		 */
-		if(listType.equals("dkcForKcry")){
+		if (listType.equals("dkcForKcry")) {
 			hsql.append(" and zt = '四方勘察'");
 		}
-		
+
 		/*
 		 * 待四方勘察列表(给四方勘察人员使用)
 		 */
-		if(listType.equals("ksg")){
+		if (listType.equals("ksg")) {
 			hsql.append(" and zt = '转建设'");
 		}
-		
+
 		/*
 		 * 四方勘察申请列表
 		 */
-		if(listType.equals("kcsq")){
+		if (listType.equals("kcsq")) {
 			hsql.append(" and zt = '开始谈点' and instr(jsxz,'室分',1) = 0");
 		}
-		
+
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
 		// orderDirection
 		hsql.append(" " + orderDirection);
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
 		// 获取结果集
 		List<Object[]> mbkList = new ArrayList<Object[]>();
 		while (ro.next()) {
-			Object[] obj = new Object[2]; 
+			Object[] obj = new Object[2];
 			obj[0] = ro.get("mbk");
 			Map map = new HashMap();
-			if(!listType.equals("")){
+			if (!listType.equals("")) {
 				map.put("listType", listType);
 			}
 			obj[1] = map;
@@ -257,7 +265,8 @@ public class Mbk {
 		List<String> lbList = (List<String>) queryService
 				.searchList("select name from Tc01_property where type='目标库类别'");
 		modelMap.put("lbList", lbList);
-		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area");
+		List<String> dqList = (List<String>) queryService
+				.searchList("select name from Tc02_area");
 		modelMap.put("dqList", dqList);
 		List<String> ztList = (List<String>) queryService
 				.searchList("select name from Tc01_property where type='目标库状态'");
@@ -265,31 +274,36 @@ public class Mbk {
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkList.jsp", modelMap);
 
 	}
-	
+
 	/**
 	 * 目标库信息
-	 * @throws ClassNotFoundException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/mbk/mbkEdit.do")
-	public ModelAndView mbkEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+	public ModelAndView mbkEdit(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session)
+			throws ClassNotFoundException, IllegalArgumentException,
+			IllegalAccessException, InvocationTargetException {
 		ModelMap modelMap = new ModelMap();
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		Long xqs_id = convertUtil.toLong(request.getParameter("xqs_id"));
 		Td21_mbk mbk = null;
 		StringBuffer hsql = new StringBuffer();
-		
-		if(xqs_id != null && xqs_id != -1){
-			Td06_xqs td06 = (Td06_xqs)queryService.searchById(Td06_xqs.class, xqs_id);
-			if(td06 == null){
+
+		if (xqs_id != null && xqs_id != -1) {
+			Td06_xqs td06 = (Td06_xqs) queryService.searchById(Td06_xqs.class,
+					xqs_id);
+			if (td06 == null) {
 				td06 = new Td06_xqs();
 			}
 			mbk = new Td21_mbk();
 			mbk.setId(null);
-			mbk.setZymc(td06.getXqmc()+"【来自需求】");
+			mbk.setZymc(td06.getXqmc() + "【来自需求】");
 			mbk.setXqs_id(xqs_id);
 			mbk.setBz(td06.getBz());
 			mbk.setSsdq(td06.getSsdq());
@@ -301,15 +315,16 @@ public class Mbk {
 			mbk.setZs(td06.getZs());
 			mbk.setHs(td06.getHs());
 			mbk.setCs(td06.getCs());
-		}
-		else{
+		} else {
 			mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
 		}
 		modelMap.put("Td21_mbk", mbk);
-		
-		List<String> jsxzList = (List<String>) queryService.searchList("from Tc01_property where type='建设性质'");
+
+		List<String> jsxzList = (List<String>) queryService
+				.searchList("from Tc01_property where type='建设性质'");
 		modelMap.put("jsxzList", jsxzList);
-		List<String> lbList = (List<String>) queryService.searchList("select name from Tc01_property where type='目标库类别'");
+		List<String> lbList = (List<String>) queryService
+				.searchList("select name from Tc01_property where type='目标库类别'");
 		modelMap.put("lbList", lbList);
 		// 获取建设方式：Tc12_jsfs
 		hsql.delete(0, hsql.length());
@@ -323,56 +338,59 @@ public class Mbk {
 		if (jsfsList != null) {
 			modelMap.put("jsfsList", jsfsList);
 		}
-		List<String> fgsxList = (List<String>) queryService.searchList("select name from Tc01_property where type='覆盖属性'");
+		List<String> fgsxList = (List<String>) queryService
+				.searchList("select name from Tc01_property where type='覆盖属性'");
 		modelMap.put("fgsxList", fgsxList);
-		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area where type like '%[1]%'");
+		List<String> dqList = (List<String>) queryService
+				.searchList("select name from Tc02_area where type like '%[1]%'");
 		modelMap.put("dqList", dqList);
-		List<String> tdbmList = (List<String>) queryService.searchList("select name from Tc01_property where type='谈点部门'");
+		List<String> tdbmList = (List<String>) queryService
+				.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
-		
+
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		Long user_id=user.getId();
-		
+		Long user_id = user.getId();
+
 		/**
 		 * 附件上传
 		 */
 		Long project_id = null;
 		Long doc_id = null;
-		Long module_id = new Long("90"); 
-		String loginClient = StringFormatUtil.format((String)request.getSession().getAttribute("loginClient"),""); 
-		Class<?> clazz = null; 
-  
-		String slaveModules = null; 
+		Long module_id = new Long("90");
+		String loginClient = StringFormatUtil.format((String) request
+				.getSession().getAttribute("loginClient"), "");
+		Class<?> clazz = null;
+
+		String slaveModules = null;
 		String[] slaveModuleArray = null;
 		QueryBuilder queryBuilder = null;
-		ResultObject ro=null;  
+		ResultObject ro = null;
 		Vector<HashMap<String, String>> v_slave = null;
 		boolean canSave = false;
-		
-
 
 		/**
 		 * 读Ta06_module表,得到表名信息
 		 */
-		moduleTable="com.netsky.base.dataObjects.Ta06_module";
+		moduleTable = "com.netsky.base.dataObjects.Ta06_module";
 		clazz = Class.forName(moduleTable);
 		Object o_module = queryService.searchById(clazz, module_id);
-		request.setAttribute("module",o_module);
+		request.setAttribute("module", o_module);
 		/**
 		 * 获取表单类型附件module_id
 		 */
-		slaveModules = StringFormatUtil.format((String) PropertyInject.getProperty(o_module, "slave_module"));
+		slaveModules = StringFormatUtil.format((String) PropertyInject
+				.getProperty(o_module, "slave_module"));
 		if (!slaveModules.equals("")) {
 			slaveModuleArray = slaveModules.split(",");
 		}
-		
+
 		/**
 		 * 获得表单附件信息
 		 */
 		v_slave = new Vector<HashMap<String, String>>();
 		if (slaveModuleArray != null) {
 			for (int i = 0; i < slaveModuleArray.length; i++) {
-				
+
 				hsql.delete(0, hsql.length());
 				hsql.append("select distinct tb15.doc_id ,ta06.name ");
 				hsql.append("from Ta06_module ta06,Tb15_docflow tb15 ");
@@ -382,19 +400,25 @@ public class Mbk {
 				hsql.append(" and tb15.module_id = ");
 				hsql.append(new Long(slaveModuleArray[i]));
 				ro = queryService.search(hsql.toString());
-				while(ro.next()){
+				while (ro.next()) {
 					HashMap<String, String> tmp_hm_slave = new HashMap<String, String>();
-					String tmp_slave_name = (String)ro.get("ta06.name");
-					Long t_doc_id = (Long)ro.get("tb15.doc_id");
-					String tmp_formurl = "javascript:parent.popOperWeb('openForm.do?project_id=" + project_id + "&module_id=" + slaveModuleArray[i] + "&doc_id=" + t_doc_id+"')";
-					
+					String tmp_slave_name = (String) ro.get("ta06.name");
+					Long t_doc_id = (Long) ro.get("tb15.doc_id");
+					String tmp_formurl = "javascript:parent.popOperWeb('openForm.do?project_id="
+							+ project_id
+							+ "&module_id="
+							+ slaveModuleArray[i]
+							+ "&doc_id=" + t_doc_id + "')";
+
 					if (!tmp_slave_name.equals("")) {
 						tmp_hm_slave.put("slave_name", tmp_slave_name);
 						tmp_hm_slave.put("formurl", tmp_formurl);
 						tmp_hm_slave.put("rw", "r");
 						v_slave.add(tmp_hm_slave);
 						request.setAttribute("formslave", v_slave);
-						request.setAttribute("length_formslave", v_slave.size());
+						request
+								.setAttribute("length_formslave", v_slave
+										.size());
 					}
 				}
 			}
@@ -404,35 +428,46 @@ public class Mbk {
 		 * 获得上传附件信息
 		 */
 
-		
-		if(project_id==null){
-			project_id=id;
-			doc_id=project_id;}
-		slaveTable="com.netsky.base.dataObjects.Te01_slave";
+		if (project_id == null) {
+			project_id = id;
+			doc_id = project_id;
+		}
+		slaveTable = "com.netsky.base.dataObjects.Te01_slave";
 		v_slave = new Vector<HashMap<String, String>>();
 		clazz = Class.forName(slaveTable);
 		queryBuilder = new HibernateQueryBuilder(clazz);
 		queryBuilder.eq("doc_id", doc_id);
 		queryBuilder.eq("module_id", module_id);
-		queryBuilder.eq("project_id", project_id);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+		queryBuilder.eq("project_id", project_id);
 		queryBuilder.eq("slave_type", "目标库");
 		ro = queryService.search(queryBuilder);
 		while (ro.next()) {
 			HashMap<String, String> tmp_hm_slave = new HashMap<String, String>();
-			
+
 			Object t_slave_obj = ro.get(clazz.getName());
-			Long tmp_slave_id = (Long)PropertyInject.getProperty(t_slave_obj,"id");
-			String tmp_slave_name = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"file_name"), "");
-			String tmp_slave_ext = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"ext_name"), "");
-			String tmp_ftp_url = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"ftp_url"), "");
-			String tmp_slave_remark = StringFormatUtil.format((String) PropertyInject.getProperty(t_slave_obj,"remark"), "");
-			Long tmp_user_id =  (Long)PropertyInject.getProperty(t_slave_obj,"user_id");
-			
+			Long tmp_slave_id = (Long) PropertyInject.getProperty(t_slave_obj,
+					"id");
+			String tmp_slave_name = StringFormatUtil.format(
+					(String) PropertyInject.getProperty(t_slave_obj,
+							"file_name"), "");
+			String tmp_slave_ext = StringFormatUtil.format(
+					(String) PropertyInject
+							.getProperty(t_slave_obj, "ext_name"), "");
+			String tmp_ftp_url = StringFormatUtil
+					.format((String) PropertyInject.getProperty(t_slave_obj,
+							"ftp_url"), "");
+			String tmp_slave_remark = StringFormatUtil.format(
+					(String) PropertyInject.getProperty(t_slave_obj, "remark"),
+					"");
+			Long tmp_user_id = (Long) PropertyInject.getProperty(t_slave_obj,
+					"user_id");
+
 			tmp_hm_slave.put("slave_id", tmp_slave_id.toString());
 			tmp_hm_slave.put("slave_name", tmp_slave_name);
 			tmp_hm_slave.put("ftp_url", tmp_ftp_url);
 			tmp_hm_slave.put("slave_remark", tmp_slave_remark);
-			if (mbk.getZt()!="转建设"&& mbk.getZt()!="建设中"&& user_id.equals(tmp_user_id)) {
+			if (mbk.getZt() != "转建设" && mbk.getZt() != "建设中"
+					&& user_id.equals(tmp_user_id)) {
 				tmp_hm_slave.put("rw", "w");
 			} else {
 				tmp_hm_slave.put("rw", "r");
@@ -441,104 +476,114 @@ public class Mbk {
 		}
 		request.setAttribute("uploadslave", v_slave);
 		request.setAttribute("length_uploadslave", v_slave.size());
-		
-		
+
 		/**
 		 * 获得交流反馈信息
-		 */			
+		 */
 		List<Map> jlfkList = new LinkedList<Map>();
 		hsql.delete(0, hsql.length());
-		hsql.append("select te02.project_id,te02.id,ta03.name,ta03.id,te02.yj,te02.time ");
+		hsql
+				.append("select te02.project_id,te02.id,ta03.name,ta03.id,te02.yj,te02.time ");
 		hsql.append("from Te02_jlfk te02,Ta03_user ta03 ");
 		hsql.append("where te02.user_id = ta03.id ");
 		hsql.append("and project_id = ");
 		hsql.append(id);
-		hsql.append(" and module_id = "); 
+		hsql.append(" and module_id = ");
 		hsql.append(90);
 		hsql.append(" and document_id =  ");
 		hsql.append(id);
 		hsql.append(" order by te02.time ");
-	    ro = queryService.search(hsql.toString());
-		while(ro.next()){
-			HashMap<String,Object> jlfk = new HashMap<String,Object>();
-			Long tmp_user_id =  (Long)ro.get("ta03.id");
+		ro = queryService.search(hsql.toString());
+		while (ro.next()) {
+			HashMap<String, Object> jlfk = new HashMap<String, Object>();
+			Long tmp_user_id = (Long) ro.get("ta03.id");
 			jlfk.put("name", ro.get("ta03.name"));
 			jlfk.put("project_id", ro.get("te02.id"));
 			jlfk.put("yj", ro.get("te02.yj"));
 			jlfk.put("time", ro.get("te02.time"));
 			if (user_id.equals(tmp_user_id)) {
 				jlfk.put("rw", "w");
-			}
-			else{
+			} else {
 				jlfk.put("rw", "r");
 			}
-			
-			Long te02_project_id = new Long(ro.get("te02.project_id").toString());
+
+			Long te02_project_id = new Long(ro.get("te02.project_id")
+					.toString());
 			Long te02_id = new Long(ro.get("te02.id").toString());
-			QueryBuilder queryBuilder99 = new HibernateQueryBuilder(Te01_slave.class);
+			QueryBuilder queryBuilder99 = new HibernateQueryBuilder(
+					Te01_slave.class);
 			queryBuilder99.eq("doc_id", te02_id);
 			queryBuilder99.eq("project_id", te02_project_id);
 			queryBuilder99.eq("module_id", new Long(9003));
 			ResultObject ro99 = queryService.search(queryBuilder99);
-			if(ro99.next()){
-				Te01_slave te01 = (Te01_slave)ro99.get(Te01_slave.class.getName());
+			if (ro99.next()) {
+				Te01_slave te01 = (Te01_slave) ro99.get(Te01_slave.class
+						.getName());
 				jlfk.put("slave_id", te01.getId());
 			}
 			jlfkList.add(jlfk);
 		}
-		if(jlfkList != null && jlfkList.size() > 0){
+		if (jlfkList != null && jlfkList.size() > 0) {
 			request.setAttribute("jlfk", jlfkList);
 		}
 		request.setAttribute("length_jlfk", jlfkList.size());
-		
-		
+
 		if (mbk != null) {
-			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id + " order by id asc"));
-			
+			modelMap.put("lzjlList", queryService
+					.searchList("from Td22_mbk_lzjl where mbk_id=" + id
+							+ " order by id asc"));
+
 			/*
 			 * 查看此目标库是否已经有关联工程
 			 */
-			List glgcList = (List<String>) queryService.searchList("select id from Td00_gcxx where mbk_id="+id);
-			if(glgcList == null || glgcList.size() == 0){
-				modelMap.put("haveGlgc","no");
-			}
-			else{
-				modelMap.put("haveGlgc","yes");
+			List glgcList = (List<String>) queryService
+					.searchList("select id from Td00_gcxx where mbk_id=" + id);
+			if (glgcList == null || glgcList.size() == 0) {
+				modelMap.put("haveGlgc", "no");
+			} else {
+				modelMap.put("haveGlgc", "yes");
 			}
 		}
 		modelMap.put("project_id", id);
-		
+
 		/*
 		 * 判断当前人可以在哪个节点起草工程
 		 */
 		hsql.delete(0, hsql.length());
 		hsql.append("select  distinct ta13.node_id as node_id ");
-		hsql.append("from Ta11_sta_user,Ta11_sta_user ta11,Ta13_sta_node ta13 "); 
+		hsql
+				.append("from Ta11_sta_user,Ta11_sta_user ta11,Ta13_sta_node ta13 ");
 		hsql.append("where ta11.station_id = ta13.station_id ");
 		hsql.append("and ta13.node_id in(10202,10201) ");
-		hsql.append("and ta11.user_id = " + user_id + " "); 
+		hsql.append("and ta11.user_id = " + user_id + " ");
 		hsql.append("order by ta13.node_id desc");
 		ro = queryService.search(hsql.toString());
-		if(ro.next()){
+		if (ro.next()) {
 			modelMap.put("firstNode", ro.get("node_id"));
-		}else{
+		} else {
 			modelMap.put("firstNode", new Long(10201));
 		}
-		//while()
-		
+		// while()
+
 		/**
 		 * 处理表单链接显示问题
 		 */
 		hsql.delete(0, hsql.length());
-		hsql.append("select td00.id,td00.gcmc from Td00_gcxx td00 where td00.mbk_id="+id);
-		ro=queryService.search(hsql.toString());	
+		hsql
+				.append("select td00.id,td00.gcmc from Td00_gcxx td00 where td00.mbk_id="
+						+ id);
+		ro = queryService.search(hsql.toString());
 		v_slave = new Vector<HashMap<String, String>>();
-		while(ro.next()){
+		while (ro.next()) {
 			HashMap<String, String> tmp_hm_slave = new HashMap<String, String>();
-			String tmp_slave_name = (String)ro.get("td00.gcmc");
-			Long t_doc_id = (Long)ro.get("td00.id");
-			String tmp_formurl = "javascript:navTab.openTab('autoform', 'flowForm.do?project_id="+t_doc_id+"&module_id=102&doc_id="+t_doc_id+"', {title:'表单'});";
-			
+			String tmp_slave_name = (String) ro.get("td00.gcmc");
+			Long t_doc_id = (Long) ro.get("td00.id");
+			String tmp_formurl = "javascript:navTab.openTab('autoform', 'flowForm.do?project_id="
+					+ t_doc_id
+					+ "&module_id=102&doc_id="
+					+ t_doc_id
+					+ "', {title:'表单'});";
+
 			if (!tmp_slave_name.equals("")) {
 				tmp_hm_slave.put("slave_name", tmp_slave_name);
 				tmp_hm_slave.put("formurl", tmp_formurl);
@@ -548,14 +593,13 @@ public class Mbk {
 				request.setAttribute("length_formlink", v_slave.size());
 			}
 		}
-		
-		
-		
+
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 
 	@RequestMapping("/mbk/getZybh.do")
-	public void getZybh(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void getZybh(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -568,10 +612,12 @@ public class Mbk {
 		}
 		Calendar calendar = Calendar.getInstance();
 		s += calendar.get(Calendar.YEAR);
-		Session session = queryService.getHibernateTemplate().getSessionFactory().openSession();
+		Session session = queryService.getHibernateTemplate()
+				.getSessionFactory().openSession();
 		try {
-			Long no = ((BigDecimal) (session.createSQLQuery("select source_num.nextval from dual").uniqueResult()))
-					.longValue();
+			Long no = ((BigDecimal) (session
+					.createSQLQuery("select source_num.nextval from dual")
+					.uniqueResult())).longValue();
 			s += String.format("%06d", no);
 		} finally {
 			session.close();
@@ -580,7 +626,8 @@ public class Mbk {
 	}
 
 	@RequestMapping("/mbk/ajaxMbkDel.do")
-	public void ajaxMbkDel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void ajaxMbkDel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		PrintWriter out = null;
 
@@ -591,9 +638,12 @@ public class Mbk {
 		// 获取用户对象
 		try {
 			out = response.getWriter();
-			session.createQuery("delete from Td21_mbk where id=" + id).executeUpdate();
-			session.createQuery("delete from Td22_mbk_lzjl where mbk_id=" + id).executeUpdate();
-			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+			session.createQuery("delete from Td21_mbk where id=" + id)
+					.executeUpdate();
+			session.createQuery("delete from Td22_mbk_lzjl where mbk_id=" + id)
+					.executeUpdate();
+			out
+					.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
 			session.flush();
 			tx.commit();
 		} catch (IOException e) {
@@ -605,18 +655,20 @@ public class Mbk {
 	}
 
 	@RequestMapping("/mbk/mbkLz.do")
-	public void mbkLz(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void mbkLz(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		PrintWriter out = null;
 		response.setContentType("text/html;charset=UTF-8");
 		Session session = saveService.getHiberbateSession();
 		Transaction tx = session.beginTransaction();
 		Long id = convertUtil.toLong(request.getParameter("id"));
-		String sm=convertUtil.toString(request.getParameter("sm"));
-		String kcsjStr=convertUtil.toString(request.getParameter("kcsj"));
-		
+		String sm = convertUtil.toString(request.getParameter("sm"));
+		String kcsjStr = convertUtil.toString(request.getParameter("kcsj"));
+
 		Td21_mbk td21 = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		Ta01_dept dept = (Ta01_dept) queryService.searchById(Ta01_dept.class, user.getDept_id());
+		Ta01_dept dept = (Ta01_dept) queryService.searchById(Ta01_dept.class,
+				user.getDept_id());
 		tx.begin();
 		String word = "";
 		Date now = new Date();
@@ -656,15 +708,15 @@ public class Mbk {
 				td22.setXgr_id(td21.getTdr_id());
 				td22.setXgr_bm(td21.getTdbm());
 				session.save(td22);
-			}else if ("ht".equals(type)) {// 回退
+			} else if ("ht".equals(type)) {// 回退
 				word = "回退";
-				
+
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 				td22.setSm(td21.getTdr() + "回退");
 				td22.setKssj(now);
 				td22.setMbk_id(id);
 				session.save(td22);
-				
+
 				td21.setHdfs(null);
 				td21.setZt("新建");
 				td21.setTdr(null);
@@ -672,7 +724,7 @@ public class Mbk {
 				td21.setTdrdh(null);
 				td21.setTdbm(null);
 				td21.setBz(word);
-			}else if ("cxtd".equals(type)) {// 重新谈点
+			} else if ("cxtd".equals(type)) {// 重新谈点
 				word = "重新谈点";
 				td21.setHdfs(null);
 				td21.setZt("新建");
@@ -683,57 +735,67 @@ public class Mbk {
 				td21.setZypfsj(null);
 				td21.setBz(word);
 				session.createQuery(
-						"update Td22_mbk_lzjl set Jssj=sysdate,sm='" + user.getName() + "从'||xgr||'处收回"
-								+ "' where mbk_id=" + id + " and jssj is null").executeUpdate();
-			}
-			else if ("ycqx".equals(type)) {// 延长期限
+						"update Td22_mbk_lzjl set Jssj=sysdate,sm='"
+								+ user.getName() + "从'||xgr||'处收回"
+								+ "' where mbk_id=" + id + " and jssj is null")
+						.executeUpdate();
+			} else if ("ycqx".equals(type)) {// 延长期限
 				Long ycqx = convertUtil.toLong(request.getParameter("ycqx"));
 				word = "延长期限";
-				td21.setTdzq(td21.getTdzq() == null ? 15 + ycqx : td21.getTdzq() + ycqx);
+				td21.setTdzq(td21.getTdzq() == null ? 15 + ycqx : td21
+						.getTdzq()
+						+ ycqx);
 				td21.setBz(word);
-				
+
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-				td22.setSm(user.getName() + "延长谈点期限【谈点人：" + td21.getTdr()+"】");
+				td22
+						.setSm(user.getName() + "延长谈点期限【谈点人：" + td21.getTdr()
+								+ "】");
 				td22.setKssj(now);
 				td22.setJssj(now);
 				td22.setMbk_id(id);
 				session.save(td22);
-			} 
-			else if ("kcsq".equals(type)) {// 勘察申请
-				String sqkcsm = convertUtil.toString(request.getParameter("sqkcsm"));
+			} else if ("kcsq".equals(type)) {// 勘察申请
+				String sqkcsm = convertUtil.toString(request
+						.getParameter("sqkcsm"));
 				word = "勘察申请";
 				td21.setZt("勘察申请");
 				td21.setSqkcsm(sqkcsm);
 				td21.setBz(word);
-				
+
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-				td22.setSm(user.getName()+"发起四方勘察申请" );
+				td22.setSm(user.getName() + "发起四方勘察申请");
 				td22.setKssj(now);
 				td22.setXgr(user.getName());
 				td22.setXgr_bm(dept.getName());
 				td22.setXgr_id(user.getId());
 				td22.setMbk_id(id);
 				session.save(td22);
-			} 
-			else if ("qywc".equals(type)) {// 签约完成
+			} else if ("qywc".equals(type)) {// 签约完成
 				word = "签约完成";
 				td21.setZt("签约完成");
-				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
-						.executeUpdate();
+				session.createQuery(
+						"update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id="
+								+ id).executeUpdate();
 			} else if ("sfkc".equals(type)) {// 四方勘察
 				word = "四方勘察";
 				td21.setZt("四方勘察");
-				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
+				String[] ids = convertUtil
+						.toString(request.getParameter("ids")).split(",");
 				td21.setKcsj(new SimpleDateFormat("yyyy-MM-dd").parse(kcsjStr));
 				for (String string : ids) {
-					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
-					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
-					
-					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and sm like '%四方勘察申请%' and mbk_id=" + id)
-					.executeUpdate();
-					
+					Ta03_user ta03 = (Ta03_user) queryService.searchById(
+							Ta03_user.class, convertUtil.toLong(string));
+					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(
+							Ta01_dept.class, ta03.getDept_id());
+
+					session
+							.createQuery(
+									"update Td22_mbk_lzjl set jssj=sysdate where jssj is null and sm like '%四方勘察申请%' and mbk_id="
+											+ id).executeUpdate();
+
 					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-					td22.setSm("四方勘察" +" [时间："+kcsjStr+","+sm+"]");
+					td22.setSm("四方勘察" + " [时间：" + kcsjStr + "," + sm + "]");
 					td22.setKssj(now);
 					td22.setXgr(ta03.getName());
 					td22.setXgr_bm(ta01.getName());
@@ -744,57 +806,68 @@ public class Mbk {
 			} else if ("kcjs".equals(type)) {// 勘察结束
 				word = "勘察结束";
 				td21.setZt("勘察结束");
-				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
-						.executeUpdate();
-			} 
-//			else if ("fahssq".equals(type)) {// 会审申请
-//				word = "会审申请";
-//				td21.setZt("会审申请");
-//				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-//				
-//				td22.setSm(user.getName()+"发起方案会审申请" );
-//				td22.setKssj(now);
-//				td22.setXgr(user.getName());
-//				td22.setXgr_bm(dept.getName());
-//				td22.setXgr_id(user.getId());
-//				td22.setMbk_id(id);
-//				session.save(td22);
-//			}
-//			else if ("fahs".equals(type)) {// 方案会审
-//				word = "方案会审";
-//				td21.setZt("方案会审");
-//				String[] ids = convertUtil.toString(request.getParameter("ids")).split(",");
-//				for (String string : ids) {
-//					Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, convertUtil.toLong(string));
-//					Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
-//					
-//					session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and (sm like '%方案会审申请%' or sm like '%勘察%') and mbk_id=" + id)
-//					.executeUpdate();
-//					
-//					Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
-//					td22.setSm("方案会审");
-//					td22.setKssj(now);
-//					td22.setXgr(ta03.getName());
-//					td22.setXgr_bm(ta01.getName());
-//					td22.setXgr_id(ta03.getId());
-//					td22.setMbk_id(id);
-//					session.save(td22);
-//				}
-//			} else if ("hswc".equals(type)) {// 会审完成
-//				word = "会审完成";
-//				td21.setZt("会审完成");
-//				session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id=" + id)
-//						.executeUpdate();
-//			}
+				session.createQuery(
+						"update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id="
+								+ id).executeUpdate();
+			}
+			// else if ("fahssq".equals(type)) {// 会审申请
+			// word = "会审申请";
+			// td21.setZt("会审申请");
+			// Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+			//				
+			// td22.setSm(user.getName()+"发起方案会审申请" );
+			// td22.setKssj(now);
+			// td22.setXgr(user.getName());
+			// td22.setXgr_bm(dept.getName());
+			// td22.setXgr_id(user.getId());
+			// td22.setMbk_id(id);
+			// session.save(td22);
+			// }
+			// else if ("fahs".equals(type)) {// 方案会审
+			// word = "方案会审";
+			// td21.setZt("方案会审");
+			// String[] ids =
+			// convertUtil.toString(request.getParameter("ids")).split(",");
+			// for (String string : ids) {
+			// Ta03_user ta03 = (Ta03_user)
+			// queryService.searchById(Ta03_user.class,
+			// convertUtil.toLong(string));
+			// Ta01_dept ta01 = (Ta01_dept)
+			// queryService.searchById(Ta01_dept.class, ta03.getDept_id());
+			//					
+			// session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where
+			// jssj is null and (sm like '%方案会审申请%' or sm like '%勘察%') and
+			// mbk_id=" + id)
+			// .executeUpdate();
+			//					
+			// Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+			// td22.setSm("方案会审");
+			// td22.setKssj(now);
+			// td22.setXgr(ta03.getName());
+			// td22.setXgr_bm(ta01.getName());
+			// td22.setXgr_id(ta03.getId());
+			// td22.setMbk_id(id);
+			// session.save(td22);
+			// }
+			// } else if ("hswc".equals(type)) {// 会审完成
+			// word = "会审完成";
+			// td21.setZt("会审完成");
+			// session.createQuery("update Td22_mbk_lzjl set jssj=sysdate where
+			// jssj is null and mbk_id=" + id)
+			// .executeUpdate();
+			// }
 			else if ("jxtd".equals(type)) {// 继续谈点
 				word = "继续谈点";
 				td21.setZhfksj(new Date());
-			}else if ("zjs".equals(type)) {// 转建设
+			} else if ("zjs".equals(type)) {// 转建设
 				word = "转建设";
 				td21.setZt("转建设");
-				Long xmgly_id = convertUtil.toLong(request.getParameter("xmgly_id"));
-				Ta03_user ta03 = (Ta03_user) queryService.searchById(Ta03_user.class, xmgly_id);
-				Ta01_dept ta01 = (Ta01_dept) queryService.searchById(Ta01_dept.class, ta03.getDept_id());
+				Long xmgly_id = convertUtil.toLong(request
+						.getParameter("xmgly_id"));
+				Ta03_user ta03 = (Ta03_user) queryService.searchById(
+						Ta03_user.class, xmgly_id);
+				Ta01_dept ta01 = (Ta01_dept) queryService.searchById(
+						Ta01_dept.class, ta03.getDept_id());
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 				td22.setSm("转建设");
 				td22.setKssj(now);
@@ -809,51 +882,61 @@ public class Mbk {
 				// 打开‘新建需求’表单，起草需求
 			}
 			session.update(td21);
-			out.print("{\"statusCode\":\"200\", \"message\":\"" + word + "成功\", \"callbackType\":\"forward\"}");
+			out.print("{\"statusCode\":\"200\", \"message\":\"" + word
+					+ "成功\", \"callbackType\":\"forward\"}");
 			session.flush();
 			tx.commit();
 		} catch (IOException e) {
 			tx.rollback();
-			out.print("{\"statusCode\":\"300\", \"message\":\"" + word + "失败\"}");
+			out.print("{\"statusCode\":\"300\", \"message\":\"" + word
+					+ "失败\"}");
 		} finally {
 			session.close();
 		}
 	}
 
 	@RequestMapping("/mbk/getTdbm.do")
-	public void getTdbm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void getTdbm(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		String s = "";
 		List<Tf01_wxdw> wxdwList = (List<Tf01_wxdw>) queryService
-				.searchList("from Tf01_wxdw where id in(select wxdw_id from Tf04_wxdw_user where user_id=" + id + ")");
+				.searchList("from Tf01_wxdw where id in(select wxdw_id from Tf04_wxdw_user where user_id="
+						+ id + ")");
 		if (wxdwList != null && wxdwList.size() != 0) {
 			s = wxdwList.get(0).getMc();
 		} else {
 			s = convertUtil.toString(queryService.searchList(
-					"select name from Ta01_dept where id=(select dept_id from Ta03_user where id=" + id + ")").get(0));
+					"select name from Ta01_dept where id=(select dept_id from Ta03_user where id="
+							+ id + ")").get(0));
 		}
 		out.print(s);
 	}
 
 	@RequestMapping("/mbk/getTdr.do")
-	public ModelAndView getTdr(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView getTdr(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 10);
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 10);
 		Integer totalCount = 0;
 		Integer pageNumShown = 0;
 
 		// 排序变量
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "user.id");
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "user.id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
 
 		String name = convertUtil.toString(request.getParameter("name"));
 		StringBuffer hsql = new StringBuffer();
 		hsql.append("select ta03 ");
-		hsql.append("from V_ta03 ta03 ,Ta11_sta_user ta11,Ta12_sta_role ta12 "); 
-		hsql.append("where ta11.station_id = ta12.station_id "); 
+		hsql.append("from V_ta03 ta03 ,Ta11_sta_user ta11,Ta12_sta_role ta12 ");
+		hsql.append("where ta11.station_id = ta12.station_id ");
 		hsql.append("and ta11.user_id = ta03.id ");
 		hsql.append("and ta12.role_id=20102 ");
 		hsql.append("and (ta03.dept_name like '%");
@@ -861,52 +944,58 @@ public class Mbk {
 		hsql.append("%' or ta03.name like '%");
 		hsql.append(name);
 		hsql.append("%')");
-		
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages();
-		
+
 		List list = ro.getList();
-		
-//		List<Object[]> resultList = new LinkedList<Object[]>();
-//		for(int i = 0;i < list.size();i++){
-//			Object[] obj = new Object[2];
-//			Ta03_user ta03 = (Ta03_user)list.get(i);
-//			obj[0] = ta03;
-//			
-//			Map<String,String> map = new HashMap<String,String>();
-//			List<Ta01_dept> deptList = (List<Ta01_dept>) queryService.searchList("from Ta01_dept where id =" + ta03.getDept_id());
-//			if(deptList == null || deptList.size() == 0){
-//				map.put("dept_name", "部门未配置");
-//			}
-//			else{
-//				String dept_name = deptList.get(0).getName();
-//				if(convertUtil.toString(dept_name).equals("合作单位")){
-//					List<Tf01_wxdw> wxdwList = (List<Tf01_wxdw>) queryService.searchList("from Tf01_wxdw where id in(select wxdw_id from Tf04_wxdw_user where user_id=" + ta03.getId() + ")");
-//					if(list != null && list.size() > 0){
-//						map.put("dept_name",wxdwList.get(0).getMc());
-//					}
-//					else{
-//						map.put("dept_name", "单位未配置");
-//					}
-//				}
-//				else{
-//					map.put("dept_name",dept_name);
-//				}
-//			}
-//			obj[1] = map;
-//			
-//			if(!name.equals("")){
-//				if(ta03.getName().indexOf(name) != -1 || ((String)map.get("dept_name")).indexOf(name) != -1){
-//					resultList.add(obj);
-//				}
-//			}
-//			else{
-//				resultList.add(obj);
-//			}
-//			
-//		}
-		
+
+		// List<Object[]> resultList = new LinkedList<Object[]>();
+		// for(int i = 0;i < list.size();i++){
+		// Object[] obj = new Object[2];
+		// Ta03_user ta03 = (Ta03_user)list.get(i);
+		// obj[0] = ta03;
+		//			
+		// Map<String,String> map = new HashMap<String,String>();
+		// List<Ta01_dept> deptList = (List<Ta01_dept>)
+		// queryService.searchList("from Ta01_dept where id =" +
+		// ta03.getDept_id());
+		// if(deptList == null || deptList.size() == 0){
+		// map.put("dept_name", "部门未配置");
+		// }
+		// else{
+		// String dept_name = deptList.get(0).getName();
+		// if(convertUtil.toString(dept_name).equals("合作单位")){
+		// List<Tf01_wxdw> wxdwList = (List<Tf01_wxdw>)
+		// queryService.searchList("from Tf01_wxdw where id in(select wxdw_id
+		// from Tf04_wxdw_user where user_id=" + ta03.getId() + ")");
+		// if(list != null && list.size() > 0){
+		// map.put("dept_name",wxdwList.get(0).getMc());
+		// }
+		// else{
+		// map.put("dept_name", "单位未配置");
+		// }
+		// }
+		// else{
+		// map.put("dept_name",dept_name);
+		// }
+		// }
+		// obj[1] = map;
+		//			
+		// if(!name.equals("")){
+		// if(ta03.getName().indexOf(name) != -1 ||
+		// ((String)map.get("dept_name")).indexOf(name) != -1){
+		// resultList.add(obj);
+		// }
+		// }
+		// else{
+		// resultList.add(obj);
+		// }
+		//			
+		// }
+
 		modelMap.put("tdrList", list);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("pageNumShown", pageNumShown);
@@ -917,31 +1006,37 @@ public class Mbk {
 	}
 
 	@RequestMapping("/mbk/getKcry.do")
-	public ModelAndView getKcry(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView getKcry(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 10);
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 10);
 		Integer totalCount = 0;
 		Integer pageNumShown = 0;
 
 		// 排序变量
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "user.id");
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "user.id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
 
 		String name = convertUtil.toString(request.getParameter("name"));
-		StringBuffer hsql = new StringBuffer(); 
-		
+		StringBuffer hsql = new StringBuffer();
+
 		hsql
 				.append("select user from V_ta03 user where user.id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20103)) and user.name like '%"
 						+ name + "%' ");
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
 		totalCount = ro.getTotalRows();
-		pageNumShown = ro.getTotalPages(); 
-		
-		List userList=new LinkedList();
-		
-		while(ro.next()){
-			userList.add( ro.get("user"));
+		pageNumShown = ro.getTotalPages();
+
+		List userList = new LinkedList();
+
+		while (ro.next()) {
+			userList.add(ro.get("user"));
 		}
 		modelMap.put("kcryList", userList);
 		modelMap.put("totalCount", totalCount);
@@ -953,23 +1048,29 @@ public class Mbk {
 	}
 
 	@RequestMapping("/mbk/getHsry.do")
-	public ModelAndView getHsry(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView getHsry(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 10);
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 10);
 		Integer totalCount = 0;
 		Integer pageNumShown = 0;
 
 		// 排序变量
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "user.id");
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "user.id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
 
 		String name = convertUtil.toString(request.getParameter("name"));
 		StringBuffer hsql = new StringBuffer();
 		hsql
 				.append("select user from Ta03_user user where id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20104)) and name like '%"
 						+ name + "%'");
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages();
 		modelMap.put("hsryList", ro.getList());
@@ -982,23 +1083,29 @@ public class Mbk {
 	}
 
 	@RequestMapping("/mbk/getXmgly.do")
-	public ModelAndView getXmgly(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView getXmgly(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 10);
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 10);
 		Integer totalCount = 0;
 		Integer pageNumShown = 0;
 
 		// 排序变量
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "user.id");
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "user.id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
 
 		String name = convertUtil.toString(request.getParameter("name"));
 		StringBuffer hsql = new StringBuffer();
 		hsql
 				.append("select user from Ta03_user user where id in (select user_id from Ta11_sta_user where station_id in(select station_id from Ta12_sta_role where role_id=20105)) and name like '%"
 						+ name + "%'");
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages();
 		modelMap.put("xmglyList", ro.getList());
@@ -1009,18 +1116,20 @@ public class Mbk {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectXmgly.jsp", modelMap);
 	}
-	
+
 	/**
 	 * 目标库信息
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/mbk/lzjl.do")
-	public ModelAndView lzjl(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView lzjl(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
 		Long id = convertUtil.toLong(request.getParameter("mbk_id"));
 		if (id != -1) {
-			modelMap.put("lzjlList", queryService.searchList("from Td22_mbk_lzjl where mbk_id=" + id
-					+ " order by id asc"));
+			modelMap.put("lzjlList", queryService
+					.searchList("from Td22_mbk_lzjl where mbk_id=" + id
+							+ " order by id asc"));
 		}
 		return new ModelAndView("/WEB-INF/jsp/mbk/lzjl.jsp", modelMap);
 	}
@@ -1034,7 +1143,8 @@ public class Mbk {
 	}
 
 	/**
-	 * @param moduleTable The moduleTable to set.
+	 * @param moduleTable
+	 *            The moduleTable to set.
 	 */
 	public void setModuleTable(String moduleTable) {
 		this.moduleTable = moduleTable;
@@ -1049,84 +1159,163 @@ public class Mbk {
 	}
 
 	/**
-	 * @param slaveTable The slaveTable to set.
+	 * @param slaveTable
+	 *            The slaveTable to set.
 	 */
 	public void setSlaveTable(String slaveTable) {
 		this.slaveTable = slaveTable;
 	}
-	
+
 	/**
 	 * 
 	 * @param request
-	 * @param response void
-	 * @throws Exception 
+	 * @param response
+	 *            void
+	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@RequestMapping("/mbk/mbkToExcel.do")
-	public ModelAndView mbkToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ModelAndView mbkToExcel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		String zymc=convertUtil.toString(request.getParameter("zymc"),"");
-		String ssdq=convertUtil.toString(request.getParameter("ssdq"),"");
-		String lb=convertUtil.toString(request.getParameter("lb"),"");
-		String zt=convertUtil.toString(request.getParameter("zt"),"");
-		String config=convertUtil.toString(request.getParameter("config"));
-		String orderField=convertUtil.toString(request.getParameter("orderField"),"cjsj");
-		String orderDirection=convertUtil.toString(request.getParameter("orderDirection"),"desc");
-		
-		int k=0;
-		ConfigXML configXML=new ConfigXMLImpl();//读取mbk配置文档
-		ResultObject ro=null;
-		StringBuffer hql=new StringBuffer(""); 
-		List mbkTitleList=new LinkedList(); //标题列表
-		List mbkColList=new LinkedList();//列的字段值
-		List mbkDocList=new LinkedList();//表单数据
-		Map <String,List>sheetMap=new HashMap<String, List>();
-		List sheetList=new LinkedList();
-		
-		//读取配置文件的标题列表
-		String webinfpath=request.getSession().getServletContext().getRealPath("WEB-INF");
-		mbkTitleList=configXML.getTagListByConfig(config, webinfpath,"name");
-		mbkColList=configXML.getTagListByConfig(config, webinfpath, "columnName");
-		Iterator it=mbkColList.iterator(); 
-		Object mbk=null;
+		String zymc = convertUtil.toString(request.getParameter("zymc"), "");
+		String ssdq = convertUtil.toString(request.getParameter("ssdq"), "");
+		String lb = convertUtil.toString(request.getParameter("lb"), "");
+		String zt = convertUtil.toString(request.getParameter("zt"), "");
+		String config = convertUtil.toString(request.getParameter("config"));
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "cjsj");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+
+		int k = 0;
+		ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
+		ResultObject ro = null;
+		StringBuffer hql = new StringBuffer("");
+		List mbkTitleList = new LinkedList(); // 标题列表
+		List mbkColList = new LinkedList();// 列的字段值
+		List mbkDocList = new LinkedList();// 表单数据
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+
+		// 读取配置文件的标题列表
+		String webinfpath = request.getSession().getServletContext()
+				.getRealPath("WEB-INF");
+		mbkTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+		mbkColList = configXML.getTagListByConfig(config, webinfpath,
+				"columnName");
+		Iterator it = mbkColList.iterator();
+		Object mbk = null;
 		hql.append("select ");
-		while(it.hasNext()){
-			if(k==0)
-			hql.append(" mbk."+((it.next().toString()).toLowerCase()));
+		while (it.hasNext()) {
+			if (k == 0)
+				hql.append(" mbk." + ((it.next().toString()).toLowerCase()));
 			else
-				hql.append(" ,mbk."+((it.next().toString()).toLowerCase()));
+				hql.append(" ,mbk." + ((it.next().toString()).toLowerCase()));
 			k++;
 		}
 		hql.append(" from Td21_mbk mbk ");
-		//条件
-		hql.append("where 1=1 and mbk.cjr='"+user.getName()+"' ");
-		if(!ssdq.equals("")){
-			hql.append(" and mbk.ssdq="+ssdq);
+		// 条件
+		hql.append("where 1=1 and mbk.cjr='" + user.getName() + "' ");
+		if (!ssdq.equals("")) {
+			hql.append(" and mbk.ssdq=" + ssdq);
 		}
-		if(!lb.equals("")){
-			hql.append(" and mbk.lb="+lb);
-		} 
-		if(!zt.equals("")){
-			hql.append(" and mbk.zt="+zt);
+		if (!lb.equals("")) {
+			hql.append(" and mbk.lb=" + lb);
 		}
-		if(!zymc.equals("")){
-			hql.append(" and mbk.zymc like '%"+zymc+"%' ");
+		if (!zt.equals("")) {
+			hql.append(" and mbk.zt=" + zt);
 		}
-		hql.append(" order by "+orderField+" ");
+		if (!zymc.equals("")) {
+			hql.append(" and mbk.zymc like '%" + zymc + "%' ");
+		}
+		hql.append(" order by " + orderField + " ");
 		hql.append(orderDirection);
-		
-		mbkDocList=queryService.searchList(hql.toString()); 
-		
-		
+
+		mbkDocList = queryService.searchList(hql.toString());
+
 		sheetList.add(mbkTitleList);
 		sheetList.add(mbkDocList);
 		sheetMap.put("form_title", sheetList);
 		request.setAttribute("ExcelName", "目标库信息.xls");
 		request.setAttribute("sheetMap", sheetMap);
 		return new ModelAndView("/export/toExcelWhithList.do");
-		
+
 	}
-	 
+
+	@RequestMapping("/mbk/kcsqEdit.do")
+	public ModelAndView kcsqEidt(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		String view = "/WEB-INF/jsp/mbk/kcsq.jsp";
+		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
+		Long action = convertUtil.toLong(request.getParameter("action"));
+
+		StringBuffer hql = null;
+		Ta03_user user = (Ta03_user) session.getAttribute("user");
+		Td23_kcsqb td23_kcsqb = null;
+		Td21_mbk td21_mbk = null;
+		try {
+			if (mbk_id != -1 && user != null) {
+				hql = new StringBuffer();
+				td21_mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class,
+						mbk_id);
+				hql.append("select td23 from Td23_kcsqb td23");
+				hql.append(" where td23.mbk_id=");
+				hql.append(mbk_id);
+				hql.append(" and td23.cjr='");
+				hql.append(user.getName() + "'");
+				List td23List = queryService.searchList(hql.toString());
+				if (td23List != null && td23List.size() > 0)
+					td23_kcsqb = (Td23_kcsqb) td23List.get(0);
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			log.warn(e.getMessage());
+		}
+
+		// 保存
+		/*
+		if (action == 1) {
+			Long id = convertUtil.toLong(request.getParameter("Td23_kcsqb.ID"));
+			String yykcsj = convertUtil.toString(request
+					.getParameter("Td23_KCSQB.YYKCSJ"));
+			Long sftgjf = convertUtil.toLong(request
+					.getParameter("Td23_KCSQB.SFTGJF"));
+			Long sftyld = convertUtil.toLong(request
+					.getParameter("Td23_KCSQB.SFTYLD"));
+			Long sfmhtx = convertUtil.toLong(request
+					.getParameter("Td23_KCSQB.SFMHTX"));
+			String qtgt = convertUtil.toString(request
+					.getParameter("Td23_KCSQB.QTGT"));
+			String bz = convertUtil.toString(request
+					.getParameter("Td23_KCSQB.BZ"));
+
+			td23_kcsqb = new Td23_kcsqb();
+			if (id != -1) {
+				td23_kcsqb = (Td23_kcsqb) queryService.searchById(
+						Td23_kcsqb.class, id);
+			}else if(id==-1){
+				td23_kcsqb=new Td23_kcsqb();
+			}
+			td23_kcsqb.setYykcsj(DateFormatUtil.ForamteString(yykcsj, "yyyy-MM-dd HH:mm"));
+			td23_kcsqb.setCjr(user.getName());
+			td23_kcsqb.setMbk_id(mbk_id);
+			td23_kcsqb.setQtgt(qtgt);
+			td23_kcsqb.setSfmhtx(sfmhtx);
+			td23_kcsqb.setSftgjf(sftgjf);
+			td23_kcsqb.setSftyld(sftyld);  
+			saveService.save(td23_kcsqb);
+
+		}
+		*/
+		// 上报
+		if (action == 2) {
+
+		}
+		modelMap.put("Td23_kcsqb", td23_kcsqb);
+		modelMap.put("Td21_mbk", td21_mbk);
+		return new ModelAndView(view, modelMap);
+	}
+
 }
-
-
