@@ -143,6 +143,105 @@ public class Gcgl {
 	}
 	
 	/**
+	 * 合作单位登录 显示未处理的项目
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/form/xmxxListForNeed.do")
+	public ModelAndView xmxxListForNeed(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String user_name=user.getName();
+		String user_dept = user.getDept_name();
+		
+		// 查询条件
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select xmxx from Td01_xmxx xmxx where ");
+		
+		//工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
+		hsql.append("(");
+		hsql.append(" (sgdw = '" + user_dept + "' and sgysl is null )");
+		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl is null)");
+		hsql.append(" or (jldw = '" + user_dept + "' and jlysl is null)");
+		hsql.append(")");		
+		
+		// 关键字
+		if (!keyword.equals("")) {
+			hsql.append(" and (xmmc like '%" + keyword + "%' or xmbh like '%" + keyword + "%')");
+		}		
+				
+		// order排序
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+		
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		
+		// 获取结果集
+		List<Td01_xmxx> xmxxList = new ArrayList<Td01_xmxx>();
+		String limit = "";
+		Long node_id = -1L;
+		while (ro.next()) {	
+			Td01_xmxx td01 = (Td01_xmxx) ro.get("xmxx");
+			
+			if("".equals(limit)){
+				if(user_dept.equals(td01.getSgdw())){
+					limit = "sgdw";
+					node_id = 10103L;
+				}
+				else if(user_dept.equals(td01.getJldw())){
+					limit = "jldw";
+					node_id = 10104L;
+				}
+				else if(user_dept.equals(td01.getSjdw())){
+					limit = "sjdw";
+					node_id = 10102L;
+				}
+				else{
+					limit = "xmgly";
+					node_id = 10101L;
+				}
+			}
+			
+			xmxxList.add(td01);
+		}
+		
+		modelMap.put("node_id", node_id);
+		modelMap.put("limit", limit);
+		modelMap.put("xmxxList", xmxxList);
+		
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		
+		return new ModelAndView("/WEB-INF/jsp/form/xmxxList.jsp", modelMap);
+
+	}
+	/**
 	 *  工程信息列表
 	 */
 	
@@ -192,6 +291,103 @@ public class Gcgl {
 		hsql.append(" or sjdw = '" + user_dept + "'");
 		hsql.append(" or jldw = '" + user_dept + "'");
 		hsql.append(")");		
+		
+		// 关键字
+		if (!keyword.equals("")) {
+			hsql.append(" and (gcmc like '%" + keyword + "%' or gcbh like '%" + keyword + "%')");
+		}		
+				
+		// order排序
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+		
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		// 获取结果集
+		List<Td00_gcxx> gcxxList = new ArrayList<Td00_gcxx>();
+		String limit="";
+		Long node_id = -1L;
+		while (ro.next()) {
+			Td00_gcxx td00 = (Td00_gcxx) ro.get("gcxx");
+			if("".equals(limit)){
+				if(user_dept.equals(td00.getSgdw())){
+					limit = "sgdw";
+					node_id = 10203L;
+				}
+				else if(user_dept.equals(td00.getJldw())){
+					limit = "jldw";
+					node_id = 10204L;
+				}
+				else if(user_dept.equals(td00.getSjdw())){
+					limit = "sjdw";
+					node_id = 10202L;
+				}
+				else{
+					limit = "xmgly";
+					node_id = 10201L;
+				}
+			}
+			
+			gcxxList.add(td00);
+		}
+		modelMap.put("node_id", node_id);
+		modelMap.put("limit", limit);
+		modelMap.put("gcxxList", gcxxList);
+		
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		
+		return new ModelAndView("/WEB-INF/jsp/form/gcxxList.jsp", modelMap);
+
+	}
+	
+	/**
+	 * 合作单位登录 显示未处理的工程
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/form/gcxxListForNeed.do")
+	public ModelAndView gcxxListForNeed(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String user_name=user.getName();
+		String user_dept = user.getDept_name();
+		
+		// 查询条件
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select gcxx from Td00_gcxx gcxx where ");
+		
+		//工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
+		hsql.append("(");
+		hsql.append(" (sgdw = '" + user_dept + "' and sgysl = 1)");
+		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl = 1)");
+		hsql.append(" or (jldw = '" + user_dept + "' and jlysl = 1)");
+		hsql.append(")");
 		
 		// 关键字
 		if (!keyword.equals("")) {
