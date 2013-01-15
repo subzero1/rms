@@ -1200,6 +1200,30 @@
             insert="true"
             column="zyqrsj"
         />
+        
+        <property
+            name="sjysl"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sjysl"
+        />
+        
+        <property
+            name="sgysl"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sgysl"
+        />
+        
+        <property
+            name="jlysl"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="jlysl"
+        />
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td01_xmxx.xml

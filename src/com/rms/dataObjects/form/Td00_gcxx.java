@@ -1722,4 +1722,47 @@ public class Td00_gcxx implements Serializable {
 		this.zylrydh = zylrydh;
 	}
 	
+	private Integer sjysl;
+	
+	private Integer sgysl;
+	
+	private Integer jlysl;
+
+	/**
+	 * @hibernate.property column="sjysl"
+	 * @return Returns the sjysl.
+	 */
+	public Integer getSjysl() {
+		return sjysl;
+	}
+
+	public void setSjysl(Integer sjysl) {
+		this.sjysl = sjysl;
+	}
+
+	/**
+	 * @hibernate.property column="sgysl"
+	 * @return Returns the sgysl.
+	 */
+	public Integer getSgysl() {
+		return sgysl;
+	}
+
+	public void setSgysl(Integer sgysl) {
+		this.sgysl = sgysl;
+	}
+
+	/**
+	 * @hibernate.property column="jlysl"
+	 * @return Returns the jlysl.
+	 */
+	public Integer getJlysl() {
+		return jlysl;
+	}
+
+	public void setJlysl(Integer jlysl) {
+		this.jlysl = jlysl;
+	}
+	
+	
 }
