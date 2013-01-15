@@ -375,6 +375,36 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					}
 					request.setAttribute("xmztList", xmztList);
 				}
+				
+				/*
+				 * 保存施工、监理、设计的受理情况
+				 */
+				switch(node_id.intValue())	{
+					case 10102:{//项目信息单，设计
+						dao.update("update Td01_xmxx set sjysl = 1 where id = "+project_id);
+						break;
+					}
+					case 10103:{//项目信息单，施工
+						dao.update("update Td01_xmxx set sgysl = 1 where id = "+project_id);
+						break;
+					}
+					case 10104:{//项目信息单，监理
+						dao.update("update Td01_xmxx set jlysl = 1 where id = "+project_id);
+						break;
+					}
+					case 10202:{//工程信息单，设计
+						dao.update("update Td00_gcxx set sjysl = 1 where id = "+project_id);
+						break;
+					}
+					case 10203:{//工程信息单，施工
+						dao.update("update Td00_gcxx set sgysl = 1 where id = "+project_id);
+						break;
+					}
+					case 10204:{//工程信息单，监理
+						dao.update("update Td00_gcxx set jlysl = 1 where id = "+project_id);
+						break;
+					}
+				}	
 			}
 			
 			// 获取变更类别、变更种类
