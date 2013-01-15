@@ -135,7 +135,7 @@ function setCommunicate(_this,condition){
 					<label>提供机房&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否同意提供机房" >
 					<c:if test="${Td23_kcsqb.sftgjf==0||empty Td23_kcsqb.sftgjf}"><b onclick="setCommunicate(this,'SFTGJF')">×</b></c:if>
-					<c:if test="${Td23_kcsqb.sftgjf==1}"><b onclick="setCommunicate(this,'SFTGJF')">√</b></c:if>
+					<c:if test="${Td23_kcsqb.sftgjf==1}"><b onclick="setCommunicate(this,'SFTGJF')" style='color:green'>√</b></c:if>
 					</span>
 					<input type="hidden"   name="Td23_kcsqb.SFTGJF" style="width:120px;" value="${Td23_kcsqb.sftgjf}"/>
 				</p>
@@ -143,7 +143,7 @@ function setCommunicate(_this,condition){
 					<label>房顶建房&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否同意在房顶建房">
 					<c:if test="${Td23_kcsqb.sftyld==0||empty Td23_kcsqb.sftyld}"><b onclick="setCommunicate(this,'SFTYLD')">×</b></c:if>
-					<c:if test="${Td23_kcsqb.sftyld==1}"><b onclick="setCommunicate(this,'SFTYLD')">√</b></c:if>
+					<c:if test="${Td23_kcsqb.sftyld==1}"><b onclick="setCommunicate(this,'SFTYLD')" style='color:green'>√</b></c:if>
 					</span>
 					<input type="hidden"   name="Td23_kcsqb.SFTYLD" style="width:120px;" value="${Td23_kcsqb.sftyld}" />
 				</p>
@@ -151,7 +151,7 @@ function setCommunicate(_this,condition){
 					<label>美化天线&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否美化天线">
 					<c:if test="${Td23_kcsqb.sfmhtx==0||empty Td23_kcsqb.sfmhtx}"><b onclick="setCommunicate(this,'SFMHTX')">×</b></c:if>
-					<c:if test="${Td23_kcsqb.sfmhtx==1}"><b onclick="setCommunicate(this,'SFTYLD')">√</b></c:if>
+					<c:if test="${Td23_kcsqb.sfmhtx==1}"><b onclick="setCommunicate(this,'SFTYLD')" style='color:green'>√</b></c:if>
 					</span>
 					<input type="hidden"  name="Td23_kcsqb.SFMHTX" style="width:120px;" value="${Td23_kcsqb.sfmhtx}"/>
 				</p>
