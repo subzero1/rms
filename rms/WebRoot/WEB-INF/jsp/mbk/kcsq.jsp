@@ -122,7 +122,7 @@ function setCommunicate(_this,condition){
 				<div style="height:0px;"></div>
 				<p>
 					<label >预约勘察时间：</label> 
-					<input type="text" name="Td23_KCSQB.YYKCSJ" style="width:256px;" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${Td23_kcsqb.yykcsj}"/>" class="date" pattern="yyyy-MM-dd hh:mm" title="和业主初步预约勘察时间"/>
+					<input type="text" name="Td23_KCSQB.YYKCSJ" style="width:256px;" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${Td23_kcsqb.yykcsj}"/>" class="date" pattern="yyyy-MM-dd HH:mm" />
 				</p> 
 				<div class="divider"></div>
 				<div style="height:0px;"></div>
