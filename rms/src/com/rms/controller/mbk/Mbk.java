@@ -1249,7 +1249,6 @@ public class Mbk {
 		ModelMap modelMap = new ModelMap();
 		String view = "/WEB-INF/jsp/mbk/kcsq.jsp";
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
-		Long action = convertUtil.toLong(request.getParameter("action"));
 		StringBuffer hql = null;
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
 		Td23_kcsqb td23_kcsqb = null;
@@ -1271,12 +1270,7 @@ public class Mbk {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			log.warn(e.getMessage());
-		}
-		// 上报
-		if (action == 1) {
-			td21_mbk.setSqkcsj(new Date());
-			saveService.save(td21_mbk);
-		}
+		} 
 		modelMap.put("Td23_kcsqb", td23_kcsqb);
 		modelMap.put("Td21_mbk", td21_mbk);
 		return new ModelAndView(view, modelMap);
