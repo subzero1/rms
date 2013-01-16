@@ -110,9 +110,9 @@ $(function(){
 	*/
 	
 	//弹出消息框
-	$.messager.lays(300, 200);
-	$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
-	$.messager.show('自定义标题', '<font style="font-size:14px;font-weight:bold;">自定义内容</font>', 0);
+	//$.messager.lays(300, 200);
+	//$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
+	//$.messager.show('自定义标题', '<font style="font-size:14px;font-weight:bold;">自定义内容</font>', 0);
 	
 });
 
@@ -180,7 +180,18 @@ function getCookie(name)
 	else return null;
 }
 </script>
-	</head>
+<c:if test="${not empty remindContent}">
+<script type="text/javascript">
+//弹出消息框
+    alert('x');
+	$.messager.lays(300, 200);
+	$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
+	$.messager.show('自定义标题', '<font style="font-size:14px;font-weight:bold;">${remindContent}</font>', 0);
+	
+</script>
+</c:if>
+${remindContent}
+</head>
 
 <body scroll="no">
 	<div id="layout">

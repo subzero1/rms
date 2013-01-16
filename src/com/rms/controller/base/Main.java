@@ -183,6 +183,14 @@ public class Main {
 			
 			request.setAttribute("csMap", csMap);
 			
+			/*
+			 * 提醒列表
+			 */
+			String remindContent = getRemindList(request,response,session);
+			if(remindContent != null && remindContent.length() > 0){
+				request.setAttribute("remindContent", remindContent);
+			}
+			
 			return new ModelAndView("/WEB-INF/jsp/main.jsp",modelMap);
 		}else{
 			return new ModelAndView("/index.jsp");
@@ -380,5 +388,60 @@ public class Main {
 		request.setAttribute("now", new Date());
 		request.setAttribute("nowStr",new java.text.SimpleDateFormat("MM/dd").format( new Date()));
 		return new ModelAndView("/WEB-INF/jsp/desktop.jsp");
+	}
+	
+	/*
+	 * 获得需要提醒列表
+	 */
+	private String getRemindList(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		
+		Ta03_user user = (Ta03_user)session.getAttribute("user");
+		if(user == null){
+			user = new Ta03_user();
+		}
+		String remindContent = "";
+		String login_id = convertUtil.toString(user.getLogin_id());
+		String dept_name = convertUtil.toString(user.getDept_name());
+		
+		/*
+		 * 设计单位
+		 */
+		if(login_id.length() > 1 && login_id.substring(0,1).equals("7")){
+			List t_list = dao.search("from Td00_gcxx where sjysl is null and sjdw = '"+dept_name+"'");
+			if(t_list != null && t_list.size() > 0){
+				remindContent += "<li><a href=\"javascript:navTab.openTab('form/gcxxListForNeed.do')\">您收到（"+t_list.size()+"）个新工程</a></li>";
+			}
+			t_list = dao.search("from Td01_xmxx where sjysl is null and sjdw = '"+dept_name+"'");
+			if(t_list != null && t_list.size() > 0){
+				remindContent += "<li><a href=\"javascript:navTab.openTab('form/xmxxListForNeed.do')\">您收到（"+t_list.size()+"）个新项目</a></li>";
+			}
+		}
+		/*
+		 * 施工单位
+		 */
+		else if(login_id.length() > 1 && login_id.substring(0,1).equals("8")){
+			List t_list = dao.search("from Td00_gcxx where sgysl is null and sgdw = '"+dept_name+"'");
+			if(t_list != null && t_list.size() > 0){
+				remindContent += "<li><a href=\"javascript:navTab.openTab('form/gcxxListForNeed.do')\">您收到（"+t_list.size()+"）个新工程</a></li>";
+			}
+			t_list = dao.search("from Td01_xmxx where sgysl is null and sgdw = '"+dept_name+"'");
+			if(t_list != null && t_list.size() > 0){
+				remindContent += "<li><a href=\"javascript:navTab.openTab('form/xmxxListForNeed.do')\">您收到（"+t_list.size()+"）个新项目</a></li>";
+			}
+		}
+		/*
+		 * 监理单位
+		 */
+		else if(login_id.length() > 1 && login_id.substring(0,1).equals("9")){
+			List t_list = dao.search("from Td00_gcxx where jlysl is null and jldw = '"+dept_name+"'");
+			if(t_list != null && t_list.size() > 0){
+				remindContent += "<a href=\"javascript:navTab.openTab('form/gcxxListForNeed.do')\">您收到（"+t_list.size()+"）个新工程</a>";
+			}
+			t_list = dao.search("from Td01_xmxx where jlysl is null and jldw = '"+dept_name+"'");
+			if(t_list != null && t_list.size() > 0){
+				remindContent += "<a href=\"javascript:navTab.openTab('form/xmxxListForNeed.do')\">您收到（"+t_list.size()+"）个新项目</a>";
+			}
+		}
+		return remindContent;
 	}
 }
