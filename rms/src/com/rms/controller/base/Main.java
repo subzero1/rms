@@ -409,11 +409,11 @@ public class Main {
 		if(login_id.length() > 1 && login_id.substring(0,1).equals("7")){
 			List t_list = dao.search("from Td00_gcxx where sjysl is null and sjdw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<li><a href=\"javascript:navTab.openTab('form/gcxxListForNeed.do')\">您收到（"+t_list.size()+"）个新工程</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'gcxxList\\',\\'form/gcxxListForNeed.do\\',{title:\\'工程信息\\'})\">您收到（"+t_list.size()+"）个新工程</a></li>";
 			}
 			t_list = dao.search("from Td01_xmxx where sjysl is null and sjdw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<li><a href=\"javascript:navTab.openTab('form/xmxxListForNeed.do')\">您收到（"+t_list.size()+"）个新项目</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'form/xmxxListForNeed.do\\',{title:\\'项目信息\\'})\">您收到（"+t_list.size()+"）个新项目</a></li>";
 			}
 		}
 		/*
@@ -422,11 +422,11 @@ public class Main {
 		else if(login_id.length() > 1 && login_id.substring(0,1).equals("8")){
 			List t_list = dao.search("from Td00_gcxx where sgysl is null and sgdw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<li><a href=\"javascript:navTab.openTab('form/gcxxListForNeed.do')\">您收到（"+t_list.size()+"）个新工程</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'gcxxList\\',\\'form/gcxxListForNeed.do\\',{title:\\'工程信息\\'})\">您收到（"+t_list.size()+"）个新工程</a></li>";
 			}
 			t_list = dao.search("from Td01_xmxx where sgysl is null and sgdw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<li><a href=\"javascript:navTab.openTab('form/xmxxListForNeed.do')\">您收到（"+t_list.size()+"）个新项目</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'form/xmxxListForNeed.do\\',{title:\\'项目信息\\'})\">您收到（"+t_list.size()+"）个新项目</a></li>";
 			}
 		}
 		/*
@@ -435,11 +435,11 @@ public class Main {
 		else if(login_id.length() > 1 && login_id.substring(0,1).equals("9")){
 			List t_list = dao.search("from Td00_gcxx where jlysl is null and jldw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<a href=\"javascript:navTab.openTab('form/gcxxListForNeed.do')\">您收到（"+t_list.size()+"）个新工程</a>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'gcxxList\\',\\'form/gcxxListForNeed.do\\',{title:\\'工程信息\\'})\">您收到（"+t_list.size()+"）个新工程</a></li>";
 			}
 			t_list = dao.search("from Td01_xmxx where jlysl is null and jldw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<a href=\"javascript:navTab.openTab('form/xmxxListForNeed.do')\">您收到（"+t_list.size()+"）个新项目</a>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'form/xmxxListForNeed.do\\',{title:\\'项目信息\\'})\">您收到（"+t_list.size()+"）个新项目</a></li>";
 			}
 		}
 		return remindContent;
