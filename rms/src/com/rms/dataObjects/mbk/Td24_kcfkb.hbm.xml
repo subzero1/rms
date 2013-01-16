@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.mbk.Td24_kcfkb"  table="Td24_kcfkb">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td24_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="mbk_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="mbk_id"
+  />
+
+  <property
+  name="cjr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjr"
+  />
+
+  <property
+  name="cjsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjsj"
+  />
+
+  <property
+  name="fksj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="fksj"
+  />
+
+  <property
+  name="wxzxqz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxzxqz"
+  />
+
+  <property
+  name="sjyqz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjyqz"
+  />
+
+  <property
+  name="fkqr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fkqr"
+  />
+
+  <property
+  name="qtsm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="qtsm"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

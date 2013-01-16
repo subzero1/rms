@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.mbk.Td25_kcfkmx"  table="Td25_kcfkmx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td25_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="kcfk_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kcfk_id"
+  />
+
+  <property
+  name="fkx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fkx"
+  />
+
+  <property
+  name="jg"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jg"
+  />
+
+  <property
+  name="gs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="gs"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
