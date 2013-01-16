@@ -28,7 +28,7 @@ $(function(){
 				mc:'mc'
 			}
 		});	
-		$sqkcsj=$("input[name='Td21_mbk\.SQKCSJ']",navTab.getCurrentPanel());
+		$sqkcsj=$("input[name='Td23_kcsqb\.SQSBSJ']",navTab.getCurrentPanel());
 		$b=$("span b");
 		if($sqkcsj.val()!=''){
 			$inputs=$(":input[name^='Td23_kcsqb']");
@@ -92,7 +92,7 @@ function setCommunicate(_this,condition){
 		<ul class="toolBar">
 			<c:if
 				test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
-				<c:if test="${empty Td21_mbk.sqkcsj||empty Td23_kcsqb}">
+				<c:if test="${empty Td23_kcsqb.sqsbsj}">
 				<li>
 					<a class="save" href="javascript:saveMbk();"><span>保&nbsp;&nbsp;存</span>
 					</a>
@@ -124,9 +124,8 @@ function setCommunicate(_this,condition){
 				value="noFatherTable:com.rms.dataObjects.mbk.Td23_kcsqb" />
 			<input type="hidden" name="Td23_kcsqb.ID" value="${Td23_kcsqb.id}" />
 			<input type="hidden" name="Td23_kcsqb.MBK_ID" value="${Td21_mbk.id}" />
-			<input type="hidden" name="Td23_kcsqb.CJR" value="${user.name}" />
-			<input type="hidden" name="Td21_mbk.SQKCSJ"
-				value="${Td21_mbk.sqkcsj}" />
+			<input type="hidden" name="Td23_kcsqb.CJR" value="${user.name}" /> 
+			<input type="hidden" name="Td23_kcsqb.SQSBSJ" value="${Td23_kcsqb.sqsbsj}"/>
 			<input type="hidden" name="_callbackType" value="" />
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value="" />

@@ -189,5 +189,18 @@ public class Td23_kcsqb implements Serializable{
     this.bz = bz;
   }
 
+ /**
+ * 申请上报时间
+ */
+private Date sqsbsj;
+
+public Date getSqsbsj() {
+	return sqsbsj;
+}
+
+public void setSqsbsj(Date sqsbsj) {
+	this.sqsbsj = sqsbsj;
+}
+ 
 
 }
