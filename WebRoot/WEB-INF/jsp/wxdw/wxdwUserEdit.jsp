@@ -60,6 +60,12 @@
 						<input type="checkbox" name="DQ" <c:if test="${not empty dqMap[dq] }">checked="checked"</c:if> value="${dq }"/>${dq }
 					</c:forEach>
 				</p>
+				<p>
+					<label>专业：</label>
+					<c:forEach items="${dqList}" var="dq">
+						<input type="checkbox" name="DQ" <c:if test="${not empty dqMap[dq] }">checked="checked"</c:if> value="${dq }"/>${dq }
+					</c:forEach>
+				</p>
 			</div>
 			<div class="formBar">
 			<c:if test="${empty param.role || param.role != 'wxdw'}">

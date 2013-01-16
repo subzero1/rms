@@ -87,5 +87,20 @@ public class Tf04_wxdw_user implements Serializable{
     this.area = area;
   }
 
+ /**
+  * 专业
+  */
+  private String zy;
 
+  /**
+   * @hibernate.property column="zy"
+   * @return Returns the zy.
+   */
+	public String getZy() {
+		return zy;
+	}
+	
+	public void setZy(String zy) {
+		this.zy = zy;
+	}
 }

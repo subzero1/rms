@@ -41,6 +41,14 @@
   insert="true"
   column="area"
   />
+  
+  <property
+  name="zy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zy"
+  />
 
 
     </class>
