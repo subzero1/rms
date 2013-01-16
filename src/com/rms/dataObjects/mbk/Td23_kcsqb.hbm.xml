@@ -90,6 +90,14 @@
   column="bz"
   />
 
+  <property
+  name="sqsbsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sqsbsj"
+  />
+
 
     </class>
 

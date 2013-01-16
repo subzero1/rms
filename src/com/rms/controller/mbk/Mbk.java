@@ -1294,14 +1294,19 @@ public class Mbk {
 
 		if (kcsqb_id == -1) {
 			out
-					.print("{\"statusCode\":\"300\", \"message\":\"上报失败!申请单未保存!请您先保存!\"}");
+					.print("{\"statusCode\":\"300\", \"message\":\"上报失败!请您先保存申请单!\"}");
 
 		} else if (mbk_id != -1 && user != null) {
 			try {
+				Date date=new Date();
 				Td21_mbk td21_mbk = (Td21_mbk) queryService.searchById(
 						Td21_mbk.class, mbk_id);
-				td21_mbk.setSqkcsj(new Date());
+				td21_mbk.setSqkcsj(date);
+				
+				Td23_kcsqb td23_kcsqb=(Td23_kcsqb) queryService.searchById(Td23_kcsqb.class, kcsqb_id);
+				td23_kcsqb.setSqsbsj(date);
 				saveService.save(td21_mbk);
+				saveService.save(td23_kcsqb);
 				out
 						.print("{\"statusCode\":\"200\", \"message\":\"勘察申请上报成功!\",\"callbackType\":\"closeCurrent\"}");
 			} catch (RuntimeException e) {
