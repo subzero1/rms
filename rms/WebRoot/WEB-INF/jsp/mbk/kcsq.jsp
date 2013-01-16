@@ -24,6 +24,14 @@ $(function(){
 				mc:'mc'
 			}
 		});	
+		$sqkcsj=$("input[name='Td21_mbk\.SQKCSJ']",navTab.getCurrentPanel());
+		$b=$("span b");
+		if($sqkcsj.val()!=''){
+			//$inputs=$(":input[name^='Td23_kcsqb']");
+			//$inputs.attr("readonly","readonly");
+			//$b.attr("onclick","");
+		}
+		
    	});
 $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 		change = true;
@@ -45,18 +53,43 @@ function setCommunicate(_this,condition){
 		$input.val('1');
 	} 
 }
- 
+ function reportKcsq(obj,kcsq_id){
+ 		$.ajax({
+		type:"post",
+		url:"mbk/reportKcsq.do",
+		dataType:"json",
+		async:true,
+		data:{mbk_id:obj,kcsqb_id:kcsq_id},
+		success:function(json){ 
+			if(json.statusCode == DWZ.statusCode.ok){
+					alertMsg.correct(json.message);
+					navTab.closeCurrentTab();
+				}else if(json.statusCode == DWZ.statusCode.error){
+					alertMsg.info(json.message);
+				}
+		}
+		
+	});
+ }
 </script>
 <div class="page"> 
+<!-- 表单头 -->
+	<div class="pageHeader">
+		<div class="searchBar">
+			<!-- 表单名称 -->
+			<h1>勘察申请单</h1>
+			
+		</div>
+	</div>
 	<!-- 主操作按钮 -->
 	<div class="panelBar">
 		<ul class="toolBar">
 		 	<c:if test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
-		 	<li><a class="save"	href="javascript:saveMbk();"><span>保 存</span></a></li>
+		 	<li><a class="save"	href="javascript:saveMbk();"><span>保&nbsp;&nbsp;存</span></a></li>
 			<li class="line">line</li> 
 			</c:if>
 		 	<c:if test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
-		 	<li><a class="icon"	href="javascript:saveMbk();"><span>上报</span></a></li>
+		 	<li><a class="icon"	 href="javascript:reportKcsq('${Td21_mbk.id}','${Td23_kcsqb.id}');"><span>上&nbsp;&nbsp;报</span></a></li>
 			<li class="line">line</li> 
 			</c:if>
 		</ul>
@@ -68,7 +101,8 @@ function setCommunicate(_this,condition){
 			<input type="hidden" name="Td23_kcsqb.ID" value="${Td23_kcsqb.id}" />
 			<input type="hidden" name="Td23_kcsqb.MBK_ID" value="${Td21_mbk.id}"/>
 			<input type="hidden" name="Td23_kcsqb.CJR" value="${user.name}"/>
-			<input type="hidden" name="_callbackType" value="closeCurrent"/>
+			<input type="hidden" name="Td21_mbk.SQKCSJ" value="${Td21_mbk.sqkcsj}"/>
+			<input type="hidden" name="_callbackType" value=""/>
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value=""/>
 			<input type="hidden" name="_navTabId" value="kcsqList"/> 
@@ -126,7 +160,7 @@ function setCommunicate(_this,condition){
 				<div style="height:0px;"></div>
 				<p>
 					<label >预约勘察时间：</label> 
-					<input type="text" format="yyyy-MM-dd HH:mm" name="Td23_kcsqb.YYKCSJ" style="width:256px;" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${Td23_kcsqb.yykcsj}"/>" class="date" pattern="yyyy-MM-dd HH:mm" />
+					<input type="text"  format="yyyy-MM-dd HH:mm" name="Td23_kcsqb.YYKCSJ" style="width:256px;" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${Td23_kcsqb.yykcsj}"/>" class="date required" pattern="yyyy-MM-dd HH:mm" />
 				</p> 
 				<div class="divider"></div>
 				<div style="height:0px;"></div>
@@ -151,7 +185,7 @@ function setCommunicate(_this,condition){
 					<label>美化天线&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<span style="margin-left:30px;margin-right:35px;font-size:20;cursor:hand;color=red;" title="是否美化天线">
 					<c:if test="${Td23_kcsqb.sfmhtx==0||empty Td23_kcsqb.sfmhtx}"><b onclick="setCommunicate(this,'SFMHTX')">×</b></c:if>
-					<c:if test="${Td23_kcsqb.sfmhtx==1}"><b onclick="setCommunicate(this,'SFTYLD')" style='color:green'>√</b></c:if>
+					<c:if test="${Td23_kcsqb.sfmhtx==1}"><b onclick="setCommunicate(this,'SFMHTX')" style='color:green'>√</b></c:if>
 					</span>
 					<input type="hidden"  name="Td23_kcsqb.SFMHTX" style="width:120px;" value="${Td23_kcsqb.sfmhtx}"/>
 				</p>
@@ -163,7 +197,7 @@ function setCommunicate(_this,condition){
 				<div class="divider"></div>
 				<p>
 					<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
-					<textarea class="td-textarea" style="width:618px;height:40px;" type="text" name="Td23_kcsqb.BZ">${Td23_kcsqb.bz}</textarea>
+					<textarea class="td-textarea" style="width:618px;height:81px;" type="text" name="Td23_kcsqb.BZ">${Td23_kcsqb.bz}</textarea>
 				</p>
 				<div class="divider"></div>
 		</div>

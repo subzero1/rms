@@ -1250,7 +1250,6 @@ public class Mbk {
 		String view = "/WEB-INF/jsp/mbk/kcsq.jsp";
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
 		Long action = convertUtil.toLong(request.getParameter("action"));
-
 		StringBuffer hql = null;
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
 		Td23_kcsqb td23_kcsqb = null;
@@ -1273,49 +1272,58 @@ public class Mbk {
 			e.printStackTrace();
 			log.warn(e.getMessage());
 		}
-
-		// 保存
-		/*
-		if (action == 1) {
-			Long id = convertUtil.toLong(request.getParameter("Td23_kcsqb.ID"));
-			String yykcsj = convertUtil.toString(request
-					.getParameter("Td23_KCSQB.YYKCSJ"));
-			Long sftgjf = convertUtil.toLong(request
-					.getParameter("Td23_KCSQB.SFTGJF"));
-			Long sftyld = convertUtil.toLong(request
-					.getParameter("Td23_KCSQB.SFTYLD"));
-			Long sfmhtx = convertUtil.toLong(request
-					.getParameter("Td23_KCSQB.SFMHTX"));
-			String qtgt = convertUtil.toString(request
-					.getParameter("Td23_KCSQB.QTGT"));
-			String bz = convertUtil.toString(request
-					.getParameter("Td23_KCSQB.BZ"));
-
-			td23_kcsqb = new Td23_kcsqb();
-			if (id != -1) {
-				td23_kcsqb = (Td23_kcsqb) queryService.searchById(
-						Td23_kcsqb.class, id);
-			}else if(id==-1){
-				td23_kcsqb=new Td23_kcsqb();
-			}
-			td23_kcsqb.setYykcsj(DateFormatUtil.ForamteString(yykcsj, "yyyy-MM-dd HH:mm"));
-			td23_kcsqb.setCjr(user.getName());
-			td23_kcsqb.setMbk_id(mbk_id);
-			td23_kcsqb.setQtgt(qtgt);
-			td23_kcsqb.setSfmhtx(sfmhtx);
-			td23_kcsqb.setSftgjf(sftgjf);
-			td23_kcsqb.setSftyld(sftyld);  
-			saveService.save(td23_kcsqb);
-
-		}
-		*/
 		// 上报
-		if (action == 2) {
-
+		if (action == 1) {
+			td21_mbk.setSqkcsj(new Date());
+			saveService.save(td21_mbk);
 		}
 		modelMap.put("Td23_kcsqb", td23_kcsqb);
 		modelMap.put("Td21_mbk", td21_mbk);
 		return new ModelAndView(view, modelMap);
+	}
+
+	@RequestMapping("/mbk/reportKcsq.do")
+	public void reportKcsq(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session)
+			throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		String navTabId = convertUtil.toString(
+				request.getParameter("navTabId"), "");
+		String forwardUrl = convertUtil.toString(request
+				.getParameter("forwardUrl"), "");
+		String callbackType = convertUtil.toString(request
+				.getParameter("callbackType"), "");
+		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
+		Long kcsqb_id = convertUtil.toLong(request.getParameter("kcsqb_id"));
+		Ta03_user user = (Ta03_user) session.getAttribute("user");
+
+		if (kcsqb_id == -1) {
+			out
+					.print("{\"statusCode\":\"300\", \"message\":\"上报失败!申请单未保存!请您先保存!\"}");
+
+		} else if (mbk_id != -1 && user != null) {
+			try {
+				Td21_mbk td21_mbk = (Td21_mbk) queryService.searchById(
+						Td21_mbk.class, mbk_id);
+				td21_mbk.setSqkcsj(new Date());
+				saveService.save(td21_mbk);
+				out
+						.print("{\"statusCode\":\"200\", \"message\":\"勘察申请上报成功!\",\"callbackType\":\"closeCurrent\"}");
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+				log.warn(e.getMessage());
+				out
+						.print("{\"statusCode\":\"300\", \"message\":\"上报失败请联系管理员!\", \"navTabId\":\""
+								+ navTabId
+								+ "\", \"forwardUrl\":\""
+								+ forwardUrl
+								+ "\", \"callbackType\":\""
+								+ callbackType + "\"}");
+
+			}
+		}
+
 	}
 
 }
