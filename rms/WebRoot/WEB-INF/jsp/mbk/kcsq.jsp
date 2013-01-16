@@ -92,7 +92,7 @@ function setCommunicate(_this,condition){
 		<ul class="toolBar">
 			<c:if
 				test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
-				<c:if test="${empty Td21_mbk.sqkcsj}">
+				<c:if test="${empty Td21_mbk.sqkcsj||empty Td23_kcsqb}">
 				<li>
 					<a class="save" href="javascript:saveMbk();"><span>保&nbsp;&nbsp;存</span>
 					</a>
