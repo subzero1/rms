@@ -196,6 +196,8 @@
 				<value>com/rms/dataObjects/mbk/Td21_mbk.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td22_mbk_lzjl.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td23_kcsqb.hbm.xml</value>
+				<value>com/rms/dataObjects/mbk/Td24_kcfkb.hbm.xml</value>
+				<value>com/rms/dataObjects/mbk/Td25_kcfkmx.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf01_wxdw.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf02_sgd.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf04_wxdw_user.hbm.xml</value>
