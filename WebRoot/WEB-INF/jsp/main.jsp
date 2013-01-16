@@ -22,6 +22,7 @@
 <script src="js/jquery/jquery.cookie.js" type="text/javascript"></script>
 <script src="js/jquery/jquery.validate.js" type="text/javascript"></script>
 <script src="js/jquery/jquery.bgiframe.js" type="text/javascript"></script>
+<script src="js/jquery/jquery.messager.js" type="text/javascript"></script>
 <script src="xheditor-1.1.13/xheditor-1.1.13-zh-cn.min.js" type="text/javascript"></script>
 <script src="uploadify/scripts/swfobject.js" type="text/javascript"></script>
 <script src="uploadify/scripts/jquery.uploadify.v2.1.0.js" type="text/javascript"></script>
@@ -107,6 +108,11 @@ $(function(){
 		setTimeout(function(){$(first_oper).click();}, 500);
 	}
 	*/
+	
+	//弹出消息框
+	$.messager.lays(300, 200);
+	$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
+	$.messager.show('自定义标题', '<font style="font-size:14px;font-weight:bold;">自定义内容</font>', 0);
 	
 });
 
