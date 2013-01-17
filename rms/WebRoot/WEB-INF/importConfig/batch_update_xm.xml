@@ -22,16 +22,6 @@
 			<!-- 标题行位置 -->
 			<titleRow>0</titleRow>
 			<column>
-			        <!-- 对应表字段名称,大写 -->
-					<columnName>ID</columnName>
-					<!-- 字段在excel文件中列的位置 -->
-					<index/>
-					<!-- 标题行名称 -->
-					<name>项目标识</name>
-					<!-- 列名称 -->
-					<colName>项目标识</colName>
-			</column>
-			<column>
 					<columnName>XMBH</columnName>
 					<index/>
 					<name>项目编号</name>
