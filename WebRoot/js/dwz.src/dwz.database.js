@@ -332,9 +332,10 @@
 			function initSuffix($tbody) {
 				$tbody.find('>tr').each(function(i){
 					$(':input, a.btnLook', this).each(function(){
-						var $this = $(this), name = $this.attr('name'), val = $this.val();
+						var $this = $(this), name = $this.attr('name'), id = $this.attr('id'), val = $this.val();
 
 						if (name) $this.attr('name', name.replaceSuffix(i));
+						if (id) $this.attr('id', id.replaceSuffix(i));	//	modify at 2011-01-17 
 						
 						var lookupGroup = $this.attr('lookupGroup');
 						if (lookupGroup) {$this.attr('lookupGroup', lookupGroup.replaceSuffix(i));}
@@ -350,8 +351,8 @@
 			function tdHtml(field){
 				var html = '', suffix = '';
 				
-				if (field.name.endsWith("[#index#]")) suffix = "[#index#]";
-				else if (field.name.endsWith("[]")) suffix = "[]";
+				if (field.id.endsWith("[#index#]")) suffix = "[#index#]";	//modify at 2013-1-17 field.name 改为field.id
+				else if (field.id.endsWith("[]")) suffix = "[]";
 				
 				var suffixFrag = suffix ? ' suffix="' + suffix + '" ' : '';
 				
@@ -372,13 +373,13 @@
 							suggestFrag = 'autocomplete="off" lookupGroup="'+field.lookupGroup+'"'+suffixFrag+' suggestUrl="'+field.suggestUrl+'" suggestFields="'+field.suggestFields+'"' + ' postField="'+field.postField+'"';
 						}
 
-						html = '<input type="hidden" name="'+field.lookupGroup+'.'+field.lookupPk+suffix+'"/>'
-							+ '<input type="text" name="'+field.name+'"'+suggestFrag+' lookupPk="'+field.lookupPk+'" size="'+field.size+'" class="'+field.fieldClass+ '" style="width:0px;" comments="' + field.comments + '"/>'
+						html = '<input type="hidden" id="'+field.lookupGroup+'.'+field.lookupPk+suffix+'"/>'
+							+ '<input type="text" name="'+field.name+'" id="'+field.id+'"'+suggestFrag+' lookupPk="'+field.lookupPk+'" size="'+field.size+'" class="'+field.fieldClass+ '" style="width:0px;" comments="' + field.comments + '"/>'
 							+ '<a class="btnLook" href="'+field.lookupUrl+'" lookupGroup="'+field.lookupGroup+'" '+suggestFrag+' lookupPk="'+field.lookupPk+'" title="查找带回">查找带回</a>';
 						break;
 					case 'attach':
-						html = '<input type="hidden" name="'+field.lookupGroup+'.'+field.lookupPk+suffix+'"/>'
-							+ '<input type="text" name="'+field.name+'" size="'+field.size+'" readonly="readonly" class="'+field.fieldClass+ '" style="width:0px;" comments="' + field.comments + '"/>'
+						html = '<input type="hidden" id="'+field.lookupGroup+'.'+field.lookupPk+suffix+'"/>'
+							+ '<input type="text" id="'+field.id+'" name="'+field.name+'" size="'+field.size+'" readonly="readonly" class="'+field.fieldClass+ '" style="width:0px;" comments="' + field.comments + '"/>'
 							+ '<a class="btnAttach" href="'+field.lookupUrl+'" lookupGroup="'+field.lookupGroup+'" '+suggestFrag+' lookupPk="'+field.lookupPk+'" width="560" height="300" title="查找带回">查找带回</a>';
 						break;
 					case 'enum':
@@ -394,14 +395,14 @@
 						});
 						break;
 					case 'date':
-						html = '<input type="text" name="'+field.name+'" value="'+field.defaultVal+'" class="date '+field.fieldClass+'" format="'+field.patternDate+'" size="'+field.size+' style="width:0px;" comments="' + field.comments + '"/>'
+						html = '<input type="text" id="'+field.id+'" name="'+field.name+'" value="'+field.defaultVal+'" class="date '+field.fieldClass+'" format="'+field.patternDate+'" size="'+field.size+' style="width:0px;" comments="' + field.comments + '"/>'
 							+'<a class="inputDateButton" href="javascript:void(0)">选择</a>';
 						break;
 					case 'textarea':
-						html = '<textarea id="' + fieldId + '" name="'+fieldName+'" value="'+field.defaultVal+'" size="'+field.size+'" style="border-width:0;width:0px;overflow-y:visible;" class="' + field.fieldClass + '" comments="' + field.comments + '"> '+field.value+' </textarea>';
+						html = '<textarea  id="'+field.id+'" name="'+fieldName+'" value="'+field.defaultVal+'" size="'+field.size+'" style="border-width:0;width:0px;overflow-y:visible;" class="' + field.fieldClass + '" comments="' + field.comments + '"> '+field.value+' </textarea>';
 						break;	
 					default:
-						html = '<input type="text" name="'+field.name+'" value="'+field.defaultVal+'" size="'+field.size+'" class="'+field.fieldClass+'" style="width:0px;" comments="' + field.comments + '" '+attrFrag+'/>';
+						html = '<input type="text" id="'+field.id+'" name="'+field.name+'" value="'+field.defaultVal+'" size="'+field.size+'" class="'+field.fieldClass+'" style="width:0px;" comments="' + field.comments + '" '+attrFrag+'/>';
 						break;
 				}
 				if(field.hideName!="" || field.hideId!="" ) html = '<input type="hidden" id="' + field.hideId + '" name="' + field.hideName + '" value="'+field.hideValue+'"/>' + html;	//modify at 2011-08-08 表单主从结构中增加隐藏域

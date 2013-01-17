@@ -132,11 +132,11 @@ function autoSelectClxx(inputObj){
 			<table width="100%" class="list  itemDetail" width="100%">
 				<thead>
 					<tr>
-						<th type="lookup" style="width:180px;" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off">材料编码</th>
-						<th type="text" style="width:320px;" name="Tf08_clmxb.CLMC"  hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
-						<th type="text" style="width:120px;" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
-						<th type="text" style="width:120px;" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
-						<th type="text" style="width:60px;" name="Tf08_clmxb.DW" hideName="Tf08_clmxb.CZSJ" hideValue="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>">单位</th>
+						<th type="lookup" style="width:180px;" id="clxxDetail[#index#].clxxLookup.CLBM" lookupGroup="clxxDetail[#index#].clxxLookup" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="CLBM,CLMC,XH,GG,DW" autocomplete="off">材料编码</th>
+						<th type="text" style="width:320px;" id="clxxDetail[#index#].clxxLookup.CLMC" name="Tf08_clmxb.CLMC"  hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
+						<th type="text" style="width:120px;" id="clxxDetail[#index#].clxxLookup.GG" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
+						<th type="text" style="width:120px;" id="clxxDetail[#index#].clxxLookup.XH" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
+						<th type="text" style="width:60px;" id="clxxDetail[#index#].clxxLookup.DW" name="Tf08_clmxb.DW" hideName="Tf08_clmxb.CZSJ" hideValue="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>">单位</th>
 						<th type="text" class="" style="width:60px;" name="Tf08_clmxb.SL" hideName="Tf08_clmxb.SGDW_ID" hideValue="${sgdw_id }">数量</th>
 						<th type="del" hideName="Tf08_clmxb.CZRY" hideValue="${user.name }">操作</th>
 					</tr>
@@ -153,7 +153,7 @@ function autoSelectClxx(inputObj){
 					<input type="hidden" name="Tf08_clmxb.SGDW_ID" value="${obj.sgdw_id}"/>
 					<input type="hidden" name="Tf08_clmxb.CZRY" value="${obj.czry}"/>
 						<td>
-							<input type="text" id="clxxDetail[${offset }].dwz_clxxLookup.Tf08_clmxb.CLBM" name="Tf08_clmxb.CLBM" value="${obj.clbm}" style="width:0px;" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="Tf08_clmxb.CLBM,Tf08_clmxb.CLMC,Tf08_clmxb.XH,Tf08_clmxb.GG,Tf08_clmxb.DW" autocomplete="off"/>
+							<input type="text" id="clxxDetail[${offset }].dwz_clxxLookup.CLBM" name="Tf08_clmxb.CLBM" value="${obj.clbm}" style="width:0px;" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="CLBM,CLMC,XH,GG,DW" autocomplete="off"/>
 							<a class="btnLook" href="selectClxx.do" index="${offset }" lookupGroup="clxxDetail"  lookupName="clxxLookup">查找带回</a>
 						</td>
 						<td><input class="" type="text" name="Tf08_clmxb.CLMC" value="${obj.clmc}" style="width:0px;"/></td>

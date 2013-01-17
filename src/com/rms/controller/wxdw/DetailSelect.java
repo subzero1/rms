@@ -265,15 +265,15 @@ public class DetailSelect {
 			for (Integer i=0; i<num; i++) {
 				Tf06_clb tf06 =(Tf06_clb) tmpList.get(i);
 				outStr.append("{");
-				outStr.append("\"Tf08_clmxb.CLBM\":\"");
+				outStr.append("\"CLBM\":\"");
 				outStr.append(tf06.getClbm());
-				outStr.append("\", \"Tf08_clmxb.CLMC\":\"");
+				outStr.append("\", \"CLMC\":\"");
 				outStr.append(tf06.getClmc());
-				outStr.append("\", \"Tf08_clmxb.XH\":\"");
+				outStr.append("\", \"XH\":\"");
 				outStr.append(tf06.getXh());
-				outStr.append("\", \"Tf08_clmxb.GG\":\"");
+				outStr.append("\", \"GG\":\"");
 				outStr.append(tf06.getGg());
-				outStr.append("\", \"Tf08_clmxb.DW\":\"");
+				outStr.append("\", \"DW\":\"");
 				outStr.append(tf06.getDw());
 				outStr.append("\"");
 				outStr.append("},");
