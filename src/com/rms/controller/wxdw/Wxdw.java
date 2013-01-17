@@ -346,6 +346,10 @@ public class Wxdw {
 		List<String> dqList = (List<String>) queryService
 				.searchList("select distinct(dq) from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id);
 		modelMap.put("dqList", dqList);
+		
+		List<String> zyList = (List<String>) queryService
+		.searchList("select distinct(zy) from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id);
+		modelMap.put("zyList", zyList);
 		if (id != -1L) {
 			modelMap.put("ta03", queryService.searchById(Ta03_user.class, id));
 			List<Ta11_sta_user> ta11List = (List<Ta11_sta_user>) queryService
@@ -367,6 +371,14 @@ public class Wxdw {
 					dqMap.put(string, new Object());
 				}
 				modelMap.put("dqMap", dqMap);
+				
+				String zy = convertUtil.toString(tf04.getZy());
+				String[] zys = zy.split(" ");
+				Map<String, Object> zyMap = new HashMap<String, Object>();
+				for (String string : zys) {
+					zyMap.put(string, new Object());
+				}
+				modelMap.put("zyMap", zyMap);
 			}
 		}
 		Long dept_id = 4L;
@@ -405,12 +417,20 @@ public class Wxdw {
 			Long useflag = convertUtil.toLong(request.getParameter("USEFLAG"), 1L);
 			String[] STATION_IDs = request.getParameterValues("STATION_ID");
 			String[] DQs = request.getParameterValues("DQ");
+			String[] ZYs = request.getParameterValues("ZY");
 			String dq = "";
+			String zy = "";
 			if (DQs != null)
 				for (String string : DQs) {
 					dq += " " + string;
 				}
 			dq = dq.trim();
+			
+			if (ZYs != null)
+				for (String string : ZYs) {
+					zy += " " + string;
+				}
+			zy = zy.trim();
 			// 保存用户表 TA03
 			Ta03_user ta03 = null;
 			if (id != -1L) {
@@ -452,6 +472,7 @@ public class Wxdw {
 						+ " and user_id=" + id)).get(0);
 			}
 			tf04.setArea(dq);
+			tf04.setZy(zy);
 			session.saveOrUpdate(tf04);
 			// 保存用户岗位表 TA11
 			session.createQuery("delete from Ta11_sta_user where user_id=" + ta03.getId()).executeUpdate();
