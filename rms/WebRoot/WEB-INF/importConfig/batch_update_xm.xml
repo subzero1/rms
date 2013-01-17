@@ -30,19 +30,20 @@
 					<name>项目标识</name>
 					<!-- 列名称 -->
 					<colName>项目标识</colName>
-					<required>true</required>
 			</column>
 			<column>
 					<columnName>XMBH</columnName>
 					<index/>
 					<name>项目编号</name>
 					<colName>项目编号</colName>
+					<required>true</required>
 			</column>
 			<column>
 					<columnName>XMMC</columnName>
 					<index/>
 					<name>项目名称</name>
 					<colName>项目名称</colName>
+					<required>true</required>
 			</column>
 			<column>
 					<columnName>SSDQ</columnName>
