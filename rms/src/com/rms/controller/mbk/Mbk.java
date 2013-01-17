@@ -36,18 +36,19 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Te01_slave;
-import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.convertUtil;
-import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
 import com.rms.base.util.ConfigXML;
 import com.rms.base.util.ConfigXMLImpl;
+import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.form.Td06_xqs;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.rms.dataObjects.mbk.Td22_mbk_lzjl;
 import com.rms.dataObjects.mbk.Td23_kcsqb;
+import com.rms.dataObjects.mbk.Td24_kcfkb;
+import com.rms.dataObjects.mbk.Td25_kcfkmx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 
 @Controller
@@ -1276,6 +1277,13 @@ public class Mbk {
 		return new ModelAndView(view, modelMap);
 	}
 
+	/**
+	 * 勘察申请上报
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @throws IOException void
+	 */
 	@RequestMapping("/mbk/reportKcsq.do")
 	public void reportKcsq(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session)
@@ -1324,5 +1332,27 @@ public class Mbk {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/mbk/kcfkEdit.do")
+	public ModelAndView kcfkEdit(HttpServletRequest request,HttpServletResponse response){
+		String view = "/WEB-INF/jsp/mbk/kcfkEdit.jsp";
+		ModelMap modelMap=new ModelMap();
+		Long mbk_id=convertUtil.toLong(request.getParameter("mbk_id"));
+		Long kcfkb_id=convertUtil.toLong(request.getParameter("kcfkb_id"));
+		Td24_kcfkb td24_kcfkb=null;
+		Td25_kcfkmx td25_kcfkmx=null;
+		
+		//生成列表
+		List tc01List=queryService.searchList("select t from Tc01_property t where t.type='勘察反馈内容' order by t.flag,t.name");
+		modelMap.put("Tc01_property", tc01List);
+		return new ModelAndView(view,modelMap);
+	}
+	
 
 }
