@@ -149,7 +149,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				buttonList.add(btn);
 				
 				if(doc_id != -1){
-					if(node_id == 10101 || node_id == 10103 || node_id == 10201 || node_id == 10203){
+					if(node_id == 10101 || node_id == 10102 || node_id == 10103 || node_id == 10201 || node_id == 10202 || node_id == 10203){
 						Long bg_module_id = -1L;
 						Long bg_node_id = -1L;
 						Long ys_module_id = -1L;
@@ -183,6 +183,20 @@ public class LoadFormListServiceImp implements LoadFormListService {
 								ys_node_id = 10701L;
 								break;
 							}
+							case 10102:{//设计单位起草工程变更单
+								bg_module_id = 103L;
+								bg_node_id = 10302L;
+								ys_module_id = -1L;
+								ys_node_id = -1L;
+								break;
+							}
+							case 10202:{//设计单位起草工程变更单
+								bg_module_id = 106L;
+								bg_node_id = 10602L;
+								ys_module_id = -1L;
+								ys_node_id = -1L;
+								break;
+							}
 						}
 						btn = new Button("起草变更");
 						btn.url = "javascript:docNew('flowForm.do?module_id=" + bg_module_id + "&node_id=" + bg_node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
@@ -202,7 +216,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 							Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,project_id);
 							isAlreadyZyConfirm = (td00.getZyqrsj() != null);
 						}
-						if(isAlreadyZyConfirm){
+						if(isAlreadyZyConfirm && ys_module_id != -1){
 							btn = new Button("起草验收");
 							btn.url = "javascript:docNew('flowForm.do?module_id=" + ys_module_id + "&node_id=" + ys_node_id  + "&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
 							btn.comment = "新建变更流程";
