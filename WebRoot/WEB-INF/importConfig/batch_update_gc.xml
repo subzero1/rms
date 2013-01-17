@@ -30,7 +30,6 @@
 					<name>工程标识</name>
 					<!-- 列名称 -->
 					<colName>工程标识</colName>
-					<required>true</required>
 			</column>
 			<column>
 					<columnName>XM_ID</columnName>
@@ -49,6 +48,7 @@
 					<index/>
 					<name>工程名称</name>
 					<colName>工程名称</colName>
+					<required>true</required>
 			</column>
 			<column>
 					<columnName>SSDQ</columnName>

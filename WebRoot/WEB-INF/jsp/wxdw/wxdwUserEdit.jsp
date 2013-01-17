@@ -60,10 +60,11 @@
 						<input type="checkbox" name="DQ" <c:if test="${not empty dqMap[dq] }">checked="checked"</c:if> value="${dq }"/>${dq }
 					</c:forEach>
 				</p>
+				<div style="height:0px;"></div>
 				<p>
 					<label>专业：</label>
-					<c:forEach items="${dqList}" var="dq">
-						<input type="checkbox" name="DQ" <c:if test="${not empty dqMap[dq] }">checked="checked"</c:if> value="${dq }"/>${dq }
+					<c:forEach items="${zyList}" var="zy">
+						<input type="checkbox" name="ZY" <c:if test="${not empty zyMap[zy] }">checked="checked"</c:if> value="${zy }"/>${zy }
 					</c:forEach>
 				</p>
 			</div>

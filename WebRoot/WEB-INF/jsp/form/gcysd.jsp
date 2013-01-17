@@ -19,6 +19,7 @@ $(function(){
 <input type="hidden" name="profile" value="gcysd.xml"/>
 <input type="hidden" name="Td04_xmysd.ID" value="${param.doc_id}">
 <input type="hidden" name="Td00_gcxx.ID" value="${param.project_id}">
+<input type="hidden" name="Td00_gcxx.XMGLY" value="${td00_gcxx.xmgly}">
 
 <div class="pageFormContent">
 	<p>
