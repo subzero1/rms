@@ -2,7 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-
+<style>
+	.tabtable th,td{height:22px;line-height: 21px;overflow: hidden;padding: 0px 3px;}
+	.tabtable th{
+		border:solid 1px #d0d0d0;border-top:solid 0px #d0d0d0;
+		vertical-align:middle;
+		background: url("http://localhost:8080/rms/themes/default/images/grid/tableth.png") repeat-x #F0EFF0;		
+		}
+	.tabtable td{border:solid 1px #ededed;background:#fff;}
+</style>
 <div class="panelBar">
 	<ul class="toolBar">
 		<c:if test="${not empty param.wxdw_id }">
@@ -45,7 +53,7 @@
 		<input type="hidden" name="wxry_id" value="${param.wxdw_id}"/>
 </form>
 <form></form>
-<table class="table" width="100%" layouth="138">
+<table class="tabtable" width="90%" layouth="290" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 	<thead>
 		<tr>
 			<th style="width: 80px;" orderField="name">
@@ -77,32 +85,32 @@
 	<tbody>
 		<c:forEach items="${wxryList}" var="wxry">
 			<tr target="wxry_id" rel="${wxry[0].id}">
-				<td>
+				<td style="width: 80px;">
 					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
 						target="dialog" width="500" height="350" rel="wxry"
 						title="外协人员信息">${wxry[0].name }</a>
 				</td>
-				<td>
+				<td style="width: 80px;">
 					 ${wxry[0].sex } 
 				</td>
-				<td>
+				<td style="width: 120px;">
 					${wxry[0].mobile}
 				</td>
-				<td>
+				<td style="width: 150px;">
 					${wxry[0].sfz }
 				</td>
-				<td>
+				<td style="width: 150px;">
 					${wxry[0].address }
 				</td>
-				<td>
+				<td style="width: 150px;">
 					${wxry[0].status }
 				</td>
-				<td>
+				<td style="width: 60px;">
 					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
 						target="dialog" width="500" height="350" rel="wxry"
 						title="外协人员信息">${wxry[1].havePic }</a>
 				</td>
-				<td>
+				<td style="width: 150px;">
 					${wxry[0].bz }
 				</td>
 			</tr>
