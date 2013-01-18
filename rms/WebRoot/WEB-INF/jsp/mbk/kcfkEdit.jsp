@@ -41,10 +41,36 @@ $(function(){
 		}
 	}); 
 	
+	
+	$kcfksj=$("input[name='Td24_kcfkb\.FKSJ']",navTab.getCurrentPanel());
+		if($kcfksj.val()!=''){
+			$inputs=$(":input[name^='Td2']");
+			$inputs.attr("readonly","readonly");
+		}
+	
 });
 function saveForm(){
 	$("#kcfk_form",navTab.getCurrentPanel()).submit();
 }
+
+ function reportKcfk(obj,kcfk_id){
+ 		$.ajax({
+		type:"post",
+		url:"mbk/kcfk.do",
+		dataType:"json",
+		async:true,
+		data:{mbk_id:obj,kcfk_id:kcfk_id},
+		success:function(json){ 
+			if(json.statusCode == DWZ.statusCode.ok){
+					alertMsg.correct(json.message);
+					navTab.closeCurrentTab();
+				}else if(json.statusCode == DWZ.statusCode.error){
+					alertMsg.info(json.message);
+				}
+		}
+		
+	});
+ }
 </script>
 <div class="page">
 	<!-- 表单头 -->
@@ -60,6 +86,7 @@ function saveForm(){
 	<!-- 主操作按钮 -->
 	<div class="panelBar">
 		<ul class="toolBar">
+			<c:if test="${empty Td24_kcfkb.fksj}">
 			<li>
 				<a class="save" href="javascript:saveForm();"><span>保&nbsp;&nbsp;存</span>
 				</a>
@@ -67,6 +94,15 @@ function saveForm(){
 			<li class="line">
 				line
 			</li>
+			</c:if>
+				<li>
+					<a class="icon"
+						href="javascript:reportKcfk('${param.mbk_id}','${Td24_kcfkb.id }');"><span>反&nbsp;&nbsp;馈</span>
+					</a>
+				</li>
+				<li class="line">
+					line
+				</li>
 		</ul>
 	</div>
 
@@ -86,8 +122,9 @@ function saveForm(){
 			<input type="hidden" name="Td24_kcfkb.ID" value="${Td24_kcfkb.id }" />
 			<input type="hidden" name="Td24_kcfkb.MBK_ID"
 				value="${Td24_kcfkb.mbk_id }" />
-			<input type="hidden" name="Td24_kcfkb.FKSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>" />
+			<input type="hidden" name="Td24_kcfkb.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>" />
 			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
+			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${Td24_kcfkb.fksj}"/>
 
 		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" >
 			<thead>
