@@ -183,6 +183,7 @@
 		</table>
 		</div>
 	</c:if>
+</div>
 <script language="javascript">
 	
 	$("#jsxz").change(function(){
