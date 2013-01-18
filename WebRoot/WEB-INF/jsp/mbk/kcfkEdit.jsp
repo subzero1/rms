@@ -14,7 +14,9 @@ function saveForm(){
 	$("#mbk_form").submit();
 } 
 $(function(){
-	$kcfk_td=$(".kcfk_td", navTab.getCurrentPanel());
+	var $kcfk_td=$(".kcfk_td", navTab.getCurrentPanel());
+	var $input;
+	var $tr;
 	$kcfk_td.css({cursor:"hand"});
 	$kcfk_td.click(function(){
 		$tr=$(this).closest("tr");
@@ -29,7 +31,15 @@ $(function(){
 			$input.val(1); 
 		}
 	});
+	//初始化各个选项的值
+	$tr = $kcfk_td.closest("tr");
+	$tr.each(function(){
+		$input=$("input[name='Td25_kcfkmx\.GS']",this);
+		if($input.val()!=''&&parseInt($input.val())!=0){
+			$(this).find("td:eq(1)").addClass("selectArea");
+		}
 	
+	});
 	
 });
 </script>
@@ -76,56 +86,72 @@ $(function(){
 		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" >
 			<thead>
 				<tr>
-					<th style="width: 256px;">类型</th> 
-					<th style="width: 366px;"  colspan="2">选择(打钩)</th>  
+					<th style="width: 196px;">类型</th> 
+					<th style="width: 256px;"  colspan="2">选择(打钩)</th>  
 				</tr>
 			</thead>
 			<tbody>
-				 <c:forEach var="Tc01_property" items="${Tc01_property}">
+				<c:forEach var="Td25_kcfkmx" items="${Td25_kcfkmxList}">
+					<c:if test="${Td25_kcfkmx[1]=='[1]'}">
+						<tr>
+							<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}
+							<input type="hidden" name="Td25_kcfkmc.ID" value="${Td25_kcfkmx[0].id}"/>
+							<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
+							</td>
+							<td style="width: 256px;"  colspan="2" class="kcfk_td">
+								<input type="hidden" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}"/>
+							</td> 
+						</tr> 
+					</c:if>
+				</c:forEach>
+				 <c:forEach var="Tc01_property" items="${TableList}">
 					<c:if test="${Tc01_property.flag=='[1]'}">
 						<tr>
-							<td style="width: 256px;" >${Tc01_property.name }
+							<td style="width: 196px;" >${Tc01_property.name }
 							<input type="hidden" name="Td25_kcfkmc.ID" value=""/>
 							<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value=""/>
-							<input type="hidden" name="Td25_kcfkmc.FKX" value=""/>
 							</td>
-							<td style="width: 383px;"  colspan="2" class="kcfk_td">
+							<td style="width: 256px;"  colspan="2" class="kcfk_td">
 								<input type="hidden" name="Td25_kcfkmx.GS" value=""/>
 							</td> 
 						</tr> 
 					</c:if>
 				</c:forEach>
 				<tr>
-					<td style="width: 256px;" >类型</td>
+					<td style="width: 196px;" >类型</td>
 					<td >选择(打钩)</td> 
 					<td  >个数</td>  
 				</tr> 
-				<c:forEach var="Tc01_property" items="${Tc01_property}">
+				
+				<c:forEach var="Td25_kcfkmx" items="${Td25_kcfkmxList}">
+				<c:if test="${Td25_kcfkmx[1]=='[2]'}">
+				<tr>
+					<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}</td>
+					<td class="kcfk_td">
+						<input type="hidden" name="Td25_kcfkmc.ID" value="${Td25_kcfkmx[0].id}"/>
+						<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
+					</td> 
+					<td ><input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="width: 191px;height:24px;border-top:0;"/></td> 
+				</tr>  
+				</c:if></c:forEach>
+				
+				<c:forEach var="Tc01_property" items="${TableList}">
 				<c:if test="${Tc01_property.flag=='[2]'}">
 				<tr>
-					<td style="width: 256px;" >${Tc01_property.name}</td>
+					<td style="width: 196px;" >${Tc01_property.name}</td>
 					<td class="kcfk_td">
 						<input type="hidden" name="Td25_kcfkmc.ID" value=""/>
 						<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value=""/>
-						<input type="hidden" name="Td25_kcfkmc.FKX" value=""/>
 					</td> 
 					<td ><input type="text" name="Td25_kcfkmx.GS" value="" style="width: 191px;height:24px;border-top:0;"/></td> 
 				</tr>  
 				</c:if></c:forEach>
+				 
 				<tr>
-					<td style="width: 256px;" >其他</td>
-					<td style="width: 128px;" class="kcfk_td kcfk_tdgs">
-						<input type="hidden" name="Td25_kcfkmc.ID" value=""/>
-						<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value=""/>
-						<input type="hidden" name="Td25_kcfkmc.FKX" value=""/>
-					</td> 
-					<td class="kcfk_tdgs"><input type="text" name="Td25_kcfkmx.GS" value="" style="width: 191px;height:24px;border-top:0;"/></td> 
-				</tr> 
-				<tr>
-					<td style="width: 256px;" >其他说明</td>
-					<td style="width: 383px;" colspan="2">
+					<td style="width: 196px;" >其他说明</td>
+					<td style="width: 256px;" colspan="2">
 					<textarea class="td-textarea" style="width: 618px; height:42px;border-right:0;"
-						name="Td23_kcsqb.QTSM">${Td23_kcsqb.qtsm }</textarea>
+						name="Td23_kcsqb.QTSM">${Td24_kcfkb.qtsm}</textarea>
 					</td> 
 				</tr> 
 				<tr>
@@ -135,14 +161,14 @@ $(function(){
 					<td style="width: 64px;"><input type="text"  name="Td24_kcfkb.SJYQZ" style="width: 191px;height:24px;" value="${Td24_kcfkb.sjyqz}"/></td> 
 				</tr>  
 				<tr>
-					<td style="width: 256px;" >
+					<td style="width: 196px;" >
 						待反馈后再确认：
 					（1）需要提交结构图后再定，
 					（2）改址后（超过50米）需要重新定位，
 					（3）不可签（位置、挂高、承重不符合要求）</td>
-					<td style="width: 383px;" colspan="2">
+					<td style="width: 256px;" colspan="2">
 				<textarea class="td-textarea" style="width: 618px; height: 81px;"
-						name="Td23_kcsqb.FKQR">${Td23_kcsqb.fkqr }</textarea>
+						name="Td23_kcsqb.FKQR">${Td24_kcfkb.fkqr}</textarea>
 				</td> 
 				</tr>  
 			</tbody>
