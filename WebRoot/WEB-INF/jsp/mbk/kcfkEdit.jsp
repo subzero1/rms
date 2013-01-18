@@ -23,7 +23,7 @@ $(function(){
 		$input=$("input[name='Td25_kcfkmx\.GS']",$tr);
 	 	if($(this).hasClass("selectArea")){
 			$(this).removeClass("selectArea");
-			$input.attr("readonly","readonly");
+			$input.attr("readonly","true");
 			$input.val("");  
 		}else{
 			$(this).addClass("selectArea");
@@ -31,15 +31,16 @@ $(function(){
 			$input.val(1); 
 		}
 	});
-	//初始化各个选项的值
+	//初始化各个选项的值 选中与否
 	$tr = $kcfk_td.closest("tr");
 	$tr.each(function(){
 		$input=$("input[name='Td25_kcfkmx\.GS']",this);
 		if($input.val()!=''&&parseInt($input.val())!=0){
 			$(this).find("td:eq(1)").addClass("selectArea");
 		}
-	
 	});
+	//是否可读
+	
 	
 });
 function saveForm(){
@@ -103,6 +104,7 @@ function saveForm(){
 							<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}
 							<input type="hidden" name="Td25_kcfkmx.ID" value="${Td25_kcfkmx[0].id}"/>
 							<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
+							<input type="hidden" name="Td25_kcfkmx.FKX" value="${Td25_kcfkmx[0].fkx}"/>
 							</td>
 							<td style="width: 256px;"  colspan="2" class="kcfk_td">
 								<input type="hidden" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}"/>
@@ -137,6 +139,7 @@ function saveForm(){
 					<td class="kcfk_td">
 						<input type="hidden" name="Td25_kcfkmx.ID" value="${Td25_kcfkmx[0].id}"/>
 						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
+						<input type="hidden" name="Td25_kcfkmx.FKX" value="${Td25_kcfkmx[0].fkx}"/>
 					</td> 
 					<td ><input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="width: 191px;height:24px;border-top:0;"/></td> 
 				</tr>  
