@@ -47,6 +47,7 @@ $(function(){
 			$inputs=$(":input[name^='Td2']");
 			$inputs.attr("readonly","readonly");
 			$(".kcfk_td",navTab.getCurrentPanel()).attr("disabled","disabled");
+			$(".dis_a",navTab.getCurrentPanel()).attr("disabled","disabled");
 		}
 	
 });
@@ -87,17 +88,15 @@ function saveForm(){
 	<!-- 主操作按钮 -->
 	<div class="panelBar">
 		<ul class="toolBar">
-			<c:if test="${empty Td24_kcfkb.fksj}">
 			<li>
-				<a class="save" href="javascript:saveForm();"><span>保&nbsp;&nbsp;存</span>
+				<a class="save dis_a" href="javascript:saveForm();"><span>保&nbsp;&nbsp;存</span>
 				</a>
 			</li>
 			<li class="line">
 				line
 			</li>
-			</c:if>
 				<li>
-					<a class="icon"
+					<a class="icon dis_a"
 						href="javascript:reportKcfk('${param.mbk_id}','${Td24_kcfkb.id }');"><span>反&nbsp;&nbsp;馈</span>
 					</a>
 				</li>
