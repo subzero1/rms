@@ -91,7 +91,7 @@ $(function(){
 	</form>
 </div>
 <div class="tabs">
-	<div class="tabsHeader">
+	<div class="tabsHeader" style="position:fixed; ">
 		<div class="tabsHeaderContent">
 			<ul>
 				<li>
@@ -118,7 +118,7 @@ $(function(){
 			</ul>
 		</div>
 	</div>
-	<div id="wxdwpz_disp" class="tabsContent">
+	<div id="wxdwpz_disp" class="tabsContent" >
 		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
@@ -137,12 +137,9 @@ $(function(){
 		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do?lb=sgd&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="glyh_tab" class="loadFileArea"	loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
+		<div id="glyh_tab" class="loadFileArea" loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
 	</div>
-	<div class="tabsFooter">
-		<div class="tabsFooterContent"></div>
-	</div>
+
 </div>
-s
