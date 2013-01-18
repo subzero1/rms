@@ -46,6 +46,7 @@ $(function(){
 		if($kcfksj.val()!=''){
 			$inputs=$(":input[name^='Td2']");
 			$inputs.attr("readonly","readonly");
+			$(".kcfk_td",navTab.getCurrentPanel()).attr("disabled","disabled");
 		}
 	
 });
