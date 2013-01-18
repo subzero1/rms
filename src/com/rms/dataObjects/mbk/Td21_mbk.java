@@ -930,4 +930,16 @@ public class Td21_mbk implements Serializable {
 	public void setKcfksj(Date kcfksj) {
 		this.kcfksj = kcfksj;
 	}
+	
+	private Date fksj;
+
+	public Date getFksj() {
+		return fksj;
+	}
+
+	public void setFksj(Date fksj) {
+		this.fksj = fksj;
+	}
+	
+	
 }
