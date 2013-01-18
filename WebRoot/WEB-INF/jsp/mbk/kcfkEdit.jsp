@@ -37,10 +37,9 @@ $(function(){
 		$input=$("input[name='Td25_kcfkmx\.GS']",this);
 		if($input.val()!=''&&parseInt($input.val())!=0){
 			$(this).find("td:eq(1)").addClass("selectArea");
+			$input.removeAttr("readonly");
 		}
-	});
-	//是否可读
-	
+	}); 
 	
 });
 function saveForm(){
