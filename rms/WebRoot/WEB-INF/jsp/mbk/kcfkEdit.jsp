@@ -42,6 +42,9 @@ $(function(){
 	});
 	
 });
+function saveForm(){
+	$("#kcfk_form",navTab.getCurrentPanel()).submit();
+}
 </script>
 <div class="page">
 	<!-- 表单头 -->
@@ -73,15 +76,18 @@ $(function(){
 			onsubmit="return validateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation"
 				value="noFatherTable:com.rms.dataObjects.mbk.Td24_kcfkb" />
+			<input type="hidden" name="tableInfomation" 
+			value="Td24_kcfkb,id,kcfk_id:com.rms.dataObjects.mbk.Td25_kcfkmx"/>
 			<input type="hidden" name="_callbackType" value="" />
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value="" />
-			<input type="hidden" name="_navTabId" value="kcsqList" />
+			<input type="hidden" name="_navTabId" value="kcfkList" />
 
 			<input type="hidden" name="Td24_kcfkb.ID" value="${Td24_kcfkb.id }" />
 			<input type="hidden" name="Td24_kcfkb.MBK_ID"
 				value="${Td24_kcfkb.mbk_id }" />
-			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${now}" />
+			<input type="hidden" name="Td24_kcfkb.FKSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>" />
+			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
 
 		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" >
 			<thead>
@@ -95,8 +101,8 @@ $(function(){
 					<c:if test="${Td25_kcfkmx[1]=='[1]'}">
 						<tr>
 							<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}
-							<input type="hidden" name="Td25_kcfkmc.ID" value="${Td25_kcfkmx[0].id}"/>
-							<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
+							<input type="hidden" name="Td25_kcfkmx.ID" value="${Td25_kcfkmx[0].id}"/>
+							<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
 							</td>
 							<td style="width: 256px;"  colspan="2" class="kcfk_td">
 								<input type="hidden" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}"/>
@@ -108,8 +114,9 @@ $(function(){
 					<c:if test="${Tc01_property.flag=='[1]'}">
 						<tr>
 							<td style="width: 196px;" >${Tc01_property.name }
-							<input type="hidden" name="Td25_kcfkmc.ID" value=""/>
-							<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value=""/>
+							<input type="hidden" name="Td25_kcfkmx.ID" value=""/>
+							<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value=""/>
+							<input type="hidden" name="Td25_kcfkmx.FKX" value="${Tc01_property.name }"/>
 							</td>
 							<td style="width: 256px;"  colspan="2" class="kcfk_td">
 								<input type="hidden" name="Td25_kcfkmx.GS" value=""/>
@@ -128,8 +135,8 @@ $(function(){
 				<tr>
 					<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}</td>
 					<td class="kcfk_td">
-						<input type="hidden" name="Td25_kcfkmc.ID" value="${Td25_kcfkmx[0].id}"/>
-						<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
+						<input type="hidden" name="Td25_kcfkmx.ID" value="${Td25_kcfkmx[0].id}"/>
+						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
 					</td> 
 					<td ><input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="width: 191px;height:24px;border-top:0;"/></td> 
 				</tr>  
@@ -140,8 +147,9 @@ $(function(){
 				<tr>
 					<td style="width: 196px;" >${Tc01_property.name}</td>
 					<td class="kcfk_td">
-						<input type="hidden" name="Td25_kcfkmc.ID" value=""/>
-						<input type="hidden" name="Td25_kcfkmc.KCFK_ID" value=""/>
+						<input type="hidden" name="Td25_kcfkmx.ID" value=""/>
+						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value=""/>
+						<input type="hidden" name="Td25_kcfkmx.FKX" value="${Tc01_property.name }"/>
 					</td> 
 					<td ><input type="text" name="Td25_kcfkmx.GS" value="" style="width: 191px;height:24px;border-top:0;"/></td> 
 				</tr>  
