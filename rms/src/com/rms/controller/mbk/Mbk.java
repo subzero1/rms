@@ -1271,7 +1271,7 @@ public class Mbk {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			log.warn(e.getMessage());
-		} 
+		}
 		modelMap.put("Td23_kcsqb", td23_kcsqb);
 		modelMap.put("Td21_mbk", td21_mbk);
 		return new ModelAndView(view, modelMap);
@@ -1279,10 +1279,12 @@ public class Mbk {
 
 	/**
 	 * 勘察申请上报
+	 * 
 	 * @param request
 	 * @param response
 	 * @param session
-	 * @throws IOException void
+	 * @throws IOException
+	 *             void
 	 */
 	@RequestMapping("/mbk/reportKcsq.do")
 	public void reportKcsq(HttpServletRequest request,
@@ -1306,12 +1308,13 @@ public class Mbk {
 
 		} else if (mbk_id != -1 && user != null) {
 			try {
-				Date date=new Date();
+				Date date = new Date();
 				Td21_mbk td21_mbk = (Td21_mbk) queryService.searchById(
 						Td21_mbk.class, mbk_id);
 				td21_mbk.setSqkcsj(date);
-				
-				Td23_kcsqb td23_kcsqb=(Td23_kcsqb) queryService.searchById(Td23_kcsqb.class, kcsqb_id);
+
+				Td23_kcsqb td23_kcsqb = (Td23_kcsqb) queryService.searchById(
+						Td23_kcsqb.class, kcsqb_id);
 				td23_kcsqb.setSqsbsj(date);
 				saveService.save(td21_mbk);
 				saveService.save(td23_kcsqb);
@@ -1332,7 +1335,7 @@ public class Mbk {
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @param request
@@ -1340,19 +1343,60 @@ public class Mbk {
 	 * @return ModelAndView
 	 */
 	@RequestMapping("/mbk/kcfkEdit.do")
-	public ModelAndView kcfkEdit(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView kcfkEdit(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		String view = "/WEB-INF/jsp/mbk/kcfkEdit.jsp";
-		ModelMap modelMap=new ModelMap();
-		Long mbk_id=convertUtil.toLong(request.getParameter("mbk_id"));
-		Long kcfkb_id=convertUtil.toLong(request.getParameter("kcfkb_id"));
-		Td24_kcfkb td24_kcfkb=null;
-		Td25_kcfkmx td25_kcfkmx=null;
+		ModelMap modelMap = new ModelMap();
+		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
+		Long kcfkb_id = convertUtil.toLong(request.getParameter("kcfkb_id"));
+		Td24_kcfkb td24_kcfkb = null;
+		Td25_kcfkmx td25_kcfkmx = null;
+		List tableList = null;
+		List kcfkbList = null;
+		List td25_kcfkmxList=null;
+
+		StringBuffer hql = new StringBuffer();
+		Ta03_user user = (Ta03_user) session.getAttribute("user");
+
+		// 取勘察申请单
+		hql.append("select t from Td24_kcfkb t where t.mbk_id=");
+		hql.append(mbk_id);
+		hql.append(" and t.cjr='");
+		hql.append(user.getName());
+		hql.append("'");
 		
-		//生成列表
-		List tc01List=queryService.searchList("select t from Tc01_property t where t.type='勘察反馈内容' order by t.flag,t.name");
-		modelMap.put("Tc01_property", tc01List);
-		return new ModelAndView(view,modelMap);
+		kcfkbList = queryService.searchList(hql.toString());
+		if (kcfkbList.size() != 0 && kcfkbList != null) {
+			td24_kcfkb = (Td24_kcfkb) kcfkbList.get(0);
+			// 取名细表
+			hql.delete(0, hql.length());
+			hql.append("select td25,tc01.flag from Td25_kcfkmx td25,Tc01_property tc01 ");
+			hql.append("where 1=1 ");
+			hql.append("and td25.fkx=tc01.name ");
+			hql.append("and tc01.type= '");
+			hql.append("勘察反馈内容' ");
+			hql.append("and td25.kcfk_id=");
+			hql.append(td24_kcfkb.getId());
+			td25_kcfkmxList=queryService.searchList(hql.toString());
+			
+		}
+		//取tc01列表,td24为空或者不完整的情况
+			hql.delete(0, hql.length());
+			hql.append("select tc01 from Tc01_property tc01 ");
+			hql.append("where tc01.type='勘察反馈内容' ");
+			hql.append("and tc01.name not in");
+			hql.append("(select mx.fkx from Td25_kcfkmx mx where mx.kcfk_id=");
+			hql.append(td24_kcfkb.getId());		
+			hql.append(") ");
+			hql.append("order by tc01.flag,tc01.name");
+			tableList=queryService.searchList(hql.toString());
+			hql.delete(0, hql.length());
+
+		modelMap.put("Td24_kcfkb", td24_kcfkb);
+		modelMap.put("mbk_id", mbk_id);
+		modelMap.put("Td25_kcfkmxList", td25_kcfkmxList);
+		modelMap.put("TableList", tableList);
+		return new ModelAndView(view, modelMap);
 	}
-	
 
 }
