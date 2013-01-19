@@ -2031,7 +2031,7 @@ public class Wxdw {
 		String type = convertUtil.toString(request.getParameter("type"));
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		if ("xmgly".equals(type)) {
-			List<Tf01_wxdw> tf01List = (List<Tf01_wxdw>) queryService.searchList("from Tf01_wxdw where lb='施工'");
+			List<Tf01_wxdw> tf01List = (List<Tf01_wxdw>) queryService.searchList("from Tf01_wxdw where lb='施工' order by mc");
 			modelMap.put("tf01List", tf01List);
 			if (tf01List != null && !tf01List.isEmpty() && wxdw_id == -1L) {
 				wxdw_id = tf01List.get(0).getId();
