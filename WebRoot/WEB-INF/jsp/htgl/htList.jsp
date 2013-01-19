@@ -45,10 +45,9 @@
 					<th style="width: 120px;" orderField="xmbh">项目编号</th>
 					<th orderField="xmmc">项目名称</th>
 					<th style="width: 100px;" orderField="lxsj">立项日期</th>
-					<th style="width: 120px;" orderField="${htlb }htbh">${htlbmc }合同编号</th>
+					<th style="width: 150px;" orderField="${htlb }htbh">${htlbmc }合同编号</th>
 					<th style="width: 100px;" orderField="${htlb }htqdrq">${htlbmc }签订日期</th>
 					<th style="width: 80px;" orderField="${htlb }htje">${htlbmc }合同金额</th>
-					<th style="width: 80px;">指导金额</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,7 +57,7 @@
 					<tr>
 						<td>${obj.xmbh }</td>
 						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="230" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
-						<td><fmt:formatDate value="${obj.lxsj }" pattern="yyyy-MM-dd HH:mm"/></td>
+						<td><fmt:formatDate value="${obj.lxsj }" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 							<c:when test="${htlb == 'sj'}">
 								<td>${obj.sjhtbh }</td>
@@ -76,13 +75,11 @@
 								<td>${obj.jlhtje }</td>
 							</c:when>
 						</c:choose>
-						<td></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>

@@ -28,7 +28,7 @@
 								<div style="height:0px;"></div>
 								<p>
 									<label>${htlbmc }签订日期：</label>
-									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.sjhtqdrq }" class="required date" />
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="<fmt:formatDate value="${td01.sjhtqdrq }" pattern="yyyy-MM-dd"/>" class="required date" />
 								</p>
 								<div style="height:0px;"></div>
 								<p>
@@ -44,7 +44,7 @@
 								<div style="height:0px;"></div>
 								<p>
 									<label>${htlbmc }签订日期：</label>
-									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.sghtqdrq }" class="required date" />
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="<fmt:formatDate value="${td01.sghtqdrq }" pattern="yyyy-MM-dd"/>" class="required date" />
 								</p>
 								<div style="height:0px;"></div>
 								<p>
@@ -61,7 +61,7 @@
 								<div style="height:0px;"></div>
 								<p>
 									<label>${htlbmc }签订日期：</label>
-									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="${td01.jlhtqdrq }" class="required date" />
+									<input type="text" name="Td01_xmxx.${fn:toUpperCase(htlb) }HTQDRQ" style="width:240px;" value="<fmt:formatDate value="${td01.jlhtqdrq }" pattern="yyyy-MM-dd"/>" class="required date" />
 								</p>
 								<div style="height:0px;"></div>
 								<p>

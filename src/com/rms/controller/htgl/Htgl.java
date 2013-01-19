@@ -101,7 +101,8 @@ public class Htgl {
 		//获得待签合同信息列表
 		sql.delete(0, sql.length());
 		sql.append(" from Td01_xmxx td01");
-		sql.append(" where xmgly = '"+user.getName()+"' and " + htlb +"htbh is null ");
+		sql.append(" where xmgly = '"+user.getName()+"' ");
+		//sql.append(" where xmgly = '"+user.getName()+"' and " + htlb +"htbh is null ");
 				
 		 //关键字
 		if(!keywords.equals("")){
