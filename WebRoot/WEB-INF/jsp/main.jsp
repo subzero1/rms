@@ -114,7 +114,7 @@ $(function(){
 		//弹出消息框
 		$.messager.lays(300, 200);
 		$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
-		$.messager.show('自定义标题', '<font style="font-size:14px;font-weight:bold;">${remindContent}</font>', 0);
+		$.messager.show('提醒', '<font style="font-size:14px;font-weight:bold;">${remindContent}</font>', 0);
 	}
 	
 });
