@@ -47,10 +47,10 @@
 			 	</li>
 			<li class="line">line</li>
 			 </c:forEach>
-			 	<li>
-					<a class="edit"	href="jlgt/jlgtView.do?module_id=${param.module_id }&doc_id=${param.doc_id}"  title="交流反馈" target="navTab"><span>反 馈</span></a>
-			 	</li>
-			<li class="line">line</li>
+			<c:if test="${not empty param.doc_id}"> 
+				<li><a class="edit"	href="jlgt/jlgtView.do?module_id=${param.module_id }&doc_id=${param.doc_id}"  title="交流反馈" target="navTab"><span>反 馈</span></a></li>
+				<li class="line">line</li>
+			</c:if>
 		 	<li class="f-right">
 		 		<c:if test="${param.module_id != 101 && param.module_id != 102}">
 					<a class="autonode"	href="showTree.do?project_id=${param.project_id}&doc_id=${param.doc_id}&module_id=${param.module_id}"  title="流程" target="navTab"><span>流程</span></a>
