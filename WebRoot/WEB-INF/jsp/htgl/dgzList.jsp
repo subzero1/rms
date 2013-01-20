@@ -33,8 +33,8 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-				<li><a class="helponline"	href="javascript:enterHelp('dgzht')"><span>在线帮助</span></a></li>
-				<li class="line">line</li>
+				<!-- <li><a class="helponline"	href="javascript:enterHelp('dgzht')"><span>在线2帮助</span></a></li>
+				<li class="line">line</li>-->
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
