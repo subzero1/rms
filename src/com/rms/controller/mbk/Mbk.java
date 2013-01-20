@@ -1381,13 +1381,16 @@ public class Mbk {
 			td25_kcfkmxList = queryService.searchList(hql.toString());
 
 		}
+		else{
+			td24_kcfkb = new Td24_kcfkb();
+		}
 		// 取tc01列表,td24为空或者不完整的情况
 		hql.delete(0, hql.length());
 		hql.append("select tc01 from Tc01_property tc01 ");
 		hql.append("where tc01.type='勘察反馈内容' ");
 		hql.append("and tc01.name not in");
 		hql.append("(select mx.fkx from Td25_kcfkmx mx where mx.kcfk_id=");
-		hql.append(td24_kcfkb.getId());
+		hql.append(convertUtil.toLong(td24_kcfkb.getId()));
 		hql.append(") ");
 		hql.append("order by tc01.flag,tc01.name");
 		tableList = queryService.searchList(hql.toString());
