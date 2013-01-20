@@ -34,7 +34,7 @@
 
 <div class="page">
 	<div class="pageContent">
-		<form method="post" action="import.do" enctype="multipart/form-data"
+		<form method="post" action="import2.do" enctype="multipart/form-data"
 			id="importform"
 			onsubmit="return iframeCallback(this,dialogAjaxDone);">
 			<input type="hidden" name="packgePath"
