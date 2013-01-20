@@ -618,8 +618,19 @@ public class ImportController2 implements org.springframework.web.servlet.mvc.Co
 					sro = queryService.search(squeryBuilder);
 					if(sro.next()){
 						Td00_gcxx td00 = (Td00_gcxx)sro.get(Td00_gcxx.class.getName());
-						Long t_gc_id = td00.getId();
-						PropertyInject.setProperty(o, "id", t_gc_id);
+						Class<?> clazz = o.getClass();
+						Method method[] = clazz.getDeclaredMethods();
+						for (int i = 0; i < method.length; i++) {
+							Class<?> clazz1[] = method[i].getParameterTypes();
+							if (clazz1.length == 1) {
+								if (method[i].getName().indexOf("set") != -1) {
+									String columnName = method[i].getName().replaceFirst("set", "").toLowerCase();
+									if(PropertyInject.getProperty(o, columnName) == null){
+										PropertyInject.setProperty(o, columnName,PropertyInject.getProperty(td00, columnName));
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -637,8 +648,19 @@ public class ImportController2 implements org.springframework.web.servlet.mvc.Co
 					sro = queryService.search(squeryBuilder);
 					if(sro.next()){
 						Td01_xmxx td01 = (Td01_xmxx)sro.get(Td01_xmxx.class.getName());
-						Long t_xm_id = td01.getId();
-						PropertyInject.setProperty(o, "id", t_xm_id);
+						Class<?> clazz = o.getClass();
+						Method method[] = clazz.getDeclaredMethods();
+						for (int i = 0; i < method.length; i++) {
+							Class<?> clazz1[] = method[i].getParameterTypes();
+							if (clazz1.length == 1) {
+								if (method[i].getName().indexOf("set") != -1) {
+									String columnName = method[i].getName().replaceFirst("set", "").toLowerCase();
+									if(PropertyInject.getProperty(o, columnName) == null){
+										PropertyInject.setProperty(o, columnName,PropertyInject.getProperty(td01, columnName));
+									}
+								}
+							}
+						}
 					}
 				}
 				/*
@@ -654,8 +676,19 @@ public class ImportController2 implements org.springframework.web.servlet.mvc.Co
 						sro = queryService.search(squeryBuilder);
 						if(sro.next()){
 							Td01_xmxx td01 = (Td01_xmxx)sro.get(Td01_xmxx.class.getName());
-							Long t_xm_id = td01.getId();
-							PropertyInject.setProperty(o, "id", t_xm_id);
+							Class<?> clazz = o.getClass();
+							Method method[] = clazz.getDeclaredMethods();
+							for (int i = 0; i < method.length; i++) {
+								Class<?> clazz1[] = method[i].getParameterTypes();
+								if (clazz1.length == 1) {
+									if (method[i].getName().indexOf("set") != -1) {
+										String columnName = method[i].getName().replaceFirst("set", "").toLowerCase();
+										if(PropertyInject.getProperty(o, columnName) == null){
+											PropertyInject.setProperty(o, columnName,PropertyInject.getProperty(td01, columnName));
+										}
+									}
+								}
+							}
 						}
 					}
 				}
