@@ -617,33 +617,33 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				List buttonList = (List)request.getAttribute("buttons");
 				
 				if(doc_id != -1){
-					if(node_id == 10902){//
+					if(node_id == 10901){//
 						Button btn = new Button("转目标库");
 						btn.url = "javascript:navTab.reload('mbk/mbkEdit.do?xqs_id=" + project_id + "&user_id=" + user_id	+ "');";
 						btn.comment = "转入目标库";
 						btn.picUri = "newform";
 						buttonList.add(btn);
 						
-						hsql.delete(0, hsql.length());
-						hsql.append("select id from Td21_mbk where xqs_id = ");
-						hsql.append(project_id);
-						List list = queryService.searchList(hsql.toString());
+//						hsql.delete(0, hsql.length());
+//						hsql.append("select id from Td21_mbk where xqs_id = ");
+//						hsql.append(project_id);
+//						List list = queryService.searchList(hsql.toString());
 						
 						/*
 						 * 如果没有转入目标库就可以起草项目和工程
 						 */
 						//if(list == null || list.size() == 0){
-						btn = new Button("新建工程");
-						btn.url = "javascript:docNew('flowForm.do?module_id=102&node_id=10201&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-						btn.comment = "新建单项工程";
-						btn.picUri = "newform";
-						buttonList.add(btn);
-						
-						btn = new Button("新建项目");
-						btn.url = "javascript:docNew('flowForm.do?module_id=101&node_id=10101&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-						btn.comment = "新建建设项目";
-						btn.picUri = "newform";
-						buttonList.add(btn);
+//						btn = new Button("新建工程");
+//						btn.url = "javascript:docNew('flowForm.do?module_id=102&node_id=10201&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+//						btn.comment = "新建单项工程";
+//						btn.picUri = "newform";
+//						buttonList.add(btn);
+//						
+//						btn = new Button("新建项目");
+//						btn.url = "javascript:docNew('flowForm.do?module_id=101&node_id=10101&xqs_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
+//						btn.comment = "新建建设项目";
+//						btn.picUri = "newform";
+//						buttonList.add(btn);
 						//}
 					}
 				}

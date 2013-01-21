@@ -177,6 +177,22 @@
   insert="true"
   column="sswg"
   />
+  
+  <property
+  name="xqshr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xqshr"
+  />
+  
+  <property
+  name="xqshsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="xqshsj"
+  />
     </class>
 
 </hibernate-mapping>

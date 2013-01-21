@@ -355,26 +355,52 @@ public class Td06_xqs implements Serializable{
 	  /**
 	   * @hibernate.property column="jscj"
 	   * @return Returns the jscj.
-	   */
-		public String getJscj() {
+	  */
+	  public String getJscj() {
 			return jscj;
-		}
+	  }
 	
-		public void setJscj(String jscj) {
+	  public void setJscj(String jscj) {
 			this.jscj = jscj;
-		}
+	  }
 	
-		/**
-		   * @hibernate.property column="sswg"
-		   * @return Returns the sswg.
-		 */
-		public String getSswg() {
+	  /**
+	   * @hibernate.property column="sswg"
+	   * @return Returns the sswg.
+	 */
+	 public String getSswg() {
 			return sswg;
-		}
+	 }
 	
-		public void setSswg(String sswg) {
-			this.sswg = sswg;
-		}
+	 public void setSswg(String sswg) {
+		this.sswg = sswg;
+	 }
+	 
+	 private String xqshr;
 	  
-	  
+	 private Date xqshsj;
+
+	 /**
+	   * @hibernate.property column="xqshr"
+	   * @return Returns the xqshr.
+	 */
+	public String getXqshr() {
+		return xqshr;
+	}
+
+	public void setXqshr(String xqshr) {
+		this.xqshr = xqshr;
+	}
+
+	 /**
+	   * @hibernate.property column="xqshsj"
+	   * @return Returns the xqshsj.
+	 */
+	public Date getXqshsj() {
+		return xqshsj;
+	}
+
+	public void setXqshsj(Date xqshsj) {
+		this.xqshsj = xqshsj;
+	} 
 }
