@@ -788,12 +788,22 @@ $("#jsxz").change(function(){
 	//如果有勘察申请，则提示勘察申请的内容
 	var show_sqkcsm = $("#show_sqkcsm");
 	if(show_sqkcsm != null && show_sqkcsm != 'undefined' && show_sqkcsm.size() == 1 && show_sqkcsm.val() != ''){
-		var show_content = "<b>谈点人员已经提出勘察申请，内容如下：</b><br/>"+show_sqkcsm.val()+"<br/><b>是否现在发起四方勘察?</b>";
-		alertMsg.confirm(show_content, {			
+		if(show_sqkcsm.val().indexOf('~勘察申请单~') == -1){
+			var show_content = "<b>谈点人员已经提出勘察申请，内容如下：</b><br/>"+show_sqkcsm.val()+"<br/><b>是否现在发起四方勘察?</b>";
+			alertMsg.confirm(show_content, {			
 				okCall: function(){
 					$("#sfkca").click();
 				}
 			});
+		}
+		else{
+			var show_content = "<b>谈点人员已经提出勘察申请，是否查看?</b>";
+			alertMsg.confirm(show_content, {			
+				okCall: function(){
+					navTab.openTab('kcsqEdit','mbk/kcsqEdit.do?role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
+				}
+			});
+		}	
 	}
 	
 	/*

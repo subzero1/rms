@@ -1254,6 +1254,7 @@ public class Mbk {
 		ModelMap modelMap = new ModelMap();
 		String view = "/WEB-INF/jsp/mbk/kcsq.jsp";
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
+		String role = convertUtil.toString(request.getParameter("role"),"tdr");
 		StringBuffer hql = null;
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
 		Td23_kcsqb td23_kcsqb = null;
@@ -1266,13 +1267,16 @@ public class Mbk {
 				hql.append("select td23 from Td23_kcsqb td23");
 				hql.append(" where td23.mbk_id=");
 				hql.append(mbk_id);
-				hql.append(" and td23.cjr='");
-				hql.append(user.getName() + "'");
+				if(role.equals("tdr")){
+					hql.append(" and td23.cjr='");
+					hql.append(user.getName() + "'");
+				}
+				hql.append(" order by td23.id desc ");
 				List td23List = queryService.searchList(hql.toString());
 				if (td23List != null && td23List.size() > 0)
 					td23_kcsqb = (Td23_kcsqb) td23List.get(0);
 			}
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.warn(e.getMessage());
 		}
@@ -1317,6 +1321,7 @@ public class Mbk {
 				td21_mbk.setSqkcsj(new Date());
 				td21_mbk.setSqkcsj(date);
 				td21_mbk.setZt("勘察申请");
+				td21_mbk.setSqkcsm("新的~勘察申请单~");
 
 				Td23_kcsqb td23_kcsqb = (Td23_kcsqb) queryService.searchById(Td23_kcsqb.class, kcsqb_id);
 				td23_kcsqb.setSqsbsj(date);
