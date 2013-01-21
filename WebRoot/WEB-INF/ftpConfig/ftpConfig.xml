@@ -30,4 +30,8 @@
 		<type>xhEditor上传</type>
 		<folder>rmsSlaveData/xhEditor</folder>
 	</typeFolder>
+	<typeFolder>
+		<type>其他附件</type>
+		<folder>rmsSlaveData/kcfk</folder>
+	</typeFolder>
 </root>
