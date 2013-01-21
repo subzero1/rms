@@ -103,7 +103,7 @@ function setCommunicate(_this,condition){
 					</c:if>
 			</c:if>
 			<c:if
-				test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
+				test="${(not empty rolesMap['20101'] || not empty rolesMap['20102']) && not empty Td23_kcsqb}">
 				<li>
 					<a class="icon"
 						href="javascript:reportKcsq('${Td21_mbk.id}','${Td23_kcsqb.id}');"><span>上&nbsp;&nbsp;报</span>
@@ -120,16 +120,15 @@ function setCommunicate(_this,condition){
 		<form id="mbk_form" action="save.do" method="post"
 			class="pageForm required-validate"
 			onsubmit="return validateCallback(this, navTabAjaxDone);">
-			<input type="hidden" name="tableInfomation"
-				value="noFatherTable:com.rms.dataObjects.mbk.Td23_kcsqb" />
+			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.mbk.Td23_kcsqb" />
 			<input type="hidden" name="Td23_kcsqb.ID" value="${Td23_kcsqb.id}" />
 			<input type="hidden" name="Td23_kcsqb.MBK_ID" value="${Td21_mbk.id}" />
 			<input type="hidden" name="Td23_kcsqb.CJR" value="${user.name}" /> 
 			<input type="hidden" name="Td23_kcsqb.SQSBSJ" value="${Td23_kcsqb.sqsbsj}"/>
-			<input type="hidden" name="_callbackType" value="" />
+			<input type="hidden" name="_callbackType" value="forward" />
 			<input type="hidden" name="_message" value="保存" />
-			<input type="hidden" name="_forwardUrl" value="" />
-			<input type="hidden" name="_navTabId" value="kcsqList" />
+			<input type="hidden" name="_forwardUrl" value="mbk/kcsqEdit.do?mbk_id=${Td21_mbk.id}" />
+			<input type="hidden" name="_navTabId" value="kcsqEdit" />
 
 
 			<div class="pageFormContent">
