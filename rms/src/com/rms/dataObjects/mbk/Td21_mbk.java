@@ -941,5 +941,37 @@ public class Td21_mbk implements Serializable {
 		this.fksj = fksj;
 	}
 	
+	/**
+	  * 建设场景
+	  */
+	  private String jscj;
+	  
+	  /**
+	   * 所属网格
+	   */
+	  private String sswg;
+
+	  /**
+	   * @hibernate.property column="jscj"
+	   * @return Returns the jscj.
+	   */
+		public String getJscj() {
+			return jscj;
+		}
 	
+		public void setJscj(String jscj) {
+			this.jscj = jscj;
+		}
+	
+		/**
+		   * @hibernate.property column="sswg"
+		   * @return Returns the sswg.
+		 */
+		public String getSswg() {
+			return sswg;
+		}
+	
+		public void setSswg(String sswg) {
+			this.sswg = sswg;
+		}
 }
