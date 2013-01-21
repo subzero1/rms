@@ -121,7 +121,7 @@ function saveForm(){
 
 			<input type="hidden" name="Td24_kcfkb.ID" value="${Td24_kcfkb.id }" />
 			<input type="hidden" name="Td24_kcfkb.MBK_ID"
-				value="${Td24_kcfkb.mbk_id }" />
+				value="${param.mbk_id }" />
 			<input type="hidden" name="Td24_kcfkb.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>" />
 			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
 			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${Td24_kcfkb.fksj}"/>
