@@ -130,9 +130,9 @@ function saveForm(){
 			onsubmit="return validateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.mbk.Td24_kcfkb" />
 			<input type="hidden" name="tableInfomation" value="Td24_kcfkb,id,kcfk_id:com.rms.dataObjects.mbk.Td25_kcfkmx"/>
-			<input type="hidden" name="_callbackType" value="" />
+			<input type="hidden" name="_callbackType" value="forward" />
 			<input type="hidden" name="_message" value="保存" />
-			<input type="hidden" name="_forwardUrl" value="" />
+			<input type="hidden" name="_forwardUrl" value="mbk/kcfkEdit.do?mbk_id=${mbk_id}" />
 			<input type="hidden" name="_navTabId" value="kcfkList" />
 
 			<input type="hidden" name="Td24_kcfkb.ID" value="${Td24_kcfkb.id }" />
@@ -218,23 +218,25 @@ function saveForm(){
 				</c:if></c:forEach>
 				 
 				<tr>
-					<td >其他说明</td>
+					<th >其他说明</th>
 					<td  colspan="2">
-					<textarea class="td-textarea" style="height:42px;border:0;overflow:auto" name="Td24_kcfkb.QTSM">${Td24_kcfkb.qtsm}</textarea>
+					<textarea class="td-textarea" style="width:592px;height:42px;border:0;overflow:auto" name="Td24_kcfkb.QTSM">${Td24_kcfkb.qtsm}</textarea>
 					</td> 
 				</tr> 
-				<tr>
-					<td colspan="3">中心签字：<input type="text"  name="Td24_kcfkb.WXZXQZ"  value="${Td24_kcfkb.wxzxqz}"/>
-									设计院签字：<input type="text"  name="Td24_kcfkb.SJYQZ"  value="${Td24_kcfkb.sjyqz}"/></td> 
+				<tr style="width:30px">
+					<td colspan="3" style="text-valign:middle">中心签字：<input type="text" style="border:none" name="Td24_kcfkb.WXZXQZ"  value="${Td24_kcfkb.wxzxqz}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									设计院签字：<input type="text" style="border:none" name="Td24_kcfkb.SJYQZ"  value="${Td24_kcfkb.sjyqz}"/></td> 
 				</tr>  
 				<tr>
 					<td>
 						待反馈后再确认：<br>
 					（1）需要提交结构图后再定，<br>
-					（2）改址后（超过50米）<br>需要重新定位，<br>
-					（3）不可签（位置、挂高、<br>承重不符合要求）</td>
+					（2）改址后（超过50米）需要重新定位，<br>
+					（3）不可签（位置、挂高、承重不符合要求）</td>
 					<td colspan="2">
-						<textarea class="td-textarea" style=" height: 100px;border:0px;overflow:auto" name="Td23_kcsqb.FKQR">${Td24_kcfkb.fkqr}</textarea>
+						<textarea class="td-textarea" style="width:592px; height: 120px;border:0px;overflow:auto" name="Td24_kcfkb.FKQR">${Td24_kcfkb.fkqr}</textarea>
 					</td> 
 				</tr>  
 			</tbody>
@@ -247,7 +249,7 @@ function saveForm(){
 					<c:set var="slaves" scope="page" value="0"/>
 					<c:forEach var="slave" items="${slaveList}">
 						<p>
-							<a href="show_slave.do?slave_id=${slave.id}" target="dialog" width="1000" height="600" title="查看">
+							<a href="show_slave.do?slave_id=${slave.id}" target="dialog" width="100" height="600" title="查看">
 						<img width="18" height='20'
 						<c:choose>
 							<c:when test="${slave.ext_name=='.pdf'}">
