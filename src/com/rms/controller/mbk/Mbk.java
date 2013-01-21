@@ -223,7 +223,7 @@ public class Mbk {
 		}
 
 		/*
-		 * 待四方勘察列表(给四方勘察人员使用)
+		 * 可施工列表(给项目管理员使用)
 		 */
 		if (listType.equals("ksg")) {
 			hsql.append(" and zt = '转建设'");
@@ -234,6 +234,13 @@ public class Mbk {
 		 */
 		if (listType.equals("kcsq")) {
 			hsql.append(" and zt = '开始谈点' and instr(jsxz,'室分',1) = 0");
+		}
+		
+		/*
+		 * 勘察已反馈列表(给谈点管理员使用)
+		 */
+		if (listType.equals("kcyfk")) {
+			hsql.append(" and zt = '四方勘察' and fksj is not null ");
 		}
 
 		// order排序
@@ -1358,6 +1365,7 @@ public class Mbk {
 		ModelMap modelMap = new ModelMap();
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
 		Long kcfkb_id = convertUtil.toLong(request.getParameter("kcfkb_id"));
+		String role = convertUtil.toString(request.getParameter("role"),"tdr");
 		Td24_kcfkb td24_kcfkb = null;
 		Td25_kcfkmx td25_kcfkmx = null;
 		List tableList = null;
@@ -1371,9 +1379,12 @@ public class Mbk {
 		// 取勘察申请单
 		hql.append("select t from Td24_kcfkb t where t.mbk_id=");
 		hql.append(mbk_id);
-		hql.append(" and t.cjr='");
-		hql.append(user.getName());
-		hql.append("'");
+		if(role.equals("tdr")){
+			hql.append(" and t.cjr='");
+			hql.append(user.getName());
+			hql.append("'");
+		}
+		hql.append("order by t.id desc ");
 
 		kcfkbList = queryService.searchList(hql.toString());
 		if (kcfkbList.size() != 0 && kcfkbList != null) {
