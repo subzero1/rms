@@ -678,6 +678,10 @@ public class Mbk {
 			out = response.getWriter();
 			if ("zdrl".equals(type)) {// 派发
 				word = "派发";
+				td21.setTdr_id(null);
+				td21.setTdrdh(null);
+				td21.setTdbm(null);
+				td21.setTdr(null);
 				td21.setHdfs("派发");
 			} else if ("rl".equals(type)) {// 认领
 				word = "认领";
