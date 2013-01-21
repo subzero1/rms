@@ -36,6 +36,9 @@ function uploadSlave(butt){
 	<c:when test="${param.slave_type==8}">
 		<c:set var="slave_type" value="其他附件"/>
 	</c:when>
+	<c:when test="${param.slave_type==9}">
+		<c:set var="slave_type" value="勘察反馈"/>
+	</c:when>
 </c:choose>
 
 <div class="page">
@@ -50,7 +53,7 @@ function uploadSlave(butt){
 				<div id="fileQueue" class="fileQueue"></div>
 				<p>
 					<label>附件选择：</label>
-					<input type="file" name="the_file" id="the_file" size="23"/> 
+					<input type="file" name="the_file" id="the_file" size="23" style="background-color: #fff"/> 
 					<input type="hidden" name="Te01_slave.ID" value="${param.slave_id}"/>
 					<input type="hidden" name="Te01_slave.PROJECT_ID" value="${param.project_id}"/>
 					<input type="hidden" name="Te01_slave.DOC_ID" value="${param.doc_id }"/>

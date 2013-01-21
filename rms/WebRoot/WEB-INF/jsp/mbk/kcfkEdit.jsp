@@ -77,6 +77,9 @@ function saveForm(){
 		
 	});
  }
+ function printKcfkTab(){
+	$("#kcfkTab",navTab.getCurrentPanel()).jqprint();
+}
 </script>
 <div class="page">
 	<!-- 表单头 -->
@@ -107,6 +110,17 @@ function saveForm(){
 				<li class="line">
 					line
 				</li>
+				<li>
+					<a class="attach" 
+					href="javascript:docSlave('slave.do?project_id=${Td24_kcfkb.id}&amp;doc_id=${Td24_kcfkb.id}&amp;module_id=91&amp;node_id=-1&amp;opernode_id=-1&amp;user_id=${user.id }&slave_type=9');"
+					<c:if test="${empty Td24_kcfkb.id}">disabled</c:if>>
+			<span>附&nbsp;&nbsp; 件</span></a>
+				</li>
+				<li class="line">
+					line
+				</li>
+				<li><a class="print" href="javascript:printKcfkTab()"><span>打&nbsp;&nbsp; 印</span></a></li>
+			<li class="line">line</li>
 		</ul>
 	</div>
 
@@ -130,7 +144,7 @@ function saveForm(){
 			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
 			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${Td24_kcfkb.fksj}"/>
 
-		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" >
+		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="kcfkTab">
 			<thead>
 				<tr>
 					<th style="width: 196px;">类型</th> 
