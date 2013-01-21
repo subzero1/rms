@@ -161,6 +161,22 @@
   insert="true"
   column="jsfs"
   />
+  
+   <property
+  name="jscj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jscj"
+  />
+  
+  <property
+  name="sswg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sswg"
+  />
     </class>
 
 </hibernate-mapping>

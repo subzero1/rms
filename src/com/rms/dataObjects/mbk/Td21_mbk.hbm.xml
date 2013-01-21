@@ -440,6 +440,22 @@
             column="fksj"
         />
         
+         <property
+		  name="jscj"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="jscj"
+		  />
+		  
+		  <property
+		  name="sswg"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="sswg"
+		  />
+        
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td21_mbk.xml
