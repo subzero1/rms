@@ -111,16 +111,11 @@ function saveForm(){
 					line
 				</li>
 				<li>
-					<a class="attach" 
-					href="javascript:docSlave('slave.do?project_id=${Td24_kcfkb.id}&amp;doc_id=${Td24_kcfkb.id}&amp;module_id=91&amp;node_id=-1&amp;opernode_id=-1&amp;user_id=${user.id }&slave_type=9');"
+					<a class="attach" href="javascript:docSlave('slave.do?project_id=${Td24_kcfkb.id}&amp;doc_id=${Td24_kcfkb.id}&amp;module_id=91&amp;node_id=-1&amp;opernode_id=-1&amp;user_id=${user.id }&slave_type=9');"
 					<c:if test="${empty Td24_kcfkb.id}">disabled</c:if>>
-			<span>附&nbsp;&nbsp; 件</span></a>
+					<span>附&nbsp;&nbsp; 件</span></a>
 				</li>
-				<li class="line">
-					line
-				</li>
-				<li><a class="print" href="javascript:printKcfkTab()"><span>打&nbsp;&nbsp; 印</span></a></li>
-			<li class="line">line</li>
+				<li class="line">line</li>
 		</ul>
 	</div>
 
