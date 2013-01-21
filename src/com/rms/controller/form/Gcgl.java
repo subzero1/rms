@@ -128,6 +128,17 @@ public class Gcgl {
 			xmxxList.add(td01);
 		}
 		
+		hsql.delete(0, hsql.length());
+		hsql.append("from Ta11_sta_user ta11,Ta13_sta_node ta13 ");
+		hsql.append("where ta11.station_id = ta13.station_id "); 
+		hsql.append("and ta13.node_id = 10101 "); 
+		hsql.append("and ta11.user_id =");
+		hsql.append(user.getId());
+		List nodeList = queryService.searchList(hsql.toString());
+		if(nodeList != null && nodeList.size() > 0){
+			node_id = 10101L;
+		}
+		
 		modelMap.put("node_id", node_id);
 		modelMap.put("limit", limit);
 		modelMap.put("xmxxList", xmxxList);
@@ -329,6 +340,18 @@ public class Gcgl {
 			
 			gcxxList.add(td00);
 		}
+		
+		hsql.delete(0, hsql.length());
+		hsql.append("from Ta11_sta_user ta11,Ta13_sta_node ta13 ");
+		hsql.append("where ta11.station_id = ta13.station_id "); 
+		hsql.append("and ta13.node_id = 10201 "); 
+		hsql.append("and ta11.user_id =");
+		hsql.append(user.getId());
+		List nodeList = queryService.searchList(hsql.toString());
+		if(nodeList != null && nodeList.size() > 0){
+			node_id = 10201L;
+		}
+		
 		modelMap.put("node_id", node_id);
 		modelMap.put("limit", limit);
 		modelMap.put("gcxxList", gcxxList);
