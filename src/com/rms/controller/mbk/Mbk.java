@@ -1357,6 +1357,7 @@ public class Mbk {
 		List tableList = null;
 		List kcfkbList = null;
 		List td25_kcfkmxList = null;
+		List te01List=null;
 
 		StringBuffer hql = new StringBuffer();
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
@@ -1397,12 +1398,24 @@ public class Mbk {
 		hql.append(") ");
 		hql.append("order by tc01.flag,tc01.name");
 		tableList = queryService.searchList(hql.toString());
-		hql.delete(0, hql.length());
-
+		
+		
+		if(td24_kcfkb!=null){
+			hql.delete(0, hql.length());
+			hql.append("select t from Te01_slave t where 1=1 ");
+			hql.append("and t.project_id=");
+			hql.append(td24_kcfkb.getId());
+			hql.append(" and t.user_name='");
+			hql.append(user.getName());
+			hql.append("'");
+			te01List=queryService.searchList(hql.toString());
+		}
+		
 		modelMap.put("Td24_kcfkb", td24_kcfkb);
 		modelMap.put("mbk_id", mbk_id);
 		modelMap.put("Td25_kcfkmxList", td25_kcfkmxList);
 		modelMap.put("TableList", tableList);
+		modelMap.put("slaveList", te01List);
 		return new ModelAndView(view, modelMap);
 	}
 
