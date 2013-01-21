@@ -246,7 +246,57 @@ function saveForm(){
 				</tr>  
 			</tbody>
 		</table>
-		</form>  
-		
+		</form>
+		<div id="attachBody" layoutH="68">
+			<div class="panel">
+				<h1>表单附件 [${fn:length(slaveList)}]</h1>
+				<div id="slaveDiv" defH="150" style="background-color:#fff;">
+					<c:set var="slaves" scope="page" value="0"/>
+					<c:forEach var="slave" items="${slaveList}">
+						<p>
+							<a href="show_slave.do?slave_id=${slave.id}" target="dialog" width="1000" height="600" title="查看">
+						<img width="18" height='20'
+						<c:choose>
+							<c:when test="${slave.ext_name=='.pdf'}">
+								src="Images/icon/pdf.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.txt'}">
+								src="Images/icon/txt.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.doc'}">
+								src="Images/icon/doc.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.xls'}">
+								src="Images/icon/xls.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.zip'||slave.ext_name=='.rar'}">
+								src="Images/icon/rar.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.gif'}">
+								src="Images/icon/gif.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.jpg'||slave.ext_name=='.png'}">
+								src="Images/icon/jpg.png"
+								</c:when>
+								<c:when test="${slave.ext_name=='.pptx'||slave.ext_name=='.ppt'}">
+								src="Images/icon/ppt.png"
+								</c:when>
+								<c:otherwise>
+								src="Images/icon/file.png"
+								</c:otherwise>
+								</c:choose>/>
+						 />
+							${slave.file_name}&nbsp;&nbsp;
+						</a>
+							<a href="download.do?slave_id=${slave.id}" title="下载"><font color="red">下载</font></a>
+							<a href="javascript:del_slave('${slave.id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a>
+						</p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:forEach>
+				</div>
+			</div>
+		</div>	
+		<div  style="clear:both"></div>   
 	</div>
 	</div>
+	
