@@ -91,7 +91,7 @@ function setCommunicate(_this,condition){
 	<div class="panelBar">
 		<ul class="toolBar">
 			<c:if
-				test="${not empty rolesMap['20101'] || not empty rolesMap['20102']}">
+				test="${not empty rolesMap['20102']}">
 				<c:if test="${empty Td23_kcsqb.sqsbsj}">
 				<li>
 					<a class="save" href="javascript:saveMbk();"><span>保&nbsp;&nbsp;存</span>
@@ -103,7 +103,7 @@ function setCommunicate(_this,condition){
 					</c:if>
 			</c:if>
 			<c:if
-				test="${(not empty rolesMap['20101'] || not empty rolesMap['20102']) && not empty Td23_kcsqb}">
+				test="${(not empty rolesMap['20102']) && not empty Td23_kcsqb}">
 				<li>
 					<a class="icon"
 						href="javascript:reportKcsq('${Td21_mbk.id}','${Td23_kcsqb.id}');"><span>上&nbsp;&nbsp;报</span>
