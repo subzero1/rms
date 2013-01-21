@@ -128,18 +128,15 @@ function saveForm(){
 		<form id="kcfk_form" action="save.do" method="post"
 			class="pageForm required-validate"
 			onsubmit="return validateCallback(this, navTabAjaxDone);">
-			<input type="hidden" name="tableInfomation"
-				value="noFatherTable:com.rms.dataObjects.mbk.Td24_kcfkb" />
-			<input type="hidden" name="tableInfomation" 
-			value="Td24_kcfkb,id,kcfk_id:com.rms.dataObjects.mbk.Td25_kcfkmx"/>
+			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.mbk.Td24_kcfkb" />
+			<input type="hidden" name="tableInfomation" value="Td24_kcfkb,id,kcfk_id:com.rms.dataObjects.mbk.Td25_kcfkmx"/>
 			<input type="hidden" name="_callbackType" value="" />
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="_navTabId" value="kcfkList" />
 
 			<input type="hidden" name="Td24_kcfkb.ID" value="${Td24_kcfkb.id }" />
-			<input type="hidden" name="Td24_kcfkb.MBK_ID"
-				value="${param.mbk_id }" />
+			<input type="hidden" name="Td24_kcfkb.MBK_ID" value="${param.mbk_id }" />
 			<input type="hidden" name="Td24_kcfkb.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>" />
 			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
 			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${Td24_kcfkb.fksj}"/>
@@ -147,20 +144,20 @@ function saveForm(){
 		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="kcfkTab">
 			<thead>
 				<tr>
-					<th style="width: 196px;">类型</th> 
-					<th style="width: 256px;"  colspan="2">选择(打钩)</th>  
+					<th>类型</th> 
+					<th colspan="2">选择(打钩)</th>  
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="Td25_kcfkmx" items="${Td25_kcfkmxList}">
 					<c:if test="${Td25_kcfkmx[1]=='[1]'}">
 						<tr>
-							<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}
+							<td style="text-align:center">${Td25_kcfkmx[0].fkx}
 							<input type="hidden" name="Td25_kcfkmx.ID" value="${Td25_kcfkmx[0].id}"/>
 							<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
 							<input type="hidden" name="Td25_kcfkmx.FKX" value="${Td25_kcfkmx[0].fkx}"/>
 							</td>
-							<td style="width: 256px;"  colspan="2" class="kcfk_td">
+							<td colspan="2" class="kcfk_td">
 								<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
 								<input type="hidden" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}"/>
 							</td> 
@@ -170,12 +167,12 @@ function saveForm(){
 				 <c:forEach var="Tc01_property" items="${TableList}">
 					<c:if test="${Tc01_property.flag=='[1]'}">
 						<tr>
-							<td style="width: 196px;" >${Tc01_property.name }
+							<td style="text-align:center">${Tc01_property.name }
 							<input type="hidden" name="Td25_kcfkmx.ID" value=""/>
 							<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value=""/>
 							<input type="hidden" name="Td25_kcfkmx.FKX" value="${Tc01_property.name }"/>
 							</td>
-							<td style="width: 256px;"  colspan="2" class="kcfk_td">
+							<td colspan="2" class="kcfk_td">
 								<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
 								<input type="hidden" name="Td25_kcfkmx.GS" value=""/>
 							</td> 
@@ -183,22 +180,22 @@ function saveForm(){
 					</c:if>
 				</c:forEach>
 				<tr>
-					<td style="width: 196px;" >类型</td>
-					<td >选择(打钩)</td> 
-					<td  >个数</td>  
+					<th style="width: 150px;" >类型</th>
+					<th style="width: 300px;">选择(打钩)</th> 
+					<th  style="width: 300px;">个数</th>  
 				</tr> 
 				
 				<c:forEach var="Td25_kcfkmx" items="${Td25_kcfkmxList}">
 				<c:if test="${Td25_kcfkmx[1]=='[2]'}">
 				<tr>
-					<td style="width: 196px;" >${Td25_kcfkmx[0].fkx}</td>
+					<td  style="text-align:center">${Td25_kcfkmx[0].fkx}</td>
 					<td class="kcfk_td">
 						<input type="hidden" name="Td25_kcfkmx.ID" value="${Td25_kcfkmx[0].id}"/>
 						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
 						<input type="hidden" name="Td25_kcfkmx.FKX" value="${Td25_kcfkmx[0].fkx}"/>
 					</td> 
 					<td >
-					<input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="width: 191px;height:24px;border-top:0;"/>
+					<input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="height:24px;border:0;"/>
 					<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
 					</td> 
 				</tr>  
@@ -207,42 +204,38 @@ function saveForm(){
 				<c:forEach var="Tc01_property" items="${TableList}">
 				<c:if test="${Tc01_property.flag=='[2]'}">
 				<tr>
-					<td style="width: 196px;" >${Tc01_property.name}</td>
+					<td  style="text-align:center">${Tc01_property.name}</td>
 					<td class="kcfk_td">
 						<input type="hidden" name="Td25_kcfkmx.ID" value=""/>
 						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value=""/>
 						<input type="hidden" name="Td25_kcfkmx.FKX" value="${Tc01_property.name }"/>
 					</td> 
 					<td >
-					<input type="text" name="Td25_kcfkmx.GS" value="" style="width: 191px;height:24px;border-top:0;"/>
+					<input type="text" name="Td25_kcfkmx.GS" value="" style="height:24px;border:0;"/>
 					<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
 					</td> 
 				</tr>  
 				</c:if></c:forEach>
 				 
 				<tr>
-					<td style="width: 196px;" >其他说明</td>
-					<td style="width: 256px;" colspan="2">
-					<textarea class="td-textarea" style="width: 618px; height:42px;border-right:0;"
-						name="Td24_kcfkb.QTSM">${Td24_kcfkb.qtsm}</textarea>
+					<td >其他说明</td>
+					<td  colspan="2">
+					<textarea class="td-textarea" style="height:42px;border:0;overflow:auto" name="Td24_kcfkb.QTSM">${Td24_kcfkb.qtsm}</textarea>
 					</td> 
 				</tr> 
 				<tr>
-					<td style="width: 64px;" >中心签字</td>
-					<td style="width: 64px;"><input type="text"  name="Td24_kcfkb.WXZXQZ" style="width: 191px;height:24px;" value="${Td24_kcfkb.wxzxqz}"/></td> 
-					<td style="width: 64px;">设计院签字</td> 
-					<td style="width: 64px;"><input type="text"  name="Td24_kcfkb.SJYQZ" style="width: 191px;height:24px;" value="${Td24_kcfkb.sjyqz}"/></td> 
+					<td colspan="3">中心签字：<input type="text"  name="Td24_kcfkb.WXZXQZ"  value="${Td24_kcfkb.wxzxqz}"/>
+									设计院签字：<input type="text"  name="Td24_kcfkb.SJYQZ"  value="${Td24_kcfkb.sjyqz}"/></td> 
 				</tr>  
 				<tr>
-					<td style="width: 196px;" >
-						待反馈后再确认：
-					（1）需要提交结构图后再定，
-					（2）改址后（超过50米）需要重新定位，
-					（3）不可签（位置、挂高、承重不符合要求）</td>
-					<td style="width: 256px;" colspan="2">
-				<textarea class="td-textarea" style="width: 618px; height: 81px;"
-						name="Td23_kcsqb.FKQR">${Td24_kcfkb.fkqr}</textarea>
-				</td> 
+					<td>
+						待反馈后再确认：<br>
+					（1）需要提交结构图后再定，<br>
+					（2）改址后（超过50米）<br>需要重新定位，<br>
+					（3）不可签（位置、挂高、<br>承重不符合要求）</td>
+					<td colspan="2">
+						<textarea class="td-textarea" style=" height: 100px;border:0px;overflow:auto" name="Td23_kcsqb.FKQR">${Td24_kcfkb.fkqr}</textarea>
+					</td> 
 				</tr>  
 			</tbody>
 		</table>
