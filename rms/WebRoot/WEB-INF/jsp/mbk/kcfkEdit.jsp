@@ -16,19 +16,23 @@ function saveForm(){
 $(function(){
 	var $kcfk_td=$(".kcfk_td", navTab.getCurrentPanel());
 	var $input;
+	var $jg_input;
 	var $tr;
 	$kcfk_td.css({cursor:"hand"});
 	$kcfk_td.click(function(){
 		$tr=$(this).closest("tr");
 		$input=$("input[name='Td25_kcfkmx\.GS']",$tr);
+		$jg_input=$("input[name='Td25_kcfkmx\.JG']",$tr);
 	 	if($(this).hasClass("selectArea")){
 			$(this).removeClass("selectArea");
 			$input.attr("readonly","true");
-			$input.val("");  
+			$input.val("");
+			$jg_input.val(0);  
 		}else{
 			$(this).addClass("selectArea");
 			$input.removeAttr("readonly");
 			$input.val(1); 
+			$jg_input.val(1);
 		}
 	});
 	//初始化各个选项的值 选中与否
@@ -143,6 +147,7 @@ function saveForm(){
 							<input type="hidden" name="Td25_kcfkmx.FKX" value="${Td25_kcfkmx[0].fkx}"/>
 							</td>
 							<td style="width: 256px;"  colspan="2" class="kcfk_td">
+								<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
 								<input type="hidden" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}"/>
 							</td> 
 						</tr> 
@@ -157,6 +162,7 @@ function saveForm(){
 							<input type="hidden" name="Td25_kcfkmx.FKX" value="${Tc01_property.name }"/>
 							</td>
 							<td style="width: 256px;"  colspan="2" class="kcfk_td">
+								<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
 								<input type="hidden" name="Td25_kcfkmx.GS" value=""/>
 							</td> 
 						</tr> 
@@ -177,7 +183,10 @@ function saveForm(){
 						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value="${Td25_kcfkmx[0].kcfk_id}"/>
 						<input type="hidden" name="Td25_kcfkmx.FKX" value="${Td25_kcfkmx[0].fkx}"/>
 					</td> 
-					<td ><input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="width: 191px;height:24px;border-top:0;"/></td> 
+					<td >
+					<input type="text" name="Td25_kcfkmx.GS" value="${Td25_kcfkmx[0].gs}" style="width: 191px;height:24px;border-top:0;"/>
+					<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
+					</td> 
 				</tr>  
 				</c:if></c:forEach>
 				
@@ -190,7 +199,10 @@ function saveForm(){
 						<input type="hidden" name="Td25_kcfkmx.KCFK_ID" value=""/>
 						<input type="hidden" name="Td25_kcfkmx.FKX" value="${Tc01_property.name }"/>
 					</td> 
-					<td ><input type="text" name="Td25_kcfkmx.GS" value="" style="width: 191px;height:24px;border-top:0;"/></td> 
+					<td >
+					<input type="text" name="Td25_kcfkmx.GS" value="" style="width: 191px;height:24px;border-top:0;"/>
+					<input type="hidden" name="Td25_kcfkmx.JG" value="${Td25_kcfkmx[0].jg}"/>
+					</td> 
 				</tr>  
 				</c:if></c:forEach>
 				 
@@ -198,7 +210,7 @@ function saveForm(){
 					<td style="width: 196px;" >其他说明</td>
 					<td style="width: 256px;" colspan="2">
 					<textarea class="td-textarea" style="width: 618px; height:42px;border-right:0;"
-						name="Td23_kcsqb.QTSM">${Td24_kcfkb.qtsm}</textarea>
+						name="Td24_kcfkb.QTSM">${Td24_kcfkb.qtsm}</textarea>
 					</td> 
 				</tr> 
 				<tr>
