@@ -759,7 +759,7 @@ public class Mbk {
 				td22.setJssj(now);
 				td22.setMbk_id(id);
 				session.save(td22);
-			} else if ("kcsq".equals(type)) {// 勘察申请
+			} else if ("zdwkcsq".equals(type)) {// 勘察申请
 				String sqkcsm = convertUtil.toString(request
 						.getParameter("sqkcsm"));
 				word = "勘察申请";
