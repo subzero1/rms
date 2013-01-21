@@ -6,6 +6,7 @@ import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Tb15_docflow;
 
 /**
  * 概预算接口
@@ -54,6 +55,22 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 					Ta03_user user = (Ta03_user)queryService.searchById(Ta03_user.class, user_id);
 					saveService.updateByHSql("update Td00_gcxx set zyqrsj = sysdate,zygly='"+user.getName()+"' where id = "+project_id);
 					saveService.updateByHSql("update Td01_xmxx set zyqrsj = sysdate,zygly='"+user.getName()+"' where id = "+project_id);
+				}
+				
+				/**
+				 * 需求书审核岗审结同意
+				 */
+				if(module_id == 109 && node_name.indexOf("需求审核") != -1){
+					Ta03_user user = (Ta03_user)queryService.searchById(Ta03_user.class, user_id);
+					saveService.updateByHSql("update Td06_xqs set xqshsj = sysdate,xqshr='"+user.getName()+"' where id = "+project_id);
+					ro = queryService.search("select tb15 from Tb15_docflow tb15 where node_id = 10901 and project_id = "+project_id); 
+					if(ro.next()){
+						Tb15_docflow tb15 = (Tb15_docflow)ro.get("tb15");
+						Long tb15_id = tb15.getId();
+						Long opernode_id = tb15.getOpernode_id();
+						saveService.updateByHSql("update Tb15_docflow set doc_status = 0 where id = "+tb15_id);
+						saveService.updateByHSql("update Tb12_opernode set node_status = 0 where id = "+opernode_id);
+					}
 				}
 			}
 		} catch (Exception e) {
