@@ -246,48 +246,7 @@ function saveForm(){
 				</tr>  
 			</tbody>
 		</table>
-		</form>
-		<div style="clear: both"></div>
-
-		<!---调整---->
-		<div id="attachBody" layoutH="68">
-			<div class="panel">
-				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
-				<div id="slaveDiv" defH="150" style="background-color:#fff;">
-					<c:set var="slaves" scope="page" value="0"/>
-					
-					<!-- temp -->
-					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=5026', {title:'工程施工进度'});">相关工程施工进度（示例）</a></p>
-					<c:set var="slaves" scope="page" value="1"/>
-					<!-- temp -->
-					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjdForMbk.do?mbk_id=${Td21_mbk.id }', {title:'工程施工进度'});">相关工程施工进度</a></p>
-					<c:set var="slaves" scope="page" value="2"/>
-					
-					<c:forEach var="obj" items="${_formslink}">
-						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-					<c:forEach var="obj" items="${formslave}">
-						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-					
-					<c:forEach var="obj" items="${extslave}">
-						<p class="slaveList"><a href="javascript:return false;" onclick="${obj.formurl}">${obj.slave_name}</a></p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-					
-					<c:forEach var="obj" items="${uploadslave}">
-						<p class="slaveList">
-							${obj.slave_name}&nbsp;&nbsp;
-							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
-							<a href="download.do?slave_id=${obj.slave_id}" title="下载"><font color="red">下载</font></a>
-							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
-						</p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-				</div>
-			</div>
-		</div>	
-		<div  style="clear:both"></div> 
+		</form>  
+		
+	</div>
 	</div>
