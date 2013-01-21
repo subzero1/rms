@@ -211,18 +211,21 @@ $("#jsxz").change(function(){
 		if(data.indexOf('基站') != -1){
 			$("#jz").css("display","block");
 			$("#xq").css("display","none");
+			$("#Td21_mbk\\.JSCJ").attr("disabled","true");
 			$("input[ids=jz]").attr("class","required");
 			$("input[ids=xq]").attr("class","norequired");
 		}
 		else if(data.indexOf('室分') != -1){
 			$("#jz").css("display","none");
 			$("#xq").css("display","none");
+			$("#Td21_mbk\\.JSCJ").removeAttr("disabled");
 			$("input[ids=jz]").attr("class","norequired");
 			$("input[ids=xq]").attr("class","norequired");
 		}
 		else{
 			$("#jz").css("display","none");
 			$("#xq").css("display","block");
+			$("#Td21_mbk\\.JSCJ").attr("disabled","true");
 			$("input[ids=jz]").attr("class","norequired");
 			$("input[ids=xq]").attr("class","required digits");
 		}
