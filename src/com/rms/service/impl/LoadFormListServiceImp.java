@@ -618,11 +618,26 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				
 				if(doc_id != -1){
 					if(node_id == 10901){//
-						Button btn = new Button("转目标库");
-						btn.url = "javascript:navTab.reload('mbk/mbkEdit.do?xqs_id=" + project_id + "&user_id=" + user_id	+ "');";
-						btn.comment = "转入目标库";
-						btn.picUri = "newform";
-						buttonList.add(btn);
+						boolean haveMbk = false;//是否已经转目标库
+						boolean isApprove = false;//是否需求审批完成
+						
+						List list = queryService.searchList("select id from Td21_mbk where xqs_id = "+project_id);
+						if(list != null && list.size() > 0){
+							haveMbk = true;
+						}
+						
+						list = queryService.searchList("select id from Td06_xqs where id = "+project_id + " and xqshr is not null " );
+						if(list != null && list.size() > 0){
+							isApprove = true;
+						}
+						
+						if(!haveMbk && isApprove){
+							Button btn = new Button("转目标库");
+							btn.url = "javascript:navTab.reload('mbk/mbkEdit.do?xqs_id=" + project_id + "&user_id=" + user_id	+ "');";
+							btn.comment = "转入目标库";
+							btn.picUri = "newform";
+							buttonList.add(btn);
+						}
 						
 //						hsql.delete(0, hsql.length());
 //						hsql.append("select id from Td21_mbk where xqs_id = ");
