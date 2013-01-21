@@ -765,6 +765,7 @@ public class Mbk {
 				word = "勘察申请";
 				td21.setZt("勘察申请");
 				td21.setSqkcsm(sqkcsm);
+				td21.setSqkcsj(new Date());
 				td21.setBz(word);
 
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
@@ -1312,12 +1313,12 @@ public class Mbk {
 		} else if (mbk_id != -1 && user != null) {
 			try {
 				Date date = new Date();
-				Td21_mbk td21_mbk = (Td21_mbk) queryService.searchById(
-						Td21_mbk.class, mbk_id);
+				Td21_mbk td21_mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, mbk_id);
+				td21_mbk.setSqkcsj(new Date());
 				td21_mbk.setSqkcsj(date);
+				td21_mbk.setZt("勘察申请");
 
-				Td23_kcsqb td23_kcsqb = (Td23_kcsqb) queryService.searchById(
-						Td23_kcsqb.class, kcsqb_id);
+				Td23_kcsqb td23_kcsqb = (Td23_kcsqb) queryService.searchById(Td23_kcsqb.class, kcsqb_id);
 				td23_kcsqb.setSqsbsj(date);
 				saveService.save(td21_mbk);
 				saveService.save(td23_kcsqb);
