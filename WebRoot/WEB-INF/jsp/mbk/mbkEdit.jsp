@@ -465,6 +465,15 @@ $("#jsxz").change(function(){
 					<label>坐落地点：</label>
 					<input type="text" class="required" name="Td21_mbk.ZLDD" id="Td21_mbk.ZLDD" style="width:376px;" value="${Td21_mbk.zldd}"/>
 				</p> 
+				<div style="height:0px;"></div>
+				<p>
+					<label>所属网格：</label>
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.SSWG" id="Td21_mbk.SSWG" style="width:156px;" objectForOption="sswgList" valueForOption="" showForOption="" value="${Td21_mbk.sswg}" extend="" extendPrefix="true" />
+				</p>
+				<p>
+					<label>建设场景：</label>
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSCJ" id="Td21_mbk.JSCJ" style="width:383px;" objectForOption="jscjList" valueForOption="" showForOption="" value="${Td21_mbk.jscj}" extend="" extendPrefix="true" />
+				</p>
 				<div id="jz">
 					<div style="height:0px;"></div>
 					<p>
@@ -475,10 +484,6 @@ $("#jsxz").change(function(){
 						<label>纬    度：</label>
 						<input type="text" ids="jz" name="Td21_mbk.WD" id="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
 					</p>
-					<p>
-					<label>覆盖属性：</label> 
-					<netsky:htmlSelect name="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="name" showForOption="name" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" />
-				</p>
 				</div>
 				<div id="xq">
 					<div style="height:0px;"></div>
@@ -727,18 +732,21 @@ $("#jsxz").change(function(){
 	if(jsxz == '' || jsxz == null || jsxz.indexOf('室分') != -1){
 		$("#jz").css("display","none");
 		$("#xq").css("display","none");
+		$("#Td21_mbk\\.JSCJ").removeAttr("disabled");
 		$("input[ids=jz]").attr("class","norequired");
 		$("input[ids=xq]").attr("class","norequired");
 	}
 	else if(jsxz == 'undefine' || jsxz.indexOf('基站') != -1){
 		$("#jz").css("display","block");
 		$("#xq").css("display","none");
+		$("#Td21_mbk\\.JSCJ").attr("disabled","true");
 		$("input[ids=jz]").attr("class","required");
 		$("input[ids=xq]").attr("class","norequired");
 	}
 	else{
 		$("#jz").css("display","none");
 		$("#xq").css("display","block");
+		$("#Td21_mbk\\.JSCJ").attr("disabled","true");
 		$("input[ids=jz]").attr("class","norequired");
 		$("input[ids=xq]").attr("class","required digits");
 	}
