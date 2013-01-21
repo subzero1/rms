@@ -382,7 +382,7 @@ $("#jsxz").change(function(){
 			<c:if test="${param.listType == 'kcsq'}">
 				<c:choose>
 					<c:when test="${Td21_mbk.jsxz == '驻地网'}">
-						<li><a class="survey" href="#"><span flag="zdwkcsq" class="lzspan">勘察申请</span></a></li>
+						<li><a class="icon" href="#"><span flag="zdwkcsq" class="lzspan">勘察申请</span></a></li>
 						<li class="line">line</li>
 					</c:when>
 					<c:otherwise>
