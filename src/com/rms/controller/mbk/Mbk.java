@@ -1380,17 +1380,17 @@ public class Mbk {
 			hql.append(td24_kcfkb.getId());
 			td25_kcfkmxList = queryService.searchList(hql.toString());
 
-		}
-		else{
-			td24_kcfkb = new Td24_kcfkb();
-		}
+		}  
 		// 取tc01列表,td24为空或者不完整的情况
 		hql.delete(0, hql.length());
 		hql.append("select tc01 from Tc01_property tc01 ");
 		hql.append("where tc01.type='勘察反馈内容' ");
 		hql.append("and tc01.name not in");
 		hql.append("(select mx.fkx from Td25_kcfkmx mx where mx.kcfk_id=");
-		hql.append(convertUtil.toLong(td24_kcfkb.getId()));
+		if (td24_kcfkb != null)
+			hql.append(td24_kcfkb.getId());
+		else
+			hql.append("-1");
 		hql.append(") ");
 		hql.append("order by tc01.flag,tc01.name");
 		tableList = queryService.searchList(hql.toString());
@@ -1405,35 +1405,37 @@ public class Mbk {
 
 	/**
 	 * 反馈
+	 * 
 	 * @param request
 	 * @param response
 	 *            void
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@RequestMapping("/mbk/kcfk.do")
-	public void kcfk(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException {
+	public void kcfk(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) throws IOException {
 		response.setCharacterEncoding("utf-8");
-		PrintWriter out=response.getWriter();
+		PrintWriter out = response.getWriter();
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
 		Long kcfk_id = convertUtil.toLong(request.getParameter("kcfk_id"));
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
-		Td24_kcfkb td24_kcfkb=null;
-		Td21_mbk td21_mbk=null;
-		if(kcfk_id==-1){
+		Td24_kcfkb td24_kcfkb = null;
+		Td21_mbk td21_mbk = null;
+		if (kcfk_id == -1) {
 			out
-			.print("{\"statusCode\":\"300\", \"message\":\"反馈失败!请您先保存反馈单!\"}");
-		}else if(mbk_id!=-1){
+					.print("{\"statusCode\":\"300\", \"message\":\"反馈失败!请您先保存反馈单!\"}");
+		} else if (mbk_id != -1) {
 
 			try {
 				Date date = new Date();
-				 td21_mbk = (Td21_mbk) queryService.searchById(
-						Td21_mbk.class, mbk_id);
+				td21_mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class,
+						mbk_id);
 				td21_mbk.setFksj(date);
 
-				td24_kcfkb  =  (Td24_kcfkb) queryService.searchById(
+				td24_kcfkb = (Td24_kcfkb) queryService.searchById(
 						Td24_kcfkb.class, kcfk_id);
 				td24_kcfkb.setFksj(date);
-				
+
 				saveService.save(td21_mbk);
 				saveService.save(td24_kcfkb);
 				out
@@ -1442,10 +1444,10 @@ public class Mbk {
 				e.printStackTrace();
 				log.warn(e.getMessage());
 				out
-				.print("{\"statusCode\":\"300\", \"message\":\"反馈失败!请联系管理员!\"}");
+						.print("{\"statusCode\":\"300\", \"message\":\"反馈失败!请联系管理员!\"}");
 
 			}
-		
+
 		}
 	}
 }
