@@ -321,11 +321,9 @@ public class Mbk {
 		}
 		modelMap.put("Td21_mbk", mbk);
 
-		List<String> jsxzList = (List<String>) queryService
-				.searchList("from Tc01_property where type='建设性质'");
+		List<String> jsxzList = (List<String>) queryService.searchList("from Tc01_property where type='建设性质'");
 		modelMap.put("jsxzList", jsxzList);
-		List<String> lbList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='目标库类别'");
+		List<String> lbList = (List<String>) queryService.searchList("select name from Tc01_property where type='目标库类别'");
 		modelMap.put("lbList", lbList);
 		// 获取建设方式：Tc12_jsfs
 		hsql.delete(0, hsql.length());
@@ -339,14 +337,15 @@ public class Mbk {
 		if (jsfsList != null) {
 			modelMap.put("jsfsList", jsfsList);
 		}
-		List<String> fgsxList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='覆盖属性'");
+		List<String> fgsxList = (List<String>) queryService.searchList("select name from Tc01_property where type='覆盖属性'");
 		modelMap.put("fgsxList", fgsxList);
-		List<String> dqList = (List<String>) queryService
-				.searchList("select name from Tc02_area where type like '%[1]%'");
+		List<String> sswgList = (List<String>) queryService.searchList("select name from Tc01_property where type='所属网格'");
+		modelMap.put("sswgList", sswgList);
+		List<String> jscjList = (List<String>) queryService.searchList("select name from Tc01_property where type='建设场景'");
+		modelMap.put("jscjList", jscjList);
+		List<String> dqList = (List<String>) queryService.searchList("select name from Tc02_area where type like '%[1]%'");
 		modelMap.put("dqList", dqList);
-		List<String> tdbmList = (List<String>) queryService
-				.searchList("select name from Tc01_property where type='谈点部门'");
+		List<String> tdbmList = (List<String>) queryService.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
 
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
