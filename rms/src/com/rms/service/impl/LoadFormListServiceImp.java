@@ -680,6 +680,24 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("fgsxList", tmpList);
 				}
 				
+				// 获取所属网格：Tc01_property type="所属网格"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "所属网格");
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					request.setAttribute("sswgList", tmpList);
+				}
+				
+				// 获取建设场景：Tc01_property type="建设场景"
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "建设场景");
+				queryBuilder.addOrderBy(Order.asc("name"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					request.setAttribute("jscjList", tmpList);
+				}
+				
 				/*
 				 * 获取工程信息、项目信息、目标库信息
 				 */

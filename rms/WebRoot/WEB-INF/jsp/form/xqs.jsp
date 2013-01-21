@@ -49,7 +49,11 @@
 	<div class="divider"></div>
 	<p>
 		<label> 需求名称：</label>
-		<input class="required" type="text" name="Td06_xqs.XQMC" style="width:630px;" value="${td06_xqs.xqmc}" />
+		<input class="required" type="text" name="Td06_xqs.XQMC" style="width:406px;" value="${td06_xqs.xqmc}" />
+	</p>
+	<p>
+		<label>所属地区：</label>
+		<netsky:htmlSelect htmlClass="required" name="Td06_xqs.SSDQ" style="width:126px;" objectForOption="ssdqList" valueForOption="name" showForOption="name" value="${td06_xqs.ssdq}" extend="" extendPrefix="true" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -61,14 +65,18 @@
 		<netsky:htmlSelect htmlClass="required" id="jsfs" name="Td06_xqs.JSFS" style="width:156px;" objectForOption="jsfsList" valueForOption="mc" showForOption="mc" value="${td06_xqs.jsfs}" extend="" extendPrefix="true" />
 	</p>
 	<p>
-		<label>所属地区：</label>
-		<netsky:htmlSelect htmlClass="required" name="Td06_xqs.SSDQ" style="width:126px;" objectForOption="ssdqList" valueForOption="name" showForOption="name" value="${td06_xqs.ssdq}" extend="" extendPrefix="true" />
+		<label>所属网格：</label>
+		<netsky:htmlSelect htmlClass="required" name="Td06_xqs.SSWG" style="width:126px;" objectForOption="sswgList" valueForOption="name" showForOption="name" value="${td06_xqs.sswg}" extend="" extendPrefix="true" />
 	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>坐落地点：</label>
-		<input type="text" class="required" name="Td06_xqs.ZLDD" style="width:630px;" value="${td06_xqs.zldd}"/>
+		<input type="text" class="required" name="Td06_xqs.ZLDD" style="width:406px;" value="${td06_xqs.zldd}"/>
 	</p> 
+	<p>
+		<label>建设场景：</label>
+		<netsky:htmlSelect htmlClass="required" id="jscj" name="Td06_xqs.JSCJ" style="width:126px;" objectForOption="jscjList" valueForOption="name" showForOption="name" value="${td06_xqs.jscj}" extend="" extendPrefix="true" />
+	</p>
 	<div id="jz">
 		<div style="height:0px;"></div>
 		<p>
@@ -78,10 +86,6 @@
 		<p>
 			<label>纬    度：</label>
 			<input type="text" ids="jz" name="Td06_xqs.WD" style="width:150px;" value="${td06_xqs.wd}"/>
-		</p>
-		<p>
-		<label>覆盖属性：</label> 
-		<netsky:htmlSelect name="Td06_xqs.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="name" showForOption="name" value="${td06_xqs.fgsx}" extend="" extendPrefix="true" />
 		</p>
 	</div>
 	<div id="xq">
@@ -191,18 +195,21 @@
 		if(data.indexOf('基站')!=-1){
 			$("#jz").css("display","block");
 			$("#xq").css("display","none");
+			$("#jscj").attr("disabled","true");
 			$("input[ids=jz]").attr("class","required");
 			$("input[ids=xq]").attr("class","norequired");
 		}
 		else if(data.indexOf('室分')!=-1 ){
 			$("#jz").css("display","none");
 			$("#xq").css("display","none");
+			$("#jscj").removeAttr("disabled");
 			$("input[ids=jz]").attr("class","norequired");
 			$("input[ids=xq]").attr("class","norequired");
 		}
 		else{
 			$("#jz").css("display","none");
 			$("#xq").css("display","block");
+			$("#jscj").attr("disabled","true");
 			$("input[ids=jz]").attr("class","norequired");
 			$("input[ids=xq]").attr("class","required digits");
 		}
@@ -213,18 +220,21 @@
 	if(jsxz == '' || jsxz == null || jsxz.indexOf('室分')!=-1){
 		$("#jz").css("display","none");
 		$("#xq").css("display","none");
+		$("#jscj").removeAttr("disabled");
 		$("input[ids=jz]").attr("class","norequired");
 		$("input[ids=xq]").attr("class","norequired");
 	}
 	else if(jsxz == 'undefine' || jsxz.indexOf('基站')!=-1){
 		$("#jz").css("display","block");
 		$("#xq").css("display","none");
+		$("#jscj").attr("disabled","true");
 		$("input[ids=jz]").attr("class","required");
 		$("input[ids=xq]").attr("class","norequired");
 	}
 	else{
 		$("#jz").css("display","none");
 		$("#xq").css("display","block");
+		$("#jscj").attr("disabled","true");
 		$("input[ids=jz]").attr("class","norequired");
 		$("input[ids=xq]").attr("class","required digits");
 	}
