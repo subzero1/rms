@@ -90,6 +90,42 @@
   column="status"
   />
 
+ <property
+  name="gysz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gysz"
+  />
+    <property
+  name="aqyz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="aqyz"
+  />
+  
+    <property
+  name="jlz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jlz"
+  />
+    <property
+  name="dgz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dgz"
+  />
+    <property
+  name="ec"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ec"
+  /> 
 
     </class>
 

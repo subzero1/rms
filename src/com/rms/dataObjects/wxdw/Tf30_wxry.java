@@ -102,6 +102,70 @@ public class Tf30_wxry {
 		this.status = status;
 	}
 	
+	/**
+	 * 概预算证
+	 */
+	private String gysz;
 	
+	/**
+	 * 安全员证
+	 */
+	private String aqyz;
+	
+	/**
+	 * 监理证
+	 */
+	private String jlz;
+	
+	/**
+	 * 登高证
+	 */
+	private String dgz;
+	
+	/**
+	 * 电工证 
+	 */
+	private String ec;
+
+	public String getGysz() {
+		return gysz;
+	}
+
+	public void setGysz(String gysz) {
+		this.gysz = gysz;
+	}
+
+	public String getAqyz() {
+		return aqyz;
+	}
+
+	public void setAqyz(String aqyz) {
+		this.aqyz = aqyz;
+	}
+
+	public String getJlz() {
+		return jlz;
+	}
+
+	public void setJlz(String jlz) {
+		this.jlz = jlz;
+	}
+
+	public String getDgz() {
+		return dgz;
+	}
+
+	public void setDgz(String dgz) {
+		this.dgz = dgz;
+	}
+
+	public String getEc() {
+		return ec;
+	}
+
+	public void setEc(String ec) {
+		this.ec = ec;
+	}
+
 	
 }

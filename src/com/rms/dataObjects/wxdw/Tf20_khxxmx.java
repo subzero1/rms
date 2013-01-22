@@ -1,7 +1,6 @@
 package com.rms.dataObjects.wxdw;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author cmp_auto 2012-12-21
