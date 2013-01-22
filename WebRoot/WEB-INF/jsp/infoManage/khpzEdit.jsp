@@ -3,14 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 .txt_dw {
-	border: 1px solid #fff;
-	width: 98%;
+	border-width: 0px;
+	width: 99%;
 	overflow-y: hidden;
-	height:100%;	
-	min-height:25px;
 }
-
-.itemDetail td{vertical-align:top;}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -33,7 +29,6 @@ $(document).ready(function(){
 	});
 	
 });
-
 </script>
 
 <form method="post" action="save.do" class="pageForm required-validate"
@@ -48,7 +43,8 @@ $(document).ready(function(){
 	<input type="hidden" name="_callbackType" value="forward" />
 	<input type="hidden" name="_forwardUrl" value="infoManage/khpzList.do" />
 	<input type="hidden" name="_navTabId" value="khpz" />
-	<div class="panel sysmanage_max" defH="185"	style="width: 98%; float: left; margin: 5px">
+	<div class="panel sysmanage_max" defH="185"
+		style="width: 98%; float: left; margin: 5px">
 		<h1>
 			配置信息
 		</h1>
@@ -183,15 +179,17 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	<div class="panel sysmanage_min" defH="60"	style="width: 98%; float: left; margin: 5px">
+	<div class="panel sysmanage_min" defH="110"
+		style="width: 98%; float: left; margin: 5px">
 		<h1>
 			配置明细
 		</h1>
 		<div>
-			<table class="list itemDetail" style="width:96%;">
+			<table class="list itemDetail" style="width:96% ;overflow: hidden">
 				<thead>
 					<tr>
-						<th type="textarea" style="width: 90px;" name="Tc11_khpzmx.KHX" hideName="Tc11_khpzmx.ID">
+						<th type="textarea" style="width: 100px;" name="Tc11_khpzmx.KHX"
+							hideName="Tc11_khpzmx.ID">
 							考核项
 						</th>
 						<th type="textarea" style="width: 150px;" name="Tc11_khpzmx.PGNR">
@@ -206,40 +204,39 @@ $(document).ready(function(){
 						<th type="textarea"  name="Tc11_khpzmx.BZ">
 							备注
 						</th>
-						<th type="del" style="width: 50px;">操作</th>
+						<th type="del" style="width: 50px;">
+							操作
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="pzmx" items="${pzmxList}">
 						<tr>
-							<td style="width: 90px;">
+							<td>
 								<input type="hidden" name="Tc11_khpzmx.ID" value="${pzmx.id}" />
-								<textarea name="Tc11_khpzmx.KHX" id="khx" class="txt_dw" onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height = this.scrollHeight + 'px';">${pzmx.khx}</textarea>
-								<script>document.getElementById("khx").style.height = document.getElementById("khx").scrollHeight - 30 + "px";</script>								
-
-				
+								<textarea name="Tc11_khpzmx.KHX" class="txt_dw">${pzmx.khx}</textarea>
 							</td>
-							<td style="width: 150px;height:auto;">
-								<textarea name="Tc11_khpzmx.PGNR" id="pgnr" class="txt_dw" onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height = this.scrollHeight + 'px';">${pzmx.pgnr}</textarea>
-								<script>document.getElementById("pgnr").style.height = document.getElementById("pgnr").scrollHeight - 30 + "px";</script>								
+							<td>
+								<textarea name="Tc11_khpzmx.PGNR" class="txt_dw">${pzmx.pgnr}</textarea>
 							</td>
-							<td style="width: 40px;">
+							<td>
 								<textarea name="Tc11_khpzmx.ZGFZ" class="txt_dw">${pzmx.zgfz}</textarea>
 							</td>
-							<td style="width: 130px;">
+							<td>
 								<textarea name="Tc11_khpzmx.PGBF" class="txt_dw">${pzmx.pgbf}</textarea>
 							</td>
 							<td>
 								<textarea name="Tc11_khpzmx.BZ" class="txt_dw">${pzmx.bz}</textarea>
 							</td>
-							<td style="width: 50px;">
+							<td>
 								<a href="javascript:" class="btnDel emptyInput" title="确认删除此明细">删除</a>
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<div style="color: #888;height:20px;line-height:20px;">
+			<br />
+			<div style="color: 888;">
 				注：修改明细数据后需点击【保存】按钮保存修改。
 			</div>
 		</div>
