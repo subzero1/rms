@@ -884,6 +884,23 @@ public class Td21_mbk implements Serializable {
 	public void setCjr(String cjr) {
 		this.cjr = cjr;
 	}
+	
+	/*
+	 * 创建人标识
+	 */
+	private Long cjr_id;
+
+	/**
+	 * @hibernate.property column="cjr_id"
+	 * @return Returns the cjr_id.
+	 */
+	public Long getCjr_id() {
+		return cjr_id;
+	}
+
+	public void setCjr_id(Long cjr_id) {
+		this.cjr_id = cjr_id;
+	}
 
 	/**
 	 * @hibernate.property column="cjrdh"
