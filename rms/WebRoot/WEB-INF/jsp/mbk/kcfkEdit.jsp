@@ -280,7 +280,9 @@ function saveForm(){
 							${slave.file_name}&nbsp;&nbsp;
 						</a>
 							<a href="download.do?slave_id=${slave.id}" title="下载"><font color="red">下载</font></a>
-							<a href="javascript:del_slave('${slave.id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a>
+							<c:if test="${slave.user_id == user.id}">
+								<a href="javascript:del_slave('${slave.id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a>
+							</c:if>
 						</p>
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
 					</c:forEach>
