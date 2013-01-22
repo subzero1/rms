@@ -7,15 +7,18 @@
 	<ul class="tree expand collapse">
 		<li><a href="">用户列表</a>
 		 <ul>
-			<c:forEach var="menu" items="${areaList}">
+			<c:forEach var="menu" items="${deptList}">
 				<li>
-					<a href="#">${menu.name}</a>
+					<a href="#">${menu}</a>
+					
 					<ul>
-						<c:forEach var="nodeElement" items="${user_map[menu.name]}">
+						<c:forEach var="nodeElement" items="${userList}">
+						<c:if test="${menu==nodeElement[0]}">
 							<li class="node_li">
-								<a href="sysManage/userEdit.do?id=${nodeElement.id}"
-									target="loadFileArea" rel="userEdit">${nodeElement.name}</a>
+								<a href="sysManage/userEdit.do?id=${nodeElement[1].id}"
+									target="loadFileArea" rel="userEdit">${nodeElement[1].name}</a>
 							</li>
+							</c:if>
 						</c:forEach>
 					</ul>
 			</c:forEach>

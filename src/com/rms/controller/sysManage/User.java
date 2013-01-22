@@ -71,27 +71,44 @@ public class User {
 	public ModelAndView userList(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
+		/**
 		List<Ta03_user> all_user_list = (List<Ta03_user>) queryService
-				.searchList("from Ta03_user user where area_name in (select area.name from Tc02_area area)order by area_name,name");
+				.searchList("from Ta03_user u where u.dept_id in (select d.id from Ta01_dept d)order by u.dept_id,u.name");
 		List<Ta03_user> tmp_user_list = new ArrayList<Ta03_user>();
 		Map<String, List<Ta03_user>> user_map = new HashMap<String, List<Ta03_user>>();
-		String area_name = "地区";
+		String dept_id = "-1";
 		for (Ta03_user user : all_user_list) {
-			if (!area_name.equals(user.getArea_name())) {
+			String user_dept_id=String.valueOf(user.getDept_id());
+			if (!dept_id.equals(user_dept_id)) {
 				if (tmp_user_list.size() != 0) {
-					user_map.put(area_name, tmp_user_list);
+					user_map.put(user_dept_id, tmp_user_list);
 					tmp_user_list = new ArrayList<Ta03_user>();
 				}
 
-				area_name = user.getArea_name();
+				dept_id = user_dept_id;
 			}
 			tmp_user_list.add(user);
 		}
 		if (tmp_user_list.size() != 0) {
-			user_map.put(area_name, tmp_user_list);
+			user_map.put(dept_id, tmp_user_list);
 		}
 		modelMap.put("user_map", user_map);
-		modelMap.put("areaList", dao.search("from Tc02_area where type like '%[3]%' order by id"));
+		modelMap.put("deptList", dao.search("from Ta01_dept d order by d.name"));
+		*/
+		StringBuffer hql=new StringBuffer();
+		
+		List userList=null;
+		hql.append("select d.name,u from Ta03_user u,Ta01_dept d where 1=1 ");
+		hql.append("and u.dept_id=d.id order by u.name");
+		userList=queryService.searchList(hql.toString());
+		
+		List deptList=null;
+		hql.delete(0, hql.length());
+		hql.append("select d.name from Ta01_dept d order by d.name");
+		deptList = queryService.searchList(hql.toString());
+
+		modelMap.put("userList", userList);
+		modelMap.put("deptList", deptList);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/userList.jsp", modelMap);
 	}
 
