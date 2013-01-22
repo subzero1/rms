@@ -136,7 +136,7 @@ function saveForm(){
 			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
 			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${Td24_kcfkb.fksj}"/>
 
-		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="kcfkTab">
+		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="kcfkTab" style="width:750px;max-width:750px;">
 			<thead>
 				<tr>
 					<th>类型</th> 
@@ -175,9 +175,9 @@ function saveForm(){
 					</c:if>
 				</c:forEach>
 				<tr>
-					<th style="width: 150px;" >类型</th>
-					<th style="width: 300px;">选择(打钩)</th> 
-					<th  style="width: 300px;">个数</th>  
+					<th style="width: 30%;" >类型</th>
+					<th style="width: 35%;">选择(打钩)</th> 
+					<th style="width: 35%;">个数</th>  
 				</tr> 
 				
 				<c:forEach var="Td25_kcfkmx" items="${Td25_kcfkmxList}">
@@ -295,7 +295,7 @@ function saveForm(){
 	
 	//按照屏幕分配表单右侧信息
 	var max_w = $("#autoform_body",navTab.getCurrentPanel()).width();
-	var attach_w = navTab._panelBox.width() - 1010;
+	var attach_w = navTab._panelBox.width() - 980;
 	var attach_h = navTab._panelBox.height() - 63;
 	if(max_w <1080){
 		//默认展开表单
@@ -304,7 +304,7 @@ function saveForm(){
 		attach_w = attach_w+175;
 	}
 	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
-	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 00 30 770");	
+	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 30 30 770");	
 	
 	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.5));
 	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.5));
