@@ -26,16 +26,16 @@ xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
 			<!-- 标题行位置 -->
 			<titleRow>0</titleRow>
 			<column>
-					<columnName>ZYBH</columnName>
-					<index/>
-					<name>资源编号</name>
-					<colName>资源编号</colName>
-			</column>
-			<column>
 					<columnName>ZYMC</columnName>
 					<index/>
 					<name>资源名称</name>
 					<colName>资源名称</colName>
+			</column>
+			<column>
+					<columnName>ZYBH</columnName>
+					<index/>
+					<name>资源编号</name>
+					<colName>资源编号</colName>
 			</column>
 			<column>
 					<columnName>JSXZ</columnName>
