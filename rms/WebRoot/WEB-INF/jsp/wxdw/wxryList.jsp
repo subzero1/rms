@@ -74,6 +74,21 @@
 			<th style="width: 150px;" orderField="status">
 				状态
 			</th>
+			<th style="width: 150px;" orderField="gysz">
+				 概预算证
+			</th>
+			<th style="width: 150px;" orderField="aqyz">
+				 安全员证
+			</th>
+			<th style="width: 150px;" orderField="jlz">
+				 监理证
+			</th>
+			<th style="width: 150px;" orderField="dgz">
+				登高证 
+			</th>
+			<th style="width: 150px;" orderField="ec">
+				电工证
+			</th>
 			<th style="width: 60px;">
 				照片
 			</th>
@@ -104,6 +119,21 @@
 				</td>
 				<td style="width: 150px;">
 					${wxry[0].status }
+				</td>
+				<td style="width: 150px;">
+					${wxry[0].gysz}
+				</td>
+				<td style="width: 150px;">
+					${wxry[0].aqyz}
+				</td>
+				<td style="width: 150px;">
+					${wxry[0].jlz}
+				</td>
+				<td style="width: 150px;">
+					${wxry[0].dgz}
+				</td>
+				<td style="width: 150px;">
+					${wxry[0].ec}
 				</td>
 				<td style="width: 60px;">
 					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
