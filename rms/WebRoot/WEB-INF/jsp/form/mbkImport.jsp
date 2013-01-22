@@ -51,10 +51,10 @@
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
 			<input type="hidden" name="config" value="mbk_source" />
-			<input type="text" name="Td21_mbk.CJR" value="${user.name }" />
-			<input type="text" name="Td21_mbk.CJR_ID" value="${user.id }" />
-			<input type="text" name="Td21_mbk.CJRDH" value="${user.mobile_tel }" />
-			<input type="text" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
+			<input type="hidden" name="Td21_mbk.CJR" value="${user.name }" />
+			<input type="hidden" name="Td21_mbk.CJR_ID" value="${user.id }" />
+			<input type="hidden" name="Td21_mbk.CJRDH" value="${user.mobile_tel }" />
+			<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			<div class="pageFormContent" layoutH="58">
 				<br/>
 				<br/>
