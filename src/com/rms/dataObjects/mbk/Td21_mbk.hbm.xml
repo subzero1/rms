@@ -409,6 +409,14 @@
         />
         
         <property
+            name="cjr_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="cjr_id"
+        />
+        
+        <property
             name="cjr"
             type="java.lang.String"
             update="true"

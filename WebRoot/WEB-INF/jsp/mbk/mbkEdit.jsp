@@ -431,6 +431,7 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="kcsj" id="tdrOrg.kcsj" value=""/>
 			<input type="hidden" name="sm"  id="tdrOrg.sm" value=""/>
 			<input type="hidden" name="Td21_mbk.CJR" value="<c:out value="${Td21_mbk.cjr }" default="${user.name }"/>"/>
+			<input type="hidden" name="Td21_mbk.CJR_ID" value="<c:out value="${Td21_mbk.cjr_id }" default="${user.id }"/>"/>
 			<input type="hidden" name="Td21_mbk.CJRDH" value="<c:out value="${Td21_mbk.cjrdh }" default="${user.mobile_tel }"/>"/>
 			<input type="hidden" name="Td21_mbk.XQS_ID" value="${Td21_mbk.xqs_id }"/>
 			<c:if test="${not empty rolesMap['20102']}">

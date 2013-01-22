@@ -44,22 +44,34 @@ xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
 					<colName>建设性质</colName>
 			</column>
 			<column>
+				<columnName>JSFS</columnName>
+				<index/>
+				<name>建设方式</name>
+				<colName>建设方式</colName>
+			</column>
+			<column>
 					<columnName>LB</columnName>
 					<index/>
 					<name>类别</name>
 					<colName>类别</colName>
 			</column>
 			<column>
-					<columnName>ZLDD</columnName>
-					<index/>
-					<name>坐落地点</name>
-					<colName>坐落地点</colName>
-			</column>
-			<column>
 					<columnName>SSDQ</columnName>
 					<index/>
 					<name>所属地区</name>
 					<colName>所属地区</colName>
+			</column>
+			<column>
+					<columnName>SSWG</columnName>
+					<index/>
+					<name>所属网格</name>
+					<colName>所属网格</colName>
+			</column>
+			<column>
+					<columnName>ZLDD</columnName>
+					<index/>
+					<name>坐落地点</name>
+					<colName>坐落地点</colName>
 			</column>
 			<column>
 					<columnName>JD</columnName>
@@ -72,12 +84,6 @@ xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
 					<index/>
 					<name>纬度</name>
 					<colName>纬度</colName>
-			</column>
-			<column>
-				<columnName>JSFS</columnName>
-				<index/>
-				<name>建设方式</name>
-				<colName>建设方式</colName>
 			</column>
 			<column>
 					<columnName>TDBM</columnName>
@@ -170,82 +176,16 @@ xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
 					<colName>建设等级</colName>
 			</column>
 			<column>
-					<columnName>ZT</columnName>
-					<index/>
-					<name>状态</name>
-					<colName>状态</colName>
-			</column>
-			<column>
-					<columnName>SGDW</columnName>
-					<index/>
-					<name>施工单位</name>
-					<colName>施工单位</colName>
-			</column>
-			<column>
-					<columnName>SGGLY</columnName>
-					<index/>
-					<name>施工管理员</name>
-					<colName>施工管理员</colName>
-			</column>
-			<column>
-					<columnName>TJSJ</columnName>
-					<index/>
-					<name>提交施工管理员时间</name>
-					<colName>提交施工管理员时间</colName>
-			</column>
-			<column>
-					<columnName>KGSJ</columnName>
-					<index/>
-					<name>开工时间</name>
-					<colName>开工时间</colName>
-			</column>
-			<column>
-					<columnName>WGSJ</columnName>
-					<index/>
-					<name>完工时间</name>
-					<colName>完工时间</colName>
-			</column>
-			<column>
-					<columnName>CZWT</columnName>
-					<index/>
-					<name>存在问题</name>
-					<colName>存在问题</colName>
-			</column>
-			<column>
-					<columnName>GCFPSM</columnName>
-					<index/>
-					<name>工程分配说明</name>
-					<colName>工程分配说明</colName>
-			</column>
-			<column>
-					<columnName>BZ</columnName>
-					<index/>
-					<name>备注</name>
-					<colName>备注</colName>
-			</column>
-			<column>
-					<columnName>HDFS</columnName>
-					<index/>
-					<name>获得方式</name>
-					<colName>获得方式</colName>
-			</column>
-			<column>
 					<columnName>TDZQ</columnName>
 					<index/>
 					<name>谈点周期</name>
 					<colName>谈点周期</colName>
 			</column>
 			<column>
-					<columnName>TDR_ID</columnName>
+					<columnName>FKZQ</columnName>
 					<index/>
-					<name>谈点人标识</name>
-					<colName>谈点人标识</colName>
-			</column>
-			<column>
-					<columnName>CJSJ</columnName>
-					<index/>
-					<name>创建时间</name>
-					<colName>创建时间</colName>
+					<name>反馈周期</name>
+					<colName>反馈周期</colName>
 			</column>
 			<column>
 					<columnName>KCSJ</columnName>

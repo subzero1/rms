@@ -94,10 +94,12 @@ public class Mbk {
 
 		Ta03_user ta03 = (Ta03_user) session.getAttribute("user");
 		String user_name = null;
+		Long user_id = null;
 		if (ta03 == null) {
 			ta03 = new Ta03_user();
 		}
 		user_name = ta03.getName();
+		user_id = ta03.getId();
 
 		ModelMap modelMap = new ModelMap();
 		// 分页
@@ -138,7 +140,7 @@ public class Mbk {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String roleSql = "1=0";
 		if (rolesMap.get("20101") != null) {
-			roleSql += " or cjr = '" + user_name + "' ";
+			roleSql += " or cjr_id = " + user_id + " ";
 
 		}
 		if (rolesMap.get("20102") != null) {
