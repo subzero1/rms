@@ -64,7 +64,7 @@
 			
 		<p>
 				<label>说明:</label>
-				<textarea name="smx" style="width:300px;" rows="3" id="sm" >sdfsdfsdfsdfsfdsf</textarea>
+				<textarea name="smx" style="width:300px;" rows="3" id="sm" ></textarea>
 			</p>
 		<div class="subBar">
 		<div style="float:left">
