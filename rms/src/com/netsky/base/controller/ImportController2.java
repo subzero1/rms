@@ -489,15 +489,16 @@ public class ImportController2 implements org.springframework.web.servlet.mvc.Co
 							 */
 							String t_content = convertUtil.toString(cell.getContents());
 							//处理8位日期 比如：20121211
-							if(t_content.length() == 8 && t_content.indexOf("201") == 0 && t_content.indexOf(".") != -1){
+							if(t_content.length() == 8 && t_content.indexOf("201") == 0 && t_content.indexOf(".") == -1){
 								t_content = t_content.substring(0,4)+"-"+t_content.substring(4,6)+"-"+t_content.substring(6,8);
 							}
 							//处理金额（万元）
-							else{
-								if(new RegExp().match("\\d+\\.?\\d*", t_content)){
-									Double d_content = new Double(t_content);
-									t_content = (new Double(d_content*10000)).toString();
-								}
+							else if(new RegExp().match("\\d+\\.?\\d*", t_content)){
+								Double d_content = new Double(t_content);
+								t_content = (new Double(d_content*10000)).toString();
+							}
+							else if(t_content.startsWith("南京电信_")){
+								t_content = t_content.substring(t_content.indexOf("_")+1,t_content.length());
 							}
 							/*
 							 * 特殊处理结束

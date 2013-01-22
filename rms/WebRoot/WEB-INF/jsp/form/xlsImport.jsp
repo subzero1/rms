@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
+<jsp:useBean id="now" class="java.util.Date" />
 
 <script type="text/javascript">
 	$(function(){
@@ -44,6 +45,8 @@
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
 			<input type="hidden" name="config" value="${param.config}" />
+			<input type="hidden" name="Td00_gcxx.CJRQ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
+			<input type="hidden" name="Td01_xmxx.CJRQ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
 			<div class="pageFormContent" layoutH="58">
 				<br/>
 				<br/>

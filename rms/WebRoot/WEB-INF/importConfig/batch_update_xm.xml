@@ -38,8 +38,8 @@
 			<column>
 					<columnName>SSDQ</columnName>
 					<index/>
-					<name>所属地区</name>
-					<colName>所属地区</colName>
+					<name>地区</name>
+					<colName>地区</colName>
 			</column>
 			<column>
 					<columnName>GCLB</columnName>
@@ -56,8 +56,8 @@
 			<column>
 					<columnName>ZYXX</columnName>
 					<index/>
-					<name>专业小项</name>
-					<colName>专业小项</colName>
+					<name>专业细类</name>
+					<colName>专业细类</colName>
 			</column>
 			<column>
 					<columnName>QKDL</columnName>
@@ -170,8 +170,8 @@
 			<column>
 					<columnName>LXJE</columnName>
 					<index/>
-					<name>立项金额</name>
-					<colName>立项金额</colName>
+					<name>立项金额（万元）</name>
+					<colName>立项金额（万元）</colName>
 			</column>
 			<column>
 					<columnName>BG_JGGR</columnName>
@@ -332,8 +332,8 @@
 			<column>
 					<columnName>CS_JE</columnName>
 					<index/>
-					<name>初审金额</name>
-					<colName>初审金额</colName>
+					<name>初审金额（万元）</name>
+					<colName>初审金额（万元）</colName>
 			</column>
 			<column>
 					<columnName>SD_JGGR</columnName>
@@ -404,8 +404,8 @@
 			<column>
 					<columnName>SD_JE</columnName>
 					<index/>
-					<name>审定金额</name>
-					<colName>审定金额</colName>
+					<name>决算金额（万元）</name>
+					<colName>决算金额（万元）</colName>
 			</column>
 			<column>
 					<columnName>XMSM</columnName>
@@ -470,8 +470,8 @@
 			<column>
 					<columnName>LXGLY</columnName>
 					<index/>
-					<name>立项管理员</name>
-					<colName>立项管理员</colName>
+					<name>市立项管理员</name>
+					<colName>市立项管理员</colName>
 			</column>
 			<column>
 					<columnName>XMJL</columnName>
@@ -554,32 +554,32 @@
 			<column>
 					<columnName>JHJGSJ</columnName>
 					<index/>
-					<name>计划竣工时间</name>
-					<colName>计划竣工时间</colName>
+					<name>计划完工时间</name>
+					<colName>计划完工时间</colName>
 			</column>
 			<column>
 					<columnName>SJKGSJ</columnName>
 					<index/>
-					<name>实际开工时间</name>
-					<colName>实际开工时间</colName>
+					<name>开工时间</name>
+					<colName>开工时间</colName>
 			</column>
 			<column>
 					<columnName>SJJGSJ</columnName>
 					<index/>
-					<name>实际竣工时间</name>
-					<colName>实际竣工时间</colName>
+					<name>完工时间</name>
+					<colName>完工时间</colName>
 			</column>
 			<column>
 					<columnName>SJKSSJ</columnName>
 					<index/>
-					<name>审计开始时间</name>
-					<colName>审计开始时间</colName>
+					<name>施工决算审计时间</name>
+					<colName>施工决算审计时间</colName>
 			</column>
 			<column>
 					<columnName>SJJSSJ</columnName>
 					<index/>
-					<name>审计结束时间</name>
-					<colName>审计结束时间</colName>
+					<name>施工决算审计时间</name>
+					<colName>施工决算审计时间</colName>
 			</column>
 			<column>
 					<columnName>JLPFSJ</columnName>
@@ -638,14 +638,14 @@
 			<column>
 					<columnName>DNLJTZWCE</columnName>
 					<index/>
-					<name>当年累计投资完成额</name>
-					<colName>当年累计投资完成额</colName>
+					<name>当年累计投资完成额（万元）</name>
+					<colName>当年累计投资完成额（万元）</colName>
 			</column>
 			<column>
 					<columnName>LJTZWCE</columnName>
 					<index/>
-					<name>累计投资完成额</name>
-					<colName>累计投资完成额</colName>
+					<name>累计投资完成额（万元）</name>
+					<colName>累计投资完成额（万元）</colName>
 			</column>
 			<column>
 					<columnName>CSTJSJ</columnName>
@@ -674,14 +674,14 @@
 			<column>
 					<columnName>SSJRQ</columnName>
 					<index/>
-					<name>送审计日期</name>
-					<colName>送审计日期</colName>
+					<name>结算时间</name>
+					<colName>结算时间</colName>
 			</column>
 			<column>
 					<columnName>XMGLY</columnName>
 					<index/>
-					<name>项目管理员</name>
-					<colName>项目管理员</colName>
+					<name>市工程管理员</name>
+					<colName>市工程管理员</colName>
 			</column>
 			<column>
 					<columnName>YSRY</columnName>
@@ -692,8 +692,8 @@
 			<column>
 					<columnName>YSSJ</columnName>
 					<index/>
-					<name>验收时间</name>
-					<colName>验收时间</colName>
+					<name>初验时间</name>
+					<colName>初验时间</colName>
 			</column>
 			<column>
 					<columnName>SJHTBH</columnName>
@@ -728,8 +728,8 @@
 			<column>
 					<columnName>SGHTQDRQ</columnName>
 					<index/>
-					<name>施工合同签订日期</name>
-					<colName>施工合同签订日期</colName>
+					<name>施工合同签署时间</name>
+					<colName>施工合同签署时间</colName>
 			</column>
 			<column>
 					<columnName>JLHTBH</columnName>

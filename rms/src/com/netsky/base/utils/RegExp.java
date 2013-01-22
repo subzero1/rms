@@ -141,6 +141,9 @@ public class RegExp {
 			System.out.println(a.substring(0,4)+"-"+a.substring(4,6)+"-"+a.substring(6,8));
 			
 			System.out.println(new RegExp().match("\\d+\\.?\\d*", "12.58"));
+			
+			String b = "南京电信_";
+			System.out.println(b.substring(b.indexOf("_")+1,b.length())+"2");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
