@@ -1424,9 +1424,9 @@ public class Mbk {
 			hql.append("select t from Te01_slave t where 1=1 ");
 			hql.append("and t.project_id=");
 			hql.append(td24_kcfkb.getId());
-			hql.append(" and t.user_name='");
-			hql.append(user.getName());
-			hql.append("'");
+//			hql.append(" and t.user_name='");
+//			hql.append(user.getName());
+//			hql.append("'");
 			te01List=queryService.searchList(hql.toString());
 		}
 		
