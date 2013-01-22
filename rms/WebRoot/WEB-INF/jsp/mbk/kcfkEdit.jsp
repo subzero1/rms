@@ -290,4 +290,22 @@ function saveForm(){
 		<div  style="clear:both"></div>   
 	</div>
 
+	<script language="javascript">
+	   	
 	
+	//按照屏幕分配表单右侧信息
+	var max_w = $("#autoform_body",navTab.getCurrentPanel()).width();
+	var attach_w = navTab._panelBox.width() - 1010;
+	var attach_h = navTab._panelBox.height() - 63;
+	if(max_w <1080){
+		//默认展开表单
+		var bar = $("#sidebar");
+		if(bar.is(":hidden") == false)	$(".toggleCollapse div", bar).click();
+		attach_w = attach_w+175;
+	}
+	$("#attachBody",navTab.getCurrentPanel()).css({"width":attach_w+"px", "position":"relative"});
+	$("#attachBody",navTab.getCurrentPanel()).css("margin","-" + attach_h + " 00 30 770");	
+	
+	$(".panel div",navTab.getCurrentPanel()).height(parseInt((attach_h-150)*0.5));
+	$(".panel div",navTab.getCurrentPanel()).first().height(parseInt((attach_h-150)*0.5));
+	</script>
