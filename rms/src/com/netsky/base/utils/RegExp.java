@@ -34,9 +34,26 @@ public class RegExp {
 		} catch (MalformedPatternException e) {
 			System.out.println(e + "error");
 		}
-		return matcher.contains(str, pattern);
+		return matcher.matches(str, pattern);
+		
 	}
 
+	/**
+	 * @param regExp
+	 * @param str
+	 * @return boolean 判断字符串与正则表达式是否匹配
+	 */
+	public boolean contain(String regExp, String str) {
+		try {
+			pattern = compiler.compile(regExp);
+		} catch (MalformedPatternException e) {
+			System.out.println(e + "error");
+		}
+		return matcher.contains(str, pattern);
+		
+	}
+
+	
 	/**
 	 * 如果字符串与正则表达式匹配，则返回想要提取的值
 	 * 
@@ -91,8 +108,8 @@ public class RegExp {
 			String yy = "dds<img src=\"/crht_bms/download.do?slave_id=28\" alt=\"\" />sdfew<img src=\"/crht_bms/download.do?slave_id=29\" alt=\"\" />few";
 			//Vector v = new RegExp().pickupAllGroup("<img(\\s+[a-z]+=\"[^\"]*\")*\\s+src=\"/[a-zA-Z]+_[a-zA-Z]+/download.do\\?slave_id=(\\d+)\"(\\s+[a-z]+=\"[^\"]*\")*\\s+/>",yy);
 			//System.out.println(v.size());
-			yy="{id:[id],name:[name],sex:sex}";
-			Vector v = new RegExp().pickupAll("\\[([a-zA-Z0-9]+)\\]+",yy,1);
+			//yy="{id:[id],name:[name],sex:sex}";
+			//Vector v = new RegExp().pickupAll("\\[([a-zA-Z0-9]+)\\]+",yy,1);
 			//System.out.println(v.size());
 			//double tmp_xs = Double.parseDouble(new RegExp().pickup(".+(\\d*\\.?\\d*)",yy));
 			//System.out.println(tmp_xs);
@@ -115,6 +132,15 @@ public class RegExp {
 //			String bb3 = "09/01/02";
 //			System.out.println(new RegExp().match("(\\d{1,2}(/\\d{1,2}){2})",
 //					bb3));
+			
+			//if(t_content.length() == 8 && t_content.indexOf("201") == 0 && t_content.indexOf(".") != -1){
+			String a = "20131212";
+			//System.out.println(a.length());
+			//System.out.println(a.indexOf("201"));
+			//System.out.println(a.indexOf("."));
+			System.out.println(a.substring(0,4)+"-"+a.substring(4,6)+"-"+a.substring(6,8));
+			
+			System.out.println(new RegExp().match("\\d+\\.?\\d*", "12.58"));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
