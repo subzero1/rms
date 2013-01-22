@@ -36,6 +36,7 @@ import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import org.springframework.stereotype.Controller;
+import com.netsky.base.utils.RegExp;
 import com.netsky.base.utils.convertUtil;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
@@ -483,7 +484,25 @@ public class ImportController2 implements org.springframework.web.servlet.mvc.Co
 						int index = ((Integer)colMap.get("$index")).intValue();
 						Cell cell = sheet.getCell(index, row);
 						if (cell.getContents() != null && cell.getContents().length() > 0) {
-							property = new String[] { cell.getContents() };
+							/*
+							 * 特殊处理开始
+							 */
+							String t_content = convertUtil.toString(cell.getContents());
+							//处理8位日期 比如：20121211
+							if(t_content.length() == 8 && t_content.indexOf("201") == 0 && t_content.indexOf(".") != -1){
+								t_content = t_content.substring(0,4)+"-"+t_content.substring(4,6)+"-"+t_content.substring(6,8);
+							}
+							//处理金额（万元）
+							else{
+								if(new RegExp().match("\\d+\\.?\\d*", t_content)){
+									Double d_content = new Double(t_content);
+									t_content = (new Double(d_content*10000)).toString();
+								}
+							}
+							/*
+							 * 特殊处理结束
+							 */
+							property = new String[] {t_content };
 						}
 					}
 					if (property != null) {
