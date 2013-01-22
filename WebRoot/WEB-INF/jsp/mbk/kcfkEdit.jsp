@@ -237,6 +237,7 @@ function saveForm(){
 			</tbody>
 		</table>
 		</form>
+		</div>
 		<div id="attachBody" layoutH="68">
 			<div class="panel">
 				<h1>表单附件 [${fn:length(slaveList)}]</h1>
@@ -288,5 +289,5 @@ function saveForm(){
 		</div>	
 		<div  style="clear:both"></div>   
 	</div>
-	</div>
+
 	
