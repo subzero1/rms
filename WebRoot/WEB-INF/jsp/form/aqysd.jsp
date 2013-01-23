@@ -66,20 +66,25 @@
 			}
 			
 			function checkForm(_this){
+			/*
 				var validates=false;
 				var _validates=true;
 				$validateIp=$(_this).find(".validateIp")
 				$validateIp.each(function(i){ 
 					validates=checkIP(this);
+					alert(validates);
 					if(!validates) 
 						_validates=false;
 				});
 				if(_validates)
+				*/
 					return validateCallback(_this,dialogAjaxDone);
+					/*
 				else{ 
 					alertMsg.info("IP地址格式不正确!");
 					return validates;
 				}
+				*/
 			}
  		</script>
 	</head>
