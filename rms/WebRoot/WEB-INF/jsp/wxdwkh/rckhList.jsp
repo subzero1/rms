@@ -86,7 +86,7 @@
 					<th style="width: 80px;" orderField="khyy">考核原因</th>
 					<th style="width: 80px;" orderField="khlb">考核类别</th>
 					<th style="width: 80px;" orderField="khdz">考核动作</th>
-					<th style="width: 80px;" orderField="fkje">罚款金额</th>
+					<th style="width: 80px;" orderField="fkje">奖罚金额</th>
 					<th style="width: 80px;" orderField="jkfz">加扣分值</th>
 					<th style="width: 80px;" orderField="khjg">考核结果</th>
 					<!-- 
