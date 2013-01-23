@@ -1,11 +1,14 @@
 package com.rms.controller.wxdwkh;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -228,5 +231,25 @@ public class Rckh {
 		lbList.add("监理");
 		modelMap.put("lbList", lbList);
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/selectWxdw.jsp", modelMap);
+	}
+	
+	/**
+	 * 删除施工队
+	 */
+	@RequestMapping("/wxdwkh/ajaxDelRckh.do")
+	public void ajaxDelRckh(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		Long kh_id = convertUtil.toLong(request.getParameter("id"));
+		try {
+			dao.update("delete from Tf17_rckh where id=" + kh_id);
+			out.print("{\"statusCode\":\"200\",\"message\":\"删除成功！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			out.print("{\"statusCode\":\"300\",\"message\":\"删除失败！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
+
+		}
 	}
 }

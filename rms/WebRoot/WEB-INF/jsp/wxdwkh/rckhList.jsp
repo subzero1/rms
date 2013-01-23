@@ -65,6 +65,8 @@
 				<li class="line">line</li>
 				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=true" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>修改</span></a></li>
 				<li class="line">line</li>
+				<li><a class="delete" href="wxdwkh/ajaxDelRckh.do?id={rckh_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+				<li class="line">line</li>
 				</c:if>
 				<c:if test="${param.type == 'wxdw'}">
 				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=false" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>查看</span></a></li>
