@@ -57,21 +57,31 @@
 			
 			function checkIP(_this){
 				var IPPattern=/((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))/;
- 				alert(IPPattern.test($(_this).val()));;
+ 				if(!IPPattern.test($(_this).val())){ 
+ 					$(_this).css("color","red");
+ 					return false;
+ 				} 
+ 				$(_this).css("color","black");
+ 				return true;
 			}
 			
 			function checkForm(_this){
-				return validateCallback(_this,dialogAjaxDone);
+				var validates=false;
+				var _validates=true;
+				$validateIp=$(_this).find(".validateIp")
+				$validateIp.each(function(i){ 
+					validates=checkIP(this);
+					if(!validates) 
+						_validates=false;
+				});
+				if(_validates)
+					return validateCallback(_this,dialogAjaxDone);
+				else{ 
+					alertMsg.info("IP地址格式不正确!");
+					return validates;
+				}
 			}
-			 $(function(){
-			 	var $validateIp=$(".validateIp",navTab.getCurrentPanel()); 
-			 	$validateIp.each(function(){
-			 		$(this).live("click",function(){
-			 			alert("aa");
-			 		});
-			 	}) 
-			 });
-		</script>
+ 		</script>
 	</head>
 	<body>
 		<div class="page">
@@ -155,7 +165,7 @@
 									<input type="hidden" name="Td52_aqys.PROJECT_ID"
 										value="${param.project_id}" />
 									<input type="text" name="Td52_aqys.IPA"
-										value="${Td52_aqys.ipa}" class="validateIp" />
+										value="${Td52_aqys.ipa}" class="validateIp" onblur="checkIP(this)" title="IP地址"/>
 								</td>
 								<td>
 									<input type="text" name="Td52_aqys.PORT_NUM"
