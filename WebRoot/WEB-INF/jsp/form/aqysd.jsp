@@ -56,9 +56,21 @@
 			}
 			
 			function checkIP(_this){
-				
+				var IPPattern=/((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))/;
+ 				alert(IPPattern.test($(_this).val()));;
 			}
-			 
+			
+			function checkForm(_this){
+				return validateCallback(_this,dialogAjaxDone);
+			}
+			 $(function(){
+			 	var $validateIp=$(".validateIp",navTab.getCurrentPanel()); 
+			 	$validateIp.each(function(){
+			 		$(this).live("click",function(){
+			 			alert("aa");
+			 		});
+			 	}) 
+			 });
 		</script>
 	</head>
 	<body>
@@ -94,7 +106,7 @@
 			</div>
 			<form method="post" action="save.do" id="safeForm"
 				class="pageForm required-validate"
-				onsubmit="return validateCallback(this,dialogAjaxDone);">
+				onsubmit="return checkForm(this)">
 				<input type="hidden" name="tableInfomation"
 					value="noFatherTable:com.rms.dataObjects.form.Td52_aqys" />
 				<input type="hidden" name="_callbackType" value="forward" />
@@ -137,13 +149,13 @@
 						<c:forEach var="Td52_aqys" items="${Td52_aqysList}">
 							<tr>
 								<td>
-									<input type="hidden" name="Td52_aqys.ID"
+									<input  type="hidden" name="Td52_aqys.ID"
 										value="${Td52_aqys.id}" />
 
 									<input type="hidden" name="Td52_aqys.PROJECT_ID"
 										value="${param.project_id}" />
 									<input type="text" name="Td52_aqys.IPA"
-										value="${Td52_aqys.ipa}" />
+										value="${Td52_aqys.ipa}" class="validateIp" />
 								</td>
 								<td>
 									<input type="text" name="Td52_aqys.PORT_NUM"
