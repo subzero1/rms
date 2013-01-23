@@ -45,16 +45,20 @@
 				</p>
 				<p>
 					<label>考核人员：</label>
-					<input class="required" readonly="readonly" type="text" name="Tf17_rckh.KHRY_NAME" style="width:240px;" value="${not empty tf17.khry_name ? tf17.khry_name : user.name }" />
+					<input class="required" readonly="readonly" type="text" name="Tf17_rckh.KHRY_NAME" style="width:100px;" value="${not empty tf17.khry_name ? tf17.khry_name : user.name }" />
 					<input type="hidden" name="Tf17_rckh.KHRY_ID" style="width:150px;" value="${not empty tf17.khry_id ? tf17.khry_id : user.id }" />
 				</p>
 				<p>
-					<label>罚款金额：</label>
-					<input class="required number" type="text" name="Tf17_rckh.FKJE" style="width:105px;" value="<fmt:formatNumber pattern="0.00" value="${not empty tf17.fkje ? tf17.fkje : 0 }"/>" />
+					<label>动 作：</label>
+					<netsky:htmlSelect name="Tf17_rckh.KHDZ" objectForOption="khdzList"  valueForOption="" showForOption="" extend="惩罚,惩罚" extendPrefix="true" value="${tf17.khdz}" htmlClass="td-select"/>
 				</p>
 				<p>
-					<label>加扣分值：</label>
-					<input class="required number" type="text" name="Tf17_rckh.JKFZ" style="width:105px;" value="<fmt:formatNumber pattern="0.00" value="${not empty tf17.jkfz ? tf17.jkfz : 0 }"/>" />
+					<label>金 额：</label>
+					<input class="required number" type="text" name="Tf17_rckh.FKJE" style="width:90px;" value="<fmt:formatNumber pattern="0.00" value="${not empty tf17.fkje ? tf17.fkje : 0 }"/>" />
+				</p>
+				<p>
+					<label>分 值：</label>
+					<input class="required number" type="text" name="Tf17_rckh.JKFZ" style="width:90px;" value="<fmt:formatNumber pattern="0.00" value="${not empty tf17.jkfz ? tf17.jkfz : 0 }"/>" />
 				</p>
 				<p>
 					<label>考核原因：</label>

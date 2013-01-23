@@ -26,6 +26,7 @@ public class Tf17_rckh implements Serializable {
 	private Date qrsj;
 	private Long wzdl;
 	private Date khsj;
+	private String khdz;
 
 	/**
 	 * @hibernate.id generator-class="sequence"
@@ -252,4 +253,17 @@ public class Tf17_rckh implements Serializable {
 		this.wxdw_mc = wxdw_mc;
 	}
 
+	/**
+	 * @hibernate.property column="khdz"
+	 * @return Returns the khdz.
+	 */
+	public String getKhdz() {
+		return khdz;
+	}
+
+	public void setKhdz(String khdz) {
+		this.khdz = khdz;
+	}
+
+	
 }

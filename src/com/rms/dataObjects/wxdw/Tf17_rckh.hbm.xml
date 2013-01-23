@@ -129,6 +129,14 @@
             insert="true"
             column="wxdw_mc"
         />
+        
+        <property
+            name="khdz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="khdz"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
