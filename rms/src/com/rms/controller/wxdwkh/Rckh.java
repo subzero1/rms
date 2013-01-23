@@ -182,6 +182,8 @@ public class Rckh {
 		if (tf17 != null && (tf17.getQrsj() != null || !tf17.getKhry_id().equals(user.getId()))) {
 			canedit = "false";
 		}
+		String[] khdz = {"奖励"};
+		modelMap.put("khdzList", khdz);
 		// 考核类别
 		modelMap.put("khlbList", dao.search("from Tc01_property where type='考核类别' order by id "));
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/rckhEdit.jsp?canedit=" + canedit, modelMap);
