@@ -281,7 +281,6 @@
 			if(typeof dialog == 'string') dialog = $("body").data(dialog);
 			var close = dialog.data("close");
 			var go = true;
-			this._current = null;//modify:2012-08-23 zy
 			if(close && $.isFunction(close)) {
 				var param = dialog.data("param");
 				if(param && param != ""){
