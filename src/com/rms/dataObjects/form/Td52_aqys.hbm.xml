@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.form.Td52_aqys"  table="Td52_aqys">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Td52_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="ipa"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ipa"
+  />
+   <property
+  name="port_num"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="port_num"
+  />
+   <property
+  name="login_protocol"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_protocol"
+  />
+  
+   <property
+  name="username"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="username"
+  />
+  
+  <property
+  name="userpwd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="userpwd"
+  />
+  
+  <property
+  name="sup_username"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sup_username"
+  />
+
+   <property
+  name="sup_userpwd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sup_userpwd"
+  />
+
+   <property
+  name="device_type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="device_type"
+  />
+  
+     <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+  
+
+    </class>
+
+</hibernate-mapping>

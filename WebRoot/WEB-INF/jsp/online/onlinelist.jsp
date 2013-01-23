@@ -122,6 +122,10 @@ function phoneMsg(tel,name){
 					<a class="helponline"	href="javascript:enterHelp('xtgg')" ><span>在线帮助</span></a>
 				</li>
 				<li class="line">line</li>
+				<li>
+					<a class="helponline"	href="form/aqysEdit.do?project_id=1" target="navTab" rel="aqysd"><span>安全验收</span></a>
+				</li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
