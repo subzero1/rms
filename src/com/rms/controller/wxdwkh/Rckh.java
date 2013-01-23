@@ -181,7 +181,7 @@ public class Rckh {
 			canedit = "false";
 		}
 		// 考核类别
-		modelMap.put("khlbList", dao.search("from Tc01_property where type='考核类别'"));
+		modelMap.put("khlbList", dao.search("from Tc01_property where type='考核类别' order by id "));
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/rckhEdit.jsp?canedit=" + canedit, modelMap);
 	}
 

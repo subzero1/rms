@@ -21,6 +21,8 @@
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf17_rckh" />
 			<input type="hidden" name="Tf17_rckh.ID" value="${tf17.id}" />
 			<input type="hidden" name="_navTabId" value="rckhList"/>
+			<input type="hidden" name="_callbackType" value="closeCurrent" />
+			<input type="hidden" name="_forwardUrl" value="" />
 			
 			<div class="pageFormContent" layoutH="53">
 				<p>
@@ -66,9 +68,11 @@
 			<div class="formBar">
 				<ul>
 				<c:if test="${param.canedit == 'true' }">
+				<!-- 
 				<c:if test="${tf17.fkje > 0 }">
 				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="sgqr">手工确认</button></div></div></li>
 				</c:if>
+				 -->
 					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>
 				</c:if>	
 					<li>
