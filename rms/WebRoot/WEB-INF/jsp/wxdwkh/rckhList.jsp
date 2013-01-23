@@ -85,6 +85,7 @@
 					<th style="width: 80px;" orderField="khry_name">考核人员</th>
 					<th style="width: 80px;" orderField="khyy">考核原因</th>
 					<th style="width: 80px;" orderField="khlb">考核类别</th>
+					<th style="width: 80px;" orderField="khdz">考核动作</th>
 					<th style="width: 80px;" orderField="fkje">罚款金额</th>
 					<th style="width: 80px;" orderField="jkfz">加扣分值</th>
 					<th style="width: 80px;" orderField="khjg">考核结果</th>
@@ -106,6 +107,7 @@
 						<td>${obj.khry_name }</td>
 						<td>${obj.khyy }</td>
 						<td>${obj.khlb }</td>
+						<td>${obj.khdz }</td>
 						<td><fmt:formatNumber pattern="0.00" value="${obj.fkje }"/></td>
 						<td><fmt:formatNumber pattern="0.00" value="${obj.jkfz }"/></td>
 						<td style="white-space:nowrap;overflow:hidden;">${obj.khjg }</td>
@@ -121,6 +123,7 @@
 						<td></td>
 						<td></td>
 					</c:if>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
