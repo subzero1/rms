@@ -108,8 +108,8 @@
 						<td>${obj.khyy }</td>
 						<td>${obj.khlb }</td>
 						<td>${obj.khdz }</td>
-						<td><fmt:formatNumber pattern="0.00" value="${obj.fkje }"/></td>
-						<td><fmt:formatNumber pattern="0.00" value="${obj.jkfz }"/></td>
+						<td><fmt:formatNumber pattern="0" value="${obj.fkje }"/></td>
+						<td><fmt:formatNumber pattern="0" value="${obj.jkfz }"/></td>
 						<td style="white-space:nowrap;overflow:hidden;">${obj.khjg }</td>
 						<!-- 
 						<td style="text-align:center"><c:if test="${not empty obj.qrsj }"><img src="Images/online_ok.gif"/></c:if></td>
