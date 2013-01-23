@@ -56,8 +56,10 @@ public class Rckh {
 	public ModelAndView rckhList(HttpServletRequest request, HttpServletResponse response) {
 		ModelMap modelMap = new ModelMap();
 		// 分页
+		Ta03_user user = null;
 		Integer totalPages = 1;
 		Integer totalCount = 0;
+		user = (Ta03_user) request.getSession().getAttribute("user");
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "khsj");
@@ -103,6 +105,7 @@ public class Rckh {
 		if (type.equals("khry")) {
 			String wxdw_lb = convertUtil.toString(request.getParameter("wxdw_lb"), "");
 			String wxdw_mc = convertUtil.toString(request.getParameter("wxdw_mc"));
+			whereClause += " and khry_name='" + user.getName() + "'";
 			if (!wxdw_lb.equals("")) {
 				whereClause += " and wxdw_lb='" + wxdw_lb + "'";
 			}
@@ -110,10 +113,9 @@ public class Rckh {
 				whereClause += " and wxdw_mc like'%" + wxdw_lb + "%'";
 			}
 		} else if (type.equals("wxdw")) {
-			Ta03_user user = null;
+			
 			Tf04_wxdw_user tf04 = null;
 			try {
-				user = (Ta03_user) request.getSession().getAttribute("user");
 				tf04 = (Tf04_wxdw_user) ((dao.search("from Tf04_wxdw_user where user_id=" + user.getId())).get(0));
 			} catch (Exception e) {
 				return exceptionService.exceptionControl("com.rms.controller.wxdwkh.Rckh", "用户登录超时或不是合作单位人员", e);
