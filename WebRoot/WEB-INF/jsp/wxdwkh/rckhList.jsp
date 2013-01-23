@@ -99,7 +99,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="rckh_id" rel="${obj.id}">
 					<c:if test="${param.type == 'khry' }">
-						<td>${obj.wxdw_mc }</td>
+						<td><a class="edit" href="wxdwkh/rckhEdit.do?id=${obj.id}&canedit=true" target="dialog" width="800" height="480" rel="rckh" title="日常考核">${obj.wxdw_mc }</a></td>
 						<td>${obj.wxdw_lb }</td>
 					</c:if>
 						<td><fmt:formatDate value="${obj.khsj}" pattern="yyyy-MM-dd"/></td>
