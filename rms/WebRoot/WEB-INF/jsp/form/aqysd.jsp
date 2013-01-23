@@ -43,7 +43,7 @@
 				}
 				}
 			}
-			
+			//追加
 			function addComments(){
 				var $last_tr=$("#safeForm tr:last"); 
 				$("#aqys_tbody").append("<tr>"+$last_tr.html()+"</tr>");
@@ -54,6 +54,11 @@
 				}); 
 				$last_tr.show();
 			}
+			
+			function checkIP(_this){
+				
+			}
+			 
 		</script>
 	</head>
 	<body>
