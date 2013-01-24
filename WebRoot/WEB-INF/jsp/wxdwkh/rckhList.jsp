@@ -40,7 +40,7 @@
 						<input type="text" style="display:none;"/>
 						</td>
 						</c:if>
-						<td>考核类别：<netsky:htmlSelect name="khlb" id="khlb" objectForOption="khlbList" valueForOption="name" showForOption="name" value="${param.khlb}" extend=""  extendPrefix="true" /></td>
+						<td>考核归类：<netsky:htmlSelect name="khlb" id="khlb" objectForOption="khlbList" valueForOption="name" showForOption="name" value="${param.khlb}" extend=""  extendPrefix="true" /></td>
 						<td>考核时间：<input id="date1" name="date1" value="${date1}" type="text" class="date" pattern="yyyy-MM-dd" size="15" />
 						-<input id="date2" name="date2" value="${date2}" type="text" class="date" pattern="yyyy-MM-dd" size="15" />
 						</td>
@@ -86,8 +86,8 @@
 					<th style="width: 80px;" orderField="khsj">考核时间</th>
 					<th style="width: 80px;" orderField="khry_name">考核人员</th>
 					<th style="width: 80px;" orderField="khyy">考核原因</th>
-					<th style="width: 80px;" orderField="khlb">考核类别</th>
-					<th style="width: 80px;" orderField="khdz">考核动作</th>
+					<th style="width: 80px;" orderField="khlb">考核归类</th>
+					<th style="width: 80px;" orderField="khdz">考核类别</th>
 					<th style="width: 80px;" orderField="fkje">奖罚金额</th>
 					<th style="width: 80px;" orderField="jkfz">加扣分值</th>
 					<th style="width: 80px;" orderField="khjg">考核结果</th>

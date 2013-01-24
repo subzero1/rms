@@ -87,8 +87,8 @@
 					<input type="text" class="required date" pattern="yyyy-MM-dd" name="Tf17_rckh.KHSJ" style="width:80px;" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${not empty tf17.khsj ? tf17.khsj : now }"/>" />
 				</p>
 				<p>
-					<label>类 别：</label>
-					<netsky:htmlSelect name="Tf17_rckh.KHLB" objectForOption="khlbList" style="width:130px" valueForOption="name" showForOption="name" value="${tf17.khlb }"/>
+					<label>考核归类：</label>
+					<netsky:htmlSelect name="Tf17_rckh.KHLB" objectForOption="khlbList" style="width:130px" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${tf17.khlb }"/>
 				</p>
 				<p>
 					<label>考核人员：</label>
@@ -96,8 +96,8 @@
 					<input type="hidden" name="Tf17_rckh.KHRY_ID" style="width:150px;" value="${not empty tf17.khry_id ? tf17.khry_id : user.id }" />
 				</p>
 				<p>
-					<label>动 作：</label>
-					<netsky:htmlSelect id="khdz" name="Tf17_rckh.KHDZ" objectForOption="khdzList"  valueForOption="" showForOption="" extend="惩罚,惩罚" extendPrefix="true" value="${tf17.khdz}" htmlClass="td-select"/>
+					<label>类 别：</label>
+					<netsky:htmlSelect id="khdz" name="Tf17_rckh.KHDZ" objectForOption="khdzList"  valueForOption="" showForOption="" extend="扣罚,扣罚" extendPrefix="true" value="${tf17.khdz}" htmlClass="td-select"/>
 				</p>
 				<p>
 					<label>金 额：</label>
