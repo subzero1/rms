@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GBK"?>
+<excel
+xmlns="http://www.tjnetsky.com.cn"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
+>
+	<!-- 定义导入文件中表格信息 -->
+	<tableInfo>
+		<!-- 表格信息所在sheet位于excel文件中位置 -->
+		<sheetNum>0</sheetNum>
+		<!-- 数据开始行 -->
+		<startRow>1</startRow>
+		<endRow/>
+		<endFlag></endFlag>
+		<!-- 表名称，对应持久化对象名称 -->
+		<tableName>Tf17_rckh</tableName>
+		<!-- 表名称,用于显示 -->
+		<tableNameShow>日常考核导入</tableNameShow>
+		<!-- 本表对应的父表信息 -->
+		<fatherTables>
+		</fatherTables>
+		<!-- 当前表字段信息 -->
+		<columns>
+			<!-- byIndex:按列所在位置获取,byName: 按标题行名称获取-->
+			<type>byName</type>
+			<!-- 标题行位置 -->
+			<titleRow>0</titleRow>
+			<column>
+					<columnName>ID</columnName>
+					<index/>
+					<name>唯一标识</name>
+					<colName>唯一标识</colName>
+			</column>
+			<column>
+					<columnName>WXDW_MC</columnName>
+					<index/>
+					<name>合作单位</name>
+					<colName>合作单位</colName>
+			</column>
+			<column>
+					<columnName>KHRY_NAME</columnName>
+					<index/>
+					<name>考核人员</name>
+					<colName>考核人员</colName>
+			</column>
+			<column>
+				<columnName>KHLB</columnName>
+				<index/>
+				<name>考核归类</name>
+				<colName>考核归类</colName>
+			</column>
+			<column>
+					<columnName>KHDZ</columnName>
+					<index/>
+					<name>考核类别</name>
+					<colName>考核类别</colName>
+			</column>
+			<column>
+					<columnName>FKJE</columnName>
+					<index/>
+					<name>考核金额</name>
+					<colName>考核金额</colName>
+			</column>
+			<column>
+					<columnName>JKFZ</columnName>
+					<index/>
+					<name>考核分值</name>
+					<colName>考核分值</colName>
+			</column>
+			<column>
+					<columnName>KHYY</columnName>
+					<index/>
+					<name>考核原因</name>
+					<colName>考核原因</colName>
+			</column>
+			<column>
+					<columnName>KHJG</columnName>
+					<index/>
+					<name>考核结果</name>
+					<colName>考核结果</colName>
+			</column>
+			<column>
+					<columnName>KHSJ</columnName>
+					<index/>
+					<name>考核时间</name>
+					<colName>考核时间</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>
