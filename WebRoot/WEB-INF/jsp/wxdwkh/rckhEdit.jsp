@@ -113,7 +113,7 @@
 				</p>
 				<p>
 					<label>考核结果：</label>
-					<textarea name="Tf17_rckh.KHJG" style="width:662px;height:145px;">${tf17.khjg }</textarea>
+					<textarea name="Tf17_rckh.KHJG" readOnly style="width:662px;height:145px;">${tf17.khjg }</textarea>
 				</p>
 			</div>
 			<div class="formBar">
