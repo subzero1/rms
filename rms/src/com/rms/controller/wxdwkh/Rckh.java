@@ -2,7 +2,11 @@ package com.rms.controller.wxdwkh;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +26,8 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.rms.base.util.ConfigXML;
+import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf17_rckh;
 
@@ -251,5 +257,79 @@ public class Rckh {
 			out.print("{\"statusCode\":\"300\",\"message\":\"删除失败！\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}");
 
 		}
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 *            void
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unused")
+	@RequestMapping("/wxdwkh/rckhToExcel.do")
+	public ModelAndView mbkToExcel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String wxdw_lb = convertUtil.toString(request.getParameter("wxdw_lb"), "");
+		String wxdw_mc = convertUtil.toString(request.getParameter("wxdw_mc"), "");
+		String khlb = convertUtil.toString(request.getParameter("khlb"), "");
+		String date1 = convertUtil.toString(request.getParameter("date1"), "");
+		String date2 = convertUtil.toString(request.getParameter("date2"), "");
+		String config = convertUtil.toString(request.getParameter("config"));
+
+		int k = 0;
+		ConfigXML configXML = new ConfigXMLImpl();// 读取rckh配置文档
+		ResultObject ro = null;
+		StringBuffer hql = new StringBuffer("");
+		List rckhTitleList = new LinkedList(); // 标题列表
+		List rckhColList = new LinkedList();// 列的字段值
+		List rckhDocList = new LinkedList();// 表单数据
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+
+		// 读取配置文件的标题列表
+		String webinfpath = request.getSession().getServletContext().getRealPath("WEB-INF");
+		rckhTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+		rckhColList = configXML.getTagListByConfig(config, webinfpath,"columnName");
+		Iterator it = rckhColList.iterator();
+		Object rckh = null;
+		hql.append("select ");
+		while (it.hasNext()) {
+			if (k == 0)
+				hql.append(" rckh." + ((it.next().toString()).toLowerCase()));
+			else
+				hql.append(" ,rckh." + ((it.next().toString()).toLowerCase()));
+			k++;
+		}
+		hql.append(" from Tf17_rckh rckh ");
+		// 条件
+		hql.append("where 1=1 ");
+		if (!wxdw_lb.equals("")) {
+			hql.append(" and rckh.wxdw_lb='" + wxdw_lb+"'");
+		}
+		if (!wxdw_mc.equals("")) {
+			hql.append(" and rckh.wxdw_mc like '%" + wxdw_mc+"%'");
+		}
+		if (!khlb.equals("")) {
+			hql.append(" and rckh.khlb=" + khlb);
+		}
+		if (!date1.equals("")) {
+			hql.append(" and rckh.khsj > to_date('" + date1 + "','yyyy-mm-dd') ");
+		}
+		if (!date2.equals("")) {
+			hql.append(" and rckh.khsj < to_date('" + date2 + "','yyyy-mm-dd') ");
+		}
+		hql.append(" order by id ");
+
+		rckhDocList = queryService.searchList(hql.toString());
+
+		sheetList.add(rckhTitleList);
+		sheetList.add(rckhDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "日常考核.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+
 	}
 }

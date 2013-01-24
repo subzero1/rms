@@ -11,7 +11,7 @@
 			var je = $("#je");
 			var fz = $("#fz");
 			
-			if(khdz == '惩罚'){
+			if(khdz == '扣罚'){
 				if(je.val() != '' && Number(je.val()) > 0){
 					je.val(Number(je.val())*-1);
 				}
@@ -33,7 +33,7 @@
 	$(function(){
 		$("#je",$.pdialog.getCurrent()).change(function(){
 			var khdz = $("#khdz").val();
-			if(khdz == '惩罚'){
+			if(khdz == '扣罚'){
 				if($(this).val() != '' && Number($(this).val()) > 0){
 					$(this).val(Number($(this).val())*-1);
 				}
@@ -48,8 +48,13 @@
 	
 	$(function(){
 		$("#fz",$.pdialog.getCurrent()).change(function(){
+			if(Number($(this).val()) > 10 || Number($(this).val()) < -10){
+				alertMsg.info('分值不能超过10分');
+				$(this).val('0');
+				return false;
+			}
 			var khdz = $("#khdz").val();
-			if(khdz == '惩罚'){
+			if(khdz == '扣罚'){
 				if($(this).val() != '' && Number($(this).val()) > 0){
 					$(this).val(Number($(this).val())*-1);
 				}

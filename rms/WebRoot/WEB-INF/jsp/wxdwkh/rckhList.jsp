@@ -11,6 +11,13 @@
 			}
 		});
 	});
+	
+	function searchListExport(){
+		$form = $("#pagerForm", navTab.getCurrentPanel());
+		$form.attr("action","wxdwkh/rckhToExcel.do?config=import_rckh");  
+		$form.submit();  
+		$form.attr("action","");
+	} 
 </script>
 
 <form id="pagerForm" method="post" action="">
@@ -66,6 +73,10 @@
 				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=true" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>修改</span></a></li>
 				<li class="line">line</li>
 				<li><a class="delete" href="wxdwkh/ajaxDelRckh.do?id={rckh_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+				<li class="line">line</li>
+				<li> <a class="exportexcel" href="dispath.do?url=wxdwkh/rckhImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
+				<li class="line">line</li>
+				<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
 				<li class="line">line</li>
 				</c:if>
 				<c:if test="${param.type == 'wxdw'}">
