@@ -68,7 +68,15 @@ public class Rckh {
 		Ta03_user user = null;
 		Integer totalPages = 1;
 		Integer totalCount = 0;
+		boolean isManager = false;
 		user = (Ta03_user) request.getSession().getAttribute("user");
+		Map rolesMap = (Map)request.getSession().getAttribute("rolesMap");
+		if(rolesMap.get("50100") == null){
+			isManager = false;
+		}
+		else{
+			isManager = true;
+		}
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "khsj");
@@ -85,6 +93,7 @@ public class Rckh {
 		modelMap.put("orderDirection", orderDirection);
 		// 查询条件
 		String khlb = convertUtil.toString(request.getParameter("khlb"));
+		String khry = convertUtil.toString(request.getParameter("khry"));
 		String date1 = convertUtil.toString(request.getParameter("date1"));
 		String date2 = convertUtil.toString(request.getParameter("date2"));
 		String qrzt = convertUtil.toString(request.getParameter("qrzt"));
@@ -108,13 +117,22 @@ public class Rckh {
 		if (!khlb.equals("")) {
 			hsql.append(" and khlb='" + khlb + "'");
 		}
+		
 		// 考核人员OR合作单位人员
 		String type = convertUtil.toString(request.getParameter("type"));
 		String whereClause = "";
 		if (type.equals("khry")) {
 			String wxdw_lb = convertUtil.toString(request.getParameter("wxdw_lb"), "");
 			String wxdw_mc = convertUtil.toString(request.getParameter("wxdw_mc"));
-			whereClause += " and khry_name='" + user.getName() + "'";
+			if(!isManager){
+				whereClause += " and khry_name='" + user.getName() + "'";
+			}
+			else{
+				// 考核人员
+				if (!khry.equals("")) {
+					hsql.append(" and khry_name='" + khry + "'");
+				}
+			}
 			if (!wxdw_lb.equals("")) {
 				whereClause += " and wxdw_lb='" + wxdw_lb + "'";
 			}
@@ -170,6 +188,15 @@ public class Rckh {
 		qrztList.add("已确认");
 		qrztList.add("未确认");
 		modelMap.put("qrztList", qrztList);
+		
+		hsql.delete(0, hsql.length());
+		hsql.append("select ta03 from Ta03_user ta03,Ta11_sta_user ta11 ");
+		hsql.append("where ta03.id = ta11.user_id ");
+		hsql.append("and ta11.station_id = 6 ");
+		hsql.append("order by ta03.name");
+		List khryList = queryService.searchList(hsql.toString());
+		modelMap.put("khryList", khryList);
+		
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/rckhList.jsp", modelMap);
 	}
 
