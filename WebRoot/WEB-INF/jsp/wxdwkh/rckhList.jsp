@@ -42,15 +42,18 @@
 				<table class="searchContent">
 					<tr>
 						<c:if test="${param.type == 'khry' }">
-						<td>单位类别：<netsky:htmlSelect name="wxdw_lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.wxdw_lb}" extend=""  extendPrefix="true" /></td>
+						<td><netsky:htmlSelect name="wxdw_lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.wxdw_lb}" extend=""  extendPrefix="true" /></td>
 						<td>单位名称：<input id="wxdw_mc" name="wxdw_mc" value="${param.wxdw_mc}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
 						</c:if>
-						<td>考核归类：<netsky:htmlSelect name="khlb" id="khlb" objectForOption="khlbList" valueForOption="name" showForOption="name" value="${param.khlb}" extend=""  extendPrefix="true" /></td>
-						<td>考核时间：<input id="date1" name="date1" value="${date1}" type="text" class="date" pattern="yyyy-MM-dd" size="15" />
-						-<input id="date2" name="date2" value="${date2}" type="text" class="date" pattern="yyyy-MM-dd" size="15" />
+						<td><netsky:htmlSelect name="khlb" id="khlb" objectForOption="khlbList" valueForOption="name" showForOption="name" value="${param.khlb}" extend=""  extendPrefix="true" /></td>
+						<td>考核时间：<input id="date1" name="date1" value="${date1}" type="text" class="date" pattern="yyyy-MM-dd" size="10" />
+						-<input id="date2" name="date2" value="${date2}" type="text" class="date" pattern="yyyy-MM-dd" size="10" />
 						</td>
+						<c:if test="${not empty rolesMap['50100']}">
+							<td><netsky:htmlSelect name="khry" id="khry" objectForOption="khryList" valueForOption="name" showForOption="name" value="${param.khry}" extend="全部,"  extendPrefix="true" /></td>
+						</c:if>
 						<!--  
 						<td>确认状态：<netsky:htmlSelect name="qrzt" id="qrzt" objectForOption="qrztList" valueForOption="" showForOption="" value="${param.qrzt}" extend=""  extendPrefix="true" /></td>
 						-->
@@ -74,10 +77,12 @@
 				<li class="line">line</li>
 				<li><a class="delete" href="wxdwkh/ajaxDelRckh.do?id={rckh_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 				<li class="line">line</li>
-				<li> <a class="exportexcel" href="dispath.do?url=wxdwkh/rckhImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
-				<li class="line">line</li>
-				<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
-				<li class="line">line</li>
+				<c:if test="${not empty rolesMap['50100']}">
+					<li> <a class="exportexcel" href="dispath.do?url=wxdwkh/rckhImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
+					<li class="line">line</li>
+					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
+					<li class="line">line</li>
+				</c:if>
 				</c:if>
 				<c:if test="${param.type == 'wxdw'}">
 				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=false" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>查看</span></a></li>
