@@ -707,7 +707,7 @@ public class SearchAndReportList {
 	 * @throws WriteException
 	 */
 	@RequestMapping("/search/detailExport.do")
-	public void detailExport(HttpServletRequest request, HttpServletResponse response) throws IOException,
+	public void detailExport(HttpServletRequest request, HttpServletResponse response) throws Exception,
 			WriteException {
 		request.setCharacterEncoding("utf-8");
 		ResultObject ro;
