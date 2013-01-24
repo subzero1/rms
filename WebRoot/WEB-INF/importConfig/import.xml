@@ -21,4 +21,9 @@
   	<fileName>/importConfig/wxry_tmp.xml</fileName>
   	<user>default</user>
   </config>
+   <config>
+  	<name>import_rckh</name>
+  	<fileName>/importConfig/import_rckh.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>

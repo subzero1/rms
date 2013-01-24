@@ -34,7 +34,7 @@ public class ExportExcel {
 	 * @throws WriteException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void Ro2Excel(ResultObject ro, WritableSheet ws) throws WriteException {
+	public static void Ro2Excel(ResultObject ro, WritableSheet ws) throws WriteException,Exception {
 		ro.reSet();
 		String titles[] = ro.getResultArray();
 		Label label;
@@ -61,13 +61,17 @@ public class ExportExcel {
 				} else {
 					value = o.toString();
 				}
-				if (value.getBytes().length > 70) {
+				if (value.getBytes("GBK").length > 70) {
 					ws.setColumnView(i, 70);
+				} 
+				else if (value.getBytes("GBK").length < 8 && ws.getColumnWidth(i) < 8) {
+					ws.setColumnView(i, 8);
 				} else {
-					if (ws.getColumnWidth(i) < value.getBytes().length) {
-						ws.setColumnView(i, value.getBytes().length);
+					if (ws.getColumnWidth(i) < value.getBytes("GBK").length) {
+						ws.setColumnView(i, value.getBytes("GBK").length );
 					}
 				}
+				
 				if (o instanceof Double) {
 					number = new Number(i, ro.getPlaceIndex() + 1, ((Double) o).doubleValue(),
 							getTextCellAlignRightFormat());
@@ -102,7 +106,7 @@ public class ExportExcel {
 	 * @throws WriteException
 	 *             void
 	 */
-	public static void List2Excel(List titles, List result, WritableSheet ws) throws WriteException {
+	public static void List2Excel(List titles, List result, WritableSheet ws) throws WriteException,Exception {
 
 		Label label;
 		Number number;
@@ -140,11 +144,15 @@ public class ExportExcel {
 				} else {
 					value = o.toString();
 				}
-				if (value.getBytes().length > 70) {
+
+				if (value.getBytes("GBK").length > 70) {
 					ws.setColumnView(j, 70);
+				} 
+				else if (value.getBytes("GBK").length < 8 && ws.getColumnWidth(j) < 8) {
+					ws.setColumnView(j, 8);
 				} else {
-					if (ws.getColumnWidth(j) < value.getBytes().length) {
-						ws.setColumnView(j, value.getBytes().length);
+					if (ws.getColumnWidth(j) < value.getBytes("GBK").length) {
+						ws.setColumnView(j, value.getBytes("GBK").length );
 					}
 				}
 
