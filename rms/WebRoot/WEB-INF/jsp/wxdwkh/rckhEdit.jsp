@@ -93,7 +93,7 @@
 				</p>
 				<p>
 					<label>考核归类：</label>
-					<netsky:htmlSelect name="Tf17_rckh.KHLB" objectForOption="khlbList" style="width:130px" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${tf17.khlb }"/>
+					<netsky:htmlSelect name="Tf17_rckh.KHLB" htmlClass="required" objectForOption="khlbList" style="width:130px" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${tf17.khlb }"/>
 				</p>
 				<p>
 					<label>考核人员：</label>
