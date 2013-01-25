@@ -123,7 +123,7 @@
 				class="pageForm required-validate"
 				onsubmit="return checkForm(this)">
 				<input type="hidden" name="tableInfomation"
-					value="noFatherTable:com.rms.dataObjects.form.Td52_aqys" />
+					value="noFatherTable:com.rms.dataObjects.form.Td53_gzjd" />
 				<input type="hidden" name="_callbackType" value="forward" />
 				<input type="hidden" name="_message" value="保存" />
 				<input type="hidden" name="_forwardUrl" value="form/aqysEdit.do" />

@@ -4,6 +4,12 @@
 		<fatherTable/>
 		<table>
 			<name>com.rms.dataObjects.form.Td00_gcxx</name>
+		</table> 
+	</tables>
+	<tables>
+		<fatherTable/> 
+		<table>
+			<name>com.rms.dataObjects.form.Td53_gzjd</name>
 		</table>
 	</tables>
 	<dispath>

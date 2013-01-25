@@ -249,6 +249,45 @@ $(function(){
 	</p>
 	
 	<div class="divider"></div>
+	<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">进度情况</p>
+	
+	<div style="height:0px;"></div><!-- td53 -->
+		<c:set var="offsets" value="0"/>  
+		<c:forEach var="Td53_gzjd" items="${Td53_gzjdList}">
+		<c:set var="offsets" value="${offsets + 1}"/>
+		<input type="hidden" value="${Td53_gzjd.id}" name="Td53_gzjd.ID"/>
+		<input type="hidden" value="${param.doc_id}" name="Td53_gzjd.GCXX_ID"/>
+		<input type="hidden" value="${Td53_gzjd.jd_name}" name="Td53_gzjd.JD_NAME"/>
+		<p>
+			<label>${Td53_gzjd.jd_name}：</label> 
+			<input type="text"  name="Td53_gzjd.JD_STATUS" value="${Td53_gzjd.jd_status}" style="width:150px;"/>
+		</p>
+		<c:if test="${(offsets%3)==0}"><div style="height:0px;"></div></c:if>  
+		</c:forEach> 
+		
+	<div style="height:0px;"></div><!-- td54 -->
+	<c:set var="offsets" value="0"/> 
+	<c:forEach var="Td54_gzjdx" items="${Td54_gzjdxList}">
+	<c:set var="offsets" value="${offsets + 1}"/>
+	<input type="hidden" value="" name="Td53_gzjd.ID"/>
+	<input type="hidden" value="${param.doc_id}" name="Td53_gzjd.GCXX_ID"/>
+	<input type="hidden" value="${Td54_gzjdx[0].jdx_key}" name="Td53_gzjd.JD_NAME"/>
+	<p>
+		<label>${Td54_gzjdx[0].jdx_key}：</label> 
+		<c:if test="${!empty Td54_gzjdx[0].jdx_value}">
+		<select style="width:150px;" name="Td53_gzjd.JD_STATUS">
+		 <c:forEach var="gz" items="${Td54_gzjdx[1]}">
+		 <option value="${gz}">${gz}</option>
+		 </c:forEach> 
+		 </select> 
+		 </c:if>
+		 <c:if test="${empty Td54_gzjdx[0].jdx_value}">
+		 <input type="text"  name="Td53_gzjd.JD_STATUS" value="" style="width:150px;"/>
+		 </c:if>
+	</p>
+	<c:if test="${(offsets%3)==0}"><div style="height:0px;"></div></c:if>  
+	</c:forEach> 
+	<div class="divider"></div>
 	<p>
 		<label>设计要求：</label>
 		<textarea class="td-textarea" style="width:262px;height:40px;" type="text" name="Td00_gcxx.SJYQ">${td00_gcxx.sjyq}</textarea>

@@ -1,5 +1,7 @@
 package com.rms.service.impl;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,6 +32,7 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td02_xmbgd;
 import com.rms.dataObjects.form.Td06_xqs;
+import com.rms.dataObjects.form.Td54_gzjdx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.netsky.base.flow.utils.MapUtil;
@@ -596,6 +599,49 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					}
 					request.setAttribute("glgcList", glgc_list);
 				}
+				
+				//获取进度项列表
+				Iterator it=null;
+				List td53List=null;
+				List td54List=null;
+				Td54_gzjdx td54_gzjdx=null;
+				Object objArray[]=null;
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select t from Td53_gzjd t where t.gcxx_id=");
+				hsql.append(project_id);
+				td53List=queryService.searchList(hsql.toString());
+				
+				// 下拉框
+				hsql.delete(0,hsql.length());
+				hsql.append("select x from Td54_gzjdx x where x.jdx_key not in");
+				hsql.append("(select d.jd_name from Td53_gzjd d where d.gcxx_id=");
+				hsql.append(project_id);
+				hsql.append(") ");
+				hsql.append("and x.type=1");
+				
+				td54List=queryService.searchList(hsql.toString());
+				it=td54List.iterator();
+				List td54_gcjdxList=new ArrayList();
+				Object td54Array[]=null;
+				int i=0;
+				while (it.hasNext()) {
+					i++;
+					td54Array=new Object[2];
+					td54_gzjdx=(Td54_gzjdx) it.next(); 
+					td54Array[0]=td54_gzjdx;
+					
+					if(td54_gzjdx.getJdx_value()!=null&&td54_gzjdx.getJdx_value()!=""){
+						objArray=td54_gzjdx.getJdx_value().split(",");
+						td54Array[1]=objArray;
+					} 
+					td54_gcjdxList.add(td54Array); 
+				}
+				
+				request.setAttribute("Td53_gzjdList", td53List);
+				request.setAttribute("Td54_gzjdxList", td54_gcjdxList);
+				
+				
 			}
 			
 			if(module_id==104 || module_id == 107){
