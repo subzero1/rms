@@ -32,6 +32,7 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td02_xmbgd;
 import com.rms.dataObjects.form.Td06_xqs;
+import com.rms.dataObjects.form.Td53_gzjd;
 import com.rms.dataObjects.form.Td54_gzjdx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
@@ -601,15 +602,29 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 				
 				//获取进度项列表 
-				List td53List=null;
+				List <Td53_gzjd>td53List=null;
 				List td54List=null;
 				Td54_gzjdx td54_gzjdx=null;
-				Object objArray[]=null;
+				Object objArray[]=null; 
 				
 				hsql.delete(0, hsql.length());
-				hsql.append("select t from Td53_gzjd t where t.gcxx_id=");
+				hsql.append("select t,x from Td53_gzjd t ,Td54_gzjdx x where t.gcxx_id=");
 				hsql.append(project_id);
-				td53List=queryService.searchList(hsql.toString());
+				hsql.append(" and x.jdx_key=t.jd_name");
+				ro=queryService.search(hsql.toString());
+				Object jdArray[]=null;
+				List td53_gzjdxList=new ArrayList();
+				while(ro.next()){
+					jdArray=new Object[2];
+					Td53_gzjd gzjd=(Td53_gzjd) ro.get("t");
+					Td54_gzjdx gzjdx=(Td54_gzjdx) ro.get("x");
+					jdArray[0]=gzjd;
+					if(gzjdx.getJdx_value()!=null&&!gzjdx.getJdx_value().equals("")){
+						jdArray[1]=gzjdx.getJdx_value().split(",");
+					}  
+					td53_gzjdxList.add(jdArray);
+					
+				}
 				
 				// 下拉框
 				hsql.delete(0,hsql.length());
@@ -639,7 +654,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					td54_gcjdxList.add(td54Array); 
 				}
 				
-				request.setAttribute("Td53_gzjdList", td53List);
+				request.setAttribute("Td53_gzjdList", td53_gzjdxList);
 				request.setAttribute("Td54_gzjdxList", td54_gcjdxList);
 				
 				

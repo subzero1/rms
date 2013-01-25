@@ -255,12 +255,21 @@ $(function(){
 		<c:set var="offsets" value="0"/>  
 		<c:forEach var="Td53_gzjd" items="${Td53_gzjdList}">
 		<c:set var="offsets" value="${offsets + 1}"/>
-		<input type="hidden" value="${Td53_gzjd.id}" name="Td53_gzjd.ID"/>
+		<input type="hidden" value="${Td53_gzjd[0].id}" name="Td53_gzjd.ID"/>
 		<input type="hidden" value="${param.doc_id}" name="Td53_gzjd.GCXX_ID"/>
-		<input type="hidden" value="${Td53_gzjd.jd_name}" name="Td53_gzjd.JD_NAME"/>
+		<input type="hidden" value="${Td53_gzjd[0].jd_name}" name="Td53_gzjd.JD_NAME"/>
 		<p>
-			<label>${Td53_gzjd.jd_name}：</label> 
-			<input type="text"  name="Td53_gzjd.JD_STATUS" value="${Td53_gzjd.jd_status}" style="width:150px;"/>
+			<label>${Td53_gzjd[0].jd_name}：</label>
+			<c:if test="${!empty Td53_gzjd[1]}">
+			<select  name="Td53_gzjd.JD_STATUS" style="width:150px;">
+			<c:forEach var = "gzjdx" items="${Td53_gzjd[1]}">
+			<option value="${gzjdx }" <c:if test="${Td53_gzjd[0].jd_status==gzjdx }">selected</c:if>>${gzjdx }</option>
+			</c:forEach>
+			</select>
+			</c:if> 
+			<c:if test="${empty Td53_gzjd[1]}">
+				<input type="text"  name="Td53_gzjd.JD_STATUS" value="${Td53_gzjd[0].jd_status}" style="width:150px;"/>
+			</c:if>
 		</p>
 		<c:if test="${(offsets%3)==0}"><div style="height:0px;"></div></c:if>  
 		</c:forEach> 
