@@ -600,8 +600,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("glgcList", glgc_list);
 				}
 				
-				//获取进度项列表
-				Iterator it=null;
+				//获取进度项列表 
 				List td53List=null;
 				List td54List=null;
 				Td54_gzjdx td54_gzjdx=null;
@@ -618,10 +617,12 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				hsql.append("(select d.jd_name from Td53_gzjd d where d.gcxx_id=");
 				hsql.append(project_id);
 				hsql.append(") ");
-				hsql.append("and x.type=1");
-				
+				hsql.append("and x.type=1"); 
 				td54List=queryService.searchList(hsql.toString());
-				it=td54List.iterator();
+				
+				
+				
+				Iterator it=td54List.iterator();
 				List td54_gcjdxList=new ArrayList();
 				Object td54Array[]=null;
 				int i=0;
