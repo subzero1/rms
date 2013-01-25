@@ -196,11 +196,15 @@
 				<value>com/rms/dataObjects/form/Td50_gcxx_imp.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td51_xmxx_imp.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td52_aqys.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td53_gzjd.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td54_gzjdx.hbm.xml</value>
+				
 				<value>com/rms/dataObjects/mbk/Td21_mbk.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td22_mbk_lzjl.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td23_kcsqb.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td24_kcfkb.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td25_kcfkmx.hbm.xml</value>
+				
 				<value>com/rms/dataObjects/wxdw/Tf01_wxdw.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf02_sgd.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf04_wxdw_user.hbm.xml</value>

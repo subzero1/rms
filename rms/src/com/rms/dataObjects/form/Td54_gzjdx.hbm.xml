@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.form.Td54_gzjdx"  table="Td54_gzjdx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td54_num</param>
+            </generator>
+        </id>
+
+  <property
+  name="jdx_key"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jdx_key"
+  />
+
+  <property
+  name="jdx_value"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jdx_value"
+  />
+
+  <property
+  name="type"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="type"
+  />
+    </class>
+
+</hibernate-mapping>
