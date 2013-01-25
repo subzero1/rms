@@ -1067,12 +1067,12 @@ public class OnLine {
 				Long aq_id = convertUtil.toLong(request.getParameter("Te03_online.AQ_ID"));
 				String aq_ip = convertUtil.toString(request.getParameter("Te03_online.AQ_IP"));
 				Long ydcs = convertUtil.toLong(request.getParameter("Te03_online.YDCS"));
-				
+				/*
 				title = new String(title.getBytes(fromEncode),targetEncode);
 				content = new String(content.getBytes(fromEncode),targetEncode);
 				status = new String(status.getBytes(fromEncode),targetEncode);
 				aq_name = new String(aq_name.getBytes(fromEncode),targetEncode);
-
+				 */
 				/**
 				 * 保存知识库
 				 */
