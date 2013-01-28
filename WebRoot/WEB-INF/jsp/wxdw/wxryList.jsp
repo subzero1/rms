@@ -123,7 +123,7 @@
 			<tr target="wxry_id" rel="${wxry[0].id}">
 				<td style="width: 80px;">
 					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
-						target="navTab" rel="wxry"
+						target="navTab" rel="wxryEdit"
 						title="外协人员信息">${wxry[0].name }</a>
 				</td>
 				<td style="width: 120px;">
