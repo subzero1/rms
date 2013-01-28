@@ -48,7 +48,7 @@
 			<ul class="toolBar">
 				<li>
 				<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }"
-					target="dialog" width="500" height="350" rel="wxry"
+					target="navTab" rel="wxry"
 					title="外协人员信息"><span>添加</span>
 				</a>
 			</li>
@@ -58,7 +58,7 @@
 			<li>
 				<a class="edit"
 					href="wxdw/wxryEdit.do?wxry_id={wxry_id}&wxdw_id=${param.wxdw_id}"
-					target="dialog" width="500" height="350" rel="wxry"
+					target="navTab" rel="wxry"
 					title="修改外协人员信息"><span>修改</span>
 				</a>
 			</li>
@@ -123,7 +123,7 @@
 			<tr target="wxry_id" rel="${wxry[0].id}">
 				<td style="width: 80px;">
 					<a href="wxdw/wxryEdit.do?wxry_id=${wxry[0].id}&wxdw_id=${param.wxdw_id}"
-						target="dialog" width="500" height="350" rel="wxry"
+						target="navTab" rel="wxry"
 						title="外协人员信息">${wxry[0].name }</a>
 				</td>
 				<td style="width: 120px;">
