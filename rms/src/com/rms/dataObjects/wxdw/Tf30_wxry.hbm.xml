@@ -126,6 +126,45 @@
   insert="true"
   column="ec"
   /> 
+    <property
+  name="bx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bx"
+  /> 
+  
+    <property
+  name="major"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="major"
+  /> 
+  
+    <property
+  name="contract"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="contract"
+  /> 
+  
+    <property
+  name="insure"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="insure"
+  /> 
+  
+    <property
+  name="safety"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="safety"
+  /> 
 
     </class>
 
