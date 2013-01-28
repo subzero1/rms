@@ -123,7 +123,7 @@ $(function(){
 					<a href="javascript:void(0)"><span>施工队</span> </a>
 				</li>
 				<li>
-					<a href="javascript:void(0)"><span>外协人员</span> </a>
+					<a href="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}" target="navTab"><span>外协人员</span> </a>
 				</li>
 			</ul>
 		</div>
