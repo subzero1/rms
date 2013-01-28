@@ -2456,23 +2456,29 @@ public class Wxdw {
 		ModelMap modelMap=new ModelMap();	
 		String view="/WEB-INF/jsp/wxdw/wxryList.jsp";
 		String wxdw_id=convertUtil.toString(request.getParameter("wxdw_id"));
-//		String pageNum=convertUtil.toString(request.getParameter("pageNum"));
-//		String numPerPage=convertUtil.toString(request.getParameter("numPerPage"));
+		Integer pageNum=convertUtil.toInteger(request.getParameter("pageNum"),1);
+		Integer numPerPage=convertUtil.toInteger(request.getParameter("numPerPage"),20);
 		String orderField=convertUtil.toString(request.getParameter("orderField"),"name");
 		String orderDirection=convertUtil.toString(request.getParameter("orderDirection"),"asc");
+		String wxry_name=convertUtil.toString(request.getParameter("wxry_name"));
 		StringBuffer hql=null;
 		List wxryList=null;
 		
-		if(wxdw_id!=null&&!wxdw_id.equals("")){
+		if(!wxdw_id.equals("")){
 		hql=new StringBuffer("");
 		wxryList=new LinkedList();
 		Tf30_wxry wxry=null;
 		ResultObject ro=null;
 		hql.append("select wxry from Tf30_wxry wxry where 1=1 ");
 		hql.append("and wxry.wxdw_id="+wxdw_id);
-		ro=queryService.search(hql.toString());
+		if(wxry_name!=""){
+			hql.append(" and wxry.name like '%");
+			hql.append(wxry_name);
+			hql.append("%' ");
+		}
 		hql.append(" order by wxry."+orderField);
 		hql.append(" "+orderDirection);
+		ro=queryService.search(hql.toString());
 		while(ro.next()){
 			Object[] o = new Object[2];
 			wxry=(Tf30_wxry) ro.get("wxry");
@@ -2492,6 +2498,9 @@ public class Wxdw {
 		}
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("wxry_name", wxry_name);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("wxdw_id", wxdw_id);
 		modelMap.put("wxryList", wxryList);
 		return new ModelAndView(view,modelMap);
