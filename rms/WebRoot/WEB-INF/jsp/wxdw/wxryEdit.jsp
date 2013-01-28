@@ -38,9 +38,9 @@
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf30_wxry" />
 			<input type="hidden" name="Tf30_wxry.ID" value="${wxry.id}" />
 			<input type="hidden" name="Tf30_wxry.WXDW_ID" value="${param.wxdw_id}" />
-			<input type="hidden" name="_callbackType" value="forward" />
-			<input type="hidden" name="_forwardUrl" value="" />
-			<input type="hidden" name="_navTabId" value="khpz" />
+			<input type="hidden" name="_callbackType" value="" />
+			<input type="hidden" name="_forwardUrl" value="wxdw/wxdwList.do?wxdw_id=${param.wxdw_id}" />
+			<input type="hidden" name="_navTabId" value="wxryList" />
 			<div class="pageFormContent" layoutH="53">
 				<p>
 					<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
