@@ -72,7 +72,7 @@
 		orderBy: function(options){
 			var op = $.extend({ targetType:"navTab", rel:"", asc:"asc", desc:"desc"}, options);
 			return this.each(function(){
-				var $this = $(this).css({cursor:"pointer"}).click(function(){
+				var $this = $(this).css({cursor:"pointer"}).focusin(function(){
 					var orderField = $this.attr("orderField");
 					var orderDirection = $this.hasClass(op.asc) ? op.desc : op.asc;
 					dwzPageBreak({targetType:op.targetType, rel:op.rel, data:{orderField: orderField, orderDirection: orderDirection}});
