@@ -92,26 +92,26 @@
 					<label>安全员证：</label>
 					<input type="text" name="Tf30_wxry.AQYZ" style="width:165px;" value="${wxry.gysz }" />
 				</p>
+				<div style="height:0px;"></div>
 				<p>
-					<label>监理证：</label>
+					<label>监&nbsp;&nbsp;理&nbsp;&nbsp;证：</label>
 					<input type="text" name="Tf30_wxry.JLZ" style="width:165px;" value="${wxry.jlz }" />
+				</p>
+				<p>
+					<label>登&nbsp;&nbsp;高&nbsp;&nbsp;证：</label>
+					<input type="text" name="Tf30_wxry.DGZ" style="width:165px;" value="${wxry.dgz}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
-					<label>登高证：</label>
-					<input type="text" name="Tf30_wxry.DGZ" style="width:165px;" value="${wxry.dgz}" />
-				</p>
-				<p>
-					<label>电工证：</label>
+					<label>电&nbsp;&nbsp;工&nbsp;&nbsp;证：</label>
 					<input type="text" name="Tf30_wxry.EC" style="width:165px;" value="${wxry.ec }" />
 				</p>
 				<p>
 					<label>本部/下挂单位：</label>
 					<input type="text" name="Tf30_wxry.BX" style="width:165px;" value="${wxry.bx }" />
 				</p>
-				<div style="height:0px;"></div>
 				<p>
-					<label>专业：</label>
+					<label>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：</label>
 					<input type="text" name="Tf30_wxry.MAJOR" style="width:165px;" value="${wxry.major }" />
 				</p> 
 				<div class="divider"></div>
