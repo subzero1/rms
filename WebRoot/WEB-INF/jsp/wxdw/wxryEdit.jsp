@@ -118,7 +118,7 @@
 				<div style="height:0px;"></div>
 				<p>
 					<label>劳动合同：</label>
-					<select name="Tf30_wxry.CONTRACT" style="width:165px;" value="${wxry.contract}">
+					<select name="Tf30_wxry.CONTRACT" style="width:170px;" value="${wxry.contract}">
 						<option value="">--------------------</option>
 						<option value="0">否</option>
 						<option value="1">是</option> 
@@ -126,7 +126,7 @@
 				</p> 
 				<p>
 					<label>保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;险：</label>
-					<select name="Tf30_wxry.CONTRACT" style="width:165px;" value="${wxry.contract}">
+					<select name="Tf30_wxry.CONTRACT" style="width:170px;" value="${wxry.contract}">
 						<option value="">---------------------</option>
 						<option value="0">否</option>
 						<option value="1">是</option> 
@@ -135,7 +135,7 @@
 				<p>
 					<label>保护用品：</label>
 					
-					<select name="Tf30_wxry.CONTRACT" style="width:165px;" value="${wxry.contract}">
+					<select name="Tf30_wxry.CONTRACT" style="width:170px;" value="${wxry.contract}">
 						<option value="">--------------------</option>
 						<option value="0">否</option>
 						<option value="1">是</option> 
@@ -145,7 +145,7 @@
 				
 				<p>
 					<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
-					 <textarea rows="3" cols="45" name="Tf30_wxry.BZ" style="width:690px;">${wxry.bz }</textarea>
+					 <textarea rows="3" cols="45" name="Tf30_wxry.BZ" style="width:705px;">${wxry.bz }</textarea>
 				</p>
 				<div style="height:0px;"></div>
 			<div class="formBar">
