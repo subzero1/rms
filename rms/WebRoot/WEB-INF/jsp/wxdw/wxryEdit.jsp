@@ -34,12 +34,12 @@
 				<li class="line">line</li>
 			</ul>
 		</div>
-		<form method="post" action="save.do" id="wxyr_form" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone);">
+		<form method="post" action="save.do" id="wxyr_form" class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf30_wxry" />
 			<input type="hidden" name="Tf30_wxry.ID" value="${wxry.id}" />
 			<input type="hidden" name="Tf30_wxry.WXDW_ID" value="${param.wxdw_id}" />
-			<input type="hidden" name="_callbackType" value="" />
-			<input type="hidden" name="_forwardUrl" value="wxdw/wxdwList.do?wxdw_id=${param.wxdw_id}" />
+			<input type="hidden" name="_callbackType" value="closeCurrent" />
+			<input type="hidden" name="_forwardUrl" value="wxdw/wxryList.do?wxdw_id=${param.wxdw_id}" />
 			<input type="hidden" name="_navTabId" value="wxryList" />
 			<div class="pageFormContent" layoutH="53">
 				<p>
