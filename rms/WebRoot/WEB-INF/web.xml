@@ -12,15 +12,15 @@
 	<!--
 		Key of the system property that should specify the root directory of this
 		web app. Applied by WebAppRootListener or Log4jConfigListener.
-	-->	
+	-->
 	<context-param>
 		<param-name>webAppRootKey</param-name>
 		<param-value>rms.root</param-value>
 	</context-param>
-	
+
 	<!--
 		Hibernate配置文件
-	-->		
+	-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -74,6 +74,17 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<filter>
+		<filter-name>sessionFilter</filter-name>
+		<filter-class>
+			com.rms.web.filter.SessionFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!--
 		-log4j监听器
 	-->
@@ -89,7 +100,7 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
-	
+
 	<servlet>
 		<servlet-name>rms</servlet-name>
 		<servlet-class>
@@ -97,7 +108,7 @@
 		</servlet-class>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>loadShareServLet</servlet-name>
 		<servlet-class>
@@ -105,13 +116,13 @@
 		</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>rms</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<!-- 文件类型解析 -->
 	<mime-mapping>
 		<extension>dwg</extension>
@@ -121,28 +132,30 @@
 		<extension>htc</extension>
 		<mime-type>text/x-component</mime-type>
 	</mime-mapping>
-	
+
 	<jsp-config>
 		<taglib>
-	    	<taglib-uri>NetSkyTagLibs</taglib-uri>
-	    	<taglib-location>/WEB-INF/NetSky.tld</taglib-location>
-	  	</taglib>
-  	</jsp-config>
-  	
-  	<servlet>
-	  <servlet-name>faceUpload</servlet-name>
-	  <servlet-class>com.netsky.base.imagecut.SaveImageServlet</servlet-class>
-  	</servlet>
- 	<servlet-mapping>
-      <servlet-name>faceUpload</servlet-name>
- 	  <url-pattern>/faceUpload.do</url-pattern>
-  	</servlet-mapping>
-  	
-  	<!-- 
-	<listener>  
-        <listener-class>com.rms.listener.Thread_Listener</listener-class>   
-    </listener>
-    
-     -->
-	
+			<taglib-uri>NetSkyTagLibs</taglib-uri>
+			<taglib-location>/WEB-INF/NetSky.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<servlet>
+		<servlet-name>faceUpload</servlet-name>
+		<servlet-class>
+			com.netsky.base.imagecut.SaveImageServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>faceUpload</servlet-name>
+		<url-pattern>/faceUpload.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 
+		<listener>  
+		<listener-class>com.rms.listener.Thread_Listener</listener-class>   
+		</listener>
+		
+	-->
+
 </web-app>
