@@ -120,25 +120,25 @@
 					<label>劳动合同：</label>
 					<select name="Tf30_wxry.CONTRACT" style="width:170px;" value="${wxry.contract}">
 						<option value="">--------------------</option>
-						<option value="0">否</option>
-						<option value="1">是</option> 
+						<option value="0" <c:if test="${wxry.contract==0}">selected</c:if>>否</option>
+						<option value="1" <c:if test="${wxry.contract==1}">selected</c:if>>是</option> 
 					</select> 
 				</p> 
 				<p>
 					<label>保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;险：</label>
-					<select name="Tf30_wxry.CONTRACT" style="width:170px;" value="${wxry.contract}">
+					<select name="Tf30_wxry.INSURE" style="width:170px;" value="${wxry.insure}">
 						<option value="">---------------------</option>
-						<option value="0">否</option>
-						<option value="1">是</option> 
+						<option value="0" <c:if test="${wxry.insure==0}">selected</c:if>>否</option>
+						<option value="1" <c:if test="${wxry.insure==1}">selected</c:if>>是</option> 
 					</select> 
 				</p> 
 				<p>
 					<label>保护用品：</label>
 					
-					<select name="Tf30_wxry.CONTRACT" style="width:170px;" value="${wxry.contract}">
+					<select name="Tf30_wxry.SAFETY" style="width:170px;" value="${wxry.safety}">
 						<option value="">--------------------</option>
-						<option value="0">否</option>
-						<option value="1">是</option> 
+						<option value="0" <c:if test="${wxry.safety==0}">selected</c:if>>否</option>
+						<option value="1" <c:if test="${wxry.safety==1}">selected</c:if>>是</option> 
 					</select> 
 				</p>
 				<div style="height:0px;"></div>
