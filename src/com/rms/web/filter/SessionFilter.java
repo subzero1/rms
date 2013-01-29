@@ -18,12 +18,13 @@ public class SessionFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		String[] notFilter = new String[] { "index.jsp","login.do"};
-		String[] filters =new String[]{"wxdw","search","Manage","workList.do","htgl"};
+		String[] filters =new String[]{"wxdw","search","Manage","workList.do","htgl","download.do"};
 		boolean b_filter=false;
 		
 		for (String string : filters) {
 			if (uri.indexOf(string)!=-1) {
 				b_filter=true;
+				break;
 			}
 		}
 		if (b_filter) { 
