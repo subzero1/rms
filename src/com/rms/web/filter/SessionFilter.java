@@ -18,7 +18,7 @@ public class SessionFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		String[] notFilter = new String[] { "index.jsp","login.do","logout.do"};
-		String[] filters =new String[]{"wxdw","search","Manage","workList.do","htgl","download.do","form"};
+		String[] filters =new String[]{"wxdw","search","Manage","workList.do","htgl","download.do","form","main.do"};
 		boolean b_filter=false;
 		
 		for (String string : filters) {

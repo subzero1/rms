@@ -94,7 +94,7 @@ function saveMbk(){
 			<input type="hidden" name="Tf31_zytl.ID" value="${Tf31_zytl.id}" />
 			<input type="hidden" name="_callbackType" value="forward" />
 			<input type="hidden" name="_message" value="保存" />
-			<input type="hidden" name="_forwardUrl" value="wxdw/zytlList.do" />
+			<input type="hidden" name="_forwardUrl" value="infoManage/zytlrList.do" />
 			<input type="hidden" name="_navTabId" value="zytlEdit" />
 
 
@@ -120,7 +120,7 @@ function saveMbk(){
 						年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;限：
 					</label>
 					<input type="text" name="Tf31_zytl.NX" id="Tf31_zytl.SSDQ"
-						style="width: 256px;" value="${Tf31_zytl.nx}"  />
+						style="width: 256px;" value="${Tf31_zytl.nx}"  readonly/>
 				</p> 
 					<p title="进入建设中心日期">
 						<label>
@@ -151,15 +151,18 @@ function saveMbk(){
 						所&nbsp;属&nbsp;单&nbsp;位&nbsp;：
 					</label>
 					<input type="text" name="Tf31_zytl.SSDW" id="Tf31_zytl.ZYMC"
-						style="width: 256px;" value="${Tf31_zytl.ssdw}"  />
+						style="width: 235px;" value="${Tf31_zytl.ssdw}"  />
+						<a class="btnLook" lookupGroup="deptOrg" href="form/selectDept.do"></a>
 				</p>
 				<p style="cursor:hand;">
 					<label>
 						专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：
 					</label>
 					<input type="checkbox" name="Tf31_zytl.ZC" value="管道" />管道
+					<!-- 
 					<input type="checkbox" name="Tf31_zytl.ZC" value="电缆" />电缆
 					<input type="checkbox" name="Tf31_zytl.ZC" value="光缆" />光缆
+					 -->
 				</p>
 				<div style="height: 0px;"></div>
 				<div class="divider"></div>
