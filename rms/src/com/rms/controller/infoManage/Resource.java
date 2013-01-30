@@ -20,7 +20,6 @@ public class Resource {
 	public ModelAndView zytlEdit(HttpServletRequest request,HttpServletResponse response) {
 		String view="/WEB-INF/jsp/infoManage/zytlEdit.jsp";
 		ModelMap modelMap=new ModelMap();
-		
 		return new ModelAndView(view,modelMap);
 	}
 }
