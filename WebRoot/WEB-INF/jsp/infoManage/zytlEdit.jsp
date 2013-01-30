@@ -92,7 +92,7 @@ function saveMbk(){
 			onsubmit="return validateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf31_zytl" />
 			<input type="hidden" name="Tf31_zytl.ID" value="${Tf31_zytl.id}" />
-			<input type="hidden" name="_callbackType" value="forward" />
+			<input type="hidden" name="_callbackType" value="" />
 			<input type="hidden" name="_message" value="保存" />
 			<input type="hidden" name="_forwardUrl" value="infoManage/zytlrList.do" />
 			<input type="hidden" name="_navTabId" value="zytlEdit" />
@@ -127,7 +127,7 @@ function saveMbk(){
 							进&nbsp;入&nbsp;日&nbsp;期&nbsp;：
 						</label>
 						<input type="text" ids="jz" name="Tf31_zytl.IN_TIME" id="Tf31_zytl.JD"
-							style="width: 256px;" value="${Tf31_zytl.in_time}"  class="date" pattern="yyyy-MM-dd"/>
+							style="width: 256px;" value="<fmt:formatDate value="${Tf31_zytl.in_time}" pattern="yyyy-MM-dd"></fmt:formatDate>"  class="date" pattern="yyyy-MM-dd"/>
 					</p>
 				<div style="height: 0px;"></div>
 					<p>
@@ -158,11 +158,10 @@ function saveMbk(){
 					<label>
 						专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：
 					</label>
-					<input type="checkbox" name="Tf31_zytl.ZC" value="管道" />管道
-					<!-- 
-					<input type="checkbox" name="Tf31_zytl.ZC" value="电缆" />电缆
-					<input type="checkbox" name="Tf31_zytl.ZC" value="光缆" />光缆
-					 -->
+					<input type="checkbox" name="Tf31_zytl.ZC" value="管道" <c:if test="${fn:contains(Tf31_zytl.zc,'管道')}">checked</c:if> />管道
+					<input type="checkbox" name="Tf31_zytl.ZC" value="电缆" <c:if test="${fn:contains(Tf31_zytl.zc,'电缆')}">checked</c:if>/>电缆
+					<input type="checkbox" name="Tf31_zytl.ZC" value="光缆" <c:if test="${fn:contains(Tf31_zytl.zc,'光缆')}">checked</c:if>/>光缆
+					<input type="hidden" name="Tf31_zytl.ZC" value="${ Tf31_zytl.zc}"/>
 				</p>
 				<div style="height: 0px;"></div>
 				<div class="divider"></div>
