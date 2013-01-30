@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.wxdw.Tf31_zytl"  table="Tf31_zytl">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tf31_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="gis_no"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gis_no"
+  />
+
+  <property
+  name="tlrxm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="tlrxm"
+  />
+
+  <property
+  name="ssdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ssdw"
+  />
+
+  <property
+  name="nx"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="nx"
+  />
+
+  <property
+  name="in_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="in_time"
+  />
+
+  <property
+  name="rzcj"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="rzcj"
+  />
+
+  <property
+  name="phone"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="phone"
+  />
+
+  <property
+  name="zc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zc"
+  />
+
+  <property
+  name="zcqk"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zcqk"
+  />
+
+ <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+    </class>
+
+</hibernate-mapping>
