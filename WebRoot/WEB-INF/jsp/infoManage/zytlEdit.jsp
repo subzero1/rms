@@ -103,14 +103,14 @@ function saveMbk(){
 					<label>
 						GIS系统工号：
 					</label>
-					<input readonly="readonly" type="text" name="Tf31_zytl.GIS_NO"
+					<input  type="text" name="Tf31_zytl.GIS_NO"
 						style="width: 256px;" value="${Tf31_zytl.gis_no}" />
 				</p> 
 				<p>
 					<label>
 						填录人姓名：
 					</label>
-					<input readonly="readonly" type="text" name="Tf31_zytl.TLRXM"
+					<input  type="text" name="Tf31_zytl.TLRXM"
 						style="width: 256px;" value="${Tf31_zytl.tlrxm}" />
 				</p>
 				
@@ -120,14 +120,14 @@ function saveMbk(){
 						年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;限：
 					</label>
 					<input type="text" name="Tf31_zytl.NX" id="Tf31_zytl.SSDQ"
-						style="width: 256px;" value="${Tf31_zytl.nx}" readonly="readonly" />
+						style="width: 256px;" value="${Tf31_zytl.nx}"  />
 				</p> 
 					<p title="进入建设中心日期">
 						<label>
 							进&nbsp;入&nbsp;日&nbsp;期&nbsp;：
 						</label>
 						<input type="text" ids="jz" name="Tf31_zytl.IN_TIME" id="Tf31_zytl.JD"
-							style="width: 256px;" value="${Tf31_zytl.in_time}" readonly="readonly" class="date" pattern="yyyy-MM-dd"/>
+							style="width: 256px;" value="${Tf31_zytl.in_time}"  class="date" pattern="yyyy-MM-dd"/>
 					</p>
 				<div style="height: 0px;"></div>
 					<p>
@@ -135,7 +135,7 @@ function saveMbk(){
 							认&nbsp;证&nbsp;成&nbsp;绩&nbsp;：
 						</label>
 						<input type="text" ids="jz" name="Tf31_zytl.RZCJ" id="Tf31_zytl.WD"
-							style="width: 256px;" value="${Tf31_zytl.rzcj}" readonly="readonly" />
+							style="width: 256px;" value="${Tf31_zytl.rzcj}"  />
 					</p>
 					<p>
 						<label>
@@ -143,7 +143,7 @@ function saveMbk(){
 						</label>
 						<input type="text" name="Tf31_zytl.PHONE" id="Tf31_zytl.ZLDD"
 							style="width: 256px;" value="${Tf31_zytl.phone}"
-							readonly="readonly" />
+							 />
 					</p> 
 					<div style="height: 0px;"></div>
 					<p>
@@ -151,7 +151,7 @@ function saveMbk(){
 						所&nbsp;属&nbsp;单&nbsp;位&nbsp;：
 					</label>
 					<input type="text" name="Tf31_zytl.SSDW" id="Tf31_zytl.ZYMC"
-						style="width: 256px;" value="${Tf31_zytl.ssdw}" readonly="readonly" />
+						style="width: 256px;" value="${Tf31_zytl.ssdw}"  />
 				</p>
 				<p style="cursor:hand;">
 					<label>
