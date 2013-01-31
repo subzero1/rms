@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.rms.dataObjects.wxdw.Tf31_zytl;
-import com.sun.org.apache.xpath.internal.compiler.Keywords;
 
 /**
  * @description:
@@ -55,13 +54,13 @@ public class Resource {
 		Integer numPerPage=convertUtil.toInteger(request.getParameter("numPerPage"),20); 
 		String orderField=convertUtil.toString(request.getParameter("orderField"),"tlrxm");
 		String orderDirection=convertUtil.toString(request.getParameter("orderDirection"),"asc");
-		String keyword=convertUtil.toString(request.getParameter("keywork"));
+		String keyword=convertUtil.toString(request.getParameter("keyword"));
 		Integer totalCount=0;
 		List<Tf31_zytl>tf31_zytlrList=null;
 		
 		hql.append("select t from Tf31_zytl t where 1=1 ");
 		if (keyword!="") {
-			hql.append(" and t.trlxml like '%");
+			hql.append(" and t.tlrxm like '%");
 			hql.append(keyword);
 			hql.append("%' ");
 		}
