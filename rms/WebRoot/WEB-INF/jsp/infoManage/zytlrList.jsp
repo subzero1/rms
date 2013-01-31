@@ -73,7 +73,7 @@
 						<td><a href="infoManage/zytlEdit.do?zytl_id=${obj.id }" target="navTab" rel="zytlEdit" title="资源填录人信息单">${obj.tlrxm }</a></td>
 						<td>${obj.ssdw }</td>
 						<td>${obj.nx }</td>
-						<td>${obj.in_time }</td>
+						<td><fmt:formatDate value="${obj.in_time }" pattern="yyyy-MM-dd"/></td>
 						<td>${obj.rzcj }</td>
 						<td>${obj.phone }</td>
 						<td>${obj.zc }</td>
