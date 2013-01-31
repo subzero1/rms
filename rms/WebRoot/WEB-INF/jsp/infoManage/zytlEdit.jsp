@@ -36,23 +36,23 @@ span b {
 			}
 			
 			//设置年限 
-	 		var $in_time=$("input[name='Tf31_zytl.IN_TIME']");
+	 		var $in_time=$("input[name='Tf31_zytl\.IN_TIME']");
 	 		if ($in_time.val()!="")
 				setNx($in_time);  
 			$in_time.change(function(){ 
 				setNx(this);
 			});
-			//
+			//设置专长
+			var $zc=$("input[name='tf31_zytl\.ZC']"); 
+			var zcs;
+			$zc.click(function(){ 
+				setZc(this,zcs);
+			});
 			
 	   	}); 
 	function saveMbk(){ 
 		$("#mbk_form",navTab.getCurrentPanel()).submit(); 
-	}
-	 function setZc(_this){
-	 	var $zc=$("input[name='Tf31_zytl\.ZC']");
-	  
-	 	alert($zc.val());
-	 }
+	} 
 	 function setNx(obj){
 	    var $nx=$("input[name='Tf31_zytl\.NX']");
 	 	var $in_time=$(obj);
@@ -60,6 +60,26 @@ span b {
 		var now=new Date().getTime()/31536000000;
 		var nx=(now-in_time).toFixed(1); 
 		$nx.val(nx);
+	 }
+	 function setZc(zc,zcs){  
+	 	var $zcs=$("input[name='Tf31_zytl\.ZC']");
+	 	zcs=$zcs.val();
+	 	if($(zc).attr("checked")=='checked'){ 
+	 		if(zcs==""){ 
+	 			zcs+=$(zc).val();
+	 		}else if(zcs.indexOf($(zc).val())<0){
+	 			zcs+=(","+$(zc).val());
+	 		}
+	 		
+	 	}else {  
+	 		if(zcs.indexOf($(zc).val())>0){  
+	 			 zcs=zcs.replace($(zc).val(),"");
+	 			 zcs=zcs.replace(/[,]+/,",");
+	 			 zcs=zcs.replace(/(^[,]+)|([,]+)$/g,"");
+	 		}
+	 		
+	 	} 
+	 	$zcs.val(zcs);
 	 }
 </script>
 <div class="page">
@@ -163,17 +183,17 @@ span b {
 					</label>
 					<input type="checkbox" name="tf31_zytl.ZC" value="管道"
 						<c:if test="${fn:contains(Tf31_zytl.zc,'管道')}">checked</c:if>
-						onclick="setZc(this)" />
+						  />
 					管道
 					<input type="checkbox" name="tf31_zytl.ZC" value="电缆"
 						<c:if test="${fn:contains(Tf31_zytl.zc,'电缆')}">checked</c:if>
-						onclick="setZc(this)" />
+						 />
 					电缆
 					<input type="checkbox" name="tf31_zytl.ZC" value="光缆"
 						<c:if test="${fn:contains(Tf31_zytl.zc,'光缆')}">checked</c:if>
-						onclick="setZc(this)" />
+						 />
 					光缆
-					<input type="hidden" name="Tf31_zytl.ZC" value="${ Tf31_zytl.zc}" />
+					<input type="text" name="Tf31_zytl.ZC" value="${ Tf31_zytl.zc}" />
 				</p>
 				<div style="height: 0px;"></div>
 				<div class="divider"></div>
