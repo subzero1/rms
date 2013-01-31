@@ -141,13 +141,16 @@
 				
 			}
 			
-			function closeCalendar() {
+			function closeCalendar(noChange) {
 				$(setting.box$).remove();
 				$(document).unbind("click", closeCalendar);
+				if (!noChange){
+					$this.change();
+				}
 			}
 
 			$this.click(function(event){
-				closeCalendar();
+				closeCalendar(true);
 				var dp = new Datepicker($this.val(), opts);
 				var offset = $this.offset();
 				var iTop = offset.top+this.offsetHeight;
