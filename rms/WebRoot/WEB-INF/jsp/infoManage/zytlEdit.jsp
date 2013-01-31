@@ -72,7 +72,7 @@ span b {
 	 		}
 	 		
 	 	}else {  
-	 		if(zcs.indexOf($(zc).val())>0){  
+	 		if(zcs.indexOf($(zc).val())>=0){
 	 			 zcs=zcs.replace($(zc).val(),"");
 	 			 zcs=zcs.replace(/[,]+/,",");
 	 			 zcs=zcs.replace(/(^[,]+)|([,]+)$/g,"");
@@ -193,7 +193,7 @@ span b {
 						<c:if test="${fn:contains(Tf31_zytl.zc,'光缆')}">checked</c:if>
 						 />
 					光缆
-					<input type="text" name="Tf31_zytl.ZC" value="${ Tf31_zytl.zc}" />
+					<input type="hidden" name="Tf31_zytl.ZC" value="${ Tf31_zytl.zc}" />
 				</p>
 				<div style="height: 0px;"></div>
 				<div class="divider"></div>
