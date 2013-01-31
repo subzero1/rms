@@ -33,7 +33,7 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar"> 
-					<li><a class="add" href="infoManage/zytlEdit.do" target="navTab" rel="gcxx" title="工程信息单"><span>添加</span></a></li>
+					<li><a class="add" href="infoManage/zytlEdit.do" target="navTab" rel="zytlrEdit" title="资源填录人信息"><span>添加</span></a></li>
 					<li class="line">line</li>
 					<li><a class="delete" href="form/ajaxGcxxDel.do?id={gc_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
@@ -70,7 +70,7 @@
 						${offset }
 						</td>
 						<td>${obj.gis_no }</td>
-						<td><a href="infoManage/zytlEdit.do?zytl_id=${obj.id }" target="navTab" rel="zytlEdit" title="资源填录人信息单">${obj.tlrxm }</a></td>
+						<td><a href="infoManage/zytlEdit.do?zytl_id=${obj.id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj.tlrxm }</a></td>
 						<td>${obj.ssdw }</td>
 						<td>${obj.nx }</td>
 						<td><fmt:formatDate value="${obj.in_time }" pattern="yyyy-MM-dd"/></td>
