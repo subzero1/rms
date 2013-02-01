@@ -10,7 +10,19 @@
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 </form>
-
+<script type="text/javascript">
+function searchListExport(){
+	$form = $("#pagerForm", navTab.getCurrentPanel());
+	$zytlrTab=$("tbody",navTab.getCurrentPanel());
+	if($zytlrTab.find("tr").size() == 0){
+		alertMsg.warn("没有可输出信息!");
+		return;
+	} 
+	$form.attr("action","wxdw/tlrToExcel.do?config=zytlr");  
+	$form.submit();  
+	$form.attr("action","");
+} 
+</script>
 <div class="page">
 	<div class="pageHeader">
 		<form action="wxdw/zytlrList.do" method="post"onsubmit="return navTabSearch(this);">
@@ -39,15 +51,11 @@
 					<li class="line">line</li>
 					<li> <a class="exportexcel" href="dispath.do?url=form/zytlrImport.jsp?config=zytlr" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li> 
-				    <!-- 
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
 					<li class="line">line</li>
-					
-					<li><a class="helponline"	href="javascript:enterHelp('gcxx')"><span>在线2帮助</span></a></li>
-					<li class="line">line</li>-->
 			</ul>
 		</div>
-		<table class="table" width="100%" layouth="138">
+		<table class="table" width="100%" layouth="138" id="zytlrTab">
 			<thead>
 				<tr>
 					<th style="width:30px;"></th>
