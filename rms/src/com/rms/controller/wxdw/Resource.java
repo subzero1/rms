@@ -1,5 +1,7 @@
 package com.rms.controller.wxdw;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,13 +15,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.rms.dataObjects.wxdw.Tf31_zytl;
 
 /**
- * @description:
+ * @description:资源录入
  * 
  * @class name:com.rms.controller.infoManage.Resource
  * @author net Jan 29, 2013
@@ -29,7 +32,17 @@ public class Resource {
 
 	@Autowired
 	private QueryService queryService;
+	
+	@Autowired
+	private Dao dao;
 
+	/**
+	 * 填录人信息修改
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception ModelAndView
+	 */
 	@RequestMapping("/wxdw/zytlEdit.do")
 	public ModelAndView zytlEdit(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -46,6 +59,12 @@ public class Resource {
 		return new ModelAndView(view, modelMap);
 	}
 
+	/**
+	 * 填录人列表
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
 	@RequestMapping("/wxdw/zytlrList.do")
 	public ModelAndView zytlrList(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -94,13 +113,30 @@ public class Resource {
 		return new ModelAndView(view, modelMap);
 	}
 
+	/**
+	 * 删除填录人信息
+	 * @param request
+	 * @param response void
+	 * @throws IOException,Exception 
+	 */
 	@RequestMapping("/wxdw/tlrAjaxDel.do")
 	public void tlrAjaxDel(HttpServletRequest request,
-			HttpServletResponse response) {
-
+			HttpServletResponse response) throws IOException,Exception{
+		Long zytl_id=convertUtil.toLong(request.getParameter("zytl_id"));
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out=response.getWriter();
+		if (zytl_id!=-1) {
+			try {
+				dao.removeObject(Tf31_zytl.class, zytl_id);
+				out.print("{\"statusCode\":\"200\", \"message\":\"删除人员信息成功!\"}");
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+				out.print("{\"statusCode\":\"300\", \"message\":\"删除人员信息失败!\"}");
+			}
+		} 
 	}
 
-	@RequestMapping("/wxdw/tlrAjaxDel.do")
+	@RequestMapping("/wxdw/tlrExcelImport.do")
 	public ModelAndView tlrExcelImport(HttpServletRequest request,
 			HttpServletResponse response) {
 		String view = "";
@@ -108,6 +144,12 @@ public class Resource {
 		return new ModelAndView(view, modelMap);
 	}
 
+	/**
+	 * 选择所属单位
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
 	@RequestMapping("/wxdw/selectWxdw.do")
 	public ModelAndView selectWxdw(HttpServletRequest request,
 			HttpServletResponse response) {
