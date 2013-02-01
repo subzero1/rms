@@ -74,7 +74,7 @@
 		</thead>				
 		<tbody>
 			<c:forEach items="${objList}" var="obj"> 
-			<tr>
+			<tr ondblclick="addProperty('${obj[0] }','${obj[1]}')">
 				<td>${obj[1]}</td> 
 				<td>
 						<a class="btnSelect" href="javascript:addProperty('${obj[0] }','${obj[1]}')" title="查找带回">
