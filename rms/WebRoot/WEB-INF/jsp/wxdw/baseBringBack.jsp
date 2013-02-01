@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
-	function addKcry(id,name){
+	function addProperty(id,name){
 		if ($("#ids",$.pdialog.getCurrent()).val().indexOf(","+id)==-1){
 			$("#ids",$.pdialog.getCurrent()).val($("#ids",$.pdialog.getCurrent()).val()+","+id);
 			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+ ($("#names",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
@@ -24,6 +24,7 @@
 		$("#names1",$.pdialog.getCurrent()).val("");
 		});
 	});
+	
 </script>
 
 <form id="pagerForm" action="">
@@ -76,7 +77,7 @@
 			<tr>
 				<td>${obj[1]}</td> 
 				<td>
-						<a class="btnSelect" href="javascript:addKcry('${obj[0] }','${obj[1]}')" title="查找带回">
+						<a class="btnSelect" href="javascript:addProperty('${obj[0] }','${obj[1]}')" title="查找带回">
 				</td>
 			</tr> 
 			</c:forEach>
