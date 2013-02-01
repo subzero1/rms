@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-<form id="pagerForm" method="post" action="infoManage/zytlrList.do">
+<form id="pagerForm" method="post" action="wxdw/zytlrList.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -13,7 +13,7 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="infoManage/zytlrList.do" method="post"onsubmit="return navTabSearch(this);">
+		<form action="wxdw/zytlrList.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
@@ -35,7 +35,7 @@
 			<ul class="toolBar"> 
 					<li><a class="add" href="wxdw/zytlEdit.do" target="navTab" rel="zytlrEdit" title="资源填录人信息"><span>添加</span></a></li>
 					<li class="line">line</li>
-					<li><a class="delete" href="form/ajaxGcxxDel.do?id={gc_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li><a class="delete" href="wxdw/tlrAjaxDel.do?zytl_id={gc_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 					<li> <a class="exportexcel" href="dispath.do?url=form/xlsImport.jsp?config=batch_update_gc" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li> 
