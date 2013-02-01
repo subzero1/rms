@@ -3,8 +3,11 @@ package com.rms.controller.wxdw;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
+import com.rms.base.util.ConfigXML;
+import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.wxdw.Tf31_zytl;
 
 /**
@@ -136,12 +142,56 @@ public class Resource {
 		} 
 	}
 
-	@RequestMapping("/wxdw/tlrExcelImport.do")
-	public ModelAndView tlrExcelImport(HttpServletRequest request,
-			HttpServletResponse response) {
-		String view = "";
-		ModelMap modelMap = new ModelMap();
-		return new ModelAndView(view, modelMap);
+	@RequestMapping("/wxdw/tlrToExcel.do")
+	public ModelAndView tlrToExcel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String keyword=convertUtil.toString(request.getParameter("keyword"));
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String config = convertUtil.toString(request.getParameter("config"));
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "tlrxm");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+
+		int k = 0;
+		ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
+		ResultObject ro = null;
+		StringBuffer hql = new StringBuffer("");
+		List titleList = new LinkedList(); // 标题列表
+		List colList = new LinkedList();// 列的字段值
+		List docList = new LinkedList();// 表单数据
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+
+		// 读取配置文件的标题列表
+		String webinfpath = request.getSession().getServletContext()
+				.getRealPath("WEB-INF");
+		titleList = configXML.getTagListByConfig(config, webinfpath, "name");
+		colList = configXML.getTagListByConfig(config, webinfpath,
+				"columnName");
+		Iterator it = colList.iterator();
+		hql.append("select ");
+		while (it.hasNext()) {
+			if (k == 0)
+				hql.append(" zytl." + ((it.next().toString()).toLowerCase()));
+			else
+				hql.append(" ,zytl." + ((it.next().toString()).toLowerCase()));
+			k++;
+		}
+		hql.append(" from Tf31_zytl zytl where 1=1 ");
+		hql.append("order by zytl.");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection); 
+		docList = queryService.searchList(hql.toString());
+
+		sheetList.add(titleList);
+		sheetList.add(docList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "资源填录人信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+
 	}
 
 	/**
