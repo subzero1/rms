@@ -37,7 +37,7 @@
 </form>
 
 <div class="pageHeader">
-	<form rel="pagerForm" method="post" action="infoManage/selectWxdw.do" onsubmit="return dwzSearch(this, 'dialog');">
+	<form rel="pagerForm" method="post" action="wxdw/selectWxdw.do" onsubmit="return dwzSearch(this, 'dialog');">
 	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
 	<input type="hidden" name="names" id="names" value="${param.names }"/>
 	<div class="searchBar" style="height:60px">
