@@ -1764,5 +1764,33 @@ public class Td00_gcxx implements Serializable {
 		this.jlysl = jlysl;
 	}
 	
+	private Date zytjsj;
 	
+	private String zyyszt;
+	
+	private String ycystg;
+
+	public Date getZytjsj() {
+		return zytjsj;
+	}
+
+	public void setZytjsj(Date zytjsj) {
+		this.zytjsj = zytjsj;
+	}
+
+	public String getZyyszt() {
+		return zyyszt;
+	}
+
+	public void setZyyszt(String zyyszt) {
+		this.zyyszt = zyyszt;
+	}
+
+	public String getYcystg() {
+		return ycystg;
+	}
+
+	public void setYcystg(String ycystg) {
+		this.ycystg = ycystg;
+	}
 }
