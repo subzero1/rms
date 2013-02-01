@@ -175,7 +175,7 @@ span b {
 					</label>
 					<input type="text" name="Tf31_zytl.SSDW" id="zytlOrg.SSDW"
 						style="width: 235px;" value="${Tf31_zytl.ssdw}" />
-					<a class="btnLook" lookupGroup="zytlOrg" href="infoManage/selectWxdw.do" target="dialog" ref="selectWxdw" width="600" height="371"></a>
+					<a class="btnLook" lookupGroup="zytlOrg" href="wxdw/selectWxdw.do" target="dialog" ref="selectWxdw" width="600" height="371"></a>
 				</p>
 				<p style="cursor: hand;">
 					<label>

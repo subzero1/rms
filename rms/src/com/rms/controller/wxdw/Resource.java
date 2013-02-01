@@ -30,10 +30,10 @@ public class Resource {
 	@Autowired
 	private QueryService queryService;
 
-	@RequestMapping("/infoManage/zytlEdit.do")
+	@RequestMapping("/wxdw/zytlEdit.do")
 	public ModelAndView zytlEdit(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String view = "/WEB-INF/jsp/infoManage/zytlEdit.jsp";
+		String view = "/WEB-INF/jsp/wxdw/zytlEdit.jsp";
 		ModelMap modelMap = new ModelMap();
 		Tf31_zytl tf31_zytl = null;
 		Long zytl_id = convertUtil.toLong(request.getParameter("zytl_id"));
@@ -46,10 +46,10 @@ public class Resource {
 		return new ModelAndView(view, modelMap);
 	}
 
-	@RequestMapping("/infoManage/zytlrList.do")
+	@RequestMapping("/wxdw/zytlrList.do")
 	public ModelAndView zytlrList(HttpServletRequest request,
 			HttpServletResponse response) {
-		String view = "/WEB-INF/jsp/infoManage/zytlrList.jsp";
+		String view = "/WEB-INF/jsp/wxdw/zytlrList.jsp";
 		ModelMap modelMap = new ModelMap();
 		StringBuffer hql = new StringBuffer();
 		Integer pageNum = convertUtil.toInteger(
@@ -94,13 +94,13 @@ public class Resource {
 		return new ModelAndView(view, modelMap);
 	}
 
-	@RequestMapping("/infoManage/tlrAjaxDel.do")
+	@RequestMapping("/wxdw/tlrAjaxDel.do")
 	public void tlrAjaxDel(HttpServletRequest request,
 			HttpServletResponse response) {
 
 	}
 
-	@RequestMapping("/infoManage/tlrAjaxDel.do")
+	@RequestMapping("/wxdw/tlrAjaxDel.do")
 	public ModelAndView tlrExcelImport(HttpServletRequest request,
 			HttpServletResponse response) {
 		String view = "";
@@ -108,7 +108,7 @@ public class Resource {
 		return new ModelAndView(view, modelMap);
 	}
 
-	@RequestMapping("/infoManage/selectWxdw.do")
+	@RequestMapping("/wxdw/selectWxdw.do")
 	public ModelAndView selectWxdw(HttpServletRequest request,
 			HttpServletResponse response) {
 		String view = "/WEB-INF/jsp/wxdw/baseBringBack.jsp";
