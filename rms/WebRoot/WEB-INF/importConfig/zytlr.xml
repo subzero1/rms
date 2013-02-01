@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GBK"?>
+<excel
+xmlns="http://www.tjnetsky.com.cn"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
+>
+	<!-- 定义导入文件中表格信息 -->
+	<tableInfo>
+		<!-- 表格信息所在sheet位于excel文件中位置 -->
+		<sheetNum>0</sheetNum>
+		<!-- 数据开始行 -->
+		<startRow>1</startRow>
+		<endRow/>
+		<endFlag></endFlag>
+		<!-- 表名称，对应持久化对象名称 -->
+		<tableName>Tf31_zytl</tableName>
+		<!-- 表名称,用于显示 -->
+		<tableNameShow>资源信息批量导入</tableNameShow>
+		<!-- 本表对应的父表信息 -->
+		<fatherTables>
+		</fatherTables>
+		<!-- 当前表字段信息 -->
+		<columns>
+			<!-- byIndex:按列所在位置获取,byName: 按标题行名称获取-->
+			<type>byName</type>
+			<!-- 标题行位置 -->
+			<titleRow>0</titleRow>
+			<column>
+					<columnName>GIS_NO</columnName>
+					<index/>
+					<name>GIS系统工号</name>
+					<colName>GIS系统工号</colName>
+			</column>
+			<column>
+					<columnName>TLRXM</columnName>
+					<index/>
+					<name>填录人姓名</name>
+					<colName>填录人姓名</colName>
+			</column>
+			<column>
+					<columnName>SSDW</columnName>
+					<index/>
+					<name>所属单位</name>
+					<colName>所属单位</colName>
+			</column>
+			<column>
+				<columnName>NX</columnName>
+				<index/>
+				<name>年限</name>
+				<colName>年限</colName>
+			</column>
+			<column>
+					<columnName>IN_TIME</columnName>
+					<index/>
+					<name>进入建设中心日期</name>
+					<colName>进入建设中心日期</colName>
+			</column>
+			<column>
+					<columnName>RZCJ</columnName>
+					<index/>
+					<name>认证成绩</name>
+					<colName>认证成绩</colName>
+			</column>
+			<column>
+					<columnName>PHONE</columnName>
+					<index/>
+					<name>联系电话</name>
+					<colName>联系电话</colName>
+			</column>
+			<column>
+					<columnName>ZC</columnName>
+					<index/>
+					<name>专长(管道,电缆,光缆)</name>
+					<colName>专长(管道,电缆,光缆)</colName>
+			</column>
+			<column>
+					<columnName>ZCQK</columnName>
+					<index/>
+					<name>在册情况</name>
+					<colName>在册情况</colName>
+			</column>
+			<column>
+					<columnName>BZ</columnName>
+					<index/>
+					<name>备注</name>
+					<colName>备注</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>

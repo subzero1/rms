@@ -26,4 +26,9 @@
   	<fileName>/importConfig/import_rckh.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>zytlr</name>
+  	<fileName>/importConfig/zytlr.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
