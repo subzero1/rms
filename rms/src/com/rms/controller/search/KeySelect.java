@@ -321,6 +321,14 @@ public class KeySelect {
 					result.add("B");
 					result.add("C");
 			}
+			else if (type.equals("zyyszt")) {//资源验收状态
+				result.add("通过");
+				result.add("回退");
+			}
+			else if (type.equals("ycystg")) {//一次资源验收通过
+				result.add("是");
+				result.add("否");
+			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(KeySelect.class.getName(), "选择基础多选项", e);
