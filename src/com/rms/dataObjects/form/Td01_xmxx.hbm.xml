@@ -1224,6 +1224,30 @@
             insert="true"
             column="jlysl"
         />
+        
+         <property
+            name="zytjsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="zytjsj"
+        />
+        
+        <property
+            name="zyyszt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zyyszt"
+        />
+        
+        <property
+            name="ycystg"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ycystg"
+        />
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td01_xmxx.xml
