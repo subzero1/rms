@@ -49,12 +49,15 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 			if(approve_result == 4){
 					
 				/**
-				 * 设计时限调整单集中设计岗审结同意
+				 * 资源确认单 资源确认岗审结同意
 				 */
 				if((module_id == 110 || module_id == 111) && node_name.indexOf("资源确认") != -1){
 					Ta03_user user = (Ta03_user)queryService.searchById(Ta03_user.class, user_id);
-					saveService.updateByHSql("update Td00_gcxx set zyqrsj = sysdate,zygly='"+user.getName()+"' where id = "+project_id);
-					saveService.updateByHSql("update Td01_xmxx set zyqrsj = sysdate,zygly='"+user.getName()+"' where id = "+project_id);
+					saveService.updateByHSql("update Td00_gcxx set zyqrsj = sysdate,zyyszt = '通过',zygly='"+user.getName()+"' where id = "+project_id);
+					saveService.updateByHSql("update Td01_xmxx set zyqrsj = sysdate,zyyszt = '通过',zygly='"+user.getName()+"' where id = "+project_id);
+					
+					saveService.updateByHSql("update Td00_gcxx set ycystg = '是' where ycystg is null and id = "+project_id);
+					saveService.updateByHSql("update Td01_xmxx set ycystg = '是' where ycystg is null and id = "+project_id);
 				}
 				
 				/**
@@ -71,6 +74,24 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 						saveService.updateByHSql("update Tb15_docflow set doc_status = 0 where id = "+tb15_id);
 						saveService.updateByHSql("update Tb12_opernode set node_status = 0 where id = "+opernode_id);
 					}
+				}
+			}
+			
+			/**
+			 * 审结修改
+			 */
+			if(approve_result == 5){
+					
+				/**
+				 * 资源确认单 资源确认岗审结同意
+				 */
+				if((module_id == 110 || module_id == 111) && node_name.indexOf("资源确认") != -1){
+					Ta03_user user = (Ta03_user)queryService.searchById(Ta03_user.class, user_id);
+					saveService.updateByHSql("update Td00_gcxx set zyyszt = '回退',zygly='"+user.getName()+"' where id = "+project_id);
+					saveService.updateByHSql("update Td01_xmxx set zyyszt = '回退',zygly='"+user.getName()+"' where id = "+project_id);
+					
+					saveService.updateByHSql("update Td00_gcxx set ycystg = '否' where ycystg is null and id = "+project_id);
+					saveService.updateByHSql("update Td01_xmxx set ycystg = '否' where ycystg is null and id = "+project_id);
 				}
 			}
 		} catch (Exception e) {
