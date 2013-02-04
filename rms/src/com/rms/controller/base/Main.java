@@ -402,6 +402,7 @@ public class Main {
 		String remindContent = "";
 		String login_id = convertUtil.toString(user.getLogin_id());
 		String dept_name = convertUtil.toString(user.getDept_name());
+		String zys = convertUtil.toString(user.getZys());
 		
 		/*
 		 * 设计单位
@@ -420,11 +421,11 @@ public class Main {
 		 * 施工单位
 		 */
 		else if(login_id.length() > 1 && login_id.substring(0,1).equals("8")){
-			List t_list = dao.search("from Td00_gcxx where sgysl is null and sgdw = '"+dept_name+"'");
+			List t_list = dao.search("from Td00_gcxx where gclb in ("+zys+") and sgysl is null and sgdw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
 				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'gcxxList\\',\\'form/gcxxListForNeed.do\\',{title:\\'工程信息\\'})\">您收到（"+t_list.size()+"）个新工程</a></li>";
 			}
-			t_list = dao.search("from Td01_xmxx where sgysl is null and sgdw = '"+dept_name+"'");
+			t_list = dao.search("from Td01_xmxx where gclb in ("+zys+") and sgysl is null and sgdw = '"+dept_name+"'");
 			if(t_list != null && t_list.size() > 0){
 				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'form/xmxxListForNeed.do\\',{title:\\'项目信息\\'})\">您收到（"+t_list.size()+"）个新项目</a></li>";
 			}

@@ -291,4 +291,16 @@ public class Ta03_user implements Serializable{
     this.new_flag = new_flag;
   }
 
+ /**
+  * 专业
+  */
+  private String zys;
+
+	public String getZys() {
+		return zys;
+	}
+	
+	public void setZys(String zys) {
+		this.zys = zys;
+	}
 }
