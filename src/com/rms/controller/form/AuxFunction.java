@@ -249,7 +249,7 @@ public class AuxFunction {
 	@RequestMapping("/form/gysImport.do")
 	public ModelAndView gysImport(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
-		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("GBK");
 
 		Workbook wb = null;
 		Sheet sheet = null;
