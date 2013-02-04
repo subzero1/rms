@@ -46,7 +46,7 @@ public class FsdXmgly extends ButtonControl {
 			hsql.append("select ta03 ");
 			hsql.append("from Td01_xmxx td01,Ta03_user ta03 ");
 			hsql.append("where td01.xmgly = ta03.name ");
-			hsql.append("and td00.id = ");
+			hsql.append("and td01.id = ");
 			hsql.append(MapUtil.getLong(paraMap,"project_id"));
 			list = queryService.searchList(hsql.toString());
 		}
