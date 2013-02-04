@@ -1045,8 +1045,8 @@ public class OnLine {
 		StringBuffer hsql = new StringBuffer("");
 
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		String fromEncode = "iso-8859-1";
-		String targetEncode = "UTF-8";
+		String fromEncode = "GBK";
+		String targetEncode = "GBK";
 
 		try {
 			if (user != null) {
