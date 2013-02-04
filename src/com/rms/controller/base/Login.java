@@ -98,7 +98,7 @@ public class Login {
 			}
 			
 			hsql.delete(0, hsql.length());
-			hsql.append("select tf01.mc as wxdw ");
+			hsql.append("select tf01.mc as wxdw,tf04.zy as zy ");
 			hsql.append("from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01 "); 
 			hsql.append("where ta03.id = tf04.user_id "); 
 			hsql.append("and tf04.wxdw_id = tf01.id ");
@@ -109,7 +109,10 @@ public class Login {
 			hsql.append("')");
 			tmpList = queryService.searchList(hsql.toString());
 			if(tmpList != null && tmpList.size() > 0){
-				user.setDept_name((String)tmpList.get(0));
+				user.setDept_name((String)((Object[])tmpList.get(0))[0]);
+				String zy = convertUtil.toString(((Object[])tmpList.get(0))[1]);
+				zy = "'"+zy.replaceAll(" ", "','")+"'";
+				user.setZys(zy);
 			}
 		}
 		tmpList.clear();

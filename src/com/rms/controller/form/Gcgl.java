@@ -72,6 +72,7 @@ public class Gcgl {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name=user.getName();
 		String user_dept = user.getDept_name();
+		String user_zy = user.getZys();
 		
 		// 查询条件
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
@@ -83,7 +84,7 @@ public class Gcgl {
 		hsql.append("(");
 		hsql.append("xmgly = '" + user_name + "'");
 		hsql.append(" or xmjl = '" + user_name + "'");
-		hsql.append(" or sgdw = '" + user_dept + "'");
+		hsql.append(" or (sgdw = '" + user_dept + "' and gclb in ("+user_zy+"))");
 		hsql.append(" or sjdw = '" + user_dept + "'");
 		hsql.append(" or jldw = '" + user_dept + "'");
 		hsql.append(")");		
@@ -185,6 +186,7 @@ public class Gcgl {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name=user.getName();
 		String user_dept = user.getDept_name();
+		String user_zy = user.getZys();
 		
 		// 查询条件
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
@@ -194,7 +196,7 @@ public class Gcgl {
 		
 		//工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
 		hsql.append("(");
-		hsql.append(" (sgdw = '" + user_dept + "' and sgysl is null)");
+		hsql.append(" (sgdw = '" + user_dept + "' and gclb in ("+user_zy+") and sgysl is null)");
 		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl is null)");
 		hsql.append(" or (jldw = '" + user_dept + "' and jlysl is null)");
 		hsql.append(")");		
@@ -288,6 +290,7 @@ public class Gcgl {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name=user.getName();
 		String user_dept = user.getDept_name();
+		String user_zy = user.getZys();
 		
 		// 查询条件
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
@@ -298,7 +301,7 @@ public class Gcgl {
 		//工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
 		hsql.append("(");
 		hsql.append("xmgly = '" + user_name + "'");
-		hsql.append(" or sgdw = '" + user_dept + "'");
+		hsql.append(" or (sgdw = '" + user_dept + "' and gclb in ("+user_zy+"))");
 		hsql.append(" or sjdw = '" + user_dept + "'");
 		hsql.append(" or jldw = '" + user_dept + "'");
 		hsql.append(")");		
@@ -398,6 +401,7 @@ public class Gcgl {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name=user.getName();
 		String user_dept = user.getDept_name();
+		String user_zy = user.getZys();
 		
 		// 查询条件
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
@@ -407,7 +411,7 @@ public class Gcgl {
 		
 		//工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
 		hsql.append("(");
-		hsql.append(" (sgdw = '" + user_dept + "' and sgysl is null)");
+		hsql.append(" (sgdw = '" + user_dept + "' and gclb in ("+user_zy+") and sgysl is null)");
 		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl is null)");
 		hsql.append(" or (jldw = '" + user_dept + "' and jlysl is null)");
 		hsql.append(")");
