@@ -29,6 +29,7 @@ $("#mbk_form :input",navTab.getCurrentPanel()).change(function(){
 		change = true;
 	});
 function saveMbk(){
+	/*
 	if ($("[name=Td21_mbk\\.ZYBH]").val()=="" && "${Td21_mbk.id}"=="" && $("[name=Td21_mbk\\.JSXZ]",navTab.getCurrentPanel()).val()!=""){
 		$.ajax({
 		url:'mbk/getZybh.do',
@@ -41,8 +42,9 @@ function saveMbk(){
 		}
 	});
 	} else {
+	*/
 		$("#mbk_form",navTab.getCurrentPanel()).submit();
-	}
+	/*}*/
 }
 $(function(){
 	$(".lzspan",navTab.getCurrentPanel()).click(function(){
