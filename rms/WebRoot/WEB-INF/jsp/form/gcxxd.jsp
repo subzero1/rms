@@ -262,6 +262,7 @@ $(function(){
 			<label>${Td53_gzjd[0].jd_name}：</label>
 			<c:if test="${!empty Td53_gzjd[1]}">
 			<select  name="Td53_gzjd.JD_STATUS" style="width:150px;">
+			<option value="">-------------------------------</option> 
 			<c:forEach var = "gzjdx" items="${Td53_gzjd[1]}">
 			<option value="${gzjdx }" <c:if test="${Td53_gzjd[0].jd_status==gzjdx }">selected</c:if>>${gzjdx }</option>
 			</c:forEach>
@@ -285,6 +286,7 @@ $(function(){
 		<label>${Td54_gzjdx[0].jdx_key}：</label> 
 		<c:if test="${!empty Td54_gzjdx[0].jdx_value}">
 		<select style="width:150px;" name="Td53_gzjd.JD_STATUS">
+		 <option value="">-------------------------------</option>
 		 <c:forEach var="gz" items="${Td54_gzjdx[1]}">
 		 <option value="${gz}">${gz}</option>
 		 </c:forEach> 
