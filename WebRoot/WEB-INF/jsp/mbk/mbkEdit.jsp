@@ -394,8 +394,10 @@ $("#jsxz").change(function(){
 				</c:choose>
 			</c:if>
 			<c:if test="${param.listType == 'dkcForKcry'}">
-			<li><a class="icon" href="mbk/kcfkEdit.do?mbk_id=${Td21_mbk.id}" target="navTab"><span >勘察反馈</span></a></li>
-			<li class="line">line</li>
+				<li><a class="icon" href="mbk/kcfkEdit.do?fklb=KC&mbk_id=${Td21_mbk.id}" target="navTab"><span >勘察反馈</span></a></li>
+				<li class="line">line</li>
+				<li><a class="icon" href="mbk/kcfkEdit.do?fklb=HS&mbk_id=${Td21_mbk.id}" target="navTab"><span >会审反馈</span></a></li>
+				<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt == '四方勘察'}">
 			<li><a class="unsurvey" href="#"><span flag="kcjs" class="lzspan">勘察结束</span></a></li>
