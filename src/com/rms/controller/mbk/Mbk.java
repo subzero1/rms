@@ -317,7 +317,10 @@ public class Mbk {
 			mbk.setXqs_id(xqs_id);
 			mbk.setBz(td06.getBz());
 			mbk.setSsdq(td06.getSsdq());
+			mbk.setSswg(td06.getSswg());
 			mbk.setJsxz(td06.getJsxz());
+			mbk.setJsfs(td06.getJsfs());
+			mbk.setJscj(td06.getJscj());
 			mbk.setZldd(td06.getZldd());
 			mbk.setJd(td06.getJd());
 			mbk.setWd(td06.getWd());
@@ -337,11 +340,11 @@ public class Mbk {
 		// 获取建设方式：Tc12_jsfs
 		hsql.delete(0, hsql.length());
 		hsql.append("select tc12 ");
-		hsql.append("from Tc12_jsfs tc12,Tc01_property tc01,Td21_mbk td21 ");
+		hsql.append("from Tc12_jsfs tc12,Tc01_property tc01 ");
 		hsql.append("where tc01.id = tc12.jsxz_id ");
-		hsql.append("and td21.jsxz = tc01.name ");
-		hsql.append("and td21.id = ");
-		hsql.append(id);
+		hsql.append("and tc01.name = '");
+		hsql.append(mbk.getJsxz());
+		hsql.append("'");
 		List jsfsList = queryService.searchList(hsql.toString());
 		if (jsfsList != null) {
 			modelMap.put("jsfsList", jsfsList);
