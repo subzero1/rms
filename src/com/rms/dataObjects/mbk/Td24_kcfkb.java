@@ -172,5 +172,19 @@ public class Td24_kcfkb implements Serializable{
     this.qtsm = qtsm;
   }
 
+ private String fklb;
 
+ /**
+  * @hibernate.property column="fklb"
+  * @return Returns the fklb.
+  */
+ public String getFklb() {
+	return fklb;
+ }
+
+ public void setFklb(String fklb) {
+	this.fklb = fklb;
+ }
+ 
+ 
 }
