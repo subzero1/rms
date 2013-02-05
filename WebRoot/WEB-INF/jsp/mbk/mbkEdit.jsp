@@ -695,7 +695,9 @@ $("#jsxz").change(function(){
 				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
 					<c:set var="slaves" scope="page" value="0"/>
-					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjdForMbk.do?mbk_id=${Td21_mbk.id }', {title:'工程施工进度'});">相关工程施工进度</a></p>
+					<c:if test="${haveGlgc=='yes'}">
+					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:$.pdialog.open('mbk/gcsgjdForMbk.do?mbk_id=${Td21_mbk.id }','gcsgjd','工程施工进度',{width:600,height:400});">相关工程施工进度</a></p>
+					</c:if>
 					<c:set var="slaves" scope="page" value="1"/>
 					<c:if test="${not empty Td21_mbk.fksj}">
 						<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('kcfkEdit', 'mbk/kcfkEdit.do?mbk_id=${Td21_mbk.id }&role=tdgly', {title:'勘察反馈'});">勘察反馈</a></p>
