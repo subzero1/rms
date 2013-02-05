@@ -22,9 +22,25 @@ public class XMLTableWrite {
 		root.addAttribute("xmlns", "http://www.tjnetsky.com.cn");
 		root.addAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
 		root.addAttribute("xsi:schemaLocation", "http://www.tjnetsky.com.cn excel-imp.xsd");
+		
 		element=root.addElement("tableInfo");
-		element.addElement("sheetNum");
-		element.setText("0");
+		element.addElement("sheetNum").setText("0");
+		element.addElement("startRow").setText("1");
+		element.addElement("endRow");
+		element.addElement("endFlag");
+		element.addElement("tableName");
+		element.addElement("tableNameShow").setText("Td13_rwrw"); 
+		element.addElement("fatherTables");
+		
+		element=element.addElement("columns");
+		element.addElement("type").setText("byName");
+		element.addElement("titleRow").setText("0");
+		element=element.addElement("column");
+		element.addElement("columnName").setText("");
+		element.addElement("index");
+		element.addElement("name");
+		element.addElement("colName");
+		
 		String xmlString=doc.asXML();
 		System.out.println(xmlString);
 		File file=new File("D:/xml.xml");
