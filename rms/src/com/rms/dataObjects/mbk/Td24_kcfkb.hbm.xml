@@ -81,6 +81,14 @@
   insert="true"
   column="qtsm"
   />
+  
+  <property
+  name="fklb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fklb"
+  />
 
 
     </class>
