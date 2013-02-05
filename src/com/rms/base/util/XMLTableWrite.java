@@ -31,15 +31,18 @@ public class XMLTableWrite {
 		element.addElement("tableName");
 		element.addElement("tableNameShow").setText("Td13_rwrw"); 
 		element.addElement("fatherTables");
-		
+
 		element=element.addElement("columns");
-		element.addElement("type").setText("byName");
-		element.addElement("titleRow").setText("0");
-		element=element.addElement("column");
-		element.addElement("columnName").setText("");
-		element.addElement("index");
-		element.addElement("name");
-		element.addElement("colName");
+		for (int i = 0; i < 5; i++) {
+			element=element.addElement("column");
+			element.addElement("type").setText("byName");
+			element.addElement("titleRow").setText("0");
+			element.addElement("columnName").setText("");
+			element.addElement("index");
+			element.addElement("name");
+			element.addElement("colName");
+			element=element.getParent();
+		} 
 		
 		String xmlString=doc.asXML();
 		System.out.println(xmlString);
