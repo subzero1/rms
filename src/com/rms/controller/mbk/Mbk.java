@@ -330,6 +330,9 @@ public class Mbk {
 		} else {
 			mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class, id);
 		}
+		if(mbk == null){
+			mbk = new Td21_mbk();
+		}
 		modelMap.put("Td21_mbk", mbk);
 
 		List<String> jsxzList = (List<String>) queryService.searchList("from Tc01_property where type='建设性质'");
@@ -1373,6 +1376,7 @@ public class Mbk {
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
 		Long kcfkb_id = convertUtil.toLong(request.getParameter("kcfkb_id"));
 		String role = convertUtil.toString(request.getParameter("role"),"tdr");
+		String fklb = convertUtil.toString(request.getParameter("fklb"),"KC");
 		Td24_kcfkb td24_kcfkb = null;
 		Td25_kcfkmx td25_kcfkmx = null;
 		List tableList = null;
@@ -1383,9 +1387,12 @@ public class Mbk {
 		StringBuffer hql = new StringBuffer();
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
 
-		// 取勘察申请单
+		// 取勘察反馈单
 		hql.append("select t from Td24_kcfkb t where t.mbk_id=");
 		hql.append(mbk_id);
+		hql.append(" and t.fklb = '");
+		hql.append(fklb);
+		hql.append("'");
 		if(role.equals("tdr")){
 			hql.append(" and t.cjr='");
 			hql.append(user.getName());
@@ -1398,8 +1405,7 @@ public class Mbk {
 			td24_kcfkb = (Td24_kcfkb) kcfkbList.get(0);
 			// 取名细表
 			hql.delete(0, hql.length());
-			hql
-					.append("select td25,tc01.flag from Td25_kcfkmx td25,Tc01_property tc01 ");
+			hql.append("select td25,tc01.flag from Td25_kcfkmx td25,Tc01_property tc01 ");
 			hql.append("where 1=1 ");
 			hql.append("and td25.fkx=tc01.name ");
 			hql.append("and tc01.type= '");
@@ -1429,9 +1435,6 @@ public class Mbk {
 			hql.append("select t from Te01_slave t where 1=1 ");
 			hql.append("and t.project_id=");
 			hql.append(td24_kcfkb.getId());
-//			hql.append(" and t.user_name='");
-//			hql.append(user.getName());
-//			hql.append("'");
 			te01List=queryService.searchList(hql.toString());
 		}
 		
@@ -1458,6 +1461,7 @@ public class Mbk {
 		PrintWriter out = response.getWriter();
 		Long mbk_id = convertUtil.toLong(request.getParameter("mbk_id"));
 		Long kcfk_id = convertUtil.toLong(request.getParameter("kcfk_id"));
+		String fklb = convertUtil.toString(request.getParameter("fklb"),"KC");
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
 		Td24_kcfkb td24_kcfkb = null;
 		Td21_mbk td21_mbk = null;
@@ -1468,18 +1472,19 @@ public class Mbk {
 
 			try {
 				Date date = new Date();
-				td21_mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class,
-						mbk_id);
-				td21_mbk.setFksj(date);
-
+				td21_mbk = (Td21_mbk) queryService.searchById(Td21_mbk.class,mbk_id);
+				if(fklb.equals("KC"))
+					td21_mbk.setKcfksj(date);
+				else
+					td21_mbk.setFksj(date);
+				
 				td24_kcfkb = (Td24_kcfkb) queryService.searchById(
 						Td24_kcfkb.class, kcfk_id);
 				td24_kcfkb.setFksj(date);
 
 				saveService.save(td21_mbk);
 				saveService.save(td24_kcfkb);
-				out
-						.print("{\"statusCode\":\"200\", \"message\":\"反馈成功!\",\"callbackType\":\"closeCurrent\"}");
+				out.print("{\"statusCode\":\"200\", \"message\":\"反馈成功!\",\"callbackType\":\"closeCurrent\"}");
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 				log.warn(e.getMessage());
