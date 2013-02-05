@@ -794,9 +794,12 @@ public class Mbk {
 			} else if ("sfkc".equals(type)) {// 四方勘察
 				word = "四方勘察";
 				td21.setZt("四方勘察");
-				String[] ids = convertUtil
-						.toString(request.getParameter("ids")).split(",");
 				td21.setKcsj(new SimpleDateFormat("yyyy-MM-dd").parse(kcsjStr));
+				
+				String sfkc_ids = convertUtil.toString(request.getParameter("ids")); 
+				sfkc_ids = sfkc_ids + "," + td21.getTdr_id();//下发时也要给谈点人
+				String[] ids = sfkc_ids.split(",");
+				
 				for (String string : ids) {
 					Ta03_user ta03 = (Ta03_user) queryService.searchById(
 							Ta03_user.class, convertUtil.toLong(string));

@@ -59,7 +59,7 @@
 			</p>
 			<p>
 				<label>勘察时间:</label>
-				<input class="date" pattern="yyyy-MM-dd" name="kcsj" id="kcsj" style="width:300px;"  type="text"/>
+				<input class="date" pattern="yyyy-MM-dd HH:mm" name="kcsj" id="kcsj" style="width:300px;"  type="text"/>
 			</p>
 			
 		<p>
