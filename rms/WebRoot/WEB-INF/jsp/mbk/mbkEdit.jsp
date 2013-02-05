@@ -499,6 +499,10 @@ $("#jsxz").change(function(){
 						<label>纬    度：</label>
 						<input type="text" ids="jz" name="Td21_mbk.WD" id="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
 					</p>
+					<p>
+					<label>覆盖属性：</label>
+					<netsky:htmlSelect  name="Td21_mbk.FGSX" id="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="" showForOption="" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" />
+				</p>
 				</div>
 				<div id="xq">
 					<div style="height:0px;"></div>
