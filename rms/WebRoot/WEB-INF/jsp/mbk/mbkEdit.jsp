@@ -454,7 +454,7 @@ $("#jsxz").change(function(){
 			<div class="pageFormContent">
 				<p>
 					<label>资源编号：</label>
-					<input readonly="readonly" type="text" name="Td21_mbk.ZYBH" style="width:150px;" value="${Td21_mbk.zybh}"/>
+					<input  type="text" name="Td21_mbk.ZYBH" style="width:150px;" value="${Td21_mbk.zybh}"/>
 				</p>
 				<p>
 					<label>资源名称：</label>
