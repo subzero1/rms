@@ -42,7 +42,6 @@ import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
 import com.rms.base.util.ConfigXML;
 import com.rms.base.util.ConfigXMLImpl;
-import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.form.Td06_xqs;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.rms.dataObjects.mbk.Td22_mbk_lzjl;
@@ -1490,5 +1489,27 @@ public class Mbk {
 			}
 
 		}
+	}
+	
+	
+	/**
+	 * 工程施工进度
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/mbk/gcsgjdForMbk.do")
+	public ModelAndView gcsgjdForMbk(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/mbk/gcsgjd.jsp";
+		ModelMap modelMap=new ModelMap();
+		String mbk_id=convertUtil.toString(request.getParameter("mbk_id"));
+		StringBuffer hql=new StringBuffer();
+		hql.append("select d.jd_name,d.jd_status from Td53_gzjd d,Td00_gcxx x where 1=1 ");
+		hql.append("and d.gcxx_id=x.id "); 
+		hql.append("and x.mbk_id=");
+		hql.append(mbk_id);
+		List objList=queryService.searchList(hql.toString());
+		modelMap.put("objList", objList);
+		return new ModelAndView(view,modelMap);
 	}
 }
