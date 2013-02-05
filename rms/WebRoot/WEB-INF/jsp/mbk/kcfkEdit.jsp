@@ -59,13 +59,13 @@ function saveForm(){
 	$("#kcfk_form",navTab.getCurrentPanel()).submit();
 }
 
- function reportKcfk(obj,kcfk_id){
+ function reportKcfk(obj,kcfk_id,fklb){
  		$.ajax({
 		type:"post",
 		url:"mbk/kcfk.do",
 		dataType:"json",
 		async:true,
-		data:{mbk_id:obj,kcfk_id:kcfk_id},
+		data:{mbk_id:obj,kcfk_id:kcfk_id,fklb:fklb},
 		success:function(json){ 
 			if(json.statusCode == DWZ.statusCode.ok){
 					alertMsg.correct(json.message);
@@ -104,7 +104,7 @@ function saveForm(){
 			</li>
 				<li>
 					<a class="icon dis_a"
-						href="javascript:reportKcfk('${param.mbk_id}','${Td24_kcfkb.id }');"><span>反&nbsp;&nbsp;馈</span>
+						href="javascript:reportKcfk('${param.mbk_id}','${Td24_kcfkb.id }','${param.fklb }');"><span>反&nbsp;&nbsp;馈</span>
 					</a>
 				</li>
 				<li class="line">
@@ -127,7 +127,7 @@ function saveForm(){
 			<input type="hidden" name="tableInfomation" value="Td24_kcfkb,id,kcfk_id:com.rms.dataObjects.mbk.Td25_kcfkmx"/>
 			<input type="hidden" name="_callbackType" value="forward" />
 			<input type="hidden" name="_message" value="保存" />
-			<input type="hidden" name="_forwardUrl" value="mbk/kcfkEdit.do?mbk_id=${mbk_id}" />
+			<input type="hidden" name="_forwardUrl" value="mbk/kcfkEdit.do?fklb=${param.fklb }&mbk_id=${mbk_id}" />
 			<input type="hidden" name="_navTabId" value="kcfkList" />
 
 			<input type="hidden" name="Td24_kcfkb.ID" value="${Td24_kcfkb.id }" />
@@ -135,6 +135,7 @@ function saveForm(){
 			<input type="hidden" name="Td24_kcfkb.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>" />
 			<input type="hidden" name="Td24_kcfkb.CJR" value="${user.name}"/>
 			<input type="hidden" name="Td24_kcfkb.FKSJ" value="${Td24_kcfkb.fksj}"/>
+			<input type="hidden" name="Td24_kcfkb.FKLB" value="<c:out value="${Td24_kcfkb.fklb}" default="${param.fklb }"/>"/>
 
 		<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" id="kcfkTab" style="width:750px;max-width:750px;">
 			<thead>
