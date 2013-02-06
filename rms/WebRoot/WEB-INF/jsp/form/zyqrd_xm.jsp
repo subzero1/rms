@@ -3,7 +3,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
-
+<script type="text/javascript">
+ 	 function getPhone(_this){ 
+ 	 	var $ZYLRYDH=$("input[name='Td01_xmxx\.ZYLRYDH']");
+ 		$.ajax({
+		type:"post",
+		url:"wxdw/getPhone.do",
+		dataType:"json",
+		async:false,
+		data:{tlrxm:$(_this).val()},
+		success:function(json){ 
+			 $ZYLRYDH.val(json.phone);
+		}
+		
+	});
+ }
+</script>
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="zyqrd_xm.xml"/>
 <input type="hidden" name="Td07_zyqrd.ID" value="${param.doc_id}">
@@ -43,7 +58,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>资源填录人：</label>
-		<input class="required" type="text" name="Td01_xmxx.ZYLRY" style="width:150px;" value="${td01_xmxx.zylry}" />
+		<netsky:htmlSelect name="Td01_xmxx.ZYLRY" objectForOption="objList" onChange="getPhone(this)" style="width:157px;" valueForOption="tlrxm" showForOption="tlrxm" extend="" extendPrefix="true" value="${td01_xmxx.zylry}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>填录人电话：</label>
