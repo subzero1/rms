@@ -33,7 +33,7 @@ function searchListExport(){
 						<td>
 						<input type="text" style="display:none"/>
 						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
-						<td>所属单位:<netsky:htmlSelect name="ssdw" objectForOption="wxdwList"  style="width:234px;"  onChange="javascript:$(this).submit();" extend="" extendPrefix="true" value="${param.ssdw}" htmlClass="td-select sel" /></td>
+						<td>所属单位：<netsky:htmlSelect name="ssdw" objectForOption="wxdwList"  style="width:234px;"  onChange="javascript:$(this).submit();" extend="" extendPrefix="true" value="${param.ssdw}" htmlClass="td-select sel" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
