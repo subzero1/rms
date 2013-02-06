@@ -190,7 +190,7 @@ public class Mbk {
 		 */
 		if (listType.equals("ht")) {
 			hsql
-					.append(" and hdfs is null and (bz = '回退' or bz = '重新谈点' or bz = '系统回退')");
+					.append(" and zt='新建' and (bz like '%回退%' or bz = '重新谈点')");
 		}
 
 		/*
