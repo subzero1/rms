@@ -87,7 +87,14 @@ function saveForm(){
 		<div class="searchBar">
 			<!-- 表单名称 -->
 			<h1>
-				基站勘察反馈单
+				<c:choose>
+					<c:when test="${param.fklb == 'KC'}">
+						基站勘察反馈单
+					</c:when>
+					<c:otherwise>
+						基站会审反馈单
+					</c:otherwise>
+				</c:choose>
 			</h1>
 
 		</div>
