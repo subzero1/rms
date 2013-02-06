@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-
+ 
 <form id="pagerForm" method="post" action="wxdw/zytlrList.do">
+	<input type="hidden" name="ssdw" value="${param.ssdw}">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -32,6 +33,7 @@ function searchListExport(){
 						<td>
 						<input type="text" style="display:none"/>
 						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						<td>所属单位:<netsky:htmlSelect name="ssdw" objectForOption="wxdwList"  style="width:234px;"  onChange="javascript:$(this).submit();" extend="" extendPrefix="true" value="${param.ssdw}" htmlClass="td-select sel" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
@@ -61,8 +63,8 @@ function searchListExport(){
 					<th style="width:30px;"></th>
 					<th style="width: 120px;" orderField="gis_no" >GIS工号</th>
 					<th style="width: 120px;" orderField="tlrxm">填录人姓名</th>
-					<th style="width: 120px;"  orderField="ssdw">所属单位</th>
-					<th style="width: 120px;"  orderField="nx">年限</th>
+					<th style="width: 120px;" orderField="ssdw">所属单位</th>
+					<th style="width: 120px;" orderField="nx">年限</th>
 					<th style="width: 120px;" orderField="in_time">进入工程中心日期</th>
 					<th style="width: 120px;" orderField="rzcj">认证成绩</th>
 					<th style="width: 120px;" orderField="phone">联系电话</th>
