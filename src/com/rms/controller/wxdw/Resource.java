@@ -86,6 +86,8 @@ public class Resource {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		
+		String ssdw=convertUtil.toString(request.getParameter("ssdw"));
 		Integer totalCount = 0;
 		List<Tf31_zytl> tf31_zytlrList = null;
 
@@ -94,6 +96,11 @@ public class Resource {
 			hql.append(" and t.tlrxm like '%");
 			hql.append(keyword);
 			hql.append("%' ");
+		}
+		if (ssdw!="") {
+			hql.append(" and t.ssdw='");
+			hql.append(ssdw);
+			hql.append("'");
 		}
 		hql.append("order by t.");
 		hql.append(orderField);
@@ -109,6 +116,14 @@ public class Resource {
 				tf31_zytlrList.add((Tf31_zytl) ro.get("t"));
 			}
 		}
+		
+		//所属单位列表
+		hql.delete(0, hql.length());
+		hql.append("select distinct(l.ssdw) from Tf31_zytl l ");
+		List wxdwList=queryService.searchList(hql.toString());
+		
+		modelMap.put("ssdw", ssdw);
+		modelMap.put("wxdwList", wxdwList);
 		modelMap.put("Tf31_zytlList", tf31_zytlrList);
 		modelMap.put("keywork", keyword);
 		modelMap.put("totalCount", totalCount);
