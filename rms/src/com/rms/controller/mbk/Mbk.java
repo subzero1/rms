@@ -40,6 +40,7 @@ import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
+import com.netsky.base.utils.DateGetUtil;
 import com.rms.base.util.ConfigXML;
 import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.form.Td06_xqs;
@@ -780,7 +781,23 @@ public class Mbk {
 				td22.setJssj(now);
 				td22.setMbk_id(id);
 				session.save(td22);
-			} else if ("zdwkcsq".equals(type)) {// 勘察申请
+			}
+			else if ("sqyq".equals(type)) {// 申请延期
+				word = "申请延期";
+				td21.setBz(word);
+				Date zhfksj = td21.getZhfksj();
+				if(zhfksj == null)
+					zhfksj = td21.getZypfsj();
+				td21.setZhfksj(DateGetUtil.addDay(zhfksj , convertUtil.toLong(td21.getFkzq()).intValue()));
+
+				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+				td22.setSm(user.getName() + "申请延期【谈点人：" + td21.getTdr() + "】");
+				td22.setKssj(now);
+				td22.setJssj(now);
+				td22.setMbk_id(id);
+				session.save(td22);
+			}
+			else if ("zdwkcsq".equals(type)) {// 勘察申请
 				String sqkcsm = convertUtil.toString(request
 						.getParameter("sqkcsm"));
 				word = "勘察申请";
