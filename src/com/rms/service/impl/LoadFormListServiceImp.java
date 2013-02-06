@@ -1,6 +1,5 @@
 package com.rms.service.impl;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -10,6 +9,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,7 @@ import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta01_dept;
+import com.netsky.base.dataObjects.Ta03_user;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td02_xmbgd;
 import com.rms.dataObjects.form.Td06_xqs;
@@ -81,6 +82,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 		ResultObject ro = null;
 		Class<?> clazz = null;
 		StringBuffer hsql = null;
+		HttpSession session=request.getSession();
 
 		QueryBuilder queryBuilder = null;
 		try {
@@ -999,6 +1001,19 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				v_slave.add(tmp_clmx_slave);
 				
 			}
+			
+			//资源确认单
+			if (module_id==110) {
+				hsql.delete(0, hsql.length());
+				Ta03_user user=(Ta03_user) session.getAttribute("user");
+				hsql.append("select l from Tf31_zytl l ");
+				hsql.append("where l.ssdw='"); 
+				hsql.append(user.getDept_name());
+				hsql.append("'");
+				List tlrList=queryService.searchList(hsql.toString());
+				request.setAttribute("objList", tlrList);
+			}
+			
 			if (v_slave.size() > 0) {
 				request.setAttribute("extslave", v_slave);
 			}

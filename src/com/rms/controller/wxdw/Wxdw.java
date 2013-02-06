@@ -19,6 +19,9 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -2640,5 +2643,35 @@ public class Wxdw {
 		}
 		if(request.getParameter("save")!=null)request.setAttribute("save", "1");
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxryHead.jsp");
+	}
+	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws JSONException 
+	 * @throws IOException void
+	 */
+	@RequestMapping("/wxdw/getPhone.do")
+	public void getPhone(HttpServletRequest request,HttpServletResponse response) throws IOException, JSONException {
+		response.setCharacterEncoding("utf-8");
+		StringBuffer hql=new StringBuffer();
+		String tlrxm=convertUtil.toString(request.getParameter("tlrxm"));
+		hql.append("select l.phone from Tf31_zytl l where 1=1 ");
+		hql.append("and l.tlrxm='");
+		hql.append(tlrxm);
+		hql.append("'");
+		List tlrxms=queryService.searchList(hql.toString());
+		JSONObject jo=new JSONObject();
+		for (Object object : tlrxms) {
+			jo.put("phone", object);
+		}
+		if (tlrxm==null||tlrxms.size()==0) {
+			jo.put("phone", "");
+		}
+		PrintWriter out=response.getWriter();
+		out.print(jo.toString());
+		
 	}
 }
