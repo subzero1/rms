@@ -241,6 +241,13 @@ public class Mbk {
 		 * 勘察已反馈列表(给谈点管理员使用)
 		 */
 		if (listType.equals("kcyfk")) {
+			hsql.append(" and zt = '四方勘察' and kcfksj is not null and fksj is null ");
+		}
+		
+		/*
+		 * 会审已反馈列表(给谈点管理员使用)
+		 */
+		if (listType.equals("hsyfk")) {
 			hsql.append(" and zt = '四方勘察' and fksj is not null ");
 		}
 
