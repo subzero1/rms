@@ -447,6 +447,9 @@ $("#jsxz").change(function(){
 			<c:if test="${Td21_mbk.zt=='勘察申请' && not empty rolesMap['20101']}">
 				<input type="hidden" id="show_sqkcsm" value="${Td21_mbk.sqkcsm }"/>
 			</c:if>
+			<c:if test="${Td21_mbk.zt=='四方勘察' && not empty rolesMap['20101'] && not empty Td21_mbk.kcfksj && empty Td21_mbk.fksj}">
+				<input type="hidden" id="kcfksj" value="${Td21_mbk.kcfksj }"/>
+			</c:if>
 			<c:if test="${Td21_mbk.zt=='四方勘察' && not empty rolesMap['20101'] && not empty Td21_mbk.fksj}">
 				<input type="hidden" id="fksj" value="${Td21_mbk.fksj }"/>
 			</c:if>
@@ -824,12 +827,23 @@ $("#jsxz").change(function(){
 	}
 	
 	//如果有勘察反馈，则提示勘察反馈的内容
-	var fksj = $("#fksj");
-	if(fksj != null && fksj != 'undefined' && fksj.size() == 1 && fksj.val() != ''){
+	var kcfksj = $("#kcfksj");
+	if(kcfksj != null && kcfksj != 'undefined' && kcfksj.size() == 1 && kcfksj.val() != ''){
 		var show_content = "<b>勘察人员已经提出勘察反馈，是否查看?</b>";
 		alertMsg.confirm(show_content, {			
 			okCall: function(){
-				navTab.openTab('kcfkEdit','mbk/kcfkEdit.do?role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
+				navTab.openTab('kcfkEdit','mbk/kcfkEdit.do?fklb=KC&role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
+			}
+		});
+	}
+	
+	//如果有会审反馈，则提示会审反馈的内容
+	var fksj = $("#fksj");
+	if(fksj != null && fksj != 'undefined' && fksj.size() == 1 && fksj.val() != ''){
+		var show_content = "<b>勘察人员已经提出会审反馈，是否查看?</b>";
+		alertMsg.confirm(show_content, {			
+			okCall: function(){
+				navTab.openTab('kcfkEdit','mbk/kcfkEdit.do?fklb=HS&role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
 			}
 		});
 	}
