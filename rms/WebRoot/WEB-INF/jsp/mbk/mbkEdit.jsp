@@ -701,12 +701,20 @@ $("#jsxz").change(function(){
 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
 					<c:set var="slaves" scope="page" value="0"/>
 					<c:if test="${haveGlgc=='yes'}">
-					<p class="slaveList"><a href="javascript:return false;" onclick="javascript:$.pdialog.open('mbk/gcsgjdForMbk.do?mbk_id=${Td21_mbk.id }','gcsgjd','工程施工进度',{width:600,height:400});">相关工程施工进度</a></p>
+						<p class="slaveList"><a href="javascript:return false;" onclick="javascript:$.pdialog.open('mbk/gcsgjdForMbk.do?mbk_id=${Td21_mbk.id }','gcsgjd','工程施工进度',{width:600,height:400});">相关工程施工进度</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
 					</c:if>
-					<c:set var="slaves" scope="page" value="1"/>
-					<c:if test="${not empty Td21_mbk.fksj}">
-						<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('kcfkEdit', 'mbk/kcfkEdit.do?mbk_id=${Td21_mbk.id }&role=tdgly', {title:'勘察反馈'});">勘察反馈</a></p>
-						<c:set var="slaves" scope="page" value="2"/>
+					<c:if test="${not empty Td21_mbk.kcfksj && Td21_mbk.jsxz=='基站'}">
+						<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('kcfkEdit', 'mbk/kcfkEdit.do?mbk_id=${Td21_mbk.id }&role=tdgly&fklb=KC', {title:'勘察反馈'});">勘察反馈</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:if>
+					<c:if test="${not empty Td21_mbk.kcfksj && Td21_mbk.jsxz !='基站'}">
+						<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('kcfkEditForQt', 'mbk/kcfkEditForQt.do?mbk_id=${Td21_mbk.id }&role=tdgly&fklb=KC', {title:'勘察反馈'});">勘察反馈</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
+					</c:if>
+					<c:if test="${not empty Td21_mbk.fksj && Td21_mbk.jsxz=='基站'}">
+						<p class="slaveList"><a href="javascript:return false;" onclick="javascript:navTab.openTab('kcfkEdit', 'mbk/kcfkEdit.do?mbk_id=${Td21_mbk.id }&role=tdgly&fklb=HS', {title:'会审反馈'});">会审反馈</a></p>
+						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
 					</c:if>
 					<c:forEach var="obj" items="${_formslink}">
 						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
@@ -828,11 +836,17 @@ $("#jsxz").change(function(){
 	
 	//如果有勘察反馈，则提示勘察反馈的内容
 	var kcfksj = $("#kcfksj");
+	var jsxz = $("#jsxz");
 	if(kcfksj != null && kcfksj != 'undefined' && kcfksj.size() == 1 && kcfksj.val() != ''){
 		var show_content = "<b>勘察人员已经提出勘察反馈，是否查看?</b>";
 		alertMsg.confirm(show_content, {			
 			okCall: function(){
-				navTab.openTab('kcfkEdit','mbk/kcfkEdit.do?fklb=KC&role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
+				if(jsxz.val() == '基站'){
+					navTab.openTab('kcfkEdit','mbk/kcfkEdit.do?fklb=KC&role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
+				}
+				else{
+					navTab.openTab('kcfkEditForQt','mbk/kcfkEditForQt.do?fklb=KC&role=tdgly&mbk_id=${Td21_mbk.id}',{title:'表单'});
+				}
 			}
 		});
 	}
