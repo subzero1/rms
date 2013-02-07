@@ -51,6 +51,8 @@ function searchListExport(){
 					<li class="line">line</li>
 					<li><a class="delete" href="wxdw/tlrAjaxDel.do?zytl_id={gc_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
+					<li><a class="edit" href="wxdw/zytlEdit.do?zytl_id={gc_id}" target="navTab" rel="zytlrEdit" title="资源填录人信息"><span>修改</span></a></li>
+					<li class="line">line</li>
 					<li> <a class="exportexcel" href="dispath.do?url=form/zytlrImport.jsp?config=zytlr" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li> 
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
