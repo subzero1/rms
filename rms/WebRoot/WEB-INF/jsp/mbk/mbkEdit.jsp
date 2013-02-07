@@ -366,7 +366,7 @@ $("#jsxz").change(function(){
 			<c:if test="${(not empty rolesMap['20102']) && Td21_mbk.zt == '开始谈点'}">
 				<li><a class="icon" href="#"><span flag="ht" class="lzspan">回 退</span></a></li>
 				<li class="line">line</li>
-				<c:if test="${(empty Td21_mbk.zhfksj ? Td21_mbk.zypfsj : Td21_mbk.zhfksj)+(empty Td21_mbk.fkzq ? 5 :Td21_mbk.fkzq) }">
+				<c:if test="${not empty needAddDay }">
 					<li><a class="icon" href="#"><span flag="sqyq" class="lzspan">申请延期</span></a></li>
 					<li class="line">line</li>
 				</c:if>
