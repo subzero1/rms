@@ -201,6 +201,13 @@ public class Mbk {
 			hsql
 					.append(" and zt='开始谈点' and (case when (zhfksj is null or zhfksj < zypfsj ) then zypfsj else zhfksj end) + (case when fkzq is null then 5 else fkzq end) < sysdate");
 		}
+		
+		/*
+		 * 需要延期列表
+		 */
+		if (listType.equals("xyq")) {
+			hsql.append(" and zt='开始谈点' and trunc(case when zhfksj is null then zypfsj else zhfksj end + case when fkzq is null then 5 else fkzq end ) - 1 = trunc(sysdate)");
+		}
 
 		/*
 		 * 谈点超期列表
@@ -616,6 +623,19 @@ public class Mbk {
 			}
 		}
 
+		/*
+		 * 判断是否显示延期按钮
+		 */
+		hsql.delete(0, hsql.length());
+		hsql.append("select id from Td21_mbk "); 
+		hsql.append("where trunc(case when zhfksj is null then zypfsj else zhfksj end + case when fkzq is null then 5 else fkzq end ) - 1 = trunc(sysdate) ");
+		hsql.append("and zt = '开始谈点' and id = ");
+		hsql.append(id);
+		List addDayList = queryService.searchList(hsql.toString());
+		if(addDayList != null && addDayList.size() > 0){
+			modelMap.put("needAddDay", "yes");
+		}
+		
 		return new ModelAndView("/WEB-INF/jsp/mbk/mbkEdit.jsp", modelMap);
 	}
 
