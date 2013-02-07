@@ -89,9 +89,10 @@ public class Resource {
 		
 		String ssdw=convertUtil.toString(request.getParameter("ssdw"));
 		Integer totalCount = 0;
-		List<Tf31_zytl> tf31_zytlrList = null;
+		List tf31_zytlrList = null;
 
-		hql.append("select t from Tf31_zytl t where 1=1 ");
+		hql.append("select t,(select w.mc from Tf01_wxdw w where t.ssdw=w.mc) as mc from Tf31_zytl t ");
+		hql.append("where 1=1 ");
 		if (keyword != "") {
 			hql.append(" and t.tlrxm like '%");
 			hql.append(keyword);
@@ -111,9 +112,12 @@ public class Resource {
 				numPerPage);
 		if (ro != null) {
 			totalCount = ro.getTotalRows();
-			tf31_zytlrList = new LinkedList<Tf31_zytl>();
+			tf31_zytlrList = new LinkedList();
 			while (ro.next()) {
-				tf31_zytlrList.add((Tf31_zytl) ro.get("t"));
+				Object obj[]=new Object[2];
+				obj[0]=(Tf31_zytl)ro.get("t");
+				obj[1]=ro.get("w.mc");
+				tf31_zytlrList.add(obj);
 			}
 		}
 		

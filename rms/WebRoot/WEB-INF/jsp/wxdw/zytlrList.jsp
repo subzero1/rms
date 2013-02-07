@@ -75,18 +75,18 @@ function searchListExport(){
 				<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${Tf31_zytlList}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr target="gc_id" rel="${obj.id}">
+					<tr target="gc_id" rel="${obj[0].id}">
 						<td style="text-align:center;">
 						${offset }
 						</td>
-						<td>${obj.gis_no }</td>
-						<td><a href="wxdw/zytlEdit.do?zytl_id=${obj.id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj.tlrxm }</a></td>
-						<td>${obj.ssdw }</td>
-						<td>${obj.nx }</td>
-						<td><fmt:formatDate value="${obj.in_time }" pattern="yyyy-MM-dd"/></td>
-						<td>${obj.rzcj }</td>
-						<td>${obj.phone }</td>
-						<td>${obj.zc }</td>
+						<td>${obj[0].gis_no }</td>
+						<td><a href="wxdw/zytlEdit.do?zytl_id=${obj[0].id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj[0].tlrxm }</a></td>
+						<td <c:if test="${empty obj[1] }">style="color:red;"</c:if>>${obj[0].ssdw }</td>
+						<td>${obj[0].nx }</td>
+						<td><fmt:formatDate value="${obj[0].in_time }" pattern="yyyy-MM-dd"/></td>
+						<td>${obj[0].rzcj }</td>
+						<td>${obj[0].phone }</td>
+						<td>${obj[0].zc }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
