@@ -28,7 +28,12 @@ border:1px #000 solid;
 
 display:none;
 
+
 } 
+
+.moseover_style{
+	background:
+}
 </style>
 <form id="pagerForm" method="post" action="wxdw/zytlrList.do">
 	<input type="hidden" name="ssdw" value="${param.ssdw}">
@@ -66,7 +71,13 @@ function getCompany(_this){
 			var $comdiv=$(".comdiv", navTab.getCurrentPanel());
 			if(json!=null&&json!=""){
 			for(var i=0;i<json.length;i++){ 
+				companys+="<div id=\"com_"+i+"\" "; 
+				companys+="onmouseover=\"mouseoverM(this)\" ";
+				companys+="onmouseout=\"mouseoutM(this)\" ";
+				companys+="style=\"padding-bottom:5px;\"";
+				companys+=">"; 
 				companys+=json[i].ssdw+"<br>";
+				companys+="</div>";
 			} 
 				var position_left=parseInt($(_this).position().left)+226;
 				var position_top=parseInt($(_this).position().top);
@@ -80,9 +91,18 @@ function getCompany(_this){
 		}
 	});
  }
+ //隱藏層
  function hidediv(){
  	var $comdiv=$(".comdiv", navTab.getCurrentPanel());
  	$comdiv.hide();
+ }
+ //鼠标移过
+ function mouseoverM(_this){
+ 	$(_this).css({background:"#3da6de",cursor: "default"});
+ }
+ //鼠标离开
+ function mouseoutM(_this){
+ 	$(_this).css({background:"#ebf0f5"});
  }
 </script>
 <div class="page">
