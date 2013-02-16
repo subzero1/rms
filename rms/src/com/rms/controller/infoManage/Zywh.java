@@ -82,7 +82,7 @@ public class Zywh {
 		if(request.getParameter("searchStr") != null && request.getParameter("searchStr").length() > 0){
 			queryBuilder.like("zymc", request.getParameter("searchStr"), MatchMode.ANYWHERE);
 		}
-		queryBuilder.eq("yxnd", new Long(year.intValue()));
+		//queryBuilder.eq("yxnd", new Long(year.intValue()));
 		List<?> list = queryService.searchList(queryBuilder);
 		request.setAttribute("gczy_list", list);
 		request.setAttribute("curYear", Calendar.getInstance().get(Calendar.YEAR));

@@ -32,13 +32,7 @@ $(document).ready(function(){
 				<div style="height: 0px;"></div>
 				<p>
 					<label>
-						有效年度：
-					</label>
-					<input type="text" name="Tc03_gczy.YXND" value="<c:out value="${tc03.yxnd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readOnly/>
-				</p>
-				<p>
-					<label>
-						是否市控：
+						是否有效：
 					</label>
 					<input type="radio" name="Tc03_gczy.SFSK" value="1" <c:if test="${tc03.sfsk=='1' }">checked</c:if>/>是
 					<input type="radio" name="Tc03.gczy.SFSK" value="" <c:if test="${tc03.sfsk!='1' }">checked</c:if>/>否
