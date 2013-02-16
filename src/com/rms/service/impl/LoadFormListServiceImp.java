@@ -281,7 +281,8 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				
 				// 获取专业
 				queryBuilder = new HibernateQueryBuilder(Tc03_gczy.class);
-				queryBuilder.eq("yxnd", tmp_nd);
+				//queryBuilder.eq("yxnd", tmp_nd);
+				queryBuilder.eq("sfsk", 1L);
 				queryBuilder.addOrderBy(Order.asc("id"));
 				tmpList = queryService.searchList(queryBuilder);
 				if (tmpList != null) {
@@ -473,7 +474,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				
 				// 获取切块大类：Tc06_tzqk
 				queryBuilder = new HibernateQueryBuilder(Tc06_tzqk.class);
-				queryBuilder.eq("nd", tmp_nd);
+				//queryBuilder.eq("nd", tmp_nd);
 				queryBuilder.eq("flag", 1L);
 				queryBuilder.addOrderBy(Order.asc("id"));
 				tmpList = queryService.searchList(queryBuilder);
