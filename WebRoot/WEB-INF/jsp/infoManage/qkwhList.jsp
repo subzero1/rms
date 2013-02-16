@@ -9,18 +9,6 @@ $(document).ready(function(){
 </script>
 
 <h2 class="contentTitle">投资切块维护
-<select id="year2" style="width:110px;">
-		<c:forEach var="i" begin="2012" end="${curYear+1}">
-			<c:choose>
-				<c:when test="${year == i }">
-					<option selected value="${i}">${i}年度</option>
-				</c:when>
-				<c:otherwise>
-					<option value="${i}">${i}年度</option>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>								
-	</select>
 </h2>
 <div class="sysmanage_left" style=" float:left; display:block; margin:10px; overflow:auto; width:22%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 

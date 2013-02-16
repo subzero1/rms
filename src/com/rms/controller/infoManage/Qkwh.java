@@ -82,7 +82,7 @@ public class Qkwh {
 		if(request.getParameter("searchStr") != null && request.getParameter("searchStr").length() > 0){
 			queryBuilder.like("qkmc", request.getParameter("searchStr"), MatchMode.ANYWHERE);
 		}
-		queryBuilder.eq("nd", new Long(year.intValue()));
+		//queryBuilder.eq("nd", new Long(year.intValue()));
 		List<?> list = queryService.searchList(queryBuilder);
 		request.setAttribute("tzqk_list", list);
 		request.setAttribute("curYear", Calendar.getInstance().get(Calendar.YEAR));

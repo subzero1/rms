@@ -39,12 +39,6 @@ $(document).ready(function(){
 				<div style="height: 0px;"></div>
 				<p>
 					<label>
-						所属年度：
-					</label>
-					<input type="text" name="Tc06_tzqk.ND" value="<c:out value="${tc06.nd}" default="${param.year }"/>" class="required digits" style="width: 100px;" maxlength="4" readOnly/>
-				</p>
-				<p>
-					<label>
 						是否有效：
 					</label>
 					<input type="radio" name="Tc06_tzqk.FLAG" value="1" <c:if test="${tc06.flag=='1' }">checked</c:if>/>是
