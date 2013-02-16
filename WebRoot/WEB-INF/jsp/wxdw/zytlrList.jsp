@@ -3,6 +3,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
  
+<style type="text/css"> 
+.comdiv { 
+
+z-index: 3; 
+
+position: absolute; 
+
+padding: 5px; 
+  
+text-align: left; 
+
+color: black; 
+
+background-color:#ebf0f5;
+
+width: 221px; 
+
+font-size: 13px; 
+
+font-family: arial, sans-serif;   
+
+border:1px #000 solid;
+
+display:none;
+
+} 
+</style>
 <form id="pagerForm" method="post" action="wxdw/zytlrList.do">
 	<input type="hidden" name="ssdw" value="${param.ssdw}">
 	<input type="hidden" name="keyword" value="${param.keyword}">
@@ -26,6 +53,33 @@ function searchListExport(){
 function saveForm(){
 	$("#zytlrForm",navTab.getCurrentPanel()).submit();
 }
+function getCompany(_this){
+		var $SSDW=$(_this); 
+ 		$.ajax({
+		type:"post",
+		url:"wxdw/getCompanyAjax.do",
+		dataType:"json",
+		async:false,
+		data:{ssdw:$(_this).val()},
+		success:function(json){
+			var companys="";
+			var $comdiv=$(".comdiv", navTab.getCurrentPanel());
+			if(json!=null&&json!=""){
+			for(var i=0;i<json.length;i++){ 
+				companys+=json[i].ssdw+"<br>";
+			} 
+				var position_left=parseInt($(_this).position().left)+226;
+				var position_top=parseInt($(_this).position().top);
+				$comdiv.html(companys);
+				$comdiv.css({left:position_left,top:position_top});
+				$comdiv.show();
+			}else{
+				$comdiv.hide();
+			}
+			
+		}
+	});
+ }
 </script>
 <div class="page">
 	<div class="pageHeader">
@@ -37,6 +91,7 @@ function saveForm(){
 						<input type="text" style="display:none"/>
 						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
 						<td>所属单位：<netsky:htmlSelect name="ssdw" objectForOption="wxdwList"  style="width:234px;"  onChange="javascript:$(this).submit();" extend="" extendPrefix="true" value="${param.ssdw}" htmlClass="td-select sel" /></td>
+					
 					</tr>
 				</table>
 				<div class="subBar">
@@ -72,10 +127,10 @@ function saveForm(){
 			<thead>
 				<tr>
 					<th style="width:40px;"></th>
-					<th style="width: 80px;" orderField="gis_no" >GIS工号</th>
-					<th style="width: 80px;" orderField="tlrxm">填录人姓名</th>
+					<th style="width: 80px;"  orderField="gis_no" >GIS工号</th>
+					<th style="width: 80px;"  orderField="tlrxm">填录人姓名</th>
 					<th style="width: 196px;" orderField="ssdw">所属单位</th>
-					<th style="width: 50px;" orderField="nx">年限</th>
+					<th style="width: 50px;"  orderField="nx">年限</th>
 					<th style="width: 100px;" orderField="in_time">进入工程中心日期</th>
 					<th style="width: 100px;" orderField="rzcj">认证成绩</th>
 					<th style="width: 100px;" orderField="phone">联系电话</th>
@@ -94,7 +149,7 @@ function saveForm(){
 						<td><a href="wxdw/zytlEdit.do?zytl_id=${obj[0].id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj[0].tlrxm }</a></td>
 						<td>
 						<c:if test="${empty obj[1] }">
-						<input type="text" name="Tf31_zytl.SSDW" value="${obj[0].ssdw }"  style="padding-right:0px;border:0;width:100%;color:red;"/>
+						<input type="text" name="Tf31_zytl.SSDW" value="${obj[0].ssdw }"  style="padding-right:0px;border:0;width:100%;color:red;" onkeyup="getCompany(this)"/>
 						<input type="hidden" name="Tf31_zytl.ID" value="${obj[0].id }"/>
 						</c:if>
 						<c:if test="${!empty obj[1] }">
@@ -108,6 +163,9 @@ function saveForm(){
 						<td>${obj[0].zc }</td>
 					</tr>
 				</c:forEach>
+				
+						<div  class="comdiv"> 
+						</div> 
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
