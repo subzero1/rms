@@ -11,7 +11,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,16 +42,18 @@ public class Resource {
 
 	@Autowired
 	private QueryService queryService;
-	
+
 	@Autowired
 	private Dao dao;
 
 	/**
 	 * 填录人信息修改
+	 * 
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws Exception ModelAndView
+	 * @throws Exception
+	 *             ModelAndView
 	 */
 	@RequestMapping("/wxdw/zytlEdit.do")
 	public ModelAndView zytlEdit(HttpServletRequest request,
@@ -67,6 +73,7 @@ public class Resource {
 
 	/**
 	 * 填录人列表
+	 * 
 	 * @param request
 	 * @param response
 	 * @return ModelAndView
@@ -86,19 +93,20 @@ public class Resource {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
-		
-		String ssdw=convertUtil.toString(request.getParameter("ssdw"));
+
+		String ssdw = convertUtil.toString(request.getParameter("ssdw"));
 		Integer totalCount = 0;
 		List tf31_zytlrList = null;
 
-		hql.append("select t,(select w.mc from Tf01_wxdw w where t.ssdw=w.mc) as mc from Tf31_zytl t ");
+		hql
+				.append("select t,(select w.mc from Tf01_wxdw w where t.ssdw=w.mc) as mc from Tf31_zytl t ");
 		hql.append("where 1=1 ");
 		if (keyword != "") {
 			hql.append(" and t.tlrxm like '%");
 			hql.append(keyword);
 			hql.append("%' ");
 		}
-		if (ssdw!="") {
+		if (ssdw != "") {
 			hql.append(" and t.ssdw='");
 			hql.append(ssdw);
 			hql.append("'");
@@ -114,18 +122,18 @@ public class Resource {
 			totalCount = ro.getTotalRows();
 			tf31_zytlrList = new LinkedList();
 			while (ro.next()) {
-				Object obj[]=new Object[2];
-				obj[0]=(Tf31_zytl)ro.get("t");
-				obj[1]=ro.get("w.mc");
+				Object obj[] = new Object[2];
+				obj[0] = (Tf31_zytl) ro.get("t");
+				obj[1] = ro.get("w.mc");
 				tf31_zytlrList.add(obj);
 			}
 		}
-		
-		//所属单位列表
+
+		// 所属单位列表
 		hql.delete(0, hql.length());
 		hql.append("select distinct(l.ssdw) from Tf31_zytl l ");
-		List wxdwList=queryService.searchList(hql.toString());
-		
+		List wxdwList = queryService.searchList(hql.toString());
+
 		modelMap.put("ssdw", ssdw);
 		modelMap.put("wxdwList", wxdwList);
 		modelMap.put("Tf31_zytlList", tf31_zytlrList);
@@ -140,31 +148,35 @@ public class Resource {
 
 	/**
 	 * 删除填录人信息
+	 * 
 	 * @param request
-	 * @param response void
-	 * @throws IOException,Exception 
+	 * @param response
+	 *            void
+	 * @throws IOException,Exception
 	 */
 	@RequestMapping("/wxdw/tlrAjaxDel.do")
 	public void tlrAjaxDel(HttpServletRequest request,
-			HttpServletResponse response) throws IOException,Exception{
-		Long zytl_id=convertUtil.toLong(request.getParameter("zytl_id"));
+			HttpServletResponse response) throws IOException, Exception {
+		Long zytl_id = convertUtil.toLong(request.getParameter("zytl_id"));
 		response.setCharacterEncoding("utf-8");
-		PrintWriter out=response.getWriter();
-		if (zytl_id!=-1) {
+		PrintWriter out = response.getWriter();
+		if (zytl_id != -1) {
 			try {
 				dao.removeObject(Tf31_zytl.class, zytl_id);
-				out.print("{\"statusCode\":\"200\", \"message\":\"删除人员信息成功!\"}");
+				out
+						.print("{\"statusCode\":\"200\", \"message\":\"删除人员信息成功!\"}");
 			} catch (RuntimeException e) {
 				e.printStackTrace();
-				out.print("{\"statusCode\":\"300\", \"message\":\"删除人员信息失败!\"}");
+				out
+						.print("{\"statusCode\":\"300\", \"message\":\"删除人员信息失败!\"}");
 			}
-		} 
+		}
 	}
 
 	@RequestMapping("/wxdw/tlrToExcel.do")
 	public ModelAndView tlrToExcel(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String keyword=convertUtil.toString(request.getParameter("keyword"));
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String config = convertUtil.toString(request.getParameter("config"));
 		String orderField = convertUtil.toString(request
@@ -186,8 +198,8 @@ public class Resource {
 		String webinfpath = request.getSession().getServletContext()
 				.getRealPath("WEB-INF");
 		titleList = configXML.getTagListByConfig(config, webinfpath, "name");
-		colList = configXML.getTagListByConfig(config, webinfpath,
-				"columnName");
+		colList = configXML
+				.getTagListByConfig(config, webinfpath, "columnName");
 		Iterator it = colList.iterator();
 		hql.append("select ");
 		while (it.hasNext()) {
@@ -201,7 +213,7 @@ public class Resource {
 		hql.append("order by zytl.");
 		hql.append(orderField);
 		hql.append(" ");
-		hql.append(orderDirection); 
+		hql.append(orderDirection);
 		docList = queryService.searchList(hql.toString());
 
 		sheetList.add(titleList);
@@ -215,6 +227,7 @@ public class Resource {
 
 	/**
 	 * 选择所属单位
+	 * 
 	 * @param request
 	 * @param response
 	 * @return ModelAndView
@@ -253,7 +266,7 @@ public class Resource {
 
 		if (ro != null) {
 			objList = ro.getList();
-			totalCount=ro.getTotalRows();
+			totalCount = ro.getTotalRows();
 		}
 
 		modelMap.put("objList", objList);
@@ -264,5 +277,46 @@ public class Resource {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView(view, modelMap);
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 *            void
+	 * @throws IOException
+	 * @throws JSONException 
+	 */
+	@RequestMapping("/wxdw/getCompanyAjax.do")
+	public void getCompanyAjax(HttpServletRequest request,
+			HttpServletResponse response) throws IOException, JSONException {
+		response.setCharacterEncoding("utf-8");
+		String ssdw = convertUtil.toString(request.getParameter("ssdw"));
+		StringBuffer hql = new StringBuffer();
+		PrintWriter out = null;
+		List ssdwList=null;
+		hql.append("select w.mc from Tf01_wxdw w where 1=1 ");
+		if (!ssdw.equals("") && ssdw != null) {
+			hql.append("and w.mc like '%");
+			char[] ssdwChar = ssdw.toString().toCharArray();
+			for (int i = 0; i < ssdwChar.length; i++) {
+				hql.append(ssdwChar[i]);
+				hql.append("%");
+			}
+			hql.append("'");
+			ssdwList=queryService.searchList(hql.toString());
+		}
+		
+		if (ssdwList!=null&&ssdwList.size()!=0) {
+			JSONArray json=new JSONArray();
+			for (Object object : ssdwList) {
+				JSONObject jo=new JSONObject();
+				jo.put("ssdw", object);
+				json.put(jo);
+			}
+			out=response.getWriter();
+			out.print(json.toString());
+		}
+		
 	}
 }
