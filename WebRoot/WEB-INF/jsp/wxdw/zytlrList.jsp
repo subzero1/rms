@@ -80,6 +80,10 @@ function getCompany(_this){
 		}
 	});
  }
+ function hidediv(){
+ 	var $comdiv=$(".comdiv", navTab.getCurrentPanel());
+ 	$comdiv.hide();
+ }
 </script>
 <div class="page">
 	<div class="pageHeader">
@@ -149,7 +153,7 @@ function getCompany(_this){
 						<td><a href="wxdw/zytlEdit.do?zytl_id=${obj[0].id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj[0].tlrxm }</a></td>
 						<td>
 						<c:if test="${empty obj[1] }">
-						<input type="text" name="Tf31_zytl.SSDW" value="${obj[0].ssdw }"  style="padding-right:0px;border:0;width:100%;color:red;" onkeyup="getCompany(this)"/>
+						<input type="text" name="Tf31_zytl.SSDW" value="${obj[0].ssdw }"  style="padding-right:0px;border:0;width:100%;color:red;" onkeyup="getCompany(this)" onblur="hidediv()"/>
 						<input type="hidden" name="Tf31_zytl.ID" value="${obj[0].id }"/>
 						</c:if>
 						<c:if test="${!empty obj[1] }">
