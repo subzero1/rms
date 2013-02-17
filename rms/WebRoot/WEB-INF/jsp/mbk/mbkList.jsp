@@ -62,7 +62,7 @@ function searchListExport(){
 				<c:if test="${not empty rolesMap['20101']}">
 					<li><a class="add" href="mbk/mbkEdit.do" target="navTab" rel="mbk" title="目标库信息"><span>添加</span></a></li>
 					<li class="line">line</li>
-					<li><a class="delete" href="mbk/ajaxMbkDel.do?id={mbk_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li><a class="delete" href="mbk/ajaxMbkDel.do?id={mbk_id}&del=${param.del }" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 					<li><a class="edit" href="mbk/mbkEdit.do?id={mbk_id}" target="navTab" rel="mbk" title="目标库信息"><span>修改</span></a></li>
 					<li class="line">line</li>
