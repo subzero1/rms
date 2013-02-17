@@ -258,6 +258,15 @@ public class Mbk {
 		if (listType.equals("hsyfk")) {
 			hsql.append(" and zt = '四方勘察' and fksj is not null ");
 		}
+		
+		/*
+		 * 已删除列表(给谈点管理员使用)
+		 */
+		if (listType.equals("tdysc")) {
+			hsql.append(" and delflag = '1' ");
+		}else{
+			hsql.append(" and (delflag is null or delflag != '1') ");
+		}
 
 		// order排序
 		// orderField
