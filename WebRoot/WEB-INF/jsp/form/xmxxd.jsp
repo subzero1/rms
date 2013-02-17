@@ -219,6 +219,19 @@ $(function(){
 	<label>监理派发时间：</label>
 	<input type="text"  name="Td01_xmxx.JLPFSJ" value="<fmt:formatDate value="${td01_xmxx.jlpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
+<div style="height:0px;"></div>
+<p>
+	<label>勘察反馈时限：</label>
+	<input type="text"  name="Td01_xmxx.KCFKZQ" value="${td01_xmxx.kcfkzq}" style="width:150px;"/>
+</p>
+<p>
+	<label>进度填报周期：</label>
+	<input type="text"  name="Td01_xmxx.SGJDTBZQ" value="${td01_xmxx.sgjdtbzq}" style="width:150px;"/>
+</p>
+<p>
+	<label>日志填报周期：</label>
+	<input type="text"  name="Td01_xmxx.JLRJTBZQ" value="${td01_xmxx.jlrjtbzq}" style="width:120px;"/>
+</p>
 <div class="divider"></div>
 <p>
 	<label>项目管理员：</label>
