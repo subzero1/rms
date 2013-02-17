@@ -11,8 +11,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -295,7 +293,7 @@ public class Resource {
 		StringBuffer hql = new StringBuffer();
 		PrintWriter out = null;
 		List ssdwList=null;
-		hql.append("select w.mc from Tf01_wxdw w where 1=1 ");
+		hql.append("select w.mc from Tf01_wxdw w where 1=1 and rownum<10 ");
 		if (!ssdw.equals("") && ssdw != null) {
 			hql.append("and w.mc like '%");
 			char[] ssdwChar = ssdw.toString().toCharArray();
@@ -303,7 +301,8 @@ public class Resource {
 				hql.append(ssdwChar[i]);
 				hql.append("%");
 			}
-			hql.append("'");
+			hql.append("' ");
+			hql.append("order by w.mc");
 			ssdwList=queryService.searchList(hql.toString());
 		}
 		
