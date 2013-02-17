@@ -991,4 +991,21 @@ public class Td21_mbk implements Serializable {
 		public void setSswg(String sswg) {
 			this.sswg = sswg;
 		}
+		
+		/*
+		 * 删除标识
+		 */
+		private Long delflag;
+
+		/**
+		   * @hibernate.property column="delflag"
+		   * @return Returns the delflag.
+		 */
+		public Long getDelflag() {
+			return delflag;
+		}
+
+		public void setDelflag(Long delflag) {
+			this.delflag = delflag;
+		}
 }
