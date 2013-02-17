@@ -489,9 +489,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 							.append("from Tc06_tzqk tc06,Tc07_qkxx tc07,Td01_xmxx td01 ");
 					hsql.append("where tc06.id = tc07.qk_id ");
 					hsql.append("and td01.qkdl = tc06.qkmc ");
-					hsql.append(" and tc06.nd = '");
-					hsql.append(t_year);
-					hsql.append("' and td01.id = ");
+					hsql.append(" and td01.id = ");
 					hsql.append(doc_id);
 					hsql.append(" order by tc07.mc ");
 					ro = queryService.search(hsql.toString());
