@@ -85,11 +85,11 @@ public class Sgpd {
 			objectsList.add(o);
 		}
 		// 判断计划份额占比与实际份额占比
-		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0   
-		//黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
+		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0
+		// 黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
 		double zgr = convertUtil.toDouble(dao.search(
-				"select sum(ys_sgf ) from Td01_xmxx where sgdw is not null and ssdq='" + dq + "' and gclb='"
-						+ gclb + "'").get(0), 0D);
+				"select sum(ys_sgf ) from Td01_xmxx where sgdw is not null and ssdq='" + dq + "' and gclb='" + gclb
+						+ "'").get(0), 0D);
 		// flag:未通过检测的个数
 		int flag = 0;
 		// passedList 通过条件的合作单位 暂存入该LIST
@@ -100,9 +100,9 @@ public class Sgpd {
 			Double fezb = 0D;
 			if (zgr != 0) {
 				double gr = convertUtil.toDouble(dao.search(
-						"select sum(ys_sgf) from Td01_xmxx where sgdw='" + tf01.getMc() + "' and ssdq='"
-								+ dq + "' and gclb='" + gclb + "'").get(0), 0D);
-				fezb =  gr /  zgr;
+						"select sum(ys_sgf) from Td01_xmxx where sgdw='" + tf01.getMc() + "' and ssdq='" + dq
+								+ "' and gclb='" + gclb + "'").get(0), 0D);
+				fezb = gr / zgr;
 			}
 			// tf05.getV1():预定份额占比
 			objects[6] = tf05.getV1();
@@ -193,13 +193,17 @@ public class Sgpd {
 				if ((Long) objectsList.get(j)[2] > (Long) objectsList.get(j - 1)[2]) {
 					temp = objectsList.get(j);
 					objectsList.set(j, objectsList.get(j - 1));
-					objectsList.set(j, temp);
+					objectsList.set(j - 1, temp);
 				}
 			}
 		}
 		// 综合评分排名
 		for (int i = 1; i <= objectsList.size(); i++) {
-			objectsList.get(i - 1)[4] = i;
+			if (i == 1 || objectsList.get(i - 2)[2] != objectsList.get(i - 1)[2])
+				objectsList.get(i - 1)[4] = i;
+			else {
+				objectsList.get(i - 1)[4] = objectsList.get(i - 2)[4];
+			}
 		}
 		// 决算率 从低到高
 		for (int i = 0; i < objectsList.size(); i++) {
@@ -207,13 +211,17 @@ public class Sgpd {
 				if ((Double) objectsList.get(j)[3] > (Double) objectsList.get(j - 1)[3]) {
 					temp = objectsList.get(j);
 					objectsList.set(j, objectsList.get(j - 1));
-					objectsList.set(j, temp);
+					objectsList.set(j - 1, temp);
 				}
 			}
 		}
 		// 决算率排名
 		for (int i = 1; i <= objectsList.size(); i++) {
-			objectsList.get(i - 1)[5] = i;
+			if (i == 1 || objectsList.get(i - 2)[3] != objectsList.get(i - 1)[3])
+				objectsList.get(i - 1)[5] = i;
+			else {
+				objectsList.get(i - 1)[5] = objectsList.get(i - 2)[5];
+			}
 		}
 		// 利用数据库做排序
 		Session session = dao.getHibernateSession();
@@ -246,7 +254,7 @@ public class Sgpd {
 			session.close();
 		}
 		List<Long> wxdw_ids = (List<Long>) dao
-				.search("select wxdw_id from Tmp_zdxp order by dj asc,pm desc,zhdf desc,jsl desc,jhfezb desc");
+				.search("select wxdw_id from Tmp_zdxp order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
 		dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
 		List<Object[]> tmpList = new ArrayList<Object[]>();
 		int i = 0;
