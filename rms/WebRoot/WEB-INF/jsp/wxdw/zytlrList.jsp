@@ -59,7 +59,8 @@ function saveForm(){
 	$("#zytlrForm",navTab.getCurrentPanel()).submit();
 }
 function getCompany(_this){
-		var $SSDW=$(_this); 
+		var $SSDW=$(_this);
+		var input_id=$SSDW.attr("id");
  		$.ajax({
 		type:"post",
 		url:"wxdw/getCompanyAjax.do",
@@ -74,6 +75,7 @@ function getCompany(_this){
 				companys+="<div id=\"com_"+i+"\" "; 
 				companys+="onmouseover=\"mouseoverM(this)\" ";
 				companys+="onmouseout=\"mouseoutM(this)\" ";
+				companys+="onclick=\"clickM(this,'"+input_id+"')\" ";
 				companys+="style=\"padding-bottom:5px;\"";
 				companys+=">"; 
 				companys+=json[i].ssdw+"<br>";
@@ -87,7 +89,6 @@ function getCompany(_this){
 			}else{
 				$comdiv.hide();
 			}
-			
 		}
 	});
  }
@@ -98,11 +99,16 @@ function getCompany(_this){
  }
  //鼠标移过
  function mouseoverM(_this){
- 	$(_this).css({background:"#3da6de",cursor: "default"});
+ 	$(_this).css({background:"#3da6de",cursor: "pointer"});
  }
  //鼠标离开
  function mouseoutM(_this){
  	$(_this).css({background:"#ebf0f5"});
+ }
+ function clickM(_this,input_id){
+	var $input=$("#"+input_id+"",navTab.getCurrentPanel());
+	$input.val($(_this).text()); 
+ 	hidediv();
  }
 </script>
 <div class="page">
@@ -173,7 +179,7 @@ function getCompany(_this){
 						<td><a href="wxdw/zytlEdit.do?zytl_id=${obj[0].id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj[0].tlrxm }</a></td>
 						<td>
 						<c:if test="${empty obj[1] }">
-						<input type="text" name="Tf31_zytl.SSDW" value="${obj[0].ssdw }"  style="padding-right:0px;border:0;width:100%;color:red;" onkeyup="getCompany(this)" onblur="hidediv()"/>
+						<input type="text" name="Tf31_zytl.SSDW" id="tlr${offset}" value="${obj[0].ssdw }"  style="padding-right:0px;border:0;width:100%;color:red;" onkeyup="getCompany(this)"/>
 						<input type="hidden" name="Tf31_zytl.ID" value="${obj[0].id }"/>
 						</c:if>
 						<c:if test="${!empty obj[1] }">
