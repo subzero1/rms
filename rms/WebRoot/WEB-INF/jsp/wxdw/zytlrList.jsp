@@ -44,6 +44,7 @@ display:none;
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 </form>
 <script type="text/javascript">
+var k=0;
 function searchListExport(){
 	$form = $("#pagerForm", navTab.getCurrentPanel());
 	$zytlrTab=$("tbody",navTab.getCurrentPanel());
@@ -85,6 +86,7 @@ function getCompany(_this){
 				var position_top=parseInt($(_this).position().top);
 				$comdiv.html(companys);
 				$comdiv.css({left:position_left,top:position_top});
+				k=directionkeysF(json.length,k,input_id);
 				$comdiv.show();
 			}else{
 				$comdiv.hide();
@@ -109,6 +111,26 @@ function getCompany(_this){
 	var $input=$("#"+input_id+"",navTab.getCurrentPanel());
 	$input.val($(_this).text()); 
  	hidediv();
+ }
+ 
+ function directionkeysF(param0,k,input_id){
+ 	var  key=window.event.keyCode;
+	var $input=$("#"+input_id+"",navTab.getCurrentPanel());
+ 	if(key ==38&&k>0){
+ 		k--;
+ 	}
+ 	if(key ==39){
+ 	}
+ 	if(key ==40&&k<param0-1){
+ 		k++;
+ 	}
+ 	var $com_=$("#com_"+k,navTab.getCurrentPanel());
+ 	$com_.css({background:"#3da6de",cursor: "pointer"});
+ 	if(key==13){
+ 		$input.val($com_.text()); 
+ 		hidediv();
+ 	}
+ 	return k;
  }
 </script>
 <div class="page">
