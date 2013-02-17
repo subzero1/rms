@@ -86,8 +86,8 @@ function getCompany(_this){
 				var position_top=parseInt($(_this).position().top);
 				$comdiv.html(companys);
 				$comdiv.css({left:position_left,top:position_top});
-				k=directionkeysF(json.length,k,input_id);
 				$comdiv.show();
+				k=directionkeysF(json.length,k,input_id);
 			}else{
 				$comdiv.hide();
 			}
