@@ -64,6 +64,10 @@ function searchListExport(){
 					<li class="line">line</li>
 					<li><a class="delete" href="mbk/ajaxMbkDel.do?id={mbk_id}&del=${param.del }" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
+					<c:if test="${param.del=='yes'}">
+						<li><a class="rollback" href="mbk/ajaxMbkDel.do?id={mbk_id}&del=${param.del }" target="ajaxTodo" title="确认还原吗？"><span>还原</span></a></li>
+						<li class="line">line</li>
+					</c:if>
 					<li><a class="edit" href="mbk/mbkEdit.do?id={mbk_id}" target="navTab" rel="mbk" title="目标库信息"><span>修改</span></a></li>
 					<li class="line">line</li>
 					<li> <a class="exportexcel" href="dispath.do?url=form/mbkImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
