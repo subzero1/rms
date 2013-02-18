@@ -86,7 +86,7 @@ $(function(){
 			async:false,
 			success:function(msg){ 
 			  if(msg=='[1]'){
-			  	$sgdw.attr("href","sgpd/sgpfCompany.do");
+			  	$sgdw.attr("href","sgpd/sgpfCompany.do?xm_id="+param1);
 			  }else {
 			    $sgdw.attr("href","sgpd.do?xm_id="+param1);
 			  }
