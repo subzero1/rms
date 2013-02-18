@@ -221,7 +221,7 @@ $(function(){
 	<label>
 		<c:choose>
 			<c:when test="${param.node_id == 10101}">
-				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw" target="dialog" rel="sgdw">施工单位</a>：
+				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">施工单位</a>：
 			</c:when>
 			<c:otherwise>
 				施工单位：
