@@ -39,7 +39,7 @@
 </form>
 
 <div class="pageHeader">
-	<form rel="pagerForm" method="post" action="form/selectDept.do" onsubmit="return dwzSearch(this, 'dialog');">
+	<form rel="pagerForm" method="post" action="sgpd/sgpfCompany.do" onsubmit="return dwzSearch(this, 'dialog');">
 	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
 	<input type="hidden" name="names" id="names" value="${names }"/>
 	<div class="searchBar" style="height:60px">
@@ -49,11 +49,7 @@
 				<input class="textInput" name="searchStr" style="width:200px;" value="${param.searchStr }" type="text"/>
 			</li>  
 		</ul>
-		<div class="subBar">
-		<div style="float:left">
-				<label>已选单位:</label>
-				<input class="textInput" name="name" style="width:200px;" readonly="readonly" id="names1" value="${param.names }" type="text"/>
-		</div>
+		<div class="subBar"> 
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="clear">清除</button></div></div></li>
@@ -74,7 +70,9 @@
 			</tr>
 		</thead>				
 		<tbody>
-			<c:forEach items="${objList}" var="obj"> 
+			<c:set var = "offset" value="0"/>
+			<c:forEach items="${objList}" var="obj">
+			<c:set var ="offset" value="${offset+1}"/> 
 			<tr>
 				<td>${obj[1]}</td> 
 				<td>
@@ -82,6 +80,14 @@
 				</td>
 			</tr> 
 			</c:forEach>
+			<c:if test="${offset<numPerPage}">
+				<c:forEach begin="${offset}" end="${numPerPage-1}">
+				<tr>
+				<td></td>
+				<td></td> 
+				</tr>
+				</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
 
