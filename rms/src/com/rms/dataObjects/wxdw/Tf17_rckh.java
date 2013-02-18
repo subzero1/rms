@@ -265,5 +265,33 @@ public class Tf17_rckh implements Serializable {
 		this.khdz = khdz;
 	}
 
+	private Long khnf;
+	
+	private Long khyf;
+
+	/**
+	 * @hibernate.property column="khnf"
+	 * @return Returns the khnf.
+	 */
+	public Long getKhnf() {
+		return khnf;
+	}
+
+	public void setKhnf(Long khnf) {
+		this.khnf = khnf;
+	}
+
+	/**
+	 * @hibernate.property column="khyf"
+	 * @return Returns the khyf.
+	 */
+	public Long getKhyf() {
+		return khyf;
+	}
+
+	public void setKhyf(Long khyf) {
+		this.khyf = khyf;
+	}
+	
 	
 }

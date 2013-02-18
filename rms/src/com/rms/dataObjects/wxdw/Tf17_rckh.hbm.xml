@@ -137,6 +137,22 @@
             insert="true"
             column="khdz"
         />
+        
+        <property
+            name="khnf"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="khnf"
+        />
+        
+         <property
+            name="khnf"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="khyf"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
