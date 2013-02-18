@@ -4,28 +4,24 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
 	function add(id,name){
+		var $reasons=$("#reasons",$.pdialog.getCurrent()); 
+		if($reasons.val()==""){ 
+			alertMsg.info("请您填写手动选派原因!");
+		}else {
 		if ($("#ids",$.pdialog.getCurrent()).val().indexOf(","+id)==-1){
 			$("#ids",$.pdialog.getCurrent()).val($("#ids",$.pdialog.getCurrent()).val()+","+id);
 			$("#idsx",$.pdialog.getCurrent()).val($("#idsx",$.pdialog.getCurrent()).val()+","+id);
 			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+ ($("#names",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 			$("#namesx",$.pdialog.getCurrent()).val($("#namesx",$.pdialog.getCurrent()).val()+ ($("#namesx",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 			$("#names1",$.pdialog.getCurrent()).val($("#names1",$.pdialog.getCurrent()).val()+ ($("#names1",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
-		}
-	}
-	$(function(){
-		$("#daihui",$.pdialog.getCurrent()).click(function(){     
+			
 			var names = $("#names",$.pdialog.getCurrent()).val(); 
 			var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
 			var names = $("#names",$.pdialog.getCurrent()).val();
-			$.bringBack({'SGDW':names,'SGDW_IDS':ids}); 
-		});
-		
-		$("#clear",$.pdialog.getCurrent()).click(function(){
-		$("#ids",$.pdialog.getCurrent()).val("");
-		$("#names",$.pdialog.getCurrent()).val("");
-		$("#names1",$.pdialog.getCurrent()).val("");
-		});
-	});
+			$.bringBack({'SGDW':names,'SGDW_IDS':ids});
+		}
+	   }
+	} 
 </script>
 
 <form id="pagerForm" action="">
@@ -34,7 +30,7 @@
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 	<input type="hidden" name="searchStr" value="${param.searchStr }"/>
-	<input type="hidden" name="idsx" id="idsx" value="${ids }"/>
+	<input type="hidden" name="idsx" id="idsx" value="${ids}"/>
 	<input type="hidden" name="namesx" id="namesx" value="${names }"/>
 </form>
 
@@ -49,7 +45,11 @@
 				<input class="textInput" name="searchStr" style="width:200px;" value="${param.searchStr }" type="text"/>
 			</li>  
 		</ul>
-		<div class="subBar"> 
+		<div class="subBar">
+		<div style="float:left">
+				<label>手动选派原因:</label>
+				<input class="textInput" name="reasons" id="reasons" style="width:400px;"  value="${param.reason }" type="text"/>
+		</div>
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="clear">清除</button></div></div></li>
