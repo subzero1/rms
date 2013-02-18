@@ -157,7 +157,7 @@ public class Sgpd {
 			}
 			// objs[3] 决算率
 			// 决算率默认100%
-			objects[3] = 1D;
+			objects[3] = 0D;
 			// 总项目数量
 			long xmsl = ((List<Long>) dao.search("select count(*) from Td01_xmxx where sgdw='" + tf01.getMc() + "'"))
 					.get(0);
@@ -251,8 +251,8 @@ public class Sgpd {
 		} finally {
 			session.close();
 		}
-		List<Long> wxdw_ids = (List<Long>) dao
-				.search("select wxdw_id from Tmp_zdxp order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
+		List<Long> wxdw_ids = (List<Long>) dao.search("select wxdw_id from Tmp_zdxp where batch_no=" + nextval
+				+ " order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
 		dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
 		List<Object[]> tmpList = new ArrayList<Object[]>();
 		int i = 0;
