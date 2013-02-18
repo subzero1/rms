@@ -680,6 +680,7 @@ public class Mbk {
 	public void ajaxMbkDel(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Long id = convertUtil.toLong(request.getParameter("id"));
+		String del = convertUtil.toString(request.getParameter("del"));
 		PrintWriter out = null;
 
 		response.setContentType("text/html;charset=UTF-8");
@@ -689,17 +690,22 @@ public class Mbk {
 		// 获取用户对象
 		try {
 			out = response.getWriter();
-			session.createQuery("delete from Td21_mbk where id=" + id)
-					.executeUpdate();
-			session.createQuery("delete from Td22_mbk_lzjl where mbk_id=" + id)
-					.executeUpdate();
-			out
-					.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+			if(del.equals("yes")){
+				session.createQuery("delete from Td21_mbk where id=" + id).executeUpdate();
+				session.createQuery("delete from Td22_mbk_lzjl where mbk_id=" + id).executeUpdate();
+			}
+			else if(del.equals("resume")){
+				session.createQuery("update Td21_mbk set delflag = null where id=" + id).executeUpdate();
+			}
+			else{
+				session.createQuery("update Td21_mbk set delflag = 1 where id=" + id).executeUpdate();
+			}
+			out.print("{\"statusCode\":\"200\", \"message\":\"操作成功\", \"callbackType\":\"\",\"navTabId\":\"mbkList\"}");
 			session.flush();
 			tx.commit();
 		} catch (IOException e) {
 			tx.rollback();
-			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+			out.print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
 		} finally {
 			session.close();
 		}
