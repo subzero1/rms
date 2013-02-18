@@ -21,8 +21,6 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.flow.vo.Vc1_sgpftst;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
-import com.rms.dataObjects.base.Tc01_property;
-import com.rms.dataObjects.base.Tc02_area;
 import com.rms.dataObjects.base.Tmp_zdxp;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
