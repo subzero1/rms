@@ -420,18 +420,6 @@
 					<colName>项目说明</colName>
 			</column>
 			<column>
-					<columnName>SGDW</columnName>
-					<index/>
-					<name>施工单位</name>
-					<colName>施工单位</colName>
-			</column>
-			<column>
-					<columnName>SGD</columnName>
-					<index/>
-					<name>施工队</name>
-					<colName>施工队</colName>
-			</column>
-			<column>
 					<columnName>SJDW</columnName>
 					<index/>
 					<name>设计单位</name>
