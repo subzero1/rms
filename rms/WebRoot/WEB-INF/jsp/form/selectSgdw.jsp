@@ -20,6 +20,10 @@
 			}
 			$.bringBack({'SGDW':sgdw, 'SDPGYY':sdpgyy});
 	}
+	function all_company(){
+	   	 $.pdialog.closeCurrent();
+		 $.pdialog.open('sgpd/sgpfCompany.do','sgdw','施工单位',{width:700,height:380});
+	}
 </script>
 
 <div class="pageHeader">
@@ -31,6 +35,7 @@
 		</table>
 		<div class="subBar">
 			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="all_company()">所 有</button></div></div></li>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查 询</button></div></div></li>
 			</ul>
 		</div>
