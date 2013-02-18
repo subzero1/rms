@@ -197,7 +197,7 @@ public class Sgpd {
 		}
 		// 综合评分排名
 		for (int i = 1; i <= objectsList.size(); i++) {
-			if (i == 1 || objectsList.get(i - 2)[2] != objectsList.get(i - 1)[2])
+			if (i == 1 || !objectsList.get(i - 2)[2].equals(objectsList.get(i - 1)[2]))
 				objectsList.get(i - 1)[4] = i;
 			else {
 				objectsList.get(i - 1)[4] = objectsList.get(i - 2)[4];
@@ -215,9 +215,9 @@ public class Sgpd {
 		}
 		// 决算率排名
 		for (int i = 1; i <= objectsList.size(); i++) {
-			if (i == 1 || objectsList.get(i - 2)[3] != objectsList.get(i - 1)[3])
+			if (i == 1 || !objectsList.get(i - 2)[3].equals(objectsList.get(i - 1)[3])) {
 				objectsList.get(i - 1)[5] = i;
-			else {
+			} else {
 				objectsList.get(i - 1)[5] = objectsList.get(i - 2)[5];
 			}
 		}
@@ -253,7 +253,7 @@ public class Sgpd {
 		}
 		List<Long> wxdw_ids = (List<Long>) dao.search("select wxdw_id from Tmp_zdxp where batch_no=" + nextval
 				+ " order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
-		dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
+		// dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
 		List<Object[]> tmpList = new ArrayList<Object[]>();
 		int i = 0;
 		// 只保留前3名
