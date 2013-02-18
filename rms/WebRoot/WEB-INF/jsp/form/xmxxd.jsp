@@ -6,6 +6,9 @@
 
 <script type="text/javascript">
 $(function(){
+			var $Td01_xmxx_GCLB=$("select[name='Td01_xmxx\.GCLB']");
+			var $sgdw=$("#sgdw");
+			var $Td01_xmxx_ID=$("input[name='Td01_xmxx\.ID']");
 	   		$("#qkdl_select",navTab.getCurrentPanel()).cascade({
 				childSelect:$("#qkxl_select",navTab.getCurrentPanel()),
 				tableName:'Tc07_qkxx',
@@ -16,6 +19,16 @@ $(function(){
 				showForOption:{
 								pattern:'[mc]',
 								mc:'mc'
+				}
+			});
+			if($Td01_xmxx_GCLB.val()=='电源'||$Td01_xmxx_GCLB.val()=='光缆'){
+				$sgdw.attr("href","sgpd/sgpfCompany.do");
+			}
+			$Td01_xmxx_GCLB.change(function(){
+				if($(this).val()=='电源'||$(this).val()=='光缆'){
+					$sgdw.attr("href","sgpd/sgpfCompany.do");
+				}else{
+					$sgdw.attr("href","sgpd.do?xm_id="+$Td01_xmxx_ID.val());
 				}
 			});	
 	   	});
@@ -196,7 +209,7 @@ $(function(){
 	<label>
 		<c:choose>
 			<c:when test="${param.node_id == 10101}">
-				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：
+				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">施工单位</a>：
 			</c:when>
 			<c:otherwise>
 				施工单位：
