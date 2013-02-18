@@ -88,7 +88,7 @@
 					<input type="hidden" name="Tf17_rckh.QRSJ" id="qrsj" />
 				</p>
 				<p>
-					<label>考核时间：</label>
+					<label>录入时间：</label>
 					<input type="text" class="required date" pattern="yyyy-MM-dd" name="Tf17_rckh.KHSJ" style="width:80px;" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${not empty tf17.khsj ? tf17.khsj : now }"/>" />
 				</p>
 				<p>
@@ -111,6 +111,14 @@
 				<p>
 					<label>分 值：</label>
 					<input class="required number" id="fz" type="text" name="Tf17_rckh.JKFZ" style="width:90px;" value="<fmt:formatNumber pattern="0" value="${not empty tf17.jkfz ? tf17.jkfz : 0 }"/>" />
+				</p>
+				<div style="height:0px"></div>
+				<p>
+					<label>考核月份：</label>
+					<netsky:htmlSelect id="khnf" name="Tf17_rckh.KHNF" objectForOption="nfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khnf}" htmlClass="td-select"/>
+				</p>
+				<p>
+					<netsky:htmlSelect id="khyf" name="Tf17_rckh.KHYF" objectForOption="yfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khyf}" htmlClass="td-select"/>
 				</p>
 				<p>
 					<label>考核原因：</label>

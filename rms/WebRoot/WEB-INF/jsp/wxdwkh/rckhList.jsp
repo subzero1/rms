@@ -71,9 +71,9 @@
 		<div class="panelBar">
 			<ul class="toolBar">
 				<c:if test="${param.type == 'khry'}">
-				<li><a class="add" href="wxdwkh/rckhEdit.do?canedit=true" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>添加</span></a></li>
+				<li><a class="add" href="wxdwkh/rckhEdit.do?canedit=true" target="dialog" width="800" height="525" rel="rckh" title="日常考核"><span>添加</span></a></li>
 				<li class="line">line</li>
-				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=true" target="dialog" width="800" height="480" rel="rckh" title="日常考核"><span>修改</span></a></li>
+				<li><a class="edit" href="wxdwkh/rckhEdit.do?id={rckh_id}&canedit=true" target="dialog" width="800" height="525" rel="rckh" title="日常考核"><span>修改</span></a></li>
 				<li class="line">line</li>
 				<li><a class="delete" href="wxdwkh/ajaxDelRckh.do?id={rckh_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 				<li class="line">line</li>
@@ -118,7 +118,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="rckh_id" rel="${obj.id}">
 					<c:if test="${param.type == 'khry' }">
-						<td><a class="edit" href="wxdwkh/rckhEdit.do?id=${obj.id}&canedit=true" target="dialog" width="800" height="480" rel="rckh" title="日常考核">${obj.wxdw_mc }</a></td>
+						<td><a class="edit" href="wxdwkh/rckhEdit.do?id=${obj.id}&canedit=true" target="dialog" width="800" height="525" rel="rckh" title="日常考核">${obj.wxdw_mc }</a></td>
 						<td>${obj.wxdw_lb }</td>
 					</c:if>
 						<td><fmt:formatDate value="${obj.khsj}" pattern="yyyy-MM-dd"/></td>
