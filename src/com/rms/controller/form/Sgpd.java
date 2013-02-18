@@ -2,6 +2,7 @@ package com.rms.controller.form;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.utils.convertUtil;
 import com.netsky.base.flow.vo.Vc1_sgpftst;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -361,5 +363,64 @@ public class Sgpd {
 		modelMap.put("dqList", dao.search("from Tc02_area"));
 		modelMap.put("zyList", dao.search("from Tc01_property where type='工程类别'"));
 		return new ModelAndView("/WEB-INF/jsp/form/sgpftst.jsp", modelMap);
+	}
+	
+	@RequestMapping("/sgpd/sgpfCompany.do")
+	public ModelAndView sgpdfCompany(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/form/sgpf_company.jsp";
+		ModelMap modelMap = new ModelMap();
+		List ysryList = null;
+		Ta03_user ysry = null;
+		ResultObject ro = null;
+		int totalCount=0;
+		int totalPages=0;
+		int pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		int numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "mc");
+		String searchStr = convertUtil.toString(request
+				.getParameter("searchStr"));
+		String names=convertUtil.toString(request.getParameter("namesx"));
+		String ids=convertUtil.toString(request.getParameter("idsx"));
+		
+		List objList=new LinkedList();
+		StringBuffer hql = new StringBuffer();
+		hql.append("select w.id,w.mc from Tf01_wxdw w where 1=1 ");
+		// 条件
+		if(!searchStr.equals("")){
+			hql.append("and w.mc like '%");
+			hql.append(searchStr);
+			hql.append("%' ");
+		}
+		hql.append("order by w.");
+		hql.append(orderField+" ");
+		hql.append(orderDirection);
+		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		if (ro!=null) {
+			totalCount=ro.getTotalRows();
+			totalPages=ro.getTotalPages();
+		}
+		while (ro.next()) {
+			Object obj[]=new Object[2];
+			obj[0]=ro.get("w.id");
+			obj[1]=ro.get("w.mc");
+			objList.add(obj);
+		}
+		
+		modelMap.put("objList", objList);
+		modelMap.put("names", names);
+		modelMap.put("ids", ids);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("searchStr", searchStr);
+		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		return new ModelAndView(view, modelMap);
+	
 	}
 }
