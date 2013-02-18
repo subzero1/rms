@@ -147,7 +147,7 @@
         />
         
          <property
-            name="khnf"
+            name="khyf"
             type="java.lang.Long"
             update="true"
             insert="true"

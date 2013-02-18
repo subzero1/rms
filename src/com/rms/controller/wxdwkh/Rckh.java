@@ -3,6 +3,7 @@ package com.rms.controller.wxdwkh;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +24,7 @@ import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -222,6 +224,27 @@ public class Rckh {
 		modelMap.put("khdzList", khdz);
 		// 考核类别
 		modelMap.put("khlbList", dao.search("from Tc01_property where type='考核类别' order by id "));
+		
+		//考核年份、月份
+		LinkedList nfList = new LinkedList();
+		for(int i = 2013;i <= DateGetUtil.getYear() + 1;i++){
+			Properties p = new Properties();
+			p.put("show", i+"年");
+			p.put("value", new Long(i));
+			nfList.add(p);
+		}
+		
+		LinkedList yfList = new LinkedList();
+		for(int i = 1;i <= 12;i++){
+			Properties p = new Properties();
+			p.put("show", i+"月");
+			p.put("value", new Long(i));
+			yfList.add(p);
+		}
+		modelMap.put("nfList", nfList);
+		modelMap.put("yfList", yfList);
+		
+		//考核月份
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/rckhEdit.jsp?canedit=" + canedit, modelMap);
 	}
 
