@@ -20,9 +20,16 @@
 					<label>属性分类：</label>
 					<dms:htmlSelect name="Tc01_property.TYPE" objectForOption="sxfl" showForOption="" valueForOption=""  value="${property_type.type}" />
 				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>扩展标识：</label>
+					<input type="text" name="Tc01_property.FLAG" value="${property_type.flag}"  style="width:146px;"/>
+				</p>
 				<div class="divider"></div>
-				<div class="remark" style="color:#888;height:20px;">
-				【注】：属性分类系统定制；
+				<div class="remark" style="color:#888;height:80px;">
+				【注】：属性分类系统定制；<br>
+				&nbsp;勘察反馈内容：扩展标识为[1]时，反馈时不需要录入个数， 为[2]时，需要录入个数<br>
+				&nbsp;工程类别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩展标识为[1]时，不参与自动派工
 				</div>
 			</div>
 			<div class="formBar">
