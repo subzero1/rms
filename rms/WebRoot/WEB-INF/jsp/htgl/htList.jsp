@@ -56,7 +56,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${obj.xmbh }</td>
-						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="230" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
+						<td><a href="htgl/htEdit.do?xm_id=${obj.id }&act=ht&htlb=${htlb }" target="dialog" width="380" height="260" rel="htEdit" title="合同信息">${obj.xmmc }</a></td>
 						<td><fmt:formatDate value="${obj.lxsj }" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 							<c:when test="${htlb == 'sj'}">
