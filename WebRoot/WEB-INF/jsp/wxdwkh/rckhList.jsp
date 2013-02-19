@@ -48,8 +48,11 @@
 						</td>
 						</c:if>
 						<td><netsky:htmlSelect name="khlb" id="khlb" objectForOption="khlbList" valueForOption="name" showForOption="name" value="${param.khlb}" extend=""  extendPrefix="true" /></td>
-						<td>考核时间：<input id="date1" name="date1" value="${date1}" type="text" class="date" pattern="yyyy-MM-dd" size="10" />
-						-<input id="date2" name="date2" value="${date2}" type="text" class="date" pattern="yyyy-MM-dd" size="10" />
+						<td><!-- 考核时间：<input id="date1" name="date1" value="${date1}" type="text" class="date" pattern="yyyy-MM-dd" size="10" />
+						-<input id="date2" name="date2" value="${date2}" type="text" class="date" pattern="yyyy-MM-dd" size="10" /> -->
+						 考核时间：
+						 <netsky:htmlSelect id="khnf" name="khnf" objectForOption="nfList"  valueForOption="" showForOption="" extend="年," extendPrefix="true" value="${param.khnf}" htmlClass="td-select"/>
+						 <netsky:htmlSelect id="khyf" name="khyf" objectForOption="yfList"  valueForOption="" showForOption="" extend="月," extendPrefix="true" value="${param.khyf}" htmlClass="td-select"/>
 						</td>
 						<c:if test="${not empty rolesMap['50100']}">
 							<td><netsky:htmlSelect name="khry" id="khry" objectForOption="khryList" valueForOption="name" showForOption="name" value="${param.khry}" extend="全部,"  extendPrefix="true" /></td>

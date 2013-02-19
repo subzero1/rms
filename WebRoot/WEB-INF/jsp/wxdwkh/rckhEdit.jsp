@@ -115,10 +115,10 @@
 				<div style="height:0px"></div>
 				<p>
 					<label>考核月份：</label>
-					<netsky:htmlSelect id="khnf" name="Tf17_rckh.KHNF" objectForOption="nfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khnf}" htmlClass="td-select"/>
+					<netsky:htmlSelect id="khnf" name="Tf17_rckh.KHNF" objectForOption="nfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khnf}" htmlClass="required"/>
 				</p>
 				<p>
-					<netsky:htmlSelect id="khyf" name="Tf17_rckh.KHYF" objectForOption="yfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khyf}" htmlClass="td-select"/>
+					<netsky:htmlSelect id="khyf" name="Tf17_rckh.KHYF" objectForOption="yfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khyf}" htmlClass="required"/>
 				</p>
 				<p>
 					<label>考核原因：</label>

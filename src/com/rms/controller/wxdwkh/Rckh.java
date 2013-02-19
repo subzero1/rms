@@ -98,6 +98,8 @@ public class Rckh {
 		String khry = convertUtil.toString(request.getParameter("khry"));
 		String date1 = convertUtil.toString(request.getParameter("date1"));
 		String date2 = convertUtil.toString(request.getParameter("date2"));
+		String khnf = convertUtil.toString(request.getParameter("khnf"));
+		String khyf = convertUtil.toString(request.getParameter("khyf"));
 		String qrzt = convertUtil.toString(request.getParameter("qrzt"));
 		if (!date1.equals("") && !date2.equals("") && date1.compareTo(date2) > 0) {
 			String tmp = date2;
@@ -152,13 +154,22 @@ public class Rckh {
 			whereClause = " and wxdw_id=" + tf04.getWxdw_id();
 		}
 		hsql.append(whereClause);
-		// 考核日期
+		// 记录日期
 		if (!"".equals(date1)) {
 			hsql.append(" and khsj>=to_date('" + date1 + " 00:00:00','yyyy-MM-dd hh24:mi:ss')");
 		}
 		if (!"".equals(date2)) {
 			hsql.append(" and khsj<=to_date('" + date2 + " 23:59:59','yyyy-MM-dd hh24:mi:ss')");
 		}
+		
+		// 考核日期
+		if (!"".equals(khnf)) {
+			hsql.append(" and khnf="+khnf);
+		}
+		if (!"".equals(khyf)) {
+			hsql.append(" and khyf="+khyf);
+		}
+		
 		// order排序
 		// orderField
 		hsql.append(" order by " + orderField);
@@ -199,6 +210,25 @@ public class Rckh {
 		List khryList = queryService.searchList(hsql.toString());
 		modelMap.put("khryList", khryList);
 		
+		//考核年份、月份
+		LinkedList nfList = new LinkedList();
+		for(int i = 2013;i <= DateGetUtil.getYear() + 1;i++){
+			Properties p = new Properties();
+			p.setProperty("show", i+"年");
+			p.setProperty("value", i+"");
+			nfList.add(p);
+		}
+		
+		LinkedList yfList = new LinkedList();
+		for(int i = 1;i <= 12;i++){
+			Properties p = new Properties();
+			p.setProperty("show", i+"月");
+			p.setProperty("value", i+"");
+			yfList.add(p);
+		}
+		modelMap.put("nfList", nfList);
+		modelMap.put("yfList", yfList);
+		
 		return new ModelAndView("/WEB-INF/jsp/wxdwkh/rckhList.jsp", modelMap);
 	}
 
@@ -229,16 +259,16 @@ public class Rckh {
 		LinkedList nfList = new LinkedList();
 		for(int i = 2013;i <= DateGetUtil.getYear() + 1;i++){
 			Properties p = new Properties();
-			p.put("show", i+"年");
-			p.put("value", new Long(i));
+			p.setProperty("show", i+"年");
+			p.setProperty("value", i+"");
 			nfList.add(p);
 		}
 		
 		LinkedList yfList = new LinkedList();
 		for(int i = 1;i <= 12;i++){
 			Properties p = new Properties();
-			p.put("show", i+"月");
-			p.put("value", new Long(i));
+			p.setProperty("show", i+"月");
+			p.setProperty("value", i+"");
 			yfList.add(p);
 		}
 		modelMap.put("nfList", nfList);
