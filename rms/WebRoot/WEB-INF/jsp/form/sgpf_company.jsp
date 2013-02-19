@@ -14,11 +14,11 @@
 			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+ ($("#names",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 			$("#namesx",$.pdialog.getCurrent()).val($("#namesx",$.pdialog.getCurrent()).val()+ ($("#namesx",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 			$("#names1",$.pdialog.getCurrent()).val($("#names1",$.pdialog.getCurrent()).val()+ ($("#names1",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
-			
 			var names = $("#names",$.pdialog.getCurrent()).val(); 
 			var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
 			var names = $("#names",$.pdialog.getCurrent()).val();
-			$.bringBack({'SGDW':names,'SGDW_IDS':ids});
+			
+			$.bringBack({'SGDW':names,'SGDW_IDS':ids,'SDPGYY':$reasons.val()});
 		}
 	   }
 	} 
@@ -32,6 +32,7 @@
 	<input type="hidden" name="searchStr" value="${param.searchStr }"/>
 	<input type="hidden" name="idsx" id="idsx" value="${ids}"/>
 	<input type="hidden" name="namesx" id="namesx" value="${names }"/>
+	<input type="hidden" name="xm_id" value="${param.xm_id}"/>
 </form>
 
 <div class="pageHeader">
