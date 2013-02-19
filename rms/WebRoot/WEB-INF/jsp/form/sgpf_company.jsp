@@ -30,15 +30,13 @@
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 	<input type="hidden" name="searchStr" value="${param.searchStr }"/>
-	<input type="hidden" name="idsx" id="idsx" value="${ids}"/>
-	<input type="hidden" name="namesx" id="namesx" value="${names }"/>
+	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
+	<input type="hidden" name="names" id="names" value="${names }"/>
 	<input type="hidden" name="xm_id" value="${param.xm_id}"/>
 </form>
 
 <div class="pageHeader">
 	<form rel="pagerForm" method="post" action="sgpd/sgpfCompany.do" onsubmit="return dwzSearch(this, 'dialog');">
-	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
-	<input type="hidden" name="names" id="names" value="${names }"/>
 	<div class="searchBar" style="height:60px">
 		<ul class="searchContent" style="height:30px">
 			<li>
