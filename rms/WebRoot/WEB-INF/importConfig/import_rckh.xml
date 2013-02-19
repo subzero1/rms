@@ -80,10 +80,16 @@ xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"
 					<colName>考核结果</colName>
 			</column>
 			<column>
-					<columnName>KHSJ</columnName>
+					<columnName>KHNF</columnName>
 					<index/>
-					<name>考核时间</name>
-					<colName>考核时间</colName>
+					<name>考核年份</name>
+					<colName>考核年份</colName>
+			</column>
+			<column>
+					<columnName>KHYF</columnName>
+					<index/>
+					<name>考核月份</name>
+					<colName>考核月份</colName>
 			</column>
 		</columns>
 	</tableInfo>
