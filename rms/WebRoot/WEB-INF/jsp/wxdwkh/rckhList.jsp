@@ -28,6 +28,9 @@
 	<input type="hidden" name="khlb" value="${param.khlb}">
 	<input type="hidden" name="type" value="${param.type}">
 	<input type="hidden" name="qrzt" value="${param.qrzt}">
+	<input type="hidden" name="khnf" value="${param.khnf}">
+	<input type="hidden" name="khyf" value="${param.khyf}">
+	<input type="hidden" name="khry" value="${param.khry}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
