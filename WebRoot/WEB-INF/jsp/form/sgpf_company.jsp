@@ -5,7 +5,8 @@
 <script type="text/javascript">
 	function add(id,name){
 		var $reasons=$("#reasons",$.pdialog.getCurrent()); 
-		if($reasons.val()==""){ 
+		var $reasonflag=$("input[name='reasonflag']",$.pdialog.getCurrent());
+		if($reasons.val()==""&&$reasonflag.val()!='1'){ 
 			alertMsg.info("请您填写手动选派原因!");
 		}else {
 		if ($("#ids",$.pdialog.getCurrent()).val().indexOf(","+id)==-1){
@@ -20,6 +21,14 @@
 		}
 	   }
 	} 
+	$(function(){
+		var $reasonflag=$("input[name='reasonflag']",$.pdialog.getCurrent());
+		var $reasons=$("#reasons",$.pdialog.getCurrent()); 
+		if($reasonflag.val()=='1'){ 
+			$reasons.closest("div").hide();
+		}
+		
+	});
 </script>
 
 <form id="pagerForm" action="">
@@ -31,6 +40,7 @@
 	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
 	<input type="hidden" name="names" id="names" value="${names }"/>
 	<input type="hidden" name="xm_id" value="${param.xm_id}"/>
+	<input type="hidden" name="reasonflag" value="${param.reasonflag}"/>
 </form>
 
 <div class="pageHeader">

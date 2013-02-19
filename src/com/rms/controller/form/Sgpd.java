@@ -22,7 +22,6 @@ import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.utils.convertUtil;
-import com.netsky.base.flow.vo.HaltWork;
 import com.netsky.base.flow.vo.Vc1_sgpftst;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -422,7 +421,8 @@ public class Sgpd {
 				.getParameter("searchStr"));
 		String names = convertUtil.toString(request.getParameter("names"));
 		String ids = convertUtil.toString(request.getParameter("ids"));
-		String xm_id=convertUtil.toString(request.getParameter("xm_id"));
+		String xm_id = convertUtil.toString(request.getParameter("xm_id"));
+		String reasonflag=convertUtil.toString(request.getParameter("reasonflag"));
 		List objList = new LinkedList();
 		StringBuffer hql = new StringBuffer();
 		hql.append("select w.id,w.mc from Tf01_wxdw w where 1=1 ");
@@ -451,6 +451,7 @@ public class Sgpd {
 		modelMap.put("xm_id", xm_id);
 		modelMap.put("names", names);
 		modelMap.put("ids", ids);
+		modelMap.put("reasonflag", reasonflag);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("orderField", orderField);
@@ -466,7 +467,8 @@ public class Sgpd {
 	public void checkProject(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		StringBuffer hql = new StringBuffer();
-		List objList = new ArrayList();;
+		List objList = new ArrayList();
+		;
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		String projectFlag = null;
@@ -479,7 +481,7 @@ public class Sgpd {
 			objList = queryService.searchList(hql.toString());
 			if (objList != null && objList.size() != 0) {
 				for (Object object : objList) {
-					if (object!=null) {
+					if (object != null) {
 						projectFlag = object.toString();
 					}
 				}
@@ -488,5 +490,5 @@ public class Sgpd {
 		}
 
 	}
-	 
+
 }
