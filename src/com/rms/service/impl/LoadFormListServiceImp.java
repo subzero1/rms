@@ -909,7 +909,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				}
 			}
 			
-			if (module_id == 101 || module_id == 102 || module_id == 104) {
+			if (module_id == 101 || module_id == 102 || module_id == 104|| module_id == 107) {
 				/**
 				 * 竣工资料
 				 */
@@ -998,6 +998,22 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				tmp_clmx_slave.put("formurl", "javascript:projectClmx("+t_project_id+")");
 				tmp_clmx_slave.put("rw", "r");
 				v_slave.add(tmp_clmx_slave);
+				
+				/**
+				 * 安全验收
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select count(id) from Td52_aqys where project_id = ");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				ro.next();
+				if (ro.get("count(id)") != null && (Long) ro.get("count(id)") != 0) {
+					HashMap<String, String> tmp_aqys_slave = new HashMap<String, String>();
+					tmp_aqys_slave.put("slave_name", "安全验收");
+					tmp_aqys_slave.put("formurl", "javascript:navTab.openTab('aqysd', 'form/aqysEdit.do?canSave=yes&project_id="+project_id+"', {title:'安全验收'});");
+					tmp_aqys_slave.put("rw", "r");
+					v_slave.add(tmp_aqys_slave);
+				}
 				
 			}
 			

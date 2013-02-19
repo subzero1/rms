@@ -47,17 +47,22 @@ public class ButtonShow extends ButtonControl {
 			Long relation_id = convertUtil.toLong(paraMap.get("relation_id"));
 			Long project_id = convertUtil.toLong(paraMap.get("project_id"));
 			Long module_id = convertUtil.toLong(paraMap.get("module_id"));
+			Long affair_id = convertUtil.toLong(paraMap.get("affair_id"));
 			
 			Tb03_relation tb03 = (Tb03_relation)queryService.searchById(Tb03_relation.class, relation_id);
+			if(tb03 == null){
+				tb03 = new Tb03_relation();
+			}
 			String relation_desc = convertUtil.toString(tb03.getDescription());
 			
 			/**
 			 * 只有设备项目才需要走安全验收流程
+			 * 显示‘安全验收ACTION’
 			 */
-			if((module_id == 104 || module_id == 107) && relation_desc.indexOf("安全验收") != -1){
+			if(((module_id == 104 || module_id == 107) && relation_desc.indexOf("安全验收") != -1)||affair_id==16){
 				
 				String project_table = "Td01_xmxx"; 
-				if(module_id == 104){
+				if(module_id == 104 || module_id == 101){
 					project_table = "Td01_xmxx";
 				}
 				else{
