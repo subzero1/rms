@@ -422,7 +422,7 @@ public class Sgpd {
 				.getParameter("searchStr"));
 		String names = convertUtil.toString(request.getParameter("namesx"));
 		String ids = convertUtil.toString(request.getParameter("idsx"));
-
+		String xm_id=convertUtil.toString(request.getParameter("xm_id"));
 		List objList = new LinkedList();
 		StringBuffer hql = new StringBuffer();
 		hql.append("select w.id,w.mc from Tf01_wxdw w where 1=1 ");
@@ -448,6 +448,7 @@ public class Sgpd {
 		}
 
 		modelMap.put("objList", objList);
+		modelMap.put("xm_id", xm_id);
 		modelMap.put("names", names);
 		modelMap.put("ids", ids);
 		modelMap.put("pageNum", pageNum);
@@ -487,4 +488,5 @@ public class Sgpd {
 		}
 
 	}
+	 
 }
