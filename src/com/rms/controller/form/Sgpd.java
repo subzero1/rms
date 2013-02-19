@@ -420,8 +420,8 @@ public class Sgpd {
 				.getParameter("orderField"), "mc");
 		String searchStr = convertUtil.toString(request
 				.getParameter("searchStr"));
-		String names = convertUtil.toString(request.getParameter("namesx"));
-		String ids = convertUtil.toString(request.getParameter("idsx"));
+		String names = convertUtil.toString(request.getParameter("names"));
+		String ids = convertUtil.toString(request.getParameter("ids"));
 		String xm_id=convertUtil.toString(request.getParameter("xm_id"));
 		List objList = new LinkedList();
 		StringBuffer hql = new StringBuffer();
