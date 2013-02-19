@@ -67,7 +67,7 @@ public class ButtonShow extends ButtonControl {
 				sql.delete(0, sql.length());
 				sql.append("select id ");
 				sql.append("from "+project_table+" pt ");
-				sql.append("where ptgclb like '%设备%' and pt.id = ");
+				sql.append("where pt.gclb like '%设备%' and pt.id = ");
 				sql.append(project_id);
 				List list = queryService.searchList(sql.toString());
 				if(list != null && list.size() > 0 ){

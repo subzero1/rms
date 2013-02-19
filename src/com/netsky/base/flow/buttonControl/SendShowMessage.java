@@ -212,7 +212,7 @@ public class SendShowMessage extends ButtonControl {
 				hsql.delete(0, hsql.length());
 				hsql.append("select id ");
 				hsql.append("from "+project_table+" pt ");
-				hsql.append("where ptgclb like '%设备%' and pt.id = ");
+				hsql.append("where pt.gclb like '%设备%' and pt.id = ");
 				hsql.append(project_id);
 				List list = queryService.searchList(hsql.toString());
 				if(list != null && list.size() > 0 ){
