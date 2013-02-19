@@ -10,9 +10,7 @@
 		}else {
 		if ($("#ids",$.pdialog.getCurrent()).val().indexOf(","+id)==-1){
 			$("#ids",$.pdialog.getCurrent()).val($("#ids",$.pdialog.getCurrent()).val()+","+id);
-			$("#idsx",$.pdialog.getCurrent()).val($("#idsx",$.pdialog.getCurrent()).val()+","+id);
 			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+ ($("#names",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
-			$("#namesx",$.pdialog.getCurrent()).val($("#namesx",$.pdialog.getCurrent()).val()+ ($("#namesx",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 			$("#names1",$.pdialog.getCurrent()).val($("#names1",$.pdialog.getCurrent()).val()+ ($("#names1",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
 			var names = $("#names",$.pdialog.getCurrent()).val(); 
 			var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
