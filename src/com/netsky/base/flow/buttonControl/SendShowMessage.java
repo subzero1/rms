@@ -192,6 +192,49 @@ public class SendShowMessage extends ButtonControl {
 				}
 			}
 		}
+		
+		/**
+		 * 不选择设计单位不能继续走流程
+		 */
+		if (module_id == 104 || module_id == 107) {
+
+			if(relatioin_name.trim().indexOf("验收申请") != -1 && relation_desc.trim().indexOf("验收人员") != -1){
+				boolean isSbXm = false;
+				boolean isExamSecurity = false;
+				String project_table = "Td01_xmxx"; 
+				if(module_id == 104){
+					project_table = "Td01_xmxx";
+				}
+				else{
+					project_table = "Td00_gcxx";
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select id ");
+				hsql.append("from "+project_table+" pt ");
+				hsql.append("where ptgclb like '%设备%' and pt.id = ");
+				hsql.append(project_id);
+				List list = queryService.searchList(hsql.toString());
+				if(list != null && list.size() > 0 ){
+					isSbXm = true;
+				} 
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("from Tb15_docflow where node_id in(10404,10704) and approve_result = 4 and project_id =  ");
+				hsql.append(project_id);
+				list = queryService.searchList(hsql.toString());
+				if(list != null && list.size() > 0 ){
+					isExamSecurity = true;
+				} 
+				
+				if(isSbXm && !isExamSecurity){
+					returnStr = "请先走【安全验收】流程!";
+				}
+				else{
+					returnStr ="OK";
+				}
+			}
+		}
 
 		return returnStr;	
 	}
