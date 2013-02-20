@@ -1011,6 +1011,7 @@ public class AuxFunction {
 		StringBuffer hql=new StringBuffer();
 		List td52List=null;
 		Long project_id=convertUtil.toLong(request.getParameter("project_id"));
+		String cansave=convertUtil.toString(request.getParameter("cansave"));
 		
 		hql.append("select t from Td52_aqys t where t.project_id=");
 		hql.append(project_id);
@@ -1018,6 +1019,7 @@ public class AuxFunction {
 		
 		td52List=queryService.searchList(hql.toString());
 		
+		modelMap.put("cansave", cansave);
 		modelMap.put("Td52_aqysList", td52List);
 		modelMap.put("project_id", project_id);
 		return new ModelAndView(view,modelMap);

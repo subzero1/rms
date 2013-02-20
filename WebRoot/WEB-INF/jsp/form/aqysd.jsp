@@ -71,25 +71,7 @@
 			}
 			
 			function checkForm(_this){
-			/*
-				var validates=false;
-				var _validates=true;
-				$validateIp=$(_this).find(".validateIp")
-				$validateIp.each(function(i){ 
-					validates=checkIP(this);
-					alert(validates);
-					if(!validates) 
-						_validates=false;
-				});
-				if(_validates)
-				*/
 					return validateCallback(_this,dialogAjaxDone);
-					/*
-				else{ 
-					alertMsg.info("IP地址格式不正确!");
-					return validates;
-				}
-				*/
 			}
  		</script>
 	</head>
@@ -108,6 +90,7 @@
 			<!-- 主操作按钮 -->
 			<div class="panelBar">
 				<ul class="toolBar">
+					<c:if test="${param.cansave=='yes'}">
 					<li>
 						<a class="add" href="javascript:addComments();"><span>增&nbsp;&nbsp;加</span>
 						</a>
@@ -122,6 +105,7 @@
 					<li class="line">
 						line
 					</li>
+					</c:if>
 				</ul>
 			</div>
 			<form method="post" action="save.do" id="safeForm"

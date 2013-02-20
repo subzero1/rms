@@ -123,7 +123,7 @@ function phoneMsg(tel,name){
 				</li>
 				<li class="line">line</li>
 				<li>
-					<a class="helponline"	href="form/aqysEdit.do?project_id=1" target="navTab" rel="aqysd"><span>安全验收</span></a>
+					<a class="helponline"	href="form/aqysEdit.do?project_id=1&cansave=yes" target="navTab" rel="aqysd"><span>安全验收</span></a>
 				</li>
 				<li class="line">line</li>
 			</ul>
