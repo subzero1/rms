@@ -21,7 +21,7 @@ import org.dom4j.io.XMLWriter;
 
 
 /**
- * @description:自動生成表的數據字典
+ * @description:自动生成excel的数据字典
  * 
  * @class name:com.rms.base.util.XMLTableWrite
  * @author net Feb 20, 2013
