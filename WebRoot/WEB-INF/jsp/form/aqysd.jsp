@@ -90,7 +90,7 @@
 			<!-- 主操作按钮 -->
 			<div class="panelBar">
 				<ul class="toolBar">
-					<c:if test="${param.cansave=='yes'}">
+					<c:if test="${param.canSave=='yes'}">
 					<li>
 						<a class="add" href="javascript:addComments();"><span>增&nbsp;&nbsp;加</span>
 						</a>
