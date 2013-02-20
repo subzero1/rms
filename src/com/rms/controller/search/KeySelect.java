@@ -329,6 +329,28 @@ public class KeySelect {
 				result.add("是");
 				result.add("否");
 			}
+			else if (type.equals("hzdwlb")) {//合作单位类别
+				result.add("设计");
+				result.add("施工");
+				result.add("监理");
+			}
+			else if (type.equals("khlb")) {//考核类别
+				result.add("奖励");
+				result.add("扣罚");
+				result.add("通报");
+			}
+			else if (type.equals("khwz")) {//考核位置、考核模块
+				result.add("日常考核");
+				result.add("工程项目考核");
+				result.add("集中考核");
+			}
+			else if (type.equals("khgl")) {//考核归类
+				String HSql = "select name from Tc01_property tc01 where type='考核类别'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(KeySelect.class.getName(), "选择基础多选项", e);
