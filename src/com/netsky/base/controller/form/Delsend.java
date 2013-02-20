@@ -18,18 +18,13 @@ import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.netsky.base.baseObject.HibernateQueryBuilder;
-import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 
-import sun.net.TelnetInputStream;
 import sun.net.ftp.FtpClient;
 /**
  * 附件操作

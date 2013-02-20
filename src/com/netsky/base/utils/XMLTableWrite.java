@@ -59,7 +59,7 @@ public class XMLTableWrite {
 		element.addElement("endRow");
 		element.addElement("endFlag");
 		element.addElement("tableName");
-		element.addElement("tableNameShow").setText("Td13_rwrw");
+		element.addElement("tableNameShow").setText(tableName.toUpperCase());
 		element.addElement("fatherTables");
 
 		element = element.addElement("columns");
@@ -101,15 +101,19 @@ public class XMLTableWrite {
 		hql
 				.append("select u.column_name,u.comments from user_col_comments u where u.table_name='");
 		hql.append(tableName.toUpperCase());
-		hql.append("'");
-		
+		hql.append("' ");
+		hql.append("order by rownum");
 		
 		Statement st = this.createStatement();
 		ResultSet rs=st.executeQuery(hql.toString());
 		while (rs.next()) {
 			Object object[]=new Object[2];
 			object[0]=rs.getString(1);
-			object[1]=rs.getString(2);
+			if (rs.getString(2)==null||rs.getString(2)=="") {
+				object[1]="";
+			}else {
+				object[1]=rs.getString(2);
+			}
 			datas.add(object);
 		}
 		
