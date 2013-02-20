@@ -1,13 +1,13 @@
 package com.rms.base.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +19,29 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
+
+/**
+ * @description:自動生成表的數據字典
+ * 
+ * @class name:com.rms.base.util.XMLTableWrite
+ * @author net Feb 20, 2013
+ */
 public class XMLTableWrite {
 
 	private List datas;
+ 
 
 	/**
 	 * 
 	 * @param path
 	 * @param tableName
-	 * @throws IOException 
+	 * @throws IOException
+	 * @throws SQLException 
 	 * @throws ClassNotFoundException
 	 *             void
 	 */
 	public void autoGenerateTableXML(String path, String tableName)
-			throws ClassNotFoundException, IOException {
+			throws ClassNotFoundException, IOException, SQLException {
 		this.datas = this.getDatas(tableName);
 		Element element;
 		Document doc = DocumentHelper.createDocument();
@@ -57,21 +66,22 @@ public class XMLTableWrite {
 		element.addComment("当前表字段信息");
 		element.addElement("type").setText("byName");
 		element.addElement("titleRow").setText("0");
-		for (Object data : datas) { 
-			element=element.addElement("column");
-			element.addElement("columnName").setText(data.toString());
+		for (Object data : datas) {
+			Object obj[]=(Object[]) data;
+			element = element.addElement("column");
+			element.addElement("columnName").setText(obj[0].toString());
 			element.addElement("index");
-			element.addElement("name");
-			element.addElement("colName");
+			element.addElement("name").setText(obj[1].toString());
+			element.addElement("colName").setText(obj[1].toString());
 			element = element.getParent();
 		}
-		OutputFormat format=new OutputFormat();
-		OutputStream os=new FileOutputStream(path);
-		XMLWriter writer=new XMLWriter(os,format);
+		OutputFormat format = new OutputFormat();
+		OutputStream os = new FileOutputStream(path);
+		XMLWriter writer = new XMLWriter(os, format);
 		writer.write(doc);
 		writer.close();
 		os.close();
-		
+
 		JOptionPane.showMessageDialog(null, "文件已生成");
 
 	}
@@ -82,24 +92,62 @@ public class XMLTableWrite {
 	 * @return
 	 * @throws ClassNotFoundException
 	 *             List
+	 * @throws SQLException
 	 */
-	public List getDatas(String tableName) throws ClassNotFoundException {
-		this.datas = new ArrayList();
-		Class dataClass = Class.forName(tableName);
-		Field field[] = dataClass.getDeclaredFields();
-		for (Field field2 : field) {
-			if (!field2.toString().contains("serialVersionUID")) {
-				datas.add(field2.toString().substring(
-						field2.toString().lastIndexOf(".") + 1));
-			}
-
+	private List getDatas(String tableName) throws ClassNotFoundException,
+			SQLException {
+		StringBuffer hql = new StringBuffer();
+		datas=new ArrayList();
+		hql
+				.append("select u.column_name,u.comments from user_col_comments u where u.table_name='");
+		hql.append(tableName.toUpperCase());
+		hql.append("'");
+		
+		
+		Statement st = this.createStatement();
+		ResultSet rs=st.executeQuery(hql.toString());
+		while (rs.next()) {
+			Object object[]=new Object[2];
+			object[0]=rs.getString(1);
+			object[1]=rs.getString(2);
+			datas.add(object);
 		}
+		
 		return this.datas;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException Connection
+	 */
+	private Connection getConnection() throws ClassNotFoundException, SQLException {
+		Connection conn=null;
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url="jdbc:oracle:thin:@132.229.154.215:1521:rms";
+		String user="pss_nj";
+		String password="netsky";
+		conn=DriverManager.getConnection(url, user, password);
+		return conn;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException Statement
+	 */
+	private Statement createStatement() throws SQLException, ClassNotFoundException {
+		Statement st=null;
+		st=this.getConnection().createStatement();
+		return st;
+	}
 
-	public static void main(String[] args) throws ClassNotFoundException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException,
+			IOException, SQLException {
 		XMLTableWrite xTableWrite = new XMLTableWrite();
 		xTableWrite.autoGenerateTableXML("D://xml.xml",
-				"com.rms.dataObjects.base.Tc01_property");
+				"TD01_XMXX");
 	}
 }
