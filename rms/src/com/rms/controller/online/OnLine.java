@@ -37,9 +37,6 @@ import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.controller.OperFile;
 import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.dataObjects.Ta04_role;
-import com.netsky.base.dataObjects.Ta11_sta_user;
-import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.dataObjects.Te03_online;
 import com.netsky.base.dataObjects.Te04_message;
 import com.netsky.base.dataObjects.Te07_qa;
@@ -52,8 +49,6 @@ import com.netsky.base.utils.PHSService;
 import com.netsky.base.utils.RegExp;
 import com.netsky.base.utils.StringFormatUtil;
 
-import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.dataObjects.Te03_online;
 import com.netsky.base.dataObjects.interfaces.SlaveObject;
 /**
  * @description:
