@@ -1572,6 +1572,7 @@ public class Mbk {
 		hql.append("and d.gcxx_id=x.id "); 
 		hql.append("and x.mbk_id=");
 		hql.append(mbk_id);
+		hql.append(" order by d.id ");
 		List objList=queryService.searchList(hql.toString());
 		modelMap.put("objList", objList);
 		return new ModelAndView(view,modelMap);
