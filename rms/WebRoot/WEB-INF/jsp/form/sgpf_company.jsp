@@ -44,7 +44,7 @@
 </form>
 
 <div class="pageHeader">
-	<form rel="pagerForm" method="post" action="sgpd/sgpfCompany.do" onsubmit="return dwzSearch(this, 'dialog');">
+	<form rel="pagerForm" method="post" action="sgpd/sgpfCompany.do?reasonflag=${param.reasonflag}" onsubmit="return dwzSearch(this, 'dialog');">
 	<div class="searchBar" style="height:60px">
 		<ul class="searchContent" style="height:30px">
 			<li>
