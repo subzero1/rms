@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.utils.convertUtil;
+import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.flow.vo.Vc1_sgpftst;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -58,12 +60,27 @@ public class Sgpd {
 		Td01_xmxx td01 = (Td01_xmxx) dao.getObject(Td01_xmxx.class, xm_id);
 		String gclb = "";
 		String dq = "";
+		int ssnd = -1;
 		if (td00 != null) {
 			gclb = td00.getGclb();
 			dq = td00.getSsdq();
+			Date lxsj = td00.getCjrq();
+			if(lxsj == null){
+				ssnd = DateGetUtil.getYear();
+			}
+			else{
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
 		} else if (td01 != null) {
 			gclb = td01.getGclb();
 			dq = td01.getSsdq();
+			Date lxsj = td01.getLxsj();
+			if(lxsj == null){
+				ssnd = DateGetUtil.getYear();
+			}
+			else{
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
 		} else {
 			// System.out.println("找不到工程或项目");
 			return new ModelAndView(
@@ -75,7 +92,7 @@ public class Sgpd {
 						+ gclb
 						+ "' and tf05.dq='"
 						+ dq
-						+ "' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy') and tf01.lb='施工' and tf01.zt<>'停工'");
+						+ "' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd='"+ssnd+"' and tf01.lb='施工' and tf01.zt<>'停工'");
 		if (wxdwList == null || wxdwList.size() == 0) {
 			// System.out.println("没有符合的合作单位");
 			return new ModelAndView(
@@ -94,8 +111,8 @@ public class Sgpd {
 		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0
 		// 黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
 		double zgr = convertUtil.toDouble(dao.search(
-				"select sum(ys_sgf ) from Td01_xmxx where sgdw is not null and ssdq='"
-						+ dq + "' and gclb='" + gclb + "'").get(0), 0D);
+				"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw is not null and ssdq='"
+						+ dq + "' and gclb='" + gclb + "' and to_char(lxsj,'yyyy') = '"+ssnd+"'").get(0), 0D);
 		// flag:未通过检测的个数
 		int flag = 0;
 		// passedList 通过条件的合作单位 暂存入该LIST
@@ -106,9 +123,9 @@ public class Sgpd {
 			Double fezb = 0D;
 			if (zgr != 0) {
 				double gr = convertUtil.toDouble(dao.search(
-						"select sum(ys_sgf) from Td01_xmxx where sgdw='"
+						"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
 								+ tf01.getMc() + "' and ssdq='" + dq
-								+ "' and gclb='" + gclb + "'").get(0), 0D);
+								+ "' and gclb='" + gclb + "' and to_char(lxsj,'yyyy') = '"+ssnd+"'").get(0), 0D);
 				fezb = gr / zgr;
 			}
 			// tf05.getV1():预定份额占比
@@ -143,7 +160,7 @@ public class Sgpd {
 							+ ((Tf01_wxdw) objects[0]).getId()
 							+ " and tf05.zy='"
 							+ gclb
-							+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy')");
+							+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd='"+ssnd+"'");
 			if (zdgcsList != null && !zdgcsList.isEmpty()) {
 				zdgcs = convertUtil.toDouble(zdgcsList.get(0), 0D);
 			}
