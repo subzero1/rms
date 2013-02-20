@@ -36,6 +36,15 @@ public class DateGetUtil {
 		Calendar cal = Calendar.getInstance();
 		return cal.get(cal.YEAR);
 	}
+	
+	/**
+	 * @return 指定 year;
+	 */
+	public static int getYear(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(cal.YEAR);
+	}
 
 	/**
 	 * @return current month;
