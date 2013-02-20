@@ -45,14 +45,19 @@
 			}
 			//追加
 			function addComments(){
-				var $last_tr=$("#safeForm tr:last"); 
-				$("#aqys_tbody").append("<tr>"+$last_tr.html()+"</tr>");
-				$last_tr=$("#safeForm tr:last")
-				$last_tr.hide();
-				$last_tr.find("input[name!='Td52_aqys\.PROJECT_ID']").each(function(){
-					$(this).val("");
-				}); 
-				$last_tr.show();
+				$("#aqys_tbody").append("<tr>"+ 
+					"<td><input  type='hidden' name='Td52_aqys.ID' value='${Td52_aqys.id}' />\
+					<input type='hidden' name='Td52_aqys.PROJECT_ID' value='${param.project_id}' />\
+					<input type='text' name='Td52_aqys.IPA' value='${Td52_aqys.ipa}' class='validateIp' onblur='checkIP(this)' title='IP地址'/></td>\
+					<td><input type='text' name='Td52_aqys.PORT_NUM' value='${Td52_aqys.port_num}' /></td>\
+					<td><input type='text' name='Td52_aqys.LOGIN_PROTOCOL' value='${Td52_aqys.login_protocol}'/></td>\
+					<td><input type='text' name='Td52_aqys.USERNAME' value='${Td52_aqys.username}' /></td>\
+					<td><input type='text' name='Td52_aqys.USERPWD' value='${Td52_aqys.userpwd}' /> </td>\
+					<td><input type='text' name='Td52_aqys.SUP_USERNAME' value='${Td52_aqys.sup_username}' /></td>\
+					<td><input type='text' name='Td52_aqys.SUP_USERPWD' value='${Td52_aqys.sup_username}' /></td>\
+					<td><input type='text' name='Td52_aqys.DEVICE_TYPE' value='${Td52_aqys.device_type}' /></td>\
+					<td><a href='#' onclick='javascript:delComments(this);' class='btnDel'><span>删除</span></a></td>\
+				</tr>");
 			}
 			
 			function checkIP(_this){
@@ -123,7 +128,7 @@
 				class="pageForm required-validate"
 				onsubmit="return checkForm(this)">
 				<input type="hidden" name="tableInfomation"
-					value="noFatherTable:com.rms.dataObjects.form.Td53_gzjd" />
+					value="noFatherTable:com.rms.dataObjects.form.Td52_aqys" />
 				<input type="hidden" name="_callbackType" value="forward" />
 				<input type="hidden" name="_message" value="保存" />
 				<input type="hidden" name="_forwardUrl" value="form/aqysEdit.do" />
