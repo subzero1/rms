@@ -47,7 +47,7 @@
 			function addComments(){
 				$("#aqys_tbody").append("<tr>"+ 
 					"<td><input  type='hidden' name='Td52_aqys.ID' value='${Td52_aqys.id}' />\
-					<input type='text' name='Td52_aqys.PROJECT_ID' value='${param.project_id}' />\
+					<input type='hidden' name='Td52_aqys.PROJECT_ID' value='${param.project_id}' />\
 					<input type='text' name='Td52_aqys.IPA' value='${Td52_aqys.ipa}' class='validateIp' onblur='checkIP(this)' title='IP地址'/></td>\
 					<td><input type='text' name='Td52_aqys.PORT_NUM' value='${Td52_aqys.port_num}' /></td>\
 					<td><input type='text' name='Td52_aqys.LOGIN_PROTOCOL' value='${Td52_aqys.login_protocol}'/></td>\
@@ -72,18 +72,18 @@
 			
 			function checkForm(_this){ 
 				var $tr=$("#aqys_tbody tr",$(_this));
-				var flag=true;
+				var q=0; 
 				$tr.each(function(k,v){ 
-					flag=false;
+					q=0;
 					var $input=$("input[name!='Td52_aqys\.PROJECT_ID'][name!='Td52_aqys\.ID']",$(v));
 					var $Td52_aqys_PROJECT_ID=$("input[name='Td52_aqys\.PROJECT_ID']",$(v));
 					$input.each(function(i,j){
-						 if($(j).val()!=""){
-						 	falg=true;
+						 if($(j).val()==""){
+						 q++;
 						 } 
-					});
-					if(!flag){
-						//$Td52_aqys_PROJECT_ID.val("");
+					}); 
+					if(q==8){ 
+						$Td52_aqys_PROJECT_ID.val("");
 					} 
 					
 				});
@@ -170,7 +170,7 @@
 								<td>
 									<input type="hidden" name="Td52_aqys.ID"
 										value="${Td52_aqys.id}" />
-									<input type="text" name="Td52_aqys.PROJECT_ID"
+									<input type="hidden" name="Td52_aqys.PROJECT_ID"
 										value="${param.project_id}" />
 									<input type="text" name="Td52_aqys.IPA"
 										value="${Td52_aqys.ipa}" class="validateIp"
