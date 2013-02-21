@@ -35,7 +35,7 @@ public class XMLTableWrite {
 	public void autoGenerateTableXML(String tableName) throws ClassNotFoundException, IOException, SQLException {
 		File file=new File(Thread.currentThread().getContextClassLoader().getResource("").getPath());
 		path=file.getParent();
-		path+="/importConfig/"+tableName+".xml";
+		path+="/importConfig/"+tableName.toLowerCase()+".xml";
 		this.autoGenerateTableXML(path, tableName);
 	}
 
