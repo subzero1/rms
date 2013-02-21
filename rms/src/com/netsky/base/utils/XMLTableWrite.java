@@ -1,5 +1,6 @@
 package com.netsky.base.utils;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,7 +20,6 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
-
 /**
  * @description:自动生成excel的数据字典
  * 
@@ -29,14 +29,22 @@ import org.dom4j.io.XMLWriter;
 public class XMLTableWrite {
 
 	private List datas;
- 
+	
+	private String path;
+	
+	public void autoGenerateTableXML(String tableName) throws ClassNotFoundException, IOException, SQLException {
+		File file=new File(Thread.currentThread().getContextClassLoader().getResource("").getPath());
+		path=file.getParent();
+		path+="/importConfig/"+tableName+".xml";
+		this.autoGenerateTableXML(path, tableName);
+	}
 
 	/**
 	 * 
 	 * @param path
 	 * @param tableName
 	 * @throws IOException
-	 * @throws SQLException 
+	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 *             void
 	 */
@@ -67,7 +75,7 @@ public class XMLTableWrite {
 		element.addElement("type").setText("byName");
 		element.addElement("titleRow").setText("0");
 		for (Object data : datas) {
-			Object obj[]=(Object[]) data;
+			Object obj[] = (Object[]) data;
 			element = element.addElement("column");
 			element.addElement("columnName").setText(obj[0].toString());
 			element.addElement("index");
@@ -97,61 +105,74 @@ public class XMLTableWrite {
 	private List getDatas(String tableName) throws ClassNotFoundException,
 			SQLException {
 		StringBuffer hql = new StringBuffer();
-		datas=new ArrayList();
+		datas = new ArrayList();
 		hql
 				.append("select u.column_name,u.comments from user_col_comments u where u.table_name='");
 		hql.append(tableName.toUpperCase());
 		hql.append("' ");
 		hql.append("order by rownum");
-		
+
 		Statement st = this.createStatement();
-		ResultSet rs=st.executeQuery(hql.toString());
+		ResultSet rs = st.executeQuery(hql.toString());
 		while (rs.next()) {
-			Object object[]=new Object[2];
-			object[0]=rs.getString(1);
-			if (rs.getString(2)==null||rs.getString(2)=="") {
-				object[1]="";
-			}else {
-				object[1]=rs.getString(2);
+			Object object[] = new Object[2];
+			object[0] = rs.getString(1);
+			if (rs.getString(2) == null || rs.getString(2) == "") {
+				object[1] = "";
+			} else {
+				object[1] = rs.getString(2);
 			}
 			datas.add(object);
 		}
-		
+
 		return this.datas;
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 * @throws ClassNotFoundException
-	 * @throws SQLException Connection
+	 * @throws SQLException
+	 *             Connection
 	 */
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Connection conn=null;
+	private Connection getConnection() throws ClassNotFoundException,
+			SQLException {
+		Connection conn = null;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url="jdbc:oracle:thin:@132.229.154.215:1521:rms";
-		String user="pss_nj";
-		String password="netsky";
-		conn=DriverManager.getConnection(url, user, password);
+		String url = "jdbc:oracle:thin:@132.229.154.215:1521:rms";
+		String user = "pss_nj";
+		String password = "netsky";
+		conn = DriverManager.getConnection(url, user, password);
 		return conn;
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 * @throws SQLException
-	 * @throws ClassNotFoundException Statement
+	 * @throws ClassNotFoundException
+	 *             Statement
 	 */
-	private Statement createStatement() throws SQLException, ClassNotFoundException {
-		Statement st=null;
-		st=this.getConnection().createStatement();
+	private Statement createStatement() throws SQLException,
+			ClassNotFoundException {
+		Statement st = null;
+		st = this.getConnection().createStatement();
 		return st;
+	}
+	
+	
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, SQLException {
 		XMLTableWrite xTableWrite = new XMLTableWrite();
-		xTableWrite.autoGenerateTableXML("D://xml.xml",
-				"TD01_XMXX");
+		xTableWrite.autoGenerateTableXML("TD01_XMXX");
 	}
 }

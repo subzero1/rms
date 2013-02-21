@@ -28,18 +28,12 @@ public class XMLTableController {
 		XMLTableWrite write=new XMLTableWrite();
 		PrintWriter out=response.getWriter();
 		response.setCharacterEncoding("utf-8");
-		StringBuffer path=new StringBuffer();
-		path.append(request.getSession().getServletContext().getRealPath("WEB-INF"));
-		path.append("/importConfig/");
-		path.append(tableName.toLowerCase());
-		path.append(".xml");
-		
 		outs.append("文件已生成,文件名为:");
 		outs.append(tableName.toLowerCase());
 		outs.append(".xml");
 		
 		try {
-			write.autoGenerateTableXML(path.toString(), tableName.toString());
+			write.autoGenerateTableXML(tableName.toString());
 			out.print(outs.toString());
 		} catch (RuntimeException e) {
 			e.printStackTrace();
