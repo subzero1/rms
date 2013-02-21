@@ -31,7 +31,6 @@ public class XMLTableController {
 		outs.append("文件已生成,文件名为:");
 		outs.append(tableName.toLowerCase());
 		outs.append(".xml");
-		
 		try {
 			write.autoGenerateTableXML(tableName.toString());
 			out.print(outs.toString());
