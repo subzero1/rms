@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName />
+		<tableNameShow>TF30_WXRY</tableNameShow>
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow>
+			<column>
+				<columnName>ID</columnName>
+				<index />
+				<name>标识</name>
+				<colName>标识</colName>
+			</column>
+			<column>
+				<columnName>NAME</columnName>
+				<index />
+				<name>姓名</name>
+				<colName>姓名</colName>
+			</column>
+			<column>
+				<columnName>SEX</columnName>
+				<index />
+				<name>性别</name>
+				<colName>性别</colName>
+			</column>
+			<column>
+				<columnName>MOBILE</columnName>
+				<index />
+				<name>移动电话</name>
+				<colName>移动电话</colName>
+			</column>
+			<column>
+				<columnName>SFZ</columnName>
+				<index />
+				<name>身份证</name>
+				<colName>身份证</colName>
+			</column>
+			<column>
+				<columnName>ADDRESS</columnName>
+				<index />
+				<name>住址</name>
+				<colName>住址</colName>
+			</column>
+			<column>
+				<columnName>IMG</columnName>
+				<index />
+				<name>图片url</name>
+				<colName>图片url</colName>
+			</column>
+			<column>
+				<columnName>BZ</columnName>
+				<index />
+				<name>备注</name>
+				<colName>备注</colName>
+			</column>
+			<column>
+				<columnName>WXDW_ID</columnName>
+				<index />
+				<name>外协单位id</name>
+				<colName>外协单位id</colName>
+			</column>
+			<column>
+				<columnName>STATUS</columnName>
+				<index />
+				<name>状态</name>
+				<colName>状态</colName>
+			</column>
+			<column>
+				<columnName>BX</columnName>
+				<index />
+				<name>本部/下挂单位</name>
+				<colName>本部/下挂单位</colName>
+			</column>
+			<column>
+				<columnName>MAJOR</columnName>
+				<index />
+				<name>专业</name>
+				<colName>专业</colName>
+			</column>
+			<column>
+				<columnName>CONTRACT</columnName>
+				<index />
+				<name>是否签订劳动合同</name>
+				<colName>是否签订劳动合同</colName>
+			</column>
+			<column>
+				<columnName>INSURE</columnName>
+				<index />
+				<name>是否上保险</name>
+				<colName>是否上保险</colName>
+			</column>
+			<column>
+				<columnName>SAFETY</columnName>
+				<index />
+				<name>安全保护用品是否派发</name>
+				<colName>安全保护用品是否派发</colName>
+			</column>
+			<column>
+				<columnName>GYSZ</columnName>
+				<index />
+				<name>概预算证</name>
+				<colName>概预算证</colName>
+			</column>
+			<column>
+				<columnName>AQYZ</columnName>
+				<index />
+				<name>安全员证</name>
+				<colName>安全员证</colName>
+			</column>
+			<column>
+				<columnName>JLZ</columnName>
+				<index />
+				<name>监理证</name>
+				<colName>监理证</colName>
+			</column>
+			<column>
+				<columnName>DGZ</columnName>
+				<index />
+				<name>登高证</name>
+				<colName>登高证</colName>
+			</column>
+			<column>
+				<columnName>EC</columnName>
+				<index />
+				<name>电工证</name>
+				<colName>电工证</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>
