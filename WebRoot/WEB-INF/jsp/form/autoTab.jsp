@@ -31,7 +31,7 @@ function autoTab(){
 		data:{tableName:$tableName.val()},
 		async:false,
 		success:function(msg){
-			alert("sfsf"); 
+			alert(msg); 
 		}
 	});
 } 
