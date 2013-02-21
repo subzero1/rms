@@ -70,8 +70,26 @@
  				return true;
 			}
 			
-			function checkForm(_this){
-					return validateCallback(_this,dialogAjaxDone);
+			function checkForm(_this){ 
+				var $tr=$("#aqys_tbody tr",$(_this));
+				var flag=true;
+				$tr.each(function(k,v){ 
+					flag=true;
+					var $input=$("input",$(v));
+					var $Td52_aqys_PROJECT_ID=$("input[name='Td52_aqys\.PROJECT_ID']",$(v));
+					$input.each(function(i,j){
+						 if($(j).val()!=null&&$(j).val()!=""){
+						 	return true;
+						 }else {
+						 	flag=false;
+						 	return false;
+						 }
+						 
+					});
+					if(!flag) 
+					$Td52_aqys_PROJECT_ID.val("");
+				});
+				return validateCallback(_this,dialogAjaxDone);
 			}
  		</script>
 	</head>
@@ -91,26 +109,25 @@
 			<div class="panelBar">
 				<ul class="toolBar">
 					<c:if test="${param.canSave=='yes'}">
-					<li>
-						<a class="add" href="javascript:addComments();"><span>增&nbsp;&nbsp;加</span>
-						</a>
-					</li>
-					<li class="line">
-						line
-					</li>
-					<li>
-						<a class="save dis_a" href="javascript:saveForm();"><span>保&nbsp;&nbsp;存</span>
-						</a>
-					</li>
-					<li class="line">
-						line
-					</li>
+						<li>
+							<a class="add" href="javascript:addComments();"><span>增&nbsp;&nbsp;加</span>
+							</a>
+						</li>
+						<li class="line">
+							line
+						</li>
+						<li>
+							<a class="save dis_a" href="javascript:saveForm();"><span>保&nbsp;&nbsp;存</span>
+							</a>
+						</li>
+						<li class="line">
+							line
+						</li>
 					</c:if>
 				</ul>
 			</div>
 			<form method="post" action="save.do" id="safeForm"
-				class="pageForm required-validate"
-				onsubmit="return checkForm(this)">
+				class="pageForm required-validate" onsubmit="return checkForm(this)">
 				<input type="hidden" name="tableInfomation"
 					value="noFatherTable:com.rms.dataObjects.form.Td52_aqys" />
 				<input type="hidden" name="_callbackType" value="forward" />
@@ -120,32 +137,32 @@
 				<table class="table" width="80%">
 					<thead>
 						<tr>
-							<th  style="width:100px;">
+							<th style="width: 100px;">
 								IP地址
 							</th>
-							<th  style="width:100px;">
+							<th style="width: 100px;">
 								端口号
 							</th>
-							<th style="width:100px;">
+							<th style="width: 100px;">
 								登录协议
 							</th>
-							<th style="width:100px;">
+							<th style="width: 100px;">
 								用户名
 							</th>
-							<th style="width:100px;">
+							<th style="width: 100px;">
 								密码
 							</th>
-							<th style="width:100px;">
+							<th style="width: 100px;">
 								超级用户账号
 							</th>
-							<th style="width:100px;">
+							<th style="width: 100px;">
 								超级用户密码
 							</th>
-							<th style="width:100px;">
+							<th style="width: 100px;">
 								设备类型
 							</th>
-							<th style="width:30px;">
-								 
+							<th style="width: 30px;">
+
 							</th>
 						</tr>
 					</thead>
@@ -153,13 +170,13 @@
 						<c:forEach var="Td52_aqys" items="${Td52_aqysList}">
 							<tr>
 								<td>
-									<input  type="hidden" name="Td52_aqys.ID"
+									<input type="hidden" name="Td52_aqys.ID"
 										value="${Td52_aqys.id}" />
-
 									<input type="hidden" name="Td52_aqys.PROJECT_ID"
 										value="${param.project_id}" />
 									<input type="text" name="Td52_aqys.IPA"
-										value="${Td52_aqys.ipa}" class="validateIp" onblur="checkIP(this)" title="IP地址"/>
+										value="${Td52_aqys.ipa}" class="validateIp"
+										onblur="checkIP(this)" title="IP地址" />
 								</td>
 								<td>
 									<input type="text" name="Td52_aqys.PORT_NUM"
