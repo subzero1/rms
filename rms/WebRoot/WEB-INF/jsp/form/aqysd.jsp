@@ -47,7 +47,7 @@
 			function addComments(){
 				$("#aqys_tbody").append("<tr>"+ 
 					"<td><input  type='hidden' name='Td52_aqys.ID' value='${Td52_aqys.id}' />\
-					<input type='hidden' name='Td52_aqys.PROJECT_ID' value='${param.project_id}' />\
+					<input type='text' name='Td52_aqys.PROJECT_ID' value='${param.project_id}' />\
 					<input type='text' name='Td52_aqys.IPA' value='${Td52_aqys.ipa}' class='validateIp' onblur='checkIP(this)' title='IP地址'/></td>\
 					<td><input type='text' name='Td52_aqys.PORT_NUM' value='${Td52_aqys.port_num}' /></td>\
 					<td><input type='text' name='Td52_aqys.LOGIN_PROTOCOL' value='${Td52_aqys.login_protocol}'/></td>\
@@ -74,22 +74,20 @@
 				var $tr=$("#aqys_tbody tr",$(_this));
 				var flag=true;
 				$tr.each(function(k,v){ 
-					flag=true;
-					var $input=$("input",$(v));
+					flag=false;
+					var $input=$("input[name!='Td52_aqys\.PROJECT_ID'][name!='Td52_aqys\.ID']",$(v));
 					var $Td52_aqys_PROJECT_ID=$("input[name='Td52_aqys\.PROJECT_ID']",$(v));
 					$input.each(function(i,j){
-						 if($(j).val()!=null&&$(j).val()!=""){
-						 	return true;
-						 }else {
-						 	flag=false;
-						 	return false;
-						 }
-						 
+						 if($(j).val()!=""){
+						 	falg=true;
+						 } 
 					});
-					if(!flag) 
-					$Td52_aqys_PROJECT_ID.val("");
+					if(!flag){
+						//$Td52_aqys_PROJECT_ID.val("");
+					} 
+					
 				});
-				return validateCallback(_this,dialogAjaxDone);
+				return validateCallback(_this,navTabAjaxDone);
 			}
  		</script>
 	</head>
@@ -132,7 +130,7 @@
 					value="noFatherTable:com.rms.dataObjects.form.Td52_aqys" />
 				<input type="hidden" name="_callbackType" value="forward" />
 				<input type="hidden" name="_message" value="保存" />
-				<input type="hidden" name="_forwardUrl" value="form/aqysEdit.do" />
+				<input type="hidden" name="_forwardUrl" value="form/aqysEdit.do?project_id=${param.project_id}&canSave=${param.canSave}" />
 				<input type="hidden" name="_navTabId" value="aqys" />
 				<table class="table" width="80%">
 					<thead>
@@ -172,7 +170,7 @@
 								<td>
 									<input type="hidden" name="Td52_aqys.ID"
 										value="${Td52_aqys.id}" />
-									<input type="hidden" name="Td52_aqys.PROJECT_ID"
+									<input type="text" name="Td52_aqys.PROJECT_ID"
 										value="${param.project_id}" />
 									<input type="text" name="Td52_aqys.IPA"
 										value="${Td52_aqys.ipa}" class="validateIp"
