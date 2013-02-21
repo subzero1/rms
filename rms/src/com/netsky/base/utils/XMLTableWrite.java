@@ -90,7 +90,7 @@ public class XMLTableWrite {
 		writer.close();
 		os.close();
 
-		JOptionPane.showMessageDialog(null, "文件已生成");
+		JOptionPane.showMessageDialog(null, "文件已生成,文件名:"+tableName.toLowerCase()+".xml");
 
 	}
 
