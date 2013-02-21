@@ -120,31 +120,31 @@
 				<table class="table" width="80%">
 					<thead>
 						<tr>
-							<th>
+							<th  style="width:100px;">
 								IP地址
 							</th>
-							<th>
+							<th  style="width:100px;">
 								端口号
 							</th>
-							<th>
+							<th style="width:100px;">
 								登录协议
 							</th>
-							<th>
+							<th style="width:100px;">
 								用户名
 							</th>
-							<th>
+							<th style="width:100px;">
 								密码
 							</th>
-							<th>
+							<th style="width:100px;">
 								超级用户账号
 							</th>
-							<th>
+							<th style="width:100px;">
 								超级用户密码
 							</th>
-							<th>
+							<th style="width:100px;">
 								设备类型
 							</th>
-							<th style="width:10px;">
+							<th style="width:30px;">
 								 
 							</th>
 						</tr>
