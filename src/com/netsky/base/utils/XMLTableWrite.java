@@ -110,7 +110,7 @@ public class XMLTableWrite {
 				.append("select u.column_name,u.comments from user_col_comments u where u.table_name='");
 		hql.append(tableName.toUpperCase());
 		hql.append("' ");
-		hql.append("order by rownum");
+		hql.append("order by rowid asc");
 
 		Statement st = this.createStatement();
 		ResultSet rs = st.executeQuery(hql.toString());
@@ -173,6 +173,6 @@ public class XMLTableWrite {
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, SQLException {
 		XMLTableWrite xTableWrite = new XMLTableWrite();
-		xTableWrite.autoGenerateTableXML("TD01_XMXX");
+		xTableWrite.autoGenerateTableXML("Tf30_wxry");
 	}
 }
