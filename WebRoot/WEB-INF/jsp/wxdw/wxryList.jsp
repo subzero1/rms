@@ -66,8 +66,8 @@
 				line
 			</li>
 				<li><a class="exportexcel"	
-				href="wxdw/wxdwList.do?toExcel=yes" 
-				target="dwzExport" targetType="navTab"><span>导入</span></a></li>
+				href="dispath.do?url=form/wxryImport.jsp?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 
+				target="dialog" width="400" height="247"><span>导入</span></a></li>
 				<li class="line">line</li>
 				<li><a class="exportexcel"	
 				href="wxdw/wxryToExcel.do?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 

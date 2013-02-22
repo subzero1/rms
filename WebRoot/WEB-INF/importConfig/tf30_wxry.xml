@@ -6,8 +6,8 @@
 		<startRow>1</startRow>
 		<endRow />
 		<endFlag />
-		<tableName />
-		<tableNameShow>TF30_WXRY</tableNameShow>
+		<tableName>Tf30_wxry</tableName>
+		<tableNameShow>Tf30_wxry</tableNameShow>
 		<fatherTables />
 		<columns><!--当前表字段信息-->
 			<type>byName</type>
@@ -41,13 +41,7 @@
 				<index />
 				<name>住址</name>
 				<colName>住址</colName>
-			</column> 
-			<column>
-				<columnName>WXDW_ID</columnName>
-				<index />
-				<name>外协单位</name>
-				<colName>外协单位</colName>
-			</column>
+			</column>  
 			<column>
 				<columnName>STATUS</columnName>
 				<index />

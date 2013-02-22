@@ -66,8 +66,8 @@ public class XMLTableWrite {
 		element.addElement("startRow").setText("1");
 		element.addElement("endRow");
 		element.addElement("endFlag");
-		element.addElement("tableName");
-		element.addElement("tableNameShow").setText(tableName.toUpperCase());
+		element.addElement("tableName").setText("T"+tableName.toLowerCase().substring(1));
+		element.addElement("tableNameShow");
 		element.addElement("fatherTables");
 
 		element = element.addElement("columns");
