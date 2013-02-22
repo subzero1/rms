@@ -70,7 +70,7 @@
 				target="dwzExport" targetType="navTab"><span>导入</span></a></li>
 				<li class="line">line</li>
 				<li><a class="exportexcel"	
-				href="wxdw/wxryToExcel.do?config=tf30_wxry" 
+				href="wxdw/wxryToExcel.do?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 
 				target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
 			</ul>

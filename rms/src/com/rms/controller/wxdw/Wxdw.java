@@ -2523,6 +2523,7 @@ public class Wxdw {
 	public ModelAndView wxryToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String webinfpath=request.getSession().getServletContext().getRealPath("WEB-INF");
 		String config=convertUtil.toString(request.getParameter("config"),"");
+		Integer wxdw_id=convertUtil.toInteger(request.getParameter("wxdw_id"));
 		List wxryDocList=null;//外协人员列表
 		List wxryColList=null;//外协人员需导出的字段
 		List wxryTitleList=null;//外协人员列表标题
@@ -2545,7 +2546,11 @@ public class Wxdw {
 			}
 			k++;
 		}
-		hql.append(" from Tf30_wxry wxry ");
+		hql.append(" from Tf30_wxry wxry ,Tf01_wxdw wxdw ");
+		hql.append("where wxry.wxdw_id=wxdw.id ");
+		hql.append("and wxdw.id=");
+		hql.append(wxdw_id);
+		hql.replace(hql.indexOf("wxry.wxdw_id"), hql.indexOf("wxry.wxdw_id")+12, "wxdw.mc");
 		wxryDocList=queryService.searchList(hql.toString());
 		
 		sheetList.add(wxryTitleList);

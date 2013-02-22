@@ -45,8 +45,8 @@
 			<column>
 				<columnName>WXDW_ID</columnName>
 				<index />
-				<name>外协单位id</name>
-				<colName>外协单位id</colName>
+				<name>外协单位</name>
+				<colName>外协单位</colName>
 			</column>
 			<column>
 				<columnName>STATUS</columnName>
