@@ -61,24 +61,6 @@
 				<colName>专业</colName>
 			</column>
 			<column>
-				<columnName>CONTRACT</columnName>
-				<index />
-				<name>是否签订劳动合同</name>
-				<colName>是否签订劳动合同</colName>
-			</column>
-			<column>
-				<columnName>INSURE</columnName>
-				<index />
-				<name>是否上保险</name>
-				<colName>是否上保险</colName>
-			</column>
-			<column>
-				<columnName>SAFETY</columnName>
-				<index />
-				<name>安全保护用品是否派发</name>
-				<colName>安全保护用品是否派发</colName>
-			</column>
-			<column>
 				<columnName>GYSZ</columnName>
 				<index />
 				<name>概预算证</name>
