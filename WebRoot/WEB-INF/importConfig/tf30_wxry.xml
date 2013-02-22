@@ -11,7 +11,7 @@
 		<fatherTables />
 		<columns><!--当前表字段信息-->
 			<type>byName</type>
-			<titleRow>0</titleRow>
+			<titleRow>0</titleRow> 
 			<column>
 				<columnName>NAME</columnName>
 				<index />
@@ -41,6 +41,12 @@
 				<index />
 				<name>住址</name>
 				<colName>住址</colName>
+			</column> 
+			<column>
+				<columnName>WXDW_ID</columnName>
+				<index />
+				<name>外协单位id</name>
+				<colName>外协单位id</colName>
 			</column>
 			<column>
 				<columnName>STATUS</columnName>
