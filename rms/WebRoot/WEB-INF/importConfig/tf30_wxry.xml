@@ -13,12 +13,6 @@
 			<type>byName</type>
 			<titleRow>0</titleRow>
 			<column>
-				<columnName>ID</columnName>
-				<index />
-				<name>标识</name>
-				<colName>标识</colName>
-			</column>
-			<column>
 				<columnName>NAME</columnName>
 				<index />
 				<name>姓名</name>
@@ -47,24 +41,6 @@
 				<index />
 				<name>住址</name>
 				<colName>住址</colName>
-			</column>
-			<column>
-				<columnName>IMG</columnName>
-				<index />
-				<name>图片url</name>
-				<colName>图片url</colName>
-			</column>
-			<column>
-				<columnName>BZ</columnName>
-				<index />
-				<name>备注</name>
-				<colName>备注</colName>
-			</column>
-			<column>
-				<columnName>WXDW_ID</columnName>
-				<index />
-				<name>外协单位id</name>
-				<colName>外协单位id</colName>
 			</column>
 			<column>
 				<columnName>STATUS</columnName>
@@ -131,6 +107,12 @@
 				<index />
 				<name>电工证</name>
 				<colName>电工证</colName>
+			</column>
+			<column>
+				<columnName>BZ</columnName>
+				<index />
+				<name>备注</name>
+				<colName>备注</colName>
 			</column>
 		</columns>
 	</tableInfo>
