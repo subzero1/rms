@@ -2546,11 +2546,9 @@ public class Wxdw {
 			}
 			k++;
 		}
-		hql.append(" from Tf30_wxry wxry ,Tf01_wxdw wxdw ");
-		hql.append("where wxry.wxdw_id=wxdw.id ");
-		hql.append("and wxdw.id=");
+		hql.append(" from Tf30_wxry wxry "); 
+		hql.append("where wxry.wxdw_id=");
 		hql.append(wxdw_id);
-		hql.replace(hql.indexOf("wxry.wxdw_id"), hql.indexOf("wxry.wxdw_id")+12, "wxdw.mc");
 		wxryDocList=queryService.searchList(hql.toString());
 		
 		sheetList.add(wxryTitleList);
