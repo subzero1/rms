@@ -2674,4 +2674,11 @@ public class Wxdw {
 		out.print(jo.toString());
 		
 	}
+	
+	@RequestMapping("/wxdw/wxryInExcel.do")
+	public ModelAndView wxryInExcel(HttpServletRequest request,HttpServletResponse response) {
+		String view="";
+		
+		return new ModelAndView(view); 
+	}
 }
