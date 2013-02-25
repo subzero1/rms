@@ -19,6 +19,7 @@ import org.dom4j.io.SAXReader;
 public class ConfigXMLImpl implements ConfigXML {
 	private static String CONFIG_FILE = "/importConfig/import.xml";
 
+	@SuppressWarnings("unchecked")
 	private List g_elementList = null;
 
 	/**
@@ -26,6 +27,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * (non-Javadoc)
 	 * @see com.rms.base.util.ConfigXML#getConfigFilePath(java.lang.String, java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public String getConfigFilePath(String config, String webinfpath)
 			throws Exception {
 		/**
@@ -56,6 +58,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * @see com.rms.base.util.ConfigXML#getConfigFilePath(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
+	@SuppressWarnings({ "unchecked", "static-access" })
 	public String getConfigFilePath(String config, String webinfpath,
 			String importXML) throws Exception {
 		/**
@@ -88,6 +91,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * @see com.rms.base.util.ConfigXML#getTagList(java.lang.String,
 	 *      java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public List getTagList(String configFilePath, String webinfpath)
 			throws Exception {
 		List list = new LinkedList();
@@ -100,6 +104,7 @@ public class ConfigXMLImpl implements ConfigXML {
 		Element root = doc.getRootElement();
 		Element foo;
 		Iterator i;
+		@SuppressWarnings("unused")
 		Iterator j;
 		for (i = root.elementIterator("tableInfo"); i.hasNext();) {
 			foo = (Element) i.next();
@@ -118,6 +123,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * @see com.rms.base.util.ConfigXML#getTagList(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public List getTagList(String configFilePath, String webinfpath,
 			String tagName) throws Exception {
 		List list = new LinkedList();
@@ -130,6 +136,7 @@ public class ConfigXMLImpl implements ConfigXML {
 		Element root = doc.getRootElement();
 		Element foo;
 		Iterator i;
+		@SuppressWarnings("unused")
 		Iterator j;
 		for (i = root.elementIterator("tableInfo"); i.hasNext();) {
 			foo = (Element) i.next();
@@ -148,6 +155,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * @see com.rms.base.util.ConfigXML#getTagListByConfig(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public List getTagListByConfig(String config, String webinfpath,
 			String tagName) throws Exception {
 		List list = new LinkedList();
@@ -161,6 +169,7 @@ public class ConfigXMLImpl implements ConfigXML {
 		Element root = doc.getRootElement();
 		Element foo;
 		Iterator i;
+		@SuppressWarnings("unused")
 		Iterator j;
 		for (i = root.elementIterator("tableInfo"); i.hasNext();) {
 			foo = (Element) i.next();
@@ -179,6 +188,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * (non-Javadoc)
 	 * @see com.rms.base.util.ConfigXML#getElementsByName(java.lang.String, java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public List getElementsByName(String XMLPath, String tagName)
 			throws Exception {
 		this.g_elementList = new LinkedList();
@@ -198,6 +208,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * @param e
 	 * @param tagName void
 	 */
+	@SuppressWarnings("unchecked")
 	private void findElementsByName(Element e, String tagName) {
 		List elements=e.elements();
 		if(elements.size()==0&&e.getName().equals(tagName)){
