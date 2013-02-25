@@ -23,6 +23,15 @@
 	function all_company(){
 	   	 $.pdialog.closeCurrent();
 		 $.pdialog.open('sgpd/sgpfCompany.do','sgdw','施工单位',{width:700,height:380});
+	} 
+	function bringPgsp(param0,param1,param2,param3){
+		alert("sfsfsfsfsfsfsf");
+		var url="form/pgsp.do?";
+		url+="sys_wxdw_id="+param0;
+		url+="&man_wxdw_id="+param1;
+		url+="&project_id="+param2;
+		url+="&module_id="+param3;
+		navTab.openTab('pgsp', url, {title:'手动选派原因'});
 	}
 </script>
 
@@ -60,15 +69,15 @@
 		<tbody>
 			<c:forEach items="${allList }" var="o">
 			<tr>
-				<td title="${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if>" style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if></td>
+				<td title="${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if>" style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>" >${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[3] }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0" value="${o[2] }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[6]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[9] }</td>
-				<td>
-						<a class="btnSelect" href="javascript:bringBack('${o[0].mc }')" title="查找带回">
+				<td <c:if test="${o[0].mc != zdxp.mc}"> onclick="bringPgsp('${zdxp}'  ,'${o[0].id }','${param.project_id }','101')" </c:if>>
+						<a class="btnSelect" href="javascript:bringBack('${o[0].mc }')" title="查找带回"></a>
 				</td>
 			</tr>
 			</c:forEach>

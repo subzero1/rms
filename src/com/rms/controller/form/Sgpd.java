@@ -344,6 +344,7 @@ public class Sgpd {
 			result = (Tf01_wxdw) objectsList.get(0)[0];
 		}
 		modelMap.put("zdxp", result);
+		modelMap.put("project_id", xm_id);
 		return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp", modelMap);
 	}
 
