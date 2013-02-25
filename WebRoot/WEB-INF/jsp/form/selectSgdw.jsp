@@ -25,11 +25,14 @@
 		 $.pdialog.open('sgpd/sgpfCompany.do','sgdw','施工单位',{width:700,height:380});
 	} 
 	function bringPgsp(param0,param1,param2,param3){
+		
 		var url="form/pgsp.do?";
 		url+="sys_wxdw_id="+param0;
 		url+="&man_wxdw_id="+param1;
 		url+="&project_id="+param2;
 		url+="&module_id="+param3;
+		alert(url);
+		$.pdialog.closeCurrent();
 		navTab.openTab('pgsp', url, {title:'手动选派原因'});
 	}
 </script>
@@ -75,7 +78,7 @@
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[9] }</td>
-				<td <c:if test="${o[0].mc != zdxp.mc}"> onclick="bringPgsp('${zdxp}'  ,'${o[0].id }','${param.project_id }','101')" </c:if>>
+				<td <c:if test="${o[0].mc != zdxp.mc}"> onclick="bringPgsp('${zdxp.id}'  ,'${o[0].id }','${project_id }','112')" </c:if>>
 						<a class="btnSelect" href="javascript:bringBack('${o[0].mc }')" title="查找带回"></a>
 				</td>
 			</tr>
