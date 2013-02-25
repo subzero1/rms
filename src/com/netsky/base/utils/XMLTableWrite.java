@@ -160,9 +160,7 @@ public class XMLTableWrite {
 		Statement st = null;
 		st = this.getConnection().createStatement();
 		return st;
-	}
-	
-	
+	} 
 
 	public String getPath() {
 		return path;
