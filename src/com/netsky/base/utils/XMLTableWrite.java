@@ -28,6 +28,7 @@ import org.dom4j.io.XMLWriter;
  */
 public class XMLTableWrite {
 
+	@SuppressWarnings("unchecked")
 	private List datas;
 	
 	private String path;
@@ -102,6 +103,7 @@ public class XMLTableWrite {
 	 *             List
 	 * @throws SQLException
 	 */
+	@SuppressWarnings("unchecked")
 	private List getDatas(String tableName) throws ClassNotFoundException,
 			SQLException {
 		StringBuffer hql = new StringBuffer();
@@ -172,7 +174,7 @@ public class XMLTableWrite {
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, SQLException {
-		XMLTableWrite xTableWrite = new XMLTableWrite();
-		xTableWrite.autoGenerateTableXML("Tf30_wxry");
+		//XMLTableWrite xTableWrite = new XMLTableWrite();
+		//xTableWrite.autoGenerateTableXML("Tf30_wxry");
 	}
 }
