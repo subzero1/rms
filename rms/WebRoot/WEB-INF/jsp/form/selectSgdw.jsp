@@ -25,7 +25,6 @@
 		 $.pdialog.open('sgpd/sgpfCompany.do','sgdw','施工单位',{width:700,height:380});
 	} 
 	function bringPgsp(param0,param1,param2,param3){
-		alert("sfsfsfsfsfsfsf");
 		var url="form/pgsp.do?";
 		url+="sys_wxdw_id="+param0;
 		url+="&man_wxdw_id="+param1;
