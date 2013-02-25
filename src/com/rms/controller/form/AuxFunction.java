@@ -1046,7 +1046,7 @@ public class AuxFunction {
 		}
 
 		sql.delete(0, sql.length());
-		sql.append("select id from td08_pgspd ");
+		sql.append("select id from Td08_pgspd ");
 		sql.append("where project_id = ");
 		sql.append(project_id);
 		sql.append(" and sp_flag is null ");
@@ -1058,7 +1058,7 @@ public class AuxFunction {
 			return new ModelAndView("openForm.do?project_id="+project_id+"&module_id="+module_id+"&doc_id="+(Long)(list.get(0))+"&opernode_id=-1&node_id="+module_id+"01&user_id="+user_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
 		}
 		else{
-			return new ModelAndView("flowForm.do?node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
+			return new ModelAndView("../flowForm.do?node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
 		}
 	}
 }
