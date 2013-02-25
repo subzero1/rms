@@ -53,7 +53,6 @@
 	</div>
 </div>
 <div class="pageContent">
-
 	<table class="table" layoutH="118" targettype="dialog" width="100%">
 		
 		<thead>
