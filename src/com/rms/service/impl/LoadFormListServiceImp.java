@@ -75,6 +75,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 		Long doc_id = null;
 		Long node_id = null;
 		Long user_id = null;
+		String user_name = null;
 		Long flow_id = null;
 		List<?> tmpList = null;
 		Long cur_nd = new Long(DateGetUtil.getYear());
@@ -102,6 +103,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					.get("year"), "-1");
 			String cansave = StringFormatUtil.format((String) paraMap
 					.get("cansave"), "no");
+			Ta03_user user=(Ta03_user) session.getAttribute("user");
 
 			module_id = convertUtil.toLong(t_module_id);
 			project_id = convertUtil.toLong(t_project_id);
@@ -1020,7 +1022,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			//资源确认单
 			if (module_id==110 || module_id == 111) {
 				hsql.delete(0, hsql.length());
-				Ta03_user user=(Ta03_user) session.getAttribute("user");
 				hsql.append("select l from Tf31_zytl l ");
 				hsql.append("where l.ssdw='"); 
 				hsql.append(user.getDept_name());
@@ -1029,7 +1030,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				request.setAttribute("objList", tlrList);
 			}
 			
-			//资源确认单
+			//派工审批单
 			if (module_id==112 || module_id == 113) {
 				String sys_wxdw_name = null;
 				String man_wxdw_name = null;
@@ -1041,9 +1042,18 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("sys_wxdw_name", sys_wxdw_name);
 				}
 				Tf01_wxdw man_tf01 = (Tf01_wxdw)queryService.searchById(Tf01_wxdw.class, man_wxdw_id);
-				if(sys_tf01 != null){
+				if(man_tf01 != null){
 					man_wxdw_name = convertUtil.toString(man_tf01.getMc());
 					request.setAttribute("man_wxdw_name", man_wxdw_name);
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("from Td08_pgspd where sp_flag is not null and ck_flag is null and cjr = '");
+				hsql.append(user.getName());
+				hsql.append("'");
+				List list = queryService.searchList(hsql.toString());
+				if(list != null && list.size() > 0){
+					dao.update("update Td08_pgspd set ck_flag = 1 where id = "+doc_id);
 				}
 			}
 			
