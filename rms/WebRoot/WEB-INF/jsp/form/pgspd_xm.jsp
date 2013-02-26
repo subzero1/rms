@@ -7,6 +7,7 @@
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="pgspd.xml"/>
 <input type="hidden" name="Td08_pgspd.ID" value="${param.doc_id}">
+<input type="hidden" name="Td08_pgspd.PROJECT_ID" value="${param.project_id}">
 
 <div class="pageFormContent">
 	<p>
@@ -42,12 +43,12 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label> 系统选择单位：</label>
-		<input class="required" type="text" name="Td08_pgspd.XMMC" style="width:630px;" value="${td08_pgspd.xtxzdw}" />
+		<input class="required" type="text" readOnly name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
 	</p>
 	<div class="divider"></div>
 	<p>
 		<label> 实际选择单位：</label>
-		<input class="required" type="text" name="Td08_pgspd.XMMC" style="width:630px;" value="${td08_pgspd.sjxzdw}" />
+		<input class="required" type="text" name="Td08_pgspd.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
 	</p>
 	<div class="divider"></div>
 	<p>

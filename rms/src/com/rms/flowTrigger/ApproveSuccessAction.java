@@ -7,6 +7,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Tb15_docflow;
+import com.rms.dataObjects.form.Td08_pgspd;
 
 /**
  * 概预算接口
@@ -73,6 +74,26 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 						Long opernode_id = tb15.getOpernode_id();
 						saveService.updateByHSql("update Tb15_docflow set doc_status = 0 where id = "+tb15_id);
 						saveService.updateByHSql("update Tb12_opernode set node_status = 0 where id = "+opernode_id);
+					}
+				}
+				
+				/**
+				 * 派工审批单审结同意
+				 */
+				if((module_id == 112 || module_id == 113) && node_name.indexOf("派工审核") != -1){
+				
+					ro = queryService.search("select sjxzdw,sdxpyy from Td08_pgspd where id = "+doc_id+" and  project_id = "+project_id); 
+					if(ro.next()){
+						Td08_pgspd td08 = (Td08_pgspd)ro.get("td08");
+						String sjxzdw = td08.getSjxzdw();
+						String sdxpyy = td08.getSdxpyy();
+						if(module_id == 112){
+							saveService.updateByHSql("update Td01_xmxx set sgdw = '"+sjxzdw+"',sdxpyy = '"+sdxpyy+"' where id = "+project_id);
+						}
+						else{
+							saveService.updateByHSql("update Td00_gcxx set sgdw = '"+sjxzdw+"',sdxpyy = '"+sdxpyy+"' where id = "+project_id);
+						}
+						saveService.updateByHSql("update Td08_pgspd set sp_flag=1 where id = "+doc_id+" and project_id="+project_id);
 					}
 				}
 			}
