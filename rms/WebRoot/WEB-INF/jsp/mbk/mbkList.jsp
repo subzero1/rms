@@ -42,7 +42,7 @@ function searchListExport(){
 						<td>地区：<netsky:htmlSelect name="ssdq" id="ssdq" objectForOption="dqList" valueForOption="" showForOption="" value="${param.ssdq}" extend="" extendPrefix="true" /></td>
 						<td>类别：<netsky:htmlSelect name="lb" id="lb" objectForOption="lbList" valueForOption="" showForOption="" value="${param.lb}" extend=""  extendPrefix="true" /></td>
 						<td>状态：<netsky:htmlSelect name="zt" id="zt" objectForOption="ztList" valueForOption="" showForOption="" value="${param.zt}" extend="" extendPrefix="true" /></td>
-						<td>资源名称：<input id="zymc" name="zymc" value="${param.zymc}" type="text" size="25" /></td>
+						<td>资源名称或编号：<input id="zymc" name="zymc" value="${param.zymc}" type="text" size="25" /></td>
 					</tr>
 				</table>
 				<div class="subBar">
@@ -83,6 +83,7 @@ function searchListExport(){
 			<thead>
 				<tr>
 					<th style="width:70px;"></th>
+					<th orderField="zybh" style="width: 90px;">资源编号</th>
 					<th orderField="zymc">资源名称</th>
 					<th orderField="ssdq">地区</th>
 					<th style="width: 120px;" orderField="jsxz">建设性质</th>
@@ -104,6 +105,7 @@ function searchListExport(){
 								<a class="add" href="jlgt/jlgtView.do?module_id=90&doc_id=${obj[0].id }" target="navTab" rel="jlgtView"><img border="0" src="Images/track_record.png" style="cursor:pointer"/></a>
 							</c:if>		
 						</td>
+						<td><a href="mbk/mbkEdit.do?id=${obj[0].id}&listType=${obj[1].listType }" target="navTab" rel="mbk" title="目标库信息">${obj[0].zybh }</a></td>
 						<td><a href="mbk/mbkEdit.do?id=${obj[0].id}&listType=${obj[1].listType }" target="navTab" rel="mbk" title="目标库信息">${obj[0].zymc }</a></td>
 						<td>${obj[0].ssdq }&nbsp;</td>
 						<td>${obj[0].jsxz }</td>
@@ -116,6 +118,7 @@ function searchListExport(){
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>

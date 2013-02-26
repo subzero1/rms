@@ -110,11 +110,11 @@ public class Mbk {
 		Integer numPerPage = convertUtil.toInteger(request
 				.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request
-				.getParameter("orderField"), "cjsj");
+				.getParameter("orderField"), "id");
 		String listType = convertUtil
 				.toString(request.getParameter("listType"));
 		if (orderField.equals("")) {
-			orderField = "cjsj";
+			orderField = "id";
 		}
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "desc");
@@ -176,7 +176,7 @@ public class Mbk {
 		}
 		// 资源名称
 		if (!zymc.equals("")) {
-			hsql.append(" and zymc like '%" + zymc + "%'");
+			hsql.append(" and (zymc like '%" + zymc + "%' or zybh like '%"+zymc+"%')");
 		}
 
 		/*
@@ -746,7 +746,7 @@ public class Mbk {
 				td21.setTdr(user.getName());
 				td21.setTdr_id(user.getId());
 				td21.setTdrdh(user.getMobile_tel());
-				td21.setTdbm(dept.getName());
+				td21.setTdbm(user.getDept_name());
 				td21.setZypfsj(now);
 				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
 				td22.setSm(user.getName() + "开始谈点");
