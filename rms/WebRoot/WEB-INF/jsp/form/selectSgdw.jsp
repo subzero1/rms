@@ -18,8 +18,7 @@
 			$.bringBack({'SGDW':sgdw, 'SDPGYY':sdpgyy});
 	} 
 	function all_company(param0,param1,param2){
-	   	 $.pdialog.closeCurrent();
-	   	 alert(param0);
+	   	 $.pdialog.closeCurrent(); 
 		 $.pdialog.open('sgpd/sgpfCompany.do?sys_wxdw_id='+param0
 		 +'&project_id='+param1+"&module_id="+param2,
 		 'sgdw','施工单位',{width:700,height:380});

@@ -439,10 +439,10 @@ public class Sgpd {
 				.getParameter("searchStr"));
 		String names = convertUtil.toString(request.getParameter("names"));
 		String ids = convertUtil.toString(request.getParameter("ids"));
-		String xm_id = convertUtil.toString(request.getParameter("xm_id"));
+		Integer xm_id = convertUtil.toInteger(request.getParameter("xm_id"));
 		String reasonflag=convertUtil.toString(request.getParameter("reasonflag"));
 		Integer sys_wxdw_id=convertUtil.toInteger(request.getParameter("sys_wxdw_id"));
-		Integer project_id=convertUtil.toInteger(request.getParameter("project_id"));
+		Integer project_id=convertUtil.toInteger(request.getParameter("project_id"),xm_id);
 		Integer module_id=convertUtil.toInteger(request.getParameter("module_id"));
 		
 		List objList = new LinkedList();
