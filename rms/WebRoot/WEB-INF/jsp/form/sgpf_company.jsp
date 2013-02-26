@@ -87,7 +87,7 @@
 			<c:set var ="offset" value="${offset+1}"/> 
 			<tr>
 				<td>${obj[1]}</td> 
-				<td <c:if test="${!empty param.sys_wxdw_id  }"> onclick="bringPgsp('${param.sys_wxdw_id }','${obj[0]}','${param.project_id }','${param.module_id }')"</c:if>>
+				<td  onclick="bringPgsp('${param.sys_wxdw_id }','${obj[0]}','${param.project_id }','${param.module_id }')">
 						<a class="btnSelect" href="javascript:add('${obj[0] }','${obj[1] }')" title="查找带回">
 				</td>
 			</tr> 
