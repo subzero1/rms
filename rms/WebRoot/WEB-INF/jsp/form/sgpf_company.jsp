@@ -29,6 +29,17 @@
 		}
 		
 	});
+	
+	
+	function bringPgsp(param0,param1,param2,param3){
+		var url="form/pgsp.do?";
+		url+="sys_wxdw_id="+param0;
+		url+="&man_wxdw_id="+param1;
+		url+="&project_id="+param2;
+		url+="&module_id="+param3; 
+		$.pdialog.closeCurrent();
+		navTab.openTab('pgsp', url, {title:'手动选派原因'});
+	}
 </script>
 
 <form id="pagerForm" action="">
@@ -52,11 +63,7 @@
 				<input class="textInput" name="searchStr" style="width:200px;" value="${param.searchStr }" type="text"/>
 			</li>  
 		</ul>
-		<div class="subBar">
-		<div style="float:left">
-				<label>手动选派原因:</label>
-				<input class="textInput" name="reasons" id="reasons" style="width:400px;"  value="${param.reason }" type="text"/>
-		</div>
+		<div class="subBar"> 
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
 			</ul>
@@ -80,7 +87,7 @@
 			<c:set var ="offset" value="${offset+1}"/> 
 			<tr>
 				<td>${obj[1]}</td> 
-				<td>
+				<td <c:if test="${!empty param.sys_wxdw_id  }"> onclick="bringPgsp('${param.sys_wxdw_id }','${obj[0]}','${param.project_id }','${param.module_id }')"</c:if>>
 						<a class="btnSelect" href="javascript:add('${obj[0] }','${obj[1] }')" title="查找带回">
 				</td>
 			</tr> 

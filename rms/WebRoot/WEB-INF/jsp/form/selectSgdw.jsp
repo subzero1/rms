@@ -9,29 +9,27 @@
 		} else if ("${param.errormsg}"=="tfnotfound"){
 			alertMsg.info("未找到符合的施工单位！");
 		}
-	});
+	}); 
 	function bringBack(sgdw){
 			var sdpgyy = $("#sdpgyy",$.pdialog.getCurrent()).val();
 			if (sgdw == "${zdxp.mc}"){
 				sdpgyy = "";
-			} else if (sdpgyy == ""){
-				alertMsg.info("请填写手动选派原因！");
-				return;
-			}
+			} 
 			$.bringBack({'SGDW':sgdw, 'SDPGYY':sdpgyy});
-	}
-	function all_company(){
+	} 
+	function all_company(param0,param1,param2){
 	   	 $.pdialog.closeCurrent();
-		 $.pdialog.open('sgpd/sgpfCompany.do','sgdw','施工单位',{width:700,height:380});
+	   	 alert(param0);
+		 $.pdialog.open('sgpd/sgpfCompany.do?sys_wxdw_id='+param0
+		 +'&project_id='+param1+"&module_id="+param2,
+		 'sgdw','施工单位',{width:700,height:380});
 	} 
 	function bringPgsp(param0,param1,param2,param3){
-		
 		var url="form/pgsp.do?";
 		url+="sys_wxdw_id="+param0;
 		url+="&man_wxdw_id="+param1;
 		url+="&project_id="+param2;
-		url+="&module_id="+param3;
-		alert(url);
+		url+="&module_id="+param3; 
 		$.pdialog.closeCurrent();
 		navTab.openTab('pgsp', url, {title:'手动选派原因'});
 	}
@@ -39,14 +37,11 @@
 
 <div class="pageHeader">
 	<div class="searchBar">
-		<table class="searchContent">
-			<tr>
-				<td>手动选派原因：<input class="textInput" id="sdpgyy" name="name" value="" type="text" style="width:500px;"/></td>
-			</tr>
+		<table class="searchContent"> 
 		</table>
 		<div class="subBar">
 			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="all_company()">所 有</button></div></div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="all_company('${zdxp.id}','${project_id }','112')">所 有</button></div></div></li>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查 询</button></div></div></li>
 			</ul>
 		</div>

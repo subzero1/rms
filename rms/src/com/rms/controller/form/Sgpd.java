@@ -441,6 +441,10 @@ public class Sgpd {
 		String ids = convertUtil.toString(request.getParameter("ids"));
 		String xm_id = convertUtil.toString(request.getParameter("xm_id"));
 		String reasonflag=convertUtil.toString(request.getParameter("reasonflag"));
+		Integer sys_wxdw_id=convertUtil.toInteger(request.getParameter("sys_wxdw_id"));
+		Integer project_id=convertUtil.toInteger(request.getParameter("project_id"));
+		Integer module_id=convertUtil.toInteger(request.getParameter("module_id"));
+		
 		List objList = new LinkedList();
 		StringBuffer hql = new StringBuffer();
 		hql.append("select w.id,w.mc from Tf01_wxdw w where 1=1 ");
@@ -470,6 +474,10 @@ public class Sgpd {
 		modelMap.put("names", names);
 		modelMap.put("ids", ids);
 		modelMap.put("reasonflag", reasonflag);
+		modelMap.put("sys_wxdw_id", sys_wxdw_id);
+		modelMap.put("project_id", project_id);
+		modelMap.put("module_id", module_id);
+		
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("orderField", orderField);
