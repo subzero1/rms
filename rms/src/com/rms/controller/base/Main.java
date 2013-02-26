@@ -26,7 +26,11 @@ import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.rms.dataObjects.form.Td08_pgspd;
+import com.rms.dataObjects.form.Td00_gcxx;
+import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta09_menu;
 import com.netsky.base.dataObjects.Ta21_user_ext;
 import com.netsky.base.dataObjects.Ta22_user_idea;
@@ -80,7 +84,7 @@ public class Main {
 	 * @return ModelAndView
 	 */
 	@RequestMapping("/main.do")
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Map menuListMap = new HashMap();
 		Ta03_user user=(Ta03_user)session.getAttribute("user");
@@ -393,7 +397,7 @@ public class Main {
 	/*
 	 * 获得需要提醒列表
 	 */
-	private String getRemindList(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+	private String getRemindList(HttpServletRequest request, HttpServletResponse response, HttpSession session)throws Exception{
 		
 		Ta03_user user = (Ta03_user)session.getAttribute("user");
 		if(user == null){
@@ -402,7 +406,9 @@ public class Main {
 		String remindContent = "";
 		String login_id = convertUtil.toString(user.getLogin_id());
 		String dept_name = convertUtil.toString(user.getDept_name());
+		String user_name = convertUtil.toString(user.getName());
 		String zys = convertUtil.toString(user.getZys());
+		StringBuffer hsql = new StringBuffer("");
 		
 		/*
 		 * 设计单位
@@ -443,6 +449,36 @@ public class Main {
 				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'form/xmxxListForNeed.do\\',{title:\\'项目信息\\'})\">您收到（"+t_list.size()+"）个新项目</a></li>";
 			}
 		}
+		else{
+			hsql.delete(0, hsql.length());
+			hsql.append("select td08,td00 from Td08_pgspd td08,Td00_gcxx td00 ");
+			hsql.append("where td00.id = td08.project_id ");
+			hsql.append("and td08.sp_flag is not null and td08.ck_flag is null and td08.cjr = '"+user_name+"'");
+			ResultObject ro = queryService.search(hsql.toString());
+			while(ro.next()){
+				Td08_pgspd td08 = (Td08_pgspd)ro.get("td08");
+				Td00_gcxx td00 = (Td00_gcxx)ro.get("td00");
+				Long doc_id = (Long)PropertyInject.getProperty(td08, "id");
+				Long project_id = (Long)PropertyInject.getProperty(td08, "project_id");
+				String gcmc = td00.getGcmc();
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'openForm.do?project_id="+project_id+"&module_id=113&doc_id="+doc_id+"&opernode_id=-1&node_id=11301\\',{title:\\'派工审批单\\'})\">《"+gcmc+"》派工已审批</a></li>";
+			}
+			
+			hsql.delete(0, hsql.length());
+			hsql.append("select td08,td01 from Td08_pgspd td08,Td01_xmxx td01 ");
+			hsql.append("where td01.id = td08.project_id ");
+			hsql.append("and td08.sp_flag is not null and td08.ck_flag is null and td08.cjr = '"+user_name+"'");
+			ro = queryService.search(hsql.toString());
+			while(ro.next()){
+				Td08_pgspd td08 = (Td08_pgspd)ro.get("td08");
+				Td01_xmxx td01 = (Td01_xmxx)ro.get("td01");
+				Long doc_id = (Long)PropertyInject.getProperty(td08, "id");
+				Long project_id = (Long)PropertyInject.getProperty(td08, "project_id");
+				String xmmc = td01.getXmmc();
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'openForm.do?project_id="+project_id+"&module_id=112&doc_id="+doc_id+"&opernode_id=-1&node_id=11201\\',{title:\\'派工审批单\\'})\">《"+xmmc+"》派工已审批</a></li>";
+			}
+		}
+		
 		return remindContent;
 	}
 }
