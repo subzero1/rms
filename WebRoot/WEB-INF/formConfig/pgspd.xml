@@ -12,7 +12,7 @@
 			<property>
 				<type>table</type>
 				<tableName>Td08_pgspd</tableName>
-				<column>id</column>
+				<column>project_id</column>
 				<name>project_id</name>
 			</property>
 			<property>
@@ -61,7 +61,7 @@
 				<property>
 					<type>table</type>
 					<tableName>Td08_pgspd</tableName>
-					<column>id</column>
+					<column>project_id</column>
 				</property>
 				<property>
 					<type>table</type>

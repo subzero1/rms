@@ -1055,10 +1055,10 @@ public class AuxFunction {
 		sql.append("' order by id desc ");
 		List list = queryService.searchList(sql.toString());
 		if(list != null && list.size() > 0){
-			return new ModelAndView("openForm.do?project_id="+project_id+"&module_id="+module_id+"&doc_id="+(Long)(list.get(0))+"&opernode_id=-1&node_id="+module_id+"01&user_id="+user_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
+			return new ModelAndView("../openForm.do?project_id="+project_id+"&module_id="+module_id+"&doc_id="+(Long)(list.get(0))+"&opernode_id=-1&node_id="+module_id+"01&user_id="+user_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
 		}
 		else{
-			return new ModelAndView("../flowForm.do?node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
+			return new ModelAndView("../flowForm.do?user_id="+user_id+"&node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
 		}
 	}
 }

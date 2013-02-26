@@ -1018,7 +1018,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			}
 			
 			//资源确认单
-			if (module_id==110) {
+			if (module_id==110 || module_id == 111) {
 				hsql.delete(0, hsql.length());
 				Ta03_user user=(Ta03_user) session.getAttribute("user");
 				hsql.append("select l from Tf31_zytl l ");
@@ -1027,6 +1027,24 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				hsql.append("'");
 				List tlrList=queryService.searchList(hsql.toString());
 				request.setAttribute("objList", tlrList);
+			}
+			
+			//资源确认单
+			if (module_id==112 || module_id == 113) {
+				String sys_wxdw_name = null;
+				String man_wxdw_name = null;
+				Long sys_wxdw_id = convertUtil.toLong(request.getParameter("sys_wxdw_id"));
+				Long man_wxdw_id = convertUtil.toLong(request.getParameter("man_wxdw_id"));
+				Tf01_wxdw sys_tf01 = (Tf01_wxdw)queryService.searchById(Tf01_wxdw.class, sys_wxdw_id);
+				if(sys_tf01 != null){
+					sys_wxdw_name = convertUtil.toString(sys_tf01.getMc());
+					request.setAttribute("sys_wxdw_name", sys_wxdw_name);
+				}
+				Tf01_wxdw man_tf01 = (Tf01_wxdw)queryService.searchById(Tf01_wxdw.class, man_wxdw_id);
+				if(sys_tf01 != null){
+					man_wxdw_name = convertUtil.toString(man_tf01.getMc());
+					request.setAttribute("man_wxdw_name", man_wxdw_name);
+				}
 			}
 			
 			if (v_slave.size() > 0) {
