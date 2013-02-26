@@ -445,7 +445,7 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="Td21_mbk.CJRDH" value="<c:out value="${Td21_mbk.cjrdh }" default="${user.mobile_tel }"/>"/>
 			<input type="hidden" name="Td21_mbk.XQS_ID" value="${Td21_mbk.xqs_id }"/>
 			<c:if test="${not empty rolesMap['20102']}">
-				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.ZYMC,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ"/>
+				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.ZYMC,Td21_mbk.SSWG,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ"/>
 			</c:if>
 			<c:if test="${empty Td21_mbk.cjsj}">
 				<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
@@ -564,11 +564,8 @@ $("#jsxz").change(function(){
 					<input class="digits" type="text" name="Td21_mbk.TDZQ" id="Td21_mbk.TDZQ" style="width:150px;" value="<c:out value="${Td21_mbk.tdzq}" default="30"/>"/>
 				</p>
 				<p>
-					<label>是否共建：</label>
-					<input type="radio" name="Td21_mbk.SFGJ" <c:if test="${Td21_mbk.sfgj == '是' || empty Td21_mbk.sfgj }">checked="checked"</c:if> value="是" />
-					是
-					<input type="radio" name="Td21_mbk.SFGJ" <c:if test="${Td21_mbk.sfgj == '否' }">checked="checked"</c:if> value="否"/>
-					<span style="margin-right:74px;">否</span>
+					<label>共建情况：</label>
+					<input type="text"  name="Td21_mbk.SFGJ" style="width:120px;" value="${Td21_mbk.sfgj}"/>
 				</p>
 				
 				<div style="height:0px;"></div>
