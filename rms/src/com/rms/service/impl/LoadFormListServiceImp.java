@@ -1050,7 +1050,8 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				hsql.delete(0, hsql.length());
 				hsql.append("from Td08_pgspd where sp_flag is not null and ck_flag is null and cjr = '");
 				hsql.append(user.getName());
-				hsql.append("'");
+				hsql.append("' and id = ");
+				hsql.append(doc_id);
 				List list = queryService.searchList(hsql.toString());
 				if(list != null && list.size() > 0){
 					dao.update("update Td08_pgspd set ck_flag = 1 where id = "+doc_id);
