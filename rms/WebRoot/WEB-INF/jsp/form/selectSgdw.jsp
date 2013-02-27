@@ -40,8 +40,7 @@
 		</table>
 		<div class="subBar">
 			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="all_company('${zdxp.id}','${project_id }','112')">所 有</button></div></div></li>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查 询</button></div></div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="all_company('${zdxp.id}','${project_id }','112')">所有单位</button></div></div></li>
 			</ul>
 		</div>
 	</div>
