@@ -61,6 +61,9 @@
 			<li>
 				<label>单位名称:</label>
 				<input class="textInput" name="searchStr" style="width:200px;" value="${param.searchStr }" type="text"/>
+				<input type="text" name="project_id" value="${project_id }"/>
+				<input type="text" name="sys_wxdw_id" value="${sys_wxdw_id }"/>
+				<input type="text" name="module_id" value="112"/>
 			</li>  
 		</ul>
 		<div class="subBar"> 
