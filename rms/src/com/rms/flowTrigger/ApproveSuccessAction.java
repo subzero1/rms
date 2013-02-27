@@ -82,16 +82,16 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 				 */
 				if((module_id == 112 || module_id == 113) && node_name.indexOf("派工审核") != -1){
 				
-					ro = queryService.search("select sjxzdw,sdxpyy from Td08_pgspd where id = "+doc_id+" and  project_id = "+project_id); 
+					ro = queryService.search("select td08 from Td08_pgspd td08 where id = "+doc_id+" and  project_id = "+project_id); 
 					if(ro.next()){
 						Td08_pgspd td08 = (Td08_pgspd)ro.get("td08");
 						String sjxzdw = td08.getSjxzdw();
 						String sdxpyy = td08.getSdxpyy();
 						if(module_id == 112){
-							saveService.updateByHSql("update Td01_xmxx set sgdw = '"+sjxzdw+"',sdxpyy = '"+sdxpyy+"' where id = "+project_id);
+							saveService.updateByHSql("update Td01_xmxx set sgdw = '"+sjxzdw+"',sdpgyy = '"+sdxpyy+"' where id = "+project_id);
 						}
 						else{
-							saveService.updateByHSql("update Td00_gcxx set sgdw = '"+sjxzdw+"',sdxpyy = '"+sdxpyy+"' where id = "+project_id);
+							saveService.updateByHSql("update Td00_gcxx set sgdw = '"+sjxzdw+"',sdpgyy = '"+sdxpyy+"' where id = "+project_id);
 						}
 						saveService.updateByHSql("update Td08_pgspd set sp_flag=1 where id = "+doc_id+" and project_id="+project_id);
 					}
