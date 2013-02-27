@@ -440,7 +440,6 @@ public class Sgpd {
 		String names = convertUtil.toString(request.getParameter("names"));
 		String ids = convertUtil.toString(request.getParameter("ids"));
 		Integer xm_id = convertUtil.toInteger(request.getParameter("xm_id"));
-		String reasonflag=convertUtil.toString(request.getParameter("reasonflag"));
 		Integer sys_wxdw_id=convertUtil.toInteger(request.getParameter("sys_wxdw_id"));
 		Integer project_id=convertUtil.toInteger(request.getParameter("project_id"),xm_id);
 		Integer module_id=convertUtil.toInteger(request.getParameter("module_id"));
@@ -473,20 +472,18 @@ public class Sgpd {
 		modelMap.put("xm_id", xm_id);
 		modelMap.put("names", names);
 		modelMap.put("ids", ids);
-		modelMap.put("reasonflag", reasonflag);
 		modelMap.put("sys_wxdw_id", sys_wxdw_id);
 		modelMap.put("project_id", project_id);
 		modelMap.put("module_id", module_id);
+		modelMap.put("searchStr", searchStr); 
 		
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("orderField", orderField);
-		modelMap.put("searchStr", searchStr);
 		modelMap.put("orderDirection", orderDirection);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("totalPages", totalPages);
 		return new ModelAndView(view, modelMap);
-
 	}
 
 	@RequestMapping("/sgdw/checkProject.do")
