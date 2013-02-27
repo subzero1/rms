@@ -43,12 +43,12 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label> 系统选择单位：</label>
-		<input class="required" type="text" readOnly name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
+		<input type="text" readOnly name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
 	</p>
 	<div class="divider"></div>
 	<p>
 		<label> 实际选择单位：</label>
-		<input class="required" type="text" name="Td08_pgspd.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
+		<input  type="text" name="Td08_pgspd.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
 	</p>
 	<div class="divider"></div>
 	<p>
