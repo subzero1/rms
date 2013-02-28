@@ -178,7 +178,7 @@ function getCompany(_this){
 					<li class="line">line</li>
 			</ul>
 		</div>
-		<form method="post" id="zytlrForm" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone);">
+		<form method="post" id="zytlrForm" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf31_zytl" />
 			<input type="hidden" name="_callbackType" value="forward"/>
 			<input type="hidden" name="_message" value="提交数据保存" />
