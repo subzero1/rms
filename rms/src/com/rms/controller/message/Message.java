@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rms.controller.sysManage.Dept;
 import com.rms.dataObjects.base.Tc02_area;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -355,11 +354,11 @@ public class Message {
 			Ta03_user ta03 = (Ta03_user) request.getSession().getAttribute("user");
 			HttpServletRequest Crequest = (MultipartHttpServletRequest) request;
 
-			title = new String(Crequest.getParameter("title").getBytes("ISO8859_1"), "UTF-8");
-			content = new String(Crequest.getParameter("content").getBytes("ISO8859_1"), "UTF-8");
-			reader_id = new String(Crequest.getParameter("reader_id").getBytes("ISO8859_1"), "UTF-8");
-			reader_name = new String(Crequest.getParameter("reader_name").getBytes("ISO8859_1"), "UTF-8");
-			send_flag = new String(Crequest.getParameter("send_flag").getBytes("ISO8859_1"), "UTF-8");
+			title = request.getParameter("title");
+			content = request.getParameter("content");
+			reader_id = request.getParameter("reader_id");
+			reader_name = request.getParameter("reader_name");
+			send_flag = request.getParameter("send_flag");
 
 			// 保存数据
 
