@@ -145,7 +145,12 @@
             insert="true"
             column="dept_name"
         />
-
+		
+		<property 
+		name="dept_remark"
+		type="java.lang.String"
+		update="true"
+		column="dept_remark"/>
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Ta03_user.xml

@@ -290,5 +290,16 @@ public class V_ta03 implements Serializable{
  public void setNew_flag(String new_flag) {
     this.new_flag = new_flag;
   }
+ 
+ public String dept_remark;
+
+public String getDept_remark() {
+	return dept_remark;
+}
+
+public void setDept_remark(String dept_remark) {
+	this.dept_remark = dept_remark;
+}
+ 
 
 }

@@ -541,7 +541,7 @@ $("#jsxz").change(function(){
 				<p>
 					<label>谈点人：</label>
 					<input type="text" name="Td21_mbk.TDR" id="tdrOrg.TDR" style="width:125px" readonly="readonly" value="${Td21_mbk.tdr }" />
-					<a class="btnLook" href="mbk/getTdr.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<a class="btnLook" href="mbk/getTdr.do" lookupGroup="tdrOrg" width="680" height="380">查找带回</a>
 					<input type="hidden" name="Td21_mbk.TDR_ID" id="tdrOrg.TDR_ID" value="${Td21_mbk.tdr_id}"/>
 					<a style="display:none" id="sfkca" class="btnLook" href="mbk/getKcry.do" lookupGroup="tdrOrg" width="600" height="430">查找带回</a>
 					<input type="hidden" id="tdrOrg.Kcry"/>

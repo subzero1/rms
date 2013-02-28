@@ -7,6 +7,7 @@
 		$.ajax({
 			url:'mbk/getTdbm.do?id='+tdr_id,
 			type:'post',
+			async:false,
 			success:function(msg){
 				$.bringBack({'TDR':tdr, 'TDR_ID':tdr_id,'TDRDH':tdrdh,'TDBM':$.trim(msg)});
 			}
@@ -20,6 +21,7 @@
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<input type="hidden" name="dept_remark" value="${param.dept_remark }"/>
 </form>
 
 <div class="pageHeader">
@@ -29,6 +31,17 @@
 			<li>
 				<label>名  称:</label>
 				<input class="textInput" name="name" value="${param.name }" type="text"/>
+			</li>
+			<li>
+				<label>类 别:</label>
+				<select name="dept_remark" >
+				<option value="">---------</option>
+				<option value="前端" <c:if test="${param.dept_remark=='前端' }">selected</c:if>>前端</option>
+				<option value="后端" <c:if test="${param.dept_remark=='后端' }">selected</c:if>>后端</option>
+				<option value="区县" <c:if test="${param.dept_remark=='区县' }">selected</c:if>>区县</option>
+				<option value="合作单位" <c:if test="${param.dept_remark=='合作单位' }">selected</c:if>>合作单位</option>
+				</select>
+			
 			</li>
 		</ul>
 		<div class="subBar">

@@ -1014,6 +1014,8 @@ public class Mbk {
 				.getParameter("orderDirection"), "asc");
 
 		String name = convertUtil.toString(request.getParameter("name"));
+		String dept_remark=convertUtil.toString(request.getParameter("dept_remark"));
+		
 		StringBuffer hsql = new StringBuffer();
 		hsql.append("select ta03 ");
 		hsql.append("from V_ta03 ta03 ,Ta11_sta_user ta11,Ta12_sta_role ta12 ");
@@ -1024,7 +1026,10 @@ public class Mbk {
 		hsql.append(name);
 		hsql.append("%' or ta03.name like '%");
 		hsql.append(name);
-		hsql.append("%')");
+		hsql.append("%') ");
+		hsql.append(" and ta03.dept_remark like '%");
+		hsql.append(dept_remark);
+		hsql.append("%' ");
 
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
 				numPerPage);
@@ -1076,7 +1081,8 @@ public class Mbk {
 		// }
 		//			
 		// }
-
+		
+		modelMap.put("dept_remark", dept_remark);
 		modelMap.put("tdrList", list);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("pageNumShown", pageNumShown);
