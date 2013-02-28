@@ -132,6 +132,15 @@ function getCompany(_this){
  	}
  	return k;
  }
+ 
+ $(function (){
+ 	var $zytlrForm_input=$("#zytlrForm",navTab.getCurrentPanel()); 
+ 	$zytlrForm_input.keypress(function(e){
+ 		if(e.which==13){ 
+ 			return false;
+ 		}
+ 	});
+ });
 </script>
 <div class="page">
 	<div class="pageHeader">
