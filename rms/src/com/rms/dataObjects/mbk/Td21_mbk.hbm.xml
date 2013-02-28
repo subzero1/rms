@@ -471,6 +471,46 @@
 		  insert="true"
 		  column="sswg"
 		  />
+		  
+		  <property
+		  name="gjzd"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="gjzd"
+		  />
+		  
+		  <property
+		  name="ltepc"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="ltepc"
+		  />
+		  
+		  <property
+		  name="glgmzs"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="glgmzs"
+		  />
+		  
+		  <property
+		  name="xqpssj"
+		  type="java.util.Date"
+		  update="true"
+		  insert="true"
+		  column="xqpssj"
+		  />
+		  
+		  <property
+		  name="wyzbqr"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="wyzbqr"
+		  />
         
         <!--
             To add non XDoclet property mappings, create a file named

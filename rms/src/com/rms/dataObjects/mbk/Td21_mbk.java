@@ -1008,4 +1008,89 @@ public class Td21_mbk implements Serializable {
 		public void setDelflag(Long delflag) {
 			this.delflag = delflag;
 		}
+		
+		/*
+		 * 关键站点
+		 */
+		private String gjzd;
+		
+		/*
+		 * LTE批次
+		 */
+		private String ltepc;
+		
+		/*
+		 * 关联过忙载扇
+		 */
+		private String glgmzs;
+		
+		/*
+		 * 需求评审时间
+		 */
+		private Date xqpssj;
+		
+		/*
+		 * 网优组BSC包区人
+		 */
+		private String wyzbqr;
+		
+		/**
+		   * @hibernate.property column="gjzd"
+		   * @return Returns the gjzd.
+		 */
+		public String getGjzd() {
+			return gjzd;
+		}
+
+		public void setGjzd(String gjzd) {
+			this.gjzd = gjzd;
+		}
+
+		/**
+		   * @hibernate.property column="ltepc"
+		   * @return Returns the ltepc.
+		 */
+		public String getLtepc() {
+			return ltepc;
+		}
+
+		public void setLtepc(String ltepc) {
+			this.ltepc = ltepc;
+		}
+
+		/**
+		   * @hibernate.property column="glgmzs"
+		   * @return Returns the glgmzs.
+		 */
+		public String getGlgmzs() {
+			return glgmzs;
+		}
+
+		public void setGlgmzs(String glgmzs) {
+			this.glgmzs = glgmzs;
+		}
+
+		/**
+		   * @hibernate.property column="xqpssj"
+		   * @return Returns the xqpssj.
+		 */
+		public Date getXqpssj() {
+			return xqpssj;
+		}
+
+		public void setXqpssj(Date xqpssj) {
+			this.xqpssj = xqpssj;
+		}
+
+		/**
+		   * @hibernate.property column="wybqr"
+		   * @return Returns the wybqr.
+		 */
+		public String getWyzbqr() {
+			return wyzbqr;
+		}
+
+		public void setWyzbqr(String wyzbqr) {
+			this.wyzbqr = wyzbqr;
+		}
 }
