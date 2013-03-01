@@ -480,9 +480,15 @@ $("#jsxz").change(function(){
 					<label>建设方式：</label> 
 					<netsky:htmlSelect htmlClass="required" id="jsfs" name="Td21_mbk.JSFS" style="width:156px;" objectForOption="jsfsList" valueForOption="mc" showForOption="mc" value="${Td21_mbk.jsfs}" extend="" extendPrefix="true" />
 				</p>
+				<!-- 
 				<p>
 					<label> 分    类：</label>
 					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.LB" id="Td21_mbk.LB" style="width:126px;" objectForOption="lbList" valueForOption="" showForOption="" value="${Td21_mbk.lb}" extend="" extendPrefix="true" />
+				</p>
+				 -->
+				<p>
+					<label>需求评审时间：</label>
+					<input type="text" name="Td21_mbk.XQPSSJ" style="width:120px;" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.xqpssj}"/>" class="date" pattern="yyyy-MM-dd"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -499,8 +505,12 @@ $("#jsxz").change(function(){
 					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.SSWG" id="Td21_mbk.SSWG" style="width:156px;" objectForOption="sswgList" valueForOption="" showForOption="" value="${Td21_mbk.sswg}" extend="" extendPrefix="true" />
 				</p>
 				<p>
+					<label>网优组包区人：</label>
+					<input type="text" name="Td21_mbk.WYZBQR" id="Td21_mbk.WYZBQR" style="width:150px;" value="${Td21_mbk.wyzbqr}"/>
+				</p>
+				<p>
 					<label>建设场景：</label>
-					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSCJ" id="Td21_mbk.JSCJ" style="width:383px;" objectForOption="jscjList" valueForOption="" showForOption="" value="${Td21_mbk.jscj}" extend="" extendPrefix="true" />
+					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSCJ" id="Td21_mbk.JSCJ" style="width:126px;" objectForOption="jscjList" valueForOption="" showForOption="" value="${Td21_mbk.jscj}" extend="" extendPrefix="true" />
 				</p>
 				<div id="jz">
 					<div style="height:0px;"></div>
@@ -513,9 +523,22 @@ $("#jsxz").change(function(){
 						<input type="text" ids="jz" name="Td21_mbk.WD" id="Td21_mbk.WD" style="width:150px;" value="${Td21_mbk.wd}"/>
 					</p>
 					<p>
-					<label>覆盖属性：</label>
-					<netsky:htmlSelect  name="Td21_mbk.FGSX" id="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="" showForOption="" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" />
-				</p>
+						<label>覆盖属性：</label>
+						<netsky:htmlSelect  name="Td21_mbk.FGSX" id="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="" showForOption="" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" />
+					</p>
+					<div style="height:0px;"></div>
+					<p>
+						<label>关键站点：</label>
+						<netsky:htmlSelect  name="Td21_mbk.GJZD" id="Td21_mbk.GJZD" style="width:156px;" objectForOption="gjzdList" valueForOption="name" showForOption="name" value="${Td21_mbk.gjzd}" extend="" extendPrefix="true" />
+					</p>
+					<p>
+						<label>LTE批次：</label>
+						<input type="text" ids="jz" name="Td21_mbk.LTEPC" id="Td21_mbk.LTEPC" style="width:150px;" value="${Td21_mbk.ltepc}"/>
+					</p>
+					<p>
+						<label>关联过忙载扇：</label>
+						<netsky:htmlSelect name="Td21_mbk.GLGMZS" id="Td21_mbk.GLGMZS" style="width:126px;" objectForOption="sfList" valueForOption="" showForOption="" value="${Td21_mbk.glgmzs}" extend="" extendPrefix="true" />
+					</p>
 				</div>
 				<div id="xq">
 					<div style="height:0px;"></div>
