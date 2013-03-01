@@ -89,6 +89,7 @@ function searchListExport(){
 					<th style="width: 120px;" orderField="jsxz">建设性质</th>
 					<th style="width: 100px;" orderField="lb">类别</th>
 					<th style="width: 80px;" orderField="tdr">谈点人</th>
+					<th style="width: 80px;" orderField="xqpssj">需求评审时间</th>
 					<th style="width: 80px;" orderField="cjsj">创建时间</th>
 					<th style="width: 80px;" orderField="zt">状态</th>
 				</tr>
@@ -111,6 +112,7 @@ function searchListExport(){
 						<td>${obj[0].jsxz }</td>
 						<td>${obj[0].lb }</td>
 						<td>${obj[0].tdr }</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].xqpssj }"/></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].cjsj }"/></td>
 						<td>${obj[0].zt }</td>
 					</tr>
@@ -118,6 +120,7 @@ function searchListExport(){
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
