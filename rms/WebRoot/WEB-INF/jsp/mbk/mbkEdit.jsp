@@ -119,6 +119,10 @@ $(function(){
 			$("#zjsa").click();
 			return false;
 		}
+		else if (flag == "wtcl"){
+			$("#wtcla").click();
+			return false;
+		}
 		var alertmsg = "";
 		if ("${not empty rolesMap['20101'] }"=="true" && change){
 			alertmsg = "有数据未保存，请先保存后再进行操作！";
@@ -191,6 +195,22 @@ $(function(){
 	//转建设
 	$("#tdrOrg\\.Xmgly").change(function(){
 		var data = 'id=${Td21_mbk.id}&type=zjs&xmgly_id='+$(this).val();
+		$.ajax({
+			url:'mbk/mbkLz.do',
+			type:'post',
+			data:data,
+			dataType:"json",
+			cache: false,
+			success: function(json){
+				navTabAjaxDone(json);
+			},
+			error: DWZ.ajaxError
+		});
+	});
+	
+   //转送问题处理人
+	$("#tdrOrg\\.Wtclr").change(function(){
+		var data = 'id=${Td21_mbk.id}&type=wtcl&wtclr_id='+$(this).val();
 		$.ajax({
 			url:'mbk/mbkLz.do',
 			type:'post',
@@ -351,6 +371,14 @@ $("#jsxz").change(function(){
 			</c:if>
 			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt != '转建设' && Td21_mbk.zt != '建设中' && not empty Td21_mbk.hdfs}">
 			<li><a class="icon" href="#"><span flag="cxtd" class="lzspan">重新谈点</span></a></li>
+			<li class="line">line</li>
+			</c:if>
+			<c:if test="${not empty rolesMap['20101'] && Td21_mbk.zt != '转建设' && Td21_mbk.zt != '建设中'}">
+			<li><a class="icon" href="#"><span flag="wtcl" class="lzspan">问题处理</span></a></li>
+			<li class="line">line</li>
+			</c:if>
+			<c:if test="${not empty rolesMap['20118'] && (Td21_mbk.zt == '发现问题' || Td21_mbk.zt == '资源共享')}">
+			<li><a class="icon" href="#"><span flag="wthgx" class="lzspan">已处理</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<!-- 
@@ -572,6 +600,8 @@ $("#jsxz").change(function(){
 					<input type="hidden" id="tdrOrg.Hsry"/>
 					<a style="display:none" id="zjsa" class="btnLook" href="mbk/getXmgly.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
 					<input type="hidden" id="tdrOrg.Xmgly"/>
+					<a style="display:none" id="wtcla" class="btnLook" href="mbk/getWtclr.do" lookupGroup="tdrOrg" width="600" height="380">查找带回</a>
+					<input type="hidden" id="tdrOrg.Wtclr"/>
 				</p>
 				<p>
 					<label>谈点人电话：</label>

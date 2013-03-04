@@ -260,6 +260,13 @@ public class Mbk {
 		}
 		
 		/*
+		 * 问题或共享列表
+		 */
+		if (listType.equals("wthgx")) {
+			hsql.append(" and wtclr = '"+user_name+"' and zt in('发现问题','资源共享')");
+		}
+		
+		/*
 		 * 已删除列表(给谈点管理员使用)
 		 */
 		if (listType.equals("tdysc")) {
@@ -1090,6 +1097,58 @@ public class Mbk {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView("/WEB-INF/jsp/mbk/selectTdr.jsp", modelMap);
+	}
+	
+	@RequestMapping("/mbk/getWtclr.do")
+	public ModelAndView getWtclr(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 10);
+		Integer totalCount = 0;
+		Integer pageNumShown = 0;
+
+		// 排序变量
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "user.id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+
+		String name = convertUtil.toString(request.getParameter("name"));
+		String dept_remark=convertUtil.toString(request.getParameter("dept_remark"));
+		
+		StringBuffer hsql = new StringBuffer();
+		hsql.append("select ta03 ");
+		hsql.append("from V_ta03 ta03 ,Ta11_sta_user ta11,Ta12_sta_role ta12 ");
+		hsql.append("where ta11.station_id = ta12.station_id ");
+		hsql.append("and ta11.user_id = ta03.id ");
+		hsql.append("and ta12.role_id=20108 ");
+		hsql.append("and (ta03.dept_name like '%");
+		hsql.append(name);
+		hsql.append("%' or ta03.name like '%");
+		hsql.append(name);
+		hsql.append("%') ");
+		hsql.append(" and ta03.dept_remark like '%");
+		hsql.append(dept_remark);
+		hsql.append("%' ");
+
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
+		totalCount = ro.getTotalRows();
+		pageNumShown = ro.getTotalPages();
+
+		List list = ro.getList();
+
+		modelMap.put("dept_remark", dept_remark);
+		modelMap.put("tdrList", list);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("pageNumShown", pageNumShown);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		return new ModelAndView("/WEB-INF/jsp/mbk/selectWtclr.jsp", modelMap);
 	}
 
 	@RequestMapping("/mbk/getKcry.do")
