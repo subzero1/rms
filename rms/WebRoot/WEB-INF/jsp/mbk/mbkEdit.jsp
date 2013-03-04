@@ -378,7 +378,7 @@ $("#jsxz").change(function(){
 			<li class="line">line</li>
 			</c:if>
 			<c:if test="${not empty rolesMap['20118'] && (Td21_mbk.zt == '发现问题' || Td21_mbk.zt == '资源共享')}">
-			<li><a class="icon" href="#"><span flag="wthgx" class="lzspan">已处理</span></a></li>
+			<li><a class="icon" href="#"><span flag="wtycl" class="lzspan">已处理</span></a></li>
 			<li class="line">line</li>
 			</c:if>
 			<!-- 

@@ -25,7 +25,7 @@
 </form>
 
 <div class="pageHeader">
-	<form rel="pagerForm" method="post" action="mbk/getWthgx.do" onsubmit="return dwzSearch(this, 'dialog');">
+	<form rel="pagerForm" method="post" action="mbk/getWtclr.do" onsubmit="return dwzSearch(this, 'dialog');">
 	<div class="searchBar">
 		<ul class="searchContent">
 			<li>
