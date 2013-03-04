@@ -511,6 +511,14 @@
 		  insert="true"
 		  column="wyzbqr"
 		  />
+		  
+		   <property
+		  name="wtclr"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="wtclr"
+		  />
         
         <!--
             To add non XDoclet property mappings, create a file named

@@ -1093,4 +1093,18 @@ public class Td21_mbk implements Serializable {
 		public void setWyzbqr(String wyzbqr) {
 			this.wyzbqr = wyzbqr;
 		}
+		
+		private String wtclr;
+
+		/**
+		   * @hibernate.property column="wtclr"
+		   * @return Returns the wtclr.
+		 */
+		public String getWtclr() {
+			return wtclr;
+		}
+
+		public void setWtclr(String wtclr) {
+			this.wtclr = wtclr;
+		}
 }
