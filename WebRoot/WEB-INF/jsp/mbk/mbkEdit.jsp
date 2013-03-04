@@ -265,6 +265,8 @@ $("#jsxz").change(function(){
 		var at = "勘察申请说明： <font color=\"red\">还可以输入"+ac+"字</font>";
 		$("#_c_nums").html(at);
 	}
+	
+	
 </script>
 <div style="display: none">
 	<table style="margin-top:10px;width:630px;" cellspacing="0" border="1" cellpadding="0" bordercolor="#000000" id="printTable">
