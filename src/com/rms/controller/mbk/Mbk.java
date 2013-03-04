@@ -161,6 +161,9 @@ public class Mbk {
 					+ user.getId()
 					+ " and (sm='建设中' or sm='转建设') and jssj is null))";
 		}
+		if (rolesMap.get("20118") != null) {
+			roleSql += " or ( zt in('发现问题','资源共享'))";
+		}
 		hsql.append(" and (" + roleSql + ")");
 		// 类别
 		if (!lb.equals("")) {
@@ -964,7 +967,32 @@ public class Mbk {
 				td22.setXgr_id(ta03.getId());
 				td22.setMbk_id(id);
 				session.save(td22);
-			} else if ("jsz".equals(type)) {// 建设中
+			} else if ("wtcl".equals(type)) {// 问题处理
+				Long wtclr_id = convertUtil.toLong(request
+						.getParameter("wtclr_id"));
+				Ta03_user ta03 = (Ta03_user) queryService.searchById(
+						Ta03_user.class, wtclr_id);
+				Ta01_dept ta01 = (Ta01_dept) queryService.searchById(
+						Ta01_dept.class, ta03.getDept_id());
+				
+				word = "发现问题";
+				td21.setZt("发现问题");
+				td21.setWtclr(ta03.getName());
+				Td22_mbk_lzjl td22 = new Td22_mbk_lzjl();
+				td22.setSm("发现问题");
+				td22.setKssj(now);
+				td22.setXgr(ta03.getName());
+				td22.setXgr_bm(ta01.getName());
+				td22.setXgr_id(ta03.getId());
+				td22.setMbk_id(id);
+				session.save(td22);
+			} else if ("wtycl".equals(type)) {// 问题已处理
+				word = "问题已处理";
+				td21.setZt("新建");
+				session.createQuery(
+						"update Td22_mbk_lzjl set jssj=sysdate where jssj is null and mbk_id="
+								+ id).executeUpdate();
+			}else if ("jsz".equals(type)) {// 建设中
 				word = "建设中";
 				td21.setZt("建设中");
 				// 打开‘新建需求’表单，起草需求

@@ -56,7 +56,7 @@
 			</tr>
 		</thead>				
 		<tbody>
-			<c:forEach items="${tdrList }" var="tdr">
+			<c:forEach items="${wtclrList }" var="wtclr">
 			<tr>
 				<td>${wtclr.dept_name }</td>
 				<td>${wtclr.name }</td>
