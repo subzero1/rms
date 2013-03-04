@@ -1142,7 +1142,7 @@ public class Mbk {
 		List list = ro.getList();
 
 		modelMap.put("dept_remark", dept_remark);
-		modelMap.put("tdrList", list);
+		modelMap.put("wtclrList", list);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("pageNumShown", pageNumShown);
 		modelMap.put("numPerPage", numPerPage);
