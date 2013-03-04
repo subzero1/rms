@@ -1124,7 +1124,7 @@ public class Mbk {
 		hsql.append("from V_ta03 ta03 ,Ta11_sta_user ta11,Ta12_sta_role ta12 ");
 		hsql.append("where ta11.station_id = ta12.station_id ");
 		hsql.append("and ta11.user_id = ta03.id ");
-		hsql.append("and ta12.role_id=20108 ");
+		hsql.append("and ta12.role_id=20118 ");
 		hsql.append("and (ta03.dept_name like '%");
 		hsql.append(name);
 		hsql.append("%' or ta03.name like '%");
