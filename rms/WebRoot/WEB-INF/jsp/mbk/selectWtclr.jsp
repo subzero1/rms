@@ -3,16 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
-	function bringBack(tdr,tdr_id,tdrdh){
-		$.ajax({
-			url:'mbk/getTdbm.do?id='+tdr_id,
-			type:'post',
-			async:false,
-			success:function(msg){
-				$.bringBack({'TDR':tdr, 'TDR_ID':tdr_id,'TDRDH':tdrdh,'TDBM':$.trim(msg)});
-			}
-		});
-	}
+
 </script>
 
 <form id="pagerForm" action="">
@@ -67,10 +58,10 @@
 		<tbody>
 			<c:forEach items="${tdrList }" var="tdr">
 			<tr>
-				<td>${tdr.dept_name }</td>
-				<td>${tdr.name }</td>
+				<td>${wtclr.dept_name }</td>
+				<td>${wtclr.name }</td>
 				<td>
-					<a class="btnSelect" href="javascript:bringBack('${tdr.name }','${tdr.id }','${tdr.mobile_tel }')" title="查找带回">
+					<a class="btnSelect" href="javascript:$.bringBack({'Wtclr':${wtclr.id }});" title="查找带回">
 				</td>
 			</tr>
 			</c:forEach>
