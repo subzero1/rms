@@ -395,6 +395,10 @@ public class Mbk {
 		modelMap.put("dqList", dqList);
 		List<String> tdbmList = (List<String>) queryService.searchList("select name from Tc01_property where type='谈点部门'");
 		modelMap.put("tdbmList", tdbmList);
+		List<String> gjzdList = (List<String>) queryService.searchList("select name from Tc01_property where type='关键站点'");
+		modelMap.put("gjzdList", gjzdList);
+		String[] sfList = {"是","否"};
+		modelMap.put("sfList", sfList);
 
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		Long user_id = user.getId();
