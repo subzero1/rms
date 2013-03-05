@@ -25,6 +25,7 @@ function searchListExport(){
 <form id="pagerForm" method="post" action="mbk/mbkList.do">
 	<input type="hidden" name="zymc" value="${param.zymc}">
 	<input type="hidden" name="ssdq" value="${param.ssdq}">
+	<input type="hidden" name="listType" value="${param.listType}">
 	<input type="hidden" name="lb" value="${param.lb}">
 	<input type="hidden" name="zt" value="${param.zt}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
