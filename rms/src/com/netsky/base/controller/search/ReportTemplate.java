@@ -1,5 +1,6 @@
 package com.netsky.base.controller.search;
  
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +19,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta08_reportfield;
 import com.netsky.base.dataObjects.Ta29_report_template;
 import com.netsky.base.dataObjects.Ta30_template_list;
+import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -483,5 +486,56 @@ public class ReportTemplate {
 		}
 		response.getWriter().print(
 				"{\"statusCode\":\"200\", \"message\":\"删除成功\"}");
+	}
+	
+	@RequestMapping("/search/queryTemplate.do")
+	public ModelAndView queryTemplate(HttpServletRequest request,HttpServletResponse response){
+		String view ="/WEB-INF/jsp/search/queryTemplateList.jsp";
+		ModelMap modelMap=new ModelMap();
+		StringBuffer hql=new StringBuffer();
+		ResultObject ro=null;
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		List objectList=new ArrayList();
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "name");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+		String keyword=convertUtil.toString(request.getParameter("keyword"));
+		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
+		
+		hql.append("select ta29 from Ta29_report_template ta29 where 1=1 ");
+		if (user!=null) {
+			hql.append("and ta29.user_name='");
+			hql.append(user.getName());
+			hql.append("' ");
+		}
+		if (keyword!=null&&keyword!="") {
+			hql.append("and ta29.name like '%");
+			hql.append(keyword);
+			hql.append("%' ");
+		} 
+		hql.append("order by ta29.");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection);
+		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		if (ro!=null) {
+		while (ro.next()) {
+			objectList.add(ro.get("ta29"));
+		}
+			totalCount=ro.getTotalRows();
+			totalPages=ro.getTotalPages();
+		}
+		modelMap.put("keyword", keyword);
+		modelMap.put("objectList", objectList);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		return new ModelAndView(view, modelMap);
 	}
 }
