@@ -266,7 +266,17 @@ $("#jsxz").change(function(){
 		$("#_c_nums").html(at);
 	}
 	
-	
+	function setLtepcRole(obj){
+		var v = obj.value;
+		if(v.indexOf('LTE') != -1){
+			var ltepc = $("#Td21_mbk\\.LTEPC");
+			ltepc.attr("class","required");
+		}
+		else{
+			var ltepc = $("#Td21_mbk\\.LTEPC");
+			ltepc.attr("class","norequired");
+		}
+	}
 </script>
 <div style="display: none">
 	<table style="margin-top:10px;width:630px;" cellspacing="0" border="1" cellpadding="0" bordercolor="#000000" id="printTable">
@@ -475,7 +485,7 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="Td21_mbk.CJRDH" value="<c:out value="${Td21_mbk.cjrdh }" default="${user.mobile_tel }"/>"/>
 			<input type="hidden" name="Td21_mbk.XQS_ID" value="${Td21_mbk.xqs_id }"/>
 			<c:if test="${not empty rolesMap['20102']}">
-				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.ZYMC,Td21_mbk.SSWG,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ"/>
+				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.XQPSSJ,Td21_mbk.ZYBH,Td21_mbk.GLGMZS,Td21_mbk.LTEPC,Td21_mbk.GJZD,Td21_mbk.WYZBQR,Td21_mbk.ZYMC,Td21_mbk.SSWG,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ"/>
 			</c:if>
 			<c:if test="${empty Td21_mbk.cjsj}">
 				<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
@@ -495,7 +505,7 @@ $("#jsxz").change(function(){
 			<div class="pageFormContent">
 				<p>
 					<label>资源编号：</label>
-					<input  type="text" name="Td21_mbk.ZYBH" style="width:150px;" value="${Td21_mbk.zybh}"/>
+					<input  type="text" name="Td21_mbk.ZYBH" id="Td21_mbk.ZYBH" style="width:150px;" value="${Td21_mbk.zybh}"/>
 				</p>
 				<p>
 					<label>资源名称：</label>
@@ -518,7 +528,7 @@ $("#jsxz").change(function(){
 				 -->
 				<p>
 					<label>需求评审时间：</label>
-					<input type="text" name="Td21_mbk.XQPSSJ" style="width:120px;" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.xqpssj}"/>" class="date" pattern="yyyy-MM-dd"/>
+					<input type="text" name="Td21_mbk.XQPSSJ" id="Td21_mbk.XQPSSJ" style="width:120px;" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${Td21_mbk.xqpssj}"/>" class="date" pattern="yyyy-MM-dd"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -559,11 +569,11 @@ $("#jsxz").change(function(){
 					<div style="height:0px;"></div>
 					<p>
 						<label>关键站点：</label>
-						<netsky:htmlSelect  name="Td21_mbk.GJZD" id="Td21_mbk.GJZD" style="width:156px;" objectForOption="gjzdList" valueForOption="name" showForOption="name" value="${Td21_mbk.gjzd}" extend="" extendPrefix="true" />
+						<netsky:htmlSelect onChange="javascript:setLtepcRole(this)" name="Td21_mbk.GJZD" id="Td21_mbk.GJZD" style="width:156px;" objectForOption="gjzdList" valueForOption="name" showForOption="name" value="${Td21_mbk.gjzd}" extend="" extendPrefix="true" />
 					</p>
 					<p>
 						<label>LTE批次：</label>
-						<input type="text" ids="jz" name="Td21_mbk.LTEPC" id="Td21_mbk.LTEPC" style="width:150px;" value="${Td21_mbk.ltepc}"/>
+						<input type="text" name="Td21_mbk.LTEPC" id="Td21_mbk.LTEPC" style="width:150px;" value="${Td21_mbk.ltepc}"/>
 					</p>
 					<p>
 						<label>关联过忙载扇：</label>
