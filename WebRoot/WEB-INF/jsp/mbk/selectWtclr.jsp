@@ -18,7 +18,7 @@
 <div class="pageHeader">
 	<form rel="pagerForm" method="post" action="mbk/getWtclr.do" onsubmit="return dwzSearch(this, 'dialog');">
 	<div class="searchBar">
-		<ul class="searchContent">
+		<ul class="searchContent"  >
 			<li>
 				<label>名  称:</label>
 				<input class="textInput" name="name" value="${param.name }" type="text"/>
