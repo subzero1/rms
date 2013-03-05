@@ -426,7 +426,7 @@ public class ReportTemplate {
 			template_id = Long.valueOf(request.getParameter("template_id"));
 		} else {
 			response.getWriter().print(
-					"<?xml version=\"1.0\" encoding=\"GBK\"?>");
+					"<? xml version=\"1.0\" encoding=\"GBK\"?>");
 			response.getWriter().print("<root>");
 			response.getWriter().print("</root>");
 			return;
