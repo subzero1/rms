@@ -33,7 +33,7 @@
 		<div class="panelBar">
 			<ul class="toolBar">
 				<li>
-					<a class="edit"	href="MessageRead.do?message_id={message_id}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看短消息" width="500" height="300"><span>查看</span></a>
+					<a class="edit"	href="MessageRead.do?message_id={message_id}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="500" height="300"><span>查看</span></a>
 				</li>
 				<li class="line">line</li>
 			</ul>

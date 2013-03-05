@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	function goRead(id){
 		var url = 'MessageRead.do?message_id='+id+'&messageState=${param.messageState}';
-		$.pdialog.open(url,'xtdxx', '短消息',{mask:true, width:600, height:320});
+		$.pdialog.open(url,'xtdxx', '内部邮件',{mask:true, width:600, height:320});
 	}
 
 </script>
@@ -47,7 +47,7 @@
 			<ul class="toolBar">
 				<li class="line">line</li>
 				<li>
-					<a class="add"	href="MessageWrite.do?messageState=${param.messageState}" target="dialog" width="670" height="350" rel="messageWrite" title="撰写短消息"><span>新建</span></a>
+					<a class="add"	href="MessageWrite.do?messageState=${param.messageState}" target="dialog" width="670" height="350" rel="messageWrite" title="撰写内部邮件"><span>新建</span></a>
 				</li>
 				<li class="line">line</li>
 				<li>
@@ -61,7 +61,7 @@
 				</c:if>
 				<li class="line">line</li>
 				<li>
-					<a class="edit"	href="MessageRead.do?message_id={form_param}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看短消息" width="500" height="300"><span>查看</span></a>
+					<a class="edit"	href="MessageRead.do?message_id={form_param}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="500" height="300"><span>查看</span></a>
 				</li>
 				<li class="line">line</li>
 				<li><a class="helponline"	href="javascript:enterHelp('xtxx')"><span>在线帮助</span></a></li>

@@ -137,7 +137,7 @@ function openOnLineList(){
 		<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b><b class="r0"></b><b class="r00"></b></b>
           <div class="title01">
 				<span style="float:right;"><input class="red-message" type="button" onclick="javascript:navTab.openTab('messageList','MessageList.do?messageState=1');" value="${wcldxx}条未读"/></span>
-               <h3>短消息</h3>
+               <h3>内部邮件</h3>
            </div>
 		<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
 		<div class="win-boxp" style="height:93px;">
@@ -155,7 +155,7 @@ function openOnLineList(){
 									<c:if test="${message_list[i].dif>=0}">[<fmt:formatDate value="${message_list[i].send_date }" pattern="MM/dd"/>]</c:if>
 									<c:if test="${message_list[i].dif<0}">[<fmt:formatDate value="${message_list[i].send_date }" pattern="MM/dd"/>]</c:if>
 							</td>
-							<td><a 	href="MessageRead.do?message_id=${message_list[i].id}&messageState=1" target="dialog" rel="messageRead" title="查看短消息" width="500" height="300">${message_list[i].title}</a></td>
+							<td><a 	href="MessageRead.do?message_id=${message_list[i].id}&messageState=1" target="dialog" rel="messageRead" title="查看内部邮件" width="500" height="300">${message_list[i].title}</a></td>
 						</tr>	
 					</c:if>
 					<c:if test="${message_list[i] == null}">
