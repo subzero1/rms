@@ -51,7 +51,7 @@
 				<c:forEach var="obj" items="${objectList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="xm_id" rel="${obj.id}"> 
-						<td>${obj.name }&nbsp;</td>
+						<td><a href="search/condition.do?module_id=${obj.module_id }&navtab=${param.navtab }<c:if test="${obj.type==1 }">&type=report</c:if>" target="dialog" width="810" height="360">${obj.name }&nbsp;</td>
 						<td><c:if test="${obj.type==1}">报表</c:if><c:if test="${obj.type==2}">查询</c:if></td>
 						<td>${obj.user_name }</td> 
 					</tr>
