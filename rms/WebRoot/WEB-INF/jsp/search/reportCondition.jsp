@@ -11,6 +11,7 @@ $(function(){
 	var condition = $("#" + module_id , $("#mainReportCondition"));
 	if(condition.length>0 && condition.html()!="") $("#reportConditionDiv form").replaceWith(condition.find("form"));
 	else	$("#mainReportCondition").empty();
+	$("#template_sel",$.pdialog.getCurrent()).change();
 });
 
 //报表输出前检测
@@ -236,7 +237,7 @@ function creatHiddenCondition(c_form){
 					  	<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b> 
 					  	
 					  	<div class="title01">
-							<h3>模板设置：</h3>
+							<h3>模板设置${param.id}：</h3>
 						</div>
 						<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 						<div class="contentc">
@@ -249,7 +250,7 @@ function creatHiddenCondition(c_form){
 											<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemplate(reportCtCallback);">
 												<option value="">新建模板</option>
 												<c:forEach var="obj" items="${templateList}">
-													<option value="${obj.id }">${obj.name }</option>
+													<option value="${obj.id }" <c:if test="${obj.id==param.template_id }">selected</c:if>>${obj.name }</option>
 												</c:forEach>
 											</select>&nbsp;<input type="button" value="保存模板" onclick="javascript:saveTemplate(this,2);"/>
 											<input type="button" value="删除模板" onclick="javascript:delTemplate(this);"/>
