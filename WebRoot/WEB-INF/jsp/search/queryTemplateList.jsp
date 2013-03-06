@@ -52,8 +52,9 @@
 				<c:forEach var="obj" items="${objectList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="xm_id" rel="${obj[0].id}"> 
-						<td><a href="search/condition.do?module_id=${obj[0].module_id }&template_name=${obj[0].name }<c:if test="${obj[0].type==1 }">&type=report</c:if>"
-						 target="dialog" width="810" height="360" title="${fn:substring(obj[1],0,(fn:length(obj[1])-1)) }<c:if test="${obj[0].type==1}">统计</c:if><c:if test="${obj[0].type==2}">查询</c:if>">${obj[0].name }&nbsp;</td>
+						<td>
+						<a href="search/condition.do?module_id=${obj[0].module_id }&template_id=${obj[0].id }<c:if test="${obj[0].type==1 }">&type=report</c:if>"
+						 target="dialog" width="810" height="360" title="${fn:substring(obj[1],0,(fn:length(obj[1])-1)) }<c:if test="${obj[0].type==1}">统计</c:if><c:if test="${obj[0].type==2}">查询</c:if>:${obj[0].name }">${obj[0].name }&nbsp;</td>
 						<td>${fn:substring(obj[1],0,(fn:length(obj[1])-1)) }<c:if test="${obj[0].type==1}">统计</c:if><c:if test="${obj[0].type==2}">查询</c:if></td>
 						<td>${obj[0].user_name }</td> 
 					</tr>
