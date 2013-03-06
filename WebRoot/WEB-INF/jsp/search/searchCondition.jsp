@@ -8,6 +8,7 @@
 
 //从列表中获取已经设置的查询条件
 $(function(){
+	
 	//避免冲突,删除统计表的条件缓存;
 	$("#mainReportCondition").empty();
 	
@@ -28,6 +29,8 @@ $(function(){
 			});
 		}
 	});
+	
+	$("#template_sel",$.pdialog.getCurrent()).change();
 });
 </script>
 
@@ -176,7 +179,7 @@ $(function(){
 					
 					
 					<div class="title01">
-						<h3>模板设置：</h3>
+						<h3>模板设置${param.template_id }：</h3>
 					</div>
 					<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc">
@@ -189,10 +192,10 @@ $(function(){
 										<input id="template_name" name="template_name" value="" style="width:136px;"/>
 										</div>
 										<div>
-										<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemplate(searchCtCallback);">
-											<option value="">新建模板</option>
+										<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemplate(searchCtCallback);" value="${param.template_id }">
+											<option value="" >新建模板</option>
 											<c:forEach var="obj" items="${templateList}">
-												<option value="${obj.id }">${obj.name }</option>
+												<option value="${obj.id }" <c:if test="${obj.id==param.template_id }">selected</c:if> >${obj.name }</option>
 											</c:forEach>
 										</select>&nbsp;<input type="button" value="保存模板" onclick="javascript:saveTemplate(this,1);"/>
 										<input type="button" value="删除模板" onclick="javascript:delTemplate(this);"/>
