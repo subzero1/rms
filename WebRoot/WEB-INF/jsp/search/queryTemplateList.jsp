@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript">
  	var $keyword=$("#keyword",navTab.getCurrentPanel());
  	$keyword.keydown(function(e){
@@ -41,19 +42,20 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr> 
-					<th style="width: 120px;" orderField="name">模板名称</th>
-					<th style="width: 65px;" orderField="type">类型</th>
-					<th style="width: 65px;" orderField="user_name">创建人</th> 
+					<th style="width: 30px;" orderField="name">模板名称</th>
+					<th style="width: 30px;" orderField="type">类型</th>
+					<th style="width: 30px;" orderField="user_name">创建人</th> 
 				</tr>
 			</thead>
 			<tbody>
 				<c:set var="offset" value="0"/>
 				<c:forEach var="obj" items="${objectList}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr target="xm_id" rel="${obj.id}"> 
-						<td><a href="search/condition.do?module_id=${obj.module_id }&template_id=${obj.id }<c:if test="${obj.type==1 }">&type=report</c:if>" target="dialog" width="810" height="360">${obj.name }&nbsp;</td>
-						<td><c:if test="${obj.type==1}">报表</c:if><c:if test="${obj.type==2}">查询</c:if></td>
-						<td>${obj.user_name }</td> 
+					<tr target="xm_id" rel="${obj[0].id}"> 
+						<td><a href="search/condition.do?module_id=${obj[0].module_id }&template_name=${obj[0].name }<c:if test="${obj[0].type==1 }">&type=report</c:if>"
+						 target="dialog" width="810" height="360" title="${fn:substring(obj[1],0,(fn:length(obj[1])-1)) }<c:if test="${obj[0].type==1}">统计</c:if><c:if test="${obj[0].type==2}">查询</c:if>">${obj[0].name }&nbsp;</td>
+						<td>${fn:substring(obj[1],0,(fn:length(obj[1])-1)) }<c:if test="${obj[0].type==1}">统计</c:if><c:if test="${obj[0].type==2}">查询</c:if></td>
+						<td>${obj[0].user_name }</td> 
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
