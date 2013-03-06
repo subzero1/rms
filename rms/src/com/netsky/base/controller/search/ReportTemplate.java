@@ -501,11 +501,12 @@ public class ReportTemplate {
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "name");
 		String orderDirection = convertUtil.toString(request
-				.getParameter("orderDirection"), "desc");
+				.getParameter("orderDirection"), "asc");
 		String keyword=convertUtil.toString(request.getParameter("keyword"));
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
 		
-		hql.append("select ta29 from Ta29_report_template ta29 where 1=1 ");
+		hql.append("select ta29,ta06.name from Ta29_report_template ta29,Ta06_module ta06 where 1=1 ");
+		hql.append("and ta29.module_id=ta06.id ");
 		if (user!=null) {
 			hql.append("and ta29.user_name='");
 			hql.append(user.getName());
@@ -523,7 +524,10 @@ public class ReportTemplate {
 		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		if (ro!=null) {
 		while (ro.next()) {
-			objectList.add(ro.get("ta29"));
+			Object object[]=new Object[2];
+			object[0]=ro.get("ta29");
+			object[1]=ro.get("ta06.name");
+			objectList.add(object);
 		}
 			totalCount=ro.getTotalRows();
 			totalPages=ro.getTotalPages();
