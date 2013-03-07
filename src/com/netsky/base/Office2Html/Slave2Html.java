@@ -54,7 +54,8 @@ public class Slave2Html {
 	@RequestMapping("/slave2Html/slave2Html.do")
 	public ModelAndView slave2Html(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, String> ftpConfig = this.getFtpConfig(request);
-		response.setCharacterEncoding("GBK");
+		//response.setCharacterEncoding("GBK");
+		response.setCharacterEncoding("UTF-8");
 		QueryBuilder queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
 		queryBuilder.eq("id", new Long(request.getParameter("slave_id")));
 		ResultObject ro = queryService.search(queryBuilder);
