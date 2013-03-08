@@ -132,7 +132,20 @@ function getCompany(_this){
  	}
  	return k;
  }
- 
+ //全選
+ function checkall(_this){
+ 	var $zy_checkbox=$(".zy",navTab.getCurrentPanel());
+ 	if($(_this).attr("checked")=="checked"){
+ 		$zy_checkbox.each(function(){ 
+ 			$(this).attr("checked","true"); 
+ 		});  	
+ 	}else {
+ 		$zy_checkbox.each(function(){ 
+ 			$(this).removeAttr("checked"); 
+ 		}); 
+ 	}  
+ } 
+  
  $(function (){
  	var $zytlrForm_input=$("#zytlrForm",navTab.getCurrentPanel()); 
  	$zytlrForm_input.keypress(function(e){
@@ -140,6 +153,24 @@ function getCompany(_this){
  			return false;
  		}
  	});
+ 	var $delete=$(".delete",navTab.getCurrentPanel());
+ 	$delete.click(function(){
+ 		var $zy_checkbox=$(".zy",navTab.getCurrentPanel()); 
+ 		var  zytl_ids="";
+ 		$zy_checkbox.each(function(){ 
+ 			if($(this).attr("checked")=="checked"){
+ 				if(zytl_ids=="")
+ 				zytl_ids+=$(this).closest("td").find(".zytl_name").val();
+ 				else
+ 				zytl_ids+=","+$(this).closest("td").find(".zytl_name").val();
+ 			}
+ 		});
+ 		if(zytl_ids==""){     
+			return false;
+ 		}else{
+ 			$delete.attr("href",$delete.attr("href")+zytl_ids);
+ 		}  
+ 	});  
  });
 </script>
 <div class="page">
@@ -170,7 +201,7 @@ function getCompany(_this){
 					<li class="line">line</li>
 					<li><a class="add" href="wxdw/zytlEdit.do" target="navTab" rel="zytlrEdit" title="资源填录人信息"><span>添加</span></a></li>
 					<li class="line">line</li>
-					<li><a class="delete" href="wxdw/tlrAjaxDel.do?zytl_id={gc_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li><a class="delete" href="wxdw/tlrAjaxDel.do?zytl_ids=" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 					<li> <a class="exportexcel" href="dispath.do?url=form/zytlrImport.jsp?config=zytlr" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li> 
@@ -187,7 +218,10 @@ function getCompany(_this){
 		<table class="table" width="100%" layouth="138" id="zytlrTab">
 			<thead>
 				<tr>
-					<th style="width:40px;"></th>
+					<th style="width:40px;" align="center">
+					<input type="checkbox" id="check_all" onclick="checkall(this)"/>
+					<input type="hidden" name="zytl_ids" id="zytl_ids"/>
+					</th>
 					<th style="width: 80px;"  orderField="gis_no" >GIS工号</th>
 					<th style="width: 80px;"  orderField="tlrxm">填录人姓名</th>
 					<th style="width: 196px;" orderField="ssdw">所属单位</th>
@@ -204,7 +238,8 @@ function getCompany(_this){
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="gc_id" rel="${obj[0].id}">
 						<td style="text-align:center;">
-						${offset }
+						<input type="checkbox" class="zy" />
+						<input type="hidden" name="zytl_name" value="${obj[0].id }" class="zytl_name"/>
 						</td>
 						<td>${obj[0].gis_no }</td>
 						<td><a href="wxdw/zytlEdit.do?zytl_id=${obj[0].id }" target="navTab" rel="zytlrEdit" title="资源填录人信息单">${obj[0].tlrxm }</a></td>

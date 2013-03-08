@@ -155,12 +155,17 @@ public class Resource {
 	@RequestMapping("/wxdw/tlrAjaxDel.do")
 	public void tlrAjaxDel(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, Exception {
-		Long zytl_id = convertUtil.toLong(request.getParameter("zytl_id"));
+		String zytl_ids = convertUtil
+				.toString(request.getParameter("zytl_ids"));
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		if (zytl_id != -1) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("delete from Tf31_zytl zytl where zytl.id in (");
+		hql.append(zytl_ids);
+		hql.append(")");
+		if (!zytl_ids.equals("")) {
 			try {
-				dao.removeObject(Tf31_zytl.class, zytl_id);
+				dao.update(hql.toString());
 				out
 						.print("{\"statusCode\":\"200\", \"message\":\"删除人员信息成功!\"}");
 			} catch (RuntimeException e) {
@@ -168,6 +173,8 @@ public class Resource {
 				out
 						.print("{\"statusCode\":\"300\", \"message\":\"删除人员信息失败!\"}");
 			}
+		} else {
+			out.print("{\"statusCode\":\"300\", \"message\":\"人员信息未选择!\"}");
 		}
 	}
 
@@ -283,7 +290,7 @@ public class Resource {
 	 * @param response
 	 *            void
 	 * @throws IOException
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
 	@RequestMapping("/wxdw/getCompanyAjax.do")
 	public void getCompanyAjax(HttpServletRequest request,
@@ -292,7 +299,7 @@ public class Resource {
 		String ssdw = convertUtil.toString(request.getParameter("ssdw"));
 		StringBuffer hql = new StringBuffer();
 		PrintWriter out = null;
-		List ssdwList=null;
+		List ssdwList = null;
 		hql.append("select w.mc from Tf01_wxdw w where 1=1 and rownum<10 ");
 		if (!ssdw.equals("") && ssdw != null) {
 			hql.append("and w.mc like '%");
@@ -303,19 +310,19 @@ public class Resource {
 			}
 			hql.append("' ");
 			hql.append("order by w.mc");
-			ssdwList=queryService.searchList(hql.toString());
+			ssdwList = queryService.searchList(hql.toString());
 		}
-		
-		if (ssdwList!=null&&ssdwList.size()!=0) {
-			JSONArray json=new JSONArray();
+
+		if (ssdwList != null && ssdwList.size() != 0) {
+			JSONArray json = new JSONArray();
 			for (Object object : ssdwList) {
-				JSONObject jo=new JSONObject();
+				JSONObject jo = new JSONObject();
 				jo.put("ssdw", object);
 				json.put(jo);
 			}
-			out=response.getWriter();
+			out = response.getWriter();
 			out.print(json.toString());
 		}
-		
+
 	}
 }
