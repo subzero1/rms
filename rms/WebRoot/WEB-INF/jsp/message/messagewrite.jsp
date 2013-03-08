@@ -157,9 +157,11 @@
 						<td><textarea name="content" id="content" style='width:98%;height:120px'>${content }</textarea></td>
 					</tr>
 				</table>
+				<div  align="right"><input type="button" class="button-td" style="width:20px;height:20px;" onclick="javascript:selectToUser();" value="∧
+				" /></div>
 			</div>
 			<!-- right -->
-			<div style="width:200px;text-align:right;padding:5px; 5px;"">
+			<div style="width:200px;text-align:right;padding:5px; 5px;">
 				<select name="area" id="area" style="width:80px;">
 			    	<c:forEach var="area" items="${areaList}">
 						<c:choose>
