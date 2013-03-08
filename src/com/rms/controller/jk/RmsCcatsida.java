@@ -84,7 +84,7 @@ public class RmsCcatsida {
 	 * @throws UnsupportedEncodingException
 	 *             void
 	 */
-	@RequestMapping("/jk/ccatsida_pss.do")
+	@RequestMapping("/jk/ccatsida_rms.do")
 	public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("GBK");
