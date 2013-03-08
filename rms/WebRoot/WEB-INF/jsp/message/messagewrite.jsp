@@ -69,6 +69,7 @@
 	function del(obj){
 	 document.messagewrite.reader_name.value='';
 	 document.messagewrite.reader_id.value='';
+	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name');
 	}
 	function selectToUser(){
 		var selectO = $("#user_list option:selected");
@@ -80,7 +81,11 @@
 			$("#reader_name").val($("#reader_name").val() + "；" + $(this).text());
 			$("#reader_id").val($("#reader_id").val() + "," + $(this).val());
 		}
+		$(this).remove();
 		});
+	}
+	function selectToUserMutiple(){
+		
 	}
 	$(function(){
 	//及连菜单
