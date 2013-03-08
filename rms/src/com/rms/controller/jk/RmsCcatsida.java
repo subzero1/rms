@@ -44,7 +44,7 @@ import com.rms.serviceImpl.jk.CcatsidaXMLParser;
  * @author Administrator May 27, 2010
  */
 @Controller
-public class PssCcatsida {
+public class RmsCcatsida {
 
 	/**
 	 * 数据对应操作类
