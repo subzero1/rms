@@ -118,6 +118,7 @@ public class RmsCcatsida {
 			CcatsidaXMLParser parser = new CcatsidaXMLParser();
 			project = parser.parseProject(wsc.processRequest("1", projectcode, target));
 			projectrow = (Element) project.getElementsByTagName("ROW").item(0);
+			log.error("工单接口调试："+projectrow.toString()+"^^^^^^^^^^^^^^^^^^^^^^^^^^");
 		} catch (Exception e) {
 			log.error("获取工单数据失败！工单号＝" + projectcode, e);
 		}
@@ -148,7 +149,7 @@ public class RmsCcatsida {
 				tx.begin(); // 开始事务
 
 				/**
-				 * 获取客户端提出数据。构建td00,td11 并保存到数据库中
+				 * 获取客户端提出数据。构建td00 并保存到数据库中
 				 */
 				/*
 				td00 = new Td00_gcxx();
