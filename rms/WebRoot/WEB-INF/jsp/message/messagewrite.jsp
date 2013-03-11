@@ -69,10 +69,12 @@
 	function del(obj){
 	 document.messagewrite.reader_name.value='';
 	 document.messagewrite.reader_id.value='';
+	 $(".read_div").html("");
 	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name');
 	}
 	function selectToUser(){
 		var selectO = $("#user_list option:selected");
+		var $read_div=$(".read_div");
 		selectO.each(function(){
 		if($("#reader_name").val()==""){
 			$("#reader_name").val($(this).text());
@@ -81,6 +83,7 @@
 			$("#reader_name").val($("#reader_name").val() + "；" + $(this).text());
 			$("#reader_id").val($("#reader_id").val() + "," + $(this).val());
 		}
+		$read_div.append("<span>"+$(this).text()+";&nbsp;</span>");
 		$(this).remove();
 		});
 	}
@@ -134,7 +137,8 @@
 					</tr>
 					<tr>
 						<th>收件人：</th>
-						<td><input type="text" style="width:85%" id="reader_name" name="reader_name" readOnly value="${reader_name }"/><input type="hidden" id="reader_id" name="reader_id" value="${reader_id }"/>&nbsp;<img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer" title="清空内容" /></td>
+						<td><div style="width:100%;height: auto;" class='read_div'></div></td>
+						<td><input type="hidden" style="width:100%" id="reader_name" name="reader_name" readOnly value="${reader_name }"/><input type="hidden" id="reader_id" name="reader_id" value="${reader_id }"/><img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
 					</tr>
 					<tr>
 						<th>主&nbsp;&nbsp;题：</th>
