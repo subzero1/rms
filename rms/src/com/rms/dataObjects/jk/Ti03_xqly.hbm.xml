@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.pss.dataObjects.jk.Ti03_xqly"
+        table="Ti03_xqly"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ti03_num</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Ti03_xqly.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="lyxt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lyxt"
+        />
+
+        <property
+            name="xqbs"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xqbs"
+        />
+
+        <property
+            name="url"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="url"
+        />
+
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Ti03_xqly.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
