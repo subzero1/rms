@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
+	var arrayLength=0;
 	function setdept(obj){
 		if(obj.value!=""){
 			var url = 'MessageAjax.do';
@@ -76,20 +77,15 @@
 		var selectO = $("#user_list option:selected");
 		var $read_div=$(".read_div");
 		selectO.each(function(){
-		if($("#reader_name").val()==""){
-			$("#reader_name").val($(this).text());
+		if($("#reader_id").val()==""){
 			$("#reader_id").val($(this).val());
-		}else{
-			$("#reader_name").val($("#reader_name").val() + "；" + $(this).text());
+		}else{ 
 			$("#reader_id").val($("#reader_id").val() + "," + $(this).val());
 		}
 		$read_div.append("<span id='"+$(this).val()+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(this).text()+";&nbsp;</span>");
 		$(this).remove();
 		});
-	}
-	function selectToUserMutiple(){
-		
-	}
+	} 
 	function hover_css(_this){
 		$(_this).css("background","#3399ff");
 		$(_this).css("cursor","default");
@@ -99,6 +95,26 @@
 	}
 	function delRead(_this){
 		var read_id=$(_this).attr("id");
+		var reader_ids=$("#reader_id").val();
+		var reader_ids_array=reader_ids.split(",");
+		arrayLength=reader_ids_array.length;
+		for(var i=0;i<arrayLength;i++){
+			if(read_id==reader_ids_array[i]){
+				for(var j=i;j<arrayLength-1;j++){
+					reader_ids_array[j]=reader_ids_array[j+1];
+				}
+				arrayLength--;
+			} 
+		}
+		$("#reader_id").val("");
+		$("#reader_id").val(reader_ids_array[0]);
+		for(var i=1;i<arrayLength;i++){
+			$("#reader_id").val($("#reader_id").val()+","+reader_ids_array[i]);
+		}
+		if(arrayLength==0){
+			$("#reader_id").val(""); 
+			reader_ids_array=null;
+		}  
 		$(_this).remove();
 	}
 	$(function(){
@@ -127,10 +143,7 @@
 		$("#messagewrite").submit();
 		
 	})	
-	})
-	function delete_read_id(_this){
-		$(_this).remove();
-	}
+	}) 
 </script>
 
 
@@ -152,7 +165,7 @@
 					<tr>
 						<th>收件人：</th>
 						<td><div style="width:100%;height: auto;" class='read_div'></div></td>
-						<td><input type="hidden" style="width:100%" id="reader_name" name="reader_name" readOnly value="${reader_name }"/><input type="text" id="reader_id" name="reader_id" value="${reader_id }"/><img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
+						<td><input type="hidden" id="reader_id" name="reader_id" value="${reader_id }"/><img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
 					</tr>
 					<tr>
 						<th>主&nbsp;&nbsp;题：</th>
