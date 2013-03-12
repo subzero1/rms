@@ -94,6 +94,7 @@
 				<p>
 					<label>考核归类：</label>
 					<netsky:htmlSelect name="Tf17_rckh.KHLB" htmlClass="required" objectForOption="khlbList" style="width:130px" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${tf17.khlb }"/>
+				<span style="color: red;float: left;padding-top: 6px;">*</span>
 				</p>
 				<p>
 					<label>考核人员：</label>
@@ -120,6 +121,7 @@
 				<p>
 					<netsky:htmlSelect id="khyf" name="Tf17_rckh.KHYF" objectForOption="yfList"  valueForOption="" showForOption="" extend="" extendPrefix="true" value="${tf17.khyf}" htmlClass="required"/>
 				</p>
+				<span style="color: red;float: left;padding-top: 10px;">*</span>
 				<p>
 					<label>考核原因：</label>
 					<textarea class="required" name="Tf17_rckh.KHYY" style="width:662px;height:145px;">${tf17.khyy }</textarea>
