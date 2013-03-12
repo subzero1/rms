@@ -1055,7 +1055,19 @@ public class AuxFunction {
 		sql.append("' order by id desc ");
 		List list = queryService.searchList(sql.toString());
 		if(list != null && list.size() > 0){
-			return new ModelAndView("../openForm.do?project_id="+project_id+"&module_id="+module_id+"&doc_id="+(Long)(list.get(0))+"&opernode_id=-1&node_id="+module_id+"01&user_id="+user_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
+			Long opernode_id = -1L;
+			sql.delete(0, sql.length());
+			sql.append("select id from Tb12_opernode ");
+			sql.append("where project_id = ");
+			sql.append(project_id);
+			sql.append(" and node_id = ");
+			sql.append(module_id+"01");
+			sql.append(" order by id desc ");
+			List t_list = queryService.searchList(sql.toString());
+			if(t_list != null && t_list.size() > 0){
+				opernode_id = (Long)(t_list.get(0));
+			}
+			return new ModelAndView("../openForm.do?project_id="+project_id+"&module_id="+module_id+"&doc_id="+(Long)(list.get(0))+"&opernode_id="+opernode_id+"&node_id="+module_id+"01&user_id="+user_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
 		}
 		else{
 			return new ModelAndView("../flowForm.do?user_id="+user_id+"&node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
