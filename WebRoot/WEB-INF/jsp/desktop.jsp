@@ -9,6 +9,9 @@ $(function(){
 	//计算待办列表默认行数 
 	var temp_h = navTab._panelBox.height() - 310;
 	var numPerPage = parseInt((temp_h-40)/22,10);
+	if(numPerPage <= 0){
+		numPerPage = 5;
+	}
 	var url = "docListUI.do?workState=1&numPerPage=" + numPerPage;
 	$("#needWorkList_ui").attr("loadfile",url);
 	$("#needWorkList_ui").loadUrl(url);
