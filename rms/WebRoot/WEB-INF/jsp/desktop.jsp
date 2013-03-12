@@ -136,7 +136,7 @@ function openOnLineList(){
 		</div>
 		<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b><b class="r0"></b><b class="r00"></b></b>
           <div class="title01">
-				<span style="float:right;"><input class="red-message" type="button" onclick="javascript:navTab.openTab('messageList','MessageList.do?messageState=1');" value="${wcldxx}条未读"/></span>
+				<span style="float:right;"><input class="red-message" type="button" onclick="javascript:navTab.openTab('messageList','MessageList.do?messageState=1',{title:'内部邮件'});" value="${wcldxx}条未读"/></span>
                <h3>内部邮件</h3>
            </div>
 		<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
