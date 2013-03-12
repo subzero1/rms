@@ -300,7 +300,7 @@ public class Rckh {
 		String mc = convertUtil.toString(request.getParameter("mc"));
 		String lb = convertUtil.toString(request.getParameter("lb"));
 		StringBuffer hsql = new StringBuffer();
-		hsql.append("select tf01 from Tf01_wxdw tf01 where mc like '%" + mc + "%' and lb like '%" + lb + "%'");
+		hsql.append("select tf01 from Tf01_wxdw tf01 where mc like '%" + mc + "%' and lb like '%" + lb + "%' order by tf01.mc");
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
 		totalCount = ro.getTotalRows();
 		pageNumShown = ro.getTotalPages();
