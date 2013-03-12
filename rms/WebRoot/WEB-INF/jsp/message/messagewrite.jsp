@@ -68,7 +68,6 @@
 		document.getElementById("send_message").deleteRow(num);
 	}	
 	function del(obj){
-	 document.messagewrite.reader_name.value='';
 	 document.messagewrite.reader_id.value='';
 	 $(".read_div").html("");
 	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name');
