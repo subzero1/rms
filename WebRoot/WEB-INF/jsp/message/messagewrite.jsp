@@ -83,7 +83,7 @@
 			$("#reader_name").val($("#reader_name").val() + "；" + $(this).text());
 			$("#reader_id").val($("#reader_id").val() + "," + $(this).val());
 		}
-		$read_div.append("<span onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(this).text()+";&nbsp;</span>");
+		$read_div.append("<span id='"+$(this).val()+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(this).text()+";&nbsp;</span>");
 		$(this).remove();
 		});
 	}
@@ -98,6 +98,7 @@
 		$(_this).css("background","white");
 	}
 	function delRead(_this){
+		var read_id=$(_this).attr("id");
 		$(_this).remove();
 	}
 	$(function(){
@@ -151,7 +152,7 @@
 					<tr>
 						<th>收件人：</th>
 						<td><div style="width:100%;height: auto;" class='read_div'></div></td>
-						<td><input type="hidden" style="width:100%" id="reader_name" name="reader_name" readOnly value="${reader_name }"/><input type="hidden" id="reader_id" name="reader_id" value="${reader_id }"/><img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
+						<td><input type="hidden" style="width:100%" id="reader_name" name="reader_name" readOnly value="${reader_name }"/><input type="text" id="reader_id" name="reader_id" value="${reader_id }"/><img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
 					</tr>
 					<tr>
 						<th>主&nbsp;&nbsp;题：</th>
