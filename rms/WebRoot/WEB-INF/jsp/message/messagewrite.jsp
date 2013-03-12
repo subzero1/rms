@@ -83,12 +83,22 @@
 			$("#reader_name").val($("#reader_name").val() + "；" + $(this).text());
 			$("#reader_id").val($("#reader_id").val() + "," + $(this).val());
 		}
-		$read_div.append("<span>"+$(this).text()+";&nbsp;</span>");
+		$read_div.append("<span onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(this).text()+";&nbsp;</span>");
 		$(this).remove();
 		});
 	}
 	function selectToUserMutiple(){
 		
+	}
+	function hover_css(_this){
+		$(_this).css("background","#3399ff");
+		$(_this).css("cursor","default");
+	}
+	function mouseout_css(_this){
+		$(_this).css("background","white");
+	}
+	function delRead(_this){
+		$(_this).remove();
 	}
 	$(function(){
 	//及连菜单
@@ -117,6 +127,9 @@
 		
 	})	
 	})
+	function delete_read_id(_this){
+		$(_this).remove();
+	}
 </script>
 
 
