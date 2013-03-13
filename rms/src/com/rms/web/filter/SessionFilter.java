@@ -16,18 +16,15 @@ public class SessionFilter extends OncePerRequestFilter {
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String uri = request.getRequestURI();
-		String[] notFilter = new String[] { "index.jsp", "login.do",
-				"logout.do" };
+		String[] notFilter = new String[] {"login.do",
+				"logout.do","download.do" };
 		boolean doFilter = true;
 		for (String s : notFilter) {
 			if (uri.indexOf(s) != -1) {
 				doFilter = false;
 				break;
 			}
-		}
-		if (uri.equals("/rms/")) {
-			doFilter = false;
-		}
+		} 
 		if (doFilter) {
 			Object obj = request.getSession().getAttribute("user");
 			if (null == obj) {
@@ -36,8 +33,8 @@ public class SessionFilter extends OncePerRequestFilter {
 				filterChain.doFilter(request, response);
 			}
 		} else {
-			filterChain.doFilter(request, response);
-		}
+			filterChain.doFilter(request, response); 
+		} 
 	}
 
 	/**
