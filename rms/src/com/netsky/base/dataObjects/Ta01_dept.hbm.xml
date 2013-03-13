@@ -49,6 +49,14 @@
   insert="true"
   column="useflag"
   />
+  
+  <property
+  name="showflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="showflag"
+  />
 
   <property
   name="area_name"

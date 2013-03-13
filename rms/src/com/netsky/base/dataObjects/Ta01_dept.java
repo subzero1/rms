@@ -138,5 +138,19 @@ public class Ta01_dept implements Serializable{
     this.up_id = up_id;
   }
 
+ private Long showflag;
 
+ /**
+  * @hibernate.property column="showflag"
+  * @return Returns the showflag.
+  */
+public Long getShowflag() {
+	return showflag;
+}
+
+public void setShowflag(Long showflag) {
+	this.showflag = showflag;
+}
+ 
+ 
 }
