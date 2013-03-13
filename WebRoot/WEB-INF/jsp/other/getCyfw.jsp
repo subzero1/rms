@@ -100,7 +100,7 @@ $(function(){
 		</div>
 		<div class="tabsContent" style="height:260px;">
 			<div id="ry_tab">
-				<ul class="tree treeCheck expand" oncheck="setCheckResult">
+				<ul class="tree treeCheck collapse" oncheck="setCheckResult">
 					<c:forEach items="${ta01AllList}" var="ta01">
 						<c:if test="${not empty deptUserMap[ta01.id]}">
 							<li><a>${ta01.name }</a>
