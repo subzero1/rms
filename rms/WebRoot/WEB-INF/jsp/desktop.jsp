@@ -77,7 +77,14 @@ function openOnLineList(){
 		  		<div class="contentc" style="height:225px;">
 					<table border="0" cellspacing="6" cellpadding="0" style="border-collapse:collapse;" id="remind">
 						<tr>
-						 <td class="gxwd" onclick="javascript:navTab.openTab('gxwdList', 'other/Gxwd.do', {title:'共享文档'});"><br/>共享文档</td>
+							<c:choose>
+								<c:when test="${not empty rolesMap['110101']}">
+							    	<td class="gxwd" onclick="javascript:navTab.openTab('gxwdList', 'other/wdList.do?limit=1', {title:'文档管理'});"><br/>共享文档</td>
+							    </c:when>
+							    <c:otherwise>
+							    	<td class="gxwd" onclick="javascript:navTab.openTab('gxwdList', 'other/wdList.do?limit=0', {title:'文档查阅'});"><br/>共享文档</td>
+							    </c:otherwise>
+						    </c:choose>
 							<td class="zxTws" onclick="javascript:navTab.openTab('onlineList', 'OnLineList.do?wtlx=15', {title:'在线提问'});"><font>${csMap.zxWdfs}</font><br/>在线提问(${csMap.zxTws})</td>
 							<td class="jjcs" onclick="javascript:navTab.openTab('remind', 'search/remindFlowList.do?remindType=jcs&user_id=${user.id }', {title:'超时提醒'});"><font> ${jcss}</font><br/>即将超时</td>
 							<td class="yjcs" onclick="javascript:navTab.openTab('remind', 'search/remindFlowList.do?remindType=cs&user_id=${user.id }', {title:'超时提醒'});"><font> ${css}</font><br/>已经超时</td>
