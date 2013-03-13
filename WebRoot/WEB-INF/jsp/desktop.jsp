@@ -114,7 +114,7 @@ function openOnLineList(){
        <!-- col-r -->
        <div id="col-r">
 		<div class="title01">
-              <h3>系统公告</h3>
+              <h3><a href="javascript:navTab.openTab('OnLineList','OnLineList.do?wtlx=601',{title:'系统公告'});">系统公告</a></h3>
            </div>
         <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
 		<div class="win-boxp" style="height:104px;">
@@ -147,7 +147,7 @@ function openOnLineList(){
 		<b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b><b class="r0"></b><b class="r00"></b></b>
           <div class="title01">
 				<span style="float:right;"><input class="red-message" type="button" onclick="javascript:navTab.openTab('messageList','MessageList.do?messageState=1',{title:'内部邮件'});" value="${wcldxx}条未读"/></span>
-               <h3>内部邮件</h3>
+               <h3><a href="javascript:navTab.openTab('messageList','MessageList.do?messageState=1',{title:'内部邮件'});">内部邮件</a></h3>
            </div>
 		<b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
 		<div class="win-boxp" style="height:93px;">
