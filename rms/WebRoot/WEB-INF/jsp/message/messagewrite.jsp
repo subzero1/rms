@@ -69,6 +69,7 @@
 	}	
 	function del(obj){
 	 document.messagewrite.reader_id.value='';
+	 document.messagewrite.reader_name.value='';
 	 $(".read_div").html("");
 	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name');
 	}
@@ -78,10 +79,12 @@
 		selectO.each(function(){
 		if($("#reader_id").val()==""){
 			$("#reader_id").val($(this).val());
+			$("#reader_name").val($(this).text());
 		}else{ 
 			$("#reader_id").val($("#reader_id").val() + "," + $(this).val());
+			$("#reader_name").val($("#reader_name").val() + "," + $(this).text());
 		}
-		$read_div.append("<span id='"+$(this).val()+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(this).text()+";&nbsp;</span>");
+		$read_div.append("<span name='"+$(this).text()+"' id='"+$(this).val()+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(this).text()+";&nbsp;</span>");
 		$(this).remove();
 		});
 	} 
@@ -96,23 +99,34 @@
 		var read_id=$(_this).attr("id");
 		var reader_ids=$("#reader_id").val();
 		var reader_ids_array=reader_ids.split(",");
+		
+		var read_name=$(_this).attr("name");
+		var reader_names=$("#reader_name").val();
+		var reader_names_array=reader_names.split(",");
+		
 		arrayLength=reader_ids_array.length;
 		for(var i=0;i<arrayLength;i++){
 			if(read_id==reader_ids_array[i]){
 				for(var j=i;j<arrayLength-1;j++){
 					reader_ids_array[j]=reader_ids_array[j+1];
+					reader_names_array[j]=reader_names_array[j+1];
 				}
 				arrayLength--;
 			} 
 		}
 		$("#reader_id").val("");
+		$("#reader_name").val("");
 		$("#reader_id").val(reader_ids_array[0]);
+		$("#reader_name").val(reader_names_array[0]);
 		for(var i=1;i<arrayLength;i++){
 			$("#reader_id").val($("#reader_id").val()+","+reader_ids_array[i]);
+			$("#reader_name").val($("#reader_name").val()+","+reader_names_array[i]);
 		}
 		if(arrayLength==0){
 			$("#reader_id").val(""); 
 			reader_ids_array=null;
+			$("#reader_name").val(""); 
+			reader_names_array=null;
 		}  
 		$(_this).remove();
 	}
@@ -164,7 +178,9 @@
 					<tr>
 						<th>收件人：</th>
 						<td><div style="width:100%;height: auto;" class='read_div'></div></td>
-						<td><input type="hidden" id="reader_id" name="reader_id" value="${reader_id }"/><img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
+						<td><input type="hidden" id="reader_id" name="reader_id" value="${reader_id }"/>
+							<input type="hidden" id="reader_name" name="reader_name" value="${reader_name }"/>
+						<img src="Images/trash.gif" onclick="javascript:del(this);" style="cursor:pointer;" title="清空内容" /></td>
 					</tr>
 					<tr>
 						<th>主&nbsp;&nbsp;题：</th>

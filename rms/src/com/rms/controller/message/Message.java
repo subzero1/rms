@@ -363,7 +363,7 @@ public class Message {
 			// 保存数据
 
 			String[] readers_id = reader_id.split(",");
-			String[] readers_name = reader_name.split("；");
+			String[] readers_name = reader_name.split(",");
 			for (int i = 0; i < readers_id.length; i++) {
 				int fj_num = 0;
 				Te04_message te04 = new Te04_message();
