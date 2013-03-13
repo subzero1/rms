@@ -31,6 +31,10 @@
 		<folder>rmsSlaveData/xhEditor</folder>
 	</typeFolder>
 	<typeFolder>
+		<type>文档</type>
+		<folder>rmsSlaveData/wd</folder>
+	</typeFolder>
+	<typeFolder>
 		<type>其他附件</type>
 		<folder>rmsSlaveData/kcfk</folder>
 	</typeFolder>

@@ -277,6 +277,8 @@ function getCookie(name)
 									<li><a href="alarm.do" target="dialog" width="480" height="200" title="超时提醒设置">超时提醒设置</a></li>
 									<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>
 									<li><a href="jlgt/jlgtList.do" target="navTab" rel="jlgtList">交流沟通列表</a></li>
+									<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li>
+									<li><a href="other/wdSearch.do" target="navTab" rel="wdSearch" title="公司内部文档搜索">文档搜索</a></li>
 								</ul>
 							</li>
 						</ul>
