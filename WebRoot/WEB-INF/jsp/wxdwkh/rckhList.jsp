@@ -105,7 +105,7 @@
 					<th orderField="wxdw_mc">单位名称</th>
 					<th style="width: 80px;" orderField="wxdw_lb">单位类别</th>
 					</c:if>
-					<th style="width: 80px;" orderField="khsj">考核时间</th>
+					<th style="width: 80px;" orderField="khnf||khyf">考核时间</th>
 					<th style="width: 80px;" orderField="khry_name">考核人员</th>
 					<th style="width: 80px;" orderField="khyy">考核原因</th>
 					<th style="width: 80px;" orderField="khlb">考核归类</th>
@@ -127,7 +127,7 @@
 						<td><a class="edit" href="wxdwkh/rckhEdit.do?id=${obj.id}&canedit=true" target="dialog" width="800" height="525" rel="rckh" title="日常考核">${obj.wxdw_mc }</a></td>
 						<td>${obj.wxdw_lb }</td>
 					</c:if>
-						<td><fmt:formatDate value="${obj.khsj}" pattern="yyyy-MM-dd"/></td>
+						<td>${obj.khnf }年${obj.khyf }月</td>
 						<td>${obj.khry_name }</td>
 						<td>${obj.khyy }</td>
 						<td>${obj.khlb }</td>
