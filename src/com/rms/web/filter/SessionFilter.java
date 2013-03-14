@@ -17,7 +17,7 @@ public class SessionFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		String[] notFilter = new String[] {"login.do",
-				"logout.do","download.do" };
+				"logout.do","download.do","ccatsida_rms.do" };
 		boolean doFilter = true;
 		for (String s : notFilter) {
 			if (uri.indexOf(s) != -1) {
