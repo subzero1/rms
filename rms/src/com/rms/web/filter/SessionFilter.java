@@ -24,7 +24,9 @@ public class SessionFilter extends OncePerRequestFilter {
 				doFilter = false;
 				break;
 			}
-		} 
+		} if (uri.equals("/rms/")) {
+			doFilter=false;
+		}
 		if (doFilter) {
 			Object obj = request.getSession().getAttribute("user");
 			if (null == obj) {
