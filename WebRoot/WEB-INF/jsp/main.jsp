@@ -278,6 +278,7 @@ function getCookie(name)
 									<!--<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>-->
 									<!--<li><a href="jlgt/jlgtList.do" target="navTab" rel="jlgtList">交流沟通列表</a></li>-->
 									<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li>
+									<li><a href="search/xmxxList.do" target="navTab" rel="xmxxList" title="项目信息列表">项目信息列表</a></li>
 								</ul>
 							</li>
 						</ul>
