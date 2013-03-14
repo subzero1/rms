@@ -163,7 +163,7 @@
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_b5j.hbm.xml</value>
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_bhz.hbm.xml</value>
 				<value>com/rms/dataObjects/gcjs/Te03_gcgys_zhxx.hbm.xml</value>
-				
+				<value>com/rms/dataObjects/jk/Ti03_xqly.hbm.xml</value>
 				
 				<value>com/netsky/base/dataObjects/Tz01_exception.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz02_oper_log.hbm.xml</value>

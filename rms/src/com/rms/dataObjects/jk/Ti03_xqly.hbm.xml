@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.netsky.pss.dataObjects.jk.Ti03_xqly"
+        name="com.rms.dataObjects.jk.Ti03_xqly"
         table="Ti03_xqly"
     >
 
