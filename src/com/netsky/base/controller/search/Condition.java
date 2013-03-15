@@ -18,6 +18,7 @@ import com.netsky.base.dataObjects.Ta08_reportfield;
 import com.netsky.base.dataObjects.Ta29_report_template;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * 查询、统计报表条件
@@ -124,7 +125,11 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			 * 获取用户模板
 			 */
 			queryBuilder = new HibernateQueryBuilder(Ta29_report_template.class);
-			queryBuilder.eq("user_id", user.getId());
+			if (user.getId()==1) {
+				queryBuilder.eq("user_id", user.getId());
+			}else {
+				queryBuilder.in("user_id", new Object[]{new Long(user.getId()),new Long(1)});
+			}
 			if (type.equals("reportflag")) {
 				queryBuilder.eq("type", new Long(1));
 			} else {
