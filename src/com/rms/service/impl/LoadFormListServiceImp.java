@@ -637,9 +637,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				hsql.append(") ");
 				hsql.append("and x.type=1"); 
 				td54List=queryService.searchList(hsql.toString());
-				
-				
-				
+
 				Iterator it=td54List.iterator();
 				List td54_gcjdxList=new ArrayList();
 				Object td54Array[]=null;
@@ -659,8 +657,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				
 				request.setAttribute("Td53_gzjdList", td53_gzjdxList);
 				request.setAttribute("Td54_gzjdxList", td54_gcjdxList);
-				
-				
 			}
 			
 			if(module_id==104 || module_id == 107){
