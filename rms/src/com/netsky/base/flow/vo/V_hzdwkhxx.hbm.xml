@@ -65,6 +65,14 @@
   insert="true"
   column="fkje"
   />
+  
+  <property
+  name="jlje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jlje"
+  />
 
   <property
   name="jkfz"

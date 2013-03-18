@@ -137,7 +137,10 @@ public class V_hzdwkhxx implements Serializable{
  public void setFkje(Long fkje) {
     this.fkje = fkje;
   }
+ 
+ private Long jlje;
 
+ 
  /**
  * 
  */
@@ -240,5 +243,16 @@ public class V_hzdwkhxx implements Serializable{
     this.khwz = khwz;
   }
 
+ /**
+  * @hibernate.property column="jlje"
+  * @return Returns the jlje.
+  */
+public Long getJlje() {
+	return jlje;
+}
+
+public void setJlje(Long jlje) {
+	this.jlje = jlje;
+}
 
 }
