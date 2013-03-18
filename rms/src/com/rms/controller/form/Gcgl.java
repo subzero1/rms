@@ -647,14 +647,30 @@ public class Gcgl {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		String jssj = convertUtil.toString(request.getParameter("jssj"));
+		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
 
-		hql
-				.append("select x from Td01_xmxx x ");
+		hql.append("select x from Td01_xmxx x ");
+
 		hql.append("where 1=1 ");
 		if (!keyword.equals("")) {
-			hql.append("and x.xmmc like '%");
+			hql.append("and (x.xmmc like '%");
 			hql.append(keyword);
 			hql.append("%' ");
+			hql.append("or x.xmbh like '%");
+			hql.append(keyword);
+			hql.append("%') ");
+		}
+		if (!jssj.equals("")) {
+			hql.append("and x.jssj=to_date('");
+			hql.append(jssj); 
+			hql.append("','yyyy-mm-dd'");
+			hql.append(") ");
+		}
+		if (!xmzt.equals("")) {
+			hql.append("and x.xmzt='");
+			hql.append(xmzt);
+			hql.append("'");
 		}
 		hql.append("order by x.");
 		hql.append(orderField);
@@ -666,9 +682,11 @@ public class Gcgl {
 			objList.add(ro.get("x"));
 		}
 		totalCount = ro.getTotalRows();
-		totalPages = ro.getTotalPages(); 
-		
+		totalPages = ro.getTotalPages();
+
 		modelMap.put("xmxxList", objList);
+		modelMap.put("jssj", jssj);
+		modelMap.put("xmzt", xmzt);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("totalCount", totalCount);
