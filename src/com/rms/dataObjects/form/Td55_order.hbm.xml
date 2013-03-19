@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.form.Td55_order"  table="Td55_order">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td55_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="ddbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ddbm"
+  />
+
+  <property
+  name="gsdq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gsdq"
+  />
+
+  <property
+  name="service"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="service"
+  />
+
+  <property
+  name="ddzt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ddzt"
+  />
+
+  <property
+  name="ddlx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ddlx"
+  />
+
+  <property
+  name="ddfl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ddfl"
+  />
+
+  <property
+  name="ywktdj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ywktdj"
+  />
+
+  <property
+  name="bzfwdj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bzfwdj"
+  />
+
+  <property
+  name="wlfwdj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wlfwdj"
+  />
+
+  <property
+  name="fwddlx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fwddlx"
+  />
+
+  <property
+  name="khlb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khlb"
+  />
+
+  <property
+  name="yqywktsj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="yqywktsj"
+  />
+
+  <property
+  name="slsj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="slsj"
+  />
+
+  <property
+  name="slr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="slr"
+  />
+
+  <property
+  name="ywzysj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ywzysj"
+  />
+
+  <property
+  name="zxh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zxh"
+  />
+
+  <property
+  name="theme"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="theme"
+  />
+
+  <property
+  name="xqms"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xqms"
+  />
+
+  <property
+  name="lxxx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lxxx"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="slave_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="slave_id"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
