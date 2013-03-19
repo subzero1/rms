@@ -133,14 +133,7 @@
 			</div>
 			<div class="formBar">
 				<ul>
-				<c:if test="${param.canedit == 'true' }">
-				<!-- 
-				<c:if test="${tf17.fkje > 0 }">
-				<li><div class="buttonActive"><div class="buttonContent"><button type="button" id="sgqr">手工确认</button></div></div></li>
-				</c:if>
-				 -->
-					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>
-				</c:if>	
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>	
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>
