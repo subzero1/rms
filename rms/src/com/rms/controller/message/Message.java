@@ -386,7 +386,7 @@ public class Message {
 					String fileDispath = (String) it.next();
 					MultipartFile file = Mrequest.getFile(fileDispath);
 					if (file.getName() != null && !file.getName().equals("") && file.getInputStream().available() > 0) {
-						String fileName = new String(file.getOriginalFilename().getBytes("ISO8859_1"), "UTF-8");
+						String fileName = new String(file.getOriginalFilename());
 						String extends_name = "";
 						if (file.getOriginalFilename().indexOf(".") != -1) {
 							extends_name = file.getOriginalFilename().substring(
