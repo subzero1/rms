@@ -201,6 +201,8 @@
 				<value>com/rms/dataObjects/form/Td52_aqys.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td53_gzjd.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td54_gzjdx.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td55_order.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td56_event.hbm.xml</value>
 				
 				<value>com/rms/dataObjects/mbk/Td21_mbk.hbm.xml</value>
 				<value>com/rms/dataObjects/mbk/Td22_mbk_lzjl.hbm.xml</value>

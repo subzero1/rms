@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Td55_order</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow>
+			<column>
+				<columnName>ID</columnName>
+				<index />
+				<name>标识</name>
+				<colName>标识</colName>
+			</column>
+			<column>
+				<columnName>DDBM</columnName>
+				<index />
+				<name>订单编码</name>
+				<colName>订单编码</colName>
+			</column>
+			<column>
+				<columnName>GSDQ</columnName>
+				<index />
+				<name>归属地区</name>
+				<colName>归属地区</colName>
+			</column>
+			<column>
+				<columnName>SERVICE</columnName>
+				<index />
+				<name>服務</name>
+				<colName>服務</colName>
+			</column>
+			<column>
+				<columnName>DDZT</columnName>
+				<index />
+				<name>订单状态</name>
+				<colName>订单状态</colName>
+			</column>
+			<column>
+				<columnName>DDLX</columnName>
+				<index />
+				<name>订单类型</name>
+				<colName>订单类型</colName>
+			</column>
+			<column>
+				<columnName>DDFL</columnName>
+				<index />
+				<name>订单分类</name>
+				<colName>订单分类</colName>
+			</column>
+			<column>
+				<columnName>YWKTDJ</columnName>
+				<index />
+				<name>业务开通等级</name>
+				<colName>业务开通等级</colName>
+			</column>
+			<column>
+				<columnName>BZFWDJ</columnName>
+				<index />
+				<name>保障服务等级</name>
+				<colName>保障服务等级</colName>
+			</column>
+			<column>
+				<columnName>WLFWDJ</columnName>
+				<index />
+				<name>网络服务等级</name>
+				<colName>网络服务等级</colName>
+			</column>
+			<column>
+				<columnName>FWDDLX</columnName>
+				<index />
+				<name>服务订单类型</name>
+				<colName>服务订单类型</colName>
+			</column>
+			<column>
+				<columnName>KHLB</columnName>
+				<index />
+				<name>客户类别</name>
+				<colName>客户类别</colName>
+			</column>
+			<column>
+				<columnName>YQYWKTSJ</columnName>
+				<index />
+				<name>要求业务开通时间</name>
+				<colName>要求业务开通时间</colName>
+			</column>
+			<column>
+				<columnName>SLSJ</columnName>
+				<index />
+				<name>受理时间</name>
+				<colName>受理时间</colName>
+			</column>
+			<column>
+				<columnName>SLR</columnName>
+				<index />
+				<name>受理人</name>
+				<colName>受理人</colName>
+			</column>
+			<column>
+				<columnName>YWZYSJ</columnName>
+				<index />
+				<name>业务租用到期时间</name>
+				<colName>业务租用到期时间</colName>
+			</column>
+			<column>
+				<columnName>ZXH</columnName>
+				<index />
+				<name>专线号</name>
+				<colName>专线号</colName>
+			</column>
+			<column>
+				<columnName>THEME</columnName>
+				<index />
+				<name>主题</name>
+				<colName>主题</colName>
+			</column>
+			<column>
+				<columnName>XQMS</columnName>
+				<index />
+				<name>需求描述</name>
+				<colName>需求描述</colName>
+			</column>
+			<column>
+				<columnName>LXXX</columnName>
+				<index />
+				<name>联系信息</name>
+				<colName>联系信息</colName>
+			</column>
+			<column>
+				<columnName>BZ</columnName>
+				<index />
+				<name>备注</name>
+				<colName>备注</colName>
+			</column>
+			<column>
+				<columnName>SLAVE_ID</columnName>
+				<index />
+				<name>附件表标识</name>
+				<colName>附件表标识</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Td56_event</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow>
+			<column>
+				<columnName>ID</columnName>
+				<index />
+				<name>标志</name>
+				<colName>标志</colName>
+			</column>
+			<column>
+				<columnName>NODE</columnName>
+				<index />
+				<name>环节</name>
+				<colName>环节</colName>
+			</column>
+			<column>
+				<columnName>SJMC</columnName>
+				<index />
+				<name>事件名称</name>
+				<colName>事件名称</colName>
+			</column>
+			<column>
+				<columnName>GDZT</columnName>
+				<index />
+				<name>工单状态</name>
+				<colName>工单状态</colName>
+			</column>
+			<column>
+				<columnName>JSR</columnName>
+				<index />
+				<name>接收人</name>
+				<colName>接收人</colName>
+			</column>
+			<column>
+				<columnName>CLR</columnName>
+				<index />
+				<name>处理人</name>
+				<colName>处理人</colName>
+			</column>
+			<column>
+				<columnName>WCSJ</columnName>
+				<index />
+				<name>完成时间</name>
+				<colName>完成时间</colName>
+			</column>
+			<column>
+				<columnName>CLJG</columnName>
+				<index />
+				<name>处理结果</name>
+				<colName>处理结果</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>

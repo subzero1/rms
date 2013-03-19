@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -692,5 +694,50 @@ public class Gcgl {
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("totalPages", totalPages);
 		return new ModelAndView(view, modelMap);
+	}
+	
+	@RequestMapping("/form/orderList.do")
+	public ModelAndView  orderList(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/form/orderList.jsp";
+		ModelMap modelMap=new ModelMap(); 
+		StringBuffer hql = new StringBuffer();
+		List objList = new LinkedList();
+		ResultObject ro = null; 
+		Integer totalCount = 0;
+		Integer totalPages = 0;
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "ddbm");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+
+		hql.append("select o from Td55_order o where 1=1 ");
+		if (!keyword.equals("")) {
+			hql.append("and o.ddbm like '%");
+			hql.append(keyword);
+			hql.append("%'");
+		}
+		hql.append("order by o.");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection);
+		
+		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		while (ro.next()) {
+			objList.add(ro.get("o"));
+		}
+		totalCount=ro.getTotalRows();
+		totalPages=ro.getTotalPages();
+		
+		modelMap.put("objList", objList);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		return new ModelAndView(view,modelMap);
 	}
 }
