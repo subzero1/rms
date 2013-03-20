@@ -120,25 +120,22 @@
 					<th orderField="xmmc">
 						项目名称
 					</th>
-					<th style="width: 120px;" orderField="xmbh">
+					<th style="width: 115px;" orderField="xmbh">
 						项目编号
 					</th>
-					<th style="width: 65px;" orderField="ssdq">
+					<th style="width: 60px;" orderField="ssdq">
 						所属地区
 					</th>
-					<th style="width: 65px;" orderField="gclb">
-						项目类别
-					</th>
-					<th style="width: 70px;" orderField="xmgly">
-						项目管理员
+					<th style="width: 60px;" orderField="xmgly">
+						项目经理
 					</th>
 					<th style="width: 200px;" orderField="sgdw">
 						施工单位
 					</th>
-					<th style="width: 65px;" orderField="sjjgsj">
+					<th style="width: 75px;" orderField="sjjgsj">
 						竣工时间
 					</th>
-					<th style="width: 140px;" orderField="jssj">
+					<th style="width: 75px;" orderField="jssj">
 						决算时间
 					</th>
 					<th style="width: 70px;" orderField="xmzt">
@@ -166,16 +163,13 @@
 						<td>
 							<a
 								href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }"
-								target="navTab" rel="xmxx" title="项目信息单">${obj.xmmc }</a>
+								target="navTab" rel="xmxx" title="${obj.xmmc }">${obj.xmmc }</a>
 						</td>
 						<td>
 							${obj.xmbh }&nbsp;
 						</td>
 						<td>
 							${obj.ssdq }
-						</td>
-						<td>
-							${obj.gclb }
 						</td>
 						<td>
 							${obj.xmgly }
@@ -187,7 +181,7 @@
 							<fmt:formatDate value="${obj.sjjgsj }" pattern="yyyy-MM-dd" />
 						</td>
 						<td>
-							<fmt:formatDate value="${obj.jssj }" pattern="yyyy-MM-dd"></fmt:formatDate>
+							<fmt:formatDate value="${obj.jssj }" pattern="yyyy-MM-dd"/>
 						</td>
 						<td>
 							${obj.xmzt }
@@ -197,7 +191,6 @@
 				<c:if test="${offset<numPerPage}">
 					<c:forEach begin="${offset}" end="${numPerPage-1}">
 						<tr>
-							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
