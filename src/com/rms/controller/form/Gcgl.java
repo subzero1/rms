@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.form.Td00_gcxx;
@@ -734,6 +732,7 @@ public class Gcgl {
 		totalPages=ro.getTotalPages();
 		
 		modelMap.put("objList", objList);
+		modelMap.put("keyword", keyword);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("totalCount", totalCount);
