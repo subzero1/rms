@@ -248,6 +248,7 @@ public class User {
 		String var2 = request.getParameter("var2");
 		String var3 = request.getParameter("var3");
 		String var4 = request.getParameter("var4");
+		String var5 = convertUtil.toString(request.getParameter("var5"),"id");
 		if (!var2.equals("null")) {
 			var1 = var1.replace('.', '/');
 			String[] str_arr = var1.split("/");
@@ -257,7 +258,8 @@ public class User {
 			String classname = str_arr[0];
 			String columnname = str_arr[1];
 			String hsql = "select " + var3 + "," + var4 + " from " + classname
-					+ " where " + columnname + "='" + var2 + "'";
+					+ " where " + columnname + "='" + var2 + "'"
+					+ " order by "+var5;
 			List<Object[]> list = null;
 			try {
 				list = (List<Object[]>) dao.search(hsql);
