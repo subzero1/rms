@@ -274,8 +274,8 @@ function nextRecord(form_id,loadFileArea_id){
  * 如果是selectA的option的value是一个id而非一个name 则暂不能用该函数解决 有待继续开发
  * ver0.01 允许多级菜单级联(例:参见messagewrite.jsp) 实现方式:async:false
  */
-function jilian(var0, var1, var2, var3, var4) {
-	var params = "var1=" + var1 + "&var2=" + var2 + "&var3=" + var3 + "&var4=" + var4;
+function jilian(var0, var1, var2, var3, var4, var5) {
+	var params = "var1=" + var1 + "&var2=" + var2 + "&var3=" + var3 + "&var4=" + var4 + "&var5=" + var5;
 	$.ajax({type:"post",async:false,url:"sysManage/ajaxjiliancaidan.do", data:params, success:function (msg) {
 		$("#" + var0 + "").empty();
 		$("#" + var0 + "").append(msg);
