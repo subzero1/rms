@@ -71,7 +71,7 @@
 	 document.messagewrite.reader_id.value='';
 	 document.messagewrite.reader_name.value='';
 	 $(".read_div").html("");
-	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name');
+	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
 	}
 	function selectToUser(){
 		var selectO = $("#user_list option:selected");
@@ -133,11 +133,11 @@
 	$(function(){
 	//及连菜单
 	$("#area").change(function(){
-		jilian('dept','Ta01_dept.area_name',$("#area").val(),'id','name');
+		jilian('dept','Ta01_dept.area_name',$("#area").val(),'id','name','name');
 		$("#dept").change();
 	})
 	$("#dept").change(function(){
-		jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name');
+		jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
 	})
 	
 	$("#submitbutton").click(function(){

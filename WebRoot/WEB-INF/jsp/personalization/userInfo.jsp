@@ -12,7 +12,7 @@
 	$(function(){
 		//var originalpwd = '${user.passwd}';
 		$("#AREA_NAME").change(function(){
-				jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name');
+				jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name','name');
 			})
 			/*
 		$("#submitbutton").click(function(){

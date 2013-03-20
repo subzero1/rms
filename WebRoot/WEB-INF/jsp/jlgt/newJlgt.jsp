@@ -32,11 +32,11 @@ function del(){
 	$(function(){
 		//及连菜单
 		$("#area",$.pdialog.getCurrent()).change(function(){
-			jilian('dept','Ta01_dept.area_name',$("#area").val(),'id','name');
+			jilian('dept','Ta01_dept.area_name',$("#area").val(),'id','name','name');
 			$("#dept").change();
 		})
 		$("#dept",$.pdialog.getCurrent()).change(function(){
-			jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'mobile_tel','name');
+			jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'mobile_tel','name','name');
 		})
 		
 	})
