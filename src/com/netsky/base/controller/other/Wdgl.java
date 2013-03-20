@@ -357,9 +357,9 @@ public class Wdgl {
 		if (parentCylb == 0L || parentCylb == 1L) {
 			String condition = "";
 			if (parentCylb == 1L) {
-				condition = " where name in (" + parentCyfw + ")";
+				condition = " and name in (" + parentCyfw + ")";
 			}
-			List<Ta01_dept> ta01List = (List<Ta01_dept>) dao.search("from Ta01_dept " + condition + " order by id");
+			List<Ta01_dept> ta01List = (List<Ta01_dept>) dao.search("from Ta01_dept where 1 = 1 " + condition + " and showflag is null order by id");
 			modelMap.put("ta01List", ta01List);
 		}
 		// 获取岗位列表（最大查阅范围为全部或为岗位列表时）
@@ -376,7 +376,7 @@ public class Wdgl {
 		{
 			String condition = "";
 			if (parentCylb == 1L) {
-				condition = " where dept_id in (select id from Ta01_dept where name in(" + parentCyfw + "))";
+				condition = " where dept_id in (select id from Ta01_dept where showflag is null and name in(" + parentCyfw + "))";
 			} else if (parentCylb == 2L) {
 				condition = " where id in (select user_id from Ta11_sta_user where station_id in (select id from Ta02_station where name in ("
 						+ parentCyfw + ")))";
@@ -402,7 +402,7 @@ public class Wdgl {
 				deptUserMap.put(dept_id, tmpList);
 			}
 			modelMap.put("deptUserMap", deptUserMap);
-			modelMap.put("ta01AllList", dao.search("from Ta01_dept order by id"));
+			modelMap.put("ta01AllList", dao.search("from Ta01_dept where showflag is null order by id"));
 		}
 		return new ModelAndView("/WEB-INF/jsp/other/getCyfw.jsp", modelMap);
 	}
