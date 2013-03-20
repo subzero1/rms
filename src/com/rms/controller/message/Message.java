@@ -285,7 +285,7 @@ public class Message {
 			sql.append("select t1.id,t1.name ");
 			sql.append("from Ta01_dept t1 ");
 			sql.append("where t1.area_name=(select area_name from Ta01_dept where id=");
-			sql.append(user_dept_id+")");
+			sql.append(user_dept_id+") and t1.showflag is null ");
 			List<?> user_dept_list = queryService.searchList(sql.toString());
 			modelMap.put("user_dept_list", user_dept_list);
 
