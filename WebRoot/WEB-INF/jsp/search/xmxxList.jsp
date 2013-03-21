@@ -49,12 +49,10 @@
 							<option value="施工完成" <c:if test="${param.xmzt=='施工完成'}">selected</c:if>>施工完成</option>
 							</select>
 							所属地区
-							<netsky:htmlSelect name="ssdq" objectForOption="areaList" style="width:155px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.ssdq}" htmlClass="td-select"/>
+							<netsky:htmlSelect name="ssdq" objectForOption="areaList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.ssdq}" htmlClass="td-select"/>
 
 							项目经理
-							<select id="xmjl" name="xmjl"  >
-								<option value=""></option>
-							</select>
+							<netsky:htmlSelect name="xmjl" objectForOption="xmjlList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.xmjl}" htmlClass="td-select"/>
 							竣工时间
 							<input id="sjjgsj" name="sjjgsj" value="${param.sjjgsj }" class="date"/>
 						</td>
@@ -135,7 +133,7 @@
 					<th style="width: 60px;" orderField="ssdq">
 						所属地区
 					</th>
-					<th style="width: 60px;" orderField="xmgly">
+					<th style="width: 60px;" orderField="xmjl">
 						项目经理
 					</th>
 					<th style="width: 200px;" orderField="sgdw">
@@ -181,7 +179,7 @@
 							${obj.ssdq }
 						</td>
 						<td>
-							${obj.xmgly }
+							${obj.xmjl }
 						</td>
 						<td>
 							${obj.sgdw }
@@ -207,8 +205,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td></td> 
 						</tr>
 					</c:forEach>
 				</c:if>

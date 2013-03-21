@@ -637,8 +637,7 @@ public class Gcgl {
 		StringBuffer hql = new StringBuffer();
 		List objList = new LinkedList();
 		ResultObject ro = null;
-		Map map=request.getParameterMap();
-		System.out.println(map.keySet().toString()+map.entrySet().toString());
+		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
 		Integer totalCount = 0;
 		Integer totalPages = 0;
 		Integer pageNum = convertUtil.toInteger(
@@ -707,10 +706,26 @@ public class Gcgl {
 
 		//地区
 		List areaList=queryService.searchList("select distinct(a.name) from Tc02_area a");
-		List xmjlList=queryService.searchList("select distinct(x.xmjl) from Td01_xmxx x");
+		
+		//项目经理
+		StringBuffer managerHql=new StringBuffer();
+		managerHql.append("select distinct(u.name) ");
+		managerHql.append("from Ta03_user u,Ta11_sta_user su,Ta02_station s,Ta01_dept d ");
+		managerHql.append("where 1=1 ");
+		managerHql.append("and u.id=su.user_id and su.station_id=s.id and u.dept_id=d.id ");
+		managerHql.append("and (d.id=");
+		managerHql.append(user.getDept_id());
+		managerHql.append(" or d.id in ");
+		managerHql.append("(select dept.id from Ta01_dept dept where dept.parent_dept=");
+		managerHql.append(user.getDept_id());
+		managerHql.append(")) ");
+		managerHql.append(" and s.name like '%项目管理岗%' ");
+		managerHql.append("order by u.name asc");
+		List xmjlList=queryService.searchList(managerHql.toString());
 		
 		modelMap.put("areaList", areaList);
 		modelMap.put("xmxxList", objList);
+		modelMap.put("xmjlList", xmjlList);
 		modelMap.put("jssj", jssj);
 		modelMap.put("xmzt", xmzt);
 		modelMap.put("ssdq", ssdq);
