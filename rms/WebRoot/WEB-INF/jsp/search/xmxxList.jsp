@@ -40,7 +40,7 @@
 								type="text" size="25" />
 								决算时间
 							<input id="jssj" name="jssj" value="${param.jssj}"
-								type="text"  class="date"/>
+								type="text"  class="date" size="16"/>
 								状态
 							<select id="xmzt" name="xmzt" value="${param.xmzt}">
 							<option value="" >-----------</option>
@@ -48,6 +48,15 @@
 							<option value="施工开始" <c:if test="${param.xmzt=='施工开始'}">selected</c:if>>施工开始</option>
 							<option value="施工完成" <c:if test="${param.xmzt=='施工完成'}">selected</c:if>>施工完成</option>
 							</select>
+							所属地区
+							<netsky:htmlSelect name="ssdq" objectForOption="areaList" style="width:155px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.ssdq}" htmlClass="td-select"/>
+
+							项目经理
+							<select id="xmjl" name="xmjl"  >
+								<option value=""></option>
+							</select>
+							竣工时间
+							<input id="sjjgsj" name="sjjgsj" value="${param.sjjgsj }" class="date"/>
 						</td>
 
 					</tr>
