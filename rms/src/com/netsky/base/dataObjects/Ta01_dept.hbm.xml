@@ -73,7 +73,13 @@
   insert="true"
   column="up_id"
   />
-
+  <property 
+	name="parent_dept"
+	type="java.lang.Long"
+	update="true"
+	insert="true"
+	column="parent_dept"
+	/>
 
     </class>
 

@@ -151,6 +151,19 @@ public Long getShowflag() {
 public void setShowflag(Long showflag) {
 	this.showflag = showflag;
 }
+/**
+ * 上级部门
+ */
+private Long parent_dept;
+
+public Long getParent_dept() {
+	return parent_dept;
+}
+
+public void setParent_dept(Long parent_dept) {
+	this.parent_dept = parent_dept;
+}
+
  
  
 }
