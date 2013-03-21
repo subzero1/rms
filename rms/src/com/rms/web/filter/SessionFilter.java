@@ -48,9 +48,10 @@ public class SessionFilter extends OncePerRequestFilter {
 			HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		StringBuilder builder = new StringBuilder();
-		String loginPage = "";
+		String loginPage = request.getContextPath();
 		builder.append("<script type=\"text/javascript\">");
 		builder.append("alert('网页已经过期，请您重新登录！');");
 		builder.append("window.top.location.href='");
