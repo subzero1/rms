@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -635,7 +637,8 @@ public class Gcgl {
 		StringBuffer hql = new StringBuffer();
 		List objList = new LinkedList();
 		ResultObject ro = null;
-
+		Map map=request.getParameterMap();
+		System.out.println(map.keySet().toString()+map.entrySet().toString());
 		Integer totalCount = 0;
 		Integer totalPages = 0;
 		Integer pageNum = convertUtil.toInteger(
@@ -649,6 +652,9 @@ public class Gcgl {
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		String jssj = convertUtil.toString(request.getParameter("jssj"));
 		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
+		String ssdq=convertUtil.toString(request.getParameter("ssdq"));
+		String xmjl=convertUtil.toString(request.getParameter("xmjl"));
+		String sjjgsj=convertUtil.toString(request.getParameter("sjjgsj"));
 
 		hql.append("select x from Td01_xmxx x ");
 
@@ -670,7 +676,22 @@ public class Gcgl {
 		if (!xmzt.equals("")) {
 			hql.append("and x.xmzt='");
 			hql.append(xmzt);
-			hql.append("'");
+			hql.append("' ");
+		}
+		if (!ssdq.equals("")) {
+			hql.append("and x.ssdq='");
+			hql.append(ssdq);
+			hql.append("' ");
+		}
+		if (!xmjl.equals("")) {
+			hql.append("and x.xmjl='");
+			hql.append(xmjl); 
+			hql.append("' ");
+		}
+		if (!sjjgsj.equals("")) {
+			hql.append("and x.sjjgsj=to_date('");
+			hql.append(sjjgsj);
+			hql.append("','yyyy-mm-dd') ");
 		}
 		hql.append("order by x.");
 		hql.append(orderField);
@@ -684,9 +705,16 @@ public class Gcgl {
 		totalCount = ro.getTotalRows();
 		totalPages = ro.getTotalPages();
 
+		//地区
+		List areaList=queryService.searchList("select distinct(a.name) from Tc02_area a");
+		List xmjlList=queryService.searchList("select distinct(x.xmjl) from Td01_xmxx x");
+		
+		modelMap.put("areaList", areaList);
 		modelMap.put("xmxxList", objList);
 		modelMap.put("jssj", jssj);
 		modelMap.put("xmzt", xmzt);
+		modelMap.put("ssdq", ssdq);
+		modelMap.put("sjjgsj", sjjgsj);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("totalCount", totalCount);
