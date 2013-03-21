@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.flow.vo.HaltWork;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -655,9 +656,16 @@ public class Gcgl {
 		String xmjl=convertUtil.toString(request.getParameter("xmjl"));
 		String sjjgsj=convertUtil.toString(request.getParameter("sjjgsj"));
 
-		hql.append("select x from Td01_xmxx x ");
+		hql.append("select x from Td01_xmxx x,Ta01_dept d,Ta03_user u ");
 
 		hql.append("where 1=1 ");
+		hql.append("and d.id=u.dept_id "); 
+		hql.append("and u.name=x.xmgly ");
+		hql.append("and (u.dept_id=");
+		hql.append(user.getDept_id());
+		hql.append(" or d.parent_dept=");
+		hql.append(user.getDept_id());
+		hql.append(")");
 		if (!keyword.equals("")) {
 			hql.append("and (x.xmmc like '%");
 			hql.append(keyword);
@@ -715,10 +723,9 @@ public class Gcgl {
 		managerHql.append("and u.id=su.user_id and su.station_id=s.id and u.dept_id=d.id ");
 		managerHql.append("and (d.id=");
 		managerHql.append(user.getDept_id());
-		managerHql.append(" or d.id in ");
-		managerHql.append("(select dept.id from Ta01_dept dept where dept.parent_dept=");
+		managerHql.append(" or d.parent_dept =");
 		managerHql.append(user.getDept_id());
-		managerHql.append(")) ");
+		managerHql.append(") ");
 		managerHql.append(" and s.name like '%项目管理岗%' ");
 		managerHql.append("order by u.name asc");
 		List xmjlList=queryService.searchList(managerHql.toString());
