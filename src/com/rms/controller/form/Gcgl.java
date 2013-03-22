@@ -653,7 +653,7 @@ public class Gcgl {
 		String jssj = convertUtil.toString(request.getParameter("jssj"));
 		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
 		String ssdq=convertUtil.toString(request.getParameter("ssdq"));
-		String xmjl=convertUtil.toString(request.getParameter("xmjl"));
+		String xmgly=convertUtil.toString(request.getParameter("xmgly"));
 		String sjjgsj=convertUtil.toString(request.getParameter("sjjgsj"));
 
 		hql.append("select x from Td01_xmxx x,Ta01_dept d,Ta03_user u ");
@@ -690,9 +690,9 @@ public class Gcgl {
 			hql.append(ssdq);
 			hql.append("' ");
 		}
-		if (!xmjl.equals("")) {
-			hql.append("and x.xmjl='");
-			hql.append(xmjl); 
+		if (!xmgly.equals("")) {
+			hql.append("and x.xmgly='");
+			hql.append(xmgly); 
 			hql.append("' ");
 		}
 		if (!sjjgsj.equals("")) {
@@ -728,11 +728,12 @@ public class Gcgl {
 		managerHql.append(") ");
 		managerHql.append(" and s.name like '%项目管理岗%' ");
 		managerHql.append("order by u.name asc");
-		List xmjlList=queryService.searchList(managerHql.toString());
+		List xmglyList=queryService.searchList(managerHql.toString());
 		
 		modelMap.put("areaList", areaList);
 		modelMap.put("xmxxList", objList);
-		modelMap.put("xmjlList", xmjlList);
+		modelMap.put("xmglyList", xmglyList);
+		modelMap.put("xmgly", xmgly);
 		modelMap.put("jssj", jssj);
 		modelMap.put("xmzt", xmzt);
 		modelMap.put("ssdq", ssdq);
