@@ -24,6 +24,7 @@
 		value="${param.orderDirection}" />
 	<input type="hidden" name="jssj" value="${param.jssj }"/>
 	<input type="hidden" name="xmzt" value="${param.xmzt }"/>
+	<input type="hidden" name="xmgly" value="${param.xmgly }"/>
 </form>
 
 <div class="page">
@@ -52,7 +53,7 @@
 							<netsky:htmlSelect name="ssdq" objectForOption="areaList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.ssdq}" htmlClass="td-select"/>
 
 							项目经理
-							<netsky:htmlSelect name="xmjl" objectForOption="xmjlList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.xmjl}" htmlClass="td-select"/>
+							<netsky:htmlSelect name="xmgly" objectForOption="xmglyList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.xmgly}" htmlClass="td-select"/>
 							竣工时间
 							<input id="sjjgsj" name="sjjgsj" value="${param.sjjgsj }" class="date"/>
 						</td>
@@ -133,7 +134,7 @@
 					<th style="width: 60px;" orderField="ssdq">
 						所属地区
 					</th>
-					<th style="width: 60px;" orderField="xmjl">
+					<th style="width: 60px;" orderField="xmgly">
 						项目经理
 					</th>
 					<th style="width: 200px;" orderField="sgdw">
@@ -179,7 +180,7 @@
 							${obj.ssdq }
 						</td>
 						<td>
-							${obj.xmjl }
+							${obj.xmgly }
 						</td>
 						<td>
 							${obj.sgdw }
