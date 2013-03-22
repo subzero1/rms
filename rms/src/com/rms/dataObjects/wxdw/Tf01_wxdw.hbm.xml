@@ -137,7 +137,12 @@
   insert="true"
   column="realname"
   />
-
+<property name="short_mc"
+	type="java.lang.String"
+	update="true"
+	insert="true"
+	column="short_mc"
+/>
 
     </class>
 

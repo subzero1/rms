@@ -291,6 +291,15 @@ td00_zhxx.gclb，多选)
  public void setRealname(String realname) {
     this.realname = realname;
   }
+private String short_mc;
 
+public String getShort_mc() {
+	return short_mc;
+}
 
+public void setShort_mc(String short_mc) {
+	this.short_mc = short_mc;
+}
+
+ 
 }
