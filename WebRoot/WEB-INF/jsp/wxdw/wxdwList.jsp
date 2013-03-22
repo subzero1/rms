@@ -58,7 +58,8 @@
 			<thead>
 				<tr>
 					<th style="width: 80px;" orderField="lb">类别</th>
-					<th orderField="mc">单位名称</th>
+					<th orderField="mc"  style="width: 120px;">单位名称</th>
+					<th orderField="short_mc"  style="width: 50px;">简称</th>
 					<th style="width: 120px;" orderField="dwdz">地址</th>
 					<th style="width: 80px;" orderField="zt">状态</th>
 				</tr>
@@ -70,6 +71,7 @@
 					<tr target="wxdw_id" rel="${obj.id}">
 						<td>${obj.lb }</td>
 						<td><a href="wxdw/wxdwEdit.do?id=${obj.id}" target="navTab" rel="wxdw" title="合作单位维护">${obj.mc }</a></td>
+						<td>${obj.short_mc }</td>
 						<td>${obj.dwdz }</td>
 						<td>${obj.zt }</td>
 					</tr>
