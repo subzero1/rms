@@ -32,11 +32,11 @@
 	</div>
 	<div class="pageContent">
 		 
-		<table class="table" width="100%" layouth="138">
+		<table class="table" width="100%" layouth="116">
 			<thead>
 				<tr> 
 					<th style="width: 30px;">序号</th>
-					<th style="width: 100px;" orderField="title">标题</th>
+					<th style="width: 200px;" orderField="title">标题</th>
 					<th orderField="remark">说明</th> 
 				</tr>
 			</thead>
@@ -45,7 +45,7 @@
 				<c:forEach var="obj" items="${objectList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
-						<td>${offset }</td>
+						<td style="text-align:center">${offset }</td>
 						<td><a href="${obj.uri }" target="navTab" title="${obj.title }">${obj.title }</td>
 						<td>${obj.remark }</td> 
 					</tr>

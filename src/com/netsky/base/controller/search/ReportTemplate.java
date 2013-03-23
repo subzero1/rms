@@ -512,7 +512,7 @@ public class ReportTemplate {
 			hql.append(user.getName());
 			hql.append("' ");
 		}
-		if (keyword!=null&&keyword!="") {
+		if (keyword!=null&&!keyword.equals("")) {
 			hql.append("and ta29.name like '%");
 			hql.append(keyword);
 			hql.append("%' ");
@@ -555,11 +555,18 @@ public class ReportTemplate {
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "seq");
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword=convertUtil.toString(request.getParameter("keyword"));
 		hql.append("from Tc13_report_title tc13 where 1=1 ");
+		if (!keyword.equals("")) {
+			hql.append("and (tc13.title like '%");
+			hql.append(keyword);
+			hql.append("%' or tc13.remark like '%");
+			hql.append(keyword);
+			hql.append("%') ");
+		} 
 		hql.append("order by ");
 		hql.append(orderField);
 		hql.append(" ");
@@ -573,6 +580,7 @@ public class ReportTemplate {
 			totalCount=ro.getTotalRows();
 			totalPages=ro.getTotalPages();
 		}
+		modelMap.put("keyword", keyword);
 		modelMap.put("objectList", objectList);
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("totalPages", totalPages);
