@@ -104,5 +104,22 @@ public class Tc13_report_title implements Serializable{
     this.ext = ext;
   }
 
+ /**
+  * 扩展属性
+  */
+  private Long seq;
 
+  /**
+   * @hibernate.property column="seq"
+   * @return Returns the seq.
+   */
+	public Long getSeq() {
+		return seq;
+	}
+	
+	public void setSeq(Long seq) {
+		this.seq = seq;
+	}
+  
+  
 }

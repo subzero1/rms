@@ -49,6 +49,14 @@
   insert="true"
   column="ext"
   />
+  
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
 
 
     </class>
