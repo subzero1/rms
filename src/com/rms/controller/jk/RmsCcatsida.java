@@ -33,7 +33,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveFormCodeService;
 import com.netsky.base.service.SaveService; 
-//import com.netsky.pss.dataObjects.jk.Ti03_xqly;
+import com.rms.dataObjects.jk.Ti03_xqly;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.serviceImpl.jk.CcatsidaWSC;
 import com.rms.serviceImpl.jk.CcatsidaXMLParser;
@@ -141,18 +141,29 @@ public class RmsCcatsida {
 			Session session = null; // 事务相关
 			Transaction tx = null;// 事务相关
 			Td00_gcxx td00 = null;
-			//Td11_xqs td11 = null;
 
 			try {
 				session = saveService.getHiberbateSession();
 				tx = session.beginTransaction();
 				tx.begin(); // 开始事务
-
+				System.out.println(convertUtil.toString(projectrow.getAttribute("CUSTOMERMANAGENAME")));
 				/**
 				 * 获取客户端提出数据。构建td00 并保存到数据库中
 				 */
-				/*
+				
 				td00 = new Td00_gcxx();
+				td00.setGcbh(projectcode);
+				/*
+				td00.setGcmc(gcmc);
+				td00.setSsdq(ssdq);
+				td00.setGclb(gclb);
+				td00.setGcsm(gcsm);
+				td00.setCjr(cjr);
+				td00.setCjrq(cjrq);
+				td00.setXmgly(xmgly);
+				td00.setXqwcsj(xqwcsj);
+				saveService.save(td00);
+				
 				td11 = new Td11_xqs();
 
 				td11.setFwbm("[苏州市]客户响应中心");
@@ -169,46 +180,7 @@ public class RmsCcatsida {
 				td00.setSsdq(td11.getSsdq());
 				td00.setTzdq(td11.getTzdq());
 				*/
-				/*
-				 * if(request.getParameter("JHGQ") != null &&
-				 * !"".equals(request.getParameter("JHGQ"))){ td11.setQwgq(new
-				 * SimpleDateFormat("yyyy-MM-dd").parse(convertUtil.toString(request.getParameter("JHGQ")))); }
-				 * td11.setJsxz(convertUtil.toString(request.getParameter("JSXZ")));
-				 * td00.setJsxz(td11.getJsxz());
-				 * td11.setXmsx(convertUtil.toString(request.getParameter("XMSX")));
-				 * td00.setXmsx(td11.getXmsx()); if(request.getParameter("GCYS") !=
-				 * null && !"".equals(request.getParameter("GCYS"))){
-				 * td11.setGcys(new Double(request.getParameter("GCYS"))); }
-				 * 
-				 * td11.setSsdq(convertUtil.toString(request.getParameter("SSDQ")));
-				 * td00.setSsdq(td11.getSsdq());
-				 * td11.setSsdj(convertUtil.toString(request.getParameter("SSDJ")));
-				 * td11.setSsdj_bm(convertUtil.toString(request.getParameter("SSDJ_BM")));
-				 * td00.setSsdj(td11.getSsdj());
-				 * td00.setSsdj_bm(td11.getSsdj_bm());
-				 * td11.setTzdy(convertUtil.toString(request.getParameter("TZDY")));
-				 * td11.setTzdy_bm(convertUtil.toString(request.getParameter("TZDY_BM")));
-				 * td00.setTzdy(td11.getTzdy());
-				 * td00.setTzdy_bm(td11.getTzdy_bm());
-				 * 
-				 * td11.setQkdl(convertUtil.toString(request.getParameter("QKDL")));
-				 * td11.setQkxl(convertUtil.toString(request.getParameter("QKXL")));
-				 * td00.setQkdl(td11.getQkdl()); td00.setQkxl(td11.getQkxl());
-				 * 
-				 * td11.setGclb(convertUtil.toString(request.getParameter("GCLB")));
-				 * td00.setGclb(td11.getGclb());
-				 * td11.setLbabc(convertUtil.toString(request.getParameter("LB")));
-				 * td00.setLbabc(td11.getLbabc());
-				 * 
-				 * td11.setZydl(convertUtil.toString(request.getParameter("ZYDL")));
-				 * td11.setZyxx(convertUtil.toString(request.getParameter("ZYXX")));
-				 * td11.setTzkh(convertUtil.toString(request.getParameter("TZKH")));
-				 * td00.setZydl(td11.getZydl()); td00.setZyxx(td11.getZyxx());
-				 * td00.setTzkh(td11.getTzkh());
-				 * 
-				 * td11.setYwxqdl(convertUtil.toString(request.getParameter("YWXQDL")));
-				 * td11.setYwxqxl(convertUtil.toString(request.getParameter("YWXQXL")));
-				 */
+				
 
 //				td11.setYwxq(convertUtil.toString(projectrow.getAttribute("CUSTOMERMANAGERREMARK")) + "\n"
 //						+ "本需求来自综合调度系统，定单号：" + projectcode); // 工程说明
@@ -224,24 +196,24 @@ public class RmsCcatsida {
 //				td11.setProject_id(td00.getId());
 //				saveService.save(td11);
 //
-//				Ti03_xqly ti03 = new Ti03_xqly();
-//				ti03.setXqbs(projectcode);
-//				ti03.setProject_id(td00.getId());
-//				if (target != null && target.length() > 8) {
-//					ti03.setBz("综合调度系统定单");
-//					ti03.setLyxt("江苏省综合调度系统");
-//					ti03.setUrl("http://132.228.176.109/IOMPROJ/yccustorder/szOrderDetailJudge.htm?order_code="
-//							+ projectcode);
-//				} else {
-//					ti03.setBz("来源苏州市综合调度系统,定单号：" + projectcode);
-//					ti03.setLyxt("苏州市综合调度系统");
-//					ti03.setUrl("http://132.232.112.12/ccatsida/order/orderDetails.do?operID=sa&hashCode=C2F9D3C094DF274AA8084EC30772A717&i_vBusinessID="
-//									+ projectcode);
-//				}
-//				saveService.save(ti03);
-//
-//				session.flush();
-//				tx.commit(); // 提交事务;
+				Ti03_xqly ti03 = new Ti03_xqly();
+				ti03.setXqbs(projectcode);
+				ti03.setProject_id(td00.getId());
+				if (target != null && target.length() > 8) {
+					ti03.setBz("综合调度系统定单");
+					ti03.setLyxt("江苏省综合调度系统");
+					ti03.setUrl("http://132.228.176.109/IOMPROJ/yccustorder/szOrderDetailJudge.htm?order_code="
+							+ projectcode);
+				} else {
+					ti03.setBz("来源苏州市综合调度系统,定单号：" + projectcode);
+					ti03.setLyxt("苏州市综合调度系统");
+					ti03.setUrl("http://132.232.112.12/ccatsida/order/orderDetails.do?operID=sa&hashCode=C2F9D3C094DF274AA8084EC30772A717&i_vBusinessID="
+									+ projectcode);
+				}
+				saveService.save(ti03);
+
+				session.flush();
+				tx.commit(); // 提交事务;
 			} catch (Exception e) {
 				if (tx != null) {
 					session.flush();
