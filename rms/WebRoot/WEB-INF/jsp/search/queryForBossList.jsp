@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<form id="pagerForm" method="post" action="search/queryTemplate.do">
+<form id="pagerForm" method="post" action="search/queryForBoss.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -46,7 +46,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
 						<td style="text-align:center">${offset }</td>
-						<td><a href="${obj.uri }" target="navTab" title="${obj.title }">${obj.title }</td>
+						<td><a href="${obj.uri }" >${obj.title }</td>
 						<td>${obj.remark }</td> 
 					</tr>
 				</c:forEach>
