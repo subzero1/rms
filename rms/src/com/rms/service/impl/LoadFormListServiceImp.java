@@ -388,7 +388,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				//获取项目状态
 				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
 				queryBuilder.eq("type", "工程状态");
-				queryBuilder.addOrderBy(Order.asc("name"));
+				queryBuilder.addOrderBy(Order.asc("id"));
 				tmpList = queryService.searchList(queryBuilder);
 				if (tmpList != null) {
 					List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
