@@ -99,6 +99,9 @@ function openOnLineList(){
 						</tr>
 						<tr>
 							<th colspan="4">最后登录时间： <fmt:formatDate value="${csMap.zhdl}" pattern="yyyy-MM-dd HH:mm"/> 共 <a href="javascript:navTab.openTab('dljl', 'search/LoginLog.do', {title:'登录记录'});"><font color="#FF0000">${csMap.dlcs}</font></a> 次  <span style="cursor:hand" title="文档处理情况" onclick ="javascript:navTab.openTab('wdclqk', 'search/FormOperDetail.do?type=per', {title:'文档处理情况'});">	</span> </th>
+						</tr>	
+						<tr>
+							<th colspan="4"><a href="search/queryForBoss.do" target="navTab" rel="queryForBoss"><b><font style="color:blue">系统使用情况查询</font></b></a>  </th>
 						</tr>						
 					</table>
 				</div>

@@ -542,4 +542,44 @@ public class ReportTemplate {
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView(view, modelMap);
 	}
+	
+	@RequestMapping("/search/queryForBoss.do")
+	public ModelAndView queryForBoss(HttpServletRequest request,HttpServletResponse response){
+		String view ="/WEB-INF/jsp/search/queryForBossList.jsp";
+		ModelMap modelMap=new ModelMap();
+		StringBuffer hql=new StringBuffer();
+		ResultObject ro=null;
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		List objectList=new ArrayList();
+		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+		String keyword=convertUtil.toString(request.getParameter("keyword"));
+		hql.append("from Tc13_report_title tc13 where 1=1 ");
+		hql.append("order by ");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection);
+		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		if (ro!=null) {
+			while (ro.next()) {
+				Object object=ro.get("tc13");
+				objectList.add(object);
+			}
+			totalCount=ro.getTotalRows();
+			totalPages=ro.getTotalPages();
+		}
+		modelMap.put("objectList", objectList);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		return new ModelAndView(view, modelMap);
+	}
 }
