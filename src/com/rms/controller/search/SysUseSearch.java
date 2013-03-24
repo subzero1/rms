@@ -54,7 +54,7 @@ public class SysUseSearch {
 	private  Logger log = Logger.getLogger(this.getClass());
 	
 	@RequestMapping("/search/wxdwReceiveAndTimeout.do")
-	public ModelAndView xmglyDownAndTimeout(HttpServletRequest request,
+	public ModelAndView wxdwReceiveAndTimeout(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session) throws Exception {
 		
 		Ta03_user user = null;
@@ -185,15 +185,233 @@ public class SysUseSearch {
 	}
 	
 	@RequestMapping("/search/xmglyDownAndTimeout.do")
-	public ModelAndView wxdwReceiveAndTimeout(HttpServletRequest request,
+	public ModelAndView xmglyDownAndTimeout(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session) throws Exception {
-		return null;
+		Ta03_user user = null;
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"),"");
+		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"),"");
+		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"),"");
+		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"),"");
+		
+		StringBuffer sql = new StringBuffer();
+		ResultObject ro = null;
+		ResultObject ro2 = null;
+		List list = new LinkedList();
+		ModelMap modelMap = new ModelMap();
+		try{
+			sql.delete(0, sql.length());
+			sql.append("select ta03.name name ");
+			sql.append(" from Ta03_user ta03,Ta11_sta_use ta11,ta02_station ta02 ");
+			sql.append("where ta03.id = ta11.user_id ");
+			sql.append("and ta02.id = ta11.station_id ");
+			sql.append("and ta02.name like '%项目管理员%' ");
+			sql.append("and ta03.dept_id = ");
+			sql.append(user.getDept_id());
+			ro = queryService.search(sql.toString());
+			while(ro.next()){
+				Map<String,Object> map = new HashMap<String,Object>();
+				String name = (String)ro.get("name");
+				map.put("name", name);
+				
+				/*
+				 * 项目数
+				 */
+				sql.delete(0, sql.length());
+				sql.append("select count(id) as xms ");
+				sql.append("from Td01_xmxx ");
+				sql.append("where xmgly = '");
+				sql.append(name);
+				sql.append("'");
+				ro2 = queryService.search(sql.toString());
+				Long xms = 0L;
+				if(ro2.next()){
+					xms = convertUtil.toLong(ro2.get("xms"));
+				}
+				map.put("xms", xms);
+				
+				/*
+				 * 派工数
+				 */
+				sql.delete(0, sql.length());
+				sql.append("select count(id) as jds ");
+				sql.append("from Td01_xmxx ");
+				sql.append("where xmgly = '");
+				sql.append(name);
+				sql.append("' [dw] is not null ");
+				/*
+				 * 派设计
+				 */
+				ro2 = queryService.search(sql.toString().replace("[dw]", "sjdw"));
+				Long psjs = 0L;
+				if(ro2.next()){
+					psjs = convertUtil.toLong(ro2.get("psjs"));
+				}
+				map.put("psjs", psjs);
+				/*
+				 * 派施工
+				 */
+				ro2 = queryService.search(sql.toString().replace("[dw]", "sgdw"));
+				Long psgs = 0L;
+				if(ro2.next()){
+					psgs = convertUtil.toLong(ro2.get("psgs"));
+				}
+				/*
+				 * 派监理
+				 */
+				ro2 = queryService.search(sql.toString().replace("[dw]", "jldw"));
+				Long pjls = 0L;
+				if(ro2.next()){
+					pjls = convertUtil.toLong(ro2.get("pjls"));
+				}
+				map.put("pjls", pjls);
+				
+				
+				
+				/*
+				 * 超期数
+				 */
+				sql.delete(0, sql.length());
+				sql.append("select count(id) as cqs ");
+				sql.append("from Td01_xmxx ");
+				sql.append("where xmgly = '");
+				sql.append(name);
+				sql.append("' and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+				ro2 = queryService.search(sql.toString());
+				Long cqs = 0L;
+				if(ro2.next()){
+					cqs = convertUtil.toLong(ro2.get("cqs"));
+				}
+				map.put("cqs", cqs);
+				
+				/*
+				 * 超期率
+				 */
+				Double cql = 0d;
+				if(xms != 0){
+					cql = NumberFormatUtil.divToDouble(cqs, xms);
+				}
+				map.put("cql", cql);
+				
+				/*
+				 * 决算数
+				 */
+				sql.delete(0, sql.length());
+				sql.append("select count(id) as jss ");
+				sql.append("from Td01_xmxx ");
+				sql.append("where xmgly = '");
+				sql.append(name);
+				sql.append("' and jssj is not null ");
+				ro2 = queryService.search(sql.toString());
+				Long jss = 0L;
+				if(ro2.next()){
+					jss = convertUtil.toLong(ro2.get("jss"));
+				}
+				map.put("jss", jss);
+				
+				/*
+				 * 决算率
+				 */
+				Double jsl = 0d;
+				if(xms != 0){
+					jsl = NumberFormatUtil.divToDouble(jss, xms);
+				}
+				map.put("jsl", jsl);
+				list.add(map);
+			}
+			modelMap.put("pdcqList", list);
+		}
+		catch(Exception e){
+			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
+		}
+		
+		return new ModelAndView("/WEB-INF/jsp/search/wxdwReceiveAndTimeout.jsp",modelMap);
+	
 	}
 	
 	@RequestMapping("/search/userLogin.do")
 	public ModelAndView userLogin(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session) throws Exception {
-			return null;
+		Ta03_user user = null;
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"),"");
+		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"),"");
+		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"),"");
+		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"),"");
+		String dwlb = convertUtil.toString(request.getParameter("dwlb"),"");
+		
+		StringBuffer sql = new StringBuffer();
+		StringBuffer sql2 = new StringBuffer();
+		ResultObject ro = null;
+		ResultObject ro2 = null;
+		List list = new LinkedList();
+		ModelMap modelMap = new ModelMap();
+		try{
+			if(dwlb.equals("xmgly")){
+				sql.delete(0, sql.length());
+				sql.append("select ta03.name name ,count(tz02.id) ");
+				sql.append(" from Ta03_user ta03,Ta11_sta_use ta11,Ta02_station ta02,Tz02_login_log tz02 ");
+				sql.append("where ta03.id = ta11.user_id ");
+				sql.append("and tz02.login_id = ta03.login_id ");
+				sql.append("and ta02.id = ta11.station_id ");
+				sql.append("and ta02.name like '%项目管理员%' ");
+				sql.append("and ta03.dept_id = ");
+				sql.append(user.getDept_id());
+				sql.append(" group by ta03.name ");
+				
+				sql2.delete(0, sql.length());
+				sql2.append("select ta03.name name ");
+				sql2.append(" from Ta03_user ta03,Ta11_sta_use ta11,Ta02_station ta02 ");
+				sql2.append("where ta03.id = ta11.user_id ");
+				sql2.append("and ta02.id = ta11.station_id ");
+				sql2.append("and ta02.name like '%项目管理员%' ");
+				sql2.append("not exists(select 'x' from Tz02_login_log tz02 where tz02.login_id = ta03.login_id)");
+				sql2.append("and ta03.dept_id = ");
+				sql2.append(user.getDept_id());
+				
+			}
+			else{
+				sql.delete(0, sql.length());
+				sql.append("select tf01.mc as mc ,count(tz02.id) dls ");
+				sql.append(" from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01,Tz02_login_log tz02 ");
+				sql.append("where ta03.id = tf04.user_id ");
+				sql.append("and tf04.wxdw_id = tf01.id ");
+				sql.append(" group by tf01.mc ");
+				
+				sql2.delete(0, sql.length());
+				sql2.append("select tf011.mc from Tf01_wxdw tf011 where not exists(select 'x' from (");
+				sql2.append("select tf01.mc as mc  ");
+				sql2.append(" from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01,Tz02_login_log tz02 ");
+				sql2.append("where ta03.id = tf04.user_id ");
+				sql2.append("and tf04.wxdw_id = tf01.id ) ");
+				sql2.append("where tf011.mc = t.mc ");
+			}	
+			ro = queryService.search(sql.toString());
+			while(ro.next()){
+				Map<String,Object> map = new HashMap<String,Object>();
+				String mc = (String)ro.get("mc");
+				Long dls = convertUtil.toLong(ro.get("dls"));
+				map.put("mc", mc);
+				map.put("dls", dls);
+				list.add(map);
+			}
+			modelMap.put("dlList", list);
+			
+			List list2 = queryService.searchList(sql2.toString());
+			modelMap.put("dlList2", list2);
+		}
+		catch(Exception e){
+			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
+		}
+		
+		return new ModelAndView("/WEB-INF/jsp/search/userLogin.jsp",modelMap);
+	
 	}
 	
 	public void setQueryService(QueryService queryService) {
