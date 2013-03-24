@@ -211,6 +211,7 @@ public class SysUseSearch {
 			sql.append("and ta02.name like '%项目管理岗%' ");
 			sql.append("and ta03.dept_id = ");
 			sql.append(user.getDept_id());
+			sql.append(" order by ta03.name");
 			ro = queryService.search(sql.toString());
 			while(ro.next()){
 				Map<String,Object> map = new HashMap<String,Object>();
@@ -237,7 +238,7 @@ public class SysUseSearch {
 				 * 派工数
 				 */
 				sql.delete(0, sql.length());
-				sql.append("select count(id) as jds ");
+				sql.append("select count(id) as pgs ");
 				sql.append("from Td01_xmxx ");
 				sql.append("where xmgly = '");
 				sql.append(name);
@@ -248,7 +249,7 @@ public class SysUseSearch {
 				ro2 = queryService.search(sql.toString().replace("[dw]", "sjdw"));
 				Long psjs = 0L;
 				if(ro2.next()){
-					psjs = convertUtil.toLong(ro2.get("psjs"),0L);
+					psjs = convertUtil.toLong(ro2.get("pgs"),0L);
 				}
 				map.put("psjs", psjs);
 				/*
@@ -257,7 +258,7 @@ public class SysUseSearch {
 				ro2 = queryService.search(sql.toString().replace("[dw]", "sgdw"));
 				Long psgs = 0L;
 				if(ro2.next()){
-					psgs = convertUtil.toLong(ro2.get("psgs"),0L);
+					psgs = convertUtil.toLong(ro2.get("pgs"),0L);
 				}
 				map.put("psgs", psgs);
 				/*
@@ -266,7 +267,7 @@ public class SysUseSearch {
 				ro2 = queryService.search(sql.toString().replace("[dw]", "jldw"));
 				Long pjls = 0L;
 				if(ro2.next()){
-					pjls = convertUtil.toLong(ro2.get("pjls"),0L);
+					pjls = convertUtil.toLong(ro2.get("pgs"),0L);
 				}
 				map.put("pjls", pjls);
 				

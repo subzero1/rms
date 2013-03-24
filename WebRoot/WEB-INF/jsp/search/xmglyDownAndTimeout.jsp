@@ -35,16 +35,17 @@
 		<table class="table" width="100%" layouth="116">
 			<thead>
 				<tr> 
-					<th style="width: 30px;">序号</th>
-					<th style="width: 200px;" orderField="title">项目管理员</th>
-					<th style="width: 100px;">项目数</th>
-					<th style="width: 100px;">派设计数</th>
-					<th style="width: 100px;">派施工数</th>
-					<th style="width: 100px;">派监理数</th>
-					<th style="width: 100px;">超期数</th>
-					<th style="width: 100px;">超期率</th>
-					<th style="width: 100px;">决算数</th>
-					<th style="width: 100px;">决算率</th> 
+					<th style="width: 40px;">序号</th>
+					<th style="width: 80px;">项目管理员</th>
+					<th style="width: 60px;">项目数</th>
+					<th style="width: 60px;">派设计数</th>
+					<th style="width: 60px;">派施工数</th>
+					<th style="width: 60px;">派监理数</th>
+					<th style="width: 60px;">超期数</th>
+					<th style="width: 60px;">超期率</th>
+					<th style="width: 60px;">决算数</th>
+					<th style="width: 60px;">决算率</th>
+					<th>&nbsp;</th>  
 				</tr>
 			</thead>
 			<tbody>
@@ -62,6 +63,7 @@
 						<td>${obj.cql }</td>
 						<td>${obj.jss }</td>
 						<td>${obj.jsl }</td>
+						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
@@ -76,6 +78,7 @@
 						<td></td>
 						<td></td>
 						<td></td> 
+						<td></td>
 						<td></td>
 					</tr>
 				</c:forEach>
