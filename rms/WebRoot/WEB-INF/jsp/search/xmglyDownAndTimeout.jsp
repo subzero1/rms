@@ -37,14 +37,14 @@
 				<tr> 
 					<th style="width: 30px;">序号</th>
 					<th style="width: 200px;" orderField="title">项目管理员</th>
-					<th style="width: 200px;">项目数</th>
-					<th style="width: 200px;">派设计数</th>
-					<th style="width: 200px;">派施工数</th>
-					<th style="width: 200px;">派监理数</th>
-					<th style="width: 200px;">超期数</th>
-					<th style="width: 200px;">超期率</th>
-					<th style="width: 200px;">决算数</th>
-					<th style="width: 200px;">决算率</th> 
+					<th style="width: 100px;">项目数</th>
+					<th style="width: 100px;">派设计数</th>
+					<th style="width: 100px;">派施工数</th>
+					<th style="width: 100px;">派监理数</th>
+					<th style="width: 100px;">超期数</th>
+					<th style="width: 100px;">超期率</th>
+					<th style="width: 100px;">决算数</th>
+					<th style="width: 100px;">决算率</th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -53,7 +53,7 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
 						<td style="text-align:center">${offset }</td>
-						<td><a href="${obj.uri }" >${obj.mc }</td>
+						<td>${obj.name }</td>
 						<td>${obj.xms }</td>
 						<td>${obj.psjs }</td>  
 						<td>${obj.psgs }</td>
