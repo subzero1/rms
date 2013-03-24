@@ -1248,6 +1248,14 @@
             insert="true"
             column="ycystg"
         />
+        
+        <property
+            name="yqgq"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="yqgq"
+        />
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td01_xmxx.xml

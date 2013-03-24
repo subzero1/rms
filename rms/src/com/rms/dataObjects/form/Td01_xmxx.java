@@ -2600,4 +2600,20 @@ public class Td01_xmxx implements Serializable {
 	public void setYcystg(String ycystg) {
 		this.ycystg = ycystg;
 	}
+	
+	/**
+	 * @hibernate.property column="yqgq"
+	 * @return Returns the yqgq.
+	 */
+	private Long yqgq;
+
+	public Long getYqgq() {
+		return yqgq;
+	}
+
+	public void setYqgq(Long yqgq) {
+		this.yqgq = yqgq;
+	}
+	
+	
 }
