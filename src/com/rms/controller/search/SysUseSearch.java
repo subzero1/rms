@@ -437,11 +437,9 @@ public class SysUseSearch {
 		if (user == null) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
 		}
-		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"),"");
-		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"),"");
-		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"),"");
-		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"),"");
-		String dwlb = convertUtil.toString(request.getParameter("dwlb"),"");
+		String dlsj1 = convertUtil.toString(request.getParameter("dlsj1"),"");
+		String dlsj2 = convertUtil.toString(request.getParameter("dlsj2"),"");
+		String tjlb = convertUtil.toString(request.getParameter("tjlb"),"hzdw");
 		
 		StringBuffer sql = new StringBuffer();
 		StringBuffer sql2 = new StringBuffer();
@@ -450,17 +448,24 @@ public class SysUseSearch {
 		List list = new LinkedList();
 		ModelMap modelMap = new ModelMap();
 		try{
-			if(dwlb.equals("xmgly")){
+			String sql_tmp = "";
+			if(!dlsj1.equals("") && !dlsj2.equals("")){
+				sql_tmp += "and login_date >= to_date('"+dlsj1+"','yyyy-mm-dd') ";
+				sql_tmp += "and login_date <= to_date('"+dlsj2+"','yyyy-mm-dd') ";
+			}
+			if(tjlb.equals("xmgly")){
 				sql.delete(0, sql.length());
-				sql.append("select ta03.name as mc ,count(Tz03.id) ");
+				sql.append("select ta03.name as mc ,count(tz03.id) ");
 				sql.append(" from Ta03_user ta03,Ta11_sta_user ta11,Ta02_station ta02,Tz03_login_log tz03 ");
 				sql.append("where ta03.id = ta11.user_id ");
 				sql.append("and tz03.login_id = ta03.login_id ");
 				sql.append("and ta02.id = ta11.station_id ");
 				sql.append("and ta02.name like '%项目管理岗%' ");
+				sql.append(sql_tmp);
 				sql.append("and ta03.dept_id = ");
 				sql.append(user.getDept_id());
 				sql.append(" group by ta03.name ");
+				sql.append("order by ta03.name");
 				
 				sql2.delete(0, sql.length());
 				sql2.append("select ta03.name as mc  ");
@@ -468,9 +473,11 @@ public class SysUseSearch {
 				sql2.append("where ta03.id = ta11.user_id ");
 				sql2.append("and ta02.id = ta11.station_id ");
 				sql2.append("and ta02.name like '%项目管理岗%' ");
-				sql2.append("not exists(select 'x' from Tz03_login_log tz03 where tz03.login_id = ta03.login_id)");
+				sql2.append("and not exists(select 'x' from Tz03_login_log tz03 where tz03.login_id = ta03.login_id "+sql_tmp+")");
 				sql2.append("and ta03.dept_id = ");
 				sql2.append(user.getDept_id());
+				sql2.append(" ");
+				sql2.append("order by ta03.name");
 				
 			}
 			else{
@@ -479,33 +486,37 @@ public class SysUseSearch {
 				sql.append(" from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01,Tz03_login_log tz03 ");
 				sql.append("where ta03.id = tf04.user_id ");
 				sql.append("and tf04.wxdw_id = tf01.id ");
+				sql.append(sql_tmp);
 				sql.append("and ta03.login_id = tz03.login_id ");
 				sql.append(" group by tf01.mc ");
+				sql.append("order by tf01.mc");
 				
 				sql2.delete(0, sql.length());
 				sql2.append("select tf011.mc as mc from Tf01_wxdw tf011 where mc not in(");
 				sql2.append("select tf01.mc as mc  ");
 				sql2.append(" from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01,Tz03_login_log tz03 ");
 				sql2.append("where ta03.id = tf04.user_id ");
+				sql2.append(sql_tmp);
 				sql2.append("and ta03.login_id = tz03.login_id ");
 				sql2.append("and tf04.wxdw_id = tf01.id ) ");
+				sql2.append("order by tf011.mc ");
 			}	
-			
-			System.out.println("a="+sql.toString());
-			System.out.println("b="+sql2.toString());
 			list = queryService.searchList(sql.toString());
-//			while(ro.next()){
-//				Map<String,Object> map = new HashMap<String,Object>();
-//				String mc = (String)ro.get("mc");
-//				Long dls = convertUtil.toLong(ro.get("dls"));
-//				map.put("mc", mc);
-//				map.put("dls", dls);
-//				list.add(map);
-//			}
 			modelMap.put("dlList", list);
 			
 			List list2 = queryService.searchList(sql2.toString());
 			modelMap.put("dlList2", list2);
+			
+			List<Object> tjlbList = new LinkedList<Object>();
+			Properties p = new Properties();
+			p.setProperty("show", "合作单位");
+			p.setProperty("value", "hzdw");
+			tjlbList.add(p);
+			p = new Properties();
+			p.setProperty("show", "项目管理员");
+			p.setProperty("value", "xmgly");
+			tjlbList.add(p);
+			modelMap.put("tjlbList", tjlbList);
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));

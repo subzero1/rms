@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<form id="pagerForm" method="post" action="search/queryForBoss.do">
+<form id="pagerForm" method="post" action="search/userLogin.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -13,18 +13,19 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="search/queryTemplate.do" method="post"onsubmit="return navTabSearch(this);">
+		<form action="search/userLogin.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						登录时间：<input id="dlsj1" class="date" pattern="yyyy-MM-dd" name="dlsj1" value="${param.dlsj1}" type="text" size="10" />  至  <input id="dlsj2" name="dlsj2" class="date" pattern="yyyy-MM-dd" value="${param.dlsj2}" type="text" size="10" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<netsky:htmlSelect id="tjlb" name="tjlb" objectForOption="tjlbList"  valueForOption="" showForOption="" value="${param.tjlb}" htmlClass="td-select"/></td>
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/queryTemplate.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/userLogin.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
