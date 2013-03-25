@@ -176,6 +176,8 @@ public class SysUseSearch {
 				list.add(map);
 			}
 			modelMap.put("jdcqList", list);
+			
+			
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
@@ -196,6 +198,7 @@ public class SysUseSearch {
 		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"),"");
 		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"),"");
 		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"),"");
+		String ywxm = convertUtil.toString(request.getParameter("ywxm"),"");
 		
 		StringBuffer sql = new StringBuffer();
 		ResultObject ro = null;
@@ -226,7 +229,19 @@ public class SysUseSearch {
 				sql.append("from Td01_xmxx ");
 				sql.append("where xmgly = '");
 				sql.append(name);
-				sql.append("'");
+				sql.append("' ");
+				if(!lxsj1.equals("") && !lxsj2.equals("")){
+					sql.append("and lxsj >= to_date('"+lxsj1+"','yyyy-mm-dd') ");
+					sql.append("and lxsj <= to_date('"+lxsj2+"','yyyy-mm-dd') ");
+				}
+				if(!pdsj1.equals("") && !pdsj2.equals("")){
+					sql.append("and ((sjpgsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ");
+					sql.append("and sjpgsj <= to_date('"+pdsj2+"','yyyy-mm-dd')) ");
+					sql.append("or (sgpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ");
+					sql.append("and sgpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd')) ");
+					sql.append("or (jlpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ");
+					sql.append("and jlpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd'))) ");
+				}
 				ro2 = queryService.search(sql.toString());
 				Long xms = 0L;
 				if(ro2.next()){
@@ -243,10 +258,18 @@ public class SysUseSearch {
 				sql.append("where xmgly = '");
 				sql.append(name);
 				sql.append("' and [dw] is not null ");
+				if(!lxsj1.equals("") && !lxsj2.equals("")){
+					sql.append("and lxsj >= to_date('"+lxsj1+"','yyyy-mm-dd') ");
+					sql.append("and lxsj <= to_date('"+lxsj2+"','yyyy-mm-dd') ");
+				}
+				if(!pdsj1.equals("") && !pdsj2.equals("")){
+					sql.append("and [pdsj] >= to_date('"+pdsj1+"','yyyy-mm-dd') ");
+					sql.append("and [pdsj] <= to_date('"+pdsj2+"','yyyy-mm-dd') ");
+				}
 				/*
 				 * 派设计
 				 */
-				ro2 = queryService.search(sql.toString().replace("[dw]", "sjdw"));
+				ro2 = queryService.search(sql.toString().replace("[dw]", "sjdw").replace("[pdsj]", "sjpgsj"));
 				Long psjs = 0L;
 				if(ro2.next()){
 					psjs = convertUtil.toLong(ro2.get("pgs"),0L);
@@ -255,7 +278,7 @@ public class SysUseSearch {
 				/*
 				 * 派施工
 				 */
-				ro2 = queryService.search(sql.toString().replace("[dw]", "sgdw"));
+				ro2 = queryService.search(sql.toString().replace("[dw]", "sgdw").replace("[pdsj]", "sgpfsj"));
 				Long psgs = 0L;
 				if(ro2.next()){
 					psgs = convertUtil.toLong(ro2.get("pgs"),0L);
@@ -264,7 +287,7 @@ public class SysUseSearch {
 				/*
 				 * 派监理
 				 */
-				ro2 = queryService.search(sql.toString().replace("[dw]", "jldw"));
+				ro2 = queryService.search(sql.toString().replace("[dw]", "jldw").replace("[pdsj]", "jlpfsj"));
 				Long pjls = 0L;
 				if(ro2.next()){
 					pjls = convertUtil.toLong(ro2.get("pgs"),0L);
@@ -280,6 +303,14 @@ public class SysUseSearch {
 				sql.append("where xmgly = '");
 				sql.append(name);
 				sql.append("' and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+				if(!lxsj1.equals("") && !lxsj2.equals("")){
+					sql.append("and lxsj >= to_date('"+lxsj1+"','yyyy-mm-dd') ");
+					sql.append("and lxsj <= to_date('"+lxsj2+"','yyyy-mm-dd') ");
+				}
+				if(!pdsj1.equals("") && !pdsj2.equals("")){
+					sql.append("and sgpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ");
+					sql.append("and sgpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd') ");
+				}
 				ro2 = queryService.search(sql.toString());
 				Long cqs = 0L;
 				if(ro2.next()){
@@ -305,6 +336,14 @@ public class SysUseSearch {
 				sql.append("where xmgly = '");
 				sql.append(name);
 				sql.append("' and jssj is not null ");
+				if(!lxsj1.equals("") && !lxsj2.equals("")){
+					sql.append("and lxsj >= to_date('"+lxsj1+"','yyyy-mm-dd') ");
+					sql.append("and lxsj <= to_date('"+lxsj2+"','yyyy-mm-dd') ");
+				}
+				if(!pdsj1.equals("") && !pdsj2.equals("")){
+					sql.append("and sgpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ");
+					sql.append("and sgpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd') ");
+				}
 				ro2 = queryService.search(sql.toString());
 				Long jss = 0L;
 				if(ro2.next()){
@@ -320,9 +359,14 @@ public class SysUseSearch {
 					jsl = NumberFormatUtil.divToDouble(jss, xms);
 				}
 				map.put("jsl", jsl);
-				list.add(map);
+				if((ywxm.equals("有项目") && xms > 0) || (ywxm.equals("无项目") && xms == 0) || (ywxm.equals(""))){
+					list.add(map);
+				}
 			}
 			modelMap.put("pdcqList", list);
+			
+			String[] ywxmList = {"有项目","无项目"};
+			modelMap.put("ywxmList", ywxmList);
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
