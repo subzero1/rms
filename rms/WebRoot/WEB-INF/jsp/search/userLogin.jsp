@@ -35,9 +35,10 @@
 		<table class="table" width="100%" layouth="116">
 			<thead>
 				<tr> 
-					<th style="width: 30px;">序号</th>
-					<th style="width: 200px;" orderField="title">名称</th>
-					<th style="width:100px;">登录数</th> 
+					<th style="width: 40px;">序号</th>
+					<th style="width: 250px;">名称</th>
+					<th style="width:60px;">登录数</th> 
+					<th></th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -46,17 +47,19 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
 						<td style="text-align:center">${offset }</td>
-						<td><a href="${obj.uri }" >${obj.mc }</td>
-						<td>${obj.dls }</td> 
+						<td>${obj[0] }</td>
+						<td>${obj[1] }</td> 
+						<td>&nbsp;</td> 
 					</tr>
 				</c:forEach>
 				
-				<c:forEach var="obj" items="${dlList2}">
+				<c:forEach var="obj2" items="${dlList2}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
 						<td style="text-align:center">${offset }</td>
-						<td><a href="${obj.uri }" >${obj.mc }</td>
-						<td>${obj.dls }</td> 
+						<td>${obj2 }</td>
+						<td>0</td> 
+						<td>&nbsp;</td> 
 					</tr>
 				</c:forEach>
 			</tbody>

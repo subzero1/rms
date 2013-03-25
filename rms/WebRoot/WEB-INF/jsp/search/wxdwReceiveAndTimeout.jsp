@@ -63,7 +63,7 @@
 						<td>${obj.cql }</td>
 						<td>${obj.jss }</td>
 						<td>${obj.jsl }</td>
-						<td></td>
+						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
