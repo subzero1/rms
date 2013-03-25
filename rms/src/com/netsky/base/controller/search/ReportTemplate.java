@@ -165,11 +165,13 @@ public class ReportTemplate {
 				 * 处理统计字段
 				 */
 				String sum[] = request.getParameterValues("sum");
-				if (sum == null || sum.length == 0) {
-					throw new Exception("未找到统计信息");
-				}
-				for (int i = 0; i < sum.length; i++) {
-					value += "," + sum[i];
+				//if (sum == null || sum.length == 0) {
+					//throw new Exception("未找到统计信息");
+				//}
+				if(sum != null){
+					for (int i = 0; i < sum.length; i++) {
+						value += "," + sum[i];
+					}
 				}
 				value = value.replaceFirst(",", "");
 				list_type = "sum_field";

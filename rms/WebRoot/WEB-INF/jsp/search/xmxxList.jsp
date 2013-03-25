@@ -37,11 +37,10 @@
 						<td>
 							<input type="text" style="display: none" />
 							关键字：
-							<input id="keyword" name="keyword" value="${param.keyword}"
-								type="text" size="25" />
+							<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
 								决算时间
 							<input id="jssj" name="jssj" value="${param.jssj}"
-								type="text"  class="date" size="16"/>
+								type="text"  class="date" size="10"/>
 								状态
 							<select id="xmzt" name="xmzt" value="${param.xmzt}">
 							<option value="" >-----------</option>
@@ -55,7 +54,7 @@
 							项目经理
 							<netsky:htmlSelect name="xmgly" objectForOption="xmglyList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.xmgly}" htmlClass="td-select"/>
 							竣工时间
-							<input id="sjjgsj" name="sjjgsj" value="${param.sjjgsj }" class="date"/>
+							<input id="sjjgsj" name="sjjgsj" value="${param.sjjgsj }" class="date" size="10"/>
 						</td>
 
 					</tr>
