@@ -76,6 +76,36 @@ public class SysUseSearch {
 		List list = new LinkedList();
 		ModelMap modelMap = new ModelMap();
 		try{
+			String sql_tmp = "";
+			if(!lxsj1.equals("") && !lxsj2.equals("")){
+				sql_tmp += "and lxsj >= to_date('"+lxsj1+"','yyyy-mm-dd') ";
+				sql_tmp += "and lxsj <= to_date('"+lxsj2+"','yyyy-mm-dd') ";
+			}
+			if(!pdsj1.equals("") && !pdsj2.equals("")){
+				if(dwlb.equals("sj")){
+					sql_tmp += "and sjpgsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ";
+					sql_tmp += "and sjpgsj <= to_date('"+pdsj2+"','yyyy-mm-dd') ";
+				}
+				if(dwlb.equals("sg")){
+					sql_tmp += "and sgpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ";
+					sql_tmp += "and sgpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd') ";
+				}
+				if(dwlb.equals("jl")){
+					sql_tmp += "and jlpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ";
+					sql_tmp += "and jlpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd') ";
+				}
+			}
+			
+			String sql_tmp2 = "";
+			if(!lxsj1.equals("") && !lxsj2.equals("")){
+				sql_tmp2 += "and lxsj >= to_date('"+lxsj1+"','yyyy-mm-dd') ";
+				sql_tmp2 += "and lxsj <= to_date('"+lxsj2+"','yyyy-mm-dd') ";
+			}
+			if(!pdsj1.equals("") && !pdsj2.equals("")){
+				sql_tmp2 += "and sgpfsj >= to_date('"+pdsj1+"','yyyy-mm-dd') ";
+				sql_tmp2 += "and sgpfsj <= to_date('"+pdsj2+"','yyyy-mm-dd') ";
+			}
+			
 			sql.delete(0, sql.length());
 			sql.append("select mc from Tf01_wxdw where 1 = 1 ");
 			sql.append("and decode(lb,'施工','sg','设计','sj','jl') = '");
@@ -97,8 +127,8 @@ public class SysUseSearch {
 				sql.append(dwlb);
 				sql.append("dw = '");
 				sql.append(mc);
-				sql.append("'");
-				ro2 = queryService.search(sql.toString());
+				sql.append("' ");
+				ro2 = queryService.search(sql.toString()+sql_tmp);
 				Long pds = 0L;
 				if(ro2.next()){
 					pds = convertUtil.toLong(ro2.get("pds"));
@@ -117,64 +147,66 @@ public class SysUseSearch {
 				sql.append("' and ");
 				sql.append(dwlb);
 				sql.append("ysl is not null ");
-				ro2 = queryService.search(sql.toString());
+				ro2 = queryService.search(sql.toString()+sql_tmp);
 				Long jds = 0L;
 				if(ro2.next()){
 					jds = convertUtil.toLong(ro2.get("jds"));
 				}
 				map.put("jds", jds);
 				
-				/*
-				 * 超期数
-				 */
-				sql.delete(0, sql.length());
-				sql.append("select count(id) as cqs ");
-				sql.append("from Td01_xmxx where ");
-				sql.append(dwlb);
-				sql.append("dw = '");
-				sql.append(mc);
-				sql.append("' and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
-				ro2 = queryService.search(sql.toString());
-				Long cqs = 0L;
-				if(ro2.next()){
-					cqs = convertUtil.toLong(ro2.get("cqs"));
+				if(dwlb.equals("sg")){
+					/*
+					 * 超期数
+					 */
+					sql.delete(0, sql.length());
+					sql.append("select count(id) as cqs ");
+					sql.append("from Td01_xmxx where ");
+					sql.append(dwlb);
+					sql.append("dw = '");
+					sql.append(mc);
+					sql.append("' and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+					ro2 = queryService.search(sql.toString()+sql_tmp2);
+					Long cqs = 0L;
+					if(ro2.next()){
+						cqs = convertUtil.toLong(ro2.get("cqs"));
+					}
+					map.put("cqs", cqs);
+					
+					/*
+					 * 超期率
+					 */
+					Double cql = 0d;
+					if(pds != 0){
+						cql = NumberFormatUtil.divToDouble(cqs, pds);
+					}
+					map.put("cql", cql);
+					
+					/*
+					 * 决算数
+					 */
+					sql.delete(0, sql.length());
+					sql.append("select count(id) as jss ");
+					sql.append("from Td01_xmxx where ");
+					sql.append(dwlb);
+					sql.append("dw = '");
+					sql.append(mc);
+					sql.append("' and jssj is not null ");
+					ro2 = queryService.search(sql.toString()+sql_tmp2);
+					Long jss = 0L;
+					if(ro2.next()){
+						jss = convertUtil.toLong(ro2.get("jss"));
+					}
+					map.put("jss", jss);
+					
+					/*
+					 * 决算率
+					 */
+					Double jsl = 0d;
+					if(pds != 0){
+						jsl = NumberFormatUtil.divToDouble(jss, pds);
+					}
+					map.put("jsl", jsl);
 				}
-				map.put("cqs", cqs);
-				
-				/*
-				 * 超期率
-				 */
-				Double cql = 0d;
-				if(pds != 0){
-					cql = NumberFormatUtil.divToDouble(cqs, pds);
-				}
-				map.put("cql", cql);
-				
-				/*
-				 * 决算数
-				 */
-				sql.delete(0, sql.length());
-				sql.append("select count(id) as jss ");
-				sql.append("from Td01_xmxx where ");
-				sql.append(dwlb);
-				sql.append("dw = '");
-				sql.append(mc);
-				sql.append("' and jssj is not null ");
-				ro2 = queryService.search(sql.toString());
-				Long jss = 0L;
-				if(ro2.next()){
-					jss = convertUtil.toLong(ro2.get("jss"));
-				}
-				map.put("jss", jss);
-				
-				/*
-				 * 决算率
-				 */
-				Double jsl = 0d;
-				if(pds != 0){
-					jsl = NumberFormatUtil.divToDouble(jss, pds);
-				}
-				map.put("jsl", jsl);
 				
 				if((ywxm.equals("有项目") && pds > 0) || (ywxm.equals("无项目") && pds == 0) || (ywxm.equals(""))){
 					list.add(map);
