@@ -452,22 +452,22 @@ public class SysUseSearch {
 		try{
 			if(dwlb.equals("xmgly")){
 				sql.delete(0, sql.length());
-				sql.append("select ta03.name name ,count(Tz03.id) ");
+				sql.append("select ta03.name as mc ,count(Tz03.id) ");
 				sql.append(" from Ta03_user ta03,Ta11_sta_user ta11,Ta02_station ta02,Tz03_login_log tz03 ");
 				sql.append("where ta03.id = ta11.user_id ");
 				sql.append("and tz03.login_id = ta03.login_id ");
 				sql.append("and ta02.id = ta11.station_id ");
-				sql.append("and ta02.name like '%项目管理员%' ");
+				sql.append("and ta02.name like '%项目管理岗%' ");
 				sql.append("and ta03.dept_id = ");
 				sql.append(user.getDept_id());
 				sql.append(" group by ta03.name ");
 				
 				sql2.delete(0, sql.length());
-				sql2.append("select ta03.name name ");
+				sql2.append("select ta03.name as mc  ");
 				sql2.append(" from Ta03_user ta03,Ta11_sta_user ta11,Ta02_station ta02 ");
 				sql2.append("where ta03.id = ta11.user_id ");
 				sql2.append("and ta02.id = ta11.station_id ");
-				sql2.append("and ta02.name like '%项目管理员%' ");
+				sql2.append("and ta02.name like '%项目管理岗%' ");
 				sql2.append("not exists(select 'x' from Tz03_login_log tz03 where tz03.login_id = ta03.login_id)");
 				sql2.append("and ta03.dept_id = ");
 				sql2.append(user.getDept_id());
@@ -475,29 +475,33 @@ public class SysUseSearch {
 			}
 			else{
 				sql.delete(0, sql.length());
-				sql.append("select tf01.mc as mc ,count(tz03.id) dls ");
+				sql.append("select tf01.mc as mc ,count(tz03.id) as dls ");
 				sql.append(" from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01,Tz03_login_log tz03 ");
 				sql.append("where ta03.id = tf04.user_id ");
 				sql.append("and tf04.wxdw_id = tf01.id ");
+				sql.append("and ta03.login_id = tz03.login_id ");
 				sql.append(" group by tf01.mc ");
 				
 				sql2.delete(0, sql.length());
-				sql2.append("select tf011.mc from Tf01_wxdw tf011 where not exists(select 'x' from (");
+				sql2.append("select tf011.mc as mc from Tf01_wxdw tf011 where mc not in(");
 				sql2.append("select tf01.mc as mc  ");
 				sql2.append(" from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01,Tz03_login_log tz03 ");
 				sql2.append("where ta03.id = tf04.user_id ");
+				sql2.append("and ta03.login_id = tz03.login_id ");
 				sql2.append("and tf04.wxdw_id = tf01.id ) ");
-				sql2.append("where tf011.mc = t.mc ");
 			}	
-			ro = queryService.search(sql.toString());
-			while(ro.next()){
-				Map<String,Object> map = new HashMap<String,Object>();
-				String mc = (String)ro.get("mc");
-				Long dls = convertUtil.toLong(ro.get("dls"));
-				map.put("mc", mc);
-				map.put("dls", dls);
-				list.add(map);
-			}
+			
+			System.out.println("a="+sql.toString());
+			System.out.println("b="+sql2.toString());
+			list = queryService.searchList(sql.toString());
+//			while(ro.next()){
+//				Map<String,Object> map = new HashMap<String,Object>();
+//				String mc = (String)ro.get("mc");
+//				Long dls = convertUtil.toLong(ro.get("dls"));
+//				map.put("mc", mc);
+//				map.put("dls", dls);
+//				list.add(map);
+//			}
 			modelMap.put("dlList", list);
 			
 			List list2 = queryService.searchList(sql2.toString());
