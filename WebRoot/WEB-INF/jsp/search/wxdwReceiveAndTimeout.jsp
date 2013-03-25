@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<form id="pagerForm" method="post" action="search/queryForBoss.do">
+<form id="pagerForm" method="post" action="search/wxdwReceiveAndTimeout.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -13,18 +13,22 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="search/queryTemplate.do" method="post"onsubmit="return navTabSearch(this);">
+		<form action="search/wxdwReceiveAndTimeout.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						立项时间：<input id="lxsj1" class="date" pattern="yyyy-MM-dd" name="lxsj1" value="${param.lxsj1}" type="text" size="10" />  至  <input id="lxsj2" name="lxsj2" class="date" pattern="yyyy-MM-dd" value="${param.lxsj2}" type="text" size="10" />&nbsp;&nbsp;&nbsp;&nbsp;
+						派单时间：<input id="pdsj1" class="date" pattern="yyyy-MM-dd" name="pdsj1" value="${param.pdsj1}" type="text" size="10" />  至  <input id="pdsj2" name="pdsj2" class="date" pattern="yyyy-MM-dd" value="${param.pdsj2}" type="text" size="10" />
+						<netsky:htmlSelect id="dwlb" name="dwlb" objectForOption="dwlbList"  valueForOption="" showForOption=""  value="${param.dwlb}" htmlClass="td-select"/>
+						<netsky:htmlSelect id="ywxm" name="ywxm" objectForOption="ywxmList"  valueForOption="" showForOption="" extend="全部," extendPrefix="true" value="${param.ywxm}" htmlClass="td-select"/>
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/queryTemplate.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/wxdwReceiveAndTimeout.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -36,13 +40,14 @@
 			<thead>
 				<tr> 
 					<th style="width: 30px;">序号</th>
-					<th style="width: 200px;" orderField="title">合作单位</th>
-					<th style="width: 100px;">派单数</th>
-					<th style="width: 100px;">接单数</th>
-					<th style="width: 100px;">超期数</th>
-					<th style="width: 100px;">超期率</th>
-					<th style="width: 100px;">决算数</th>
-					<th style="width: 100px;">决算率</th> 
+					<th style="width: 250px;">合作单位</th>
+					<th style="width: 60px;">派单数</th>
+					<th style="width: 60px;">接单数</th>
+					<th style="width: 60px;">超期数</th>
+					<th style="width: 60px;">超期率</th>
+					<th style="width: 60px;">决算数</th>
+					<th style="width: 60px;">决算率</th> 
+					<th></th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -51,13 +56,14 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
 						<td style="text-align:center">${offset }</td>
-						<td><a href="${obj.uri }" >${obj.title }</td>
+						<td>${obj.mc }</td>
 						<td>${obj.pds }</td> 
 						<td>${obj.jds }</td>
 						<td>${obj.cqs }</td>
 						<td>${obj.cql }</td>
 						<td>${obj.jss }</td>
 						<td>${obj.jsl }</td>
+						<td></td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
@@ -66,6 +72,7 @@
 						<td></td>
 						<td></td>
 						<td></td> 
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
