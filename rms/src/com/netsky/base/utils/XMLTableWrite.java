@@ -109,9 +109,9 @@ public class XMLTableWrite {
 		StringBuffer hql = new StringBuffer();
 		datas = new ArrayList();
 		hql
-				.append("select u.column_name,u.comments from user_col_comments u where u.table_name='");
+				.append("select u.column_name,u.comments from user_col_comments u where u.table_name like'");
 		hql.append(tableName.toUpperCase());
-		hql.append("' ");
+		hql.append("%' ");
 		hql.append("order by rowid asc");
 
 		Statement st = this.createStatement();
