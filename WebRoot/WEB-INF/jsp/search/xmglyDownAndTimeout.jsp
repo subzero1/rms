@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<form id="pagerForm" method="post" action="search/queryForBoss.do">
+<form id="pagerForm" method="post" action="search/xmglyDownAndTimeout.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -13,18 +13,21 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="search/queryTemplate.do" method="post"onsubmit="return navTabSearch(this);">
+		<form action="search/xmglyDownAndTimeout.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						立项时间：<input id="lxsj1" class="date" pattern="yyyy-MM-dd" name="lxsj1" value="${param.lxsj1}" type="text" size="10" />  至  <input id="lxsj2" name="lxsj2" class="date" pattern="yyyy-MM-dd" value="${param.lxsj2}" type="text" size="10" />&nbsp;&nbsp;&nbsp;&nbsp;
+						派单时间：<input id="pdsj1" class="date" pattern="yyyy-MM-dd" name="pdsj1" value="${param.pdsj1}" type="text" size="10" />  至  <input id="pdsj2" name="pdsj2" class="date" pattern="yyyy-MM-dd" value="${param.pdsj2}" type="text" size="10" />
+						<netsky:htmlSelect id="ywxm" name="ywxm" objectForOption="ywxmList"  valueForOption="" showForOption="" extend="全部," extendPrefix="true" value="${param.ywxm}" htmlClass="td-select"/>
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/queryTemplate.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/xmglyDownAndTimeout.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
