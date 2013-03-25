@@ -27,7 +27,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/xmglyDownAndTimeout.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/xmglyDownAndTimeout.do',navTabSearch);">检 索</button></div><div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -89,19 +89,7 @@
 			</tbody>
 		</table>
 		<div class="panelBar">
-			<div class="pages">
-				<span>显示</span>
-				<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})" selectValue="${numPerPage}">
-					<option value="20">20</option>
-					<option value="50">50</option>
-					<option value="100">100</option>
-					<option value="200">200</option>
-				</select>
-				<span>共${totalCount}条 </span>
-			</div>
-
-			<div class="pagination" targetType="navTab"	totalCount="${totalCount}" numPerPage="${numPerPage}" currentPage="${param.pageNum}"></div>
-
+			<div class="pages"></div>
 		</div>
 	</div>
 </div>
