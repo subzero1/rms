@@ -526,6 +526,70 @@ public class SysUseSearch {
 	
 	}
 	
+	@RequestMapping("/search/dqZyFezb.do")
+	public ModelAndView dqZyFezb(HttpServletRequest request,
+			HttpServletResponse response,HttpSession session) throws Exception {
+		Ta03_user user = null;
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(), "用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		
+		StringBuffer sql = new StringBuffer();
+		ResultObject ro = null;
+		ModelMap modelMap = new ModelMap();
+		try{
+			Map dqMap = new HashMap();
+			sql.delete(0, sql.length());
+			sql.append("select ssdq,gclb,sgdw,sum(sghtje) sghtje ");
+			sql.append("from td01_xmxx ");
+			sql.append("where  ssdq is not null ");
+			sql.append("and gclb is not null ");
+			sql.append("and sgdw is not null ");
+			sql.append("and sghtje is not null ");
+			sql.append("group by ssdq,gclb,sgdw ");
+			ro = queryService.search(sql.toString());
+			while(ro.next()){
+				String ssdq = (String)ro.get("ssdq");
+				String gclb = (String)ro.get("gclb");
+				String sgdw = (String)ro.get("sgdw");
+				String sghtje = (String)ro.get("sghtje");
+				if(!dqMap.containsKey(ssdq)){
+					Map zyMap = new HashMap();
+					zyMap.put(gclb, "'" + sgdw +"':"+sghtje);
+					dqMap.put(ssdq, zyMap);
+				}
+				else{
+					Map zyMap = (HashMap)dqMap.get(ssdq);
+					if(!zyMap.containsKey(gclb)){
+						zyMap.put(gclb, "'" + sgdw +"':"+sghtje);
+					}
+					else{
+						String t_v = (String)zyMap.get(gclb);
+						zyMap.put(gclb, t_v + ",'" + sgdw +"':"+sghtje);
+					}
+				}
+			}
+			String result = "";
+			for(Object o:dqMap.keySet()){
+				result += o+":{";
+				Map zyMap = (HashMap)dqMap.get(o);
+				for(Object o2:zyMap.keySet()){
+					result += o+":{";
+				//	Map zyMap = (HashMap)dqMap.get(o);
+					
+				}
+			}
+			
+		}
+		catch(Exception e){
+			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
+		}
+		
+		return new ModelAndView("/WEB-INF/jsp/search/userLogin.jsp",modelMap);
+	
+	}
+	
 	public void setQueryService(QueryService queryService) {
 		this.queryService = queryService;
 	}
