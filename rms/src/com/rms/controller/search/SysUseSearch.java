@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -67,6 +68,7 @@ public class SysUseSearch {
 		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"),"");
 		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"),"");
 		String dwlb = convertUtil.toString(request.getParameter("dwlb"),"sg");
+		String ywxm = convertUtil.toString(request.getParameter("ywxm"),"");
 		
 		StringBuffer sql = new StringBuffer();
 		ResultObject ro = null;
@@ -76,9 +78,9 @@ public class SysUseSearch {
 		try{
 			sql.delete(0, sql.length());
 			sql.append("select mc from Tf01_wxdw where 1 = 1 ");
-			sql.append("and dwlb = '");
+			sql.append("and decode(lb,'施工','sg','设计','sj','jl') = '");
 			sql.append(dwlb);
-			sql.append("'");
+			sql.append("' order by mc");
 			ro = queryService.search(sql.toString());
 			while(ro.next()){
 				Map<String,Object> map = new HashMap<String,Object>();
@@ -173,11 +175,30 @@ public class SysUseSearch {
 					jsl = NumberFormatUtil.divToDouble(jss, pds);
 				}
 				map.put("jsl", jsl);
-				list.add(map);
+				
+				if((ywxm.equals("有项目") && pds > 0) || (ywxm.equals("无项目") && pds == 0) || (ywxm.equals(""))){
+					list.add(map);
+				}
 			}
 			modelMap.put("jdcqList", list);
 			
+			String[] ywxmList = {"有项目","无项目"};
+			modelMap.put("ywxmList", ywxmList);
 			
+			List<Object> dwlbList = new LinkedList<Object>();
+			Properties p = new Properties();
+			p.setProperty("show", "施工");
+			p.setProperty("value", "sg");
+			dwlbList.add(p);
+			p = new Properties();
+			p.setProperty("show", "设计");
+			p.setProperty("value", "sj");
+			dwlbList.add(p);
+			p = new Properties();
+			p.setProperty("show", "监理");
+			p.setProperty("value", "jl");
+			dwlbList.add(p);
+			modelMap.put("dwlbList", dwlbList);
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
