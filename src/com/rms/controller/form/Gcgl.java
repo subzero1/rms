@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.flow.vo.HaltWork;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
@@ -759,25 +760,38 @@ public class Gcgl {
 		Integer numPerPage = convertUtil.toInteger(request
 				.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request
-				.getParameter("orderField"), "ddbm");
+				.getParameter("orderField"), "td00.id");
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
-
-		hql.append("select o from Td55_order o where 1=1 ");
-		if (!keyword.equals("")) {
-			hql.append("and o.ddbm like '%");
-			hql.append(keyword);
-			hql.append("%'");
+		
+		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		
+		
+		hql.append("select td00 ");
+		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
+		hql.append("where td00.id = ti03.project_id "); 
+		if (rolesMap.get("100106") == null) {
+			hql.append("and xmgly = '");
+			hql.append(user.getName());
+			hql.append("'");
 		}
-		hql.append("order by o.");
+		if (!keyword.equals("")) {
+			hql.append("and (td00.gcmc like '%");
+			hql.append(keyword);
+			hql.append("%' or td00.gcbh like '%");
+			hql.append(keyword);
+			hql.append("')");
+		}
+		hql.append("order by ");
 		hql.append(orderField);
 		hql.append(" ");
 		hql.append(orderDirection);
 		
 		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		while (ro.next()) {
-			objList.add(ro.get("o"));
+			objList.add(ro.get("td00"));
 		}
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
