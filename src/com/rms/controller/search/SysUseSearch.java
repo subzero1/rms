@@ -598,7 +598,7 @@ public class SysUseSearch {
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
 		}
 		
-		return new ModelAndView("/WEB-INF/jsp/search/userLogin.jsp",modelMap);
+		return new ModelAndView("/WEB-INF/jsp/search/dqZyFezb.jsp",modelMap);
 	
 	}
 	
