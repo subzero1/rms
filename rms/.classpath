@@ -42,7 +42,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/juh-3.0.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jurt-3.0.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jxl.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.14.jar" sourcepath="D:/javasource/log4j-1.2.13-src.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mailapi.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/openjpa-1.0.1.jar"/>
