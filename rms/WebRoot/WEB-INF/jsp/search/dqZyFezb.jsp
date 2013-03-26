@@ -10,63 +10,36 @@
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 </form>
-
+<script type="text/javascript">
+	var need_data = '${show_data}';
+	if(need_data != ''){
+		var dq_obj = need_data.split(",1]");
+		if(dq_obj != null){
+			for(var i = 0;i < dq_obj.length;i++){
+				var dq_data = dq_obj[i];
+				var zy_datas = dq_data.split(":1]")[1];
+				zy_datas = zy_datas.substring(1,zy_datas.length-1);
+				var zy_obj = zy_datas.split(",2]");
+				for(var j=0;j < zy_obj.length;j++){
+					var zy_data = zy_obj[j];
+					var dw_datas = zy_data.split(":2]")[1];
+					var dw_datas = dw_datas.substring(1,dw_datas.length-1);
+					if(j==0)
+						alert(dw_datas);
+				}
+			}
+		}
+	}
+	
+	
+	//container = document.createElement("div");
+		//container.style.cssText = vb + "width:0;height:0;position:static;top:0;margin-top:" + conMarginTop + "px";
+		//body.insertBefore( container, body.firstChild );
+</script>
 <div class="page">
-	<div class="pageHeader">
-		<form action="search/userLogin.do" method="post"onsubmit="return navTabSearch(this);">
-			<div class="searchBar">
-				<table class="searchContent">
-					<tr>
-						<td>
-						<input type="text" style="display:none"/>
-						登录时间：<input id="dlsj1" class="date" pattern="yyyy-MM-dd" name="dlsj1" value="${param.dlsj1}" type="text" size="10" />  至  <input id="dlsj2" name="dlsj2" class="date" pattern="yyyy-MM-dd" value="${param.dlsj2}" type="text" size="10" />&nbsp;&nbsp;&nbsp;&nbsp;
-						<netsky:htmlSelect id="tjlb" name="tjlb" objectForOption="tjlbList"  valueForOption="" showForOption="" value="${param.tjlb}" htmlClass="td-select"/></td>
-					</tr>
-				</table>
-				<div class="subBar">
-					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/userLogin.do',navTabSearch);">检 索</button></div><div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
-					</ul>
-				</div>
-			</div>
-		</form>
-	</div>
+
 	<div class="pageContent">
 		 
-		<table class="table" width="100%" layouth="116">
-			<thead>
-				<tr> 
-					<th style="width: 40px;">序号</th>
-					<th style="width: 250px;">名称</th>
-					<th style="width:60px;">登录数</th> 
-					<th></th> 
-				</tr>
-			</thead>
-			<tbody>
-				<c:set var="offset" value="0"/>
-				<c:forEach var="obj" items="${dlList}">
-				<c:set var="offset" value="${offset+1}"/>
-					<tr> 
-						<td style="text-align:center">${offset }</td>
-						<td>${obj[0] }</td>
-						<td>${obj[1] }</td> 
-						<td>&nbsp;</td> 
-					</tr>
-				</c:forEach>
-				
-				<c:forEach var="obj2" items="${dlList2}">
-				<c:set var="offset" value="${offset+1}"/>
-					<tr> 
-						<td style="text-align:center">${offset }</td>
-						<td>${obj2 }</td>
-						<td>0</td> 
-						<td>&nbsp;</td> 
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<div class="panelBar">
-			<div class="pages"></div>
-		</div>
+		
 	</div>
 </div>
