@@ -29,16 +29,19 @@
 					var dw_datas = dw_datas.substring(1,dw_datas.length-1);
 					
 					var dw_obj = dw_datas.split(",");
-					//for(var o = 0;o < dw_obj.length;o++){
-						//var 
-					//}
-					var last_data = '[['+dw_datas.replace(/,/g,"],[")+']]';
+					var dw_array = new Array();
+					for(var ii = 0;ii < dw_obj.length;ii++){
+						dw_array[ii] = new Array();
+						dw_array[ii][0] = dw_obj[ii].split(":")[0];
+						dw_array[ii][1] = dw_obj[ii].split(":")[1];
+					}
+					//var last_data = '[['+dw_datas.replace(/,/g,"],[")+']]';
 					
 					var datasource={};//初始化datasource
 					datasource.Chart_title_text=show_dq+" "+show_zy+" 各单位份额占比";   
 					datasource.Chart_series_name="各单位份额占比";
-    				datasource.Chart_series_data=last_data; 
-    				if(j==1){
+    				datasource.Chart_series_data=dw_array; 
+    				if(j==3){
     					createPieChart(datasource);
     					break;
     				}
@@ -48,60 +51,59 @@
 	}
 	
 	var chart;
-	    function createPieChart(_datasource){
-			//var datasource=dataPieChart(valueX);
-        	var _chart={
-            chart: {
-                renderTo: 'containerDiv',
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: 'Browser market shares at a specific website, 2010'
-            },
-            tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-            	percentageDecimals: 2
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ (this.percentage).toFixed(2) +' %';
-                        }
-                    }
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: [
-                    ['Firefox',   45.0],
-                    ['IE',       26.8],
-                    ['Safari',    8.5],
-                    ['Opera',     6.2],
-                    ['Others',   0.7],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
-                        sliced: true,
-                        selected: true
-                    }
-                ]
-            }]
-        }; 
-         _chart.series[0].name=_datasource.Chart_series_name;
-         _chart.title.text=_datasource.Chart_title_text;
-        // _chart.series[0].data=_datasource.Chart_series_data; 
-        // _chart.series[0].data="[[],[]]"; 
-         chart=new Highcharts.Chart(_chart); 
-      }  
+    function createPieChart(_datasource){
+		//var datasource=dataPieChart(valueX);
+       	var _chart={
+           chart: {
+               renderTo: 'containerDiv',
+               plotBackgroundColor: null,
+               plotBorderWidth: null,
+               plotShadow: false
+           },
+           title: {
+               text: 'Browser market shares at a specific website, 2010'
+           },
+           tooltip: {
+       	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+           	percentageDecimals: 2
+           },
+           plotOptions: {
+               pie: {
+                   allowPointSelect: true,
+                   cursor: 'pointer',
+                   dataLabels: {
+                       enabled: true,
+                       color: '#000000',
+                       connectorColor: '#000000',
+                       formatter: function() {
+                           return '<b>'+ this.point.name +'</b>: '+ (this.percentage).toFixed(2) +' %';
+                       }
+                   }
+               }
+           },
+           series: [{
+               type: 'pie',
+               name: 'Browser share',
+               data: [
+                   ['Firefox',   45.0],
+                   ['IE',       26.8],
+                   ['Safari',    8.5],
+                   ['Opera',     6.2],
+                   ['Others',   0.7],
+                   {
+                       name: 'Chrome',
+                       y: 12.8,
+                       sliced: true,
+                       selected: true
+                   }
+               ]
+           }]
+       }; 
+        _chart.series[0].name=_datasource.Chart_series_name;
+        _chart.title.text=_datasource.Chart_title_text;
+        _chart.series[0].data=_datasource.Chart_series_data; 
+        chart=new Highcharts.Chart(_chart); 
+     }  
 	//container = document.createElement("div");
 		//container.style.cssText = vb + "width:0;height:0;position:static;top:0;margin-top:" + conMarginTop + "px";
 		//body.insertBefore( container, body.firstChild );
