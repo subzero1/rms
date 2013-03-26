@@ -1793,4 +1793,46 @@ public class Td00_gcxx implements Serializable {
 	public void setYcystg(String ycystg) {
 		this.ycystg = ycystg;
 	}
+	
+	private String lxxx;
+	
+	private String a_adress;
+	
+	private String z_adress;
+
+	/**
+	 * @hibernate.property column="lxxx"
+	 * @return Returns the lxxx.
+	 */
+	public String getLxxx() {
+		return lxxx;
+	}
+
+	public void setLxxx(String lxxx) {
+		this.lxxx = lxxx;
+	}
+
+	/**
+	 * @hibernate.property column="a_adress"
+	 * @return Returns the a_adress.
+	 */
+	public String getA_adress() {
+		return a_adress;
+	}
+
+	public void setA_adress(String a_adress) {
+		this.a_adress = a_adress;
+	}
+
+	/**
+	 * @hibernate.property column="z_adress"
+	 * @return Returns the z_adress.
+	 */
+	public String getZ_adress() {
+		return z_adress;
+	}
+
+	public void setZ_adress(String z_adress) {
+		this.z_adress = z_adress;
+	}
 }

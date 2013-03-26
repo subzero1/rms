@@ -871,6 +871,30 @@
             insert="true"
             column="ycystg"
         />
+        
+        <property
+            name="lxxx"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="lxxx"
+        />
+        
+        <property
+            name="a_adress"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="a_adress"
+        />
+        
+        <property
+            name="z_adress"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="z_adress"
+        />
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td00_gcxx.xml

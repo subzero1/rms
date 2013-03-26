@@ -153,17 +153,17 @@ public class RmsCcatsida {
 				
 				td00 = new Td00_gcxx();
 				td00.setGcbh(projectcode);
-				/*
-				td00.setGcmc(gcmc);
-				td00.setSsdq(ssdq);
-				td00.setGclb(gclb);
-				td00.setGcsm(gcsm);
-				td00.setCjr(cjr);
-				td00.setCjrq(cjrq);
-				td00.setXmgly(xmgly);
-				td00.setXqwcsj(xqwcsj);
-				saveService.save(td00);
 				
+				td00.setGcmc(projectrow.getAttribute("ORDER_TITLE"));
+				//td00.setSsdq(ssdq);
+				//td00.setGclb(gclb);
+				td00.setGcsm(projectrow.getAttribute("REMARK"));
+				td00.setCjr("管理员");
+				td00.setCjrq(new Date());
+				//td00.setXmgly(xmgly);
+				//td00.setXqwcsj(xqwcsj);
+				saveService.save(td00);
+				/*
 				td11 = new Td11_xqs();
 
 				td11.setFwbm("[苏州市]客户响应中心");
