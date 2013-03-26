@@ -526,6 +526,15 @@ public class SysUseSearch {
 	
 	}
 	
+	/**
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @data 地区一:{专业一:{单位一:金额一,单位二:金额二,单位三:金额三.....},专业二:{单位三:金额三,单位四:金额四,单位五:金额五}},地区二{}：
+	 * @return
+	 * @throws Exception ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/search/dqZyFezb.do")
 	public ModelAndView dqZyFezb(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session) throws Exception {
@@ -572,18 +581,18 @@ public class SysUseSearch {
 			}
 			String result = "";
 			for(Object o:dqMap.keySet()){
-				result += o+":";
+				result += "," + o + ":";
 				Map zyMap = (HashMap)dqMap.get(o);
+				String i_result = "";
 				for(Object o2:zyMap.keySet()){
-					result += "{"+o2+":{";
-					result += zyMap.get(o2);
-					result += "},";
+					i_result += ","+o2+":{";
+					i_result += zyMap.get(o2);
+					i_result += "}";
 				}
-				result = result.substring(0, result.length() - 1) + "},";
+				i_result = i_result.substring(1,i_result.length());//去内层第一个逗号
+				result += "{" + i_result + "}";
 			}
-			result = result.substring(0, result.length() - 1) + "}";
-			
-			System.out.println(result);
+			result = result.substring(1,result.length());//去外层第一个逗号
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
