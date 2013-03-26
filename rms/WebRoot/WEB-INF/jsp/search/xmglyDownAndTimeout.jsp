@@ -44,8 +44,8 @@
 					<th style="width: 60px;">派设计数</th>
 					<th style="width: 60px;">派施工数</th>
 					<th style="width: 60px;">派监理数</th>
-					<th style="width: 60px;">超期数</th>
-					<th style="width: 60px;">超期率</th>
+					<th style="width: 80px;">施工超期数</th>
+					<th style="width: 80px;">施工超期率</th>
 					<th style="width: 60px;">决算数</th>
 					<th style="width: 60px;">决算率</th>
 					<th>&nbsp;</th>  
