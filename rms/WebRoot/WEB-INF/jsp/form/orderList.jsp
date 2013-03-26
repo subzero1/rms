@@ -58,25 +58,11 @@
 			<thead>
 				<tr>
 					<th style="width:50px;"></th>
-					<th orderField="xmmc">订单编码</th>
-					<th style="width: 120px;" orderField="xmbh">所属地区</th>
-					<th style="width: 65px;" orderField="ssdq">服务</th>
-					<th style="width: 65px;" orderField="gclb">订单状态</th>
-					<th style="width: 200px;" orderField="sgdw">订单类型</th>
-					<th style="width: 140px;" orderField="sghtbh">订单分类</th>
-					<th style="width: 70px;" orderField="lxje">业务开通等级</th>
-					<th style="width: 70px;" orderField="lxje">保障服务等级</th>
-					<!-- 
-					<th style="width: 70px;" orderField="lxje">网络服务等级</th>
-					<th style="width: 70px;" orderField="lxje">服务订单类型等级</th>
-					<th style="width: 70px;" orderField="lxje">客户类别</th>
-					<th style="width: 70px;" orderField="lxje">要求业务开通时间</th>
-					<th style="width: 70px;" orderField="lxje">受理时间</th>
-					<th style="width: 70px;" orderField="lxje">受理人</th>
-					<th style="width: 70px;" orderField="lxje">业务租用到期时间</th>
-					<th style="width: 70px;" orderField="lxje">专线号</th> 
-					<th style="width: 70px;" orderField="lxje">主题</th> 
-					 -->
+					<th orderField="gcbh" style="width: 80px;">订单编码</th>
+					<th style="width: 200px;" orderField="gcmc">标题</th>
+					<th style="width: 200px;" orderField="lxxx">联系信息</th>
+					<th style="width: 200px;" orderField="a_address">A端装机地址</th>
+					<th ></th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -84,26 +70,17 @@
 				<c:forEach var="obj" items="${objList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="xm_id" rel="${obj.id}">
-						<td style="text-align:center;">
-							<a class="add" href="javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id=${obj.id }', {title:'项目施工进度'});"  rel="gcsgjd"><img border="0" src="Images/chart_bar.png" style="cursor:pointer"/></a>&nbsp;&nbsp;
-							<a class="add" href="jlgt/jlgtView.do?module_id=101&doc_id=${obj.id }" target="navTab" rel="jlgtView"><img border="0" src="Images/track_record.png" style="cursor:pointer"/></a>
-						</td>
-						<td><a href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="xmxx" title="项目信息单">${obj.xmmc }</a></td>
-						<td>${obj.ddbm }&nbsp;</td>
-						<td>${obj.gsdq }</td>
-						<td>${obj.service }</td>
-						<td>${obj.ddzt}</td>
-						<td>${obj.ddlx}</td>
-						<td>${obj.ddfl }</td>
-						<td>${obj.ywfwdj }</td>
-						<td>${obj.bzfwdj }</td>
+						<td style="text-align:center;"></td>
+						<td><a href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="xmxx" title="项目信息单">${obj.gcbh }</a></td>
+						<td>${obj.gcmc }&nbsp;</td>
+						<td>${obj.lxxx }</td>
+						<td>${obj.a_adress}</td>
+						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
