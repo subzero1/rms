@@ -1,7 +1,4 @@
 package com.rms.controller.base;
-import java.awt.Rectangle;
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
-import com.netsky.base.baseObject.HibernateQueryBuilder;
-import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -32,13 +26,8 @@ import com.rms.dataObjects.form.Td08_pgspd;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta09_menu;
-import com.netsky.base.dataObjects.Ta21_user_ext;
-import com.netsky.base.dataObjects.Ta22_user_idea;
-import com.netsky.base.dataObjects.Ta25_face_module;
-import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.dataObjects.Tz03_login_log;
 import com.netsky.base.flow.utils.convertUtil;
-import com.netsky.base.imagecut.FtpService;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
