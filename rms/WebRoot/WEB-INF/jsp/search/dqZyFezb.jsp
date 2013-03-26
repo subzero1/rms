@@ -43,6 +43,7 @@
 					tmpDiv.style.width = "900px";
 					tmpDiv.style.height = "400px";
 					tmpDiv.style.background = "#ccc";
+					tmpDiv.style.border="1px";
 					obj.appendChild(tmpDiv);
 					
 					var datasource={};//初始化datasource
