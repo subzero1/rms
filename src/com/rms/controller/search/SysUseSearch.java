@@ -565,34 +565,36 @@ public class SysUseSearch {
 				Double sghtje = (Double)ro.get("sghtje");
 				if(!dqMap.containsKey(ssdq)){
 					Map zyMap = new HashMap();
-					zyMap.put(gclb, "'" + sgdw +"':"+sghtje);
+					zyMap.put(gclb, "\\'" + sgdw +"\\':"+sghtje);
 					dqMap.put(ssdq, zyMap);
 				}
 				else{
 					Map zyMap = (HashMap)dqMap.get(ssdq);
 					if(!zyMap.containsKey(gclb)){
-						zyMap.put(gclb, "'" + sgdw +"':"+sghtje);
+						zyMap.put(gclb, "\\'" + sgdw +"\\':"+sghtje);
 					}
 					else{
 						String t_v = (String)zyMap.get(gclb);
-						zyMap.put(gclb, t_v + ",'" + sgdw +"':"+sghtje);
+						zyMap.put(gclb, t_v + ",\\'" + sgdw +"\\':"+sghtje);
 					}
 				}
 			}
 			String result = "";
 			for(Object o:dqMap.keySet()){
-				result += "," + o + ":";
+				result += ",1]" + o + ":1]";
 				Map zyMap = (HashMap)dqMap.get(o);
 				String i_result = "";
 				for(Object o2:zyMap.keySet()){
-					i_result += ","+o2+":{";
+					i_result += ",2]"+o2+":2]{";
 					i_result += zyMap.get(o2);
 					i_result += "}";
 				}
-				i_result = i_result.substring(1,i_result.length());//去内层第一个逗号
+				i_result = i_result.substring(3,i_result.length());//去内层第一个逗号
 				result += "{" + i_result + "}";
 			}
-			result = result.substring(1,result.length());//去外层第一个逗号
+			result = result.substring(3,result.length());//去外层第一个逗号
+			
+			modelMap.put("show_data", result);
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
