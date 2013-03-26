@@ -33,6 +33,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveFormCodeService;
 import com.netsky.base.service.SaveService; 
+import com.netsky.base.utils.RegExp;
 import com.rms.dataObjects.jk.Ti03_xqly;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.serviceImpl.jk.CcatsidaWSC;
@@ -118,7 +119,6 @@ public class RmsCcatsida {
 			CcatsidaXMLParser parser = new CcatsidaXMLParser();
 			project = parser.parseProject(wsc.processRequest("1", projectcode, target));
 			projectrow = (Element) project.getElementsByTagName("ROW").item(0);
-			log.error("工单接口调试："+projectrow.toString()+"^^^^^^^^^^^^^^^^^^^^^^^^^^");
 		} catch (Exception e) {
 			log.error("获取工单数据失败！工单号＝" + projectcode, e);
 		}
@@ -153,65 +153,25 @@ public class RmsCcatsida {
 				
 				td00 = new Td00_gcxx();
 				td00.setGcbh(projectcode);
-				
-				td00.setGcmc(projectrow.getAttribute("ORDER_TITLE"));
-				//td00.setSsdq(ssdq);
-				//td00.setGclb(gclb);
+				String gcmc = projectrow.getAttribute("ORDER_TITLE");
+				td00.setGcmc(gcmc);
+				String ssdq = new RegExp().pickup("市(.+区)", gcmc);
+				td00.setSsdq(ssdq);
 				td00.setGcsm(projectrow.getAttribute("REMARK"));
 				td00.setCjr("管理员");
 				td00.setCjrq(new Date());
-				//td00.setXmgly(xmgly);
-				//td00.setXqwcsj(xqwcsj);
+				td00.setLxxx(projectrow.getAttribute("CONTACT"));
+				td00.setA_adress(projectrow.getAttribute("INSTALLADDRESSA"));
+				td00.setZ_adress(projectrow.getAttribute("INSTALLADDRESSB"));
 				saveService.save(td00);
-				/*
-				td11 = new Td11_xqs();
-
-				td11.setFwbm("[苏州市]客户响应中心");
-				td11.setCjr(convertUtil.toString(projectrow.getAttribute("CUSTOMERMANAGENAME")));// 项目经理
-				td11.setCjrdh(convertUtil.toString(projectrow.getAttribute("CUSTOMERMANAGERPHONE")));// 项目经理电话
-				td11.setCjrq(new Date());
-				td11.setGcmc("[响][" + projectcode.substring(projectcode.length() - 5) + "]"+convertUtil.toString(projectrow.getAttribute("CUSTOMERNAMEA")));// 工程名称
-				td00.setGcmc(td11.getGcmc());
-				td00.setXqtcsj(new Date());
-				td11.setJsdd(convertUtil.toString(projectrow.getAttribute("INSTALLADDRESSA"))); // 建设地点
-				td00.setJsdd(td11.getJsdd());
-				td11.setSsdq("苏州市");
-				td11.setTzdq("苏州市");
-				td00.setSsdq(td11.getSsdq());
-				td00.setTzdq(td11.getTzdq());
-				*/
 				
-
-//				td11.setYwxq(convertUtil.toString(projectrow.getAttribute("CUSTOMERMANAGERREMARK")) + "\n"
-//						+ "本需求来自综合调度系统，定单号：" + projectcode); // 工程说明
-//				td00.setYwxqdl(td11.getYwxqdl());
-//				td00.setYwxqxl(td11.getYwxqxl());
-//				td00.setGcsm(td11.getYwxq());
-//
-//				//设置工程状态
-//				td00.setGczt("需求提出");
-//				td00.setGcjd("需求阶段");
-//				
-//				saveService.save(td00);
-//				td11.setProject_id(td00.getId());
-//				saveService.save(td11);
-//
 				Ti03_xqly ti03 = new Ti03_xqly();
 				ti03.setXqbs(projectcode);
 				ti03.setProject_id(td00.getId());
-				if (target != null && target.length() > 8) {
-					ti03.setBz("综合调度系统定单");
-					ti03.setLyxt("江苏省综合调度系统");
-					ti03.setUrl("http://132.228.176.109/IOMPROJ/yccustorder/szOrderDetailJudge.htm?order_code="
-							+ projectcode);
-				} else {
-					ti03.setBz("来源苏州市综合调度系统,定单号：" + projectcode);
-					ti03.setLyxt("苏州市综合调度系统");
-					ti03.setUrl("http://132.232.112.12/ccatsida/order/orderDetails.do?operID=sa&hashCode=C2F9D3C094DF274AA8084EC30772A717&i_vBusinessID="
-									+ projectcode);
-				}
+				ti03.setBz("综合调度系统定单");
+				ti03.setLyxt("江苏省综合调度系统");
+				ti03.setUrl("http://132.228.176.109/IOMPROJ/yccustorder/szOrderDetailJudge.htm?order_code=" + projectcode);
 				saveService.save(ti03);
-
 				session.flush();
 				tx.commit(); // 提交事务;
 			} catch (Exception e) {
