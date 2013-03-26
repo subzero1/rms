@@ -541,9 +541,9 @@ public class SysUseSearch {
 		try{
 			Map dqMap = new HashMap();
 			sql.delete(0, sql.length());
-			sql.append("select ssdq,gclb,sgdw,sum(sghtje) sghtje ");
-			sql.append("from td01_xmxx ");
-			sql.append("where  ssdq is not null ");
+			sql.append("select ssdq,gclb,sgdw,sum(sghtje) as sghtje ");
+			sql.append("from Td01_xmxx ");
+			sql.append("where ssdq is not null ");
 			sql.append("and gclb is not null ");
 			sql.append("and sgdw is not null ");
 			sql.append("and sghtje is not null ");
@@ -553,7 +553,7 @@ public class SysUseSearch {
 				String ssdq = (String)ro.get("ssdq");
 				String gclb = (String)ro.get("gclb");
 				String sgdw = (String)ro.get("sgdw");
-				String sghtje = (String)ro.get("sghtje");
+				Double sghtje = (Double)ro.get("sghtje");
 				if(!dqMap.containsKey(ssdq)){
 					Map zyMap = new HashMap();
 					zyMap.put(gclb, "'" + sgdw +"':"+sghtje);
@@ -572,15 +572,18 @@ public class SysUseSearch {
 			}
 			String result = "";
 			for(Object o:dqMap.keySet()){
-				result += o+":{";
+				result += o+":";
 				Map zyMap = (HashMap)dqMap.get(o);
 				for(Object o2:zyMap.keySet()){
-					result += o+":{";
-				//	Map zyMap = (HashMap)dqMap.get(o);
-					
+					result += "{"+o2+":{";
+					result += zyMap.get(o2);
+					result += "},";
 				}
+				result = result.substring(0, result.length() - 1) + "},";
 			}
+			result = result.substring(0, result.length() - 1) + "}";
 			
+			System.out.println(result);
 		}
 		catch(Exception e){
 			return exceptionService.exceptionControl(this.getClass().getName(), "系统出错，请联系管理员", new Exception(e+e.getMessage()));
