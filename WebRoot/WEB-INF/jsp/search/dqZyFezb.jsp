@@ -12,6 +12,7 @@
 </form>
 <script src="../js/chart/highcharts.js"></script>
 <script type="text/javascript">
+    
 	var need_data = '${show_data}';
 	if(need_data != ''){
 		var dq_obj = need_data.split(",1]");
@@ -25,33 +26,39 @@
 				for(var j=0;j < zy_obj.length;j++){
 					var zy_data = zy_obj[j];
 					var dw_datas = zy_data.split(":2]")[1];
-					var show_zy = dq_data.split(":2]")[0];
+					var show_zy = zy_data.split(":2]")[0];
 					var dw_datas = dw_datas.substring(1,dw_datas.length-1);
-					
 					var dw_obj = dw_datas.split(",");
 					var dw_array = new Array();
 					for(var ii = 0;ii < dw_obj.length;ii++){
 						dw_array[ii] = new Array();
 						dw_array[ii][0] = dw_obj[ii].split(":")[0];
-						dw_array[ii][1] = dw_obj[ii].split(":")[1];
+						dw_array[ii][1] = parseFloat(dw_obj[ii].split(":")[1]);
 					}
-					//var last_data = '[['+dw_datas.replace(/,/g,"],[")+']]';
+					
+					var random_offset = Math.round(Math.random()*1000);
+					var obj = document.getElementById("outContainerDiv");
+					var tmpDiv = document.createElement("div");
+					tmpDiv.setAttribute("id","containerDiv"+random_offset);
+					tmpDiv.style.width = "900px";
+					tmpDiv.style.height = "400px";
+					tmpDiv.style.background = "#ccc";
+					obj.appendChild(tmpDiv);
 					
 					var datasource={};//初始化datasource
 					datasource.Chart_title_text=show_dq+" "+show_zy+" 各单位份额占比";   
 					datasource.Chart_series_name="各单位份额占比";
     				datasource.Chart_series_data=dw_array; 
-    				if(j==3){
-    					createPieChart(datasource);
-    					break;
-    				}
+    				datasource.Chart_chart_renderTo="containerDiv"+random_offset;
+    				createPieChart(datasource);
 				}
 			}
 		}
 	}
 	
-	var chart;
+	
     function createPieChart(_datasource){
+    	var chart;
 		//var datasource=dataPieChart(valueX);
        	var _chart={
            chart: {
@@ -101,17 +108,19 @@
        }; 
         _chart.series[0].name=_datasource.Chart_series_name;
         _chart.title.text=_datasource.Chart_title_text;
+        _chart.chart.renderTo=_datasource.Chart_chart_renderTo;
         _chart.series[0].data=_datasource.Chart_series_data; 
+        //alert(_chart.series[0].data);
         chart=new Highcharts.Chart(_chart); 
      }  
 	//container = document.createElement("div");
 		//container.style.cssText = vb + "width:0;height:0;position:static;top:0;margin-top:" + conMarginTop + "px";
 		//body.insertBefore( container, body.firstChild );
 </script>
-<div class="page">
+<body>
+<div class="pageContent">
+<div id="outContainerDiv" name="outContainerDiv" style="width:600px;height:400px;">	 
 
-	<div class="pageContent">
-		 
-		<div id="containerDiv" onclick="createPieChart('2')" style="background:#ccc;min-width: 400px; height: 400px; margin: 0 auto"></div>
-	</div>
 </div>
+</div>
+</body>
