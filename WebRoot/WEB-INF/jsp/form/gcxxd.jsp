@@ -199,54 +199,55 @@ $(function(){
 	<p>
 		<label>总投资：</label>
 		<input type="text"  name="Td00_gcxx.YS_JE" value="${td00_gcxx.ys_je}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>建安费：</label>
 		<input type="text"  name="Td00_gcxx.YS_JAF" value="${td00_gcxx.ys_jaf}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>设备费：</label>
 		<input type="text"  name="Td00_gcxx.YS_SBF" value="${td00_gcxx.ys_sbf}" style="width:120px;"/>
-	</p>
+	
+	￥</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>人工费：</label>
 		<input type="text"  name="Td00_gcxx.YS_RGF" value="${td00_gcxx.ys_rgf}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>普工工日：</label>
 		<input type="text"  name="Td00_gcxx.YS_PGGR" value="${td00_gcxx.ys_pggr}" style="width:150px;"/>
-	</p>
+	天</p>
 	<p>
 		<label>技工工日：</label>
 		<input type="text"  name="Td00_gcxx.YS_JGGR" value="${td00_gcxx.ys_jggr}" style="width:120px;"/>
-	</p>
+	天</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>材料费：</label>
 		<input type="text"  name="Td00_gcxx.YS_CLF" value="${td00_gcxx.ys_clf}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>机械费：</label>
 		<input type="text"  name="Td00_gcxx.YS_JXF" value="${td00_gcxx.ys_jxf}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>仪表费：</label>
 		<input type="text"  name="Td00_gcxx.YS_YBF" value="${td00_gcxx.ys_ybf}" style="width:120px;"/>
-	</p>
+	￥</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>设计费：</label>
 		<input type="text"  name="Td00_gcxx.YS_SJF" value="${td00_gcxx.ys_sjf}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>监理费：</label>
 		<input type="text"  name="Td00_gcxx.YS_JLF" value="${td00_gcxx.ys_jlf}" style="width:150px;"/>
-	</p>
+	￥</p>
 	<p>
 		<label>其它费：</label>
 		<input type="text"  name="Td00_gcxx.YS_QTF" value="${td00_gcxx.ys_qtf}" style="width:120px;"/>
-	</p>
+	￥</p>
 	
 	<div class="divider"></div>
 	<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">进度情况</p>
