@@ -46,15 +46,11 @@ if ("${te10.id == 1}"=="true"){
 			<div class="tabsHeaderContent">
 				<ul>
 					<li><a href="javascript:;"><span>文档管理</span></a></li>
-					<li><a href="javascript:;"><span>文件列表</span></a></li>
+					<li><a href="javascript:;"><span>文件列表[${fn:length(uploadslave)}]</span></a></li>
 				</ul>
 			</div>
 		</div>
 <div class="tabsContent" style="height:512px;">
-<div class="panel sysmanage_max" defH="340" style="width: 96%; float: left;  overflow-y: hidden">
-		<h1>
-			文档管理
-		</h1>
 	<div style="overflow-y: hidden">
 		<form id="wdForm" method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Te10_wdml" />
@@ -124,26 +120,18 @@ if ("${te10.id == 1}"=="true"){
 		<form action="other/wdmlDel.do?id=${te10.id}" id="delForm" onsubmit="return validateCallback(this, navTabAjaxDone);" method="post">
 			<input type="hidden" name="_forwardUrl" value="other/wdList.do?limit=1&lb=${param.lb }&te10_id=${te10.up_id }" />
 		</form>
-	</div>
-</div>
+	</div> 
 <c:if test="${not empty te10 }">
-	
-	<div class="panel sysmanage_min" defH="3400"
-		style="width: 96%; float: left;">
-		<h1>
-			文件 [${fn:length(uploadslave)}]
-		</h1>
 		<div >
 		<c:forEach var="obj" items="${uploadslave}">
-			<p class="slaveList">
+			<p class="slaveList" >
 				${obj.file_name}&nbsp;&nbsp;
 				<a href="show_slave.do?slave_id=${obj.id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
 				<a href="download.do?slave_id=${obj.id}" title="下载"><font color="red">下载</font></a>
 				<c:if test="${empty te05.fbsj}"><a href="#" class="delFile" slave_id="${obj.id }"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 			</p>
 		</c:forEach>
-		</div>
-	</div>
+		</div> 
 </c:if>
 </div>
 </div>
