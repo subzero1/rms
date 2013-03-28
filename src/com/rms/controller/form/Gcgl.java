@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -765,6 +766,8 @@ public class Gcgl {
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		
+		
+		
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
 		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
 		
@@ -812,6 +815,17 @@ public class Gcgl {
 		
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
+		
+		List<Object> pdlbList = new LinkedList<Object>();
+		Properties p = new Properties();
+		p.setProperty("show", "已派单");
+		p.setProperty("value", "sg");
+		pdlbList.add(p);
+		p = new Properties();
+		p.setProperty("show", "未派单");
+		p.setProperty("value", "sj");
+		pdlbList.add(p);
+		modelMap.put("pdlbList", pdlbList);
 		
 		modelMap.put("node_id", node_id);
 		modelMap.put("objList", objList);
