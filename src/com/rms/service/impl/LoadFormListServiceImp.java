@@ -668,6 +668,20 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					tmpList = queryService.searchList(queryBuilder);
 					request.setAttribute("glgcList", tmpList);
 				}
+				
+				if(node_id == 10404 || node_id == 10704){
+					/*
+					 * 处理按钮
+					 */
+					List buttonList = (List)request.getAttribute("buttons");
+					
+					String urlParas = MapUtil.getUrl(paraMap, new String[] { "project_id", "doc_id", "module_id", "node_id","opernode_id","user_id"});
+					Button btn = new Button("附 件");
+					btn.comment = "上传附件";
+					btn.picUri = "attach";
+					btn.url = "javascript:docSlave('slave.do?" +urlParas +"');";
+					buttonList.add(btn);
+				}
 			}
 			
 			
