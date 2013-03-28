@@ -299,7 +299,7 @@ public class FlowFormController implements org.springframework.web.servlet.mvc.C
 			/**
 			 * 只针对RMS系统有效，start-------------
 			 */
-			if(module_id == 101 || module_id == 102){
+			if(module_id == 101 || module_id == 102 || module_id == 114){
 				/*
 				 * 添加 “保存”按钮
 				 */
