@@ -27,6 +27,9 @@
 				}else if($("#newpwd").val()==""){ 
 					alertMsg.info('请您输入新密码！');
 					return false;
+				} if(/(\s)+/.test($("#newpwd").val())==true){
+					alertMsg.info('密码不可以包含空格');
+					return false;
 				}
 			})
 	})
