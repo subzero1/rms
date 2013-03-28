@@ -33,25 +33,10 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-			<c:if test="${node_id == '10101'}">
-					<li><a class="add" href="flowForm.do?module_id=101&node_id=10101&flow_id=101" target="navTab" rel="xmxx" title="项目信息单"><span>添加</span></a></li>
-					<li class="line">line</li>
+			<c:if test="${node_id == '11401'}">
 					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xm_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
-					<!--<li>
-					<a class="batchmodify"	href="dispath.do?url=form/batchUpdateProject.jsp" target="dialog" rel="batchUpdateProject" width="400" height="200"><span>批量修改</span></a>
-					</li>
-					<li class="line">line</li>-->
-					<li> <a class="exportexcel" href="dispath.do?url=form/xlsImport.jsp?config=batch_update_xm" target="dialog" width="400" height="200"><span>导入</span></a></li>
-					<li class="line">line</li>
 				</c:if>
-					<!-- 
-					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
-					<li class="line">line</li>
-					
-					<li><a class="helponline"	href="javascript:enterHelp('xmxx')"><span>在线2帮助</span></a></li>
-					<li class="line">line</li>
-					-->
 				</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
@@ -71,8 +56,8 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="xm_id" rel="${obj.id}">
 						<td style="text-align:center;"></td>
-						<td><a href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="xmxx" title="项目信息单">${obj.gcbh }</a></td>
-						<td>${obj.gcmc }&nbsp;</td>
+						<td><a href="openForm.do?project_id=${obj.id }&module_id=114&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="ddxx" title="定单信息">${obj.gcbh }</a></td>
+						<td><a href="openForm.do?project_id=${obj.id }&module_id=114&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="ddxx" title="定单信息">${obj.gcmc }</a></td>
 						<td>${obj.lxxx }</td>
 						<td>${obj.a_adress}</td>
 						<td>&nbsp;</td>
