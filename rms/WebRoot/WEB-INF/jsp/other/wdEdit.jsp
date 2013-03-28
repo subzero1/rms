@@ -41,7 +41,7 @@ if ("${te10.id == 1}"=="true"){
 	$("#wdForm",navTab.getCurrentPanel()).find(":input").attr("readonly","readonly");
 }
 </script>
-<div class="tabs" currentIndex="0" eventType="click">
+<div class="tabs" currentIndex="1" eventType="click">
 		<div class="tabsHeader">
 			<div class="tabsHeaderContent">
 				<ul>
