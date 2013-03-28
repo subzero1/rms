@@ -170,10 +170,10 @@ public class Personal {
 		Ta03_user user = (Ta03_user)dao.getObject(Ta03_user.class, id);
 		user.setArea_name(area_name);
 		user.setDept_id(new Long(dept_id));
-		if (!passwd.equals(user.getPasswd())){
-			user.setLast_pwd_date(new Date());
-			user.setPasswd(passwd);
-		}
+//		if (!passwd.equals(user.getPasswd())){
+//			user.setLast_pwd_date(new Date());
+//			user.setPasswd(passwd);
+//		}
 		user.setEmail(email);
 		user.setFix_tel(fix_tel);
 		user.setRemark(remark);
