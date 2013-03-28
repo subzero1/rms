@@ -773,9 +773,13 @@ public class Gcgl {
 		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
 		hql.append("where td00.id = ti03.project_id "); 
 		if (rolesMap.get("100106") == null) {
-			hql.append("and xmgly = '");
+			hql.append("and (xmgly = '");
 			hql.append(user.getName());
-			hql.append("'");
+			hql.append("' or sjdw = '");
+			hql.append(user.getDept_name());
+			hql.append("' or sgdw = '");
+			hql.append(user.getDept_name());
+			hql.append("')");
 		}
 		if (!keyword.equals("")) {
 			hql.append("and (td00.gcmc like '%");
@@ -793,9 +797,23 @@ public class Gcgl {
 		while (ro.next()) {
 			objList.add(ro.get("td00"));
 		}
+		
+		Long node_id = -1L;
+		String login_id = convertUtil.toString(user.getLogin_id());
+		if(login_id.substring(0,1).equals("7")){
+			node_id = 11402L;
+		}
+		else if(login_id.substring(0,1).equals("8")){
+			node_id = 11403L;
+		}
+		else{
+			node_id = 11401L;
+		}
+		
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
 		
+		modelMap.put("node_id", node_id);
 		modelMap.put("objList", objList);
 		modelMap.put("keyword", keyword);
 		modelMap.put("numPerPage", numPerPage);
