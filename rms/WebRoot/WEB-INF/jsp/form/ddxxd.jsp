@@ -40,17 +40,30 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
-		<label>所属区域：</label>
-		<netsky:htmlSelect name="Td00_gcxx.SSDQ" objectForOption="ssdqList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.ssdq}" htmlClass="td-select"/>
+		<label>联系信息：</label>
+		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:407px;"/>
 	</p>
 	<p>
-		<label>要求完成时间：</label>
-		<input type="text"  name="Td00_gcxx.YQWCSJ" value="<fmt:formatDate value="${td00_gcxx.yqwcsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
+		<label>所属区域：</label>
+		<netsky:htmlSelect name="Td00_gcxx.SSDQ" objectForOption="ssdqList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.ssdq}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
+		<label>A端装机地址：</label>
+		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:407px;"/>
+	</p>
+	<p>
 		<label>工程类别：</label>
-		<netsky:htmlSelect name="Td00_gcxx.GCLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.gclb}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.GCLB" objectForOption="gclbList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.gclb}" htmlClass="td-select"/>
+	</p>
+	<div style="height:0px;"></div>
+	<p>
+		<label>Z端装机地址：</label>
+		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:407px;"/>
+	</p>
+	<p>
+		<label>工程状态：</label>
+		<netsky:htmlSelect name="Td00_gcxx.GCZT" objectForOption="gcztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.gczt}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -60,11 +73,11 @@
 	<div class="divider"></div>
 	<p>
 		<label>设计单位：</label>
-		<netsky:htmlSelect name="Td00_gcxx.SJDW" objectForOption="sjdwList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.sjdw}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.SJDW" objectForOption="sjdwList" style="width:413px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.sjdw}" htmlClass="td-select"/>
 	</p>
 	<p>
-		<label>设计时限：</label>
-		<input type="text"  name="Td00_gcxx.SJSX" value="${td00_gcxx.sjsx}" style="width:120px;"/>
+		<label>设计派发时间：</label>
+		<input type="text"  name="Td00_gcxx.SJPGSJ" value="<fmt:formatDate value="${td00_gcxx.sjpgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -78,30 +91,23 @@
 				</c:otherwise>
 			</c:choose>
 		</label>
-		<input type="text"  name="Td00_gcxx.SGDW" id="sgdwOrg.SGDW" value="${td00_gcxx.sgdw}" style="width:150px;" readonly="readonly"/>
+		<input type="text"  name="Td00_gcxx.SGDW" id="sgdwOrg.SGDW" value="${td00_gcxx.sgdw}" style="width:407px;" readonly="readonly"/>
 		<input type="hidden"  name="Td00_gcxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${td00_gcxx.sdpgyy}" style="width:150px;"/>
 	</p>
 	<p>
-		<label>计划竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.JHJGSJ" value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
-	</p>
-	<div style="height:0px;"></div>
-	<p>
-		<label>设计派发时间：</label>
-		<input type="text"  name="Td00_gcxx.SJPGSJ" value="<fmt:formatDate value="${td00_gcxx.sjpgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
-	</p>
-	<p>
 		<label>施工派发时间：</label>
-		<input type="text"  name="Td00_gcxx.SGPFSJ" value="<fmt:formatDate value="${td00_gcxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.SGPFSJ" value="<fmt:formatDate value="${td00_gcxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
+	
+	
 	<div style="height:0px;"></div>
 	<p>
 		<label>项目管理员：</label>
 		<input type="text"  name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" default="${user.name}" />" style="width:150px;"/>
 	</p>
 	<p>
-		<label>实际开工时间：</label>
-		<input type="text"  name="Td00_gcxx.SJKGSJ" value="<fmt:formatDate value="${td00_gcxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
+		<label>计划竣工时间：</label>
+		<input type="text"  name="Td00_gcxx.JHJGSJ" value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>实际竣工时间：</label>
