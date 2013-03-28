@@ -8,7 +8,10 @@ color:#0000FF\9;  所有IE浏览器(ie6+)支持 ；但是IE8不能识别“*”和“_”的css hack
 _color:#FF0000; IE6支持
 -----------------------------------*/
 
-
+h1 {font-size:14px;}
+h2 {font-size:14px;}
+h3, h4 {font-size:12px;}
+h5 {font-size:10px;}
 
 /*-----------------------补充----------------------------*/
 .panel .panelContent ul { display:block;}
