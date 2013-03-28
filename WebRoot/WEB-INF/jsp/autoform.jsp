@@ -52,7 +52,7 @@
 				<li class="line">line</li>
 			</c:if>
 		 	<li class="f-right">
-		 		<c:if test="${param.module_id != 101 && param.module_id != 102}">
+		 		<c:if test="${param.module_id != 101 && param.module_id != 102 && param.module_id != 114}">
 					<a class="autonode"	href="showTree.do?project_id=${param.project_id}&doc_id=${param.doc_id}&module_id=${param.module_id}"  title="流程" target="navTab"><span>流程</span></a>
 				</c:if>
 		 	</li>

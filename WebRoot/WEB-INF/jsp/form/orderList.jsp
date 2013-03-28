@@ -18,8 +18,11 @@
 				<table class="searchContent">
 					<tr>
 						<td>
-						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+							<input type="text" style="display:none"/>
+							关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+							<netsky:htmlSelect name="pdlb" objectForOption="pdlbList"  valueForOption="" showForOption="" value="${param.pdlb}"  htmlClass="td-select"/>&nbsp;
+							<netsky:htmlSelect name="xmzt" objectForOption="xmztList"  valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${param.xmzt}" htmlClass="td-select"/>
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">

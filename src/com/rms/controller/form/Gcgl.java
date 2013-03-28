@@ -14,19 +14,23 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.flow.vo.HaltWork;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.service.SaveService;
+import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.rms.dataObjects.form.Td06_xqs;
@@ -789,7 +793,9 @@ public class Gcgl {
 			hql.append(keyword);
 			hql.append("%' or td00.gcbh like '%");
 			hql.append(keyword);
-			hql.append("')");
+			hql.append("%' or td00.lxxx like '%");
+			hql.append(keyword);
+			hql.append("%')");
 		}
 		hql.append("order by ");
 		hql.append(orderField);
@@ -816,16 +822,32 @@ public class Gcgl {
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
 		
+		/*
+		 * 派单状态（派项目管理员）
+		 */
 		List<Object> pdlbList = new LinkedList<Object>();
 		Properties p = new Properties();
 		p.setProperty("show", "已派单");
-		p.setProperty("value", "sg");
+		p.setProperty("value", "ypd");
 		pdlbList.add(p);
 		p = new Properties();
 		p.setProperty("show", "未派单");
-		p.setProperty("value", "sj");
+		p.setProperty("value", "wpd");
 		pdlbList.add(p);
 		modelMap.put("pdlbList", pdlbList);
+		
+		//获取项目状态
+		QueryBuilder queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+		queryBuilder.eq("type", "工程状态");
+		queryBuilder.addOrderBy(Order.asc("id"));
+		List tmpList = queryService.searchList(queryBuilder);
+		if (tmpList != null) {
+			List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
+			for (java.util.Iterator<?> itr = tmpList.iterator(); itr.hasNext();) {
+				xmztList.add((Tc01_property) itr.next());
+			}
+			request.setAttribute("xmztList", xmztList);
+		}
 		
 		modelMap.put("node_id", node_id);
 		modelMap.put("objList", objList);

@@ -874,6 +874,39 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				btn.picUri = "attach";
 				btn.url = "javascript:docSlave('slave.do?" +urlParas +"');";
 				buttonList.add(btn);
+				
+				//获取项目状态
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "工程状态");
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						xmztList.add((Tc01_property) itr.next());
+					}
+					request.setAttribute("xmztList", xmztList);
+				}
+				
+				//获取设计单位列表
+				hsql.delete(0, hsql.length());
+				hsql.append("select tf01.id,tf01.mc,tf01.lb from Tf01_wxdw tf01 where lb='设计' or lb='施工' order by mc");
+				ro = queryService.search(hsql.toString());
+				List<Tf01_wxdw> sjdwList = new LinkedList<Tf01_wxdw>();
+				List<Tf01_wxdw> sgdwList = new LinkedList<Tf01_wxdw>();
+				while (ro.next()) {
+					Tf01_wxdw o_tf01 = new Tf01_wxdw();
+					o_tf01.setMc((String) ro.get("tf01.mc"));
+					o_tf01.setId((Long) ro.get("tf01.id"));
+					
+					if(ro.get("tf01.lb").equals("设计"))
+						sjdwList.add(o_tf01);
+					else
+						sgdwList.add(o_tf01);
+				}
+				request.setAttribute("sjdwList", sjdwList);
+				request.setAttribute("sgdwList", sgdwList);	
 			}
 						
 			
