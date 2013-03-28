@@ -63,7 +63,7 @@
 	</p>
 	<p>
 		<label>工程状态：</label>
-		<netsky:htmlSelect name="Td00_gcxx.GCZT" objectForOption="gcztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.gczt}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.GCZT" objectForOption="xmztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.gczt}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -81,18 +81,8 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
-		<label>
-			<c:choose>
-				<c:when  test="${admin == true || param.node_id == '10206'}">
-					<a href="sgpd.do?project_id=${td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：
-				</c:when>
-				<c:otherwise>
-					施工单位：
-				</c:otherwise>
-			</c:choose>
-		</label>
-		<input type="text"  name="Td00_gcxx.SGDW" id="sgdwOrg.SGDW" value="${td00_gcxx.sgdw}" style="width:407px;" readonly="readonly"/>
-		<input type="hidden"  name="Td00_gcxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${td00_gcxx.sdpgyy}" style="width:150px;"/>
+		<label>施工单位：</label>
+		<netsky:htmlSelect name="Td00_gcxx.SGDW" objectForOption="sgdwList" style="width:413px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.sgdw}" htmlClass="td-select"/>
 	</p>
 	<p>
 		<label>施工派发时间：</label>
@@ -103,7 +93,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>项目管理员：</label>
-		<input type="text"  name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" default="${user.name}" />" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:150px;"/>
 	</p>
 	<p>
 		<label>计划竣工时间：</label>
