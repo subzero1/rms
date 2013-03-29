@@ -69,7 +69,7 @@
 							<div class="buttonActive"  style="float: right;">
 								<div class="buttonContent">
 									<button type="button"
-										onClick="javascript:searchOrExcelExport(this,'search/dqZyFezb.do',navTabSearch);$.pdialog.closeCurrent();">
+										onClick="javascript:searchOrExcelExport(this,'search/dqZyFezb.do?searchFlag=1',navTabSearch);$.pdialog.closeCurrent();">
 										检 索
 									</button>
 								</div>
