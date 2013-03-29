@@ -28,7 +28,7 @@
 </form>
 
 <div class="page">
-	<div class="pageHeader" style="height: 320px;border: 0px;">
+	<div class="pageHeader" style="height: 260px;border: 0px;overflow: hidden;">
 		<form action="search/dqZyFezb.do" method="post"
 			onsubmit="return navTabSearch(this);">
 			<div class="pageFormContent" layoutH="53">
