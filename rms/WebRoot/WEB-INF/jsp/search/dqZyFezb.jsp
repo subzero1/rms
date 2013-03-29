@@ -117,9 +117,13 @@
 	//container = document.createElement("div");
 		//container.style.cssText = vb + "width:0;height:0;position:static;top:0;margin-top:" + conMarginTop + "px";
 		//body.insertBefore( container, body.firstChild );
+function dqFezbSearch(){
+	$.pdialog.open('search/dqFezbSearch.do','dqFezbSearch','条件选择',{width:480,height:320});
+}
 </script>
 <body>
 <div class="pageContent">
+<div class="panelBar" style="height: 30px;text-align: right;"><input type="button" value="条件选择" onclick="javascript:dqFezbSearch()" style="height:25px;"/></div>
 <div id="outContainerDiv" name="outContainerDiv" style="width:600px;height:400px;">	 
 
 </div>
