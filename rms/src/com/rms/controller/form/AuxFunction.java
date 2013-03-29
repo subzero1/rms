@@ -1,5 +1,6 @@
 package com.rms.controller.form;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1072,5 +1073,44 @@ public class AuxFunction {
 		else{
 			return new ModelAndView("../flowForm.do?user_id="+user_id+"&node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
 		}
+	}
+	
+	@RequestMapping("/sysManage/ajaxCascadeMenu.do")
+	public void ajaxCascadeMenu(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		response.setContentType("text/html;charset=GBK");
+		String var1 = request.getParameter("var1");
+		String var2 = request.getParameter("var2");
+		String var3 = request.getParameter("var3");
+		String var4 = request.getParameter("var4");
+		String var5 = convertUtil.toString(request.getParameter("var5"),"id");
+		if (!var2.equals("null")) {
+			var1 = var1.replace('.', '/');
+			String[] str_arr = var1.split("/");
+			if (str_arr.length != 2) {
+				throw new Exception("请确认'" + var1 + "'符合类名.列名的形式!");
+			}
+			String classname = str_arr[0];
+			String columnname = str_arr[1];
+			String hsql = "select " + var3 + "," + var4 + " from " + classname
+					+ " where " + columnname + "='" + var2 + "'"
+					+ " order by "+var5;
+			List<Object[]> list = null;
+			try {
+				list = (List<Object[]>) dao.search(hsql);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(hsql);
+			}
+			String s = "";
+			for (Object[] o : list) {
+				s += "<option value='" + o[0].toString() + "'>" + o[1].toString()
+						+ "</option>";
+			}
+			PrintWriter out = response.getWriter();
+			out.print(s);
+			out.flush();
+			out.close();
+	} 
 	}
 }

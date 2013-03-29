@@ -138,6 +138,9 @@
 	})
 	$("#dept").change(function(){
 		jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
+		if($(this).val()=="4"){
+			cascade('hzdw','Tf01_wxdw.id',$("#dept").val(),'id','mc','mc');
+		}
 	})
 	
 	$("#submitbutton").click(function(){
@@ -155,8 +158,37 @@
 		$("#send_flag").val("0");
 		$("#messagewrite").submit();
 		
-	})	
+	})
+	$("select[class='cascadeMenu']").change(function(){
+			cascade('user_list',
+			$("#area").val(),
+			$("#dept").val(),
+			'mobile_tel','name');
+	  });
+		
 	}) 
+	/**
+	@param var0 目标select
+	@param var1 所查询的字段Class.field
+	@param var2 前置级联条件
+	@param var3 所查字段1
+	@param var4 所查字段2
+	@param var5 按照var5排序
+	@param var6 url 
+	*/
+	function cascade(var0, var1, var2, var3, var4,var5){
+		var params = "var1=" + var1 + "&var2=" + var2 + "&var3=" + var3 +
+		 "&var4=" + var4+"&var5="+var5;
+		 $.ajax({
+		 	type:"post",
+		 	async:false,
+		 	url:"sysManage/ajaxCascadeMenu.do",
+		    data:params,
+		    success:function (msg) {
+				$("#" + var0 + "").empty();
+				$("#" + var0 + "").append(msg);
+	}});
+	}
 </script>
 
 
@@ -233,6 +265,12 @@
 						</c:choose>
 					</c:forEach>
 			    </select>
+			    
+				<select id="hzdw" name="hzdw" style="width:auto;" class='cascadeMenu'>
+				<c:forEach var="hzdw" items="${hzdwList}">
+						<option value="${hzdw.id}">${hzdw.mc}</option>
+				</c:forEach>
+				</select>
 			    <select id="user_list" name="user_list" multiple="1" type="select-multiple" style="width:198px;height:240px;" ondblclick="javascript:selectToUser();">
 				<c:forEach var="user" items="${user_list}">
 					<option value="${user.id }">${user.name }</option>
