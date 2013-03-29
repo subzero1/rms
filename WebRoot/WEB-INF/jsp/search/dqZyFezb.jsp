@@ -84,7 +84,7 @@
                        color: '#000000',
                        connectorColor: '#000000',
                        formatter: function() {
-                           return '<b>'+ this.point.name +'</b>: '+ (this.percentage).toFixed(2) +' %';
+                           return '<b>'+ this.point.name + '【<font color=\'red\'>' + Highcharts.numberFormat(this.y/10000, 0, ',') +'万元</font>】</b>: '+ (this.percentage).toFixed(2) +' %';
                        }
                    }
                }
