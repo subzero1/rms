@@ -709,7 +709,7 @@ public class SysUseSearch {
 		if (!m_results.equals("")) {
 			return new ModelAndView("/WEB-INF/jsp/search/dqZyFezb.jsp", modelMap);	
 		}else {
-			return new ModelAndView("/search/dqZyFezb.do", modelMap);
+			return new ModelAndView("/search/queryForBoss.do", modelMap);
 		}
 		
 
