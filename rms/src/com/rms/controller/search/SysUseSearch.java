@@ -597,6 +597,7 @@ public class SysUseSearch {
 		Ta03_user user = null;
 		user = (Ta03_user) session.getAttribute("user");
 		String m_results="";
+		String searchFlag=convertUtil.toString(request.getParameter("searchFlag"));
 		if (user == null) {
 			return exceptionService.exceptionControl(this.getClass().getName(),
 					"用户未登录或登录超时", new Exception("用户未登录"));
@@ -709,7 +710,12 @@ public class SysUseSearch {
 		if (!m_results.equals("")) {
 			return new ModelAndView("/WEB-INF/jsp/search/dqZyFezb.jsp", modelMap);	
 		}else {
-			return new ModelAndView("/search/queryForBoss.do", modelMap);
+			if (searchFlag.equals("1")) {
+				return new ModelAndView("/search/queryForBoss.do?searchFlag=1", modelMap);	
+			}else {
+				return new ModelAndView("/search/queryForBoss.do", modelMap);
+			}
+			
 		}
 		
 

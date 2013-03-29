@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript">
+  var $searchFlag=$("#searchFalg",navTab.getCurrentPanel());
+  if($searchFlag.val()=="1")
+  	alertMsg.info("没有满足条件的单位!");
+</script>
 <form id="pagerForm" method="post" action="search/queryForBoss.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
@@ -19,7 +24,9 @@
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+						<input type="hidden" value="${param.searchFlag }" name="searchFlag" id="searchFalg"/>
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">
