@@ -84,7 +84,7 @@
                        color: '#000000',
                        connectorColor: '#000000',
                        formatter: function() {
-                           return '<b>'+ this.point.name + '【<font color=\'red\'>' + Highcharts.numberFormat(this.y/10000, 0, ',') +'万元</font>】</b>: '+ (this.percentage).toFixed(2) +' %';
+                           return '<b>'+ this.point.name + '<font color=\'red\'>' + Highcharts.numberFormat(this.y/10000, 0.0, ',') +'万</font></b>: '+ (this.percentage).toFixed(2) +' %';
                        }
                    }
                }
@@ -124,7 +124,7 @@ function dqFezbSearch(){
 <body>
 <div class="pageContent">
 <div class="panelBar" style="height: 30px;text-align: right;"><input type="button" value="条件选择" onclick="javascript:dqFezbSearch()" style="height:25px;"/></div>
-<div id="outContainerDiv" name="outContainerDiv" style="width:600px;height:400px;">	 
+<div id="outContainerDiv" name="outContainerDiv" style="width:850px;height:400px;">	 
 
 </div>
 </div>
