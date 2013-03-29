@@ -596,6 +596,7 @@ public class SysUseSearch {
 			HttpServletResponse response, HttpSession session) throws Exception {
 		Ta03_user user = null;
 		user = (Ta03_user) session.getAttribute("user");
+		String m_results="";
 		if (user == null) {
 			return exceptionService.exceptionControl(this.getClass().getName(),
 					"用户未登录或登录超时", new Exception("用户未登录"));
@@ -699,14 +700,18 @@ public class SysUseSearch {
 			if (!result.equals("")) {
 				result = result.substring(3, result.length());// 去外层第一个逗号
 			}
-
+			m_results=result;
 			modelMap.put("show_data", result);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(),
 					"系统出错，请联系管理员", new Exception(e + e.getMessage()));
 		}
-
-		return new ModelAndView("/WEB-INF/jsp/search/dqZyFezb.jsp", modelMap);
+		if (!m_results.equals("")) {
+			return new ModelAndView("/WEB-INF/jsp/search/dqZyFezb.jsp", modelMap);	
+		}else {
+			return new ModelAndView("/search/dqZyFezb.do", modelMap);
+		}
+		
 
 	}
 
