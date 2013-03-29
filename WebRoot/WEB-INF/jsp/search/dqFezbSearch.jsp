@@ -52,17 +52,17 @@
 					<p>
 						<label>派工时间：</label>
 							<input id="start_sgpfsj" name="start_sgpfsj" value="${param.keyword}"
-								type="text" size="25" class="date"/>
-							<input id="end_sgpfsj" name="end_sgpfsj" value="${param.keyword}"
-								type="text" size="25" class="date"/>
+								type="text" size="15" class="date"/>
+							 <label>至</label><input id="end_sgpfsj" name="end_sgpfsj" value="${param.keyword}"
+								type="text" size="15" class="date"/>
 					</p>
 					<div style="height:0px;"></div>
 					<p>
 						<label>立项时间：</label>
 							<input id="start_lxsj" name="start_lxsj" value="${param.keyword}"
-								type="text" size="25" class="date"/>
-							<input id="end_lxsj" name="end_lxsj" value="${param.keyword}"
-								type="text" size="25" class="date"/>
+								type="text" size="15" class="date"/>
+							<label>至</label><input id="end_lxsj" name="end_lxsj" value="${param.keyword}"
+								type="text" size="15" class="date"/>
 					</p>
 					<div style="height:0px;"></div>
 					<div class="subBar"> 
