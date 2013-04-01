@@ -141,6 +141,8 @@
 		if($(this).val()=="4"){
 			$('#hzdw').show();
 			cascade('hzdw','Tf01_wxdw.id',4,'id','mc','mc','sysManage/ajaxCascadeMenu.do');
+			$('#hzdw').prepend("<option value=''>---------------------------</option>");
+			
 			$('#user_list').empty();
 			setTimeout("cascade('user_list','Ta03_user.id','"+$('#hzdw').val()+"','id','name','name','sysManage/ajaxUserMenu.do')",50);
 		}else {
@@ -150,7 +152,11 @@
 	})
 	
 	$("#hzdw").change(function(){
-		cascade('user_list','Ta03_user.id',$(this).val(),'id','name','name','sysManage/ajaxUserMenu.do');
+		if($(this).val()==''){
+			jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
+		}else{
+			cascade('user_list','Ta03_user.id',$(this).val(),'id','name','name','sysManage/ajaxUserMenu.do');
+		}
 	})
 	
 	$("#submitbutton").click(function(){
