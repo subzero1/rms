@@ -124,7 +124,7 @@ if ("${te10.id == 1}"=="true"){
 <c:if test="${not empty te10 }">
 		<div >
 		<c:forEach var="obj" items="${uploadslave}">
-			<p class="slaveList" >
+			<p class="slaveList" title="${obj.remark }">
 				${obj.file_name}&nbsp;&nbsp;
 				<a href="show_slave.do?slave_id=${obj.id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
 				<a href="download.do?slave_id=${obj.id}" title="下载"><font color="red">下载</font></a>
