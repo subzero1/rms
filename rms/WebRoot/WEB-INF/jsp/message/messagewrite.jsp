@@ -276,7 +276,7 @@
 					</c:forEach>
 			    </select>
 			    
-				<select id="hzdw" name="hzdw" style="width:auto;" class='cascadeMenu'>
+				<select id="hzdw" name="hzdw" style="width:200px;position: relative;left: 0px;" class='cascadeMenu'>
 				<c:forEach var="hzdw" items="${hzdwList}">
 						<option value="${hzdw.id}">${hzdw.mc}</option>
 				</c:forEach>
