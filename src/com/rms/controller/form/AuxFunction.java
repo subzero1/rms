@@ -1084,6 +1084,7 @@ public class AuxFunction {
 		String var3 = request.getParameter("var3");
 		String var4 = request.getParameter("var4");
 		String var5 = convertUtil.toString(request.getParameter("var5"),"id");
+		StringBuffer hql=new StringBuffer();
 		if (!var2.equals("null")) {
 			var1 = var1.replace('.', '/');
 			String[] str_arr = var1.split("/");
@@ -1092,15 +1093,92 @@ public class AuxFunction {
 			}
 			String classname = str_arr[0];
 			String columnname = str_arr[1];
-			String hsql = "select " + var3 + "," + var4 + " from " + classname
-					+ " where " + columnname + "='" + var2 + "'"
-					+ " order by "+var5;
+			//核心sql
+			hql.append("select distinct(c.");
+			hql.append(var3);
+			hql.append("),c.");
+			hql.append(var4);
+			hql.append(" from ");
+			hql.append(classname);
+			hql.append(" c,");
+			hql.append(" Tf04_wxdw_user wu,");
+			hql.append(" Ta03_user u ");
+			hql.append(" where ");
+			hql.append("c.");
+			hql.append(columnname);
+			hql.append("=wu.wxdw_id ");
+			hql.append(" and wu.user_id=");
+			hql.append("u.id and u.dept_id=");
+			hql.append(var2);
+			hql.append(" order by ");
+			hql.append("c.");
+			hql.append(var5);
+//			String hsql = "select " + var3 + "," + var4 + " from " + classname
+//					+ " where " + columnname + "='" + var2 + "'"
+//					+ " order by "+var5;
 			List<Object[]> list = null;
 			try {
-				list = (List<Object[]>) dao.search(hsql);
+				list = (List<Object[]>) dao.search(hql.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println(hsql);
+				System.out.println(hql.toString());
+			}
+			String s = "";
+			for (Object[] o : list) {
+				s += "<option value='" + o[0].toString() + "'>" + o[1].toString()
+						+ "</option>";
+			}
+			PrintWriter out = response.getWriter();
+			out.print(s);
+			out.flush();
+			out.close();
+	} 
+	}
+	
+	@RequestMapping("/sysManage/ajaxUserMenu.do")
+	public void ajaxUserMenu(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		response.setCharacterEncoding(request.getCharacterEncoding());
+		response.setContentType("text/html;charset=GBK");
+		String var1 = request.getParameter("var1");
+		String var2 = request.getParameter("var2");
+		String var3 = request.getParameter("var3");
+		String var4 = request.getParameter("var4");
+		String var5 = convertUtil.toString(request.getParameter("var5"),"id");
+		StringBuffer hql=new StringBuffer();
+		if (!var2.equals("null")) {
+			var1 = var1.replace('.', '/');
+			String[] str_arr = var1.split("/");
+			if (str_arr.length != 2) {
+				throw new Exception("请确认'" + var1 + "'符合类名.列名的形式!");
+			}
+			String classname = str_arr[0];
+			String columnname = str_arr[1];
+			hql.append("select distinct(c.");
+			hql.append(var3);
+			hql.append("),c.");
+			hql.append(var4);
+			hql.append(" from ");
+			hql.append(classname);
+			hql.append(" c,");
+			hql.append(" Tf04_wxdw_user wu,");
+			hql.append(" Tf01_wxdw w ");
+			hql.append(" where ");
+			hql.append("c.");
+			hql.append(columnname);
+			hql.append("=wu.user_id ");
+			hql.append(" and wu.wxdw_id=");
+			hql.append("w.id and c.dept_id=4 ");
+			hql.append(" and w.id=");
+			hql.append(var2);
+			hql.append(" order by ");
+			hql.append("c.");
+			hql.append(var5);
+			List<Object[]> list = null;
+			try {
+				list = (List<Object[]>) dao.search(hql.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(hql.toString());
 			}
 			String s = "";
 			for (Object[] o : list) {

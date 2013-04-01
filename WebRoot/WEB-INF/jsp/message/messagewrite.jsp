@@ -132,15 +132,25 @@
 	}
 	$(function(){
 	//及连菜单
+	$('#hzdw').hide();
 	$("#area").change(function(){
 		jilian('dept','Ta01_dept.area_name',$("#area").val(),'id','name','name');
 		$("#dept").change();
 	})
 	$("#dept").change(function(){
-		jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
 		if($(this).val()=="4"){
-			cascade('hzdw','Tf01_wxdw.id',$("#dept").val(),'id','mc','mc');
+			$('#hzdw').show();
+			cascade('hzdw','Tf01_wxdw.id',4,'id','mc','mc','sysManage/ajaxCascadeMenu.do');
+			$('#user_list').empty();
+			setTimeout("cascade('user_list','Ta03_user.id','"+$('#hzdw').val()+"','id','name','name','sysManage/ajaxUserMenu.do')",50);
+		}else {
+			$('#hzdw').hide();
+			jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
 		}
+	})
+	
+	$("#hzdw").change(function(){
+		cascade('user_list','Ta03_user.id',$(this).val(),'id','name','name','sysManage/ajaxUserMenu.do');
 	})
 	
 	$("#submitbutton").click(function(){
@@ -159,30 +169,24 @@
 		$("#messagewrite").submit();
 		
 	})
-	$("select[class='cascadeMenu']").change(function(){
-			cascade('user_list',
-			$("#area").val(),
-			$("#dept").val(),
-			'mobile_tel','name');
-	  });
 		
 	}) 
 	/**
 	@param var0 目标select
-	@param var1 所查询的字段Class.field
+	@param var1 所匹配查询的字段Class.field结构
 	@param var2 前置级联条件
-	@param var3 所查字段1
-	@param var4 所查字段2
+	@param var3 所查字段1(id),作为下拉框的值
+	@param var4 所查字段2，作为下拉框显示的名称
 	@param var5 按照var5排序
 	@param var6 url 
 	*/
-	function cascade(var0, var1, var2, var3, var4,var5){
+	function cascade(var0, var1, var2, var3, var4,var5,var6){
 		var params = "var1=" + var1 + "&var2=" + var2 + "&var3=" + var3 +
 		 "&var4=" + var4+"&var5="+var5;
 		 $.ajax({
 		 	type:"post",
 		 	async:false,
-		 	url:"sysManage/ajaxCascadeMenu.do",
+		 	url:var6,
 		    data:params,
 		    success:function (msg) {
 				$("#" + var0 + "").empty();
@@ -193,7 +197,7 @@
 
 
 <div class="page">
-	<div class="pageContent">
+	<div class="pageContent" style="overflow: hidden;">
 		<form name="messagewrite" id="messagewrite" action="MessageSend.do" enctype="multipart/form-data" method="post" onsubmit="return iframeCallback(messagewrite, dialogAjaxDone);">
 			<input type="hidden" id="send_flag" name="send_flag"/>
 			<input type="hidden" name="_callbackType" value=""/>
