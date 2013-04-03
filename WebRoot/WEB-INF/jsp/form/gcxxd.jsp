@@ -103,11 +103,13 @@ $(function(){
 	</p>
 	<p>
 		<label>勘察反馈时限：</label>
-		<input type="text"  name="Td00_gcxx.KCFKZQ" value="${td00_gcxx.kcfkzq}" style="width:150px;"/>
+		<input type="text"  name="Td00_gcxx.KCFKZQ" value="${td00_gcxx.kcfkzq}" style="width:115px;"/>
+		<span>（天）</span>
 	</p>
 	<p>
 		<label>设计时限：</label>
-		<input type="text"  name="Td00_gcxx.SJSX" value="${td00_gcxx.sjsx}" style="width:120px;"/>
+		<input type="text"  name="Td00_gcxx.SJSX" value="${td00_gcxx.sjsx}" style="width:85px;"/>
+		<span>（天）</span>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -125,8 +127,9 @@ $(function(){
 		<input type="hidden"  name="Td00_gcxx.SDPGYY" id="sgdwOrg.SDPGYY" value="${td00_gcxx.sdpgyy}" style="width:150px;"/>
 	</p>
 	<p>
-		<label>进度填报周期：</label>
-		<input type="text"  name="Td00_gcxx.SGJDTBZQ" value="${td00_gcxx.sgjdtbzq}" style="width:150px;"/>
+		<label>施工填报周期：</label>
+		<input type="text"  name="Td00_gcxx.SGJDTBZQ" value="${td00_gcxx.sgjdtbzq}" style="width:115px;"/>
+		<span>（天）</span>
 	</p>
 	<p>
 		<label>计划竣工时间：</label>
@@ -138,8 +141,9 @@ $(function(){
 		<netsky:htmlSelect name="Td00_gcxx.JLDW" objectForOption="jldwList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td00_gcxx.jldw}" htmlClass="td-select"/>
 	</p>
 	<p>
-		<label>日志填报周期：</label>
-		<input type="text"  name="Td00_gcxx.JLRJTBZQ" value="${td00_gcxx.jlrjtbzq}" style="width:150px;"/>
+		<label>监理反馈周期：</label>
+		<input type="text"  name="Td00_gcxx.JLRJTBZQ" value="${td00_gcxx.jlrjtbzq}" style="width:115px;"/>
+		<span>（天）</span>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -194,60 +198,60 @@ $(function(){
 		<input type="text"  name="Td00_gcxx.ZYQRSJ" value="<fmt:formatDate value="${td00_gcxx.zyqrsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div class="divider"></div>
-	<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
+	<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况（元）</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>总投资：</label>
 		<input type="text"  name="Td00_gcxx.YS_JE" value="${td00_gcxx.ys_je}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>建安费：</label>
 		<input type="text"  name="Td00_gcxx.YS_JAF" value="${td00_gcxx.ys_jaf}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>设备费：</label>
 		<input type="text"  name="Td00_gcxx.YS_SBF" value="${td00_gcxx.ys_sbf}" style="width:120px;"/>
 	
-	￥</p>
+	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>人工费：</label>
 		<input type="text"  name="Td00_gcxx.YS_RGF" value="${td00_gcxx.ys_rgf}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>普工工日：</label>
 		<input type="text"  name="Td00_gcxx.YS_PGGR" value="${td00_gcxx.ys_pggr}" style="width:150px;"/>
-	天</p>
+	</p>
 	<p>
 		<label>技工工日：</label>
 		<input type="text"  name="Td00_gcxx.YS_JGGR" value="${td00_gcxx.ys_jggr}" style="width:120px;"/>
-	天</p>
+	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>材料费：</label>
 		<input type="text"  name="Td00_gcxx.YS_CLF" value="${td00_gcxx.ys_clf}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>机械费：</label>
 		<input type="text"  name="Td00_gcxx.YS_JXF" value="${td00_gcxx.ys_jxf}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>仪表费：</label>
 		<input type="text"  name="Td00_gcxx.YS_YBF" value="${td00_gcxx.ys_ybf}" style="width:120px;"/>
-	￥</p>
+	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>设计费：</label>
 		<input type="text"  name="Td00_gcxx.YS_SJF" value="${td00_gcxx.ys_sjf}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>监理费：</label>
 		<input type="text"  name="Td00_gcxx.YS_JLF" value="${td00_gcxx.ys_jlf}" style="width:150px;"/>
-	￥</p>
+	</p>
 	<p>
 		<label>其它费：</label>
 		<input type="text"  name="Td00_gcxx.YS_QTF" value="${td00_gcxx.ys_qtf}" style="width:120px;"/>
-	￥</p>
+	</p>
 	
 	<div class="divider"></div>
 	<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">进度情况</p>
