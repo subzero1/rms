@@ -141,7 +141,7 @@ $(function(){
 	<netsky:htmlSelect name="Td01_xmxx.XMZT" objectForOption="xmztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xmzt}" htmlClass="td-select"/>
 </p>
 <div class="divider"></div>
-<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况</p>
+<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况（元）</p>
 <div style="height:0px;"></div>
 <p>
 	<label>总投资：</label>
@@ -201,7 +201,8 @@ $(function(){
 </p>
 <p>
 	<label>立项金额：</label>
-	<input type="text"  name="Td01_xmxx.LXJE" value="${td01_xmxx.lxje}" style="width:150px;"/>
+	<input type="text"  name="Td01_xmxx.LXJE" value="${td01_xmxx.lxje}" style="width:115px;"/>
+	<span>（元）</span>
 </p>
 <p>
 	<label>立项时间：</label>
@@ -247,16 +248,19 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>勘察反馈时限：</label>
-	<input type="text"  name="Td01_xmxx.KCFKZQ" value="${td01_xmxx.kcfkzq}" style="width:150px;"/>
+	<label>设计勘察时限：</label>
+	<input type="text"  name="Td01_xmxx.KCFKZQ" value="${td01_xmxx.kcfkzq}" style="width:115px;"/>
+	<span>（天）</span>
 </p>
 <p>
-	<label>进度填报周期：</label>
-	<input type="text"  name="Td01_xmxx.SGJDTBZQ" value="${td01_xmxx.sgjdtbzq}" style="width:150px;"/>
+	<label>施工填报周期：</label>
+	<input type="text"  name="Td01_xmxx.SGJDTBZQ" value="${td01_xmxx.sgjdtbzq}" style="width:115px;"/>
+	<span>（天）</span>
 </p>
 <p>
-	<label>日志填报周期：</label>
-	<input type="text"  name="Td01_xmxx.JLRJTBZQ" value="${td01_xmxx.jlrjtbzq}" style="width:120px;"/>
+	<label>监理反馈周期：</label>
+	<input type="text"  name="Td01_xmxx.JLRJTBZQ" value="${td01_xmxx.jlrjtbzq}" style="width:80px;"/>
+	<span>（天）</span>
 </p>
 <div class="divider"></div>
 <p>
@@ -325,7 +329,8 @@ $(function(){
 </p>
 <p>
 	<label>金额：</label>
-	<input type="text"  name="Td01_xmxx.SJHTJE" value="${td01_xmxx.sjhtje}" style="width:150px;"/>
+	<input type="text"  name="Td01_xmxx.SJHTJE" value="${td01_xmxx.sjhtje}" style="width:115px;"/>
+	<span>（元）</span>
 </p>
 <p>
 	<label>签订日期：</label>
@@ -338,7 +343,8 @@ $(function(){
 </p>
 <p>
 	<label>金额：</label>
-	<input type="text"  name="Td01_xmxx.SGHTJE" value="${td01_xmxx.sghtje}" style="width:150px;"/>
+	<input type="text"  name="Td01_xmxx.SGHTJE" value="${td01_xmxx.sghtje}" style="width:115px;"/>
+	<span>（元）</span>
 </p>
 <p>
 	<label>签订日期：</label>
@@ -351,7 +357,8 @@ $(function(){
 </p>
 <p>
 	<label>金额：</label>
-	<input type="text"  name="Td01_xmxx.JLHTJE" value="${td01_xmxx.jlhtje}" style="width:150px;"/>
+	<input type="text"  name="Td01_xmxx.JLHTJE" value="${td01_xmxx.jlhtje}" style="width:115px;"/>
+	<span>（元）</span>
 </p>
 <p>
 	<label>签订日期：</label>
@@ -359,7 +366,7 @@ $(function(){
 </p>
 
 <div class="divider"></div>
-<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">结算情况</p>
+<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">结算情况（元）</p>
 <div style="height:0px;"></div>	
 <p style="width:105px;text-align:center;">费用</p>
 <p style="width:120px;text-align:center;">结算</p>
