@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.form.Td09_ddhdxx"  table="Td09_ddhdxx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td09_num</param>
+            </generator>
+        </id> 
+  <property
+  name="nr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="nr"
+  />
+
+  <property
+  name="hdr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="hdr"
+  />
+
+  <property
+  name="hdrdh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="hdrdh"
+  />
+
+  <property
+  name="hdbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="hdbm"
+  />
+
+  <property
+  name="hdgw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="hdgw"
+  />
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />  
+   
+
+    </class>
+
+</hibernate-mapping>

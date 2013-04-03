@@ -197,6 +197,7 @@
 				<value>com/rms/dataObjects/form/Td06_xqs.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td07_zyqrd.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td08_pgspd.hbm.xml</value>
+				<value>com/rms/dataObjects/form/Td09_ddhdxx.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td50_gcxx_imp.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td51_xmxx_imp.hbm.xml</value>
 				<value>com/rms/dataObjects/form/Td52_aqys.hbm.xml</value>
