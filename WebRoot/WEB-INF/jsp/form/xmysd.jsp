@@ -15,25 +15,25 @@ $(function(){
 	
 }); 
 
-
-   function rms2ysxt(){
-		var project_id=$("#project_id");
-		$.ajax({
-			type:'post',
-			url:'jk/yssq.do?project_id='+project_id,
-			data:$form.serializeArray(),
-			dataType:"json",
-			async:false,
-			success:function(msg){ 
-			  if(msg=='[1]'){
-			  	$sgdw.attr("href","sgpd/sgpfCompany.do?xm_id="+param1);
-			  }else {
-			    $sgdw.attr("href","sgpd.do?xm_id="+param1);
-			  }
+  function rms2ysxt(){
+  alert('1');
+	var project_id=$("#project_id");
+	alert('2');
+	$.ajax({
+		type:'post',
+		url:'jk/yssq.do?project_id='+project_id,
+		data:{},
+		dataType:"json",
+		async:false,
+		success:function(json){ 
+		  if(json.statusCode == DWZ.statusCode.ok){
+				alertMsg.correct(json.message);
+			}else if(json.statusCode == DWZ.statusCode.error){
+				alertMsg.info(json.message);
 			}
-			
-		});
-	}
+		}
+	});
+}
 </script>
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmysd.xml"/>
