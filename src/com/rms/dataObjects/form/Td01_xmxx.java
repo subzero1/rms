@@ -2615,5 +2615,20 @@ public class Td01_xmxx implements Serializable {
 		this.yqgq = yqgq;
 	}
 	
+	private String xmlx;
+
+	
+	/**
+	 * @hibernate.property column="xmlx"
+	 * @return Returns the xmlx.
+	 */
+	public String getXmlx() {
+		return xmlx;
+	}
+
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	
 	
 }

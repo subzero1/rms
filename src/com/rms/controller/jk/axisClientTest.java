@@ -47,7 +47,7 @@ import com.rms.serviceImpl.jk.CcatsidaXMLParser;
  * @author Administrator May 27, 2010
  */
 @Controller
-public class axis16ClientTest {
+public class axisClientTest {
 
 		public static void main(String[] args)throws Exception{
 			
