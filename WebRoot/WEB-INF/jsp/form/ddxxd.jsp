@@ -104,6 +104,31 @@
 		<input type="text"  name="Td00_gcxx.SJJGSJ" value="<fmt:formatDate value="${td00_gcxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
+	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
+		<table class="table" width="60%">
+		<thead>
+			<tr>
+				<th style="width: 10%;">序号</th>
+				<th style="width: 10%;">回单人</th>
+				<th style="width: 20%;">回单时间</th>
+				<th style="width: 30%;">回单岗位</th>
+				<th style="width: 30%;">回单内容</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:set var="offset" value="0"/>
+			<c:forEach items="${objList}" var="obj">
+			<c:set var="offset" value="${offset+1}"/>
+				<tr>
+					<td>${offset }</td>
+					<td>${obj.hdr }</td>
+					<td><fmt:formatDate value="${obj.hdsj }" pattern="yyyy-MM-dd HH:mm"/></td>
+					<td>${obj.hdgw }</td>
+					<td>${obj.nr }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
 
 

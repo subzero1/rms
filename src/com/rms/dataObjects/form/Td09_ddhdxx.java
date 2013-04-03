@@ -1,5 +1,7 @@
 package com.rms.dataObjects.form;
 
+import java.util.Date;
+
 public class Td09_ddhdxx {
 	private Long id;
 	private String nr;
@@ -8,6 +10,7 @@ public class Td09_ddhdxx {
 	private String hdbm;
 	private String hdgw;
 	private Long project_id;
+	private Date hdsj;
 
 	public Long getId() {
 		return id;
@@ -63,6 +66,14 @@ public class Td09_ddhdxx {
 
 	public void setProject_id(Long project_id) {
 		this.project_id = project_id;
+	}
+
+	public Date getHdsj() {
+		return hdsj;
+	}
+
+	public void setHdsj(Date hdsj) {
+		this.hdsj = hdsj;
 	}
 
  

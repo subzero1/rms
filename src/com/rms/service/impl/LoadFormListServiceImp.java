@@ -905,6 +905,13 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					else
 						sgdwList.add(o_tf01);
 				}
+				//获取回单信息
+				StringBuffer hdxxHql=new StringBuffer();
+				hdxxHql.append("select hdxx from Td09_ddhdxx hdxx where hdxx.project_id=");
+				hdxxHql.append(project_id);
+				List objList=queryService.searchList(hdxxHql.toString());
+				
+				request.setAttribute("objList", objList);
 				request.setAttribute("sjdwList", sjdwList);
 				request.setAttribute("sgdwList", sgdwList);	
 			}
