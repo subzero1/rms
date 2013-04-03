@@ -50,17 +50,18 @@
 				</th>
 				<td>
 					<textarea name="Td09_ddhdxx.NR" id="nr"
-						style='width: 98%; height: 120px'>${content }</textarea>
+						style='width: 98%; height: 120px'></textarea>
 				 <input type="hidden" name="Td09_ddhdxx.PROJECT_ID" value="${param.project_id }"/>
 				 <input type="hidden" name="Td09_ddhdxx.ID" value=""/>
 				 <input type="hidden" name="Td09_ddhdxx.HDR" value="${user.name }"/>
 				 <input type="hidden" name="Td09_ddhdxx.HDRDH" value="${user.mobile_tel }"/>
 				 <input type="hidden" name="Td09_ddhdxx.HDBM" value="${user.dept_name}"/>
+				 <input type="hidden" name="Td09_ddhdxx.HDSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 				 <input type="hidden" name="Td09_ddhdxx.HDGW" 
 				 <c:choose>
-				 	<c:when test="${param.note_id==11401}">value='项目管理员'</c:when>
-				 	<c:when test="${param.note_id==11402}">value='设计单位'</c:when>
-				 	<c:when test="${param.note_id==11403}">value='施工单位'</c:when>
+				 	<c:when test="${param.node_id==11401}">value='项目管理员'</c:when>
+				 	<c:when test="${param.node_id==11402}">value='设计单位'</c:when>
+				 	<c:when test="${param.node_id==11403}">value='施工单位'</c:when>
 				 	<c:otherwise></c:otherwise>
 				 </c:choose> /> 
 				</td>

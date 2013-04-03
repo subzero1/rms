@@ -63,7 +63,13 @@
   insert="true"
   column="project_id"
   />  
-   
+   <property
+  name="hdsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="hdsj"
+  />     
 
     </class>
 
