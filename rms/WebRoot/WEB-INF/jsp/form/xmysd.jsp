@@ -16,9 +16,7 @@ $(function(){
 }); 
 
   function rms2ysxt(){
-  alert('1');
-	var project_id=$("#project_id");
-	alert('2');
+	var project_id=${param.project_id};
 	$.ajax({
 		type:'post',
 		url:'jk/yssq.do?project_id='+project_id,
