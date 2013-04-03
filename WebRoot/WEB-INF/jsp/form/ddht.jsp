@@ -27,6 +27,7 @@
 				alertMsg.info("内容不能为空!");
 			}else{
 				$form.submit();
+				$.pdialog.closeCurrent();
 			}
 		});
 	});
@@ -39,10 +40,10 @@
 		 <input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.form.Td09_ddhdxx" />
 		 <input type="hidden" name="slaveTable" value="com.netsky.base.dataObjects.Te01_slave"/>
 		 <input type="hidden" name="slaveType" value="ftp"/>
-		 <input type="hidden" name="_callbackType" value="closeCurrent" />
+		 <input type="hidden" name="_callbackType" value="forward" />
 		 <input type="hidden" name="_message" value="保存" />
-		 <input type="hidden" name="_forwardUrl" value="openForm.do?project_id=${param.project_id }&module_id=${param.module_id }&doc_id=${param.project_id }&user_id=${user.id }&limit=&node_id=${param.node_id }" />
-		 <input type="hidden" name="_navTabId" value="ddht" />
+		 <input type="hidden" name="_forwardUrl" value="openForm.do?project_id=${param.project_id }&module_id=114&doc_id=${param.doc_id }&user_id=${user.id }&limit=&node_id=${param.node_id }" />
+		 <input type="hidden" name="_navTabId" value="autoform$114${param.doc_id }" />
 		 <table   id="ddhd">
 			<tr>
 				<th>
