@@ -1,30 +1,22 @@
 package com.rms.controller.jk;
 
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
-import com.netsky.base.utils.XmlTool;
 import com.rms.dataObjects.form.Td01_xmxx;
-import com.rms.webservice.client.zbres.ResComServiceCallbackHandler;
 import com.rms.webservice.client.zbres.ResComServiceStub;
 
 @Controller
@@ -52,6 +44,7 @@ public class Rms2zbres {
 	 * @param session
 	 * @param ModelAndView
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/jk/yssq.do")
 	public void saveXzgcForDblx(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
@@ -72,28 +65,6 @@ public class Rms2zbres {
 			String sgfzrdh = convertUtil.toString(td01.getSgfzrdh());
 			String xmsm = convertUtil.toString(td01.getXmsm());
 			String fjdz = "";
-
-//			String classpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-//			String classname = this.getClass().getSimpleName();
-//			classpath = classpath.replaceAll(classname + ".class", "rms2zbres.xml");
-//			String src_xml_doc = XmlTool.getXmlModule(classpath);
-//
-//			/*
-//			 * 生成远程WEBSERVICE入参
-//			 * 替换模板内容中的参数
-//			 */
-//			String inParam = src_xml_doc;
-//			inParam.replace("[xmbh]", xmbh);
-//			inParam.replace("[xmmc]", xmmc);
-//			inParam.replace("[xmlx]", xmlx);
-//			inParam.replace("[xmlb]", xmlb);
-//			inParam.replace("[ssdq]", ssdq);
-//			inParam.replace("[xmgly]", xmgly);
-//			inParam.replace("[sgdw]", sgdw);
-//			inParam.replace("[sgfzr]", sgfzr);
-//			inParam.replace("[sgfzrdh]", sgfzrdh);
-//			inParam.replace("[xmsm]", xmsm);
-//			inParam.replace("[fjdz]", fjdz);
 			
 			/*
 			 * 调用远程WEBSERVICE接口，获得出参
@@ -144,30 +115,6 @@ public class Rms2zbres {
 			ResComServiceStub.InsertResComResponse rsircr = rs.insertResCom(rsirc);
 			String outParam = rsircr.toString();
 			
-//			SAXBuilder builder = null;
-//			Document doc = null;
-//			Element root = null;
-//			builder = new SAXBuilder();
-//			Reader in = new StringReader(outParam);
-//			try {
-//				doc = builder.build(in);
-//			} catch (Exception e) {
-//				throw new Exception(e);
-//			} 
-//			in.close();
-//			
-//			root = doc.getRootElement();
-//			Element retCode = root.getChild("retCode");
-//			if(retCode == null){
-//				throw new Exception("not find retCode node in outParam");
-//			}
-//			Element retDesc = root.getChild("retDesc");
-//			if(retDesc == null){
-//				throw new Exception("not find retDesc node in outParam");
-//			}
-//			String returnCode = convertUtil.toString(retCode.getText());
-//			String returnDesc = convertUtil.toString(retDesc.getText());
-			
 			String returnCode = "0";
 			String returnDesc = "111";
 			if(returnCode.equals("0")){
@@ -188,73 +135,8 @@ public class Rms2zbres {
 			if(msg.length() > 10){
 				msg = "发送失败，请联系管理员";
 			}
-			
 			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\""+msg+"\"}");
 		}
 	}
-
-	/**
-	 * 打包立项选择工程检测（工程类别、施工单位）
-	 * 
-	 * @param request
-	 * @param response
-	 * @param session
-	 * @param ModelAndView
-	 */
-//	@RequestMapping("/form/chkXzgcForDblx.do")
-//	public ModelAndView chkXzgcForDblx(HttpServletRequest request,
-//			HttpServletResponse response, HttpSession session) throws Exception {
-//		response.setCharacterEncoding(request.getCharacterEncoding());
-//		String[] groups = request.getParameterValues("t_group");
-//		String json = "{\"statusCode\":\"200\", \"message\":\"成功\"}";
-//
-//		try {
-//			// 获取岗位的对象
-//			StringBuffer sql = new StringBuffer();
-//			String ids = "";
-//			// 对配置的角色进行保存
-//			if (groups != null) {
-//				for (int i = 0; i < groups.length; i++) {
-//					ids += groups[i] + ",";
-//				}
-//				ids += "-1";
-//			}
-//
-//			/*
-//			 * 判断工程类别是否不一致
-//			 */
-//			sql.delete(0, sql.length());
-//			sql.append("select distinct gclb from Td00_gcxx where id in (");
-//			sql.append(ids);
-//			sql.append(")");
-//			List list = queryService.searchList(sql.toString());
-//			if (list != null && list.size() > 1) {
-//				json = "{\"statusCode\":\"300\", \"message\":\"以上工程【工程类别】不一致，打包失败\"}";
-//			}
-//
-//			/*
-//			 * 判断施工单位是否不一致
-//			 */
-//			sql.delete(0, sql.length());
-//			sql.append("select distinct sgdw from Td00_gcxx where id in (");
-//			sql.append(ids);
-//			sql.append(") and sgdw is not null ");
-//			list = queryService.searchList(sql.toString());
-//			if (list != null && list.size() > 1) {
-//				json = "{\"statusCode\":\"300\", \"message\":\"以上工程【施工单位】不一致，打包失败\"}";
-//			}
-//
-//			response.getWriter().print(json);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			log.error("chkXzgcForDblx.do[com.rms.controller.form.AuxFunction]"
-//					+ e.getMessage() + e);
-//			response.getWriter().print(
-//					"{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
-//		}
-//		return null;
-//	}
-
 	
 }
