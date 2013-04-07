@@ -43,7 +43,7 @@
 		 <input type="hidden" name="_callbackType" value="forward" />
 		 <input type="hidden" name="_message" value="保存" />
 		 <input type="hidden" name="_forwardUrl" value="openForm.do?project_id=${param.project_id }&module_id=114&doc_id=${param.doc_id }&user_id=${user.id }&limit=&node_id=${param.node_id }" />
-		 <input type="hidden" name="_navTabId" value="autoform$114${param.doc_id }" />
+		 <input type="hidden" name="_navTabId" value="ddxx" />
 		 <table   id="ddhd">
 			<tr>
 				<th>
