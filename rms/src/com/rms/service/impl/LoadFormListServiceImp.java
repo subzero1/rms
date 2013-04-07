@@ -909,6 +909,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				StringBuffer hdxxHql=new StringBuffer();
 				hdxxHql.append("select hdxx from Td09_ddhdxx hdxx where hdxx.project_id=");
 				hdxxHql.append(project_id);
+				hdxxHql.append(" order by hdxx.hdsj desc");
 				List objList=queryService.searchList(hdxxHql.toString());
 				
 				request.setAttribute("objList", objList);
