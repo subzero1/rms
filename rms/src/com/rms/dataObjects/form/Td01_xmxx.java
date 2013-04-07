@@ -2630,5 +2630,17 @@ public class Td01_xmxx implements Serializable {
 		this.xmlx = xmlx;
 	}
 	
-	
+	private Date yczyyssj;
+
+	/**
+	 * @hibernate.property column="yczyyssj"
+	 * @return Returns the yczyyssj.
+	 */
+	public Date getYczyyssj() {
+		return yczyyssj;
+	}
+
+	public void setYczyyssj(Date yczyyssj) {
+		this.yczyyssj = yczyyssj;
+	}
 }
