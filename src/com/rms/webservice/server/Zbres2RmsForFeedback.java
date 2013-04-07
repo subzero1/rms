@@ -27,30 +27,34 @@ public class Zbres2RmsForFeedback {
 		if(inParam == null){
 			
 		}
-		// 分析出参，并获得 $processInstId
-//		SAXBuilder builder = null;
-//		Document doc = null;
-//		Element root = null;
-//
-//		builder = new SAXBuilder();
-//		Reader in = new StringReader(inParam);
-//		try {
-//			doc = builder.build(in);
-//		} catch (IOException ioe) {
-//			throw new Exception(ioe);
-//		} catch (JDOMException jdome) {
-//			throw new Exception(jdome);
-//		}
-//		in.close();
+		
+		// 分析入参
+		SAXBuilder builder = null;
+		Document doc = null;
+		Element root = null;
+		builder = new SAXBuilder();
+		Reader in = new StringReader(inParam);
+		try {
+			doc = builder.build(in);
+		} catch (IOException ioe) {
+			throw new Exception(ioe);
+		} catch (JDOMException jdome) {
+			throw new Exception(jdome);
+		}
+		in.close();
 
 		try {
-//			root = doc.getRootElement();
-//			String xmbh = root.getChildText("xmbh");
-//			String checkType = root.getChild("yslx").getText();
-//			String checkResult = root.getChild("ysjg").getText();
+			root = doc.getRootElement();
+			String xmbh = root.getChildText("xmbh");
+			String checkType = root.getChild("yslx").getText();
+			String checkResult = root.getChild("ysjg").getText();
+			String checkDate = root.getChild("yssj").getText();
 			QueryBuilder queryBuilder = new HibernateQueryBuilder(Td01_xmxx.class);
-			queryBuilder.eq("xmbh", "aa");
+			queryBuilder.eq("xmbh", xmbh);
 			ResultObject ro = queryService.search(queryBuilder);
+			if(ro.next()){
+				
+			}
 			return inParam;
 			
 		} catch (Exception e) {
