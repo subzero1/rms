@@ -53,6 +53,7 @@ public class Zbres2RmsForFeedback {
 			queryBuilder.eq("xmbh", xmbh);
 			ResultObject ro = queryService.search(queryBuilder);
 			if(ro.next()){
+				Td01_xmxx td01 = (Td01_xmxx)ro.get(Td01_xmxx.class.getName());
 				
 			}
 			return inParam;
