@@ -1195,7 +1195,7 @@ public class AuxFunction {
 	
 	@RequestMapping("/auxFunction/customXmxxList.do")
 	public ModelAndView customXmxxList(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
-		String view="/WEB-INF/jsp/form/xmxxList.jsp";
+		String view="/WEB-INF/jsp/search/xmxxList.jsp";
 		ModelMap modelMap=new ModelMap();
 		StringBuffer hql=new StringBuffer();
 		Integer pageNum = convertUtil.toInteger(
@@ -1215,11 +1215,14 @@ public class AuxFunction {
 		hql.append("order by xmxx.xmmc ");
 		ResultObject ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		
+		//地区 
+		List areaList=queryService.searchList("select distinct(a.name) from Tc02_area a");
 		
 		List xmxxList=ro.getList();
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("xmxxList", xmxxList);
+		modelMap.put("areaList", areaList);
 		return new ModelAndView(view,modelMap);
 	}
 }

@@ -25,7 +25,6 @@ import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
-import com.netsky.base.flow.vo.HaltWork;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.baseObject.QueryBuilder;
