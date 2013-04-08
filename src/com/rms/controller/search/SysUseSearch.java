@@ -1,19 +1,15 @@
 package com.rms.controller.search;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import jxl.Workbook;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 
-import com.rms.dataObjects.base.Tc02_area;
-import com.netsky.base.baseObject.HibernateQueryBuilder;
-import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.export.ExportExcel;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.utils.NumberFormatUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
-import com.netsky.base.utils.StringFormatUtil;
 
 /**
  * 用户查询

@@ -1204,6 +1204,7 @@ public class AuxFunction {
 				.getParameter("numPerPage"), 20);
 		Integer totalCount = 0;
 		Integer pageNumShown = 0;
+		Integer op=convertUtil.toInteger(request.getParameter("op"));
 
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
 		String orderType = convertUtil.toString(request.getParameter("orderDirection"), "asc");
@@ -1212,6 +1213,26 @@ public class AuxFunction {
 		hql.append("select xmxx from Td01_xmxx xmxx where xmxx.xmgly='");
 		hql.append(xmgly);
 		hql.append("' ");
+
+		if (op==1) {//派工数
+			hql.append("' and [dw] is not null ");
+		} 
+		if (op==2) {//派设计
+			hql.append(" and sjdw is not null ");
+		} 
+		if (op==3) {//派施工
+			hql.append(" and sgdw is not null ");
+		} 
+		if (op==4) {//派监理
+			hql.append(" and jldw is not null ");
+		}
+		if (op==5) {//超期数
+			hql.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+		}
+		if (op==6) {//决算数
+			hql.append(" and jssj is not null ");
+		}
+		
 		hql.append("order by xmxx.xmmc ");
 		ResultObject ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		
