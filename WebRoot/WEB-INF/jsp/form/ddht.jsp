@@ -36,7 +36,7 @@
 
 	<body>
 	<form  id="ddhtForm" action="save.do" enctype="multipart/form-data" method="post" onsubmit="return iframeCallback(this, dialogAjaxDone);">
-		<div style="float:left;padding:5px !important;display:inline; overflow-x:hidden;overflow-y:auto;" layoutH="50">
+		<div style="float:left;padding:5px !important;display:inline; overflow-x:hidden;overflow-y:auto;" layoutH="25">
 		 <input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.form.Td09_ddhdxx" />
 		 <input type="hidden" name="slaveTable" value="com.netsky.base.dataObjects.Te01_slave"/>
 		 <input type="hidden" name="slaveType" value="ftp"/>
@@ -51,7 +51,7 @@
 				</th>
 				<td>
 					<textarea name="Td09_ddhdxx.NR" id="nr"
-						style='width: 98%; height: 120px'></textarea>
+						style='width: 270px; height: 120px'></textarea>
 				 <input type="hidden" name="Td09_ddhdxx.PROJECT_ID" value="${param.project_id }"/>
 				 <input type="hidden" name="Td09_ddhdxx.ID" value=""/>
 				 <input type="hidden" name="Td09_ddhdxx.HDR" value="${user.name }"/>
@@ -86,7 +86,7 @@
 					<input type="hidden" name="Te01_slave.SLAVE_TYPE" value="其他" />
 				</th>
 				<td>
-					<input type="file" name="the_file" id="the_file" size="24" />
+					<input type="file" name="the_file" id="the_file" size="29" />
 				</td>
 			</tr>
 		</table>
@@ -96,7 +96,7 @@
 					<div class="buttonActive">
 						<div class="buttonContent">
 							<button type="button" id="submitbutton">
-								保存
+								保 存
 							</button>
 						</div>
 					</div>
