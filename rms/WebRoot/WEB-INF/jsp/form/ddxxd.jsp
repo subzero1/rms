@@ -108,11 +108,11 @@
 		<table class="table" width="60%">
 		<thead>
 			<tr>
-				<th style="width: 10%;">序号</th>
-				<th style="width: 10%;">回单人</th>
-				<th style="width: 20%;">回单时间</th>
-				<th style="width: 30%;">回单岗位</th>
-				<th style="width: 30%;">回单内容</th>
+				<th style="width: 30px;">序号</th>
+				<th style="width: 60px;">回单人</th>
+				<th style="width: 110px;">回单时间</th>
+				<th style="width: 80px;">回单岗位</th>
+				<th>回单内容</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -120,11 +120,11 @@
 			<c:forEach items="${objList}" var="obj">
 			<c:set var="offset" value="${offset+1}"/>
 				<tr>
-					<td>${offset }</td>
+					<td style="text-align:center">${offset }</td>
 					<td>${obj.hdr }</td>
 					<td><fmt:formatDate value="${obj.hdsj }" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${obj.hdgw }</td>
-					<td>${obj.nr }</td>
+					<td title="${obj.nr }">${obj.nr }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
