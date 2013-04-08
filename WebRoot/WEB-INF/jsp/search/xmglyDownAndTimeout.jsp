@@ -58,7 +58,7 @@
 					<tr> 
 						<td style="text-align:center">${offset }</td>
 						<td>${obj.name }</td>
-						<td>${obj.xms }</td>
+						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }" target="navTab" rel="xmxxList" title="${obj.name }[${obj.xms }]">${obj.xms }</a></td>
 						<td>${obj.psjs }</td>  
 						<td>${obj.psgs }</td>
 						<td>${obj.pjls }</td>
