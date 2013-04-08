@@ -1,6 +1,7 @@
 package com.rms.controller.form;
 
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1190,5 +1191,35 @@ public class AuxFunction {
 			out.flush();
 			out.close();
 	} 
+	}
+	
+	@RequestMapping("/auxFunction/customXmxxList.do")
+	public ModelAndView customXmxxList(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+		String view="/WEB-INF/jsp/form/xmxxList.jsp";
+		ModelMap modelMap=new ModelMap();
+		StringBuffer hql=new StringBuffer();
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		Integer totalCount = 0;
+		Integer pageNumShown = 0;
+
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		String orderType = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String xmgly=convertUtil.toString(new String(request.getParameter("xmgly").getBytes("iso-8859-1"),"gbk"));
+		
+		hql.append("select xmxx from Td01_xmxx xmxx where xmxx.xmgly='");
+		hql.append(xmgly);
+		hql.append("' ");
+		hql.append("order by xmxx.xmmc ");
+		ResultObject ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		
+		
+		List xmxxList=ro.getList();
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("xmxxList", xmxxList);
+		return new ModelAndView(view,modelMap);
 	}
 }
