@@ -622,11 +622,13 @@ $("#jsxz").change(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label width="90">反馈周期：</label>
-					<input class="digits" type="text" name="Td21_mbk.FKZQ" id="Td21_mbk.FKZQ" style="width:150px;" value="<c:out value="${Td21_mbk.fkzq}" default="5"/>"/>
+					<input class="digits" type="text" name="Td21_mbk.FKZQ" id="Td21_mbk.FKZQ" style="width:115px;" value="<c:out value="${Td21_mbk.fkzq}" default="5"/>"/>
+					<span>（天）</span>
 				</p>
 				<p>
 					<label width="90">谈点周期：</label>
-					<input class="digits" type="text" name="Td21_mbk.TDZQ" id="Td21_mbk.TDZQ" style="width:150px;" value="<c:out value="${Td21_mbk.tdzq}" default="30"/>"/>
+					<input class="digits" type="text" name="Td21_mbk.TDZQ" id="Td21_mbk.TDZQ" style="width:115px;" value="<c:out value="${Td21_mbk.tdzq}" default="30"/>"/>
+					<span>（天）</span>
 				</p>
 				<p>
 					<label>共建情况：</label>
@@ -645,7 +647,8 @@ $("#jsxz").change(function(){
 				
 				<p>
 					<label>谈点协调费：</label>
-					<input type="text" name="Td21_mbk.TDXTF" style="width:120px;" value="${Td21_mbk.tdxtf}"/>
+					<input type="text" name="Td21_mbk.TDXTF" style="width:85px;" value="${Td21_mbk.tdxtf}"/>
+					<span>（元）</span>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -654,7 +657,8 @@ $("#jsxz").change(function(){
 				</p>
 				<p>
 					<label>租    金：</label>
-					<input class="digits" type="text" name="Td21_mbk.ZJ" style="width:150px;" value="${Td21_mbk.zj}"/>
+					<input class="digits" type="text" name="Td21_mbk.ZJ" style="width:115px;" value="${Td21_mbk.zj}"/>
+					<span>（元）</span>
 				</p>
 				<p>
 					<label>年    限：</label>
