@@ -45,7 +45,7 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width:50px;"></th>
+					<th style="width:20px;"></th>
 					<th orderField="gcbh" style="width: 80px;">订单编码</th>
 					<th style="width: 200px;" orderField="gcmc">标题</th>
 					<th style="width: 200px;" orderField="lxxx">联系信息</th>
