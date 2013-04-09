@@ -351,12 +351,17 @@ public class Rckh {
 	public ModelAndView mbkToExcel(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		String wxdw_lb = convertUtil.toString(request.getParameter("wxdw_lb"), "");
-		String wxdw_mc = convertUtil.toString(request.getParameter("wxdw_mc"), "");
-		String khlb = convertUtil.toString(request.getParameter("khlb"), "");
-		String date1 = convertUtil.toString(request.getParameter("date1"), "");
-		String date2 = convertUtil.toString(request.getParameter("date2"), "");
-		String config = convertUtil.toString(request.getParameter("config"));
+		String wxdw_lb = convertUtil.toString(request.getParameter("wxdw_lb"), "");//
+		String wxdw_mc = convertUtil.toString(request.getParameter("wxdw_mc"), "");//
+		String khlb = convertUtil.toString(request.getParameter("khlb"), "");//
+		String date1 = convertUtil.toString(request.getParameter("date1"), "");//
+		String date2 = convertUtil.toString(request.getParameter("date2"), "");//
+		String config = convertUtil.toString(request.getParameter("config"));//
+		
+		String khry = convertUtil.toString(request.getParameter("khry"));//
+		String khnf = convertUtil.toString(request.getParameter("khnf"));//
+		String khyf = convertUtil.toString(request.getParameter("khyf"));//
+		
 
 		int k = 0;
 		ConfigXML configXML = new ConfigXMLImpl();// 读取rckh配置文档
@@ -399,6 +404,15 @@ public class Rckh {
 		}
 		if (!date2.equals("")) {
 			hql.append(" and rckh.khsj < to_date('" + date2 + "','yyyy-mm-dd') ");
+		}
+		if (!khry.equals("")) {
+			hql.append(" and rckh.khry_name = '"+khry+"' ");
+		}
+		if (!khnf.equals("")) {
+			hql.append(" and rckh.khnf = "+khnf+" ");
+		}
+		if (!khyf.equals("")) {
+			hql.append(" and rckh.khyf = '"+khyf+"' ");
 		}
 		hql.append(" order by id ");
 
