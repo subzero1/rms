@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -100,6 +101,13 @@ public class Rms2zbres {
 			ssdqMap.put("高淳县", "12");
 			ssdqMap.put("溧水县", "13");
 			
+			//获得施工单位ID
+			ResultObject ro = queryService.search("select id from Tf01_wxdw where trim(mc) = '"+sgdw.trim()+"'");
+			Long sgdw_id = -1L;
+			if(ro.next()){
+				sgdw_id = convertUtil.toLong(ro.get("id"));
+			}
+			
 			ResComServiceStub rs = new ResComServiceStub();
 			ResComServiceStub.InsertResCom rsirc = new ResComServiceStub.InsertResCom();
 			rsirc.setIn0(xmbh);//项目编号
@@ -108,16 +116,14 @@ public class Rms2zbres {
 			rsirc.setIn3(convertUtil.toString(gclbMap.get(xmlb),"-1"));//工程种类
 			rsirc.setIn4(convertUtil.toString(ssdqMap.get(ssdq),"-1"));//工程区域
 			rsirc.setIn5(convertUtil.toString(xmgly,"无"));//工程管理人（项目管理员）
-			rsirc.setIn6(convertUtil.toString(sgdw,"无"));//施工单位名称
+			rsirc.setIn6(sgdw_id.toString());//施工单位标识
 			rsirc.setIn7(convertUtil.toString(sgfzr,"无"));//施工人员
 			rsirc.setIn8(convertUtil.toString(sgfzrdh,"025-"));//施工电话
 			rsirc.setIn9(convertUtil.toString(xmsm,"无"));//备注（项目描述）
 			ResComServiceStub.InsertResComResponse rsircr = rs.insertResCom(rsirc);
-			String outParam = rsircr.toString();
+			String outParam = convertUtil.toString(rsircr.getOut());
 			
-			String returnCode = "0";
-			String returnDesc = "111";
-			if(returnCode.equals("0")){
+			if(outParam.equals("true")){
 				td01.setYscs(convertUtil.toLong(td01.getYscs(),0L) + 1);//验收次数加1
 				td01.setXmzt("验收申请");
 				saveService.save(td01);
@@ -125,14 +131,17 @@ public class Rms2zbres {
 						+ project_id
 						+ "\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 			}
+			else if(outParam.indexOf("唯一") != -1){//返回值为“工单编号要唯一”
+				throw new Exception("已经发送，无需重复申请");
+			}
 			else{
-				throw new Exception(returnDesc);
+				throw new Exception(outParam);
 			}
 			
 		} catch (Exception e) {
 			log.error("jk/yssq.do[com.rms.controller.jk.Rms2zbres]" + e.getMessage() + e);
 			String msg = convertUtil.toString(e.getMessage());
-			if(msg.length() > 10){
+			if(msg.length() > 15){
 				msg = "发送失败，请联系管理员";
 			}
 			response.getWriter().print("{\"statusCode\":\"300\", \"message\":\""+msg+"\"}");
