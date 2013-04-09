@@ -127,6 +127,20 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				request.setAttribute("gclbList", gclbList);
 			}
 			
+			// 获取项目类型：Tc01_property type="项目类型"
+			queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+			queryBuilder.eq("type", "项目类型");
+			queryBuilder.addOrderBy(Order.asc("id"));
+			tmpList = queryService.searchList(queryBuilder);
+			if (tmpList != null) {
+				List<Tc01_property> xmlxList = new LinkedList<Tc01_property>();
+				for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+						.hasNext();) {
+					xmlxList.add((Tc01_property) itr.next());
+				}
+				request.setAttribute("xmlxList", xmlxList);
+			}
+			
 			// 获取地区
 			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
 			queryBuilder.like("type", "[1]",MatchMode.ANYWHERE);

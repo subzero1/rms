@@ -20,6 +20,19 @@ $(function(){
 								mc:'mc'
 				}
 			});
+			
+			$("#zydl_select",navTab.getCurrentPanel()).cascade({
+				childSelect:$("#zyxx_select",navTab.getCurrentPanel()),
+				tableName:'Tc04_zyxx',
+				conditionColumn:'gczy_id',
+				valueForOption:'mc',
+				key:'id',
+				orderBy:'id',
+				showForOption:{
+								pattern:'[mc]',
+								mc:'mc'
+				}
+			});	
 			checkProject($Td01_xmxx_GCLB.val(),$Td01_xmxx_ID.val());
 			 
 			$Td01_xmxx_GCLB.change(function(){
@@ -116,12 +129,12 @@ $(function(){
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>投资切块：</label>
-	<netsky:htmlSelect id="qkdl_select" name="Td01_xmxx.QKDL" objectForOption="qkdlList" style="width:157px;" valueForOption="qkmc" showForOption="qkmc" valueForExtend="{'id':'[id]','nd':'[nd]'}" extend="" extendPrefix="true"  value="${td01_xmxx.qkdl}" htmlClass="td-select"/>
+	<label>项目类型：</label>
+	<netsky:htmlSelect name="Td01_xmxx.XMLX" objectForOption="xmlxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xmlx}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>切块细项：</label>
-	<netsky:htmlSelect id="qkxl_select" name="Td01_xmxx.QKXL" objectForOption="qkxlList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
+	<label>预算类型：</label>
+	<netsky:htmlSelect name="Td01_xmxx.YSLX" objectForOption="yslxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.yslx}" htmlClass="td-select"/>
 </p>
 <p>
 	<label>所属区域：</label>
@@ -133,8 +146,21 @@ $(function(){
 	<netsky:htmlSelect name="Td01_xmxx.GCLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.gclb}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>预算类型：</label>
-	<netsky:htmlSelect name="Td01_xmxx.YSLX" objectForOption="yslxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.yslx}" htmlClass="td-select"/>
+	<label>工程专业：</label>
+		<netsky:htmlSelect id="zydl_select" name="Td01_xmxx.ZYDL" objectForOption="zydlList" style="width:157px;" valueForOption="zymc" showForOption="zymc" valueForExtend="{'id':'[id]','yxnd':'[yxnd]'}" extend="" extendPrefix="true" value="${td01_xmxx.zydl}" htmlClass="td-select"/>
+</p>
+<p>
+	<label>专业细项：</label>
+	<netsky:htmlSelect id="zyxx_select" name="Td01_xmxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.zyxx}" htmlClass="td-select"/>
+</p>
+<div style="height:0px;"></div>
+<p>
+	<label>投资切块：</label>
+	<netsky:htmlSelect id="qkdl_select" name="Td01_xmxx.QKDL" objectForOption="qkdlList" style="width:157px;" valueForOption="qkmc" showForOption="qkmc" valueForExtend="{'id':'[id]','nd':'[nd]'}" extend="" extendPrefix="true"  value="${td01_xmxx.qkdl}" htmlClass="td-select"/>
+</p>
+<p>
+	<label>切块细项：</label>
+	<netsky:htmlSelect id="qkxl_select" name="Td01_xmxx.QKXL" objectForOption="qkxlList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
 </p>
 <p>
 	<label>项目状态：</label>
@@ -281,20 +307,21 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.SJRY" value="${td01_xmxx.sjry}" style="width:150px;"/>
 </p>
 <p>
-	<label>验收人员：</label>
-	<input type="text"  name="Td01_xmxx.YSRY" value="${td01_xmxx.ysry}" style="width:150px;"/>
+	<label>立项管理员：</label>
+	<input type="text"  name="Td01_xmxx.LXGLY" value="${td01_xmxx.lxgly}" style="width:150px;"/>
 </p>
 <p>
-	<label>立项管理员：</label>
-	<input type="text"  name="Td01_xmxx.LXGLY" value="${td01_xmxx.lxgly}" style="width:120px;"/>
+	<label>施工要求工期：</label>
+	<input type="text"  name="Td01_xmxx.YQGQ" value="${td01_xmxx.yqgq}" style="width:85px;"/>
+	<span>（天）</span>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>开工时间：</label>
+	<label>实际开工时间：</label>
 	<input type="text"  name="Td01_xmxx.SJKGSJ" value="<fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 </p>
 <p>
-	<label>竣工时间：</label>
+	<label>实际竣工时间：</label>
 	<input type="text"  name="Td01_xmxx.SJJGSJ" value="<fmt:formatDate value="${td01_xmxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 </p>
 <p>
