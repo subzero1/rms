@@ -33,12 +33,17 @@
 	
 	function bringPgsp(param0,param1,param2,param3){
 		var url="form/pgsp.do?";
+		var $admin=$("#admin",$.pdialog.getCurrent()); 
 		url+="sys_wxdw_id="+param0;
 		url+="&man_wxdw_id="+param1;
 		url+="&project_id="+param2;
 		url+="&module_id="+param3; 
-		$.pdialog.closeCurrent();
-		navTab.openTab('pgsp', url, {title:'手动选派原因'});
+		$.pdialog.closeCurrent(); 
+		if($admin.val()){
+			$.pdialog.closeCurrent();
+		}else{
+			navTab.openTab('pgsp', url, {title:'手动选派原因'});
+		}
 	}
 </script>
 
@@ -64,6 +69,7 @@
 				<input type="text" name="project_id" value="${project_id }"/>
 				<input type="text" name="sys_wxdw_id" value="${sys_wxdw_id }"/>
 				<input type="text" name="module_id" value="112"/>
+				<input type="hidden" id="admin" value="${admin }"/>
 			</li>  
 		</ul>
 		<div class="subBar"> 
