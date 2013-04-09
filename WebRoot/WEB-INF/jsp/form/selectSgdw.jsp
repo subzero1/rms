@@ -25,18 +25,25 @@
 	} 
 	function bringPgsp(param0,param1,param2,param3){
 		var url="form/pgsp.do?";
+		var $admin=$("#admin",$.pdialog.getCurrent()); 
 		url+="sys_wxdw_id="+param0;
 		url+="&man_wxdw_id="+param1;
 		url+="&project_id="+param2;
 		url+="&module_id="+param3; 
 		$.pdialog.closeCurrent();
-		navTab.openTab('pgsp', url, {title:'手动选派原因'});
+		if($admin.val()){
+			$.pdialog.closeCurrent();
+		}else{
+			navTab.openTab('pgsp', url, {title:'手动选派原因'});
+		}
+		
 	}
 </script>
 
 <div class="pageHeader">
 	<div class="searchBar">
 		<table class="searchContent"> 
+		<tr><td><input type="hidden" id="admin" value="${admin }"/></td></tr>
 		</table>
 		<div class="subBar">
 			<ul>
@@ -47,7 +54,6 @@
 </div>
 <div class="pageContent">
 	<table class="table" layoutH="118" targettype="dialog" width="100%">
-		
 		<thead>
 			<tr>
 				<th width="200">单位名称</th>
