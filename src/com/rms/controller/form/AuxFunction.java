@@ -31,9 +31,9 @@ import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.dataObjects.Ta01_dept;
-import com.netsky.base.dataObjects.Ta03_user; 
+import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.baseObject.PropertyInject;
-  
+
 import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
@@ -807,7 +807,7 @@ public class AuxFunction {
 		modelMap.put("engineerList", engineerList);
 		return new ModelAndView(view, modelMap);
 	}
-	
+
 	/**
 	 * 工程及项目的出入库明细///////////////////////////////////////////////////////
 	 * 
@@ -819,25 +819,30 @@ public class AuxFunction {
 			HttpServletResponse response) {
 		ModelMap modelMap = new ModelMap();
 		ResultObject ro = null;
-		
-		int totalCount=0;
+
+		int totalCount = 0;
 		int pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		int numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "dz");
-		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		
-		Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
-		if(td00 == null){
-			Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, project_id);
-			if(td01 != null){
+		int numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "dz");
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+
+		Td00_gcxx td00 = (Td00_gcxx) queryService.searchById(Td00_gcxx.class,
+				project_id);
+		if (td00 == null) {
+			Td01_xmxx td01 = (Td01_xmxx) queryService.searchById(
+					Td01_xmxx.class, project_id);
+			if (td01 != null) {
 				modelMap.put("gcmc", td01.getXmmc());
 			}
-		}
-		else{
+		} else {
 			modelMap.put("gcmc", td00.getGcmc());
 		}
-		
+
 		StringBuffer hql = new StringBuffer("select tf08,tf01 ");
 		hql.append("from Tf08_clmxb tf08,Tf01_wxdw tf01 ");
 		hql.append("where tf08.sgdw_id = tf01.id and tf08.zhxx_id = ");
@@ -846,10 +851,10 @@ public class AuxFunction {
 		hql.append(orderField);
 		hql.append(" ");
 		hql.append(orderDirection);
-		ro = queryService.searchByPage(hql.toString(),  pageNum, numPerPage);
+		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		List clmxList = null;
 		if (ro != null) {
-			totalCount=ro.getTotalRows();
+			totalCount = ro.getTotalRows();
 			clmxList = new LinkedList();
 			while (ro.next()) {
 				Object[] o = new Object[2];
@@ -858,7 +863,7 @@ public class AuxFunction {
 				clmxList.add(o);
 			}
 		}
-		
+
 		modelMap.put("clmxList", clmxList);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
@@ -881,10 +886,12 @@ public class AuxFunction {
 		String params = "";
 		List<Td00_gcxx> engineerList = null;
 		List<Object> paramList = new ArrayList<Object>();
-		String mbk_id = convertUtil.toString(request.getParameter("mbk_id"),"");
+		String mbk_id = convertUtil
+				.toString(request.getParameter("mbk_id"), "");
 		StringBuffer hql = new StringBuffer("from Td00_gcxx as td00 ");
 		hql.append("where td00.mbk_id=" + mbk_id);
-		engineerList = (List<Td00_gcxx>) queryService.searchList(hql.toString());
+		engineerList = (List<Td00_gcxx>) queryService
+				.searchList(hql.toString());
 
 		for (int i = 0; i < engineerList.size(); i++) {
 			Td00_gcxx td00 = engineerList.get(i);
@@ -897,7 +904,7 @@ public class AuxFunction {
 		modelMap.put("engineerList", engineerList);
 		return new ModelAndView(view, modelMap);
 	}
-	
+
 	/**
 	 * 选择部门 查找带回
 	 * 
@@ -913,7 +920,7 @@ public class AuxFunction {
 		List deptList = null;
 		Ta01_dept dept = null;
 		ResultObject ro = null;
-		int totalCount=0;
+		int totalCount = 0;
 		int pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		int numPerPage = convertUtil.toInteger(request
 				.getParameter("numPerPage"), 20);
@@ -926,13 +933,13 @@ public class AuxFunction {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select dept from Ta01_dept dept where 1=1 ");
 		// 条件
-		if(!searchStr.equals(""))
-			hql.append("and dept.name like '%"+searchStr+"%' ");
+		if (!searchStr.equals(""))
+			hql.append("and dept.name like '%" + searchStr + "%' ");
 		hql.append(" order by dept." + orderField);
 		hql.append(" " + orderDirection);
 		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		if (ro != null) {
-			totalCount=ro.getTotalRows();
+			totalCount = ro.getTotalRows();
 			deptList = new LinkedList();
 			while (ro.next()) {
 				dept = (Ta01_dept) ro.get("dept");
@@ -950,6 +957,7 @@ public class AuxFunction {
 		modelMap.put("deptList", deptList);
 		return new ModelAndView(view, modelMap);
 	}
+
 	/**
 	 * 选择验收人员 查找带回
 	 * 
@@ -965,7 +973,7 @@ public class AuxFunction {
 		List ysryList = null;
 		Ta03_user ysry = null;
 		ResultObject ro = null;
-		int totalCount=0;
+		int totalCount = 0;
 		int pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		int numPerPage = convertUtil.toInteger(request
 				.getParameter("numPerPage"), 20);
@@ -975,20 +983,21 @@ public class AuxFunction {
 				.getParameter("orderField"), "name");
 		String searchStr = convertUtil.toString(request
 				.getParameter("searchStr"));
-		String dept_ids=convertUtil.toString(request.getParameter("dept_ids"));
-		
+		String dept_ids = convertUtil
+				.toString(request.getParameter("dept_ids"));
+
 		StringBuffer hql = new StringBuffer();
 		hql.append("select ysry from Ta03_user ysry where 1=1 ");
 		// 条件
-		if(!searchStr.equals(""))
-			hql.append("and ysry.name like '%"+searchStr+"%' ");
-		if(!dept_ids.equals(""))
-			hql.append(" and ysry.dept_id in("+dept_ids+")");
+		if (!searchStr.equals(""))
+			hql.append("and ysry.name like '%" + searchStr + "%' ");
+		if (!dept_ids.equals(""))
+			hql.append(" and ysry.dept_id in(" + dept_ids + ")");
 		hql.append(" order by ysry." + orderField);
 		hql.append(" " + orderDirection);
 		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		if (ro != null) {
-			totalCount=ro.getTotalRows();
+			totalCount = ro.getTotalRows();
 			ysryList = new LinkedList();
 			while (ro.next()) {
 				ysry = (Ta03_user) ro.get("ysry");
@@ -1005,28 +1014,30 @@ public class AuxFunction {
 		modelMap.put("ysryList", ysryList);
 		return new ModelAndView(view, modelMap);
 	}
-	
+
 	@RequestMapping("/form/aqysEdit.do")
-	public ModelAndView aqysEdit(HttpServletRequest request,HttpServletResponse response){
-		ModelMap modelMap=new ModelMap();
-		String view="/WEB-INF/jsp/form/aqysd.jsp";
-		StringBuffer hql=new StringBuffer();
-		List td52List=null;
-		Long project_id=convertUtil.toLong(request.getParameter("project_id"));
-		String canSave=convertUtil.toString(request.getParameter("canSave"));
-		
+	public ModelAndView aqysEdit(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelMap modelMap = new ModelMap();
+		String view = "/WEB-INF/jsp/form/aqysd.jsp";
+		StringBuffer hql = new StringBuffer();
+		List td52List = null;
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+		String canSave = convertUtil.toString(request.getParameter("canSave"));
+
 		hql.append("select t from Td52_aqys t where t.project_id=");
 		hql.append(project_id);
 		hql.append(" order by t.ipa");
-		
-		td52List=queryService.searchList(hql.toString());
-		
+
+		td52List = queryService.searchList(hql.toString());
+
 		modelMap.put("canSave", canSave);
 		modelMap.put("Td52_aqysList", td52List);
 		modelMap.put("project_id", project_id);
-		return new ModelAndView(view,modelMap);
+		return new ModelAndView(view, modelMap);
 	}
-	
+
 	@RequestMapping("/form/pgsp.do")
 	public ModelAndView pgsp(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -1036,10 +1047,13 @@ public class AuxFunction {
 		String user_name = null;
 		Long user_id = null;
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
-		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		Long sys_wxdw_id = convertUtil.toLong(request.getParameter("sys_wxdw_id"));
-		Long man_wxdw_id = convertUtil.toLong(request.getParameter("man_wxdw_id"));
-		
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+		Long sys_wxdw_id = convertUtil.toLong(request
+				.getParameter("sys_wxdw_id"));
+		Long man_wxdw_id = convertUtil.toLong(request
+				.getParameter("man_wxdw_id"));
+
 		HttpSession session = request.getSession();
 		if (session != null) {
 			Ta03_user ta03 = (Ta03_user) session.getAttribute("user");
@@ -1056,36 +1070,44 @@ public class AuxFunction {
 		sql.append(user_name);
 		sql.append("' order by id desc ");
 		List list = queryService.searchList(sql.toString());
-		if(list != null && list.size() > 0){
+		if (list != null && list.size() > 0) {
 			Long opernode_id = -1L;
 			sql.delete(0, sql.length());
 			sql.append("select id from Tb12_opernode ");
 			sql.append("where project_id = ");
 			sql.append(project_id);
 			sql.append(" and node_id = ");
-			sql.append(module_id+"01");
+			sql.append(module_id + "01");
 			sql.append(" order by id desc ");
 			List t_list = queryService.searchList(sql.toString());
-			if(t_list != null && t_list.size() > 0){
-				opernode_id = (Long)(t_list.get(0));
+			if (t_list != null && t_list.size() > 0) {
+				opernode_id = (Long) (t_list.get(0));
 			}
-			return new ModelAndView("../openForm.do?project_id="+project_id+"&module_id="+module_id+"&doc_id="+(Long)(list.get(0))+"&opernode_id="+opernode_id+"&node_id="+module_id+"01&user_id="+user_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
-		}
-		else{
-			return new ModelAndView("../flowForm.do?user_id="+user_id+"&node_id="+module_id+"01&project_id="+project_id+"&sys_wxdw_id="+sys_wxdw_id+"&man_wxdw_id="+man_wxdw_id);
+			return new ModelAndView("../openForm.do?project_id=" + project_id
+					+ "&module_id=" + module_id + "&doc_id="
+					+ (Long) (list.get(0)) + "&opernode_id=" + opernode_id
+					+ "&node_id=" + module_id + "01&user_id=" + user_id
+					+ "&sys_wxdw_id=" + sys_wxdw_id + "&man_wxdw_id="
+					+ man_wxdw_id);
+		} else {
+			return new ModelAndView("../flowForm.do?user_id=" + user_id
+					+ "&node_id=" + module_id + "01&project_id=" + project_id
+					+ "&sys_wxdw_id=" + sys_wxdw_id + "&man_wxdw_id="
+					+ man_wxdw_id);
 		}
 	}
-	
+
 	@RequestMapping("/sysManage/ajaxCascadeMenu.do")
-	public void ajaxCascadeMenu(HttpServletRequest request,HttpServletResponse response)throws Exception{
+	public void ajaxCascadeMenu(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		response.setContentType("text/html;charset=GBK");
 		String var1 = request.getParameter("var1");
 		String var2 = request.getParameter("var2");
 		String var3 = request.getParameter("var3");
 		String var4 = request.getParameter("var4");
-		String var5 = convertUtil.toString(request.getParameter("var5"),"id");
-		StringBuffer hql=new StringBuffer();
+		String var5 = convertUtil.toString(request.getParameter("var5"), "id");
+		StringBuffer hql = new StringBuffer();
 		if (!var2.equals("null")) {
 			var1 = var1.replace('.', '/');
 			String[] str_arr = var1.split("/");
@@ -1094,7 +1116,7 @@ public class AuxFunction {
 			}
 			String classname = str_arr[0];
 			String columnname = str_arr[1];
-			//核心sql
+			// 核心sql
 			hql.append("select distinct(c.");
 			hql.append(var3);
 			hql.append("),c.");
@@ -1114,9 +1136,10 @@ public class AuxFunction {
 			hql.append(" order by ");
 			hql.append("c.");
 			hql.append(var5);
-//			String hsql = "select " + var3 + "," + var4 + " from " + classname
-//					+ " where " + columnname + "='" + var2 + "'"
-//					+ " order by "+var5;
+			// String hsql = "select " + var3 + "," + var4 + " from " +
+			// classname
+			// + " where " + columnname + "='" + var2 + "'"
+			// + " order by "+var5;
 			List<Object[]> list = null;
 			try {
 				list = (List<Object[]>) dao.search(hql.toString());
@@ -1126,26 +1149,27 @@ public class AuxFunction {
 			}
 			String s = "";
 			for (Object[] o : list) {
-				s += "<option value='" + o[0].toString() + "'>" + o[1].toString()
-						+ "</option>";
+				s += "<option value='" + o[0].toString() + "'>"
+						+ o[1].toString() + "</option>";
 			}
 			PrintWriter out = response.getWriter();
 			out.print(s);
 			out.flush();
 			out.close();
-	} 
+		}
 	}
-	
+
 	@RequestMapping("/sysManage/ajaxUserMenu.do")
-	public void ajaxUserMenu(HttpServletRequest request,HttpServletResponse response)throws Exception{
+	public void ajaxUserMenu(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		response.setContentType("text/html;charset=GBK");
 		String var1 = request.getParameter("var1");
 		String var2 = request.getParameter("var2");
 		String var3 = request.getParameter("var3");
 		String var4 = request.getParameter("var4");
-		String var5 = convertUtil.toString(request.getParameter("var5"),"id");
-		StringBuffer hql=new StringBuffer();
+		String var5 = convertUtil.toString(request.getParameter("var5"), "id");
+		StringBuffer hql = new StringBuffer();
 		if (!var2.equals("null")) {
 			var1 = var1.replace('.', '/');
 			String[] str_arr = var1.split("/");
@@ -1183,67 +1207,97 @@ public class AuxFunction {
 			}
 			String s = "";
 			for (Object[] o : list) {
-				s += "<option value='" + o[0].toString() + "'>" + o[1].toString()
-						+ "</option>";
+				s += "<option value='" + o[0].toString() + "'>"
+						+ o[1].toString() + "</option>";
 			}
 			PrintWriter out = response.getWriter();
 			out.print(s);
 			out.flush();
 			out.close();
-	} 
+		}
 	}
-	
-	@RequestMapping("/auxFunction/customXmxxList.do")
-	public ModelAndView customXmxxList(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
-		String view="/WEB-INF/jsp/search/xmxxList.jsp";
-		ModelMap modelMap=new ModelMap();
-		StringBuffer hql=new StringBuffer();
+
+	@RequestMapping("/aux/xmmxList.do")
+	public ModelAndView xmmxList(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		String view = "/WEB-INF/jsp/form/xmmxList.jsp";
+		ModelMap modelMap = new ModelMap();
+		StringBuffer hql = new StringBuffer();
 		Integer pageNum = convertUtil.toInteger(
 				request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request
 				.getParameter("numPerPage"), 20);
 		Integer totalCount = 0;
-		Integer pageNumShown = 0;
-		Integer op=convertUtil.toInteger(request.getParameter("op"));
+		Integer totalPages = 0;
+		Integer op = convertUtil.toInteger(request.getParameter("op"), 0);
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
 
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
-		String orderType = convertUtil.toString(request.getParameter("orderDirection"), "asc");
-		String xmgly=convertUtil.toString(new String(request.getParameter("xmgly").getBytes("iso-8859-1"),"gbk"));
-		
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "id");
+		String orderType = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+		String xmgly = convertUtil.toString(new String(request.getParameter(
+				"xmgly").getBytes("iso-8859-1"), "gbk"));
+		String jssj = convertUtil.toString(request.getParameter("jssj"));
+		String sjjgsj = convertUtil.toString(request.getParameter("sjjgsj"));
+
 		hql.append("select xmxx from Td01_xmxx xmxx where xmxx.xmgly='");
 		hql.append(xmgly);
 		hql.append("' ");
 
-		if (op==1) {//派工数
+		if (op == 1) {// 派工数
 			hql.append("' and [dw] is not null ");
-		} 
-		if (op==2) {//派设计
+		}
+		if (op == 2) {// 派设计
 			hql.append(" and sjdw is not null ");
-		} 
-		if (op==3) {//派施工
+		}
+		if (op == 3) {// 派施工
 			hql.append(" and sgdw is not null ");
-		} 
-		if (op==4) {//派监理
+		}
+		if (op == 4) {// 派监理
 			hql.append(" and jldw is not null ");
 		}
-		if (op==5) {//超期数
-			hql.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+		if (op == 5) {// 超期数
+			hql
+					.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
 		}
-		if (op==6) {//决算数
+		if (op == 6) {// 决算数
 			hql.append(" and jssj is not null ");
+		} 
+		if (op == 7) {// 派单数
+			hql.append(" and pds is not null ");
 		}
-		
-		hql.append("order by xmxx.xmmc ");
-		ResultObject ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
-		
-		//地区 
-		List areaList=queryService.searchList("select distinct(a.name) from Tc02_area a");
-		
-		List xmxxList=ro.getList();
+		if (!jssj.equals("")) {
+			hql.append("and x.jssj=to_date('");
+			hql.append(jssj);
+			hql.append("','yyyy-mm-dd'");
+			hql.append(") ");
+		}
+		if (!sjjgsj.equals("")) {
+			hql.append("and x.sjjgsj=to_date('");
+			hql.append(sjjgsj);
+			hql.append("','yyyy-mm-dd') ");
+		}
+
+		hql.append("order by ");
+		hql.append(orderField);
+		ResultObject ro = queryService.searchByPage(hql.toString(), pageNum,
+				numPerPage);
+		List xmxxList = ro.getList();
+		// 地区
+		List areaList = queryService
+				.searchList("select distinct(a.name) from Tc02_area a");
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("op", op);
+		modelMap.put("xmgly", xmgly);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("xmxxList", xmxxList);
 		modelMap.put("areaList", areaList);
-		return new ModelAndView(view,modelMap);
+		return new ModelAndView(view, modelMap);
 	}
 }

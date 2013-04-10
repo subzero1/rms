@@ -58,13 +58,13 @@
 					<tr> 
 						<td style="text-align:center">${offset }</td>
 						<td>${obj.name }</td>
-						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }" target="navTab" rel="xmxxList" title="${obj.name }[${obj.xms }]">${obj.xms }</a></td>
-						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }&op=2" target="navTab" rel="xmxxList" title="${obj.name }[${obj.psjs }]">${obj.psjs }</a></td>  
-						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }&op=3" target="navTab" rel="xmxxList" title="${obj.name }[${obj.psgs }]">${obj.psgs }</a></td>
-						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }&op=4" target="navTab" rel="xmxxList" title="${obj.name }[${obj.pjls }]">${obj.pjls }</a></td>
-						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }&op=5" target="navTab" rel="xmxxList" title="${obj.name }[${obj.cqs }]">${obj.cqs }</a></td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }" target="navTab" rel="xmmxList" title="${obj.name }[${obj.xms }]">${obj.xms }</a></td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=2" target="navTab" rel="xmmxList" title="${obj.name }[${obj.psjs }]">${obj.psjs }</a></td>  
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=3" target="navTab" rel="xmmxList" title="${obj.name }[${obj.psgs }]">${obj.psgs }</a></td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=4" target="navTab" rel="xmmxList" title="${obj.name }[${obj.pjls }]">${obj.pjls }</a></td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=5" target="navTab" rel="xmmxList" title="${obj.name }[${obj.cqs }]">${obj.cqs }</a></td>
 						<td>${obj.cql }</td>
-						<td><a href="auxFunction/customXmxxList.do?xmgly=${obj.name }&op=6" target="navTab" rel="xmxxList" title="${obj.name }[${obj.jss }]">${obj.jss }</a></td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=6" target="navTab" rel="xmmxList" title="${obj.name }[${obj.jss }]">${obj.jss }</a></td>
 						<td>${obj.jsl }</td>
 						<td>&nbsp;</td>
 					</tr>
