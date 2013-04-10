@@ -1241,9 +1241,16 @@ public class AuxFunction {
 		String jssj = convertUtil.toString(request.getParameter("jssj"));
 		String sjjgsj = convertUtil.toString(request.getParameter("sjjgsj"));
 
-		hql.append("select xmxx from Td01_xmxx xmxx where xmxx.xmgly='");
+		hql.append("select xmmx from Td01_xmxx xmmx where xmmx.xmgly='");
 		hql.append(xmgly);
 		hql.append("' ");
+		
+		if (!keyword.equals("")) {
+			hql.append("and xmmx.xmmc like'%");
+			hql.append(keyword);
+			hql.append("%' ");	
+		}
+
 
 		if (op == 1) {// 派工数
 			hql.append("' and [dw] is not null ");
