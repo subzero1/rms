@@ -59,9 +59,9 @@
 						<td>${obj.mc }</td>
 						<td>${obj.pds }</td> 
 						<td>${obj.jds }</td>
-						<td>${obj.cqs }</td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=5" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.cqs }]">${obj.cqs }</a></td>
 						<td>${obj.cql }</td>
-						<td>${obj.jss }</td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=6" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.jss }]">${obj.jss }</a></td>
 						<td>${obj.jsl }</td>
 						<td>&nbsp;</td>
 					</tr>
