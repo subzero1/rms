@@ -1223,6 +1223,7 @@ public class AuxFunction {
 		String view = "/WEB-INF/jsp/form/xmmxList.jsp";
 		ModelMap modelMap = new ModelMap();
 		StringBuffer hql = new StringBuffer();
+		String hqlStr;
 		Integer pageNum = convertUtil.toInteger(
 				request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request
@@ -1310,18 +1311,60 @@ public class AuxFunction {
 			hql.append("' ");
 		}
 
-
-		if (op == 1) {// 派工数
-			hql.append("' and [dw] is not null ");
+		if (op==0) {//项目数
+			if (!lxsj1.equals("") && !lxsj2.equals("")) {
+				hql.append("and lxsj >= to_date('" + lxsj1
+						+ "','yyyy-mm-dd') ");
+				hql.append("and lxsj <= to_date('" + lxsj2
+						+ "','yyyy-mm-dd') ");
+			}
+			if (!pdsj1.equals("") && !pdsj2.equals("")) {
+				hql.append("and ((sjpgsj >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ");
+				hql.append("and sjpgsj <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd')) ");
+				hql.append("or (sgpfsj >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ");
+				hql.append("and sgpfsj <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd')) ");
+				hql.append("or (jlpfsj >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ");
+				hql.append("and jlpfsj <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd'))) ");
+			}
+		}
+		if (op == 2||op == 3||op == 4) {// 派工数
+			hql.append(" and [dw] is not null ");
+			if (!lxsj1.equals("") && !lxsj2.equals("")) {
+				hql.append("and lxsj >= to_date('" + lxsj1
+						+ "','yyyy-mm-dd') ");
+				hql.append("and lxsj <= to_date('" + lxsj2
+						+ "','yyyy-mm-dd') ");
+			}
+			if (!pdsj1.equals("") && !pdsj2.equals("")) {
+				hql.append("and [pdsj] >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ");
+				hql.append("and [pdsj] <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd') ");
+			}
 		}
 		if (op == 2) {// 派设计
-			hql.append(" and sjdw is not null ");
+			hqlStr=hql.toString();
+			hqlStr=hqlStr.replace("[dw]", "sjdw").replace("[pdsj]", "sjpgsj");
+			hql.delete(0, hql.length());
+			hql.append(hqlStr);
 		}
 		if (op == 3) {// 派施工
-			hql.append(" and sgdw is not null ");
+			hqlStr=hql.toString();
+			hqlStr=hqlStr.replace("[dw]", "sgdw").replace("[pdsj]", "sgpfsj");
+			hql.delete(0, hql.length());
+			hql.append(hqlStr);
 		}
 		if (op == 4) {// 派监理
-			hql.append(" and jldw is not null ");
+			hqlStr=hql.toString();
+			hqlStr=hqlStr.replace("[dw]", "jldw").replace("[pdsj]", "jlpfsj");
+			hql.delete(0, hql.length());
+			hql.append(hqlStr);
 		}
 		if (op == 5&&dwlb.equals("sg")) {// 超期数
 			hql.append(" and ");
@@ -1359,6 +1402,11 @@ public class AuxFunction {
 			hql.append("ysl is not null ");
 			hql.append(sql_tmp);
 		}
+		if (op==9) {//以人为单位的超期 
+			hql
+					.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+		}
+		
 		if (!jssj.equals("")) {
 			hql.append("and x.jssj=to_date('");
 			hql.append(jssj);
