@@ -11,6 +11,8 @@
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 	<input type="hidden" name="op" value="${param.op }"/>
 	<input type="hidden" name="xmgly" value="${param.xmgly }"/>
+	<input type="hidden" name="dwlb" value="${param.dwlb }"/>
+	<input type="hidden" name="mc" value="${param.mc }"/>
 </form>
 
 <div class="page">
@@ -22,8 +24,12 @@
 						<td>
 						<input type="text" style="display:none"/>
 						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+							<input type="hidden" name="xmgly" value="${param.xmgly }"/>
+							<input type="hidden" name="dwlb" value="${param.dwlb }"/>
+							<input type="hidden" name="mc" value="${param.mc }"/>
 			<input type="hidden" name="op" value="${param.op }"/>
 			<input type="hidden" name="xmgly" value="${param.xmgly }"/>
+			<input type="hidden" name="mc" value="${param.mc}"/>
 			</td>
 					</tr>
 				</table>

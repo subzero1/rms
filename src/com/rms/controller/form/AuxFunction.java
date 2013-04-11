@@ -1236,19 +1236,78 @@ public class AuxFunction {
 				.getParameter("orderField"), "id");
 		String orderType = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
-		String xmgly = convertUtil.toString(new String(request.getParameter(
-				"xmgly").getBytes("iso-8859-1"), "gbk"));
+		String xmgly=convertUtil.toString(request.getParameter("xmgly"));
+		if (!xmgly.equals("")) {
+			xmgly=new String(xmgly.getBytes("iso-8859-1"),"gbk");
+		} 
 		String jssj = convertUtil.toString(request.getParameter("jssj"));
 		String sjjgsj = convertUtil.toString(request.getParameter("sjjgsj"));
 
-		hql.append("select xmmx from Td01_xmxx xmmx where xmmx.xmgly='");
-		hql.append(xmgly);
-		hql.append("' ");
+		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"), "");
+		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"), "");
+		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"), "");
+		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"), "");
+		String dwlb = convertUtil.toString(request.getParameter("dwlb"), "sg");
+		String ywxm = convertUtil.toString(request.getParameter("ywxm"), "");
+		String mc=convertUtil.toString(request.getParameter("mc"));
+		if (!mc.equals("")) {
+			mc=new String(mc.getBytes("iso-8859-1"),"gbk");
+		}
+		
+		String sql_tmp = "";
+		if (!lxsj1.equals("") && !lxsj2.equals("")) {
+			sql_tmp += "and lxsj >= to_date('" + lxsj1 + "','yyyy-mm-dd') ";
+			sql_tmp += "and lxsj <= to_date('" + lxsj2 + "','yyyy-mm-dd') ";
+		}
+		if (!pdsj1.equals("") && !pdsj2.equals("")) {
+			if (dwlb.equals("sj")) {
+				sql_tmp += "and sjpgsj >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ";
+				sql_tmp += "and sjpgsj <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd') ";
+			}
+			if (dwlb.equals("sg")) {
+				sql_tmp += "and sgpfsj >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ";
+				sql_tmp += "and sgpfsj <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd') ";
+			}
+			if (dwlb.equals("jl")) {
+				sql_tmp += "and jlpfsj >= to_date('" + pdsj1
+						+ "','yyyy-mm-dd') ";
+				sql_tmp += "and jlpfsj <= to_date('" + pdsj2
+						+ "','yyyy-mm-dd') ";
+			}
+		}
+
+		String sql_tmp2 = "";
+		if (!lxsj1.equals("") && !lxsj2.equals("")) {
+			sql_tmp2 += "and lxsj >= to_date('" + lxsj1
+					+ "','yyyy-mm-dd') ";
+			sql_tmp2 += "and lxsj <= to_date('" + lxsj2
+					+ "','yyyy-mm-dd') ";
+		}
+		if (!pdsj1.equals("") && !pdsj2.equals("")) {
+			sql_tmp2 += "and sgpfsj >= to_date('" + pdsj1
+					+ "','yyyy-mm-dd') ";
+			sql_tmp2 += "and sgpfsj <= to_date('" + pdsj2
+					+ "','yyyy-mm-dd') ";
+		}
+		
+		hql.append("select xmmx from Td01_xmxx xmmx where 1=1 ");
+		if (!xmgly.equals("")) {
+			hql.append(" and xmmx.xmgly='");
+			hql.append(xmgly);
+			hql.append("' ");
+		}
 		
 		if (!keyword.equals("")) {
 			hql.append("and xmmx.xmmc like'%");
 			hql.append(keyword);
-			hql.append("%' ");	
+			hql.append("%' ");
+			hql.append(" or xmmx.xmbh like'%");
+			hql.append(keyword);
+			hql.append("' ");
 		}
 
 
@@ -1267,12 +1326,29 @@ public class AuxFunction {
 		if (op == 5) {// 超期数
 			hql
 					.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
+			hql.append(sql_tmp2);
 		}
 		if (op == 6) {// 决算数
 			hql.append(" and jssj is not null ");
+			hql.append(sql_tmp2);
 		} 
 		if (op == 7) {// 派单数
-			hql.append(" and pds is not null ");
+			hql.append(" and ");
+			hql.append(dwlb);
+			hql.append("dw='");
+			hql.append(mc);
+			hql.append("' ");
+			hql.append(sql_tmp);
+		}
+		if (op==8) {//接单数
+			hql.append(" and ");
+			hql.append(dwlb);
+			hql.append("dw = '");
+			hql.append(mc);
+			hql.append("' and ");
+			hql.append(dwlb);
+			hql.append("ysl is not null ");
+			hql.append(sql_tmp);
 		}
 		if (!jssj.equals("")) {
 			hql.append("and x.jssj=to_date('");
@@ -1301,6 +1377,7 @@ public class AuxFunction {
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("op", op);
 		modelMap.put("xmgly", xmgly);
+		modelMap.put("dwlb", dwlb);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("xmxxList", xmxxList);
