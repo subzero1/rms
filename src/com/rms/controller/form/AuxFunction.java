@@ -1406,6 +1406,9 @@ public class AuxFunction {
 			hql
 					.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
 		}
+		if (op==10) {//以人为单位的决算
+			hql.append(" and jssj is not null ");
+		}
 		
 		if (!jssj.equals("")) {
 			hql.append("and x.jssj=to_date('");

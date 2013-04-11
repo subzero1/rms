@@ -64,7 +64,7 @@
 						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=4&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.name }[${obj.pjls }]">${obj.pjls }</a></td>
 						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=9&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.name }[${obj.cqs }]">${obj.cqs }</a></td>
 						<td>${obj.cql }</td>
-						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=6&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.name }[${obj.jss }]">${obj.jss }</a></td>
+						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=10&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.name }[${obj.jss }]">${obj.jss }</a></td>
 						<td>${obj.jsl }</td>
 						<td>&nbsp;</td>
 					</tr>
