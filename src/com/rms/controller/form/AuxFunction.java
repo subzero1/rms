@@ -1323,13 +1323,22 @@ public class AuxFunction {
 		if (op == 4) {// 派监理
 			hql.append(" and jldw is not null ");
 		}
-		if (op == 5) {// 超期数
+		if (op == 5&&dwlb.equals("sg")) {// 超期数
+			hql.append(" and ");
+			hql.append(dwlb);
+			hql.append("dw = '");
+			hql.append(mc);
+			hql.append("'");
 			hql
 					.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
 			hql.append(sql_tmp2);
 		}
 		if (op == 6) {// 决算数
-			hql.append(" and jssj is not null ");
+			hql.append(" and ");
+			hql.append(dwlb);
+			hql.append("dw = '");
+			hql.append(mc);
+			hql.append("' and jssj is not null ");
 			hql.append(sql_tmp2);
 		} 
 		if (op == 7) {// 派单数
