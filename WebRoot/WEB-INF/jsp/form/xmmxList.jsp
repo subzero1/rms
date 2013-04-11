@@ -13,6 +13,10 @@
 	<input type="hidden" name="xmgly" value="${param.xmgly }"/>
 	<input type="hidden" name="dwlb" value="${param.dwlb }"/>
 	<input type="hidden" name="mc" value="${param.mc }"/>
+	<input type="hidden" name="lxsj1" value="${param.lxsj1 }"/>
+	<input type="hidden" name="lxsj2" value="${param.lxsj2 }"/>
+	<input type="hidden" name="pdsj1" value="${param.pdsj1 }"/>
+	<input type="hidden" name="pdsj2" value="${param.pdsj2 }"/> 
 </form>
 
 <div class="page">
