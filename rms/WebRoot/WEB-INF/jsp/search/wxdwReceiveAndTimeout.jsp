@@ -57,11 +57,12 @@
 					<tr> 
 						<td style="text-align:center">${offset }</td>
 						<td>${obj.mc }</td>
-						<td>${obj.pds }</td> 
+						<td><a href="aux/xmmxList.do?mc=${obj.mc }&op=7&dwlb=${param.dwlb}&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}"
+						 target="navTab" rel="xmmxList" title="${obj.mc }[${obj.pds}]">${obj.pds }</a></td> 
 						<td>${obj.jds }</td>
-						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=5" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.cqs }]">${obj.cqs }</a></td>
+						<td><a href="aux/xmmxList.do?mc=${obj.mc}&op=5&dwlb=${param.dwlb}&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.cqs }]">${obj.cqs }</a></td>
 						<td>${obj.cql }</td>
-						<td><a href="aux/xmmxList.do?xmgly=${obj.name }&op=6" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.jss }]">${obj.jss }</a></td>
+						<td><a href="aux/xmmxList.do?mc=${obj.mc}&op=6&dwlb=${param.dwlb}&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.jss }]">${obj.jss }</a></td>
 						<td>${obj.jsl }</td>
 						<td>&nbsp;</td>
 					</tr>
