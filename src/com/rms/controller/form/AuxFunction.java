@@ -1444,4 +1444,11 @@ public class AuxFunction {
 		modelMap.put("areaList", areaList);
 		return new ModelAndView(view, modelMap);
 	}
+	
+	@RequestMapping("/aux/userLoginDetail.do")
+	public ModelAndView userLoginDetail(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/search/userLoginDetail.jsp";
+		ModelMap modelMap=new ModelMap();
+		return new ModelAndView(view,modelMap);
+	}
 }
