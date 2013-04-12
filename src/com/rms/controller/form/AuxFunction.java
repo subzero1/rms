@@ -1217,6 +1217,15 @@ public class AuxFunction {
 		}
 	}
 
+	/**
+	 * 项目统计明细
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 *             ModelAndView
+	 */
 	@RequestMapping("/aux/xmmxList.do")
 	public ModelAndView xmmxList(HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException {
@@ -1237,10 +1246,10 @@ public class AuxFunction {
 				.getParameter("orderField"), "id");
 		String orderType = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
-		String xmgly=convertUtil.toString(request.getParameter("xmgly"));
+		String xmgly = convertUtil.toString(request.getParameter("xmgly"));
 		if (!xmgly.equals("")) {
-			xmgly=new String(xmgly.getBytes("iso-8859-1"),"gbk");
-		} 
+			xmgly = new String(xmgly.getBytes("iso-8859-1"), "gbk");
+		}
 		String jssj = convertUtil.toString(request.getParameter("jssj"));
 		String sjjgsj = convertUtil.toString(request.getParameter("sjjgsj"));
 
@@ -1250,11 +1259,11 @@ public class AuxFunction {
 		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"), "");
 		String dwlb = convertUtil.toString(request.getParameter("dwlb"), "sg");
 		String ywxm = convertUtil.toString(request.getParameter("ywxm"), "");
-		String mc=convertUtil.toString(request.getParameter("mc"));
+		String mc = convertUtil.toString(request.getParameter("mc"));
 		if (!mc.equals("")) {
-			mc=new String(mc.getBytes("iso-8859-1"),"gbk");
+			mc = new String(mc.getBytes("iso-8859-1"), "gbk");
 		}
-		
+
 		String sql_tmp = "";
 		if (!lxsj1.equals("") && !lxsj2.equals("")) {
 			sql_tmp += "and lxsj >= to_date('" + lxsj1 + "','yyyy-mm-dd') ";
@@ -1283,25 +1292,21 @@ public class AuxFunction {
 
 		String sql_tmp2 = "";
 		if (!lxsj1.equals("") && !lxsj2.equals("")) {
-			sql_tmp2 += "and lxsj >= to_date('" + lxsj1
-					+ "','yyyy-mm-dd') ";
-			sql_tmp2 += "and lxsj <= to_date('" + lxsj2
-					+ "','yyyy-mm-dd') ";
+			sql_tmp2 += "and lxsj >= to_date('" + lxsj1 + "','yyyy-mm-dd') ";
+			sql_tmp2 += "and lxsj <= to_date('" + lxsj2 + "','yyyy-mm-dd') ";
 		}
 		if (!pdsj1.equals("") && !pdsj2.equals("")) {
-			sql_tmp2 += "and sgpfsj >= to_date('" + pdsj1
-					+ "','yyyy-mm-dd') ";
-			sql_tmp2 += "and sgpfsj <= to_date('" + pdsj2
-					+ "','yyyy-mm-dd') ";
+			sql_tmp2 += "and sgpfsj >= to_date('" + pdsj1 + "','yyyy-mm-dd') ";
+			sql_tmp2 += "and sgpfsj <= to_date('" + pdsj2 + "','yyyy-mm-dd') ";
 		}
-		
+
 		hql.append("select xmmx from Td01_xmxx xmmx where 1=1 ");
 		if (!xmgly.equals("")) {
 			hql.append(" and xmmx.xmgly='");
 			hql.append(xmgly);
 			hql.append("' ");
 		}
-		
+
 		if (!keyword.equals("")) {
 			hql.append("and xmmx.xmmc like'%");
 			hql.append(keyword);
@@ -1311,12 +1316,14 @@ public class AuxFunction {
 			hql.append("' ");
 		}
 
-		if (op==0) {//项目数
+		if (op == 0) {// 项目数
 			if (!lxsj1.equals("") && !lxsj2.equals("")) {
-				hql.append("and lxsj >= to_date('" + lxsj1
-						+ "','yyyy-mm-dd') ");
-				hql.append("and lxsj <= to_date('" + lxsj2
-						+ "','yyyy-mm-dd') ");
+				hql
+						.append("and lxsj >= to_date('" + lxsj1
+								+ "','yyyy-mm-dd') ");
+				hql
+						.append("and lxsj <= to_date('" + lxsj2
+								+ "','yyyy-mm-dd') ");
 			}
 			if (!pdsj1.equals("") && !pdsj2.equals("")) {
 				hql.append("and ((sjpgsj >= to_date('" + pdsj1
@@ -1333,13 +1340,15 @@ public class AuxFunction {
 						+ "','yyyy-mm-dd'))) ");
 			}
 		}
-		if (op == 2||op == 3||op == 4) {// 派工数
+		if (op == 2 || op == 3 || op == 4) {// 派工数
 			hql.append(" and [dw] is not null ");
 			if (!lxsj1.equals("") && !lxsj2.equals("")) {
-				hql.append("and lxsj >= to_date('" + lxsj1
-						+ "','yyyy-mm-dd') ");
-				hql.append("and lxsj <= to_date('" + lxsj2
-						+ "','yyyy-mm-dd') ");
+				hql
+						.append("and lxsj >= to_date('" + lxsj1
+								+ "','yyyy-mm-dd') ");
+				hql
+						.append("and lxsj <= to_date('" + lxsj2
+								+ "','yyyy-mm-dd') ");
 			}
 			if (!pdsj1.equals("") && !pdsj2.equals("")) {
 				hql.append("and [pdsj] >= to_date('" + pdsj1
@@ -1349,24 +1358,24 @@ public class AuxFunction {
 			}
 		}
 		if (op == 2) {// 派设计
-			hqlStr=hql.toString();
-			hqlStr=hqlStr.replace("[dw]", "sjdw").replace("[pdsj]", "sjpgsj");
+			hqlStr = hql.toString();
+			hqlStr = hqlStr.replace("[dw]", "sjdw").replace("[pdsj]", "sjpgsj");
 			hql.delete(0, hql.length());
 			hql.append(hqlStr);
 		}
 		if (op == 3) {// 派施工
-			hqlStr=hql.toString();
-			hqlStr=hqlStr.replace("[dw]", "sgdw").replace("[pdsj]", "sgpfsj");
+			hqlStr = hql.toString();
+			hqlStr = hqlStr.replace("[dw]", "sgdw").replace("[pdsj]", "sgpfsj");
 			hql.delete(0, hql.length());
 			hql.append(hqlStr);
 		}
 		if (op == 4) {// 派监理
-			hqlStr=hql.toString();
-			hqlStr=hqlStr.replace("[dw]", "jldw").replace("[pdsj]", "jlpfsj");
+			hqlStr = hql.toString();
+			hqlStr = hqlStr.replace("[dw]", "jldw").replace("[pdsj]", "jlpfsj");
 			hql.delete(0, hql.length());
 			hql.append(hqlStr);
 		}
-		if (op == 5&&dwlb.equals("sg")) {// 超期数
+		if (op == 5 && dwlb.equals("sg")) {// 超期数
 			hql.append(" and ");
 			hql.append(dwlb);
 			hql.append("dw = '");
@@ -1383,7 +1392,7 @@ public class AuxFunction {
 			hql.append(mc);
 			hql.append("' and jssj is not null ");
 			hql.append(sql_tmp2);
-		} 
+		}
 		if (op == 7) {// 派单数
 			hql.append(" and ");
 			hql.append(dwlb);
@@ -1392,7 +1401,7 @@ public class AuxFunction {
 			hql.append("' ");
 			hql.append(sql_tmp);
 		}
-		if (op==8) {//接单数
+		if (op == 8) {// 接单数
 			hql.append(" and ");
 			hql.append(dwlb);
 			hql.append("dw = '");
@@ -1402,14 +1411,14 @@ public class AuxFunction {
 			hql.append("ysl is not null ");
 			hql.append(sql_tmp);
 		}
-		if (op==9) {//以人为单位的超期 
+		if (op == 9) {// 以人为单位的超期
 			hql
 					.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate)) ");
 		}
-		if (op==10) {//以人为单位的决算
+		if (op == 10) {// 以人为单位的决算
 			hql.append(" and jssj is not null ");
 		}
-		
+
 		if (!jssj.equals("")) {
 			hql.append("and x.jssj=to_date('");
 			hql.append(jssj);
@@ -1444,11 +1453,96 @@ public class AuxFunction {
 		modelMap.put("areaList", areaList);
 		return new ModelAndView(view, modelMap);
 	}
-	
+
+	/**
+	 * 用户登录详情
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 *             ModelAndView
+	 */
 	@RequestMapping("/aux/userLoginDetail.do")
-	public ModelAndView userLoginDetail(HttpServletRequest request,HttpServletResponse response) {
-		String view="/WEB-INF/jsp/search/userLoginDetail.jsp";
-		ModelMap modelMap=new ModelMap();
-		return new ModelAndView(view,modelMap);
+	public ModelAndView userLoginDetail(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		String view = "/WEB-INF/jsp/search/userLoginDetail.jsp";
+		ModelMap modelMap = new ModelMap();
+		StringBuffer hql = new StringBuffer();
+		ResultObject ro = null;
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		Integer totalCount = 0;
+		Integer totalPages = 0;
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "a.login_date");
+		String orderType = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+		String login_name = convertUtil.toString(request
+				.getParameter("login_name"));
+		String tjlb = convertUtil.toString(request.getParameter("tjlb"));
+		String login_date1 = convertUtil.toString(request
+				.getParameter("login_date1"));
+		String login_date2 = convertUtil.toString(request
+				.getParameter("login_date2"));
+
+		if (!login_name.equals("")) {
+			login_name = new String(login_name.getBytes("iso-8859-1"), "gbk");
+		} 
+		if (tjlb.equals("xmgly")) {
+			hql
+					.append("select a.user_name,b.mobile_tel,c.name,b.area_name,a.login_ip,a.login_date,a.logout_date,a.systeminfo ");
+			hql.append("from Tz03_login_log a,Ta03_user b ,Ta01_dept c ");
+			hql.append("where a.login_id=b.login_id and b.dept_id=c.id ");
+			if (!login_name.equals("")) {
+				hql.append(" and a.login_id='");
+				hql.append(login_name);
+				hql.append("' ");
+			}
+			
+		}else if (tjlb.equals("hzdw")) {
+			hql.append("select a.user_name,b.mobile_tel,e.name,b.area_name,a.login_ip,a.login_date,a.logout_date,a.systeminfo from Tz03_login_log a ,Ta03_user b,Tf01_wxdw c,Tf04_wxdw_user d,Ta01_dept e ");
+			hql.append(" where a.login_id=b.login_id and b.id=d.user_id and c.id=d.wxdw_id and b.dept_id=e.id ");
+			if (!login_name.equals("")) {
+				hql.append(" and c.mc='");
+				hql.append(login_name);
+				hql.append("' ");
+			}
+		}
+		if (!login_date1.equals("")) {
+			hql.append(" and login_date>=to_date('");
+			hql.append(login_date1);
+			hql.append("','yyyy-mm-dd') ");
+		}
+		if (!login_date2.equals("")) {
+			hql.append(" and login_date<=to_date('");
+			hql.append(login_date2);
+			hql.append("','yyyy-mm-dd') ");
+		}
+
+		hql.append(" order by ");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderType);
+		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		List userLoginList = ro.getList();
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+
+		modelMap.put("login_name", login_name);
+		modelMap.put("login_date1", login_date1);
+		modelMap.put("login_date2", login_date2);
+		modelMap.put("tjlb", tjlb);
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("orderDirection", orderType);
+		modelMap.put("orderField", orderField);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("userLoginList", userLoginList);
+		return new ModelAndView(view, modelMap);
 	}
 }
