@@ -49,7 +49,7 @@
 					<tr> 
 						<td style="text-align:center">${offset }</td>
 						<td>${obj[0] }</td>
-						<td><a href="aux/userLoginDetail.do" target="navTab" ref="userLoginDetail" title="${obj[0] }[${obj[1] }]">${obj[1] }</a></td> 
+						<td><a href="aux/userLoginDetail.do?login_name=${obj[0] }&tjlb=${param.tjlb}" target="navTab" ref="userLoginDetail" title="${obj[0] }[${obj[1] }]">${obj[1] }</a></td> 
 						<td>&nbsp;</td> 
 					</tr>
 				</c:forEach>
