@@ -112,26 +112,26 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width: 64px;">用户</th>
-					<th orderField="xmmc">
+					<th style="width: 64px;" orderField="a.user_name">用户</th>
+					<th orderField="b.mobile_tel">
 						手机号码
 					</th>
-					<th style="width: 64px;" orderField="xmbh">
+					<th style="width: 64px;"  >
 						部门
 					</th>
-					<th style="width: 64px;" orderField="ssdq">
+					<th style="width: 64px;" orderField="b.area_name">
 						所属地区
 					</th>
-					<th style="width: 64px;" orderField="xmgly">
+					<th style="width: 64px;" orderField="a.login_ip">
 						登录IP
 					</th>
-					<th style="width: 64px;" orderField="sgdw">
+					<th style="width: 64px;" orderField="a.login_date">
 						登录时间
 					</th>
-					<th style="width: 64px;" orderField="sjjgsj">
+					<th style="width: 64px;" orderField="a.logout_date">
 						登出时间
 					</th>
-					<th style="width: 64px;" orderField="jssj">
+					<th style="width: 64px;" orderField="a.systeminfo">
 						系统信息
 					</th>
 				</tr>
