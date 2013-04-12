@@ -1,7 +1,13 @@
 package com.rms.flowTrigger;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.netsky.base.flow.component.Turnback;
+import com.netsky.base.flow.component.BaseUtil;
 import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.baseObject.ResultObject;
@@ -15,6 +21,7 @@ import com.rms.dataObjects.form.Td08_pgspd;
  * @create 2010-02-04
  */
 public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger implements Serializable {
+
 	
 	public String process(Map paraMap) {
 				
@@ -114,6 +121,24 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 					saveService.updateByHSql("update Td00_gcxx set ycystg = '否' where ycystg is null and id = "+project_id);
 					saveService.updateByHSql("update Td01_xmxx set ycystg = '否' where ycystg is null and id = "+project_id);
 				}
+				
+//				Map<String, Object> paraMap = new HashMap();
+//				paraMap.put("project_id", project_id);
+//				paraMap.put("doc_id", doc_id);
+//				paraMap.put("module_id", module_id);
+//				paraMap.put("node_id", node_id);
+//				paraMap.put("user_name", user_name);
+//				paraMap.put("user_id", user_id);
+//				paraMap.put("opernode_id", opernode_id);
+				BaseUtil baseUtil = new BaseUtil();
+				baseUtil.setQueryService(this.queryService);
+				baseUtil.setSaveService(this.saveService);
+				
+				Turnback turnback = new Turnback();
+				turnback.setQueryService(this.queryService);
+				turnback.setSaveService(this.saveService);
+				turnback.setBaseUtil(baseUtil);
+				turnback.handleRequest(paraMap);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

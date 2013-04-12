@@ -313,4 +313,25 @@ public class Turnback {
 		}
 	}
 
+	public void setSaveService(SaveService saveService) {
+		this.saveService = saveService;
+	}
+
+	public void setQueryService(QueryService queryService) {
+		this.queryService = queryService;
+	}
+
+	public void setBaseUtil(BaseUtil baseUtil) {
+		this.baseUtil = baseUtil;
+	}
+
+	public void setDoTrigger(DoTrigger doTrigger) {
+		this.doTrigger = doTrigger;
+	}
+
+	public void setLog(Logger log) {
+		this.log = log;
+	}
+
+	
 }
