@@ -218,4 +218,13 @@ public class BaseUtil {
 
 		return groupList ;
 	}
+
+	public void setSaveService(SaveService saveService) {
+		this.saveService = saveService;
+	}
+
+	public void setQueryService(QueryService queryService) {
+		this.queryService = queryService;
+	}
+	
 }
