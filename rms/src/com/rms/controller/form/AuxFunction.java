@@ -1482,7 +1482,7 @@ public class AuxFunction {
 				.getParameter("orderDirection"), "desc");
 		String login_name = convertUtil.toString(request
 				.getParameter("login_name"));
-		String tjlb = convertUtil.toString(request.getParameter("tjlb"));
+		String tjlb = convertUtil.toString(request.getParameter("tjlb"),"hzdw");
 		String login_date1 = convertUtil.toString(request
 				.getParameter("login_date1"));
 		String login_date2 = convertUtil.toString(request
