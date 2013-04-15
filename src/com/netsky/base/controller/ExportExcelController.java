@@ -2,7 +2,6 @@ package com.netsky.base.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,15 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jxl.Cell;
-import jxl.Sheet;
 import jxl.SheetSettings;
 import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
-import jxl.format.CellFormat;
 import jxl.write.Label;
-import jxl.write.WritableCell;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -35,8 +31,6 @@ import jxl.write.WritableWorkbook;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +40,6 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.export.ExportExcel;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.QueryService;
-import com.rms.controller.base.ExcelRead;
 
 /**
  * @description: 导出Excel
