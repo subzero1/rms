@@ -123,7 +123,7 @@ public class Rms2zbres {
 			ResComServiceStub.InsertResComResponse rsircr = rs.insertResCom(rsirc);
 			String outParam = convertUtil.toString(rsircr.getOut());
 			
-			if(outParam.equals("true")){
+			if(outParam.equals("1")){
 				td01.setYscs(convertUtil.toLong(td01.getYscs(),0L) + 1);//验收次数加1
 				td01.setXmzt("验收申请");
 				saveService.save(td01);
@@ -131,11 +131,11 @@ public class Rms2zbres {
 						+ project_id
 						+ "\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 			}
-			else if(outParam.indexOf("唯一") != -1){//返回值为“工单编号要唯一”
+			else if(outParam.equals("2")){//返回值为“工单编号要唯一”
 				throw new Exception("已经发送，无需重复申请");
 			}
 			else{
-				throw new Exception(outParam);
+				throw new Exception("系统出错，1234567890xxxxxxxxxx");
 			}
 			
 		} catch (Exception e) {
