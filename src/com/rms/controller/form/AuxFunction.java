@@ -2,7 +2,9 @@ package com.rms.controller.form;
 
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -35,6 +40,9 @@ import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.baseObject.PropertyInject;
 
 import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
+import com.rms.dataObjects.wxdw.Tf01_wxdw;
+import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
+import com.rms.dataObjects.base.Tmp_zdxp;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 
@@ -1482,7 +1490,8 @@ public class AuxFunction {
 				.getParameter("orderDirection"), "desc");
 		String login_name = convertUtil.toString(request
 				.getParameter("login_name"));
-		String tjlb = convertUtil.toString(request.getParameter("tjlb"),"hzdw");
+		String tjlb = convertUtil
+				.toString(request.getParameter("tjlb"), "hzdw");
 		String login_date1 = convertUtil.toString(request
 				.getParameter("login_date1"));
 		String login_date2 = convertUtil.toString(request
@@ -1490,7 +1499,7 @@ public class AuxFunction {
 
 		if (!login_name.equals("")) {
 			login_name = new String(login_name.getBytes("iso-8859-1"), "gbk");
-		} 
+		}
 		if (tjlb.equals("xmgly")) {
 			hql
 					.append("select a.user_name,b.mobile_tel,c.name,b.area_name,a.login_ip,a.login_date,a.logout_date,a.systeminfo ");
@@ -1501,10 +1510,12 @@ public class AuxFunction {
 				hql.append(login_name);
 				hql.append("' ");
 			}
-			
-		}else if (tjlb.equals("hzdw")) {
-			hql.append("select a.user_name,b.mobile_tel,e.name,b.area_name,a.login_ip,a.login_date,a.logout_date,a.systeminfo from Tz03_login_log a ,Ta03_user b,Tf01_wxdw c,Tf04_wxdw_user d,Ta01_dept e ");
-			hql.append(" where a.login_id=b.login_id and b.id=d.user_id and c.id=d.wxdw_id and b.dept_id=e.id ");
+
+		} else if (tjlb.equals("hzdw")) {
+			hql
+					.append("select a.user_name,b.mobile_tel,e.name,b.area_name,a.login_ip,a.login_date,a.logout_date,a.systeminfo from Tz03_login_log a ,Ta03_user b,Tf01_wxdw c,Tf04_wxdw_user d,Ta01_dept e ");
+			hql
+					.append(" where a.login_id=b.login_id and b.id=d.user_id and c.id=d.wxdw_id and b.dept_id=e.id ");
 			if (!login_name.equals("")) {
 				hql.append(" and c.mc='");
 				hql.append(login_name);
@@ -1544,5 +1555,665 @@ public class AuxFunction {
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("userLoginList", userLoginList);
 		return new ModelAndView(view, modelMap);
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/aux/pdqk.do")
+	public ModelAndView pdqk(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil.toLong(
+				request.getParameter("project_id"), -10L);
+		Td00_gcxx td00 = (Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
+		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
+		Td01_xmxx td01 = (Td01_xmxx) dao.getObject(Td01_xmxx.class, xm_id);
+		Integer id = convertUtil.toInteger(request.getParameter("id"));
+		StringBuffer hql = new StringBuffer();
+		String gclb = "";
+		String dq = "";
+		int ssnd = -1;
+		if (td00 != null) {
+			gclb = td00.getGclb();
+			dq = td00.getSsdq();
+			Date lxsj = td00.getCjrq();
+			if (lxsj == null) {
+				ssnd = DateGetUtil.getYear();
+			} else {
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
+		} else if (td01 != null) {
+			gclb = td01.getGclb();
+			dq = td01.getSsdq();
+			Date lxsj = td01.getLxsj();
+			if (lxsj == null) {
+				ssnd = DateGetUtil.getYear();
+			} else {
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
+		} else {
+			// System.out.println("找不到工程或项目");
+			return new ModelAndView(
+					"/WEB-INF/jsp/search/pdqk.jsp?errormsg=tdnotfound");
+		}
+		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
+		hql
+				.append("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='");
+		hql.append(gclb);
+		hql.append("' and tf05.dq='");
+		hql.append(dq);
+		hql.append("' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd='");
+		hql.append(ssnd);
+		hql.append("' and tf01.lb='施工' and tf01.zt<>'停工'");
+		List<Object[]> wxdwList = (List<Object[]>) dao.search(hql.toString());
+		if (wxdwList == null || wxdwList.size() == 0) {
+			// System.out.println("没有符合的合作单位");
+			return new ModelAndView(
+					"/WEB-INF/jsp/search/pdqk.jsp?errormsg=tfnotfound");
+		}
+		// 建立数组o[11]
+		// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+		List<Object[]> objectsList = new ArrayList<Object[]>();
+		for (Object[] objects : wxdwList) {
+			Object[] o = new Object[11];
+			o[0] = objects[0];
+			o[1] = objects[1];
+			objectsList.add(o);
+		}
+		// 判断计划份额占比与实际份额占比
+		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0
+		// 黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
+		double zgr = convertUtil
+				.toDouble(
+						dao
+								.search(
+										"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw is not null and ssdq='"
+												+ dq
+												+ "' and gclb='"
+												+ gclb
+												+ "' and to_char(lxsj,'yyyy') = '"
+												+ ssnd + "'").get(0), 0D);
+		// flag:未通过检测的个数
+		int flag = 0;
+		// passedList 通过条件的合作单位 暂存入该LIST
+		for (Object[] objects : objectsList) {
+			Tf01_wxdw tf01 = (Tf01_wxdw) objects[0];
+			Tf05_wxdw_dygx tf05 = (Tf05_wxdw_dygx) objects[1];
+			// fezb:实际份额占比
+			Double fezb = 0D;
+			if (zgr != 0) {
+				double gr = convertUtil
+						.toDouble(
+								dao
+										.search(
+												"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+														+ tf01.getMc()
+														+ "' and ssdq='"
+														+ dq
+														+ "' and gclb='"
+														+ gclb
+														+ "' and to_char(lxsj,'yyyy') = '"
+														+ ssnd + "'").get(0),
+								0D);
+				fezb = gr / zgr;
+			}
+			// tf05.getV1():预定份额占比
+			objects[6] = tf05.getV1();
+			objects[7] = fezb * 100;
+			if (tf05.getV1() <= fezb * 100) {
+				objects[10] = 1;
+				flag++;
+			}
+		}
+		if (flag == objectsList.size()) {
+			for (Object[] objects : objectsList) {
+				objects[10] = null;
+			}
+			flag = 0;
+		}
+		// 判断在建工程数和最大工程数
+		int flag2 = 0;
+		for (Object[] objects : objectsList) {
+			if (objects[10] != null) {
+				continue;
+			}
+			// 在建工程数
+			Long zjgcs = convertUtil.toLong(dao.search(
+					"select count(*) from Td01_xmxx where sgdw='"
+							+ ((Tf01_wxdw) objects[0]).getMc()
+							+ "' and sjjgsj is null").get(0));
+			// 最大工程数
+			Double zdgcs = 0D;
+			List<Double> zdgcsList = (List<Double>) dao
+					.search("select v1 from Tf05_wxdw_dygx tf05 where tf05.wxdw_id="
+							+ ((Tf01_wxdw) objects[0]).getId()
+							+ " and tf05.zy='"
+							+ gclb
+							+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd='"
+							+ ssnd + "'");
+			if (zdgcsList != null && !zdgcsList.isEmpty()) {
+				zdgcs = convertUtil.toDouble(zdgcsList.get(0), 0D);
+			}
+			if (zjgcs >= zdgcs) {
+				objects[10] = 2;
+				flag++;
+			}
+		}
+		if (flag2 == objectsList.size() - flag) {
+			for (Object[] objects : objectsList) {
+				if ((Integer) objects[10] == 2)
+					objects[10] = null;
+			}
+		}
+		// 置施工单位综合评分和决算率
+		for (Object[] objects : objectsList) {
+			Tf01_wxdw tf01 = (Tf01_wxdw) objects[0];
+			List<Long> tmpList = (List<Long>) dao
+					.search("select zhdf from Tf27_wxdwzhpf where wxdw_id="
+							+ tf01.getId() + " order by cjrq desc");
+			if (!tmpList.isEmpty()) {
+				objects[2] = convertUtil.toLong(tmpList.get(0));
+			} else {
+				objects[2] = 0L;
+			}
+			// objs[3] 决算率
+			// 决算率默认100%
+			objects[3] = 0D;
+			// 总项目数量
+			long xmsl = ((List<Long>) dao
+					.search("select count(*) from Td01_xmxx where sgdw='"
+							+ tf01.getMc() + "'")).get(0);
+			if (xmsl != 0) {
+				// 决算项目数量
+				long jssl = ((List<Long>) dao
+						.search("select count(*) from Td01_xmxx where jssj is not null and sgdw='"
+								+ tf01.getMc() + "'")).get(0);
+				// 决算率=决算数/总数
+				objects[3] = (double) jssl / (double) xmsl;
+			}
+		}
+		// 置偏差率和偏差率档级
+		for (Object[] o : objectsList) {
+			o[8] = ((Double) o[6] - (Double) o[7]) / (Double) o[6] * 100;
+			o[9] = convertUtil.toString(dao.search(
+					"select dj from Tf11_fepcl where (qzsx>" + o[8]
+							+ " and (qzxx<" + o[8]
+							+ " or qzxx is null) or (qzsx=" + o[8]
+							+ " and qzxx=" + o[8] + "))").get(0));
+		}
+		List<Object[]> allList = new ArrayList<Object[]>(objectsList);
+		modelMap.put("allList", allList);
+		for (int i = objectsList.size() - 1; i >= 0; i--) {
+			if (objectsList.get(i)[10] != null) {
+				objectsList.remove(i);
+			}
+		}
+		// 将objs[2]objs[3]分别冒泡排序
+		// 先按objs[2]排 从低到高
+		Object[] temp;
+		for (int i = 0; i < objectsList.size(); i++) {
+			for (int j = objectsList.size() - 1; j > i; j--) {
+				if ((Long) objectsList.get(j)[2] > (Long) objectsList
+						.get(j - 1)[2]) {
+					temp = objectsList.get(j);
+					objectsList.set(j, objectsList.get(j - 1));
+					objectsList.set(j - 1, temp);
+				}
+			}
+		}
+		// 综合评分排名
+		for (int i = 1; i <= objectsList.size(); i++) {
+			if (i == 1
+					|| !objectsList.get(i - 2)[2]
+							.equals(objectsList.get(i - 1)[2]))
+				objectsList.get(i - 1)[4] = i;
+			else {
+				objectsList.get(i - 1)[4] = objectsList.get(i - 2)[4];
+			}
+		}
+		// 决算率 从低到高
+		for (int i = 0; i < objectsList.size(); i++) {
+			for (int j = objectsList.size() - 1; j > i; j--) {
+				if ((Double) objectsList.get(j)[3] > (Double) objectsList
+						.get(j - 1)[3]) {
+					temp = objectsList.get(j);
+					objectsList.set(j, objectsList.get(j - 1));
+					objectsList.set(j - 1, temp);
+				}
+			}
+		}
+		// 决算率排名
+		for (int i = 1; i <= objectsList.size(); i++) {
+			if (i == 1
+					|| !objectsList.get(i - 2)[3]
+							.equals(objectsList.get(i - 1)[3])) {
+				objectsList.get(i - 1)[5] = i;
+			} else {
+				objectsList.get(i - 1)[5] = objectsList.get(i - 2)[5];
+			}
+		}
+		// 利用数据库做排序
+		Session session = dao.getHibernateSession();
+		Transaction tx = session.beginTransaction();
+		Long nextval = -1L;
+		try {
+
+			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+			tx.begin();
+			nextval = ((BigDecimal) (session
+					.createSQLQuery("select batch_num.nextval from dual")
+					.uniqueResult())).longValue();
+			for (Object[] o : objectsList) {
+				Tmp_zdxp zdxp = new Tmp_zdxp();
+				zdxp.setDj((String) o[9]);
+				zdxp.setPm((Integer) o[4] * 0.6 + (Integer) o[5] * 0.4);
+				zdxp.setZhdf((Long) o[2]);
+				zdxp.setJsl((Double) o[3]);
+				zdxp.setJhfezb((Double) o[6]);
+				zdxp.setWxdw_id((Long) ((Tf01_wxdw) o[0]).getId());
+				zdxp.setBatch_no(nextval);
+				session.save(zdxp);
+			}
+			session.flush();
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}
+		List<Long> wxdw_ids = (List<Long>) dao
+				.search("select wxdw_id from Tmp_zdxp where batch_no="
+						+ nextval
+						+ " order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
+		// dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
+		List<Object[]> tmpList = new ArrayList<Object[]>();
+		int i = 0;
+		// 只保留前3名
+		for (Long wxdw_id : wxdw_ids) {
+			for (Object[] o : objectsList) {
+				if (((Tf01_wxdw) o[0]).getId().longValue() == wxdw_id
+						.longValue()) {
+					tmpList.add(o);
+					break;
+				}
+			}
+			if (++i == 3) {
+				break;
+			}
+		}
+		objectsList = new ArrayList<Object[]>(tmpList);
+		// objectsList已经是排前三名的施工单位了
+		// 判断有否关联交易额 交易额度是否超过关联交易额
+		Tf01_wxdw result = null;
+		for (Object[] o : objectsList) {
+			// gljye:关联交易额
+			List<Double> tmpGljyeList = (List<Double>) dao
+					.search("select v1 from Tf05_wxdw_dygx tf05 where wxdw_id="
+							+ ((Tf01_wxdw) o[0]).getId()
+							+ " and tf05.lb='gljye' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy')");
+			Double gljye = 0D;
+			if (!tmpGljyeList.isEmpty()) {
+				gljye = convertUtil.toDouble(tmpGljyeList.get(0), 0D);
+			}
+			// jyed:交易额度
+			List<Double> tmpJyedList = (List<Double>) dao
+					.search("select sum(ys_sgf) from Td01_xmxx td00 where sgdw='"
+							+ ((Tf01_wxdw) o[0]).getMc()
+							+ "' and ssnd=to_char(sysdate,'yyyy')");
+			Double jyed = 0D;
+			if (!tmpJyedList.isEmpty()) {
+				jyed = convertUtil.toDouble(tmpJyedList.get(0), 0D);
+			}
+			if (gljye > jyed) {
+				result = (Tf01_wxdw) o[0];
+				break;
+			}
+		}
+		if (result == null) {
+			result = (Tf01_wxdw) objectsList.get(0)[0];
+		}
+		// 查找实际选择单位
+		hql.delete(0, hql.length());
+		hql
+				.append("select distinct(b.id),a.sjxzdw from Td08_pgspd a,Tf01_wxdw b where 1=1 ");
+		hql.append("and a.sjxzdw=b.mc ");
+		hql.append("and a.id=");
+		hql.append(id);
+		List sjxzdw = queryService.searchList(hql.toString());
+		Integer wxdw_id=0;
+		for (Object object : sjxzdw) {
+			Object obj[]=(Object[])object;
+			wxdw_id=convertUtil.toInteger(obj[0]);
+		}
+		List pxsjxzdw=this.getSjxzdw(request, response, wxdw_id);
+		modelMap.put("sjxzdw", sjxzdw);
+		modelMap.put("pxsjxzdw", pxsjxzdw);
+		modelMap.put("zdxp", result);
+		modelMap.put("project_id", xm_id);
+		return new ModelAndView("/WEB-INF/jsp/search/pdqk.jsp", modelMap);
+	}
+
+	/**
+	 * 实际选择单位
+	 * 
+	 * @param request
+	 * @param response
+	 * @return List
+	 */
+	public List getSjxzdw(HttpServletRequest request,
+			HttpServletResponse response,Integer wxdw_id_) {
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil.toLong(
+				request.getParameter("project_id"), -10L);
+		Td00_gcxx td00 = (Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
+		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
+		Td01_xmxx td01 = (Td01_xmxx) dao.getObject(Td01_xmxx.class, xm_id);
+		Integer id = convertUtil.toInteger(request.getParameter("id"));
+		StringBuffer hql = new StringBuffer();
+		String gclb = "";
+		String dq = "";
+		int ssnd = -1;
+		if (td00 != null) {
+			gclb = td00.getGclb();
+			dq = td00.getSsdq();
+			Date lxsj = td00.getCjrq();
+			if (lxsj == null) {
+				ssnd = DateGetUtil.getYear();
+			} else {
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
+		} else if (td01 != null) {
+			gclb = td01.getGclb();
+			dq = td01.getSsdq();
+			Date lxsj = td01.getLxsj();
+			if (lxsj == null) {
+				ssnd = DateGetUtil.getYear();
+			} else {
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
+		}
+		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
+		hql
+				.append("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='");
+		hql.append(gclb);
+		hql.append("' and tf05.dq='");
+		hql.append(dq);
+		hql.append("' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd='");
+		hql.append(ssnd);
+		hql.append("' and tf01.lb='施工' and tf01.zt<>'停工' ");
+		hql.append("and tf01.id=");
+		hql.append(wxdw_id_);
+		List<Object[]> wxdwList = (List<Object[]>) dao.search(hql.toString());
+
+		// 建立数组o[11]
+		// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+		List<Object[]> objectsList = new ArrayList<Object[]>();
+		for (Object[] objects : wxdwList) {
+			Object[] o = new Object[11];
+			o[0] = objects[0];
+			o[1] = objects[1];
+			objectsList.add(o);
+		}
+		// 判断计划份额占比与实际份额占比
+		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0
+		// 黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
+		double zgr = convertUtil
+				.toDouble(
+						dao
+								.search(
+										"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw is not null and ssdq='"
+												+ dq
+												+ "' and gclb='"
+												+ gclb
+												+ "' and to_char(lxsj,'yyyy') = '"
+												+ ssnd + "'").get(0), 0D);
+		// flag:未通过检测的个数
+		int flag = 0;
+		// passedList 通过条件的合作单位 暂存入该LIST
+		for (Object[] objects : objectsList) {
+			Tf01_wxdw tf01 = (Tf01_wxdw) objects[0];
+			Tf05_wxdw_dygx tf05 = (Tf05_wxdw_dygx) objects[1];
+			// fezb:实际份额占比
+			Double fezb = 0D;
+			if (zgr != 0) {
+				double gr = convertUtil
+						.toDouble(
+								dao
+										.search(
+												"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+														+ tf01.getMc()
+														+ "' and ssdq='"
+														+ dq
+														+ "' and gclb='"
+														+ gclb
+														+ "' and to_char(lxsj,'yyyy') = '"
+														+ ssnd + "'").get(0),
+								0D);
+				fezb = gr / zgr;
+			}
+			// tf05.getV1():预定份额占比
+			objects[6] = tf05.getV1();
+			objects[7] = fezb * 100;
+			if (tf05.getV1() <= fezb * 100) {
+				objects[10] = 1;
+				flag++;
+			}
+		}
+		if (flag == objectsList.size()) {
+			for (Object[] objects : objectsList) {
+				objects[10] = null;
+			}
+			flag = 0;
+		}
+		// 判断在建工程数和最大工程数
+		int flag2 = 0;
+		for (Object[] objects : objectsList) {
+			if (objects[10] != null) {
+				continue;
+			}
+			// 在建工程数
+			Long zjgcs = convertUtil.toLong(dao.search(
+					"select count(*) from Td01_xmxx where sgdw='"
+							+ ((Tf01_wxdw) objects[0]).getMc()
+							+ "' and sjjgsj is null").get(0));
+			// 最大工程数
+			Double zdgcs = 0D;
+			List<Double> zdgcsList = (List<Double>) dao
+					.search("select v1 from Tf05_wxdw_dygx tf05 where tf05.wxdw_id="
+							+ ((Tf01_wxdw) objects[0]).getId()
+							+ " and tf05.zy='"
+							+ gclb
+							+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd='"
+							+ ssnd + "'");
+			if (zdgcsList != null && !zdgcsList.isEmpty()) {
+				zdgcs = convertUtil.toDouble(zdgcsList.get(0), 0D);
+			}
+			if (zjgcs >= zdgcs) {
+				objects[10] = 2;
+				flag++;
+			}
+		}
+		if (flag2 == objectsList.size() - flag) {
+			for (Object[] objects : objectsList) {
+				if ((Integer) objects[10] == 2)
+					objects[10] = null;
+			}
+		}
+		// 置施工单位综合评分和决算率
+		for (Object[] objects : objectsList) {
+			Tf01_wxdw tf01 = (Tf01_wxdw) objects[0];
+			List<Long> tmpList = (List<Long>) dao
+					.search("select zhdf from Tf27_wxdwzhpf where wxdw_id="
+							+ tf01.getId() + " order by cjrq desc");
+			if (!tmpList.isEmpty()) {
+				objects[2] = convertUtil.toLong(tmpList.get(0));
+			} else {
+				objects[2] = 0L;
+			}
+			// objs[3] 决算率
+			// 决算率默认100%
+			objects[3] = 0D;
+			// 总项目数量
+			long xmsl = ((List<Long>) dao
+					.search("select count(*) from Td01_xmxx where sgdw='"
+							+ tf01.getMc() + "'")).get(0);
+			if (xmsl != 0) {
+				// 决算项目数量
+				long jssl = ((List<Long>) dao
+						.search("select count(*) from Td01_xmxx where jssj is not null and sgdw='"
+								+ tf01.getMc() + "'")).get(0);
+				// 决算率=决算数/总数
+				objects[3] = (double) jssl / (double) xmsl;
+			}
+		}
+		// 置偏差率和偏差率档级
+		for (Object[] o : objectsList) {
+			o[8] = ((Double) o[6] - (Double) o[7]) / (Double) o[6] * 100;
+			o[9] = convertUtil.toString(dao.search(
+					"select dj from Tf11_fepcl where (qzsx>" + o[8]
+							+ " and (qzxx<" + o[8]
+							+ " or qzxx is null) or (qzsx=" + o[8]
+							+ " and qzxx=" + o[8] + "))").get(0));
+		}
+		List<Object[]> allList = new ArrayList<Object[]>(objectsList);
+		modelMap.put("allList", allList);
+		for (int i = objectsList.size() - 1; i >= 0; i--) {
+			if (objectsList.get(i)[10] != null) {
+				objectsList.remove(i);
+			}
+		}
+		// 将objs[2]objs[3]分别冒泡排序
+		// 先按objs[2]排 从低到高
+		Object[] temp;
+		for (int i = 0; i < objectsList.size(); i++) {
+			for (int j = objectsList.size() - 1; j > i; j--) {
+				if ((Long) objectsList.get(j)[2] > (Long) objectsList
+						.get(j - 1)[2]) {
+					temp = objectsList.get(j);
+					objectsList.set(j, objectsList.get(j - 1));
+					objectsList.set(j - 1, temp);
+				}
+			}
+		}
+		// 综合评分排名
+		for (int i = 1; i <= objectsList.size(); i++) {
+			if (i == 1
+					|| !objectsList.get(i - 2)[2]
+							.equals(objectsList.get(i - 1)[2]))
+				objectsList.get(i - 1)[4] = i;
+			else {
+				objectsList.get(i - 1)[4] = objectsList.get(i - 2)[4];
+			}
+		}
+		// 决算率 从低到高
+		for (int i = 0; i < objectsList.size(); i++) {
+			for (int j = objectsList.size() - 1; j > i; j--) {
+				if ((Double) objectsList.get(j)[3] > (Double) objectsList
+						.get(j - 1)[3]) {
+					temp = objectsList.get(j);
+					objectsList.set(j, objectsList.get(j - 1));
+					objectsList.set(j - 1, temp);
+				}
+			}
+		}
+		// 决算率排名
+		for (int i = 1; i <= objectsList.size(); i++) {
+			if (i == 1
+					|| !objectsList.get(i - 2)[3]
+							.equals(objectsList.get(i - 1)[3])) {
+				objectsList.get(i - 1)[5] = i;
+			} else {
+				objectsList.get(i - 1)[5] = objectsList.get(i - 2)[5];
+			}
+		}
+		// 利用数据库做排序
+		Session session = dao.getHibernateSession();
+		Transaction tx = session.beginTransaction();
+		Long nextval = -1L;
+		try {
+
+			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+			tx.begin();
+			nextval = ((BigDecimal) (session
+					.createSQLQuery("select batch_num.nextval from dual")
+					.uniqueResult())).longValue();
+			for (Object[] o : objectsList) {
+				Tmp_zdxp zdxp = new Tmp_zdxp();
+				zdxp.setDj((String) o[9]);
+				zdxp.setPm((Integer) o[4] * 0.6 + (Integer) o[5] * 0.4);
+				zdxp.setZhdf((Long) o[2]);
+				zdxp.setJsl((Double) o[3]);
+				zdxp.setJhfezb((Double) o[6]);
+				zdxp.setWxdw_id((Long) ((Tf01_wxdw) o[0]).getId());
+				zdxp.setBatch_no(nextval);
+				session.save(zdxp);
+			}
+			session.flush();
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}
+		List<Long> wxdw_ids = (List<Long>) dao
+				.search("select wxdw_id from Tmp_zdxp where batch_no="
+						+ nextval
+						+ " order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
+		// dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
+		List<Object[]> tmpList = new ArrayList<Object[]>();
+		int i = 0;
+		// 只保留前3名
+		for (Long wxdw_id : wxdw_ids) {
+			for (Object[] o : objectsList) {
+				if (((Tf01_wxdw) o[0]).getId().longValue() == wxdw_id
+						.longValue()) {
+					tmpList.add(o);
+					break;
+				}
+			}
+			if (++i == 3) {
+				break;
+			}
+		}
+		objectsList = new ArrayList<Object[]>(tmpList);
+		// objectsList已经是排前三名的施工单位了
+		// 判断有否关联交易额 交易额度是否超过关联交易额
+		Tf01_wxdw result = null;
+		for (Object[] o : objectsList) {
+			// gljye:关联交易额
+			List<Double> tmpGljyeList = (List<Double>) dao
+					.search("select v1 from Tf05_wxdw_dygx tf05 where wxdw_id="
+							+ ((Tf01_wxdw) o[0]).getId()
+							+ " and tf05.lb='gljye' and tf05.v1>0 and tf05.nd=to_char(sysdate,'yyyy')");
+			Double gljye = 0D;
+			if (!tmpGljyeList.isEmpty()) {
+				gljye = convertUtil.toDouble(tmpGljyeList.get(0), 0D);
+			}
+			// jyed:交易额度
+			List<Double> tmpJyedList = (List<Double>) dao
+					.search("select sum(ys_sgf) from Td01_xmxx td00 where sgdw='"
+							+ ((Tf01_wxdw) o[0]).getMc()
+							+ "' and ssnd=to_char(sysdate,'yyyy')");
+			Double jyed = 0D;
+			if (!tmpJyedList.isEmpty()) {
+				jyed = convertUtil.toDouble(tmpJyedList.get(0), 0D);
+			}
+			if (gljye > jyed) {
+				result = (Tf01_wxdw) o[0];
+				break;
+			}
+		}
+		if (result == null) {
+			result = (Tf01_wxdw) objectsList.get(0)[0];
+		}
+		return allList;
 	}
 }
