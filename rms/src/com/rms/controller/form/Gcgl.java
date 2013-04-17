@@ -789,6 +789,118 @@ public class Gcgl {
 			hql.append(user.getDept_name());
 			hql.append("')");
 		}
+		else{
+			hql.append("and ddgly = '");
+			hql.append(user.getName());
+			hql.append("' ");
+		}
+		if (!keyword.equals("")) {
+			hql.append("and (td00.gcmc like '%");
+			hql.append(keyword);
+			hql.append("%' or td00.gcbh like '%");
+			hql.append(keyword);
+			hql.append("%' or td00.lxxx like '%");
+			hql.append(keyword);
+			hql.append("%')");
+		}
+		hql.append("order by ");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection);
+		
+		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		while (ro.next()) {
+			objList.add(ro.get("td00"));
+		}
+		
+		Long node_id = -1L;
+		String login_id = convertUtil.toString(user.getLogin_id());
+		if(login_id.substring(0,1).equals("7")){
+			node_id = 11402L;
+		}
+		else if(login_id.substring(0,1).equals("8")){
+			node_id = 11403L;
+		}
+		else{
+			node_id = 11401L;
+		}
+		
+		totalCount=ro.getTotalRows();
+		totalPages=ro.getTotalPages();
+		
+		/*
+		 * 派单状态（派项目管理员）
+		 */
+		List<Object> pdlbList = new LinkedList<Object>();
+		Properties p = new Properties();
+		p.setProperty("show", "已派单");
+		p.setProperty("value", "ypd");
+		pdlbList.add(p);
+		p = new Properties();
+		p.setProperty("show", "未派单");
+		p.setProperty("value", "wpd");
+		pdlbList.add(p);
+		modelMap.put("pdlbList", pdlbList);
+		
+		//获取项目状态
+		QueryBuilder queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+		queryBuilder.eq("type", "工程状态");
+		queryBuilder.addOrderBy(Order.asc("id"));
+		List tmpList = queryService.searchList(queryBuilder);
+		if (tmpList != null) {
+			List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
+			for (java.util.Iterator<?> itr = tmpList.iterator(); itr.hasNext();) {
+				xmztList.add((Tc01_property) itr.next());
+			}
+			request.setAttribute("xmztList", xmztList);
+		}
+		
+		modelMap.put("node_id", node_id);
+		modelMap.put("objList", objList);
+		modelMap.put("keyword", keyword);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		return new ModelAndView(view,modelMap);
+	}
+	
+	@RequestMapping("/form/orderListForNeed.do")
+	public ModelAndView  orderListForNeed(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/form/orderList.jsp";
+		ModelMap modelMap=new ModelMap(); 
+		StringBuffer hql = new StringBuffer();
+		List objList = new LinkedList();
+		ResultObject ro = null; 
+		Integer totalCount = 0;
+		Integer totalPages = 0;
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "td00.id");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		
+		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		String user_zy = user.getZys();
+		
+		hql.append("select td00 ");
+		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
+		hql.append("where td00.id = ti03.project_id "); 
+		if (rolesMap.get("100106") == null) {
+			hql.append("and ((xmgly = '");
+			hql.append(user.getName());
+			hql.append("' and sgdw is null) or (sjdw = '");
+			hql.append(user.getDept_name());
+			hql.append("' and sjysl is null) ");
+			hql.append("or (sgdw = '");
+			hql.append(user.getDept_name());
+			hql.append("' and gclb in (" + user_zy + ") and sgysl is null)) ");
+		}
 		if (!keyword.equals("")) {
 			hql.append("and (td00.gcmc like '%");
 			hql.append(keyword);

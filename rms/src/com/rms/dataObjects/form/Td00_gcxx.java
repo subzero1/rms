@@ -1799,6 +1799,8 @@ public class Td00_gcxx implements Serializable {
 	private String a_adress;
 	
 	private String z_adress;
+	
+	private String ddgly;
 
 	/**
 	 * @hibernate.property column="lxxx"
@@ -1834,5 +1836,17 @@ public class Td00_gcxx implements Serializable {
 
 	public void setZ_adress(String z_adress) {
 		this.z_adress = z_adress;
+	}
+
+	/**
+	 * @hibernate.property column="ddgly"
+	 * @return Returns the ddgly.
+	 */
+	public String getDdgly() {
+		return ddgly;
+	}
+
+	public void setDdgly(String ddgly) {
+		this.ddgly = ddgly;
 	}
 }
