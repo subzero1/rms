@@ -325,7 +325,8 @@ public class Gcgl {
 		hsql.append("select gcxx from Td00_gcxx gcxx where ");
 
 		// 工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
-		hsql.append("(");
+		hsql.append("not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
+		hsql.append("and (");
 		hsql.append("xmgly = '" + user_name + "'");
 		hsql.append(" or (sgdw = '" + user_dept + "' and gclb in (" + user_zy
 				+ "))");
@@ -442,7 +443,8 @@ public class Gcgl {
 		hsql.append("select gcxx from Td00_gcxx gcxx where ");
 
 		// 工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
-		hsql.append("(");
+		hsql.append("not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
+		hsql.append("and (");
 		hsql.append(" (sgdw = '" + user_dept + "' and gclb in (" + user_zy
 				+ ") and sgysl is null)");
 		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl is null)");
