@@ -770,12 +770,11 @@ public class Gcgl {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
-		
-		
+		String pdlb = convertUtil.toString(request.getParameter("pdlb"),"wpd");
+		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
 		
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
 		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
-		
 		
 		hql.append("select td00 ");
 		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
@@ -793,6 +792,13 @@ public class Gcgl {
 			hql.append("and ddgly = '");
 			hql.append(user.getName());
 			hql.append("' ");
+			
+			if (pdlb.equals("wpd")) {
+				hql.append(" and td00.sgdw is null ");
+			}
+			else {
+				hql.append(" and td00.sgdw is not null ");
+			}
 		}
 		if (!keyword.equals("")) {
 			hql.append("and (td00.gcmc like '%");
@@ -802,6 +808,12 @@ public class Gcgl {
 			hql.append("%' or td00.lxxx like '%");
 			hql.append(keyword);
 			hql.append("%')");
+		}
+		
+		if (!xmzt.equals("")) {
+			hql.append(" and td00.gczt = '");
+			hql.append(xmzt);
+			hql.append("' ");
 		}
 		hql.append("order by ");
 		hql.append(orderField);
@@ -833,12 +845,12 @@ public class Gcgl {
 		 */
 		List<Object> pdlbList = new LinkedList<Object>();
 		Properties p = new Properties();
-		p.setProperty("show", "已派单");
-		p.setProperty("value", "ypd");
-		pdlbList.add(p);
-		p = new Properties();
 		p.setProperty("show", "未派单");
 		p.setProperty("value", "wpd");
+		pdlbList.add(p);
+		p = new Properties();
+		p.setProperty("show", "已派单");
+		p.setProperty("value", "ypd");
 		pdlbList.add(p);
 		modelMap.put("pdlbList", pdlbList);
 		
