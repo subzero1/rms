@@ -929,8 +929,51 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				request.setAttribute("objList", objList);
 				request.setAttribute("sjdwList", sjdwList);
 				request.setAttribute("sgdwList", sgdwList);	
+				
+				/*
+				 * 获得当前部门对应的项目管理员
+				 */
+				Ta03_user ta03 = null;
+				hsql.delete(0, hsql.length());
+				hsql.append("select ta03 ");
+				hsql.append("from Td00_gcxx td00,Ta03_user ta03 ");
+				hsql.append("where td00.xmgly = ta03.name ");
+				hsql.append("and td00.id = ");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					ta03 = (Ta03_user)ro.get("ta03");
+				}
+				else{
+					ta03 = new Ta03_user();
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select distinct ta03 ");
+				hsql.append("from Ta02_station ta02,Ta11_sta_user ta11 ,Ta03_user ta03 ");
+				hsql.append("where ta02.id = ta11.station_id ");
+				hsql.append("and ta11.user_id = ta03.id ");
+				hsql.append("and ta02.name like '%项目管理岗%' "); 
+				hsql.append("and dept_id = ");
+				hsql.append(convertUtil.toLong(ta03.getDept_id(),-1L));
+				hsql.append(" and useflag = 1 order by ta03.name");
+				List xmglyList = queryService.searchList(hsql.toString());
+				request.setAttribute("xmglyList", xmglyList);
+				
+				/*
+				 * 保存施工、设计的受理情况
+				 */
+				switch(node_id.intValue())	{
+					case 11402:{//定单信息单，设计
+						dao.update("update Td00_gcxx set sjysl = 1 where id = "+project_id);
+						break;
+					}
+					case 11403:{//定单信息单，施工
+						dao.update("update Td00_gcxx set sgysl = 1 where id = "+project_id);
+						break;
+					}
+				}	
 			}
-						
 			
 			/**
 			 * 以下为表单附件区域@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

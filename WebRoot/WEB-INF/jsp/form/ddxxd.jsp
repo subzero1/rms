@@ -88,12 +88,18 @@
 		<label>施工派发时间：</label>
 		<input type="text"  name="Td00_gcxx.SGPFSJ" value="<fmt:formatDate value="${td00_gcxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
-	
-	
 	<div style="height:0px;"></div>
 	<p>
-		<label>项目管理员：</label>
-		<input type="text"  name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:150px;"/>
+	<c:choose>
+		<c:when test="${not empty rolesMap['100106'] }">
+			<label>项目管理员：</label>
+			<netsky:htmlSelect name="Td00_gcxx.XMGLY" objectForOption="xmglyList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.xmgly}" htmlClass="td-select"/>
+		</c:when>
+		<c:otherwise>
+			<label>项目管理员：</label>
+			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:150px;"/>
+		</c:otherwise>
+	</c:choose>
 	</p>
 	<p>
 		<label>计划竣工时间：</label>
