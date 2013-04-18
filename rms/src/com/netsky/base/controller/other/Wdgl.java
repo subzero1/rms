@@ -67,7 +67,7 @@ public class Wdgl {
 				conditionStr.append("(cylb=0)");
 				conditionStr.append(" or ");
 				// 部门
-				conditionStr.append("(cylb=1 and cyfw like '%" + user.getDept_name() + "%')");
+				conditionStr.append("(cylb=1 and (cyfw like '%" + user.getDept_name() + "%' or cyfw like '%" + user.getParent_dept() + "%')) ");
 				conditionStr.append(" or ");
 				// 岗
 				List<Ta02_station> staList = (List<Ta02_station>) dao

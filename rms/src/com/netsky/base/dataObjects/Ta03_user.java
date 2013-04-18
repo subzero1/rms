@@ -303,4 +303,14 @@ public class Ta03_user implements Serializable{
 	public void setZys(String zys) {
 		this.zys = zys;
 	}
+	
+	private String parent_dept;
+
+	public String getParent_dept() {
+		return parent_dept;
+	}
+
+	public void setParent_dept(String parent_dept) {
+		this.parent_dept = parent_dept;
+	}
 }
