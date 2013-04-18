@@ -113,6 +113,7 @@ public class Login {
 				String zy = convertUtil.toString(((Object[])tmpList.get(0))[1]);
 				zy = "'"+zy.replaceAll(" ", "','")+"'";
 				user.setZys(zy);
+				user.setParent_dept("合作单位");
 			}
 		}
 		tmpList.clear();
