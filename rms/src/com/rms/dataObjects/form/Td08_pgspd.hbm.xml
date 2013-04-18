@@ -113,6 +113,61 @@
   insert="true"
   column="ck_flag"
   />
+   <property
+  name="ysjhte"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="ysjhte"
+  />
+
+  <property
+  name="ggsjhte"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="ggsjhte"
+  />
+
+  <property
+  name="yjlhte"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="yjlhte"
+  />
+
+  <property
+  name="ggjlhte"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="ggjlhte"
+  />
+
+  <property
+  name="ysghte"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="ysghte"
+  />
+
+  <property
+  name="ggsghte"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="ggsghte"
+  />
+
+  <property
+  name="splb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="splb"
+  />  
 
 
     </class>

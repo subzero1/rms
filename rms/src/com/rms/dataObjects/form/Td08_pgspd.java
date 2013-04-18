@@ -8,7 +8,7 @@ import java.util.Date;
  * @hibernate.class table="Td08_pgspd"
  */
 
-public class Td08_pgspd implements Serializable{
+public class Td08_pgspd implements Serializable {
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class Td08_pgspd implements Serializable{
 	 * 标识
 	 */
 	private Long id;
-	
+
 	/**
 	 * @hibernate.id generator-class="sequence"
 	 * @hibernate.generator-param name="sequence" value="td08_num"
@@ -30,215 +30,300 @@ public class Td08_pgspd implements Serializable{
 	}
 
 	/**
-	 * @param id The id to set.
+	 * @param id
+	 *            The id to set.
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	 /**
- * 工程ID
- */
- private Long project_id;
+	/**
+	 * 工程ID
+	 */
+	private Long project_id;
 
- /**
- * @hibernate.property column="project_id"
- * @return Returns the project_id.
- */
- public Long getProject_id() {
-    return project_id;
- }
+	/**
+	 * @hibernate.property column="project_id"
+	 * @return Returns the project_id.
+	 */
+	public Long getProject_id() {
+		return project_id;
+	}
 
- public void setProject_id(Long project_id) {
-    this.project_id = project_id;
-  }
+	public void setProject_id(Long project_id) {
+		this.project_id = project_id;
+	}
 
- /**
- * 发文部门
- */
- private String fwbm;
+	/**
+	 * 发文部门
+	 */
+	private String fwbm;
 
- /**
- * @hibernate.property column="fwbm"
- * @return Returns the fwbm.
- */
- public String getFwbm() {
-    return fwbm;
- }
+	/**
+	 * @hibernate.property column="fwbm"
+	 * @return Returns the fwbm.
+	 */
+	public String getFwbm() {
+		return fwbm;
+	}
 
- public void setFwbm(String fwbm) {
-    this.fwbm = fwbm;
-  }
+	public void setFwbm(String fwbm) {
+		this.fwbm = fwbm;
+	}
 
- /**
- * 表单编号
- */
- private String bdbh;
+	/**
+	 * 表单编号
+	 */
+	private String bdbh;
 
- /**
- * @hibernate.property column="bdbh"
- * @return Returns the bdbh.
- */
- public String getBdbh() {
-    return bdbh;
- }
+	/**
+	 * @hibernate.property column="bdbh"
+	 * @return Returns the bdbh.
+	 */
+	public String getBdbh() {
+		return bdbh;
+	}
 
- public void setBdbh(String bdbh) {
-    this.bdbh = bdbh;
-  }
+	public void setBdbh(String bdbh) {
+		this.bdbh = bdbh;
+	}
 
- /**
- * 创建人
- */
- private String cjr;
+	/**
+	 * 创建人
+	 */
+	private String cjr;
 
- /**
- * @hibernate.property column="cjr"
- * @return Returns the cjr.
- */
- public String getCjr() {
-    return cjr;
- }
+	/**
+	 * @hibernate.property column="cjr"
+	 * @return Returns the cjr.
+	 */
+	public String getCjr() {
+		return cjr;
+	}
 
- public void setCjr(String cjr) {
-    this.cjr = cjr;
-  }
+	public void setCjr(String cjr) {
+		this.cjr = cjr;
+	}
 
- /**
- * 创建人电话
- */
- private String cjrdh;
+	/**
+	 * 创建人电话
+	 */
+	private String cjrdh;
 
- /**
- * @hibernate.property column="cjrdh"
- * @return Returns the cjrdh.
- */
- public String getCjrdh() {
-    return cjrdh;
- }
+	/**
+	 * @hibernate.property column="cjrdh"
+	 * @return Returns the cjrdh.
+	 */
+	public String getCjrdh() {
+		return cjrdh;
+	}
 
- public void setCjrdh(String cjrdh) {
-    this.cjrdh = cjrdh;
-  }
+	public void setCjrdh(String cjrdh) {
+		this.cjrdh = cjrdh;
+	}
 
- /**
- * 创建日期
- */
- private Date cjrq;
+	/**
+	 * 创建日期
+	 */
+	private Date cjrq;
 
- /**
- * @hibernate.property column="cjrq"
- * @return Returns the cjrq.
- */
- public Date getCjrq() {
-    return cjrq;
- }
+	/**
+	 * @hibernate.property column="cjrq"
+	 * @return Returns the cjrq.
+	 */
+	public Date getCjrq() {
+		return cjrq;
+	}
 
- public void setCjrq(Date cjrq) {
-    this.cjrq = cjrq;
-  }
+	public void setCjrq(Date cjrq) {
+		this.cjrq = cjrq;
+	}
 
- /**
- * 系统选择单位
- */
- private String xtxzdw;
+	/**
+	 * 系统选择单位
+	 */
+	private String xtxzdw;
 
- /**
- * @hibernate.property column="xtxzdw"
- * @return Returns the xtxzdw.
- */
- public String getXtxzdw() {
-    return xtxzdw;
- }
+	/**
+	 * @hibernate.property column="xtxzdw"
+	 * @return Returns the xtxzdw.
+	 */
+	public String getXtxzdw() {
+		return xtxzdw;
+	}
 
- public void setXtxzdw(String xtxzdw) {
-    this.xtxzdw = xtxzdw;
-  }
+	public void setXtxzdw(String xtxzdw) {
+		this.xtxzdw = xtxzdw;
+	}
 
- /**
- * 实际选择单位
- */
- private String sjxzdw;
+	/**
+	 * 实际选择单位
+	 */
+	private String sjxzdw;
 
- /**
- * @hibernate.property column="sjxzdw"
- * @return Returns the sjxzdw.
- */
- public String getSjxzdw() {
-    return sjxzdw;
- }
+	/**
+	 * @hibernate.property column="sjxzdw"
+	 * @return Returns the sjxzdw.
+	 */
+	public String getSjxzdw() {
+		return sjxzdw;
+	}
 
- public void setSjxzdw(String sjxzdw) {
-    this.sjxzdw = sjxzdw;
-  }
+	public void setSjxzdw(String sjxzdw) {
+		this.sjxzdw = sjxzdw;
+	}
 
- /**
- * 手动派工原因
- */
- private String sdxpyy;
+	/**
+	 * 手动派工原因
+	 */
+	private String sdxpyy;
 
- /**
- * @hibernate.property column="sdxpyy"
- * @return Returns the sdxpyy.
- */
- public String getSdxpyy() {
-    return sdxpyy;
- }
+	/**
+	 * @hibernate.property column="sdxpyy"
+	 * @return Returns the sdxpyy.
+	 */
+	public String getSdxpyy() {
+		return sdxpyy;
+	}
 
- public void setSdxpyy(String sdxpyy) {
-    this.sdxpyy = sdxpyy;
-  }
+	public void setSdxpyy(String sdxpyy) {
+		this.sdxpyy = sdxpyy;
+	}
 
- /**
- * 
- */
- private String bz;
+	/**
+	 * 
+	 */
+	private String bz;
 
- /**
- * @hibernate.property column="bz"
- * @return Returns the bz.
- */
- public String getBz() {
-    return bz;
- }
+	/**
+	 * @hibernate.property column="bz"
+	 * @return Returns the bz.
+	 */
+	public String getBz() {
+		return bz;
+	}
 
- public void setBz(String bz) {
-    this.bz = bz;
-  }
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
 
- /**
- * 审批标识
- */
- private Long sp_flag;
+	/**
+	 * 审批标识
+	 */
+	private Long sp_flag;
 
- /**
- * @hibernate.property column="sp_flag"
- * @return Returns the sp_flag.
- */
- public Long getSp_flag() {
-    return sp_flag;
- }
+	/**
+	 * @hibernate.property column="sp_flag"
+	 * @return Returns the sp_flag.
+	 */
+	public Long getSp_flag() {
+		return sp_flag;
+	}
 
- public void setSp_flag(Long sp_flag) {
-    this.sp_flag = sp_flag;
-  }
+	public void setSp_flag(Long sp_flag) {
+		this.sp_flag = sp_flag;
+	}
 
- /**
- * 审批完成后项目管理员查看
- */
- private Long ck_flag;
+	/**
+	 * 审批完成后项目管理员查看
+	 */
+	private Long ck_flag;
 
- /**
- * @hibernate.property column="ck_flag"
- * @return Returns the ck_flag.
- */
- public Long getCk_flag() {
-    return ck_flag;
- }
+	/**
+	 * @hibernate.property column="ck_flag"
+	 * @return Returns the ck_flag.
+	 */
+	public Long getCk_flag() {
+		return ck_flag;
+	}
 
- public void setCk_flag(Long ck_flag) {
-    this.ck_flag = ck_flag;
-  }
+	public void setCk_flag(Long ck_flag) {
+		this.ck_flag = ck_flag;
+	}
 
+	/**
+	 * 原设计合同额
+	 */
+	private Double ysjhte;
+	/**
+	 * 更改设计合同额
+	 */
+	private Double ggsjhte;
+	/**
+	 * 原监理合同额
+	 */
+	private Double yjlhte;
+	/**
+	 * 更改监理合同额
+	 */
+	private Double ggjlhte;
+	/**
+	 * 原施工合同额
+	 */
+	private Double ysghte;
+	/**
+	 * 更改施工合同额
+	 */
+	private Double ggsghte;
+	/**
+	 * 审批类别
+	 */
+	private String splb;
+
+	public Double getYsjhte() {
+		return ysjhte;
+	}
+
+	public void setYsjhte(Double ysjhte) {
+		this.ysjhte = ysjhte;
+	}
+
+	public Double getGgsjhte() {
+		return ggsjhte;
+	}
+
+	public void setGgsjhte(Double ggsjhte) {
+		this.ggsjhte = ggsjhte;
+	}
+
+	public Double getYjlhte() {
+		return yjlhte;
+	}
+
+	public void setYjlhte(Double yjlhte) {
+		this.yjlhte = yjlhte;
+	}
+
+	public Double getGgjlhte() {
+		return ggjlhte;
+	}
+
+	public void setGgjlhte(Double ggjlhte) {
+		this.ggjlhte = ggjlhte;
+	}
+
+	public Double getYsghte() {
+		return ysghte;
+	}
+
+	public void setYsghte(Double ysghte) {
+		this.ysghte = ysghte;
+	}
+
+	public Double getGgsghte() {
+		return ggsghte;
+	}
+
+	public void setGgsghte(Double ggsghte) {
+		this.ggsghte = ggsghte;
+	}
+
+	public String getSplb() {
+		return splb;
+	}
+
+	public void setSplb(String splb) {
+		this.splb = splb;
+	}
 
 }
