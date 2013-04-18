@@ -103,7 +103,7 @@
      */
     public ResComServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
         
-                    this(configurationContext,"http://132.229.154.211:8088/zb/deviceQryService.ws" );
+                    this(configurationContext,"http://132.229.154.211:8080/zbres/deviceQryService.ws" );
                 
     }
 
@@ -112,7 +112,7 @@
      */
     public ResComServiceStub() throws org.apache.axis2.AxisFault {
         
-                    this("http://132.229.154.211:8088/zb/deviceQryService.ws" );
+                    this("http://132.229.154.211:8080/zbres/deviceQryService.ws" );
                 
     }
 
@@ -424,7 +424,7 @@
         }
         return false;
     }
-     //http://132.229.154.211:8088/zb/deviceQryService.ws
+     //http://132.229.154.211:8080/zbres/deviceQryService.ws
         public static class ExtensionMapper{
 
           public static java.lang.Object getTypeObject(java.lang.String namespaceURI,
