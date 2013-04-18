@@ -3,7 +3,26 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" />
-
+<script type="text/javascript">
+	$(function(){
+		var $Td08_pgspd_SPLB=$("select[name='Td08_pgspd\.SPLB']");
+		hte_xzdw($Td08_pgspd_SPLB.val()); 
+		$Td08_pgspd_SPLB.change(function(){ 
+			hte_xzdw($Td08_pgspd_SPLB.val());
+		});
+	});
+	function hte_xzdw(param){
+		var $hte=$(".hte");
+		var $xzdw=$(".xzdw");
+		if(param=='项目派工'){
+			$xzdw.show();
+			$hte.hide();
+		}else if(param=='更改合同额'){
+			 $hte.show();
+			 $xzdw.hide();
+		}
+	} 
+</script>
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="pgspd.xml"/>
 <input type="hidden" name="Td08_pgspd.ID" value="${param.doc_id}">
@@ -31,7 +50,7 @@
 		<label>提出日期：</label>
 		<input readonly type="text" name="Td08_pgspd.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/></c:when><c:otherwise><fmt:formatDate value="${td08_pgspd.cjrq}" pattern="yyyy-MM-dd"/></c:otherwise></c:choose>"/>
 	</p>
-	<div class="divider"></div>
+	<div style="height:0px;"></div>
 	<p>
 		<label> 工程名称：</label>
 		<input class="required" type="text" name="Td01_xmxx.XMMC" style="width:405px;" value="${td01_xmxx.xmmc}" />
@@ -39,20 +58,58 @@
 	<p>
 		<label>工程编号：</label>
 		<input class="required" type="text" name="Td01_xmxx.XMBH" style="width:120px;" value="${td01_xmxx.xmbh}" />
+	</p> 
+	<div style="height:0px;"></div>
+	<p>
+		<label>审批类别：</label>
+		<select class="required" name="Td08_pgspd.SPLB" >
+			<option value="项目派工" <c:if test="${td08_pgspd.splb=='项目派工' }">selected</c:if>>项目派工</option>
+			<option value="更改合同额" <c:if test="${td08_pgspd.splb=='项目派工' }">selected</c:if>>更改合同额</option>
+		</select>
+	</p> 
+	<div class="divider"></div>  
+	<div class="hte">
+	<p>
+		<label>设计合同额：</label> 
+		<input type="text" name="Td08_pgspd.YSJHTE" value="${td08_pgspd.ysjhte}"  style="width:150px;"/>
+	</p>
+		<p>
+		<label>更改后：</label> 
+		<input type="text" name="Td08_pgspd.GGSJHTE" value="${td08_pgspd.ggsjhte}"  style="width:150px;"/>
 	</p>
 	<div style="height:0px;"></div>
+		<p>
+		<label>施工合同额：</label> 
+		<input type="text" name="Td08_pgspd.YSGHTE" value="${td08_pgspd.ysghte}"  style="width:150px;"/>
+	</p>
+		<p>
+		<label>更改后：</label> 
+		<input type="text" name="Td08_pgspd.GGSGHTE" value="${td08_pgspd.ggjlhte}"  style="width:150px;"/>
+	</p>
+	<div style="height:0px;"></div>	
+	<p>
+		<label>监理合同额：</label> 
+		<input type="text" name="Td08_pgspd.YJLHTE" value="${td08_pgspd.yjlhte}"  style="width:150px;"/>
+	</p>
+		<p>
+		<label>更改后：</label> 
+		<input type="text" name="Td08_pgspd.GGJLHTE" value="${td08_pgspd.ggjlhte}"  style="width:150px;"/>
+	</p>
+	</div>
+	<div class="divider hte"></div> 
+	<div class="xzdw">
 	<p>
 		<label> 系统选择单位：</label>
 		<input type="text" readOnly name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
-	</p>
-	<div class="divider"></div>
+	</p> 
 	<p>
 		<label> 实际选择单位：</label>
 		<input  type="text" name="Td08_pgspd.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
 	</p>
-	<div class="divider"></div>
+	</div>
+	<div class="divider xzdw" ></div>
 	<p>
-		<label>手动选派原因：</label>
+		<label>原因：</label>
 		<textarea class="td-textarea" style="width:630px;height:80px;" type="text" name="Td08_pgspd.SDXPYY">${td08_pgspd.sdxpyy}</textarea>
 	</p>
 	<p>
