@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.HttpRequest;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -482,6 +483,71 @@ public class Sgpd {
 			out.print(projectFlag);
 		}
 
+	}
+	
+	@RequestMapping("/sgpd/sjxzdw.do")
+	public ModelAndView sjxzdw(HttpServletRequest request,HttpServletResponse response) {
+
+		String view = "/WEB-INF/jsp/form/sjxzdwBringBack.jsp";
+		ModelMap modelMap = new ModelMap();
+		List ysryList = null;
+		Ta03_user ysry = null;
+		ResultObject ro = null;
+		int totalCount = 0;
+		int totalPages = 0;
+		int pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		int numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "mc");
+		String searchStr = convertUtil.toString(request.getParameter("searchStr"));
+		String names = convertUtil.toString(request.getParameter("names"));
+		String ids = convertUtil.toString(request.getParameter("ids"));
+		Integer xm_id = convertUtil.toInteger(request.getParameter("xm_id"));
+		Integer sys_wxdw_id = convertUtil.toInteger(request.getParameter("sys_wxdw_id"));
+		Integer project_id = convertUtil.toInteger(request.getParameter("project_id"), xm_id);
+		Integer module_id = convertUtil.toInteger(request.getParameter("module_id"));
+
+		List objList = new LinkedList();
+		StringBuffer hql = new StringBuffer();
+		hql.append("select w.id,w.mc from Tf01_wxdw w where 1=1 ");
+		// 条件
+		if (!searchStr.equals("")) {
+			hql.append("and w.mc like '%");
+			hql.append(searchStr);
+			hql.append("%' ");
+		}
+		hql.append("order by w.");
+		hql.append(orderField + " ");
+		hql.append(orderDirection);
+		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		if (ro != null) {
+			totalCount = ro.getTotalRows();
+			totalPages = ro.getTotalPages();
+		}
+		while (ro.next()) {
+			Object obj[] = new Object[2];
+			obj[0] = ro.get("w.id");
+			obj[1] = ro.get("w.mc");
+			objList.add(obj);
+		}
+
+		modelMap.put("objList", objList);
+		modelMap.put("xm_id", xm_id);
+		modelMap.put("names", names);
+		modelMap.put("ids", ids);
+		modelMap.put("sys_wxdw_id", sys_wxdw_id);
+		modelMap.put("project_id", project_id);
+		modelMap.put("module_id", module_id);
+		modelMap.put("searchStr", searchStr);
+
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		return new ModelAndView(view, modelMap);
+	
 	}
 
 }
