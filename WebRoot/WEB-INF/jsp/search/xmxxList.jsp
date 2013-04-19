@@ -123,7 +123,7 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width: 50px;"></th>
+					<th style="width: 60px;"></th>
 					<th orderField="xmmc">
 						项目名称
 					</th>
