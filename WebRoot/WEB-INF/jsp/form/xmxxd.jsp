@@ -247,7 +247,7 @@ $(function(){
 <p>
 	<label>
 		<c:choose>
-			<c:when test="${param.node_id == 10101&&(admin!=true||empty td01_xmxx.sgdw)}">
+			<c:when test="${param.node_id == 10101 }">
 				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">施工单位</a>：
 			</c:when>
 			<c:otherwise>

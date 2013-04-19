@@ -104,7 +104,8 @@
 	</p> 
 	<p>
 		<label> 实际选择单位：</label>
-		<input  type="text" name="Td08_pgspd.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
+		<input  type="text" name="Td08_pgspd.SJXZDW" id="sjxzOrg.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
+		<a class="btnLook" lookupGroup="sjxzOrg" href="sgpd/sjxzdw.do?xm_id=${td01_xmxx.id}" width="700" height="380"></a>
 	</p>
 	</div>
 	<div class="divider xzdw" ></div>
