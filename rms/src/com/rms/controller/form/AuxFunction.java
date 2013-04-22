@@ -1061,6 +1061,9 @@ public class AuxFunction {
 				.getParameter("sys_wxdw_id"));
 		Long man_wxdw_id = convertUtil.toLong(request
 				.getParameter("man_wxdw_id"));
+		String splb = convertUtil.toString(request.getParameter("splb"));
+		Long doc_id = convertUtil.toLong(request.getParameter("doc_id"));
+		Long id=convertUtil.toLong(request.getParameter("id"));
 
 		HttpSession session = request.getSession();
 		if (session != null) {
@@ -1074,6 +1077,15 @@ public class AuxFunction {
 		sql.append("where project_id = ");
 		sql.append(project_id);
 		sql.append(" and sp_flag is null ");
+		if (!splb.equals("")) {
+			sql.append(" and splb='");
+			sql.append(splb);
+			sql.append("' ");
+		}
+		if (doc_id!=-1) {
+			sql.append(" and id=");
+			sql.append(doc_id);
+		}
 		sql.append("and cjr = '");
 		sql.append(user_name);
 		sql.append("' order by id desc ");
@@ -1886,12 +1898,12 @@ public class AuxFunction {
 		hql.append("and a.id=");
 		hql.append(id);
 		List sjxzdw = queryService.searchList(hql.toString());
-		Integer wxdw_id=0;
+		Integer wxdw_id = 0;
 		for (Object object : sjxzdw) {
-			Object obj[]=(Object[])object;
-			wxdw_id=convertUtil.toInteger(obj[0]);
+			Object obj[] = (Object[]) object;
+			wxdw_id = convertUtil.toInteger(obj[0]);
 		}
-		List pxsjxzdw=this.getSjxzdw(request, response, wxdw_id);
+		List pxsjxzdw = this.getSjxzdw(request, response, wxdw_id);
 		modelMap.put("sjxzdw", sjxzdw);
 		modelMap.put("pxsjxzdw", pxsjxzdw);
 		modelMap.put("zdxp", result);
@@ -1907,7 +1919,7 @@ public class AuxFunction {
 	 * @return List
 	 */
 	public List getSjxzdw(HttpServletRequest request,
-			HttpServletResponse response,Integer wxdw_id_) {
+			HttpServletResponse response, Integer wxdw_id_) {
 		ModelMap modelMap = new ModelMap();
 		Long project_id = convertUtil.toLong(
 				request.getParameter("project_id"), -10L);
