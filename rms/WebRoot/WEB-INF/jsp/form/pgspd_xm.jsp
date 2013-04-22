@@ -64,7 +64,7 @@
 		<label>审批类别：</label>
 		<select class="required" name="Td08_pgspd.SPLB" >
 			<option value="项目派工" <c:if test="${td08_pgspd.splb=='项目派工' }">selected</c:if>>项目派工</option>
-			<option value="更改合同额" <c:if test="${td08_pgspd.splb=='项目派工' }">selected</c:if>>更改合同额</option>
+			<option value="更改合同额" <c:if test="${td08_pgspd.splb=='更改合同额' }">selected</c:if>>更改合同额</option>
 		</select>
 	</p> 
 	<div class="divider"></div>  
@@ -75,7 +75,7 @@
 	</p>
 		<p>
 		<label>更改后：</label> 
-		<input type="text" name="Td08_pgspd.GGSJHTE" value="${td08_pgspd.ggsjhte}"  style="width:150px;"/>
+		<input type="text" name="Td08_pgspd.GGSJHTE" <c:if test="${!empty td08_pgspd.ggsjhte}">value="${td08_pgspd.ggsjhte}"</c:if><c:if test="${empty td08_pgspd.ggsjhte}">value="${td08_pgspd.ysjhte}"</c:if>  style="width:150px;"/>
 	</p>
 	<div style="height:0px;"></div>
 		<p>
@@ -84,7 +84,7 @@
 	</p>
 		<p>
 		<label>更改后：</label> 
-		<input type="text" name="Td08_pgspd.GGSGHTE" value="${td08_pgspd.ggjlhte}"  style="width:150px;"/>
+		<input type="text" name="Td08_pgspd.GGSGHTE" <c:if test="${!empty td08_pgspd.ggsghte}">value="${td08_pgspd.ggsghte}"</c:if><c:if test="${empty td08_pgspd.ggsghte}">value="${td08_pgspd.ysghte}"</c:if>  style="width:150px;"/>
 	</p>
 	<div style="height:0px;"></div>	
 	<p>
@@ -93,7 +93,7 @@
 	</p>
 		<p>
 		<label>更改后：</label> 
-		<input type="text" name="Td08_pgspd.GGJLHTE" value="${td08_pgspd.ggjlhte}"  style="width:150px;"/>
+		<input type="text" name="Td08_pgspd.GGJLHTE" <c:if test="${!empty td08_pgspd.ggjlhte}">value="${td08_pgspd.ggjlhte}"</c:if><c:if test="${empty td08_pgspd.ggjlhte}">value="${td08_pgspd.yjlhte}"</c:if>   style="width:150px;"/>
 	</p>
 	</div>
 	<div class="divider hte"></div> 
