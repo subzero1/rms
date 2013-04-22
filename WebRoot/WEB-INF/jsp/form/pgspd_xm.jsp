@@ -61,10 +61,10 @@
 	</p> 
 	<div style="height:0px;"></div>
 	<p>
-		<label>审批类别：</label>
+		<label>审批类别： </label>
 		<select class="required" name="Td08_pgspd.SPLB" >
 			<option value="项目派工" <c:if test="${td08_pgspd.splb=='项目派工' }">selected</c:if>>项目派工</option>
-			<option value="更改合同额" <c:if test="${td08_pgspd.splb=='更改合同额' }">selected</c:if>>更改合同额</option>
+			<option value="更改合同额" <c:if test="${td08_pgspd.splb=='更改合同额'||param.splb=='gghte' }">selected</c:if>>更改合同额</option>
 		</select>
 	</p> 
 	<div class="divider"></div>  
