@@ -3,23 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
-	function add(id,name){
-		var $reasons=$("#reasons",$.pdialog.getCurrent()); 
-		var $reasonflag=$("input[name='reasonflag']",$.pdialog.getCurrent());
-		if($reasons.val()==""&&$reasonflag.val()!='1'){ 
-			alertMsg.info("请您填写手动选派原因!");
-		}else {
-		if ($("#ids",$.pdialog.getCurrent()).val().indexOf(","+id)==-1){
-			$("#ids",$.pdialog.getCurrent()).val($("#ids",$.pdialog.getCurrent()).val()+","+id);
-			$("#names",$.pdialog.getCurrent()).val($("#names",$.pdialog.getCurrent()).val()+ ($("#names",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
-			$("#names1",$.pdialog.getCurrent()).val($("#names1",$.pdialog.getCurrent()).val()+ ($("#names1",$.pdialog.getCurrent()).val() == "" ? "" : ",")+name);
-			var names = $("#names",$.pdialog.getCurrent()).val(); 
-			var ids = $("#ids",$.pdialog.getCurrent()).val().substring(1);
-			var names = $("#names",$.pdialog.getCurrent()).val();
-			
-			$.bringBack({'SGDW':names,'SGDW_IDS':ids,'SDPGYY':$reasons.val()});
-		}
-	   }
+	function add(id,name){ 
+			$.bringBack({'SGDW':name,'SGDW_IDS':id,'SDPGYY':$reasons.val()});
 	} 
 	$(function(){
 		var $reasonflag=$("input[name='reasonflag']",$.pdialog.getCurrent());
