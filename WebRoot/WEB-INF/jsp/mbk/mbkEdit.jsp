@@ -485,7 +485,7 @@ $("#jsxz").change(function(){
 			<input type="hidden" name="Td21_mbk.CJRDH" value="<c:out value="${Td21_mbk.cjrdh }" default="${user.mobile_tel }"/>"/>
 			<input type="hidden" name="Td21_mbk.XQS_ID" value="${Td21_mbk.xqs_id }"/>
 			<c:if test="${not empty rolesMap['20102']}">
-				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.XQPSSJ,Td21_mbk.ZYBH,Td21_mbk.GLGMZS,Td21_mbk.LTEPC,Td21_mbk.GJZD,Td21_mbk.WYZBQR,Td21_mbk.ZYMC,Td21_mbk.SSWG,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ"/>
+				<input type="hidden" id="tdr_readonly_fields" value="Td21_mbk.XQPSSJ,Td21_mbk.ZYBH,Td21_mbk.GLGMZS,Td21_mbk.LTEPC,Td21_mbk.GJZD,Td21_mbk.WYZBQR,Td21_mbk.ZYMC,Td21_mbk.SSWG,jsxz,jsfs,Td21_mbk.LB,Td21_mbk.SSDQ,Td21_mbk.ZLDD,Td21_mbk.JD,Td21_mbk.WD,Td21_mbk.FGSX,Td21_mbk.ZS,Td21_mbk.CS,Td21_mbk.HS,tdrOrg.TDBM,tdrOrg.TDR,Td21_mbk.FKZQ,Td21_mbk.TDZQ,Td21_mbk.GHTX,Td21_mbk.TG,Td21_mbk.TKGG,Td21_mbk.JFGXSX,Td21_mbk.TWGXSX,Td21_mbk.GHQY,Td21_mbk.ZJJ,Td21_mbk.FWJ,Td21_mbk.XQJ,Td21_mbk.JSQDYY1,Td21_mbk.JSQDYY2,Td21_mbk.JSQDYY3"/>
 			</c:if>
 			<c:if test="${empty Td21_mbk.cjsj}">
 				<input type="hidden" name="Td21_mbk.CJSJ" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>"/>
@@ -862,7 +862,7 @@ $("#jsxz").change(function(){
 					<c:forEach var="obj" items="${uploadslave}">
 						<p class="slaveList">
 							${obj.slave_name}&nbsp;&nbsp;
-							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
+							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="查看"><font color="blue">查看</font></a>
 							<a href="download.do?slave_id=${obj.slave_id}" title="下载"><font color="red">下载</font></a>
 							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 						</p>
