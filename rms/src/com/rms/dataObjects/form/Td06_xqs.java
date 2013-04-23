@@ -403,4 +403,148 @@ public class Td06_xqs implements Serializable{
 	public void setXqshsj(Date xqshsj) {
 		this.xqshsj = xqshsj;
 	} 
+	/**
+	 * 规划塔高
+	 */
+	private String ghtx;
+	/**
+	 * 塔高
+	 */
+	private Long tg;
+	/**
+	 * 天馈挂高
+	 */
+	private String tkgg;
+	/**
+	 * 机房共享属性
+	 */
+	private String jfgxsx;
+	/**
+	 * 塔桅共享属性
+	 */
+	private String twgxsx;
+	/**
+	 * 站间距
+	 */
+	private Long zjj;
+	/**
+	 * 规划区域
+	 */
+	private String ghqy;
+	/**
+	 * 方位角
+	 */
+	private String fwj;
+	/**
+	 * 下倾角
+	 */
+	private String xqj;
+	/**
+	 * 建设驱动原因一
+	 */
+	private String jsqdyy1;
+	/**
+	 * 建设驱动原因二
+	 */
+	private String jsqdyy2;
+	/**
+	 * 建设驱动原因三
+	 */
+	private String jsqdyy3;
+
+	public String getGhtx() {
+		return ghtx;
+	}
+
+	public void setGhtx(String ghtx) {
+		this.ghtx = ghtx;
+	}
+
+	public Long getTg() {
+		return tg;
+	}
+
+	public void setTg(Long tg) {
+		this.tg = tg;
+	}
+
+	public String getTkgg() {
+		return tkgg;
+	}
+
+	public void setTkgg(String tkgg) {
+		this.tkgg = tkgg;
+	}
+
+	public String getJfgxsx() {
+		return jfgxsx;
+	}
+
+	public void setJfgxsx(String jfgxsx) {
+		this.jfgxsx = jfgxsx;
+	}
+
+	public String getTwgxsx() {
+		return twgxsx;
+	}
+
+	public void setTwgxsx(String twgxsx) {
+		this.twgxsx = twgxsx;
+	}
+
+	public Long getZjj() {
+		return zjj;
+	}
+
+	public void setZjj(Long zjj) {
+		this.zjj = zjj;
+	}
+
+	public String getGhqy() {
+		return ghqy;
+	}
+
+	public void setGhqy(String ghqy) {
+		this.ghqy = ghqy;
+	}
+
+	public String getFwj() {
+		return fwj;
+	}
+
+	public void setFwj(String fwj) {
+		this.fwj = fwj;
+	}
+
+	public String getXqj() {
+		return xqj;
+	}
+
+	public void setXqj(String xqj) {
+		this.xqj = xqj;
+	}
+
+	public String getJsqdyy1() {
+		return jsqdyy1;
+	}
+
+	public void setJsqdyy1(String jsqdyy1) {
+		this.jsqdyy1 = jsqdyy1;
+	}
+
+	public String getJsqdyy2() {
+		return jsqdyy2;
+	}
+
+	public void setJsqdyy2(String jsqdyy2) {
+		this.jsqdyy2 = jsqdyy2;
+	}
+
+	public String getJsqdyy3() {
+		return jsqdyy3;
+	}
+
+	public void setJsqdyy3(String jsqdyy3) {
+		this.jsqdyy3 = jsqdyy3;
+	}
 }

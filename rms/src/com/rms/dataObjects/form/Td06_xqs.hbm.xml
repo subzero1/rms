@@ -193,6 +193,89 @@
   insert="true"
   column="xqshsj"
   />
+  		<property
+		  name="ghtx"
+		  update="true"
+		  insert="true"
+		  column="ghtx"
+		  />
+		  
+		  <property
+		  name="tg"
+		  update="true"
+		  insert="true"
+		  column="tg"
+		  />
+		  
+		  <property
+		  name="tkgg"
+		  update="true"
+		  insert="true"
+		  column="tkgg"
+		  />
+		  
+		  <property
+		  name="jfgxsx"
+		  update="true"
+		  insert="true"
+		  column="jfgxsx"
+		  />
+		  
+		  <property
+		  name="twgxsx"
+		  update="true"
+		  insert="true"
+		  column="twgxsx"
+		  />
+		  
+		  <property
+		  name="zjj"
+		  update="true"
+		  insert="true"
+		  column="zjj"
+		  />
+		  
+		  <property
+		  name="ghqy"
+		  update="true"
+		  insert="true"
+		  column="ghqy"
+		  />
+		  
+		  <property
+		  name="fwj"
+		  update="true"
+		  insert="true"
+		  column="fwj"
+		  />
+		  
+		  <property
+		  name="xqj"
+		  update="true"
+		  insert="true"
+		  column="xqj"
+		  />
+		  
+		  <property
+		  name="jsqdyy1"
+		  update="true"
+		  insert="true"
+		  column="jsqdyy1"
+		  />
+		  
+		  <property
+		  name="jsqdyy2"
+		  update="true"
+		  insert="true"
+		  column="jsqdyy2"
+		  />
+		  
+		  <property
+		  name="jsqdyy3"
+		  update="true"
+		  insert="true"
+		  column="jsqdyy3"
+		  />
     </class>
 
 </hibernate-mapping>

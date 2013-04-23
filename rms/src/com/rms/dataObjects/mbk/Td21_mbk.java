@@ -668,8 +668,7 @@ public class Td21_mbk implements Serializable {
 	public void setCjsj(Date cjsj) {
 		this.cjsj = cjsj;
 	}
-	
-	
+
 	/**
 	 * 
 	 */
@@ -684,7 +683,8 @@ public class Td21_mbk implements Serializable {
 	}
 
 	/**
-	 * @param kcsj The kcsj to set.
+	 * @param kcsj
+	 *            The kcsj to set.
 	 */
 	public void setKcsj(Date kcsj) {
 		this.kcsj = kcsj;
@@ -704,22 +704,23 @@ public class Td21_mbk implements Serializable {
 	}
 
 	/**
-	 * @param zypfsj The zypfsj to set.
+	 * @param zypfsj
+	 *            The zypfsj to set.
 	 */
 	public void setZypfsj(Date zypfsj) {
 		this.zypfsj = zypfsj;
 	}
-	
+
 	/**
 	 * 幢数
 	 */
 	private Long zs;
-	
+
 	/**
 	 * 层数
 	 */
 	private Long cs;
-	
+
 	/**
 	 * 户数
 	 */
@@ -760,12 +761,12 @@ public class Td21_mbk implements Serializable {
 	public void setHs(Long hs) {
 		this.hs = hs;
 	}
-	
+
 	/*
 	 * 反馈周期
 	 */
 	private Long fkzq;
-	
+
 	/*
 	 * 覆盖属性
 	 */
@@ -794,7 +795,7 @@ public class Td21_mbk implements Serializable {
 	public void setFgsx(String fgsx) {
 		this.fgsx = fgsx;
 	}
-	
+
 	/*
 	 * 最后反馈时间
 	 */
@@ -811,17 +812,17 @@ public class Td21_mbk implements Serializable {
 	public void setZhfksj(Date zhfksj) {
 		this.zhfksj = zhfksj;
 	}
-	
+
 	/*
 	 * 申请勘察时间
 	 */
 	private Date sqkcsj;
-	
+
 	/*
 	 * 申请会审时间
 	 */
 	private Date sqhssj;
-	
+
 	/*
 	 * 申请勘察说明
 	 */
@@ -867,7 +868,7 @@ public class Td21_mbk implements Serializable {
 	 * 创建人
 	 */
 	private String cjr;
-	
+
 	/*
 	 * 创建人电话
 	 */
@@ -884,7 +885,7 @@ public class Td21_mbk implements Serializable {
 	public void setCjr(String cjr) {
 		this.cjr = cjr;
 	}
-	
+
 	/*
 	 * 创建人标识
 	 */
@@ -913,7 +914,7 @@ public class Td21_mbk implements Serializable {
 	public void setCjrdh(String cjrdh) {
 		this.cjrdh = cjrdh;
 	}
-	
+
 	/*
 	 * 需求书标识
 	 */
@@ -930,7 +931,7 @@ public class Td21_mbk implements Serializable {
 	public void setXqs_id(Long xqs_id) {
 		this.xqs_id = xqs_id;
 	}
-	
+
 	/*
 	 * 勘察反馈时间
 	 */
@@ -947,7 +948,7 @@ public class Td21_mbk implements Serializable {
 	public void setKcfksj(Date kcfksj) {
 		this.kcfksj = kcfksj;
 	}
-	
+
 	private Date fksj;
 
 	public Date getFksj() {
@@ -957,154 +958,300 @@ public class Td21_mbk implements Serializable {
 	public void setFksj(Date fksj) {
 		this.fksj = fksj;
 	}
-	
+
 	/**
-	  * 建设场景
-	  */
-	  private String jscj;
-	  
-	  /**
-	   * 所属网格
-	   */
-	  private String sswg;
+	 * 建设场景
+	 */
+	private String jscj;
 
-	  /**
-	   * @hibernate.property column="jscj"
-	   * @return Returns the jscj.
-	   */
-		public String getJscj() {
-			return jscj;
-		}
+	/**
+	 * 所属网格
+	 */
+	private String sswg;
+
+	/**
+	 * @hibernate.property column="jscj"
+	 * @return Returns the jscj.
+	 */
+	public String getJscj() {
+		return jscj;
+	}
+
+	public void setJscj(String jscj) {
+		this.jscj = jscj;
+	}
+
+	/**
+	 * @hibernate.property column="sswg"
+	 * @return Returns the sswg.
+	 */
+	public String getSswg() {
+		return sswg;
+	}
+
+	public void setSswg(String sswg) {
+		this.sswg = sswg;
+	}
+
+	/*
+	 * 删除标识
+	 */
+	private Long delflag;
+
+	/**
+	 * @hibernate.property column="delflag"
+	 * @return Returns the delflag.
+	 */
+	public Long getDelflag() {
+		return delflag;
+	}
+
+	public void setDelflag(Long delflag) {
+		this.delflag = delflag;
+	}
+
+	/*
+	 * 关键站点
+	 */
+	private String gjzd;
+
+	/*
+	 * LTE批次
+	 */
+	private String ltepc;
+
+	/*
+	 * 关联过忙载扇
+	 */
+	private String glgmzs;
+
+	/*
+	 * 需求评审时间
+	 */
+	private Date xqpssj;
+
+	/*
+	 * 网优组BSC包区人
+	 */
+	private String wyzbqr;
+
+	/**
+	 * @hibernate.property column="gjzd"
+	 * @return Returns the gjzd.
+	 */
+	public String getGjzd() {
+		return gjzd;
+	}
+
+	public void setGjzd(String gjzd) {
+		this.gjzd = gjzd;
+	}
+
+	/**
+	 * @hibernate.property column="ltepc"
+	 * @return Returns the ltepc.
+	 */
+	public String getLtepc() {
+		return ltepc;
+	}
+
+	public void setLtepc(String ltepc) {
+		this.ltepc = ltepc;
+	}
+
+	/**
+	 * @hibernate.property column="glgmzs"
+	 * @return Returns the glgmzs.
+	 */
+	public String getGlgmzs() {
+		return glgmzs;
+	}
+
+	public void setGlgmzs(String glgmzs) {
+		this.glgmzs = glgmzs;
+	}
+
+	/**
+	 * @hibernate.property column="xqpssj"
+	 * @return Returns the xqpssj.
+	 */
+	public Date getXqpssj() {
+		return xqpssj;
+	}
+
+	public void setXqpssj(Date xqpssj) {
+		this.xqpssj = xqpssj;
+	}
+
+	/**
+	 * @hibernate.property column="wybqr"
+	 * @return Returns the wybqr.
+	 */
+	public String getWyzbqr() {
+		return wyzbqr;
+	}
+
+	public void setWyzbqr(String wyzbqr) {
+		this.wyzbqr = wyzbqr;
+	}
+
+	private String wtclr;
+
+	/**
+	 * @hibernate.property column="wtclr"
+	 * @return Returns the wtclr.
+	 */
+	public String getWtclr() {
+		return wtclr;
+	}
+
+	public void setWtclr(String wtclr) {
+		this.wtclr = wtclr;
+	}
+
+	/**
+	 * 规划塔高
+	 */
+	private String ghtx;
+	/**
+	 * 塔高
+	 */
+	private Long tg;
+	/**
+	 * 天馈挂高
+	 */
+	private String tkgg;
+	/**
+	 * 机房共享属性
+	 */
+	private String jfgxsx;
+	/**
+	 * 塔桅共享属性
+	 */
+	private String twgxsx;
+	/**
+	 * 站间距
+	 */
+	private Long zjj;
+	/**
+	 * 规划区域
+	 */
+	private String ghqy;
+	/**
+	 * 方位角
+	 */
+	private String fwj;
+	/**
+	 * 下倾角
+	 */
+	private String xqj;
+	/**
+	 * 建设驱动原因一
+	 */
+	private String jsqdyy1;
+	/**
+	 * 建设驱动原因二
+	 */
+	private String jsqdyy2;
+	/**
+	 * 建设驱动原因三
+	 */
+	private String jsqdyy3;
+
+	public String getGhtx() {
+		return ghtx;
+	}
+
+	public void setGhtx(String ghtx) {
+		this.ghtx = ghtx;
+	}
+
+	public Long getTg() {
+		return tg;
+	}
+
+	public void setTg(Long tg) {
+		this.tg = tg;
+	}
+
+	public String getTkgg() {
+		return tkgg;
+	}
+
+	public void setTkgg(String tkgg) {
+		this.tkgg = tkgg;
+	}
+
+	public String getJfgxsx() {
+		return jfgxsx;
+	}
+
+	public void setJfgxsx(String jfgxsx) {
+		this.jfgxsx = jfgxsx;
+	}
+
+	public String getTwgxsx() {
+		return twgxsx;
+	}
+
+	public void setTwgxsx(String twgxsx) {
+		this.twgxsx = twgxsx;
+	}
+
+	public Long getZjj() {
+		return zjj;
+	}
+
+	public void setZjj(Long zjj) {
+		this.zjj = zjj;
+	}
+
+	public String getGhqy() {
+		return ghqy;
+	}
+
+	public void setGhqy(String ghqy) {
+		this.ghqy = ghqy;
+	}
+
+	public String getFwj() {
+		return fwj;
+	}
+
+	public void setFwj(String fwj) {
+		this.fwj = fwj;
+	}
+
+	public String getXqj() {
+		return xqj;
+	}
+
+	public void setXqj(String xqj) {
+		this.xqj = xqj;
+	}
+
+	public String getJsqdyy1() {
+		return jsqdyy1;
+	}
+
+	public void setJsqdyy1(String jsqdyy1) {
+		this.jsqdyy1 = jsqdyy1;
+	}
+
+	public String getJsqdyy2() {
+		return jsqdyy2;
+	}
+
+	public void setJsqdyy2(String jsqdyy2) {
+		this.jsqdyy2 = jsqdyy2;
+	}
+
+	public String getJsqdyy3() {
+		return jsqdyy3;
+	}
+
+	public void setJsqdyy3(String jsqdyy3) {
+		this.jsqdyy3 = jsqdyy3;
+	}
 	
-		public void setJscj(String jscj) {
-			this.jscj = jscj;
-		}
-	
-		/**
-		   * @hibernate.property column="sswg"
-		   * @return Returns the sswg.
-		 */
-		public String getSswg() {
-			return sswg;
-		}
-	
-		public void setSswg(String sswg) {
-			this.sswg = sswg;
-		}
-		
-		/*
-		 * 删除标识
-		 */
-		private Long delflag;
-
-		/**
-		   * @hibernate.property column="delflag"
-		   * @return Returns the delflag.
-		 */
-		public Long getDelflag() {
-			return delflag;
-		}
-
-		public void setDelflag(Long delflag) {
-			this.delflag = delflag;
-		}
-		
-		/*
-		 * 关键站点
-		 */
-		private String gjzd;
-		
-		/*
-		 * LTE批次
-		 */
-		private String ltepc;
-		
-		/*
-		 * 关联过忙载扇
-		 */
-		private String glgmzs;
-		
-		/*
-		 * 需求评审时间
-		 */
-		private Date xqpssj;
-		
-		/*
-		 * 网优组BSC包区人
-		 */
-		private String wyzbqr;
-		
-		/**
-		   * @hibernate.property column="gjzd"
-		   * @return Returns the gjzd.
-		 */
-		public String getGjzd() {
-			return gjzd;
-		}
-
-		public void setGjzd(String gjzd) {
-			this.gjzd = gjzd;
-		}
-
-		/**
-		   * @hibernate.property column="ltepc"
-		   * @return Returns the ltepc.
-		 */
-		public String getLtepc() {
-			return ltepc;
-		}
-
-		public void setLtepc(String ltepc) {
-			this.ltepc = ltepc;
-		}
-
-		/**
-		   * @hibernate.property column="glgmzs"
-		   * @return Returns the glgmzs.
-		 */
-		public String getGlgmzs() {
-			return glgmzs;
-		}
-
-		public void setGlgmzs(String glgmzs) {
-			this.glgmzs = glgmzs;
-		}
-
-		/**
-		   * @hibernate.property column="xqpssj"
-		   * @return Returns the xqpssj.
-		 */
-		public Date getXqpssj() {
-			return xqpssj;
-		}
-
-		public void setXqpssj(Date xqpssj) {
-			this.xqpssj = xqpssj;
-		}
-
-		/**
-		   * @hibernate.property column="wybqr"
-		   * @return Returns the wybqr.
-		 */
-		public String getWyzbqr() {
-			return wyzbqr;
-		}
-
-		public void setWyzbqr(String wyzbqr) {
-			this.wyzbqr = wyzbqr;
-		}
-		
-		private String wtclr;
-
-		/**
-		   * @hibernate.property column="wtclr"
-		   * @return Returns the wtclr.
-		 */
-		public String getWtclr() {
-			return wtclr;
-		}
-
-		public void setWtclr(String wtclr) {
-			this.wtclr = wtclr;
-		}
 }
