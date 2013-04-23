@@ -650,8 +650,7 @@ $("#jsxz").change(function(){
 				<p>
 					<label>驱动原因三：</label>
 					<netsky:htmlSelect name="Td21_mbk.JSQDYY3" id="Td21_mbk.JSQDYY3" style="width:126px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy3}" extend="" extendPrefix="true" />
-				</p>
-				<div style="height:0px;"></div>
+				</p> 
 				</div>
 				<div class="divider"></div>
 				<p>
