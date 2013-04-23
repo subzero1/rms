@@ -102,7 +102,63 @@
 			<label>户    数：</label>
 			<input type="text" ids="xq" name="Td06_xqs.HS" style="width:120px;" value="${td06_xqs.hs}"/>
 		</p>
-	</div>
+	</div>				<div class="extend">
+				<div class="divider"></div> 
+					<p>
+						<label>规划塔型：</label>
+						 <netsky:htmlSelect htmlClass="required" name="Td06_xqs.GHTX" id="Td06_xqs.GHTX" style="width:155px;" objectForOption="ghtxList" valueForOption="" showForOption="" value="${Td06_xqs.ghtx}" extend="" extendPrefix="true" />
+
+					</p>
+					<p>
+						<label>塔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高：</label>
+						<input type="text" name="Td06_xqs.TG" id="Td06_xqs.TG" style="width:150px;" value="${Td06_xqs.tg}"/>
+					</p>
+					<p>
+						<label>天馈挂高：</label>
+						<input type="text" name="Td06_xqs.TKGG" id="Td06_xqs.TKGG" style="width:126px;" value="${Td06_xqs.tkgg}"/>
+					</p>
+				<div style="height:0px;"></div>
+				
+					<p>
+						<label>机房共享属性：</label>
+					<netsky:htmlSelect name="Td06_xqs.JFGXSX" id="Td06_xqs.JFGXSX" style="width:156px;" objectForOption="jfgxsxList" valueForOption="" showForOption="" value="${Td06_xqs.jfgxsx}" extend="" extendPrefix="true" />
+					</p>
+					<p>
+						<label>塔桅共享属性：</label>
+					<netsky:htmlSelect name="Td06_xqs.TWGXSX" id="Td06_xqs.TWGXSX" style="width:156px;" objectForOption="twgxsxList" valueForOption="" showForOption="" value="${Td06_xqs.twgxsx}" extend="" extendPrefix="true" />
+					</p>
+					<p>
+						<label>站&nbsp;&nbsp;间&nbsp;&nbsp;距：</label>
+						<input type="text" name="Td06_xqs.ZJJ" id="Td06_xqs.ZJJ" style="width:126px;" value="${Td06_xqs.zjj}"/>
+					</p>
+				<div style="height:0px;"></div>
+				
+					<p>
+						<label>规划区域：</label>
+					<netsky:htmlSelect name="Td06_xqs.GHQY" id="Td06_xqs.GHQY" style="width:156px;" objectForOption="ghqyList" valueForOption="" showForOption="" value="${Td06_xqs.ghqy}" extend="" extendPrefix="true" />
+					</p>
+					<p>
+						<label>方&nbsp;&nbsp;位&nbsp;&nbsp;角：</label>
+						<input type="text" name="Td06_xqs.FWJ" id="Td06_xqs.FWJ" style="width:150px;" value="${Td06_xqs.fwj}"/>
+					</p>
+					<p>
+						<label>下&nbsp;&nbsp;倾&nbsp;&nbsp;角：</label>
+						<input type="text" name="Td06_xqs.XQJ" id="Td06_xqs.XQJ" style="width:126px;" value="${Td06_xqs.xqj}"/>
+					</p> 
+				<div style="height:0px;"></div> 
+				<p>
+					<label>驱动原因一：</label>
+					<netsky:htmlSelect name="Td06_xqs.JSQDYY1" id="Td06_xqs.JSQDYY1" style="width:156px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td06_xqs.jsqdyy1}" extend="" extendPrefix="true" />
+				</p>
+				<p>
+					<label>驱动原因二：</label>
+					<netsky:htmlSelect name="Td06_xqs.JSQDYY2" id="Td06_xqs.JSQDYY2" style="width:156px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td06_xqs.jsqdyy2}" extend="" extendPrefix="true" />
+				</p>
+				<p>
+					<label>驱动原因三：</label>
+					<netsky:htmlSelect name="Td06_xqs.JSQDYY3" id="Td06_xqs.JSQDYY3" style="width:126px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td06_xqs.jsqdyy3}" extend="" extendPrefix="true" />
+				</p> 
+				</div>
 	<div class="divider"></div>
 	
 	<p>
