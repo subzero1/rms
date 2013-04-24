@@ -835,13 +835,13 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					
 				}
 				// 建设驱动原因
-				String []reasonList={"路测性能差","深度覆盖差","3G热点解决","盲区盲点","专项需求"};
+				List reasonList=queryService.searchList("select a.name from Tc01_property a where a.type='建设驱动原因'");
 				// 机房共享属性
-				String []jfgxsxList={"自建","共享移动","共享联通","共建移动","共建联通","租赁","无机房","利旧"};
+				List jfgxsxList=queryService.searchList("select a.name from Tc01_property a where a.type='共享属性'");
 				//塔桅共享属性
-				String []twgxsxList={"自建","共享移动","共享联通","共建移动","共建联通","租赁","利旧"};
+				List  twgxsxList=queryService.searchList("select a.name from Tc01_property a where a.type='共享属性' and a.flag='[1]'");
 				//规划区域
-				String []ghqyList={"密集城区","普通城区","郊区","农村"};
+				List ghqyList=queryService.searchList("select a.name from Tc01_property a where a.type='规划区域'");
 				request.setAttribute("reasonList", reasonList);
 				request.setAttribute("jfgxsxList", jfgxsxList);
 				request.setAttribute("twgxsxList", twgxsxList);
