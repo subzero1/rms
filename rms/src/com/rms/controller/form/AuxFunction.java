@@ -1061,9 +1061,12 @@ public class AuxFunction {
 				.getParameter("sys_wxdw_id"));
 		Long man_wxdw_id = convertUtil.toLong(request
 				.getParameter("man_wxdw_id"));
-		String splb = convertUtil.toString(request.getParameter("splb"));
+		String splb = convertUtil.toString(request.getParameter("splb"),"xmpg");
 		Long doc_id = convertUtil.toLong(request.getParameter("doc_id"));
 		Long id=convertUtil.toLong(request.getParameter("id"));
+		Map splbMap = new HashMap();
+		splbMap.put("gghte", "更改合同额");
+		splbMap.put("xmpg", "项目派工");
 
 		HttpSession session = request.getSession();
 		if (session != null) {
@@ -1079,7 +1082,7 @@ public class AuxFunction {
 		sql.append(" and sp_flag is null ");
 		if (!splb.equals("")) {
 			sql.append(" and splb='");
-			sql.append(splb);
+			sql.append(splbMap.get(splb));
 			sql.append("' ");
 		}
 		if (doc_id!=-1) {
@@ -1096,6 +1099,8 @@ public class AuxFunction {
 			sql.append("select id from Tb12_opernode ");
 			sql.append("where project_id = ");
 			sql.append(project_id);
+			sql.append(" and doc_id = ");
+			sql.append(convertUtil.toLong(list.get(0)));
 			sql.append(" and node_id = ");
 			sql.append(module_id + "01");
 			sql.append(" order by id desc ");
