@@ -234,22 +234,22 @@ $("#jsxz").change(function(){
 			$("#jz").css("display","block");
 			$("#xq").css("display","none");
 			$("#Td21_mbk\\.JSCJ").attr("disabled","true");
-			$("input[ids=jz]").attr("class","required");
-			$("input[ids=xq]").attr("class","norequired");
+			$(":input[ids=jz]").attr("class","required");
+			$(":input[ids=xq]").attr("class","norequired");
 		}
 		else if(data.indexOf('室分') != -1){
 			$("#jz").css("display","none");
 			$("#xq").css("display","none");
 			$("#Td21_mbk\\.JSCJ").removeAttr("disabled");
-			$("input[ids=jz]").attr("class","norequired");
-			$("input[ids=xq]").attr("class","norequired");
+			$(":input[ids=jz]").attr("class","norequired");
+			$(":input[ids=xq]").attr("class","norequired");
 		}
 		else{
 			$("#jz").css("display","none");
 			$("#xq").css("display","block");
 			$("#Td21_mbk\\.JSCJ").attr("disabled","true");
-			$("input[ids=jz]").attr("class","norequired");
-			$("input[ids=xq]").attr("class","required digits");
+			$(":input[ids=jz]").attr("class","norequired");
+			$(":input[ids=xq]").attr("class","required digits");
 		}
 	});
 	
@@ -552,8 +552,9 @@ $("#jsxz").change(function(){
 					<label>建设场景：</label>
 					<netsky:htmlSelect htmlClass="required" name="Td21_mbk.JSCJ" id="Td21_mbk.JSCJ" style="width:126px;" objectForOption="jscjList" valueForOption="" showForOption="" value="${Td21_mbk.jscj}" extend="" extendPrefix="true" />
 				</p>
+				
 				<div id="jz">
-					<div style="height:0px;"></div>
+					<div class="divider"></div> 
 					<p>
 						<label>经    度：</label>
 						<input type="text" ids="jz" name="Td21_mbk.JD" id="Td21_mbk.JD" style="width:150px;" value="${Td21_mbk.jd}"/>
@@ -564,7 +565,7 @@ $("#jsxz").change(function(){
 					</p>
 					<p>
 						<label>覆盖属性：</label>
-						<netsky:htmlSelect  name="Td21_mbk.FGSX" id="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="" showForOption="" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" />
+						<netsky:htmlSelect  name="Td21_mbk.FGSX" id="Td21_mbk.FGSX" style="width:126px;" objectForOption="fgsxList" valueForOption="" showForOption="" value="${Td21_mbk.fgsx}" extend="" extendPrefix="true" extProperties="ids:jz"/>
 					</p>
 					<div style="height:0px;"></div>
 					<p>
@@ -579,27 +580,10 @@ $("#jsxz").change(function(){
 						<label>关联过忙载扇：</label>
 						<netsky:htmlSelect name="Td21_mbk.GLGMZS" id="Td21_mbk.GLGMZS" style="width:126px;" objectForOption="sfList" valueForOption="" showForOption="" value="${Td21_mbk.glgmzs}" extend="" extendPrefix="true" />
 					</p>
-				</div>
-				<div id="xq">
 					<div style="height:0px;"></div>
 					<p>
-						<label>幢    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.ZS"  id="Td21_mbk.ZS" style="width:150px;" value="${Td21_mbk.zs}"/>
-					</p> 
-					<p>
-						<label>层    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.CS" id="Td21_mbk.CS" style="width:150px;" value="${Td21_mbk.cs}"/>
-					</p>
-					<p>
-						<label>户    数：</label>
-						<input type="text" ids="xq" name="Td21_mbk.HS" id="Td21_mbk.HS" style="width:120px;" value="${Td21_mbk.hs}"/>
-					</p>
-				</div>
-				<div class="extend">
-				<div class="divider"></div> 
-					<p>
 						<label>规划塔型：</label>
-						 <netsky:htmlSelect htmlClass="required" name="Td21_mbk.GHTX" id="Td21_mbk.GHTX" style="width:150px;" objectForOption="ghtxList" valueForOption="" showForOption="" value="${Td21_mbk.ghtx}" extend="" extendPrefix="true" />
+						 <netsky:htmlSelect name="Td21_mbk.GHTX" id="Td21_mbk.GHTX" style="width:156px;" objectForOption="ghtxList" valueForOption="" showForOption="" value="${Td21_mbk.ghtx}" extend="" extendPrefix="true"/>
 
 					</p>
 					<p>
@@ -610,8 +594,7 @@ $("#jsxz").change(function(){
 						<label>天馈挂高：</label>
 						<input type="text" name="Td21_mbk.TKGG" id="Td21_mbk.TKGG" style="width:126px;" value="${Td21_mbk.tkgg}"/>
 					</p>
-				<div style="height:0px;"></div>
-				
+					<div style="height:0px;"></div>
 					<p>
 						<label>机房共享属性：</label>
 					<netsky:htmlSelect name="Td21_mbk.JFGXSX" id="Td21_mbk.JFGXSX" style="width:156px;" objectForOption="jfgxsxList" valueForOption="" showForOption="" value="${Td21_mbk.jfgxsx}" extend="" extendPrefix="true" />
@@ -624,8 +607,7 @@ $("#jsxz").change(function(){
 						<label>站&nbsp;&nbsp;间&nbsp;&nbsp;距：</label>
 						<input type="text" name="Td21_mbk.ZJJ" id="Td21_mbk.ZJJ" style="width:126px;" value="${Td21_mbk.zjj}"/>
 					</p>
-				<div style="height:0px;"></div>
-				
+					<div style="height:0px;"></div>
 					<p>
 						<label>规划区域：</label>
 					<netsky:htmlSelect name="Td21_mbk.GHQY" id="Td21_mbk.GHQY" style="width:156px;" objectForOption="ghqyList" valueForOption="" showForOption="" value="${Td21_mbk.ghqy}" extend="" extendPrefix="true" />
@@ -638,19 +620,34 @@ $("#jsxz").change(function(){
 						<label>下&nbsp;&nbsp;倾&nbsp;&nbsp;角：</label>
 						<input type="text" name="Td21_mbk.XQJ" id="Td21_mbk.XQJ" style="width:126px;" value="${Td21_mbk.xqj}"/>
 					</p> 
-				<div style="height:0px;"></div> 
-				<p>
-					<label>驱动原因一：</label>
-					<netsky:htmlSelect name="Td21_mbk.JSQDYY1" id="Td21_mbk.JSQDYY1" style="width:156px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy1}" extend="" extendPrefix="true" />
-				</p>
-				<p>
-					<label>驱动原因二：</label>
-					<netsky:htmlSelect name="Td21_mbk.JSQDYY2" id="Td21_mbk.JSQDYY2" style="width:156px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy2}" extend="" extendPrefix="true" />
-				</p>
-				<p>
-					<label>驱动原因三：</label>
-					<netsky:htmlSelect name="Td21_mbk.JSQDYY3" id="Td21_mbk.JSQDYY3" style="width:126px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy3}" extend="" extendPrefix="true" />
-				</p> 
+					<div style="height:0px;"></div> 
+					<p>
+						<label>驱动原因一：</label>
+						<netsky:htmlSelect name="Td21_mbk.JSQDYY1" id="Td21_mbk.JSQDYY1" style="width:156px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy1}" extend="" extendPrefix="true" />
+					</p>
+					<p>
+						<label>驱动原因二：</label>
+						<netsky:htmlSelect name="Td21_mbk.JSQDYY2" id="Td21_mbk.JSQDYY2" style="width:156px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy2}" extend="" extendPrefix="true" />
+					</p>
+					<p>
+						<label>驱动原因三：</label>
+						<netsky:htmlSelect name="Td21_mbk.JSQDYY3" id="Td21_mbk.JSQDYY3" style="width:126px;" objectForOption="reasonList" valueForOption="" showForOption="" value="${Td21_mbk.jsqdyy3}" extend="" extendPrefix="true" />
+					</p> 
+				</div>
+				<div id="xq">
+					<div class="divider"></div> 
+					<p>
+						<label>幢    数：</label>
+						<input type="text" ids="xq" name="Td21_mbk.ZS"  id="Td21_mbk.ZS" style="width:150px;" value="${Td21_mbk.zs}"/>
+					</p> 
+					<p>
+						<label>层    数：</label>
+						<input type="text" ids="xq" name="Td21_mbk.CS" id="Td21_mbk.CS" style="width:150px;" value="${Td21_mbk.cs}"/>
+					</p>
+					<p>
+						<label>户    数：</label>
+						<input type="text" ids="xq" name="Td21_mbk.HS" id="Td21_mbk.HS" style="width:120px;" value="${Td21_mbk.hs}"/>
+					</p>
 				</div>
 				<div class="divider"></div>
 				<p>
@@ -896,22 +893,22 @@ $("#jsxz").change(function(){
 		$("#jz").css("display","none");
 		$("#xq").css("display","none");
 		$("#Td21_mbk\\.JSCJ").removeAttr("disabled");
-		$("input[ids=jz]").attr("class","norequired");
-		$("input[ids=xq]").attr("class","norequired");
+		$(":input[ids=jz]").attr("class","norequired");
+		$(":input[ids=xq]").attr("class","norequired");
 	}
 	else if(jsxz == 'undefine' || jsxz.indexOf('基站') != -1){
 		$("#jz").css("display","block");
 		$("#xq").css("display","none");
 		$("#Td21_mbk\\.JSCJ").attr("disabled","true");
-		$("input[ids=jz]").attr("class","required");
-		$("input[ids=xq]").attr("class","norequired");
+		$(":input[ids=jz]").attr("class","required");
+		$(":input[ids=xq]").attr("class","norequired");
 	}
 	else{
 		$("#jz").css("display","none");
 		$("#xq").css("display","block");
 		$("#Td21_mbk\\.JSCJ").attr("disabled","true");
-		$("input[ids=jz]").attr("class","norequired");
-		$("input[ids=xq]").attr("class","required digits");
+		$(":input[ids=jz]").attr("class","norequired");
+		$(":input[ids=xq]").attr("class","required digits");
 	}
 	
 	//按照屏幕分配表单右侧信息

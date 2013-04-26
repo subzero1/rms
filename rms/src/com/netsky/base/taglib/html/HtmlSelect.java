@@ -83,6 +83,11 @@ public class HtmlSelect extends ChangeableWidget {
 	 * 当前值
 	 */
 	private String value;
+	
+	/**
+	 * 扩展属性
+	 */
+	private String extProperties;
 
 	/**
 	 * 标题
@@ -299,6 +304,18 @@ public class HtmlSelect extends ChangeableWidget {
 	 */
 	public void setCurValue(String value) {
 		this.value = value;
+	}
+	
+
+	public String getExtProperties() {
+		return extProperties;
+	}
+
+	/**
+	 * 设置扩展属性
+	 */
+	public void setExtProperties(String extProperties) {
+		this.extProperties = extProperties;
 	}
 
 	/**
@@ -542,6 +559,27 @@ public class HtmlSelect extends ChangeableWidget {
 			appendHtmlProperties("size=\"" + size + "\"");
 		if (isMultiple)
 			appendHtmlProperties(" multiple ");
+		if(extProperties != null && !extProperties.equals("")){
+			if(extProperties.indexOf(";") != -1){
+				String[] tp = extProperties.split(";");
+				for(int i = 0;i < tp.length;i++){
+					if(tp[i].indexOf(":") != -1){
+						String[] tp2 = tp[i].split(":");
+						appendHtmlProperties(" "+tp2[0]+"=\"" + tp2[1] + "\" ");
+					}
+					else{
+						appendHtmlProperties(" "+tp[i]+"=\"" + tp[i] + "\" ");
+					}
+				}
+			}
+			else if(extProperties.indexOf(":") != -1){
+				String[] tp = extProperties.split(":");
+				appendHtmlProperties(" "+tp[0]+"=\"" + tp[1] + "\" ");
+			}
+			else{
+				appendHtmlProperties(" "+extProperties+"=\"" + extProperties + "\" ");
+			}
+		}
 
 		super.setHtmlProperties();
 
