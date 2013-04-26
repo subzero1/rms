@@ -240,7 +240,7 @@
 														<c:forEach var="u" items="${user_list}">
 															<c:if test="${u.dept_id==nodeElement[0]}">
 																<li >
-																	<a href="#" name="${u.id}" >${u.name }</a>
+																	<a href="#" name="${u.id}" onclick="selectToUser2(this)">${u.name }</a>
 																</li>
 															</c:if>
 														</c:forEach>
