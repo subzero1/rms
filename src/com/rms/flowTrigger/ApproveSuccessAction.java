@@ -85,7 +85,7 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 				/**
 				 * 派工审批单审结同意
 				 */
-				if((module_id == 112 || module_id == 113) && node_name.indexOf("派工审核") != -1){
+				if((module_id == 112 || module_id == 113) && node_name.indexOf("审核") != -1){
 					StringBuffer hql=new StringBuffer();
 					Td01_xmxx xmxx; 
 					xmxx=(Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
@@ -105,16 +105,17 @@ public class ApproveSuccessAction extends com.netsky.base.flow.trigger.Trigger i
 							xmxx.setSghtje(td08.getGgsghte());
 							xmxx.setJlhtje(td08.getGgjlhte());
 							saveService.save(xmxx);
-							}else  {
+						}
+						else {
 								if(module_id == 112){
 									saveService.updateByHSql("update Td01_xmxx set sgdw = '"+sjxzdw+"',sdpgyy = '"+sdxpyy+"' where id = "+project_id);
 								}
 								else{ 
 									saveService.updateByHSql("update Td00_gcxx set sgdw = '"+sjxzdw+"',sdpgyy = '"+sdxpyy+"' where id = "+project_id);
-									}
-								saveService.updateByHSql("update Td08_pgspd set sp_flag=1 where id = "+doc_id+" and project_id="+project_id);
-							}
+								}
 						}
+						saveService.updateByHSql("update Td08_pgspd set sp_flag=1 where id = "+doc_id+" and project_id="+project_id);
+					}
 				}
 			}
 			

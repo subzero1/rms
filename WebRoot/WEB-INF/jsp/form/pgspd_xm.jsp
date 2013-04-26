@@ -17,9 +17,13 @@
 		if(param=='项目派工'){
 			$xzdw.show();
 			$hte.hide();
+			$(":input[ids=hte]").attr("disabled","true");
+			$(":input[ids=xzdw]").removeAttr("disabled");
 		}else if(param=='更改合同额'){
-			 $hte.show();
-			 $xzdw.hide();
+			$hte.show();
+			$xzdw.hide();
+			$(":input[ids=xzdw]").attr("disabled","true");
+			$(":input[ids=hte]").removeAttr("disabled");
 		}
 	} 
 </script>
@@ -71,40 +75,40 @@
 	<div class="hte">
 	<p>
 		<label>设计合同额：</label> 
-		<input type="text" name="Td08_pgspd.YSJHTE" value="${td08_pgspd.ysjhte}"  style="width:150px;"/>
+		<input type="text" ids="hte" name="Td08_pgspd.YSJHTE" readOnly value="<c:out value="${td08_pgspd.ysjhte}" default="${td01_xmxx.sjhtje }"/>"  style="width:150px;"/>
 	</p>
 		<p>
 		<label>更改后：</label> 
-		<input type="text" name="Td08_pgspd.GGSJHTE" <c:if test="${!empty td08_pgspd.ggsjhte}">value="${td08_pgspd.ggsjhte}"</c:if><c:if test="${empty td08_pgspd.ggsjhte}">value="${td08_pgspd.ysjhte}"</c:if>  style="width:150px;"/>
+		<input type="text" ids="hte" name="Td08_pgspd.GGSJHTE" value="<c:out value="${td08_pgspd.ggsjhte}" default="${td01_xmxx.sjhtje }"/>" style="width:150px;"/>
 	</p>
 	<div style="height:0px;"></div>
 		<p>
 		<label>施工合同额：</label> 
-		<input type="text" name="Td08_pgspd.YSGHTE" value="${td08_pgspd.ysghte}"  style="width:150px;"/>
+		<input type="text" ids="hte" name="Td08_pgspd.YSGHTE" readOnly value="<c:out value="${td08_pgspd.ysghte}" default="${td01_xmxx.sghtje }"/>"  style="width:150px;"/>
 	</p>
 		<p>
 		<label>更改后：</label> 
-		<input type="text" name="Td08_pgspd.GGSGHTE" <c:if test="${!empty td08_pgspd.ggsghte}">value="${td08_pgspd.ggsghte}"</c:if><c:if test="${empty td08_pgspd.ggsghte}">value="${td08_pgspd.ysghte}"</c:if>  style="width:150px;"/>
+		<input type="text" ids="hte" name="Td08_pgspd.GGSGHTE" value="<c:out value="${td08_pgspd.ggsghte}" default="${td01_xmxx.sghtje }"/>"  style="width:150px;"/>
 	</p>
 	<div style="height:0px;"></div>	
 	<p>
 		<label>监理合同额：</label> 
-		<input type="text" name="Td08_pgspd.YJLHTE" value="${td08_pgspd.yjlhte}"  style="width:150px;"/>
+		<input type="text" ids="hte" name="Td08_pgspd.YJLHTE" readOnly value="<c:out value="${td08_pgspd.yjlhte}" default="${td01_xmxx.jlhtje }"/>"  style="width:150px;"/>
 	</p>
 		<p>
 		<label>更改后：</label> 
-		<input type="text" name="Td08_pgspd.GGJLHTE" <c:if test="${!empty td08_pgspd.ggjlhte}">value="${td08_pgspd.ggjlhte}"</c:if><c:if test="${empty td08_pgspd.ggjlhte}">value="${td08_pgspd.yjlhte}"</c:if>   style="width:150px;"/>
+		<input type="text" ids="hte" name="Td08_pgspd.GGJLHTE" value="<c:out value="${td08_pgspd.ggjlhte}" default="${td01_xmxx.jlhtje }"/>"   style="width:150px;"/>
 	</p>
 	</div>
 	<div class="divider hte"></div> 
 	<div class="xzdw">
 	<p>
 		<label> 系统选择单位：</label>
-		<input type="text" readOnly name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
+		<input type="text" readOnly ids="xzdw" name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
 	</p> 
 	<p>
 		<label> 实际选择单位：</label>
-		<input  type="text" name="Td08_pgspd.SJXZDW" id="sjxzOrg.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
+		<input  type="text" name="Td08_pgspd.SJXZDW" ids="xzdw" id="sjxzOrg.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
 		<a class="btnLook" lookupGroup="sjxzOrg" href="sgpd/sjxzdw.do?xm_id=${td01_xmxx.id}" width="700" height="380"></a>
 	</p>
 	</div>

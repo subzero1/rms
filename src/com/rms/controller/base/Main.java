@@ -480,7 +480,7 @@ public class Main {
 				Long doc_id = (Long)PropertyInject.getProperty(td08, "id");
 				Long project_id = (Long)PropertyInject.getProperty(td08, "project_id");
 				String gcmc = td00.getGcmc();
-				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'openForm.do?project_id="+project_id+"&module_id=113&doc_id="+doc_id+"&opernode_id=-1&node_id=11301\\',{title:\\'派工审批单\\'})\">《"+gcmc+"》派工已审批</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'openForm.do?project_id="+project_id+"&module_id=113&doc_id="+doc_id+"&opernode_id=-1&node_id=11301\\',{title:\\'审批单\\'})\">《"+gcmc+"》领导已审批</a></li>";
 			}
 			
 			hsql.delete(0, hsql.length());
@@ -494,7 +494,7 @@ public class Main {
 				Long doc_id = (Long)PropertyInject.getProperty(td08, "id");
 				Long project_id = (Long)PropertyInject.getProperty(td08, "project_id");
 				String xmmc = td01.getXmmc();
-				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'openForm.do?project_id="+project_id+"&module_id=112&doc_id="+doc_id+"&opernode_id=-1&node_id=11201\\',{title:\\'派工审批单\\'})\">《"+xmmc+"》派工已审批</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'xmxxList\\',\\'openForm.do?project_id="+project_id+"&module_id=112&doc_id="+doc_id+"&opernode_id=-1&node_id=11201\\',{title:\\'派工审批单\\'})\">《"+xmmc+"》领导已审批</a></li>";
 			}
 			
 			/*
