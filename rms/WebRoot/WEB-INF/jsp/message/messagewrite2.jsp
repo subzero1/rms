@@ -131,33 +131,6 @@
 		$(_this).remove();
 	}
 	$(function(){
-	//及连菜单
-	$('#hzdw').hide();
-	$("#area").change(function(){
-		jilian('dept','Ta01_dept.area_name',$("#area").val(),'id','name','name');
-		$("#dept").change();
-	})
-	$("#dept").change(function(){
-		if($(this).val()=="4"){
-			$('#hzdw').show();
-			cascade('hzdw','Tf01_wxdw.id',4,'id','mc','mc','sysManage/ajaxCascadeMenu.do');
-			$('#hzdw').prepend("<option value=''>---------------------------</option>");
-			
-			$('#user_list').empty();
-			setTimeout("cascade('user_list','Ta03_user.id','"+$('#hzdw').val()+"','id','name','name','sysManage/ajaxUserMenu.do')",50);
-		}else {
-			$('#hzdw').hide();
-			jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
-		}
-	})
-	
-	$("#hzdw").change(function(){
-		if($(this).val()==''){
-			jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
-		}else{
-			cascade('user_list','Ta03_user.id',$(this).val(),'id','name','name','sysManage/ajaxUserMenu.do');
-		}
-	})
 	
 	$("#submitbutton").click(function(){
 		if($("#reader_id").val()==""||$("#reader_id").val()==null){
@@ -187,28 +160,7 @@
 	});
 		
 	}) 
-	/**
-	@param var0 目标select
-	@param var1 所匹配查询的字段Class.field结构
-	@param var2 前置级联条件
-	@param var3 所查字段1(id),作为下拉框的值
-	@param var4 所查字段2，作为下拉框显示的名称
-	@param var5 按照var5排序
-	@param var6 url 
-	*/
-	function cascade(var0, var1, var2, var3, var4,var5,var6){
-		var params = "var1=" + var1 + "&var2=" + var2 + "&var3=" + var3 +
-		 "&var4=" + var4+"&var5="+var5;
-		 $.ajax({
-		 	type:"post",
-		 	async:false,
-		 	url:var6,
-		    data:params,
-		    success:function (msg) {
-				$("#" + var0 + "").empty();
-				$("#" + var0 + "").append(msg);
-	}});
-	}
+ 
 	
 	function selectToUser2(_this){
 		var $read_div=$(".read_div"); 
@@ -256,9 +208,9 @@
 				value="${param.messageState }" />
 			<!-- left --> 
 			<div
-				style="width: 430px;height:333px;; float: left; padding: 5px !important; display: inline; overflow-x: hidden; overflow-y: auto;"
+				style="width: 480px;height:333px;; float: left; padding: 5px !important; display: inline; overflow-x: hidden; overflow-y: auto;"
 				layoutH="50">
-				<table width="400" class="read" border="0" cellspacing="0"
+				<table width="460" class="read" border="0" cellspacing="0"
 					cellpadding="0" style="border-collapse: collapse;"
 					id="send_message">
 					<tr>
@@ -340,7 +292,7 @@
 				联系人
 			</h2>
 			<div
-				style="float: left; display: block; margin: 10px; overflow: auto; width: 25%; height: 320px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
+				style="float: left; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
 						<a href="">联系人列表</a>
 						<ul class="tree collapse">
 							<c:forEach var="menu" items="${areaList}">
