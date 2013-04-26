@@ -104,7 +104,7 @@
 		var reader_names=$("#reader_name").val();
 		var reader_names_array=reader_names.split(",");
 		
-		arrayLength=reader_ids_array.length;
+		arrayLength=reader_ids_array.length; 
 		for(var i=0;i<arrayLength;i++){
 			if(read_id==reader_ids_array[i]){
 				for(var j=i;j<arrayLength-1;j++){
@@ -174,7 +174,17 @@
 		$("#send_flag").val("0");
 		$("#messagewrite").submit();
 		
-	})
+	});
+	//处理全选按钮
+	var $span=$(".select_all",navTab.getCurrentPanel());
+	var $span_a=$span.closest("a");
+	$span.hide();
+	$span_a.mouseout(function(){
+		$(".select_all",$(this)).hide();
+	});
+	$span_a.mouseover(function(){
+		$(".select_all",$(this)).show();
+	});
 		
 	}) 
 	/**
@@ -202,7 +212,33 @@
 	
 	function selectToUser2(_this){
 		var $read_div=$(".read_div"); 
-		$read_div.append("<span name='"+$(_this).text()+"' id='"+$(this).attr("name")+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(_this).text()+";&nbsp;</span>");
+		if($("#reader_id").val()==""){ 
+			$("#reader_id").val($(_this).attr("name"));
+			$("#reader_name").val($(_this).text());
+		}else{ 
+			$("#reader_id").val($("#reader_id").val() + "," +$(_this).attr("name"));
+			$("#reader_name").val($("#reader_name").val() + "," + $(_this).text());
+		}
+		$read_div.append("<span name='"+$(_this).text()+"' id='"+$(_this).attr("name")+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+$(_this).text()+";&nbsp;</span>");
+	}
+	function selectToUser3(param1,param2){
+		var $read_div=$(".read_div"); 
+		$read_div.append("<span name='"+param1+"' id='"+param2+"' onclick='delRead(this)' onmouseout='mouseout_css(this)' onmouseover='hover_css(this)'>"+param1+";&nbsp;</span>");
+	}
+	function selectAll(_this){
+		var $li=$(_this).closest("li");
+		var $u=$(".user_list",$li);
+		var $read_div=$(".read_div");
+		$u.each(function(){ 
+		if($("#reader_id").val()==""){ 
+			$("#reader_id").val($(this).attr("name"));
+			$("#reader_name").val($(this).text());
+		}else{ 
+			$("#reader_id").val($("#reader_id").val() + "," +$(this).attr("name"));
+			$("#reader_name").val($("#reader_name").val() + "," + $(this).text());
+		}
+			selectToUser3($(this).text(),$(this).attr("name"));
+		}); 
 	}
 </script>
 
@@ -218,64 +254,9 @@
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="messageState"
 				value="${param.messageState }" />
-			<!-- left -->
-			<h2 class="contentTitle">
-				联系人
-			</h2>
+			<!-- left --> 
 			<div
-				style="float: left; display: block; margin: 10px; overflow: auto; width: 25%; height: 320px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
-				<ul class="tree ">
-					<li>
-						<a href="">联系人列表</a>
-						<ul>
-							<c:forEach var="menu" items="${areaList}">
-								<li>
-									<a href="#">${menu.name}</a>
-									<ul>
-										<c:forEach var="nodeElement" items="${user_dept_list}">
-											<c:if test="${menu.name==nodeElement[2]&&nodeElement[0]!=4}">
-												<li>
-													<a href="#">${nodeElement[1]}</a>
-													<ul>
-														<c:forEach var="u" items="${user_list}">
-															<c:if test="${u.dept_id==nodeElement[0]}">
-																<li >
-																	<a href="#" name="${u.id}" onclick="selectToUser2(this)">${u.name }</a>
-																</li>
-															</c:if>
-														</c:forEach>
-													</ul>
-												</li>
-											</c:if>  
-										</c:forEach> 
-									</ul>
-									</li>
-							</c:forEach>
-								<li>
-									<a href="#">合作单位</a>
-									<ul>
-										<c:forEach var="nodeElement" items="${hzdwListx}">
-												<li>
-													<a href="#">${nodeElement[0]}${nodeElement[1]}</a>
-													<ul>
-														<c:forEach var="u" items="${hzdw_user_list}">
-													<c:if test="${u[0]==nodeElement[0]}">
-																<li >
-																	<a href="#" name="${u[2]}" onclick="selectToUser2(this)">${u[3]}</a>
-																</li>
-													</c:if>			
-														</c:forEach>
-													</ul>
-												</li>
-										</c:forEach> 
-									</ul>
-									</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			<div
-				style="width: 430px; float: left; padding: 5px !important; display: inline; overflow-x: hidden; overflow-y: auto;"
+				style="width: 430px;height:333px;; float: left; padding: 5px !important; display: inline; overflow-x: hidden; overflow-y: auto;"
 				layoutH="50">
 				<table width="400" class="read" border="0" cellspacing="0"
 					cellpadding="0" style="border-collapse: collapse;"
@@ -353,69 +334,58 @@
 								style='width: 98%; height: 120px'>${content }</textarea>
 						</td>
 					</tr>
-				</table>
-				<div align="right">
-					<input type="button" class="button-td"
-						style="width: 20px; height: 20px;"
-						onclick="javascript:selectToUser();" value="∧
-				" />
-				</div>
+				</table> 
 			</div>
-			<!-- right -->
+			<!-- right --><h2 class="contentTitle">
+				联系人
+			</h2>
 			<div
-				style="width: 200px; float: left; text-align: right; padding: 5px;">
-				<select name="area" id="area" style="width: 80px;">
-					<c:forEach var="area" items="${areaList}">
-						<c:choose>
-							<c:when test="${user.area_name == area.name}">
-								<option selected value="${area.name}">
-									${area.name}
-								</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${area.name}">
-									${area.name}
-								</option>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</select>
-
-				<select name="dept" id="dept" style="width: 115px;">
-					<c:forEach var="dept" items="${user_dept_list}">
-						<c:choose>
-							<c:when test="${user_dept_id == dept[0]}">
-								<option selected value="${dept[0]}">
-									${dept[1]}
-								</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${dept[0]}">
-									${dept[1]}
-								</option>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</select>
-
-				<select id="hzdw" name="hzdw"
-					style="width: 200px; position: relative; left: 0px;"
-					class='cascadeMenu'>
-					<c:forEach var="hzdw" items="${hzdwList}">
-						<option value="${hzdw.id}">
-							${hzdw.mc}
-						</option>
-					</c:forEach>
-				</select>
-				<select id="user_list" name="user_list" multiple="1"
-					type="select-multiple" style="width: 198px; height: 240px;"
-					ondblclick="javascript:selectToUser();">
-					<c:forEach var="user" items="${user_list}">
-						<option value="${user.id }">
-							${user.name }
-						</option>
-					</c:forEach>
-				</select>
+				style="float: left; display: block; margin: 10px; overflow: auto; width: 25%; height: 320px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
+						<a href="">联系人列表</a>
+						<ul class="tree collapse">
+							<c:forEach var="menu" items="${areaList}">
+								<li>
+									<a href="#">${menu.name}</a>
+									<ul>
+										<c:forEach var="nodeElement" items="${user_dept_list}">
+											<c:if test="${menu.name==nodeElement[2]&&nodeElement[0]!=4}">
+												<li>
+													<a href="#">${nodeElement[1]} &nbsp;&nbsp;&nbsp;<span  onclick="selectAll(this)" class="select_all">全选</span> </a>
+													<ul>
+														<c:forEach var="u" items="${user_list}">
+															<c:if test="${u.dept_id==nodeElement[0]}">
+																<li >
+																	<a href="#" name="${u.id}" onclick="selectToUser2(this)" class="user_list">${u.name }</a>
+																</li>
+															</c:if>
+														</c:forEach>
+													</ul>
+												</li>
+											</c:if>  
+										</c:forEach> 
+									</ul>
+									</li>
+							</c:forEach>
+								<li>
+									<a href="#">合作单位</a>
+									<ul>
+										<c:forEach var="nodeElement" items="${hzdwListx}">
+												<li>
+													<a href="#">${nodeElement[1]}&nbsp;&nbsp;&nbsp;<span   onclick="selectAll(this)" class="select_all">全选</span> </a>
+													<ul>
+														<c:forEach var="u" items="${hzdw_user_list}">
+													<c:if test="${u[0]==nodeElement[0]}">
+																<li >
+																	<a href="#" name="${u[2]}" onclick="selectToUser2(this)" class="user_list">${u[3]}</a>
+																</li>
+													</c:if>			
+														</c:forEach>
+													</ul>
+												</li>
+										</c:forEach> 
+									</ul>
+									</li>
+						</ul> 
 			</div>
 			<div class="formBar">
 				<div class="button" style="float: left;">
