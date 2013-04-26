@@ -282,7 +282,7 @@ public class Message {
 			// 查询用户所在部门信息
 			StringBuffer sql = new StringBuffer();
 
-			sql.append("select t1.id,t1.name ");
+			sql.append("select t1.id,t1.name,t1.area_name ");
 			sql.append("from Ta01_dept t1 ");
 			sql.append("where t1.area_name=(select area_name from Ta01_dept where id=");
 			sql.append(user_dept_id+") and t1.showflag is null ");
@@ -993,5 +993,92 @@ public class Message {
 		}
 		out.print(json);
 
+	}
+	
+	/**
+	 * 短消息发送中的初始化人员、地区、部门
+	 * 
+	 * @throws UnsupportedEncodingException
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/MessageWrite2.do")
+	public ModelAndView wirtemessage2(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		QueryBuilder queryBuilder = null;
+		ModelMap modelMap = new ModelMap();
+		String type = StringFormatUtil.format(request.getParameter("type"), "");
+		String url = null;
+		try {
+			Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
+			// user_dept_id 用户所在部门ID
+			Long user_dept_id = user.getDept_id();
+			modelMap.put("user_dept_id", user_dept_id);
+
+			// 查询用户所在部门信息
+			StringBuffer sql = new StringBuffer();
+
+			sql.append("select t1.id,t1.name,t1.area_name ");
+			sql.append("from Ta01_dept t1 ");
+			sql.append("where t1.area_name=(select area_name from Ta01_dept where id=");
+			sql.append(user_dept_id+") and t1.showflag is null ");
+			List<?> user_dept_list = queryService.searchList(sql.toString());
+			modelMap.put("user_dept_list", user_dept_list);
+
+			// 查询地区
+			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
+			queryBuilder.like("type", "[3]", MatchMode.ANYWHERE);
+			List<?> areaList = queryService.searchList(queryBuilder);
+			modelMap.put("areaList", areaList);
+
+			// 查询部门下所有的人
+			queryBuilder = new HibernateQueryBuilder(Ta03_user.class);
+			queryBuilder.addOrderBy(Order.asc("login_id"));
+			List<?> user_list = queryService.searchList(queryBuilder);
+			modelMap.put("user_list", user_list);
+			
+			//查询合作单位
+			sql.delete(0, sql.length());
+			sql.append("select distinct(a.id),a.mc "); 
+			sql.append(" from Tf01_wxdw a,Ta03_user b,Tf04_wxdw_user c ");
+			sql.append(" where a.id=c.wxdw_id and b.id=c.user_id and b.dept_id=4 "); 
+			sql.append(" order by a.mc ");
+			List hzdwListx=queryService.searchList(sql.toString());
+			modelMap.put("hzdwListx", hzdwListx);
+			
+			//查询合作单位人员
+			sql.delete(0, sql.length());
+			sql.append("select distinct(a.id),a.mc,b.id,b.name"); 
+			sql.append(" from Tf01_wxdw a,Ta03_user b,Tf04_wxdw_user c ");
+			sql.append(" where a.id=c.wxdw_id and b.id=c.user_id and b.dept_id=4 "); 
+			sql.append(" order by a.mc,b.name ");
+			List hzdw_user_list=queryService.searchList(sql.toString());
+			modelMap.put("hzdw_user_list", hzdw_user_list);
+		} catch (Exception e) {
+			return exceptionService.exceptionControl(this.getClass().getName(), "短消息发送中的初始化人员、地区、部门  －错误", e);
+		}
+		if ("message".equals(type) || "".equals(type)) {
+			url = "/WEB-INF/jsp/message/messagewrite2.jsp";
+		}
+		if ("phone".equals(type)) {
+			String phonenum = "";
+			String onlinename = "";
+			if (request.getParameter("name")!=null){
+				onlinename = StringFormatUtil.format(java.net.URLDecoder.decode(request.getParameter("name"),"UTF-8"), "");
+				phonenum = StringFormatUtil.format(request.getParameter("phonenum"), "");
+				
+			}
+			// phonenum = phonenum.replaceAll(";", ",");
+			if (!"".equals(onlinename) && !"".equals(phonenum)) {
+				String tmp = onlinename;
+				for(int i = 1 ; i < phonenum.split(",").length ; i++){
+					onlinename += "；"+tmp;
+				}
+				modelMap.put("reader_name1", tmp);
+				modelMap.put("reader_name", onlinename);
+				modelMap.put("reader_tel", phonenum);
+			}
+			url = "/WEB-INF/jsp/message/phonemessage.jsp";
+		}
+		return new ModelAndView(url, modelMap);
 	}
 }
