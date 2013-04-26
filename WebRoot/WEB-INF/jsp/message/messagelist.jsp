@@ -47,7 +47,7 @@
 			<ul class="toolBar">
 				<li class="line">line</li>
 				<li>
-					<a class="add"	href="MessageWrite.do?messageState=${param.messageState}" target="dialog" width="700" height="400" rel="messageWrite" title="撰写内部邮件"><span>新建</span></a>
+					<a class="add"	href="MessageWrite2.do?messageState=${param.messageState}" target="navTab"  rel="messageWrite" title="撰写内部邮件"><span>新建</span></a>
 				</li>
 				<li class="line">line</li>
 				<li>
