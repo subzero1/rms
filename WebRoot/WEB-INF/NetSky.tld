@@ -109,7 +109,10 @@
 			<name>extendPrefix</name>
 			<required>false</required>
 		</attribute>
-		
+		<attribute> 
+			<name>extProperties</name>
+			<required>false</required>
+		</attribute>
 		<attribute> 
 			<name>onBlur</name>
 			<required>false</required>

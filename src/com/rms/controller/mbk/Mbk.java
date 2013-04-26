@@ -666,8 +666,11 @@ public class Mbk {
 		List  twgxsxList=queryService.searchList("select a.name from Tc01_property a where a.type='共享属性' and a.flag='[1]'");
 		//规划区域
 		List ghqyList=queryService.searchList("select a.name from Tc01_property a where a.type='规划区域'");
+		//规划塔型
+		List ghtxList=queryService.searchList("select a.name from Tc01_property a where a.type='规划塔型'");
 		
 		modelMap.put("reasonList", reasonList);
+		modelMap.put("ghtxList", ghtxList);
 		modelMap.put("jfgxsxList", jfgxsxList);
 		modelMap.put("twgxsxList", twgxsxList);
 		modelMap.put("ghqyList", ghqyList);
