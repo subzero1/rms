@@ -70,8 +70,7 @@
 	function del(obj){
 	 document.messagewrite.reader_id.value='';
 	 document.messagewrite.reader_name.value='';
-	 $(".read_div").html("");
-	 jilian('user_list','Ta03_user.dept_id',$("#dept").val(),'id','name','name');
+	 $(".read_div").html(""); 
 	}
 	function selectToUser(){
 		var selectO = $("#user_list option:selected");
@@ -157,9 +156,17 @@
 	});
 	$span_a.mouseover(function(){
 		$(".select_all",$(this)).show();
-	});
-		
-	}) 
+	}); 
+	
+	//处理宽度
+	var $pageDiv=$(".page div",navTab.getCurrentPanel());
+	var $leftDiv=$("#left_div",navTab.getCurrentPanel());
+	var $rightDiv=$("#right_div",navTab.getCurrentPanel());
+	var pageDivWidth=$pageDiv.width();
+	var leftDivWidth=$leftDiv.width();
+	var rightDivWidth=$rightDiv.width();
+	$leftDiv.width(pageDivWidth-rightDivWidth-32); 
+	}) ;
  
 	
 	function selectToUser2(_this){
@@ -208,9 +215,9 @@
 				value="${param.messageState }" />
 			<!-- left --> 
 			<div
-				style="width: 480px;height:333px;; float: left; padding: 5px !important; display: inline; overflow-x: hidden; overflow-y: auto;"
-				layoutH="50">
-				<table width="460" class="read" border="0" cellspacing="0"
+				style="height:444px; float: left; padding: 5px ;"
+				 id="left_div">
+				<table width="95%" height="90%" class="read" border="0" cellspacing="0"
 					cellpadding="0" style="border-collapse: collapse;"
 					id="send_message">
 					<tr>
@@ -288,11 +295,9 @@
 					</tr>
 				</table> 
 			</div>
-			<!-- right --><h2 class="contentTitle">
-				联系人
-			</h2>
+			<!-- right --> 
 			<div
-				style="float: left; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
+				style="float: right; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;" id="right_div">
 						<a href="">联系人列表</a>
 						<ul class="tree collapse">
 							<c:forEach var="menu" items="${areaList}">
