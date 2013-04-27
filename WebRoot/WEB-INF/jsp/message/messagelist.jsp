@@ -59,13 +59,12 @@
 					<a class="delete" href="emptyRecycleBin.do" target="ajaxTodo" title="确认清空吗？"><span>清空</span></a>
 				</li>
 				</c:if>
-				<li class="line">line</li>
-				<li>
-					<a class="edit"	href="MessageRead.do?message_id={form_param}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="500" height="300"><span>查看</span></a>
-				</li>
+				<li class="line">line</li> 
+				<!-- 
 				<li class="line">line</li>
 				<li><a class="helponline"	href="javascript:enterHelp('xtxx')"><span>在线帮助</span></a></li>
 				<li class="line">line</li>
+				 -->
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="128">
@@ -106,7 +105,7 @@
 					<td>${message_list["ta03.name"]}</td>
 					<td>${message_list["ta03.login_id"]}</td>
 					<td>${message_list["ta03.mobile_tel"]}</td>
-					<td title="${message_list["te04.title"]}">${message_list["te04.title"]}</td>
+					<td title="${message_list["te04.title"]}"><a class="edit"	href="MessageRead.do?message_id=${message_list['te04.id']}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="500" height="300">${message_list["te04.title"]}</a></td>
 					<td><c:if test="${message_list['te04.fujian_flag']>0}"><img src='Images/message/icon09.gif' title="有${message_list['te04.fujian_flag']}个附件"></img></c:if></td>
 					<td><fmt:formatDate value="${message_list['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
 				</tr>

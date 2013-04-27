@@ -220,7 +220,7 @@
 				<table width="95%" height="90%" class="read" border="0" cellspacing="0"
 					cellpadding="0" style="border-collapse: collapse;"
 					id="send_message">
-					<tr>
+					<tr >
 						<th width="80px">
 							发件人：
 						</th>
@@ -264,7 +264,7 @@
 								style="cursor: pointer" title="添加附件" />
 						</th>
 						<td>
-							<input type="file" name="the_file1" size="24" />
+							<input type="file" name="the_file1" size="35" />
 						</td>
 					</tr>
 					<c:forEach var="fj_list" items="${fj_list}">
@@ -290,7 +290,7 @@
 						</th>
 						<td>
 							<textarea name="content" id="content"
-								style='width: 98%; height: 120px'>${content }</textarea>
+								style='width: 98%; height: 186px'>${content }</textarea>
 						</td>
 					</tr>
 				</table> 
@@ -298,7 +298,7 @@
 			<!-- right --> 
 			<div
 				style="float: right; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;" id="right_div">
-						<a href="">联系人列表</a>
+						 联系人列表 
 						<ul class="tree collapse">
 							<c:forEach var="menu" items="${areaList}">
 								<li>
