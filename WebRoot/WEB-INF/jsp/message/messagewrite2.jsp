@@ -196,16 +196,10 @@
 		var $u=$(".user_list",$li);
 		var $read_div=$(".read_div");
 		$u.each(function(){ 
-		if($("#reader_id").val()==""){ 
-			$("#reader_id").val($(this).attr("name"));
-			$("#reader_name").val($(this).text());
-		}else{ 
-			$("#reader_id").val($("#reader_id").val() + "," +$(this).attr("name"));
-			$("#reader_name").val($("#reader_name").val() + "," + $(this).text());
-		}
-			selectToUser3($(this).text(),$(this).attr("name"));
+			checkReaderRepeat(this); 
 		}); 
 	}
+	//检测收件人的重复性
 	function checkReaderRepeat(_this){
 		var reader_ids=$("#reader_id").val();
 		var reader_ids_array=reader_ids.split(",");
