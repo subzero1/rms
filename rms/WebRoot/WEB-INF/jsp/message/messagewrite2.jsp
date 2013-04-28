@@ -61,7 +61,7 @@
 		var addtr = document.getElementById(tableId).insertRow(4);
 		var rownum = document.getElementById(tableId).rows.length;
 		addtr.insertCell(0).innerHTML = ""; 
-		var Text = "<input type=\"file\" name=\"the_file1" + rownum + "\" size=\"24\"/>";
+		var Text = "<input type=\"file\" name=\"the_file1" + rownum + "\" size=\"35\"/>";
 		addtr.insertCell(1).innerHTML = Text;
 	}function delrow(obj){
 		var num = obj.parentNode.parentNode.rowIndex;
