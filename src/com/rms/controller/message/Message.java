@@ -257,7 +257,7 @@ public class Message {
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "短消息－处理转发和回复", e);
 		}
-		return new ModelAndView("/MessageWrite.do", modelMap);
+		return new ModelAndView("/MessageWrite2.do", modelMap);
 	}
 
 	/**

@@ -20,8 +20,9 @@
 		});
 	}function setrepeat(another){
 		var url='RepeatMessage.do?message_id=${message_id }&goanother='+another;
-		$.pdialog.open(url,'messageWrite', '内部邮件',{mask:true, width:670, height:350});
+		navTab.openTab('messageWrite',url, {title:'内部邮件'});
 		$.pdialog.close("messageRead");
+		
 	}
 </script>
 

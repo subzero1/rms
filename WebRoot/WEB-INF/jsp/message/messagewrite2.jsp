@@ -166,6 +166,13 @@
 	var leftDivWidth=$leftDiv.width();
 	var rightDivWidth=$rightDiv.width();
 	$leftDiv.width(pageDivWidth-rightDivWidth-32); 
+	
+	//设置收信人
+	var reader_id=$("#reader_id").val();
+	var reader_name=$("#reader_name").val();
+	if(reader_id!=""&&reader_name!=""){
+		selectToUser3(reader_name,reader_id);
+	}
 	}) ;
  
 	
@@ -298,7 +305,7 @@
 			<!-- right --> 
 			<div
 				style="float: right; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;" id="right_div">
-						 联系人列表 
+						<div style="width: 122px;"><img src="Images/email2.jpg" width="24" height="24" style="margin-bottom:-7px;"><span style="font-size:12px;position: relative;font-style:normal;">联系人列表</span></div>
 						<ul class="tree collapse">
 							<c:forEach var="menu" items="${areaList}">
 								<li>
