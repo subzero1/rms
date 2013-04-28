@@ -170,8 +170,8 @@
 	//处理层高度
 	var $formBar=$(".formBar div",navTab.getCurrentPanel());
 	var $pageContentDiv=$(".pageContent div",navTab.getCurrentPanel()); 
-	$leftDiv.height(400);
-	$rightDiv.height(400); 
+	$leftDiv.height(navTab._panelBox.height()-$formBar.height()-63);
+	$rightDiv.height(navTab._panelBox.height()-$formBar.height()-63); 
 	
 	//设置收信人
 	var reader_id=$("#reader_id").val();
