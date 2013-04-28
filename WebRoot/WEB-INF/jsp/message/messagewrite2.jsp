@@ -206,6 +206,20 @@
 			selectToUser3($(this).text(),$(this).attr("name"));
 		}); 
 	}
+	function checkReaderRepeat(_this){
+		var reader_ids=$("#reader_id").val();
+		var reader_ids_array=reader_ids.split(",");
+		var addFlag=true;
+		for(var i=0;i<reader_ids_array.length;i++){
+			if($(_this).attr("name")==reader_ids_array[i]){
+				addFlag=false;
+				break;
+			};
+		} 
+		if(addFlag)
+		selectToUser2(_this);
+		
+	}
 </script>
 
 
@@ -305,7 +319,7 @@
 			<!-- right --> 
 			<div
 				style="float: right; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;" id="right_div">
-						<div style="width: 122px;"><img src="Images/email2.jpg" width="24" height="24" style="margin-bottom:-7px;"><span style="font-size:12px;position: relative;font-style:normal;">联系人列表</span></div>
+						<div style="width: 122px;"><img src="Images/email.GIF" width="24" height="24" style="margin-bottom:-7px;"><span style="font-size:12px;font-style:normal;">联系人列表</span></div>
 						<ul class="tree collapse">
 							<c:forEach var="menu" items="${areaList}">
 								<li>
@@ -319,7 +333,7 @@
 														<c:forEach var="u" items="${user_list}">
 															<c:if test="${u.dept_id==nodeElement[0]}">
 																<li >
-																	<a href="#" name="${u.id}" onclick="selectToUser2(this)" class="user_list">${u.name }</a>
+																	<a href="#" name="${u.id}" onclick="checkReaderRepeat(this)" class="user_list">${u.name }</a>
 																</li>
 															</c:if>
 														</c:forEach>
@@ -340,7 +354,7 @@
 														<c:forEach var="u" items="${hzdw_user_list}">
 													<c:if test="${u[0]==nodeElement[0]}">
 																<li >
-																	<a href="#" name="${u[2]}" onclick="selectToUser2(this)" class="user_list">${u[3]}</a>
+																	<a href="#" name="${u[2]}" onclick="checkReaderRepeat(this)" class="user_list">${u[3]}</a>
 																</li>
 													</c:if>			
 														</c:forEach>
