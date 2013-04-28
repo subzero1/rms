@@ -167,6 +167,12 @@
 	var rightDivWidth=$rightDiv.width();
 	$leftDiv.width(pageDivWidth-rightDivWidth-32); 
 	
+	//处理层高度
+	var $formBar=$(".formBar div",navTab.getCurrentPanel());
+	var $pageContentDiv=$(".pageContent div",navTab.getCurrentPanel()); 
+	$leftDiv.height(400);
+	$rightDiv.height(400); 
+	
 	//设置收信人
 	var reader_id=$("#reader_id").val();
 	var reader_name=$("#reader_name").val();
@@ -230,7 +236,7 @@
 				value="${param.messageState }" />
 			<!-- left --> 
 			<div
-				style="height:444px; float: left; padding: 5px ;"
+				style=" float: left; padding: 5px ;overflow: auto;"
 				 id="left_div">
 				<table width="95%" height="90%" class="read" border="0" cellspacing="0"
 					cellpadding="0" style="border-collapse: collapse;"
@@ -312,7 +318,7 @@
 			</div>
 			<!-- right --> 
 			<div
-				style="float: right; display: block; margin: 10px; overflow: auto; width: 30%; height: 420px; border: solid 1px #CCC; line-height: 21px; background: #FFF;" id="right_div">
+				style="float: right; display: block; margin: 10px; overflow: auto; width: 30%;  border: solid 1px #CCC; line-height: 21px; background: #FFF;" id="right_div">
 						<div style="width: 122px;"><img src="Images/email.GIF" width="24" height="24" style="margin-bottom:-7px;"><span style="font-size:12px;font-style:normal;">联系人列表</span></div>
 						<ul class="tree collapse">
 							<c:forEach var="menu" items="${areaList}">
