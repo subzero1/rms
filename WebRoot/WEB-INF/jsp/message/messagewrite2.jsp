@@ -315,7 +315,7 @@
 						</th>
 						<td>
 							<textarea name="content" id="content"
-								style='width: 98%; height: 186px'>${content }</textarea>
+								style='width: 98%; height: 193px;'>${content }</textarea>
 						</td>
 					</tr>
 				</table> 
