@@ -92,7 +92,9 @@
  		</script>
 	</head>
 	<body>
+	
 		<div class="page">
+		<div class="pageContent">
 			<!-- 表单头 -->
 			<div class="pageHeader">
 				<div class="searchBar">
@@ -124,6 +126,7 @@
 					</c:if>
 				</ul>
 			</div>
+			<div class="pageFormContent" layouth="58">
 			<form method="post" action="save.do" id="safeForm"
 				class="pageForm required-validate" onsubmit="return checkForm(this)">
 				<input type="hidden" name="tableInfomation"
@@ -213,6 +216,8 @@
 					</tbody>
 				</table>
 			</form>
+			</div>
+		</div>
 		</div>
 	</body>
 </html>
