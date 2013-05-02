@@ -1,6 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<style>
+.mail_read td{border:solid 0px #eee;height:22px;line-heiht:22px;text-align: left;}
+.mail_read th{border:solid 0px #eee;text-align:center; color:#888;height:22px;line-heiht:22px;text-align: left;padding-left: 7px;}
+</style>
 <script>
 	var arrayLength=0;
 	function setdept(obj){
@@ -238,7 +242,7 @@
 			<div
 				style=" float: left; padding: 5px ;overflow: auto;"
 				 id="left_div">
-				<table width="95%" height="90%" class="read" border="0" cellspacing="0"
+				<table width="95%" height="96%" class="mail_read" border="0" cellspacing="0"
 					cellpadding="0" style="border-collapse: collapse;"
 					id="send_message">
 					<tr >
@@ -269,7 +273,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>
+						<th align="left">
 							主&nbsp;&nbsp;题：
 						</th>
 						<td>
