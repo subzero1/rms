@@ -28,12 +28,12 @@
 
 
 
-<div class="page">
-	<div class="pageContent">
+<div class="page" style="overflow-x: hidden">
+	<div class="pageContent" >
 		<form name="messageRead" id="messageRead" action="" method="post">
 		<input type="hidden" id="messageState" name="messageState" value="${messageState }"/>
 		<input type="hidden" id="message_id" name="message_id" value="${message_id }"/>
-			<table width="480" id="read" layoutH="38" class="read" style="border-collapse:collapse;" border="0" cellspacing="0" cellpadding="0">
+			<table width="550" id="read" layoutH="38" class="read" style="border-collapse:collapse;" border="0" cellspacing="0" cellpadding="0">
 				<c:choose>
 					<c:when test="${messageState == 3}">
 						<tr>
@@ -79,15 +79,16 @@
 						<tr >
 							<th rowsplan="${rowsnum}">附&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
 							
-							<td colspan="3" style="word-break:break-all;width: 410px;">
+							<td colspan="3">
 							<c:forEach var="fj_list" items="${fj_list}">
-								<a href="download.do?slave_id=${fj_list.id}">[<font color="red">${fj_list["file_name"] }</font></a>  
-								<a href="download.do?slave_id=${fj_list.id}"><b>下载</b>]</a>&nbsp;
+								<a href="show_slave.do?slave_id=${fj_list.id}" target="dialog" width="1000" height="600" title="在线预览">[<font color="red">${fj_list["file_name"] }</font></a>  
+								<a href="download.do?slave_id=${fj_list.id}"><b>下载</b>]</a>&nbsp;<br/>
 							</c:forEach>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4" style="vertical-align:top;height:120px;">
+						<th>内&nbsp;&nbsp;&nbsp;&nbsp;容：</th>
+							<td colspan="3" style="vertical-align:top;height:120px;">
 								<span style="line-height:18px;">${fn:replace(singlemessage["te04.content"], x_n, '<br />')}</span>
 							</td>
 						</tr>
