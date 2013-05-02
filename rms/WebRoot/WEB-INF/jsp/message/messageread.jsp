@@ -76,14 +76,15 @@
 						</tr>
 					</c:otherwise>
 				</c:choose>
-						<tr>
+						<tr >
 							<th rowsplan="${rowsnum}">附&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
+							
+							<td colspan="3" style="word-break:break-all;width: 410px;">
 							<c:forEach var="fj_list" items="${fj_list}">
-							<td colspan="3">
 								<a href="download.do?slave_id=${fj_list.id}">[<font color="red">${fj_list["file_name"] }</font></a>  
 								<a href="download.do?slave_id=${fj_list.id}"><b>下载</b>]</a>&nbsp;
-							</td>
 							</c:forEach>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="4" style="vertical-align:top;height:120px;">
