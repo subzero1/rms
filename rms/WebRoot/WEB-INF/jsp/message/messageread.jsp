@@ -79,7 +79,7 @@
 						<tr >
 							<th rowsplan="${rowsnum}">附&nbsp;&nbsp;&nbsp;&nbsp;件：</th>
 							
-							<td colspan="3">
+							<td colspan="3" style="line-height:150%">
 							<c:forEach var="fj_list" items="${fj_list}">
 								<a href="show_slave.do?slave_id=${fj_list.id}" target="dialog" width="1000" height="600" title="在线预览">[<font color="red">${fj_list["file_name"] }</font></a>  
 								<a href="download.do?slave_id=${fj_list.id}"><b>下载</b>]</a>&nbsp;<br/>
@@ -88,7 +88,7 @@
 						</tr>
 						<tr>
 						<th>内&nbsp;&nbsp;&nbsp;&nbsp;容：</th>
-							<td colspan="3" style="vertical-align:top;height:120px;">
+							<td colspan="3" style="vertical-align:top;height:120px;line-height:150%">
 								<span style="line-height:18px;">${fn:replace(singlemessage["te04.content"], x_n, '<br />')}</span>
 							</td>
 						</tr>
