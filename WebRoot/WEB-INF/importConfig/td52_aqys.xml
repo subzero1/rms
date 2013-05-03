@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Td52_aqys</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow> 
+			<column>
+				<columnName>IPA</columnName>
+				<index />
+				<name>ip地址</name>
+				<colName>ip地址</colName>
+			</column>
+			<column>
+				<columnName>PORT_NUM</columnName>
+				<index />
+				<name>端口号</name>
+				<colName>端口号</colName>
+			</column>
+			<column>
+				<columnName>LOGIN_PROTOCOL</columnName>
+				<index />
+				<name>登录协议</name>
+				<colName>登录协议</colName>
+			</column>
+			<column>
+				<columnName>USERNAME</columnName>
+				<index />
+				<name>用户名</name>
+				<colName>用户名</colName>
+			</column>
+			<column>
+				<columnName>USERPWD</columnName>
+				<index />
+				<name>用户密码</name>
+				<colName>用户密码</colName>
+			</column>
+			<column>
+				<columnName>SUP_USERNAME</columnName>
+				<index />
+				<name>超级用户账号</name>
+				<colName>超级用户账号</colName>
+			</column>
+			<column>
+				<columnName>SUP_USERPWD</columnName>
+				<index />
+				<name>超级用户密码</name>
+				<colName>超级用户密码</colName>
+			</column>
+			<column>
+				<columnName>DEVICE_TYPE</columnName>
+				<index />
+				<name>设备类型</name>
+				<colName>设备类型</colName>
+			</column> 
+		</columns>
+	</tableInfo>
+</excel>
