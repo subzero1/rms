@@ -43,6 +43,8 @@
 					<th style="width: 250px;">合作单位</th>
 					<th style="width: 60px;">派单数</th>
 					<th style="width: 60px;">接单数</th>
+					<th style="width: 60px;">实际选择数</th>
+					<th style="width: 60px;">系统选择数</th>
 					<th style="width: 60px;">超期数</th>
 					<th style="width: 60px;">超期率</th>
 					<th style="width: 60px;">决算数</th>
@@ -62,7 +64,8 @@
 						 
 						<td><a href="aux/xmmxList.do?mc=${obj.mc }&op=8&dwlb=${param.dwlb}&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}"
 						 target="navTab" rel="xmmxList" title="${obj.mc }[${obj.jds}]">${obj.jds }</a></td>
-						 
+						<td>${obj.sjxzs }</td> 
+						<td>${obj.pds-obj.sjxzs }</td> 
 						<td><a href="aux/xmmxList.do?mc=${obj.mc}&op=5&dwlb=${param.dwlb}&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmxxList" title="${obj.mc }[${obj.cqs }]">${obj.cqs }</a></td>
 						<td>${obj.cql }</td>
 						
