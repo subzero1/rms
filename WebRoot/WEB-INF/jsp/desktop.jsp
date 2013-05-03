@@ -170,7 +170,7 @@ function openOnLineList(){
 									<c:if test="${message_list[i].dif>=0}">[<fmt:formatDate value="${message_list[i].send_date }" pattern="MM/dd"/>]</c:if>
 									<c:if test="${message_list[i].dif<0}">[<fmt:formatDate value="${message_list[i].send_date }" pattern="MM/dd"/>]</c:if>
 							</td>
-							<td><a 	href="MessageRead.do?message_id=${message_list[i].id}&messageState=1" target="dialog" rel="messageRead" title="查看内部邮件" width="500" height="300">${message_list[i].title}</a></td>
+							<td><a 	href="MessageRead.do?message_id=${message_list[i].id}&messageState=1" target="dialog" rel="messageRead" title="查看内部邮件" width="600" height="370">${message_list[i].title}</a></td>
 						</tr>	
 					</c:if>
 					<c:if test="${message_list[i] == null}">
