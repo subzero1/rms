@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.flow.utils.convertUtil;
-import com.netsky.base.utils.XMLTableWrite;
+import com.rms.base.util.XMLTableWrite;
 
 @Controller
 public class XMLTableController {
