@@ -31,4 +31,9 @@
   	<fileName>/importConfig/zytlr.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>aqys</name>
+  	<fileName>/importConfig/td52_aqys.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
