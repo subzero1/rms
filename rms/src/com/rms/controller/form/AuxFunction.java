@@ -1443,6 +1443,18 @@ public class AuxFunction {
 		if (op == 10) {// 以人为单位的决算
 			hql.append(" and jssj is not null ");
 		}
+		if (op==11) {//实际选择单位的项目
+			hql.delete(0, hql.length());
+			hql.append("select a from Td01_xmxx a,Td08_pgspd b where 1=1 ");
+			hql.append("and a.id=b.project_id and a.sgdw=b.sjxzdw ");
+			hql.append(" and ");
+			hql.append(dwlb);
+			hql.append("dw='");
+			hql.append(mc);
+			hql.append("' "); 
+			hql.append(sql_tmp);
+			orderField="a.id";
+		}
 
 		if (!jssj.equals("")) {
 			hql.append("and x.jssj=to_date('");
