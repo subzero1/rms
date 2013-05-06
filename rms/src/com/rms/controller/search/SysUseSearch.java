@@ -220,15 +220,16 @@ public class SysUseSearch {
 				//实际选择数
 				sql.delete(0, sql.length());
 				sql.append("select count(a.id) as sjxzs ");
-				sql.append("from Td08_pgspd a,Td01_xmxx b ");
-				sql.append(" where a.sjxzdw='");
+				sql.append("from Td08_pgspd a,Td01_xmxx b where 1=1 ");
+				sql.append("and a.sjxzdw=b.sgdw ");
+				sql.append("and b.id=a.project_id ");
+				sql.append(" and a.sjxzdw='");
 				sql.append(mc);
 				sql.append("' ");
 				sql.append(" and a.splb='");
 				sql.append("项目派工");
 				sql.append("' ");
 				sql.append(" and a.sp_flag=1 ");
-				sql.append(" and b.id=a.project_id ");
 				Long sjxzs=0L;
 				ro2 =queryService.search(sql.toString()+sql_tmp);
 				while (ro2.next()) {
