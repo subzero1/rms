@@ -1451,7 +1451,11 @@ public class AuxFunction {
 			hql.append(dwlb);
 			hql.append("dw='");
 			hql.append(mc);
-			hql.append("' "); 
+			hql.append("' ");
+			hql.append(" and b.splb='");
+			hql.append("项目派工");
+			hql.append("' ");
+			hql.append(" and b.sp_flag=1 ");
 			hql.append(sql_tmp);
 			orderField="a.id";
 		}
