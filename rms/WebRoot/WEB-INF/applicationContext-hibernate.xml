@@ -232,6 +232,7 @@
 				<value>com/rms/dataObjects/wxdw/Tf27_wxdwzhpf.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf30_wxry.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf31_zytl.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf32_hzdw_status.hbm.xml</value>
 				
 				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
 				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
