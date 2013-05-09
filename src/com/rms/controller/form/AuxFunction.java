@@ -3,6 +3,9 @@ package com.rms.controller.form;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,9 +33,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseDao.JdbcSupport;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.utils.convertUtil;
+import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.dataObjects.Ta01_dept;
@@ -57,6 +62,12 @@ public class AuxFunction {
 
 	@Autowired
 	private SaveService saveService;
+	
+	@Autowired
+	private ExceptionService exceptionService;
+	
+	@Autowired
+	private JdbcSupport jdbcSupport;
 
 	/**
 	 * 日志处理类
@@ -2248,5 +2259,41 @@ public class AuxFunction {
 			result = (Tf01_wxdw) objectsList.get(0)[0];
 		}
 		return allList;
+	}
+	
+	@RequestMapping("/aux/wxdwReceiveAndTimeout2.do")
+	public ModelAndView wxdwReceiveAndTimeout2(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws SQLException {
+		String view="/WEB-INF/jsp/search/wxdwReceiveAndTimeout2.jsp";
+		ModelMap modelMap=new ModelMap();
+		Ta03_user user = null;
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"), "");
+		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"), "");
+		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"), "");
+		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"), "");
+		String dwlb = convertUtil.toString(request.getParameter("dwlb"), "sg");
+		String ywxm = convertUtil.toString(request.getParameter("ywxm"), "");
+		
+		Connection con = jdbcSupport.getConnection();
+		con.setAutoCommit(false);
+		String procedure = "{call hzdw_case(?,?,?,?,?,?)}";
+		CallableStatement cstmt = con.prepareCall(procedure);
+		cstmt.setString(1, lxsj1);
+		cstmt.setString(2, lxsj2);
+		cstmt.setString(3, pdsj1);
+		cstmt.setString(4, pdsj2);
+		cstmt.setString(5, dwlb);
+		cstmt.setString(6, ywxm);
+		cstmt.executeUpdate(); 
+		cstmt.close();
+		con.commit();
+		con.close();
+		List jdcqList=queryService.searchList("select a from Tf32_hzdw_status a order by a.mc ");
+		modelMap.put("jdcqList", jdcqList);
+		return new ModelAndView(view,modelMap);
 	}
 }

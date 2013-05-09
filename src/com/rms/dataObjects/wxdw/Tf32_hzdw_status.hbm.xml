@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.wxdw.Tf32_hzdw_status"  table="Tf32_hzdw_status">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tf32_num</param>
+            </generator>
+        </id>
+
+  <property
+  name="mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="hzdw"
+  />
+        
+
+   <property
+  name="pds"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="pds"
+  />
+
+  <property
+  name="jds"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jds"
+  /> 
+
+  <property
+  name="sjxzs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sjxzs"
+  />
+
+  <property
+  name="xtxzs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="xtxzs"
+  />
+
+  <property
+  name="cqs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="cqs"
+  />
+
+  <property
+  name="cql"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="cql"
+  />
+
+  <property
+  name="jss"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jss"
+  />
+
+  <property
+  name="jsl"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="jsl"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
