@@ -13,7 +13,7 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="search/wxdwReceiveAndTimeout.do" method="post"onsubmit="return navTabSearch(this);">
+		<form action="aux/wxdwReceiveAndTimeout2.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
@@ -28,7 +28,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/wxdwReceiveAndTimeout.do',navTabSearch);">检 索</button></div> <div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'aux/wxdwReceiveAndTimeout2.do',navTabSearch);">检 索</button></div> <div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
 					</ul>
 				</div>
 			</div>
