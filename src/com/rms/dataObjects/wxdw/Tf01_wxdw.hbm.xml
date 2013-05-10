@@ -143,6 +143,12 @@
 	insert="true"
 	column="short_mc"
 />
+<property name="dwlb"
+	type="java.lang.String"
+	update="true"
+	insert="true"
+	column="dwlb"
+/>
 
     </class>
 
