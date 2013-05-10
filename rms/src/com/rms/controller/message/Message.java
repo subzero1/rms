@@ -1038,21 +1038,25 @@ public class Message {
 			
 			//查询合作单位
 			sql.delete(0, sql.length());
-			sql.append("select distinct(a.id),a.mc "); 
+			sql.append("select distinct(a.id),a.mc,a.dwlb"); 
 			sql.append(" from Tf01_wxdw a,Ta03_user b,Tf04_wxdw_user c ");
 			sql.append(" where a.id=c.wxdw_id and b.id=c.user_id and b.dept_id=4 "); 
-			sql.append(" order by a.mc ");
+			sql.append(" order by a.dwlb,a.mc ");
 			List hzdwListx=queryService.searchList(sql.toString());
 			modelMap.put("hzdwListx", hzdwListx);
 			
 			//查询合作单位人员
 			sql.delete(0, sql.length());
-			sql.append("select distinct(a.id),a.mc,b.id,b.name"); 
+			sql.append("select distinct(a.id),a.mc,b.id,b.name,a.dwlb "); 
 			sql.append(" from Tf01_wxdw a,Ta03_user b,Tf04_wxdw_user c ");
 			sql.append(" where a.id=c.wxdw_id and b.id=c.user_id and b.dept_id=4 "); 
-			sql.append(" order by a.mc,b.name ");
+			sql.append(" order by a.dwlb,a.mc,b.name ");
 			List hzdw_user_list=queryService.searchList(sql.toString());
 			modelMap.put("hzdw_user_list", hzdw_user_list);
+			
+			//查询公司类别
+			List dwlbList=queryService.searchList("select distinct(a.dwlb) from Tf01_wxdw a order by a.dwlb ");
+			modelMap.put("dwlbList", dwlbList);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "短消息发送中的初始化人员、地区、部门  －错误", e);
 		}

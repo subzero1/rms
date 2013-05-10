@@ -301,5 +301,14 @@ public void setShort_mc(String short_mc) {
 	this.short_mc = short_mc;
 }
 
- 
+private String dwlb;
+
+public String getDwlb() {
+	return dwlb;
+}
+
+public void setDwlb(String dwlb) {
+	this.dwlb = dwlb;
+}
+
 }

@@ -348,6 +348,36 @@
 									</ul>
 									</li>
 							</c:forEach>
+							<li>
+									<a href="#">合作单位</a>
+									<ul>
+										<c:forEach var="dwlb" items="${dwlbList}">
+												<li>
+													<a href="#"><c:if test="${empty dwlb}">未分类</c:if><c:if test="${!empty dwlb}">${dwlb}</c:if>&nbsp;&nbsp;&nbsp;<span   onclick="selectAll(this)" class="select_all">全选</span> </a>
+													<ul>
+														<c:forEach var="hzdw" items="${hzdwListx}"> 
+																<c:if test="${hzdw[2]==dwlb}">
+																  <li >
+																	 <a href="#" >${hzdw[1]}</a>
+																	 <ul>
+																		<c:forEach var="u" items="${hzdw_user_list}">
+																	         <c:if test="${hzdw[0]==u[0]}">
+																	          <li >
+																				  <a href="#" name="${u[2]}" onclick="checkReaderRepeat(this)" class="user_list">${u[3]}</a>
+																		      </li>
+																		    </c:if>  
+																		</c:forEach>
+																	</ul> 
+																  </li> 
+																</c:if>		
+														</c:forEach>
+													</ul>
+												</li>
+										</c:forEach> 
+									</ul>
+							</li>
+							
+							<!--  
 								<li>
 									<a href="#">合作单位</a>
 									<ul>
@@ -367,6 +397,7 @@
 										</c:forEach> 
 									</ul>
 									</li>
+							-->
 						</ul> 
 			</div>
 			<div class="formBar">
