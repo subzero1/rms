@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -1056,7 +1059,18 @@ public class Message {
 			
 			//查询公司类别
 			List dwlbList=queryService.searchList("select distinct(a.dwlb) from Tf01_wxdw a order by a.dwlb ");
-			modelMap.put("dwlbList", dwlbList);
+			Set dwlbTreeSet=new TreeSet();
+			for (Object object : dwlbList) {
+				Object object2[] = null;
+				if (object!=null&&!object.toString().equals("")) {
+				 object2 = object.toString().split(",");
+				 for (Object object3 : object2) {
+					 dwlbTreeSet.add(object3);
+				}  
+				}
+			}
+			dwlbTreeSet.add("");  
+			modelMap.put("dwlbSet", dwlbTreeSet);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "短消息发送中的初始化人员、地区、部门  －错误", e);
 		}
