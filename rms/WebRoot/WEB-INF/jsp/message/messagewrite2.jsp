@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
 .mail_read td{border:solid 0px #eee;height:22px;line-heiht:22px;text-align: left;}
 .mail_read th{border:solid 0px #eee;text-align:center; color:#888;height:22px;line-heiht:22px;text-align: left;padding-left: 7px;}
@@ -351,12 +352,12 @@
 							<li>
 									<a href="#">合作单位</a>
 									<ul>
-										<c:forEach var="dwlb" items="${dwlbList}">
+										<c:forEach var="dwlb" items="${dwlbSet}">
 												<li>
 													<a href="#"><c:if test="${empty dwlb}">未分类</c:if><c:if test="${!empty dwlb}">${dwlb}</c:if>&nbsp;&nbsp;&nbsp;<span   onclick="selectAll(this)" class="select_all">全选</span> </a>
 													<ul>
 														<c:forEach var="hzdw" items="${hzdwListx}"> 
-																<c:if test="${hzdw[2]==dwlb}">
+																<c:if test="${fn:contains(hzdw[2],dwlb)}">
 																  <li >
 																	 <a href="#" >${hzdw[1]}</a>
 																	 <ul>
