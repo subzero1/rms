@@ -2260,40 +2260,4 @@ public class AuxFunction {
 		}
 		return allList;
 	}
-	
-	@RequestMapping("/aux/wxdwReceiveAndTimeout2.do")
-	public ModelAndView wxdwReceiveAndTimeout2(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws SQLException {
-		String view="/WEB-INF/jsp/search/wxdwReceiveAndTimeout2.jsp";
-		ModelMap modelMap=new ModelMap();
-		Ta03_user user = null;
-		user = (Ta03_user) session.getAttribute("user");
-		if (user == null) {
-			return exceptionService.exceptionControl(this.getClass().getName(),
-					"用户未登录或登录超时", new Exception("用户未登录"));
-		}
-		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"), "");
-		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"), "");
-		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"), "");
-		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"), "");
-		String dwlb = convertUtil.toString(request.getParameter("dwlb"), "sg");
-		String ywxm = convertUtil.toString(request.getParameter("ywxm"), "");
-		
-		Connection con = jdbcSupport.getConnection();
-		con.setAutoCommit(false);
-		String procedure = "{call hzdw_case(?,?,?,?,?,?)}";
-		CallableStatement cstmt = con.prepareCall(procedure);
-		cstmt.setString(1, lxsj1);
-		cstmt.setString(2, lxsj2);
-		cstmt.setString(3, pdsj1);
-		cstmt.setString(4, pdsj2);
-		cstmt.setString(5, dwlb);
-		cstmt.setString(6, ywxm);
-		cstmt.executeUpdate(); 
-		cstmt.close();
-		con.commit();
-		con.close();
-		List jdcqList=queryService.searchList("select a from Tf32_hzdw_status a order by a.mc ");
-		modelMap.put("jdcqList", jdcqList);
-		return new ModelAndView(view,modelMap);
-	}
 }
