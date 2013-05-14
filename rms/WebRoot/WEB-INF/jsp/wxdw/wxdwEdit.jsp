@@ -85,6 +85,10 @@ $(function(){
 					<input type="radio" name="Tf01_wxdw.LB" value="施工" <c:if test="${Tf01_wxdw.lb == '施工'}">checked="checked"</c:if>/>施工单位
 					<input type="radio" name="Tf01_wxdw.LB" value="监理" <c:if test="${Tf01_wxdw.lb == '监理'}">checked="checked"</c:if>/>监理单位
 				</p>
+				<p title="单位类别用半角逗号,隔开">
+					<label>单位类别：</label>
+					<input  style="width:315px;" name="Tf01_wxdw.DWLB" value="${Tf01_wxdw.dwlb}"/>
+				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>备    注：</label>
