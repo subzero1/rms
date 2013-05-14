@@ -1067,9 +1067,10 @@ public class Message {
 				 for (Object object3 : object2) {
 					 dwlbTreeSet.add(object3);
 				}  
+				}else  {
+					dwlbTreeSet.add("");
 				}
-			}
-			dwlbTreeSet.add("");  
+			} 
 			modelMap.put("dwlbSet", dwlbTreeSet);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "短消息发送中的初始化人员、地区、部门  －错误", e);
