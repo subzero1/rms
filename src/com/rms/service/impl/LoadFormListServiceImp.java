@@ -949,7 +949,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				hsql.delete(0, hsql.length());
 				hsql.append("select ta03 ");
 				hsql.append("from Td00_gcxx td00,Ta03_user ta03 ");
-				hsql.append("where td00.xmgly = ta03.name ");
+				hsql.append("where td00.ddgly = ta03.name ");
 				hsql.append("and td00.id = ");
 				hsql.append(project_id);
 				ro = queryService.search(hsql.toString());
