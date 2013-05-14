@@ -354,10 +354,10 @@
 									<ul>
 										<c:forEach var="dwlb" items="${dwlbSet}">
 												<li>
-													<a href="#"><c:if test="${empty dwlb}">未分类</c:if><c:if test="${!empty dwlb}">${dwlb}</c:if>&nbsp;&nbsp;&nbsp;<span   onclick="selectAll(this)" class="select_all">全选</span> </a>
+													<a hrRef="#"><c:if test="${empty dwlb}">未分类</c:if><c:if test="${!empty dwlb}">${dwlb}</c:if>&nbsp;&nbsp;&nbsp;<span   onclick="selectAll(this)" class="select_all">全选</span> </a>
 													<ul>
 														<c:forEach var="hzdw" items="${hzdwListx}"> 
-																<c:if test="${fn:contains(hzdw[2],dwlb)}">
+																<c:if test="${fn:contains(hzdw[2],dwlb)&&!empty dwlb}">
 																  <li >
 																	 <a href="#" >${hzdw[1]}</a>
 																	 <ul>
@@ -370,7 +370,21 @@
 																		</c:forEach>
 																	</ul> 
 																  </li> 
-																</c:if>		
+																</c:if> 
+																<c:if test="${empty hzdw[2]&&empty dwlb}">
+																  <li >
+																	 <a href="#" >${hzdw[1]}</a>
+																	 <ul>
+																		<c:forEach var="u" items="${hzdw_user_list}">
+																	         <c:if test="${hzdw[0]==u[0]}">
+																	          <li >
+																				  <a href="#" name="${u[2]}" onclick="checkReaderRepeat(this)" class="user_list">${u[3]}</a>
+																		      </li>
+																		    </c:if>  
+																		</c:forEach>
+																	</ul> 
+																  </li> 
+																</c:if> 
 														</c:forEach>
 													</ul>
 												</li>
