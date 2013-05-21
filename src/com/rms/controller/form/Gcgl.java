@@ -840,31 +840,17 @@ public class Gcgl {
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
 		
-		/*
-		 * 派单状态（派项目管理员）
-		 */
-		List<Object> pdlbList = new LinkedList<Object>();
-		Properties p = new Properties();
-		p.setProperty("show", "未派单");
-		p.setProperty("value", "wpd");
-		pdlbList.add(p);
-		p = new Properties();
-		p.setProperty("show", "已派单");
-		p.setProperty("value", "ypd");
-		pdlbList.add(p);
-		modelMap.put("pdlbList", pdlbList);
-		
-		//获取项目状态
+		//获取定单状态
 		QueryBuilder queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
-		queryBuilder.eq("type", "工程状态");
+		queryBuilder.eq("type", "定单状态");
 		queryBuilder.addOrderBy(Order.asc("id"));
 		List tmpList = queryService.searchList(queryBuilder);
 		if (tmpList != null) {
-			List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
+			List<Tc01_property> ddztList = new LinkedList<Tc01_property>();
 			for (java.util.Iterator<?> itr = tmpList.iterator(); itr.hasNext();) {
-				xmztList.add((Tc01_property) itr.next());
+				ddztList.add((Tc01_property) itr.next());
 			}
-			request.setAttribute("xmztList", xmztList);
+			request.setAttribute("ddztList", ddztList);
 		}
 		
 		modelMap.put("node_id", node_id);
