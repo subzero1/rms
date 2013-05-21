@@ -1849,4 +1849,19 @@ public class Td00_gcxx implements Serializable {
 	public void setDdgly(String ddgly) {
 		this.ddgly = ddgly;
 	}
+	
+	private String ddzt;
+
+	/**
+	 * @hibernate.property column="ddzt"
+	 * @return Returns the ddzt.
+	 */
+	public String getDdzt() {
+		return ddzt;
+	}
+
+	public void setDdzt(String ddzt) {
+		this.ddzt = ddzt;
+	}
+	
 }
