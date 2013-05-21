@@ -21,6 +21,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.hibernate.criterion.MatchMode;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -769,37 +770,56 @@ public class Gcgl {
 				.getParameter("orderField"), "td00.id");
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
-		String keyword = convertUtil.toString(request.getParameter("keyword"));
-		String pdlb = convertUtil.toString(request.getParameter("pdlb"),"wpd");
-		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
-		
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		String ddzt = convertUtil.toString(request.getParameter("ddzt"));
 		
+		String curRole = null;
+		Long node_id = -1L;
+		
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		String login_id = convertUtil.toString(user.getLogin_id());
+		if (rolesMap.get("100106") != null) {
+			curRole = "ddgly";
+			node_id = 11404L;
+		}
+		else if(login_id.substring(0,1).equals("7")){
+			curRole = "sjdw";
+			node_id = 11402L;
+		}
+		else if(login_id.substring(0,1).equals("8")){
+			curRole = "sgdw";
+			node_id = 11403L;
+		}
+		else {
+			curRole = "xmgly";
+			node_id = 11401L;
+		}
+
 		hql.append("select td00 ");
 		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
 		hql.append("where td00.id = ti03.project_id "); 
-		if (rolesMap.get("100106") == null) {
-			hql.append("and (xmgly = '");
-			hql.append(user.getName());
-			hql.append("' or sjdw = '");
-			hql.append(user.getDept_name());
-			hql.append("' or sgdw = '");
-			hql.append(user.getDept_name());
-			hql.append("')");
-		}
-		else{
+		if (curRole.equals("ddgly")) {
 			hql.append("and ddgly = '");
 			hql.append(user.getName());
 			hql.append("' ");
-			
-			if (pdlb.equals("wpd")) {
-				hql.append(" and td00.sgdw is null ");
-			}
-			else {
-				hql.append(" and td00.sgdw is not null ");
-			}
 		}
+		else if(curRole.equals("xmgly")){
+			hql.append("and xmgly = '");
+			hql.append(user.getName());
+			hql.append("' ");
+		}
+		else if(curRole.equals("sgdw")){
+			hql.append("and sgdw = '");
+			hql.append(user.getDept_name());
+			hql.append("' ");
+		}
+		else{
+			hql.append("and sjdw = '");
+			hql.append(user.getDept_name());
+			hql.append("' ");
+		}
+		
 		if (!keyword.equals("")) {
 			hql.append("and (td00.gcmc like '%");
 			hql.append(keyword);
@@ -810,9 +830,9 @@ public class Gcgl {
 			hql.append("%')");
 		}
 		
-		if (!xmzt.equals("")) {
-			hql.append(" and td00.gczt = '");
-			hql.append(xmzt);
+		if (!ddzt.equals("")) {
+			hql.append(" and td00.ddzt = '");
+			hql.append(ddzt);
 			hql.append("' ");
 		}
 		hql.append("order by ");
@@ -825,24 +845,13 @@ public class Gcgl {
 			objList.add(ro.get("td00"));
 		}
 		
-		Long node_id = -1L;
-		String login_id = convertUtil.toString(user.getLogin_id());
-		if(login_id.substring(0,1).equals("7")){
-			node_id = 11402L;
-		}
-		else if(login_id.substring(0,1).equals("8")){
-			node_id = 11403L;
-		}
-		else{
-			node_id = 11401L;
-		}
-		
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
 		
 		//获取定单状态
 		QueryBuilder queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
 		queryBuilder.eq("type", "定单状态");
+		queryBuilder.like("flag",curRole,MatchMode.ANYWHERE);
 		queryBuilder.addOrderBy(Order.asc("id"));
 		List tmpList = queryService.searchList(queryBuilder);
 		if (tmpList != null) {
