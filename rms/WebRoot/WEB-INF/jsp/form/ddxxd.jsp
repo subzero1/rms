@@ -41,7 +41,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>联系信息：</label>
-		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:407px;"/>
+		<input type="text" name="Td00_gcxx.LXXX" value="${td00_gcxx.lxxx}" style="width:407px;"/>
 	</p>
 	<p>
 		<label>所属区域：</label>
@@ -50,7 +50,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>A端装机地址：</label>
-		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:407px;"/>
+		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.a_adress}" style="width:407px;"/>
 	</p>
 	<p>
 		<label>工程类别：</label>
@@ -59,7 +59,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>Z端装机地址：</label>
-		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:407px;"/>
+		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.z_adress}" style="width:407px;"/>
 	</p>
 	<p>
 		<label>工程状态：</label>
