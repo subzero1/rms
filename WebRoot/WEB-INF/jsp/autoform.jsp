@@ -47,7 +47,7 @@
 			 	</li>
 			<li class="line">line</li>
 			 </c:forEach>
-			<c:if test="${not empty param.doc_id}"> 
+			<c:if test="${not empty param.doc_id && param.module_id != 114}"> 
 				<li><a class="edit"	href="jlgt/jlgtView.do?module_id=${param.module_id }&doc_id=${param.doc_id}"  title="交流反馈" target="navTab"><span>反 馈</span></a></li>
 				<li class="line">line</li>
 			</c:if>
