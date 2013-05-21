@@ -62,8 +62,8 @@
 		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.z_adress}" style="width:407px;"/>
 	</p>
 	<p>
-		<label>工程状态：</label>
-		<netsky:htmlSelect name="Td00_gcxx.GCZT" objectForOption="xmztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.gczt}" htmlClass="td-select"/>
+		<label>定单状态：</label>
+		<netsky:htmlSelect name="Td00_gcxx.DDZT" objectForOption="ddztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.ddzt}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>

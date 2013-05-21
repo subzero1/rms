@@ -915,6 +915,20 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					request.setAttribute("xmztList", xmztList);
 				}
 				
+				//获取定单状态
+				queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
+				queryBuilder.eq("type", "定单状态");
+				queryBuilder.addOrderBy(Order.asc("id"));
+				tmpList = queryService.searchList(queryBuilder);
+				if (tmpList != null) {
+					List<Tc01_property> ddztList = new LinkedList<Tc01_property>();
+					for (java.util.Iterator<?> itr = tmpList.iterator(); itr
+							.hasNext();) {
+						ddztList.add((Tc01_property) itr.next());
+					}
+					request.setAttribute("ddztList", ddztList);
+				}
+				
 				//获取设计单位列表
 				hsql.delete(0, hsql.length());
 				hsql.append("select tf01.id,tf01.mc,tf01.lb from Tf01_wxdw tf01 where lb='设计' or lb='施工' order by mc");
@@ -1202,6 +1216,24 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				tmp_gcsm_slave.put("formurl", "javascript:navTab.openTab('autoform101','openForm.do?project_id="+t_project_id+"&doc_id="+t_project_id+"&module_id=101&node_id=1',{title:'表单'})");
 				tmp_gcsm_slave.put("rw", "r");
 				v_slave.add(tmp_gcsm_slave);
+			}
+			
+			if (module_id == 114) {
+				/**
+				 * IOM系统接口链接
+				 */
+				hsql.delete(0, hsql.length());
+				hsql.append("select url from Ti03_xqly where project_id = ");
+				hsql.append(project_id);
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					String url = (String)ro.get("url");
+					HashMap<String, String> tmp_iom_slave = new HashMap<String, String>();
+					tmp_iom_slave.put("slave_name", "定单详情");
+					tmp_iom_slave.put("formurl", "javascript:window.open('"+url+"')");
+					tmp_iom_slave.put("rw", "r");
+					v_slave.add(tmp_iom_slave);
+				}
 			}
 			
 			if (v_slave.size() > 0) {
