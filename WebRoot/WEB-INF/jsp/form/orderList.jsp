@@ -25,7 +25,7 @@
 							
 							</c:if>
 							-->
-							<netsky:htmlSelect name="ddzt" objectForOption="ddztList"  valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${param.ddzt}" htmlClass="td-select"/>
+							<netsky:htmlSelect name="ddzt" objectForOption="ddztList"  valueForOption="name" showForOption="name" extend="全部,全部" extendPrefix="true" value="${ddzt}" htmlClass="td-select"/>
 						</td>
 					</tr>
 				</table>

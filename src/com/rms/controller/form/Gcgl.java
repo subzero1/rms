@@ -782,18 +782,30 @@ public class Gcgl {
 		if (rolesMap.get("100106") != null) {
 			curRole = "ddgly";
 			node_id = 11404L;
+			if(ddzt.equals("")){
+				ddzt = "工单到岗";
+			}
 		}
 		else if(login_id.substring(0,1).equals("7")){
 			curRole = "sjdw";
 			node_id = 11402L;
+			if(ddzt.equals("")){
+				ddzt = "施工已派发";
+			}
 		}
 		else if(login_id.substring(0,1).equals("8")){
 			curRole = "sgdw";
 			node_id = 11403L;
+			if(ddzt.equals("")){
+				ddzt = "施工已派发";
+			}
 		}
 		else {
 			curRole = "xmgly";
 			node_id = 11401L;
+			if(ddzt.equals("")){
+				ddzt = "工单已派发";
+			}
 		}
 
 		hql.append("select td00 ");
@@ -830,7 +842,7 @@ public class Gcgl {
 			hql.append("%')");
 		}
 		
-		if (!ddzt.equals("")) {
+		if (!ddzt.equals("全部")) {
 			hql.append(" and td00.ddzt = '");
 			hql.append(ddzt);
 			hql.append("' ");
@@ -863,6 +875,7 @@ public class Gcgl {
 		}
 		
 		modelMap.put("node_id", node_id);
+		modelMap.put("ddzt", ddzt);
 		modelMap.put("objList", objList);
 		modelMap.put("keyword", keyword);
 		modelMap.put("numPerPage", numPerPage);
