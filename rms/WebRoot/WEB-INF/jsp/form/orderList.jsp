@@ -5,6 +5,7 @@
 
 <form id="pagerForm" method="post" action="form/orderList.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
+	<input type="hidden" name="ddzt" value="${ddzt}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
