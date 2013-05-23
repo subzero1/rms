@@ -163,6 +163,7 @@ public class RmsCcatsida {
 				td00.setLxxx(projectrow.getAttribute("CONTACT"));
 				td00.setA_adress(projectrow.getAttribute("INSTALLADDRESSA"));
 				td00.setZ_adress(projectrow.getAttribute("INSTALLADDRESSB"));
+				td00.setDdzt("工单到岗");
 				saveService.save(td00);
 				
 				Ti03_xqly ti03 = new Ti03_xqly();
