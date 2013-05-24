@@ -911,6 +911,54 @@
             insert="true"
             column="ddzt"
         />
+        
+        <property
+            name="gdztzt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="gdztzt"
+        />
+        
+        <property
+            name="sfts"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sfts"
+        />
+        
+        <property
+            name="sfcq"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sfcq"
+        />
+        
+        <property
+            name="wcfgqbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="wcfgqbm"
+        />
+        
+        <property
+            name="hdbz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="hdbz"
+        />
+        
+        <property
+            name="wcsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="wcsj"
+        />
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td00_gcxx.xml

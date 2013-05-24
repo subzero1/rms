@@ -1864,4 +1864,60 @@ public class Td00_gcxx implements Serializable {
 		this.ddzt = ddzt;
 	}
 	
+	private String wcfgqbm;
+	private String hdbz;
+	private Date wcsj;
+	private String gdztzt;
+	private String sfts;
+	private String sfcq;
+
+	public String getWcfgqbm() {
+		return wcfgqbm;
+	}
+
+	public void setWcfgqbm(String wcfgqbm) {
+		this.wcfgqbm = wcfgqbm;
+	}
+
+	public String getHdbz() {
+		return hdbz;
+	}
+
+	public void setHdbz(String hdbz) {
+		this.hdbz = hdbz;
+	}
+
+	public Date getWcsj() {
+		return wcsj;
+	}
+
+	public void setWcsj(Date wcsj) {
+		this.wcsj = wcsj;
+	}
+
+	public String getGdztzt() {
+		return gdztzt;
+	}
+
+	public void setGdztzt(String gdztzt) {
+		this.gdztzt = gdztzt;
+	}
+
+	public String getSfts() {
+		return sfts;
+	}
+
+	public void setSfts(String sfts) {
+		this.sfts = sfts;
+	}
+
+	public String getSfcq() {
+		return sfcq;
+	}
+
+	public void setSfcq(String sfcq) {
+		this.sfcq = sfcq;
+	}
+	
+	
 }
