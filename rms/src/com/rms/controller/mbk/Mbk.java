@@ -50,6 +50,7 @@ import com.rms.dataObjects.mbk.Td23_kcsqb;
 import com.rms.dataObjects.mbk.Td24_kcfkb;
 import com.rms.dataObjects.mbk.Td25_kcfkmx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
+import com.netsky.base.flow.vo.V_ta03;
 
 @Controller
 public class Mbk {
@@ -100,6 +101,13 @@ public class Mbk {
 		}
 		user_name = ta03.getName();
 		user_id = ta03.getId();
+		
+		/*
+		 * 获得部门信息
+		 */
+		
+		V_ta03 tmp_ta03 = (V_ta03)queryService.searchById(V_ta03.class, user_id);
+		String ta03Remark = convertUtil.toString(tmp_ta03.getDept_remark());
 
 		ModelMap modelMap = new ModelMap();
 		// 分页
@@ -187,6 +195,12 @@ public class Mbk {
 		 */
 		if (listType.equals("drl")) {
 			hsql.append(" and zt = '新建' and hdfs = '派发'");
+			if(ta03Remark.indexOf("后端") != -1){
+				hsql.append(" and sysdate > cjsj + 1  ");
+			}
+			else if(ta03Remark.indexOf("合作单位") != -1){
+				hsql.append(" and sysdate > cjsj + 2 ");
+			}
 		}
 
 		/*
