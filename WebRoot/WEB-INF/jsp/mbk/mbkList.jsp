@@ -37,6 +37,7 @@ function searchListExport(){
 <div class="page">
 	<div class="pageHeader">
 		<form action="mbk/mbkList.do" method="post"onsubmit="return navTabSearch(this);">
+			<input type="hidden" name="listType" value="${param.listType}">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
