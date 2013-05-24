@@ -902,25 +902,68 @@ public class Gcgl {
 				.getParameter("orderField"), "td00.id");
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
-		String keyword = convertUtil.toString(request.getParameter("keyword"));
-		
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
-		String user_zy = user.getZys();
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		String ddzt = convertUtil.toString(request.getParameter("ddzt"));
 		
+		String curRole = null;
+		Long node_id = -1L;
+		
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		String login_id = convertUtil.toString(user.getLogin_id());
+		if (rolesMap.get("100106") != null) {
+			curRole = "ddgly";
+			node_id = 11404L;
+			if(ddzt.equals("")){
+				ddzt = "工单到岗";
+			}
+		}
+		else if(login_id.substring(0,1).equals("7")){
+			curRole = "sjdw";
+			node_id = 11402L;
+			if(ddzt.equals("")){
+				ddzt = "施工已派发";
+			}
+		}
+		else if(login_id.substring(0,1).equals("8")){
+			curRole = "sgdw";
+			node_id = 11403L;
+			if(ddzt.equals("")){
+				ddzt = "施工已派发";
+			}
+		}
+		else {
+			curRole = "xmgly";
+			node_id = 11401L;
+			if(ddzt.equals("")){
+				ddzt = "工单已派发";
+			}
+		}
+
 		hql.append("select td00 ");
 		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
 		hql.append("where td00.id = ti03.project_id "); 
-		if (rolesMap.get("100106") == null) {
-			hql.append("and ((xmgly = '");
+		if (curRole.equals("ddgly")) {
+			hql.append("and ddgly = '");
 			hql.append(user.getName());
-			hql.append("' and sgdw is null) or (sjdw = '");
+			hql.append("' ");
+		}
+		else if(curRole.equals("xmgly")){
+			hql.append("and (xmgly = '");
+			hql.append(user.getName());
+			hql.append("' and sgdw is null) ");
+		}
+		else if(curRole.equals("sgdw")){
+			hql.append("and (sgdw = '");
+			hql.append(user.getDept_name());
+			hql.append("' and sgysl is null) ");
+		}
+		else{
+			hql.append("and (sjdw = '");
 			hql.append(user.getDept_name());
 			hql.append("' and sjysl is null) ");
-			hql.append("or (sgdw = '");
-			hql.append(user.getDept_name());
-			hql.append("' and gclb in (" + user_zy + ") and sgysl is null)) ");
 		}
+		
 		if (!keyword.equals("")) {
 			hql.append("and (td00.gcmc like '%");
 			hql.append(keyword);
@@ -929,6 +972,12 @@ public class Gcgl {
 			hql.append("%' or td00.lxxx like '%");
 			hql.append(keyword);
 			hql.append("%')");
+		}
+		
+		if (!ddzt.equals("全部")) {
+			hql.append(" and td00.ddzt = '");
+			hql.append(ddzt);
+			hql.append("' ");
 		}
 		hql.append("order by ");
 		hql.append(orderField);
@@ -940,49 +989,25 @@ public class Gcgl {
 			objList.add(ro.get("td00"));
 		}
 		
-		Long node_id = -1L;
-		String login_id = convertUtil.toString(user.getLogin_id());
-		if(login_id.substring(0,1).equals("7")){
-			node_id = 11402L;
-		}
-		else if(login_id.substring(0,1).equals("8")){
-			node_id = 11403L;
-		}
-		else{
-			node_id = 11401L;
-		}
-		
 		totalCount=ro.getTotalRows();
 		totalPages=ro.getTotalPages();
 		
-		/*
-		 * 派单状态（派项目管理员）
-		 */
-		List<Object> pdlbList = new LinkedList<Object>();
-		Properties p = new Properties();
-		p.setProperty("show", "已派单");
-		p.setProperty("value", "ypd");
-		pdlbList.add(p);
-		p = new Properties();
-		p.setProperty("show", "未派单");
-		p.setProperty("value", "wpd");
-		pdlbList.add(p);
-		modelMap.put("pdlbList", pdlbList);
-		
-		//获取项目状态
+		//获取定单状态
 		QueryBuilder queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
-		queryBuilder.eq("type", "工程状态");
+		queryBuilder.eq("type", "定单状态");
+		queryBuilder.like("flag",curRole,MatchMode.ANYWHERE);
 		queryBuilder.addOrderBy(Order.asc("id"));
 		List tmpList = queryService.searchList(queryBuilder);
 		if (tmpList != null) {
-			List<Tc01_property> xmztList = new LinkedList<Tc01_property>();
+			List<Tc01_property> ddztList = new LinkedList<Tc01_property>();
 			for (java.util.Iterator<?> itr = tmpList.iterator(); itr.hasNext();) {
-				xmztList.add((Tc01_property) itr.next());
+				ddztList.add((Tc01_property) itr.next());
 			}
-			request.setAttribute("xmztList", xmztList);
+			request.setAttribute("ddztList", ddztList);
 		}
 		
 		modelMap.put("node_id", node_id);
+		modelMap.put("ddzt", ddzt);
 		modelMap.put("objList", objList);
 		modelMap.put("keyword", keyword);
 		modelMap.put("numPerPage", numPerPage);
