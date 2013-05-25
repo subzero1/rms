@@ -3,6 +3,8 @@ package com.rms.controller.form;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,8 @@ import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.service.SaveService;
+import com.rms.base.util.ConfigXML;
+import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
@@ -1015,5 +1019,59 @@ public class Gcgl {
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("totalPages", totalPages);
 		return new ModelAndView(view,modelMap);
+	}
+	
+	@RequestMapping("/form/orderInfoToExcel.do")
+	public ModelAndView orderInfoToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String keyword = convertUtil.toString(request.getParameter("keyword"), "");
+		String ddzt = convertUtil.toString(request.getParameter("ddzt"));
+		String config = convertUtil.toString(request.getParameter("config"));
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "ssdq");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+
+		int k = 0;
+		ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
+		ResultObject ro = null;
+		StringBuffer hql = new StringBuffer("");
+		List orderTitleList = new LinkedList(); // 标题列表
+		List orderColList = new LinkedList();// 列的字段值
+		List orderDocList = new LinkedList();// 表单数据
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+
+		// 读取配置文件的标题列表
+		String webinfpath = request.getSession().getServletContext()
+				.getRealPath("WEB-INF");
+		orderTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+		orderColList = configXML.getTagListByConfig(config, webinfpath,
+				"columnName");
+		Iterator it = orderColList.iterator();
+		Object order = null;
+		hql.append("select ");
+		while (it.hasNext()) {
+			if (k == 0)
+				hql.append(" a." + ((it.next().toString()).toLowerCase()));
+			else
+				hql.append(" ,a." + ((it.next().toString()).toLowerCase()));
+			k++;
+		}
+		hql.append(" from Td00_gcxx a ");
+		// 条件
+		 
+		hql.append(" order by " + orderField + " ");
+		hql.append(orderDirection);
+
+		orderDocList = queryService.searchList(hql.toString());
+
+		sheetList.add(orderTitleList);
+		sheetList.add(orderDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "目标库信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+
 	}
 }

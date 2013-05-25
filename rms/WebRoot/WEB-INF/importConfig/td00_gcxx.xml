@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Td00_gcxx</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow>
+ 
+			 
+			<column>
+				<columnName>SSDQ</columnName>
+				<index />
+				<name>所属地区</name>
+				<colName>所属地区</colName>
+			</column>
+			<column>
+				<columnName>LXXX</columnName>
+				<index />
+				<name>联系信息</name>
+				<colName>联系信息</colName>
+			</column>
+			<column>
+				<columnName>A_ADRESS</columnName>
+				<index />
+				<name>A端装机地址</name>
+				<colName>A端装机地址</colName>
+			</column>
+			<column>
+				<columnName>CJRQ</columnName>
+				<index />
+				<name>需求提出时间</name>
+				<colName>需求提出时间</colName>
+			</column>
+			<column>
+				<columnName>SGDW</columnName>
+				<index />
+				<name>施工单位</name>
+				<colName>施工单位</colName>
+			</column>
+			<column>
+				<columnName>WCFGQBM</columnName>
+				<index />
+				<name>完成分光器编码</name>
+				<colName>完成分光器编码</colName>
+			</column>
+			<column>
+				<columnName>WCSJ</columnName>
+				<index />
+				<name>完成时间</name>
+				<colName>完成时间</colName>
+			</column>
+			<column>
+				<columnName>HDBZ</columnName>
+				<index />
+				<name>回单备注</name>
+				<colName>回单备注</colName>
+			</column>
+			<column>
+				<columnName>GDZTZT</columnName>
+				<index />
+				<name>工单整体状态</name>
+				<colName>工单整体状态</colName>
+			</column>
+			<column>
+				<columnName>JHSJWCSJ</columnName>
+				<index />
+				<name>计划设计完成时间</name>
+				<colName>计划设计完成时间</colName>
+			</column>
+			<column>
+				<columnName>SFTS</columnName>
+				<index />
+				<name>是否投诉</name>
+				<colName>是否投诉</colName>
+			</column>
+			<column>
+				<columnName>SFCQ</columnName>
+				<index />
+				<name>是否超期</name>
+				<colName>是否超期</colName>
+			</column> 
+			<column>
+				<columnName>GCBH</columnName>
+				<index />
+				<name>订单编号</name>
+				<colName>订单编号</colName>
+			</column> 
+		</columns>
+	</tableInfo>
+</excel>
