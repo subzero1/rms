@@ -3,9 +3,6 @@ package com.rms.controller.form;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -2259,5 +2256,26 @@ public class AuxFunction {
 			result = (Tf01_wxdw) objectsList.get(0)[0];
 		}
 		return allList;
+	}
+	
+	@RequestMapping("/aux/ddhdEdit.do")
+	public ModelAndView ddhdEdit(HttpServletRequest request,HttpServletResponse response){
+		String view="/WEB-INF/jsp/form/ddht.jsp";
+		ModelMap modelMap=new ModelMap();
+		Long project_id=convertUtil.toLong(request.getParameter("project_id"));
+		
+		Td00_gcxx gcxx=(Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
+		if (gcxx.getJhjgsj()!=null&&gcxx.getWcsj()!=null) {
+			if (gcxx.getJhjgsj().after(gcxx.getWcsj())) {
+				gcxx.setSfcq("否");
+			}	
+			if (gcxx.getWcsj().after(gcxx.getJhjgsj())) {
+				gcxx.setSfcq("是");
+			}	
+		}
+		List gdztztList=queryService.searchList("select a from Tc01_property a where a.type='工单整体状态'");
+		modelMap.put("Td00_gcxx", gcxx);
+		modelMap.put("gdztztList", gdztztList);
+		return new ModelAndView(view,modelMap);
 	}
 }

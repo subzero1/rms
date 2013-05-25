@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
-
+<%@ taglib uri="NetSkyTagLibs" prefix="netsky"%> 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -35,23 +35,54 @@
 	</head>
 
 	<body>
+
 	<form  id="ddhtForm" action="save.do" enctype="multipart/form-data" method="post" onsubmit="return iframeCallback(this, dialogAjaxDone);">
 		<div style="float:left;padding:5px !important;display:inline; overflow-x:hidden;overflow-y:auto;" layoutH="25">
-		 <input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.form.Td09_ddhdxx" />
+		 <input type="hidden" name="tableInfomation"
+		value="noFatherTable:com.rms.dataObjects.form.Td00_gcxx" />
+			 <input type="hidden" name="tableInfomation" value="Td00_gcxx,id,project_id:com.rms.dataObjects.form.Td09_ddhdxx" />
 		 <input type="hidden" name="slaveTable" value="com.netsky.base.dataObjects.Te01_slave"/>
 		 <input type="hidden" name="slaveType" value="ftp"/>
 		 <input type="hidden" name="_callbackType" value="forward" />
 		 <input type="hidden" name="_message" value="保存" />
 		 <input type="hidden" name="_forwardUrl" value="openForm.do?project_id=${param.project_id }&module_id=114&doc_id=${param.doc_id }&user_id=${user.id }&limit=&node_id=${param.node_id }" />
 		 <input type="hidden" name="_navTabId" value="ddxx" />
-		 <table   id="ddhd">
+		 <input type="hidden" name="Td00_gcxx.ID" value="${param.project_id }" />
+		 <input  type="hidden" style="width:200px;" name="Td00_gcxx.WCSJ" value="<fmt:formatDate value="${now }" pattern="yyyy-MM-dd"/>" />
+		 	<div class="pageFormContent" style="border: 0px;">
+				<p>
+					<label>分光器编码${Td00_gcxx.sfts}：</label>
+					<input class="required" type="text" style="width:200px;" name="Td00_gcxx.WCFGQBM" value="${Td00_gcxx.wcfgqbm}" />
+				</p>
+				<p>
+					<label>工单状态：</label>
+					<netsky:htmlSelect name="Td00_gcxx.GDZTZT" objectForOption="gdztztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${Td00_gcxx.gdztzt}" htmlClass="td-select"/>
+				</p>
+				<div style="height:0px;"></div>
+				<div style="height:0px;"></div>
+				<p>
+					<label>是否投诉&nbsp;&nbsp;&nbsp;&nbsp;：</label>
+					<select   style="width:200px;" name="Td00_gcxx.SFTS" value="${Td00_gcxx.sfts}" >
+						<option value="否" <c:if test="${Td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
+						<option value="是" <c:if test="${Td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
+					</select>
+					<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${Td00_gcxx.sfcq}" readonly/>
+				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>回单备注&nbsp;&nbsp;&nbsp;&nbsp;：</label>
+					<textarea name="Td00_gcxx.HDBZ" id="nr"
+						style='width: 425px; height: 40px'>${Td00_gcxx.hdbz }</textarea>
+				</p>
+	</div>
+		 <table   id="ddhd" style="margin-left: 30px;">
 			<tr>
 				<th>
 					回单内容：
 				</th>
 				<td>
 					<textarea name="Td09_ddhdxx.NR" id="nr"
-						style='width: 270px; height: 120px'></textarea>
+						style='width: 425px;height: 60px'></textarea>
 				 <input type="hidden" name="Td09_ddhdxx.PROJECT_ID" value="${param.project_id }"/>
 				 <input type="hidden" name="Td09_ddhdxx.ID" value=""/>
 				 <input type="hidden" name="Td09_ddhdxx.HDR" value="${user.name }"/>
@@ -111,6 +142,8 @@
 					</div>
 				</li>
 			</ul>
+		</div>
+		
 		</div>
 		</form>
 	</body>
