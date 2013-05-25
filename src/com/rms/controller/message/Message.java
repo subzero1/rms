@@ -76,7 +76,7 @@ public class Message {
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
 		Integer messageState = convertUtil.toInteger(request.getParameter("messageState"));
-		String orderField = StringFormatUtil.format(request.getParameter("orderField"), "te04.read_flag,te04.id");
+		String orderField = StringFormatUtil.format(request.getParameter("orderField"), "");
 		String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"), "desc");
 		StringBuffer hsql = new StringBuffer();
 		String view = null;
@@ -103,6 +103,9 @@ public class Message {
 				hsql.append(" and te04.send_flag<>0 ");
 				hsql.append(" and te11.delete_flag is null ");
 				hsql.append(" and te11.reader_id='" + user_id + "' ");
+				if(orderField.equals("")){
+					orderField = " te11.read_flag,te04.id ";
+				}
 				message_title = "收件箱";
 				break;
 			case 2:
@@ -111,6 +114,9 @@ public class Message {
 				hsql.append(" and delete_flag is null ");
 				hsql.append(" and sender_id=");
 				hsql.append(user_id);
+				if(orderField.equals("")){
+					orderField = " te04.id ";
+				}
 				message_title = "草稿箱";
 				break;
 			case 3:
@@ -118,6 +124,9 @@ public class Message {
 				hsql.append(" where send_flag=1 ");
 				hsql.append(" and delete_flag is null ");
 				hsql.append(" and sender_id=" + user_id + "");
+				if(orderField.equals("")){
+					orderField = " te04.id ";
+				}
 				message_title = "发件箱";
 				break;
 			case 4:
@@ -125,6 +134,9 @@ public class Message {
 				hsql.append(" where te04.id = te11.msg_id ");
 				hsql.append(" and te04.sender_id=ta03.id ");
 				hsql.append(" and te11.delete_flag = 0 and te04.reader_id='" + user_id + "'");
+				if(orderField.equals("")){
+					orderField = " te11.read_flag,te04.id ";
+				}
 				message_title = "垃圾箱";
 				break;
 			default:
@@ -134,6 +146,9 @@ public class Message {
 				hsql.append(" and te04.send_flag<>0 ");
 				hsql.append(" and te11.delete_flag is null ");
 				hsql.append(" and te11.reader_id='" + user_id + "' ");
+				if(orderField.equals("")){
+					orderField = " te11.read_flag,te04.id ";
+				}
 				message_title = "收件箱";
 				messageState = 1;
 			}
