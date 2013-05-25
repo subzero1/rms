@@ -76,51 +76,63 @@
 	<div class="divider"></div>
 	<p>
 		<label>计划竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.JHJGSJ" value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>" style="width:140px;"/>
+		<input type="text"  name="Td00_gcxx.JHJGSJ" value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	<p>
 		<label>实际竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.SJJGSJ" value="<fmt:formatDate value="${td00_gcxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:140px;"/>
+		<input type="text"  name="Td00_gcxx.SJJGSJ" value="<fmt:formatDate value="${td00_gcxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 	</p>
 	
-				<p>
-					<label>工单状态：</label>
-					<input name="Td00_gcxx.GDZTZT"  style="width:140px;" value="${td00_gcxx.gdztzt}"/>
-				<p>
+	<p>
+		<label>工单状态：</label>
+		<input name="Td00_gcxx.GDZTZT"  style="width:120px;" value="${td00_gcxx.gdztzt}"/>
+	<p>
 	<div style="height:0px;"></div>
 	<p>
-			<label>分光器编码：</label>
-					<input class="required" type="text" style="width:407px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
-				</p>
-								<p>
-					<label>是否投诉：</label>
-					<select   style="width:122px;" name="Td00_gcxx.SFTS" value="${td00_gcxx.sfts}" >
-						<option value="否" <c:if test="${td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
-						<option value="是" <c:if test="${td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
-					</select>
-					<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${td00_gcxx.sfcq}" readonly/>
-				</p>
-				<div style="height:0px;"></div>
-				<p>
-					<label>计划完成时间：</label>
-					<input  type="text" style="width:140px;" name="Td00_gcxx.JHJGSJ"  value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>"  readonly/>
-				</p>
-				<p>
-					<label>实际完成时间：</label>
-					<input  type="text" style="width:140px;" name="Td00_gcxx.WCSJ"  value="<fmt:formatDate value="${td00_gcxx.wcsj}" pattern="yyyy-MM-dd"/>"  readonly/>
-				</p>
-				<p>
-					<label>是否超期：</label>
-					<input  type="text" style="width:140px;" name="Td00_gcxx_SFCQ"  value="${td00_gcxx.sfcq}"  readonly/>
-				</p>
-				<div style="height:0px;"></div>
+		<label>分光器编码：</label>
+		<input class="required" type="text" style="width:150px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
+	</p>
+	<p>
+		<label>是否投诉：</label>
+		<select   style="width:157px;" name="Td00_gcxx.SFTS" value="${td00_gcxx.sfts}" >
+			<option value="否" <c:if test="${td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
+			<option value="是" <c:if test="${td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
+		</select>
+		<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${td00_gcxx.sfcq}" readonly/>
+	</p>
+	<p>
+	<c:choose>
+		<c:when test="${not empty rolesMap['100106'] }">
+			<label>项目管理员：</label>
+			<netsky:htmlSelect name="Td00_gcxx.XMGLY" objectForOption="xmglyList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.xmgly}" htmlClass="td-select"/>
+		</c:when>
+		<c:otherwise>
+			<label>项目管理员：</label>
+			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:120px;"/>
+		</c:otherwise>
+	</c:choose>
+	</p>
+	<div style="height:0px;"></div>
+	<p>
+		<label>计划完成时间：</label>
+		<input  type="text" style="width:150px;" name="Td00_gcxx.JHJGSJ"  value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>"  readonly/>
+	</p>
+	<p>
+		<label>实际完成时间：</label>
+		<input  type="text" style="width:150px;" name="Td00_gcxx.WCSJ"  value="<fmt:formatDate value="${td00_gcxx.wcsj}" pattern="yyyy-MM-dd"/>"  readonly/>
+	</p>
+	<p>
+		<label>是否超期：</label>
+		<input  type="text" style="width:120px;" name="Td00_gcxx_SFCQ"  value="${td00_gcxx.sfcq}"  readonly/>
+	</p>
+	<div style="height:0px;"></div>
 
-				<div style="height:0px;"></div>
-				<p>
-					<label>回单备注：</label>
-					<textarea name="Td00_gcxx.HDBZ" id="nr"
-						style='width:630px; height: 40px'>${td00_gcxx.hdbz }</textarea>
-				</p>
+	<div style="height:0px;"></div>
+	<p>
+		<label>回单备注：</label>
+		<textarea name="Td00_gcxx.HDBZ" id="nr"
+			style='width:630px; height: 40px'>${td00_gcxx.hdbz }</textarea>
+	</p>
 	<div class="divider"></div>
 	<p>
 		<label>设计单位：</label>
@@ -140,18 +152,7 @@
 		<input type="text"  name="Td00_gcxx.SGPFSJ" value="<fmt:formatDate value="${td00_gcxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
-	<p>
-	<c:choose>
-		<c:when test="${not empty rolesMap['100106'] }">
-			<label>项目管理员：</label>
-			<netsky:htmlSelect name="Td00_gcxx.XMGLY" objectForOption="xmglyList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.xmgly}" htmlClass="td-select"/>
-		</c:when>
-		<c:otherwise>
-			<label>项目管理员：</label>
-			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:150px;"/>
-		</c:otherwise>
-	</c:choose>
-	</p>
+	
 	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
 		<table class="table" width="60%">
 		<thead>
