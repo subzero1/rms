@@ -56,17 +56,17 @@ public class Te11_message_receiver implements Serializable{
  /**
  * 阅读人标识
  */
- private String reader_id;
+ private Long reader_id;
 
  /**
  * @hibernate.property column="reader_id"
  * @return Returns the reader_id.
  */
- public String getReader_id() {
+ public Long getReader_id() {
     return reader_id;
  }
 
- public void setReader_id(String reader_id) {
+ public void setReader_id(Long reader_id) {
     this.reader_id = reader_id;
   }
 
@@ -90,35 +90,18 @@ public class Te11_message_receiver implements Serializable{
  /**
  * 阅读标识
  */
- private String read_flag;
+ private Long read_flag;
 
  /**
  * @hibernate.property column="read_flag"
  * @return Returns the read_flag.
  */
- public String getRead_flag() {
+ public Long getRead_flag() {
     return read_flag;
  }
 
- public void setRead_flag(String read_flag) {
+ public void setRead_flag(Long read_flag) {
     this.read_flag = read_flag;
-  }
-
- /**
- * 回复标识
- */
- private Long repeat_flag;
-
- /**
- * @hibernate.property column="repeat_flag"
- * @return Returns the repeat_flag.
- */
- public Long getRepeat_flag() {
-    return repeat_flag;
- }
-
- public void setRepeat_flag(Long repeat_flag) {
-    this.repeat_flag = repeat_flag;
   }
 
  /**
