@@ -36,4 +36,9 @@
   	<fileName>/importConfig/td52_aqys.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>td00_gcxx</name>
+  	<fileName>/importConfig/td00_gcxx.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
