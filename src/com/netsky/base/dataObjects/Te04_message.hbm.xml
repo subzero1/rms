@@ -106,7 +106,13 @@
   column="reader_name"
   />
 
-
+  <property
+  name="delete_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="delete_flag"
+  />
     </class>
 
 </hibernate-mapping>

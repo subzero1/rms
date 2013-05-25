@@ -34,6 +34,7 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.dataObjects.Te04_message;
+import com.netsky.base.dataObjects.Te11_message_receiver;
 import com.netsky.base.dataObjects.Te08_message;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.imagecut.FtpService;
@@ -78,6 +79,7 @@ public class Message {
 		String orderField = StringFormatUtil.format(request.getParameter("orderField"), "te04.read_flag,te04.id");
 		String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"), "desc");
 		StringBuffer hsql = new StringBuffer();
+		String view = null;
 
 		int totalPages = 1;
 		int totalCount = 1;
@@ -88,38 +90,50 @@ public class Message {
 		modelMap.put("numPerPage", numPerPage);
 
 		try {
-
 			Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
 			Long user_id = user.getId();
 			// 构造hsql 设置信箱状态
 			String message_title = "邮箱";
-			hsql.append("from Te04_message te04,Ta03_user ta03 where 1=1 ");
 
 			switch (messageState) {
 			case 1:
-				hsql.append(" and te04.sender_id=ta03.id and te04.send_flag<>0 ");
-				hsql.append(" and te04.receive_flag is null and te04.reader_id='" + user_id + "'");
+				hsql.append("from Te04_message te04,Ta03_user ta03,Te11_message_receiver te11 ");
+				hsql.append(" where te04.id = te11.msg_id ");
+				hsql.append(" and te04.sender_id=ta03.id ");
+				hsql.append(" and te04.send_flag<>0 ");
+				hsql.append(" and te11.delete_flag is null ");
+				hsql.append(" and te11.reader_id='" + user_id + "' ");
 				message_title = "收件箱";
 				break;
 			case 2:
-				hsql.append(" and te04.reader_id=ta03.id ");
-				hsql.append(" and send_flag=0 and sender_id=");
+				hsql.append("from Te04_message te04 ");
+				hsql.append(" where send_flag=0 ");
+				hsql.append(" and delete_flag is null ");
+				hsql.append(" and sender_id=");
 				hsql.append(user_id);
 				message_title = "草稿箱";
 				break;
 			case 3:
-				hsql.append(" and te04.reader_id=ta03.id ");
-				hsql.append(" and send_flag=1 and sender_id=" + user_id + "");
+				hsql.append("from Te04_message te04 ");
+				hsql.append(" where send_flag=1 ");
+				hsql.append(" and delete_flag is null ");
+				hsql.append(" and sender_id=" + user_id + "");
 				message_title = "发件箱";
 				break;
 			case 4:
+				hsql.append("from Te04_message te04,Ta03_user ta03,Te11_message_receiver te11 ");
+				hsql.append(" where te04.id = te11.msg_id ");
 				hsql.append(" and te04.sender_id=ta03.id ");
-				hsql.append(" and te04.receive_flag is not null and te04.reader_id='" + user_id + "'");
+				hsql.append(" and te11.delete_flag = 0 and te04.reader_id='" + user_id + "'");
 				message_title = "垃圾箱";
 				break;
 			default:
-				hsql.append(" and te04.sender_id=ta03.id and te04.send_flag<>0 ");
-				hsql.append(" and te04.receive_flag is null and te04.reader_id='" + user_id + "'");
+				hsql.append("from Te04_message te04,Ta03_user ta03,Te11_message_receiver te11 ");
+				hsql.append(" where te04.id = te11.msg_id ");
+				hsql.append(" and te04.sender_id=ta03.id ");
+				hsql.append(" and te04.send_flag<>0 ");
+				hsql.append(" and te11.delete_flag is null ");
+				hsql.append(" and te11.reader_id='" + user_id + "' ");
 				message_title = "收件箱";
 				messageState = 1;
 			}
@@ -147,10 +161,18 @@ public class Message {
 			modelMap.put("totalPages", totalPages);
 			modelMap.put("page", pageNum);
 			// 取列表数据
-			rs = queryService.searchByPage(
-					"select te04.id,ta03.name,ta03.login_id,ta03.mobile_tel,te04.title,te04.send_date,"
-							+ "te04.read_flag,te04.fujian_flag,te04.repeat_flag,te04.reader_name " + hsql.toString(),
-							pageNum, numPerPage);
+			String tmp_sql = null;
+			if(hsql.indexOf("ta03") != -1){
+				tmp_sql = "select te04.id,ta03.name,ta03.login_id,ta03.mobile_tel,te04.title,te04.send_date,"
+					    + "te11.read_flag,te04.fujian_flag,te04.repeat_flag,te11.reader_name "+hsql.toString();
+				view = "messagelist.jsp";
+			}
+			else{
+				tmp_sql = "select te04.id,te04.title,te04.send_date,te04.fujian_flag,te04.repeat_flag "
+					    + hsql.toString();
+				view = "messagelistNoUser.jsp";
+			}
+			rs = queryService.searchByPage(tmp_sql,pageNum, numPerPage);
 			List message_list = new ArrayList();
 			while (rs.next()) {
 				Map<String, Object> mo = rs.getMap();
@@ -158,7 +180,7 @@ public class Message {
 			}
 			modelMap.put("message_list", message_list);
 
-			return new ModelAndView("/WEB-INF/jsp/message/messagelist.jsp", modelMap);
+			return new ModelAndView("/WEB-INF/jsp/message/"+view, modelMap);
 
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "短消息列表查看", e);
@@ -184,8 +206,9 @@ public class Message {
 						"用户未登录或登录超时"));
 			}
 			HSql.append(" select te04.id,ta03.name,ta03.login_id,ta03.mobile_tel,te04.title,te04.repeat_flag, ");
-			HSql.append(" te04.send_date,te04.content,te04.fujian_flag,te04.reader_name,te04.read_flag ");
-			HSql.append(" from Te04_message te04,Ta03_user  ta03 where ta03.id = te04.sender_id ");
+			HSql.append(" te04.send_date,te04.content,te04.fujian_flag ");
+			HSql.append(" from Te04_message te04,Ta03_user ta03 ");
+			HSql.append(" where ta03.id = te04.sender_id ");
 			HSql.append(" and te04.id=");
 			HSql.append(message_id);
 			ResultObject rs = queryService.search(HSql.toString());
@@ -200,15 +223,9 @@ public class Message {
 					modelMap.put("fj_list", fj_list);
 					modelMap.put("rowsnum", Integer.parseInt(mo.get("te04.fujian_flag").toString()));
 				}
-
-				if ((int) Integer.parseInt(mo.get("te04.read_flag").toString()) != 1 && messageState == 1
-						&& user.getName().equals(mo.get("te04.reader_name").toString())) {
-					HSql.delete(0, HSql.length());
-					HSql.append("update Te04_message set read_flag=1 where id=");
-					HSql.append(message_id);
-					saveService.updateByHSql(HSql.toString());
-				}
 			}
+			saveService.updateByHSql("update Te11_message_receiver set read_flag=1 where reader_id = "+user.getId()+" and msg_id="+message_id);
+			
 			modelMap.put("message_id", message_id);
 			modelMap.put("messageState", messageState);
 		} catch (Exception e) {
@@ -231,7 +248,9 @@ public class Message {
 
 		try {
 			HSql.append("select te04.id,ta03.name,te04.sender_id,te04.content,te04.fujian_flag,te04.title ");
-			HSql.append("from Te04_message te04,Ta03_user  ta03 where ta03.id = te04.sender_id ");
+			HSql.append("from Te04_message te04,Ta03_user ta03,Te11_message_receiver te11 ");
+			HSql.append("where ta03.id = te04.sender_id ");
+			HSql.append("and te04.id = te11.msg_id ");
 			HSql.append("and te04.id=");
 			HSql.append(message_id);
 			ResultObject rs = queryService.search(HSql.toString());
@@ -338,8 +357,8 @@ public class Message {
 	 * 短消息发送到系统邮箱
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/MessageSend.do")
-	public void messagesend(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@RequestMapping("/MessageSend3.do")
+	public void messagesend3(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("GBK");
 		QueryBuilder queryBuilder = null;
 		String title = null;
@@ -442,6 +461,134 @@ public class Message {
 				}
 				te04.setFujian_flag(new Long(fj_num));
 				saveService.save(te04);
+			}
+		} catch (Exception e) {
+			msg = "{\"statusCode\":\"301\", \"message\":\"操作失败\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
+		}
+		// return null;
+		String messageState = convertUtil.toString(request.getParameter("messageState"),"1");
+		msg = "{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"_current\", \"forwardUrl\":\"MessageList.do?messageState="+messageState+"\", \"callbackType\":\"\"}";
+		response.getWriter().print(msg);
+	}
+	
+	/**
+	 * 短消息发送到系统邮箱
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/MessageSend.do")
+	public void messagesend(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("GBK");
+		QueryBuilder queryBuilder = null;
+		String title = null;
+		String content = null;
+		String reader_id = null;
+		String reader_name = null;
+		String send_flag = null;
+		Long msg_id = null;
+
+		String zffjid[] = request.getParameterValues("zffjid");
+		String msg = "";
+		String repeat_flag = StringFormatUtil.format(request.getParameter("repeat_flag"), "0");
+		try {
+			// 设置当前时间
+			Date time = new Date();
+			Ta03_user ta03 = (Ta03_user) request.getSession().getAttribute("user");
+			HttpServletRequest Crequest = (MultipartHttpServletRequest) request;
+
+			title = request.getParameter("title");
+			content = request.getParameter("content");
+			reader_id = request.getParameter("reader_id");
+			reader_name = request.getParameter("reader_name");
+			send_flag = request.getParameter("send_flag");
+
+			// 保存数据
+			String[] readers_id = reader_id.split(",");
+			String[] readers_name = reader_name.split(",");
+			
+			int fj_num = 0;
+			Te04_message te04 = new Te04_message();
+			te04.setTitle(title); // 标题
+			te04.setContent(content); // 内容
+			te04.setSend_date(time); // 发送时间
+			te04.setSender_id(ta03.getId()); // 发件人id
+			//te04.setRead_flag("0"); // 阅读标示 0 未读；1 已读；
+			//te04.setReader_id(readers_id[i]); // 收件人id
+			//te04.setReader_name(readers_name[i]); // 收件人姓名
+			te04.setRepeat_flag(new Long(repeat_flag)); // 是否需要回复 0 不需要；1
+			// 需要；
+			te04.setSend_flag(new Long(send_flag)); // 直接发送还是存草稿
+			saveService.save(te04);
+			
+			queryBuilder = new HibernateQueryBuilder(Te04_message.class);
+			MultipartHttpServletRequest Mrequest = (MultipartHttpServletRequest) request;
+			Iterator<?> it = Mrequest.getFileNames();
+			while (it.hasNext()) {
+				String fileDispath = (String) it.next();
+				MultipartFile file = Mrequest.getFile(fileDispath);
+				if (file.getName() != null && !file.getName().equals("") && file.getInputStream().available() > 0) {
+					String fileName = new String(file.getOriginalFilename());
+					String extends_name = "";
+					if (file.getOriginalFilename().indexOf(".") != -1) {
+						extends_name = file.getOriginalFilename().substring(
+								file.getOriginalFilename().lastIndexOf("."));
+					}
+					Te01_slave te01 = new Te01_slave();
+					te01.setProject_id(te04.getId());
+					te01.setDoc_id(te04.getId());
+					te01.setSlave_type("其他附件");
+					te01.setFile_name(fileName);
+					te01.setExt_name(extends_name);
+					te01.setFtp_url(fileName);
+					te01.setUser_name(ta03.getName());
+					te01.setUser_id(ta03.getId());
+					te01.setFtp_date(time);
+					te01.setModule_id(new Long(9002));
+					saveService.save(te01);
+					queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
+					StringBuffer ftp_url = new StringBuffer();
+					ftp_url.append(te01.getId());
+					ftp_url.append("Slave");
+					ftp_url.append(te01.getExt_name());
+
+					// ftp 上传
+					FtpService ftp = new FtpService();
+					String save_url = ftp.FileFtpUpload(request, file, ftp_url.toString(), te01.getSlave_type());
+					te01.setFtp_url(save_url);
+					saveService.save(te01);
+					fj_num++;
+				}
+			}
+			if (zffjid != null && !"".equals(zffjid)) {
+				for (int j = 0; j < zffjid.length; j++) {
+					queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
+					queryBuilder.eq("id", new Long(zffjid[j]));
+					ResultObject ro = queryService.search(queryBuilder);
+					if (ro.next()) {
+						Te01_slave te01 = (Te01_slave) ro.get(Te01_slave.class.getName());
+						te01.setDoc_id(te04.getId());
+						te01.setProject_id(te04.getId());
+						te01.setId(null);
+						saveService.save(te01);
+						queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
+						String copyname = te01.getId().toString() + "Slave" + te01.getExt_name();
+						te01.setFtp_url(copyname);
+						saveService.save(te01);
+						fj_num++;
+					}
+				}
+			}
+			te04.setFujian_flag(new Long(fj_num));
+			saveService.save(te04);
+			msg_id = te04.getId();
+		
+			for (int i = 0; i < readers_id.length; i++) {
+				Te11_message_receiver te11 = new Te11_message_receiver();
+				te11.setMsg_id(msg_id);
+				te11.setReader_id(convertUtil.toLong(readers_id[i]));
+				te11.setReader_name(readers_name[i]);
+				te11.setRead_flag(0L);
+				//te11.setRepeat_flag(0L);
+				saveService.save(te11);
 			}
 		} catch (Exception e) {
 			msg = "{\"statusCode\":\"301\", \"message\":\"操作失败\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
@@ -571,7 +718,7 @@ public class Message {
 			if (messageState == 1) {
 				for (int i = 0; i < message_ids.length; i++) {
 					HSql.delete(0, HSql.length());
-					HSql.append("update Te04_message set receive_flag=receive_flag||'" + ta03.getId() + ",' where id=");
+					HSql.append("update Te11_message_receiver set delete_flag=1 where reader_id = "+ta03.getId()+" and msg_id= ");
 					HSql.append(message_ids[i]);
 					saveService.updateByHSql(HSql.toString());
 				}
@@ -579,27 +726,29 @@ public class Message {
 			// 草稿箱中删除
 			if (messageState == 2) {
 				for (int i = 0; i < message_ids.length; i++) {
-					// 删记录
-					saveService.updateByHSql("delete Te04_message where id=" + message_ids[i]);
+					
+					saveService.updateByHSql("update Te04_message set delete_flag = 1 where id=" + message_ids[i]);
 					// 删附件
-					rs = queryService.search(" select id,ftp_url from Te01_slave where project_id=" + message_ids[i]
-							+ " and module_id=9002");
-					FtpService ftp = new FtpService();
-					while (rs.next()) {
-						String id = rs.get("id").toString();
-						String formurl = rs.get("ftp_url").toString();
-						ftp.FtpFileDel(request, formurl);
-						saveService.updateByHSql("delete Te01_slave where id=" + id);
-					}
+//					rs = queryService.search(" select id,ftp_url from Te01_slave where project_id=" + message_ids[i]
+//							+ " and module_id=9002");
+//					FtpService ftp = new FtpService();
+//					while (rs.next()) {
+//						String id = rs.get("id").toString();
+//						String formurl = rs.get("ftp_url").toString();
+//						ftp.FtpFileDel(request, formurl);
+//						saveService.updateByHSql("delete Te01_slave where id=" + id);
+//					}
 				}
 			}
 			// 已发送中删除
 			if (messageState == 3) {
 				for (int i = 0; i < message_ids.length; i++) {
-					HSql.delete(0, HSql.length());
-					HSql.append("update Te04_message set send_flag=3 where id=");
-					HSql.append(message_ids[i]);
-					saveService.updateByHSql(HSql.toString());
+//					HSql.delete(0, HSql.length());
+//					HSql.append("update Te04_message set send_flag=3 where id=");
+//					HSql.append(message_ids[i]);
+//					saveService.updateByHSql(HSql.toString());
+					
+					saveService.updateByHSql("update Te04_message set delete_flag = 1 where id=" + message_ids[i]);
 				}
 			}
 			// 垃圾箱中删除

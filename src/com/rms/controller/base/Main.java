@@ -232,14 +232,34 @@ public class Main {
 		request.setAttribute("online_list", online_list);
 		
 		//短消息
-		ResultObject ro_wcldxx = queryService.search(" from Te04_message where read_flag='0' and send_flag<>0 and receive_flag is null and reader_id='"+user.getId()+"'");
+		StringBuffer sql = new StringBuffer("");
+		sql.delete(0, sql.length());
+		sql.append("from Te04_message te04,Te11_message_receiver te11 ");
+		sql.append("where te04.id = te11.msg_id ");
+		sql.append("and te04.send_flag <> 0 ");
+		sql.append("and te11.read_flag = 0 ");
+		sql.append("and te11.delete_flag is null ");
+		sql.append("and te11.reader_id = ");
+		sql.append(user.getId());
+		
+		ResultObject ro_wcldxx = queryService.search(sql.toString());
 		if(ro_wcldxx.getLength() > 0){
 			remind_num++;
 		}
 		request.setAttribute("wcldxx", ro_wcldxx.getLength());
-		
 		List<Map<String, Object>> message_list = new ArrayList<Map<String, Object>>();
-		ResultObject ro_dxx = queryService.searchByPage("select title,id,read_flag,send_date,send_date-trunc(sysdate) as dif,repeat_flag from Te04_message where send_flag<>0 and receive_flag is null and reader_id='"+user.getId()+"' order by read_flag,id desc",1,5);
+		
+		sql.delete(0, sql.length());
+		sql.append("select te04.title as title,te04.id as id,te11.read_flag as read_flag,te04.send_date as send_date,te04.send_date-trunc(sysdate) as dif,te04.repeat_flag as repeat_flag ");
+		sql.append("from Te04_message te04,Te11_message_receiver te11 ");
+		sql.append("where te04.id = te11.msg_id ");
+		sql.append("and te04.send_flag <> 0 ");
+		sql.append("and te11.read_flag = 0 ");
+		sql.append("and te11.delete_flag is null ");
+		sql.append("and te11.reader_id = ");
+		sql.append(user.getId());
+		sql.append(" order by te11.read_flag,te04.id desc");
+		ResultObject ro_dxx = queryService.searchByPage(sql.toString(),1,5);
 		while(ro_dxx.next()){
 			Map<String,Object> list = ro_dxx.getMap();
 			message_list.add(list);

@@ -28,7 +28,7 @@
 
   <property
   name="reader_id"
-  type="java.lang.String"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="reader_id"
@@ -44,18 +44,10 @@
 
   <property
   name="read_flag"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="read_flag"
-  />
-
-  <property
-  name="repeat_flag"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="repeat_flag"
+  column="read_flag"
   />
 
   <property
@@ -65,7 +57,6 @@
   insert="true"
   column="delete_flag"
   />
-
 
     </class>
 

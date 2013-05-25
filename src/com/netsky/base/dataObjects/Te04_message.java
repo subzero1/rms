@@ -223,5 +223,19 @@ public class Te04_message implements Serializable{
     this.reader_name = reader_name;
   }
 
+ private Long delete_flag;
 
+ /**
+  * @hibernate.property column="delete_flag"
+  * @return Returns the delete_flag.
+  */
+public Long getDelete_flag() {
+	return delete_flag;
+}
+
+public void setDelete_flag(Long delete_flag) {
+	this.delete_flag = delete_flag;
+}
+ 
+ 
 }
