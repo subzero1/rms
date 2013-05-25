@@ -52,24 +52,64 @@
 		<label>A端装机地址：</label>
 		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.a_adress}" style="width:407px;"/>
 	</p>
+	<!--  
 	<p>
 		<label>工程类别：</label>
 		<netsky:htmlSelect name="Td00_gcxx.GCLB" objectForOption="gclbList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.gclb}" htmlClass="td-select"/>
 	</p>
-	<div style="height:0px;"></div>
-	<p>
-		<label>Z端装机地址：</label>
-		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.z_adress}" style="width:407px;"/>
-	</p>
+	-->
 	<p>
 		<label>定单状态：</label>
 		<netsky:htmlSelect name="Td00_gcxx.DDZT" objectForOption="ddztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.ddzt}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
+		<label>Z端装机地址：</label>
+		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.z_adress}" style="width:407px;"/>
+	</p>
+	
+	<div style="height:0px;"></div>
+	<p>
 		<label>需求说明：</label>
 		<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td00_gcxx.GCSM">${td00_gcxx.gcsm}</textarea>
 	</p>
+	<div class="divider"></div>
+	<p>
+			<label>分光器编码：</label>
+					<input class="required" type="text" style="width:407px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
+				</p>
+				<p>
+					<label>工单状态：</label>
+					<input name="Td00_gcxx.GDZTZT"  style="width:133px;" value="${td00_gcxx.gdztzt}"/>
+				<p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>计划完成时间：</label>
+					<input  type="text" style="width:140px;" name="Td00_gcxx.JHJGSJ"  value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>"  readonly/>
+				</p>
+				<p>
+					<label>实际完成时间：</label>
+					<input  type="text" style="width:140px;" name="Td00_gcxx.WCSJ"  value="<fmt:formatDate value="${td00_gcxx.wcsj}" pattern="yyyy-MM-dd"/>"  readonly/>
+				</p>
+				<p>
+					<label>是否超期：</label>
+					<input  type="text" style="width:140px;" name="Td00_gcxx_SFCQ"  value="${td00_gcxx.sfcq}"  readonly/>
+				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>是否投诉：</label>
+					<select   style="width:142px;" name="Td00_gcxx.SFTS" value="${td00_gcxx.sfts}" >
+						<option value="否" <c:if test="${td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
+						<option value="是" <c:if test="${td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
+					</select>
+					<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${td00_gcxx.sfcq}" readonly/>
+				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>回单备注：</label>
+					<textarea name="Td00_gcxx.HDBZ" id="nr"
+						style='width:630px; height: 40px'>${td00_gcxx.hdbz }</textarea>
+				</p>
 	<div class="divider"></div>
 	<p>
 		<label>设计单位：</label>
