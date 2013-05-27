@@ -90,7 +90,7 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>分光器编码：</label>
-		<input class="required" type="text" style="width:150px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
+		<input type="text" style="width:150px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
 	</p>
 	<p>
 		<label>是否投诉：</label>
