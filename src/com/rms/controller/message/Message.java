@@ -1264,4 +1264,17 @@ public class Message {
 		}
 		return new ModelAndView(url, modelMap);
 	}
+	
+	@RequestMapping("/message/messageReaderList.do")
+	public ModelAndView messageReaderList(HttpServletRequest request,HttpServletResponse response) {
+		ModelMap modelMap=new ModelMap();
+		String view="/WEB-INF/jsp/message/messageReaderList.jsp";
+		StringBuffer hql=new StringBuffer();
+		Long msg_id=convertUtil.toLong(request.getParameter("msg_id"));
+		hql.append("select a.reader_name,a.read_flag from Te11_message_receiver a where a.msg_id=");
+		hql.append(msg_id);
+		List messageReaderList=queryService.searchList(hql.toString());
+		modelMap.put("messageReaderList", messageReaderList);
+		return new ModelAndView(view,modelMap);
+	}
 }
