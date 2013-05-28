@@ -175,7 +175,7 @@
 					<td><fmt:formatDate value="${obj.hdsj }" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${obj.hdgw }</td>
 					<td title="${obj.nr }">${obj.nr }</td>
-					<td><a class="delete" href="aux/ddhdAjaxDelete.do?id=${obj.id }" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></td>
+					<td><c:if test="${user.name==obj.hdr }"><a class="delete" href="aux/ddhdAjaxDelete.do?id=${obj.id }" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></c:if></td>
 				</tr>
 			</c:forEach>
 		</tbody>
