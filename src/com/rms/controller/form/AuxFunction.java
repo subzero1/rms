@@ -1079,6 +1079,22 @@ public class AuxFunction {
 		splbMap.put("gghte", "更改合同额");
 		splbMap.put("xmpg", "项目派工");
 
+		/*
+		 * 如果没有得到外协单位，从项目信息中重新获得
+		 */
+		if(sys_wxdw_id == -1){
+			sql.delete(0, sql.length());
+			sql.append("select tf01.id as sgdw_id ");
+			sql.append("from Td01_xmxx td01,Tf01_wxdw tf01 ");
+			sql.append("where td01.sgdw = tf01.mc ");
+			sql.append("and td01.id = ");
+			sql.append(project_id);
+			ResultObject ro = queryService.search(sql.toString());
+			if(ro.next()){
+				sys_wxdw_id = convertUtil.toLong(ro.get("sgdw_id"));
+			}
+		}
+		
 		HttpSession session = request.getSession();
 		if (session != null) {
 			Ta03_user ta03 = (Ta03_user) session.getAttribute("user");

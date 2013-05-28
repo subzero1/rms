@@ -103,11 +103,11 @@
 	<div class="divider hte"></div> 
 	<div class="xzdw">
 	<p>
-		<label> 系统选择单位：</label>
+		<label> 原选单位：</label>
 		<input type="text" readOnly ids="xzdw" name="Td08_pgspd.XTXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.xtxzdw}" default="${sys_wxdw_name }"/>" />
 	</p> 
 	<p>
-		<label> 实际选择单位：</label>
+		<label> 新选单位：</label>
 		<input  type="text" name="Td08_pgspd.SJXZDW" ids="xzdw" id="sjxzOrg.SJXZDW" style="width:630px;" value="<c:out value="${td08_pgspd.sjxzdw}" default="${man_wxdw_name }"/>" />
 		<a class="btnLook" lookupGroup="sjxzOrg" href="sgpd/sjxzdw.do?xm_id=${td01_xmxx.id}" width="700" height="380"></a>
 	</p>
