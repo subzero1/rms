@@ -2289,7 +2289,7 @@ public class AuxFunction {
 	public void ddhdAjaxDelete(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();;
-		response.setContentType("text/html;charset=GBK");
+		response.setCharacterEncoding("GBK");
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		try {
 			dao.removeObject(Td09_ddhdxx.class, id);
