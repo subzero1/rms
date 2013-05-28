@@ -134,7 +134,7 @@ public class Gcgl {
 			hsql.append("and jldw = '" + user_dept + "' ");
 		}
 		else{//合同管理员
-			;
+			hsql.append(" and xmgly in(select name from Ta03_user where send_htgly = 1)");
 		}
 		// 工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
 //		hsql.append("(");
