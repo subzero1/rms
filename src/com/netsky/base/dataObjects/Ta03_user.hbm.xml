@@ -121,6 +121,14 @@
             insert="true"
             column="search_level"
         />
+        
+        <property
+            name="send_htgly"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="send_htgly"
+        />
 
         <property
             name="area_name"
