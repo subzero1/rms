@@ -1,5 +1,6 @@
 package com.rms.controller.form;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -47,6 +48,7 @@ import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
 import com.rms.dataObjects.base.Tmp_zdxp;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
+import com.rms.dataObjects.form.Td09_ddhdxx;
 
 @Controller
 public class AuxFunction {
@@ -59,10 +61,10 @@ public class AuxFunction {
 
 	@Autowired
 	private SaveService saveService;
-	
+
 	@Autowired
 	private ExceptionService exceptionService;
-	
+
 	@Autowired
 	private JdbcSupport jdbcSupport;
 
@@ -1069,9 +1071,10 @@ public class AuxFunction {
 				.getParameter("sys_wxdw_id"));
 		Long man_wxdw_id = convertUtil.toLong(request
 				.getParameter("man_wxdw_id"));
-		String splb = convertUtil.toString(request.getParameter("splb"),"xmpg");
+		String splb = convertUtil
+				.toString(request.getParameter("splb"), "xmpg");
 		Long doc_id = convertUtil.toLong(request.getParameter("doc_id"));
-		Long id=convertUtil.toLong(request.getParameter("id"));
+		Long id = convertUtil.toLong(request.getParameter("id"));
 		Map splbMap = new HashMap();
 		splbMap.put("gghte", "更改合同额");
 		splbMap.put("xmpg", "项目派工");
@@ -1093,7 +1096,7 @@ public class AuxFunction {
 			sql.append(splbMap.get(splb));
 			sql.append("' ");
 		}
-		if (doc_id!=-1) {
+		if (doc_id != -1) {
 			sql.append(" and id=");
 			sql.append(doc_id);
 		}
@@ -1451,7 +1454,7 @@ public class AuxFunction {
 		if (op == 10) {// 以人为单位的决算
 			hql.append(" and jssj is not null ");
 		}
-		if (op==11) {//实际选择单位的项目
+		if (op == 11) {// 实际选择单位的项目
 			hql.delete(0, hql.length());
 			hql.append("select a from Td01_xmxx a,Td08_pgspd b where 1=1 ");
 			hql.append("and a.id=b.project_id and a.sgdw=b.sjxzdw ");
@@ -1465,7 +1468,7 @@ public class AuxFunction {
 			hql.append("' ");
 			hql.append(" and b.sp_flag=1 ");
 			hql.append(sql_tmp);
-			orderField="a.id";
+			orderField = "a.id";
 		}
 
 		if (!jssj.equals("")) {
@@ -2257,25 +2260,45 @@ public class AuxFunction {
 		}
 		return allList;
 	}
-	
+
 	@RequestMapping("/aux/ddhdEdit.do")
-	public ModelAndView ddhdEdit(HttpServletRequest request,HttpServletResponse response){
-		String view="/WEB-INF/jsp/form/ddht.jsp";
-		ModelMap modelMap=new ModelMap();
-		Long project_id=convertUtil.toLong(request.getParameter("project_id"));
-		
-		Td00_gcxx gcxx=(Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
-		if (gcxx.getJhjgsj()!=null&&gcxx.getWcsj()!=null) {
+	public ModelAndView ddhdEdit(HttpServletRequest request,
+			HttpServletResponse response) {
+		String view = "/WEB-INF/jsp/form/ddht.jsp";
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+
+		Td00_gcxx gcxx = (Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
+		if (gcxx.getJhjgsj() != null && gcxx.getWcsj() != null) {
 			if (gcxx.getJhjgsj().after(gcxx.getWcsj())) {
 				gcxx.setSfcq("否");
-			}	
+			}
 			if (gcxx.getWcsj().after(gcxx.getJhjgsj())) {
 				gcxx.setSfcq("是");
-			}	
+			}
 		}
-		List gdztztList=queryService.searchList("select a from Tc01_property a where a.type='工单整体状态'");
+		List gdztztList = queryService
+				.searchList("select a from Tc01_property a where a.type='工单整体状态'");
 		modelMap.put("Td00_gcxx", gcxx);
 		modelMap.put("gdztztList", gdztztList);
-		return new ModelAndView(view,modelMap);
+		return new ModelAndView(view, modelMap);
+	}
+
+	@RequestMapping("/aux/ddhdAjaxDelete.do")
+	public void ddhdAjaxDelete(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();;
+		response.setContentType("text/html;charset=GBK");
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		try {
+			dao.removeObject(Td09_ddhdxx.class, id);
+			out
+					.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+		}
+
 	}
 }
