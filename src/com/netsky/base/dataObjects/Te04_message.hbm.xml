@@ -113,6 +113,14 @@
   insert="true"
   column="delete_flag"
   />
+  
+     <property
+  name="parent_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="parent_id"
+  />
     </class>
 
 </hibernate-mapping>
