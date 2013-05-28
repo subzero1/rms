@@ -2310,10 +2310,10 @@ public class AuxFunction {
 		try {
 			dao.removeObject(Td09_ddhdxx.class, id);
 			out
-					.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+					.print("{\"statusCode\":\"200\", \"message\":\"succeed!\", \"callbackType\":\"forward\"}");
 		} catch (Exception e) {
 			e.printStackTrace();
-			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+			out.print("{\"statusCode\":\"300\", \"message\":\"fail!\"}");
 		}
 
 	}

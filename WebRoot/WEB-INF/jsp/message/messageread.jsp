@@ -96,6 +96,7 @@
 			<div class="formBar">
 				<ul>
 					<c:if test="${messageState != 3}">
+					<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="javascript:setrepeat('zhuanfa');">转 发</button></div></div></li>
 					<li><div class="buttonActive"><div class="buttonContent"><button type="button" onclick="javascript:setrepeat('huifu');">回 复</button></div></div></li>
 					</c:if>	
 					<li><div class="button"><div class="buttonContent"><button type="button" class="close">关 闭</button></div></div></li>
