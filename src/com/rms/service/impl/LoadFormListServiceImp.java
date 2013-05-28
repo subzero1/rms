@@ -1214,12 +1214,16 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				/**
 				 * IOM系统接口链接
 				 */
+				String login_ip = request.getRemoteAddr();
 				hsql.delete(0, hsql.length());
 				hsql.append("select url from Ti03_xqly where project_id = ");
 				hsql.append(project_id);
 				ro = queryService.search(hsql.toString());
 				if(ro.next()){
 					String url = (String)ro.get("url");
+					if(login_ip.indexOf("132.228.158.1") != -1){
+						url = url.replace("132.228.176.109", "jsiom.telecomjs.com");
+					}
 					HashMap<String, String> tmp_iom_slave = new HashMap<String, String>();
 					tmp_iom_slave.put("slave_name", "定单详情");
 					tmp_iom_slave.put("formurl", "javascript:window.open('"+url+"')");
