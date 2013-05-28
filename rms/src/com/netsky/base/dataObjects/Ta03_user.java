@@ -313,4 +313,14 @@ public class Ta03_user implements Serializable{
 	public void setParent_dept(String parent_dept) {
 		this.parent_dept = parent_dept;
 	}
+	
+	private Long send_htgly;
+
+	public Long getSend_htgly() {
+		return send_htgly;
+	}
+
+	public void setSend_htgly(Long send_htgly) {
+		this.send_htgly = send_htgly;
+	}
 }
