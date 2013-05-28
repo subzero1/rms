@@ -291,6 +291,7 @@ public class Message {
 					}
 					//转发内容拼接
 					StringBuffer content=new StringBuffer();
+					content.append("\n \n \n \n \n");
 					content.append("----原始邮件----\n");
 					content.append("发件人:"+mo.get("ta03.name")+"\n");
 					content.append("发送时间:"+DateFormatUtil.Format(DateFormatUtil.FormatTimeString(mo.get("te04.send_date").toString()), "yyyy年MM月dd日 HH:mm")+"\n");
