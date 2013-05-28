@@ -247,14 +247,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						}
 					}
 					
-					if(node_id == 10101){//项目管理员起草立项资料送审单
-						btn = new Button("资料送审");
-						btn.url = "javascript:docNew('flowForm.do?module_id=108&node_id=10801&project_id=" + project_id + "&preOpernode_id=-1&user_id=" + user_id	+ "');";
-						btn.comment = "立项资料送审流程";
-						btn.picUri = "newform";
-						buttonList.add(btn);
-					}
-					
 					if(node_id == 10103 || node_id == 10203){
 						Long zy_module_id = null;
 						Long zy_node_id = null;
