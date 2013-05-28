@@ -41,6 +41,7 @@ import com.netsky.base.imagecut.FtpService;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.utils.NumberFormatUtil;
 import com.netsky.base.utils.PHSService;
@@ -262,7 +263,7 @@ public class Message {
 		ModelMap modelMap = new ModelMap();
 
 		try {
-			HSql.append("select te04.id,ta03.name,te04.sender_id,te04.content,te04.fujian_flag,te04.title ");
+			HSql.append("select te04.id,ta03.name,te04.sender_id,te04.content,te04.fujian_flag,te04.title,te04.send_date,te11.reader_name ");
 			HSql.append("from Te04_message te04,Ta03_user ta03,Te11_message_receiver te11 ");
 			HSql.append("where ta03.id = te04.sender_id ");
 			HSql.append("and te04.id = te11.msg_id ");
@@ -279,8 +280,7 @@ public class Message {
 					saveService.updateByHSql("update Te04_message set repeat_flag=2 where id=" + message_id);
 				}
 				if (goanother.equals("zhuanfa")) {
-					modelMap.put("content", mo.get("te04.content"));
-					modelMap.put("title", mo.get("te04.title"));
+					modelMap.put("title", "转发：" + mo.get("te04.title"));
 					if (Integer.parseInt(mo.get("te04.fujian_flag").toString()) > 0) {
 						QueryBuilder queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
 						queryBuilder.eq("module_id", new Long(9002));
@@ -289,6 +289,15 @@ public class Message {
 						modelMap.put("fj_list", fj_list);
 						modelMap.put("rowsnum", Integer.parseInt(mo.get("te04.fujian_flag").toString()));
 					}
+					//转发内容拼接
+					StringBuffer content=new StringBuffer();
+					content.append("----原始邮件----\n");
+					content.append("发件人:"+mo.get("ta03.name")+"\n");
+					content.append("发送时间:"+DateFormatUtil.Format(DateFormatUtil.FormatTimeString(mo.get("te04.send_date").toString()), "yyyy年MM月dd日 HH:mm")+"\n");
+					content.append("收件人:"+mo.get("te11.reader_name").toString()+"\n");
+					content.append("主题:"+mo.get("te04.title")+"\n");
+					content.append(mo.get("te04.content"));
+					modelMap.put("content", content.toString());
 				}
 			}
 		} catch (Exception e) {
