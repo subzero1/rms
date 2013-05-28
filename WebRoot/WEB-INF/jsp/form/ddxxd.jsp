@@ -162,6 +162,7 @@
 				<th style="width: 110px;">回单时间</th>
 				<th style="width: 80px;">回单岗位</th>
 				<th>回单内容</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -174,6 +175,7 @@
 					<td><fmt:formatDate value="${obj.hdsj }" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${obj.hdgw }</td>
 					<td title="${obj.nr }">${obj.nr }</td>
+					<td><a class="delete" href="aux/ddhdAjaxDelete.do?id=${obj.id }" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
