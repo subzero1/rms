@@ -6,8 +6,6 @@
 	function add(id,name){ 
 			$.bringBack({'SGDW':name,'SGDW_IDS':id});
 	} 
- 
-	
 	
 	function bringPgsp(param0,param1,param2,param3){
 		var url="form/pgsp.do?";
