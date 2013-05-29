@@ -8,7 +8,7 @@
 <html>
 	<head> 
 
-		<title>订单回单</title>
+		<title>定单回单</title>
 
  <script type="text/javascript">
 	function addFj(tableId){
@@ -78,11 +78,11 @@
 		 <table   id="ddhd" style="margin-left: 30px;">
 			<tr>
 				<th>
-					回单内容：
+					回单内容：&nbsp;&nbsp;&nbsp;&nbsp;
 				</th>
 				<td>
 					<textarea name="Td09_ddhdxx.NR" id="nr"
-						style='width: 425px;height: 60px'></textarea>
+						style='width: 425px;height: 93px'></textarea>
 				 <input type="hidden" name="Td09_ddhdxx.PROJECT_ID" value="${param.project_id }"/>
 				 <input type="hidden" name="Td09_ddhdxx.ID" value=""/>
 				 <input type="hidden" name="Td09_ddhdxx.HDR" value="${user.name }"/>

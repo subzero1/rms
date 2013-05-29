@@ -67,27 +67,24 @@
 		<label>Z端装机地址：</label>
 		<input type="text" name="Td00_gcxx.A_ADRESS" value="${td00_gcxx.z_adress}" style="width:407px;"/>
 	</p>
-	
+	<p>
+	<c:choose>
+		<c:when test="${not empty rolesMap['100106'] }">
+			<label>项目管理员：</label>
+			<netsky:htmlSelect name="Td00_gcxx.XMGLY" objectForOption="xmglyList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.xmgly}" htmlClass="td-select"/>
+		</c:when>
+		<c:otherwise>
+			<label>项目管理员：</label>
+			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:120px;"/>
+		</c:otherwise>
+	</c:choose>
+	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>需求说明：</label>
 		<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td00_gcxx.GCSM">${td00_gcxx.gcsm}</textarea>
 	</p>
 	<div class="divider"></div>
-	<p>
-		<label>计划竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.JHJGSJ" value="<fmt:formatDate value="${td00_gcxx.jhjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
-	</p>
-	<p>
-		<label>实际竣工时间：</label>
-		<input type="text"  name="Td00_gcxx.SJJGSJ" value="<fmt:formatDate value="${td00_gcxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
-	</p>
-	
-	<p>
-		<label>工单状态：</label>
-		<input name="Td00_gcxx.GDZTZT"  style="width:120px;" value="${td00_gcxx.gdztzt}"/>
-	<p>
-	<div style="height:0px;"></div>
 	<p>
 		<label>分光器编码：</label>
 		<input type="text" style="width:150px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
@@ -101,17 +98,9 @@
 		<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${td00_gcxx.sfcq}" readonly/>
 	</p>
 	<p>
-	<c:choose>
-		<c:when test="${not empty rolesMap['100106'] }">
-			<label>项目管理员：</label>
-			<netsky:htmlSelect name="Td00_gcxx.XMGLY" objectForOption="xmglyList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td00_gcxx.xmgly}" htmlClass="td-select"/>
-		</c:when>
-		<c:otherwise>
-			<label>项目管理员：</label>
-			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:120px;"/>
-		</c:otherwise>
-	</c:choose>
-	</p>
+		<label>整体状态：</label>
+		<input name="Td00_gcxx.GDZTZT"  style="width:120px;" value="${td00_gcxx.gdztzt}"/>
+	<p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>计划完成时间：</label>
