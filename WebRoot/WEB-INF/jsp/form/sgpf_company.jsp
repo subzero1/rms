@@ -4,16 +4,9 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
 	function add(id,name){ 
-			$.bringBack({'SGDW':name,'SGDW_IDS':id,'SDPGYY':$reasons.val()});
+			$.bringBack({'SGDW':name,'SGDW_IDS':id});
 	} 
-	$(function(){
-		var $reasonflag=$("input[name='reasonflag']",$.pdialog.getCurrent());
-		var $reasons=$("#reasons",$.pdialog.getCurrent()); 
-		if($reasonflag.val()=='1'){ 
-			$reasons.closest("div").hide();
-		}
-		
-	});
+ 
 	
 	
 	function bringPgsp(param0,param1,param2,param3){
@@ -40,8 +33,7 @@
 	<input type="hidden" name="searchStr" value="${param.searchStr }"/>
 	<input type="hidden" name="ids" id="ids" value="${param.ids }"/>
 	<input type="hidden" name="names" id="names" value="${names }"/>
-	<input type="hidden" name="xm_id" value="${param.xm_id}"/>
-	<input type="hidden" name="reasonflag" value="${param.reasonflag}"/>
+	<input type="hidden" name="xm_id" value="${param.xm_id}"/> 
 </form>
 
 <div class="pageHeader">
