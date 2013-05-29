@@ -51,6 +51,7 @@
 				<th width="70">实际占比</th>
 				<th width="50">偏差率</th>
 				<th width="70">偏差档级</th>
+				<th width="50">项目数</th>
 			</tr>
 		</thead>				
 		<tbody>
@@ -63,6 +64,7 @@
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
 				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[9] }</td>
+				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[11] }</td>
 			</tr>
 			</c:forEach> 
 			<c:forEach items="${pxsjxzdw}" var="o">
@@ -74,12 +76,14 @@
 				<td><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
 				<td><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
 				<td>${o[9] }</td>
+				<td>${o[11] }</td>
 			</tr>
 			</c:forEach>
 			<c:if test="">
 			<c:forEach items="${empty sjxzdw}" var="o">
 			<tr style="color:green;">
 				<td>${o[1]}</td>
+				<td>-</td>
 				<td>-</td>
 				<td>-</td>
 				<td>-</td>
