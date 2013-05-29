@@ -66,9 +66,16 @@
 		var addtr = document.getElementById(tableId).insertRow(4);
 		var rownum = document.getElementById(tableId).rows.length;
 		addtr.insertCell(0).innerHTML = ""; 
-		var Text = "<input type=\"file\" name=\"the_file1" + rownum + "\" size=\"35\"/>";
+		var Text = "<input type=\"file\" name=\"the_file1" + rownum + "\" style=\"float:left;\" size=\"35\"/> ";
+		Text+="<a href=\"#\" onclick=\"javascript:delAttachment(this);\" class=\"btnDel\" ><span>删除</span> </a>";
 		addtr.insertCell(1).innerHTML = Text;
-	}function delrow(obj){
+	}
+	function delAttachment(_this){
+		var $tr = $(_this).closest("tr");
+		$tr.remove();
+	}
+	
+	function delrow(obj){
 		var num = obj.parentNode.parentNode.rowIndex;
 		document.getElementById("send_message").deleteRow(num);
 	}	
@@ -291,8 +298,8 @@
 								onclick="javascript:addFj('send_message')"
 								style="cursor: pointer" title="添加附件" />
 						</th>
-						<td>
-							<input type="file" name="the_file1" size="35" />
+						<td >
+							<input type="file" name="the_file1" size="35" style="float:left;"/>
 						</td>
 					</tr>
 					<c:forEach var="fj_list" items="${fj_list}">
