@@ -31,6 +31,7 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta04_role;
 
 @Controller
 public class Htgl {
@@ -64,6 +65,7 @@ public class Htgl {
 		ModelMap modelMap = new ModelMap();
 		
 		Ta03_user user = (Ta03_user)session.getAttribute("user");
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
 		
 		//分页变量
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
@@ -73,7 +75,7 @@ public class Htgl {
 		
 		//排序变量
 		String orderField = convertUtil.toString(request.getParameter("orderField"),"id");
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"),"asc");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"),"desc");
 		
 		//查询变量
 		String htlb = convertUtil.toString(request.getParameter("htlb"),"sj");
@@ -101,8 +103,10 @@ public class Htgl {
 		//获得待签合同信息列表
 		sql.delete(0, sql.length());
 		sql.append(" from Td01_xmxx td01");
-		sql.append(" where xmgly = '"+user.getName()+"' ");
-		//sql.append(" where xmgly = '"+user.getName()+"' and " + htlb +"htbh is null ");
+		sql.append(" where 1=1 ");
+		if (rolesMap.get("100107") == null) {
+			sql.append(" and xmgly = '"+user.getName()+"' ");
+		}
 				
 		 //关键字
 		if(!keywords.equals("")){
