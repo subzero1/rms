@@ -239,6 +239,8 @@
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="messageState"
 				value="${param.messageState }" />
+			<input type="hidden" name="sendType" value="${param.goanother }"/>
+			<input type="hidden" name="message_id" value="${param.message_id }"/>
 			<!-- left --> 
 			<div
 				style=" float: left; padding: 5px ;overflow: auto;"
