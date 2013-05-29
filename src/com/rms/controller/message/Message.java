@@ -276,6 +276,7 @@ public class Message {
 					modelMap.put("reader_name", mo.get("ta03.name").toString());
 					modelMap.put("reader_id", mo.get("te04.sender_id").toString());
 					modelMap.put("title", "回复：" + mo.get("te04.title"));
+					modelMap.put("mssage_id", mo.get("te04.id"));
 					// 已回复
 					saveService.updateByHSql("update Te04_message set repeat_flag=2 where id=" + message_id);
 				}
@@ -510,6 +511,8 @@ public class Message {
 		String reader_name = null;
 		String send_flag = null;
 		Long msg_id = null;
+		Long message_id=null;
+		String sendType=null;
 
 		String zffjid[] = request.getParameterValues("zffjid");
 		String msg = "";
@@ -525,6 +528,8 @@ public class Message {
 			reader_id = request.getParameter("reader_id");
 			reader_name = request.getParameter("reader_name");
 			send_flag = request.getParameter("send_flag");
+			message_id=convertUtil.toLong(request.getParameter("message_id"));
+			sendType=convertUtil.toString(request.getParameter("sendType"));
 
 			// 保存数据
 			String[] readers_id = reader_id.split(",");
@@ -542,6 +547,10 @@ public class Message {
 			te04.setRepeat_flag(new Long(repeat_flag)); // 是否需要回复 0 不需要；1
 			// 需要；
 			te04.setSend_flag(new Long(send_flag)); // 直接发送还是存草稿
+			if (sendType.equals("huifu")) {
+				te04.setParent_id(message_id);
+			}
+			
 			saveService.save(te04);
 			
 			queryBuilder = new HibernateQueryBuilder(Te04_message.class);
