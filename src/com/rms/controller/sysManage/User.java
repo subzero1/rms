@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -137,6 +138,14 @@ public class User {
 		search_Level = new Search_Level(3, 3, "本人参与");
 		list.add(search_Level);
 		modelMap.put("searchlevelList", list);
+		
+		List<Object> sendHtglyList = new LinkedList<Object>();
+		Properties p = new Properties();
+		p.setProperty("show", "是");
+		p.setProperty("value", "1");
+		sendHtglyList.add(p);
+		modelMap.put("sendHtglyList", sendHtglyList);
+		
 		// 获取用户对象
 		user = (Ta03_user) dao.getObject(Ta03_user.class, id);
 		// 获取部门列表

@@ -65,12 +65,12 @@ $(function(){
 						valueForOption="id" showForOption="name"
 						value="${userObj.dept_id}" extend="" extendPrefix="true"  htmlClass="required"/>
 				</p>
+				
 				<p>
-					<label>查询级别：</label>
-					<netsky:htmlSelect name="Ta03_user.SEARCH_LEVEL" style="width:96px;"
-						objectForOption="searchlevelList" valueForOption="level"
-						showForOption="name" value="${userObj.search_level}"
-						extendPrefix="true"  htmlClass="required"/>
+					<label>集中派工：</label>
+					<netsky:htmlSelect name="Ta03_user.SEND_HTGLY" style="width:90px;"
+						objectForOption="sendHtglyList"  value="${userObj.send_htgly}"
+						extendPrefix="true" extend="" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
