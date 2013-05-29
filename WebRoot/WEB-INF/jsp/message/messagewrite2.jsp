@@ -288,7 +288,7 @@
 						</th>
 						<td>
 							<input type="text" id="title" name="title" value="${title }"
-								style="width: 98%" />
+								style="width: 98%" class="required"/>
 						</td>
 					</tr>
 					<tr>
@@ -325,7 +325,7 @@
 						</th>
 						<td>
 							<textarea name="content" id="content"
-								style='width: 98%; height: 193px;'>${content }</textarea>
+								style='width: 98%; height: 193px;' class="required">${content }</textarea>
 						</td>
 					</tr>
 				</table> 
