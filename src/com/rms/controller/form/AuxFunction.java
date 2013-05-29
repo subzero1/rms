@@ -1675,11 +1675,11 @@ public class AuxFunction {
 			return new ModelAndView(
 					"/WEB-INF/jsp/search/pdqk.jsp?errormsg=tfnotfound");
 		}
-		// 建立数组o[11]
+		// 建立数组o[12]
 		// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
 		List<Object[]> objectsList = new ArrayList<Object[]>();
 		for (Object[] objects : wxdwList) {
-			Object[] o = new Object[11];
+			Object[] o = new Object[12];
 			o[0] = objects[0];
 			o[1] = objects[1];
 			objectsList.add(o);
@@ -1705,25 +1705,38 @@ public class AuxFunction {
 			Tf05_wxdw_dygx tf05 = (Tf05_wxdw_dygx) objects[1];
 			// fezb:实际份额占比
 			Double fezb = 0D;
+			Long xms = 0L;
 			if (zgr != 0) {
-				double gr = convertUtil
-						.toDouble(
-								dao
-										.search(
-												"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
-														+ tf01.getMc()
-														+ "' and ssdq='"
-														+ dq
-														+ "' and gclb='"
-														+ gclb
-														+ "' and to_char(lxsj,'yyyy') = '"
-														+ ssnd + "'").get(0),
-								0D);
+//				double gr = convertUtil
+//						.toDouble(
+//								dao
+//										.search(
+//												"select count(id),sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+//														+ tf01.getMc()
+//														+ "' and ssdq='"
+//														+ dq
+//														+ "' and gclb='"
+//														+ gclb
+//														+ "' and to_char(lxsj,'yyyy') = '"
+//														+ ssnd + "'").get(0),
+//								0D);
+				List tmp_list = dao.search(
+						"select count(id),sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+								+ tf01.getMc()
+								+ "' and ssdq='"
+								+ dq
+								+ "' and gclb='"
+								+ gclb
+								+ "' and to_char(lxsj,'yyyy') = '"
+								+ ssnd + "'");
+				double gr = convertUtil.toDouble(((Object[])(tmp_list.get(0)))[1],0d);
+				xms = convertUtil.toLong(((Object[])(tmp_list.get(0)))[0]);
 				fezb = gr / zgr;
 			}
 			// tf05.getV1():预定份额占比
 			objects[6] = tf05.getV1();
 			objects[7] = fezb * 100;
+			objects[11] = xms;
 			if (tf05.getV1() <= fezb * 100) {
 				objects[10] = 1;
 				flag++;
@@ -2015,7 +2028,7 @@ public class AuxFunction {
 		// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
 		List<Object[]> objectsList = new ArrayList<Object[]>();
 		for (Object[] objects : wxdwList) {
-			Object[] o = new Object[11];
+			Object[] o = new Object[12];
 			o[0] = objects[0];
 			o[1] = objects[1];
 			objectsList.add(o);
@@ -2041,25 +2054,40 @@ public class AuxFunction {
 			Tf05_wxdw_dygx tf05 = (Tf05_wxdw_dygx) objects[1];
 			// fezb:实际份额占比
 			Double fezb = 0D;
+			Long xms = 0L;
 			if (zgr != 0) {
-				double gr = convertUtil
-						.toDouble(
-								dao
-										.search(
-												"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
-														+ tf01.getMc()
-														+ "' and ssdq='"
-														+ dq
-														+ "' and gclb='"
-														+ gclb
-														+ "' and to_char(lxsj,'yyyy') = '"
-														+ ssnd + "'").get(0),
-								0D);
+//				double gr = convertUtil
+//						.toDouble(
+//								dao
+//										.search(
+//												"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+//														+ tf01.getMc()
+//														+ "' and ssdq='"
+//														+ dq
+//														+ "' and gclb='"
+//														+ gclb
+//														+ "' and to_char(lxsj,'yyyy') = '"
+//														+ ssnd + "'").get(0),
+//								0D);
+				
+				List tmp_list = dao.search(
+						"select count(id),sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+						+ tf01.getMc()
+						+ "' and ssdq='"
+						+ dq
+						+ "' and gclb='"
+						+ gclb
+						+ "' and to_char(lxsj,'yyyy') = '"
+						+ ssnd + "'");
+				double gr = convertUtil.toDouble(((Object[])(tmp_list.get(0)))[1],0d);
+				xms = convertUtil.toLong(((Object[])(tmp_list.get(0)))[0]);
+				
 				fezb = gr / zgr;
 			}
 			// tf05.getV1():预定份额占比
 			objects[6] = tf05.getV1();
 			objects[7] = fezb * 100;
+			objects[11] = xms;
 			if (tf05.getV1() <= fezb * 100) {
 				objects[10] = 1;
 				flag++;
