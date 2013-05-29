@@ -342,7 +342,7 @@
 										<c:forEach var="nodeElement" items="${user_dept_list}">
 											<c:if test="${menu.name==nodeElement[2]&&nodeElement[0]!=4}">
 												<li>
-													<a href="#">${nodeElement[1]} &nbsp;&nbsp;&nbsp;<span  onclick="selectAll(this)" class="select_all">全选</span> </a>
+													<a href="#">${nodeElement[1]} &nbsp;&nbsp;&nbsp;<font  onclick="selectAll(this)" class="select_all">全选</font> </a>
 													<ul>
 														<c:forEach var="u" items="${user_list}">
 															<c:if test="${u.dept_id==nodeElement[0]}">
@@ -363,7 +363,7 @@
 									<ul>
 										<c:forEach var="dwlb" items="${dwlbSet}">
 												<li>
-													<a hrRef="#"><c:if test="${empty dwlb}">未分类</c:if><c:if test="${!empty dwlb}">${dwlb}</c:if>&nbsp;&nbsp;&nbsp;<span   onclick="selectAll(this)" class="select_all">全选</span> </a>
+													<a hrRef="#"><c:if test="${empty dwlb}">未分类</c:if><c:if test="${!empty dwlb}">${dwlb}</c:if>&nbsp;&nbsp;&nbsp;<font   onclick="selectAll(this)" class="select_all">全选</font> </a>
 													<ul>
 														<c:forEach var="hzdw" items="${hzdwListx}"> 
 																<c:if test="${fn:contains(hzdw[2],dwlb)&&!empty dwlb}">
