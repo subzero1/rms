@@ -11,6 +11,7 @@ public class Td09_ddhdxx {
 	private String hdgw;
 	private Long project_id;
 	private Date hdsj;
+	private String isht;
 
 	public Long getId() {
 		return id;
@@ -74,6 +75,14 @@ public class Td09_ddhdxx {
 
 	public void setHdsj(Date hdsj) {
 		this.hdsj = hdsj;
+	}
+
+	public String getIsht() {
+		return isht;
+	}
+
+	public void setIsht(String isht) {
+		this.isht = isht;
 	}
 
  
