@@ -69,7 +69,15 @@
   update="true"
   insert="true"
   column="hdsj"
-  />     
+  />    
+
+  <property
+  name="isht"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="isht"
+  /> 
 
     </class>
 

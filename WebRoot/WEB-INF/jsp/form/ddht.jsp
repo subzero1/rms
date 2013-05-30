@@ -30,6 +30,18 @@
 				$.pdialog.closeCurrent();
 			}
 		});
+		var $Td09_ddhdxx_ISHT=$("#Td09_ddhdxx_ISHT");
+		var $ISHT=$("input[name='Td09_ddhdxx\.ISHT']");
+		var ischeck;
+		$Td09_ddhdxx_ISHT.change(function(){
+			ischeck=$Td09_ddhdxx_ISHT.attr("checked");
+			if(ischeck=='checked'){
+			   $ISHT.val("后退"); 
+			}else{
+			    $ISHT.val("前进"); 
+			}
+			
+		});
 	});
 	</script>
 	</head>
@@ -59,7 +71,6 @@
 					<netsky:htmlSelect name="Td00_gcxx.GDZTZT" objectForOption="gdztztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${Td00_gcxx.gdztzt}" htmlClass="td-select"/>
 				</p>
 				<div style="height:0px;"></div>
-				<div style="height:0px;"></div>
 				<p>
 					<label>是否投诉&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<select   style="width:200px;" name="Td00_gcxx.SFTS" value="${Td00_gcxx.sfts}" >
@@ -67,6 +78,10 @@
 						<option value="是" <c:if test="${Td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
 					</select>
 					<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${Td00_gcxx.sfcq}" readonly/>
+				</p>
+				<p>
+					<label>后&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退</label>
+					<input type="checkbox" name="Td09_ddhdxx_ISHT" id="Td09_ddhdxx_ISHT" style="margin-left: 16px;">
 				</p>
 				<div style="height:0px;"></div>
 				<p>
@@ -96,6 +111,7 @@
 				 	<c:when test="${param.node_id==11403}">value='施工单位'</c:when>
 				 	<c:otherwise></c:otherwise>
 				 </c:choose> /> 
+				 <input type="hidden" name="Td09_ddhdxx.ISHT" value="前进" >
 				</td>
 			</tr>
 			<tr>
