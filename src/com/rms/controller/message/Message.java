@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -602,10 +601,10 @@ public class Message {
 						te01.setDoc_id(te04.getId());
 						te01.setProject_id(te04.getId());
 						te01.setId(null);
-						saveService.save(te01);
+						//saveService.save(te01);
 						queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
-						String copyname = te01.getId().toString() + "Slave" + te01.getExt_name();
-						te01.setFtp_url(copyname);
+						//String copyname = te01.getId().toString() + "Slave" + te01.getExt_name();
+						te01.setFtp_url(te01.getFtp_url());
 						saveService.save(te01);
 						fj_num++;
 					}
