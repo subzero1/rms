@@ -41,7 +41,7 @@ if ("${te10.id == 1}"=="true"){
 	$("#wdForm",navTab.getCurrentPanel()).find(":input").attr("readonly","readonly");
 }
 </script>
-<div class="tabs" currentIndex="1" eventType="click">
+<div class="tabs"  <c:if test="${param.new_dir==1 }">currentIndex="0"</c:if><c:if test="${param.new_dir!=1 }">currentIndex="1"</c:if> eventType="click">
 		<div class="tabsHeader">
 			<div class="tabsHeaderContent">
 				<ul>
@@ -63,7 +63,7 @@ if ("${te10.id == 1}"=="true"){
 			<input type="hidden" name="Te10_wdml.CJSJ" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${empty te10.cjsj ? now : te10.cjsj}"/>"/>
 			<div class="pageFormContent" style="height: 172px;">
 				<p>
-					<label>目录名称：</label>
+					<label>目录名称${param.new_dir }：</label>
 					<input type="text" name="Te10_wdml.MC" value="${te10.mc }" style="width:366px" class="required" />
 				</p>
 				<div style="height:0px;width:100%"></div>
@@ -96,7 +96,7 @@ if ("${te10.id == 1}"=="true"){
 			<div class="formBar">
 				<c:if test="${not empty te10 }">
 					<div  style="float:left;">
-						<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="other/wdEdit.do?lb=${param.lb }&up_id=${te10.id }">新建子目录</button></div></div>
+						<div class="button"><div class="buttonContent"><button type="Button" class="divFileReload" loadfile="other/wdEdit.do?lb=${param.lb }&up_id=${te10.id }&new_dir=1">新建子目录</button></div></div>
 					</div>
 				</c:if>
 				<ul>
