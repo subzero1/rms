@@ -828,7 +828,7 @@ public class Gcgl {
 			curRole = "sjdw";
 			node_id = 11402L;
 			if(ddzt.equals("")){
-				ddzt = "施工已派发";
+				ddzt = "设计已派发";
 			}
 		}
 		else if(login_id.substring(0,1).equals("8")){
@@ -960,7 +960,7 @@ public class Gcgl {
 			curRole = "sjdw";
 			node_id = 11402L;
 			if(ddzt.equals("")){
-				ddzt = "施工已派发";
+				ddzt = "设计已派发";
 			}
 		}
 		else if(login_id.substring(0,1).equals("8")){
