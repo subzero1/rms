@@ -22,7 +22,7 @@
 <script src="js/jquery/speedup.js" type="text/javascript"></script>
 <script src="js/jquery/jquery-1.7.1.js" type="text/javascript"></script>
 <script src="js/jquery/jquery.cookie.js" type="text/javascript"></script>
-<script src="js/jquery/jquery.validate.js" type="text/javascript"></script>p
+<script src="js/jquery/jquery.validate.js" type="text/javascript"></script>
 <script src="js/jquery/jquery.bgiframe.js" type="text/javascript"></script>
 <script src="js/jquery/jquery.messager.js" type="text/javascript"></script>
 <script src="xheditor-1.1.13/xheditor-1.1.13-zh-cn.min.js" type="text/javascript"></script>

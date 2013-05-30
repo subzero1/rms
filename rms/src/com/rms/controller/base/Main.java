@@ -522,7 +522,7 @@ public class Main {
 			 */
 			List t_list = dao.search("from Td00_gcxx td00 where xmgly = '"+user_name+"' and exists(select 'x' from Ti03_xqly ti03 where td00.id = ti03.project_id) and (ddzt='工单已派发' or ddzt='设计已回复' or ddzt='施工已回复')");
 			if(t_list != null && t_list.size() > 0){
-				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'ddxxList\\',\\'form/orderListForNeed.do\\',{title:\\'定单信息\\'})\">您收到（"+t_list.size()+"）个新定单</a></li>";
+				remindContent += "<li><a href=\"javascript:navTab.openTab(\\'ddxxList\\',\\'form/orderListForNeed.do\\',{title:\\'定单信息\\'})\">您收到（"+t_list.size()+"）个新定单（包括回复）</a></li>";
 			}
 		}
 		
