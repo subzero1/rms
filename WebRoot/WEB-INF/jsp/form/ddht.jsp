@@ -51,7 +51,7 @@
 		 <input  type="hidden" style="width:200px;" name="Td00_gcxx.WCSJ" value="<fmt:formatDate value="${now }" pattern="yyyy-MM-dd"/>" />
 		 	<div class="pageFormContent" style="border: 0px;">
 				<p>
-					<label>分光器编码${Td00_gcxx.sfts}：</label>
+					<label>分光器编码：</label>
 					<input class="required" type="text" style="width:200px;" name="Td00_gcxx.WCFGQBM" value="${Td00_gcxx.wcfgqbm}" />
 				</p>
 				<p>
