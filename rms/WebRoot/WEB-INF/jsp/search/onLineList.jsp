@@ -17,7 +17,7 @@
 	<div class="panelBar">
 		</div>
 	<ul class="toolBar">
-		 <table width="100%" class="table" id="list">
+		 <table width="100%" class="table" id="list" layouth="138">
 		 <thead>
 			<tr>
 				<th width="5%">序号</th>
