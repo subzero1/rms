@@ -30,18 +30,6 @@
 				$.pdialog.closeCurrent();
 			}
 		});
-		var $Td09_ddhdxx_ISHT=$("#Td09_ddhdxx_ISHT");
-		var $ISHT=$("input[name='Td09_ddhdxx\.ISHT']");
-		var ischeck;
-		$Td09_ddhdxx_ISHT.change(function(){
-			ischeck=$Td09_ddhdxx_ISHT.attr("checked");
-			if(ischeck=='checked'){
-			   $ISHT.val("后退"); 
-			}else{
-			    $ISHT.val("前进"); 
-			}
-			
-		});
 	});
 	</script>
 	</head>
@@ -79,10 +67,15 @@
 					</select>
 					<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${Td00_gcxx.sfcq}" readonly/>
 				</p>
+				<c:if test="${param.node_id==11401}">
 				<p>
-					<label>后&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退</label>
-					<input type="checkbox" name="Td09_ddhdxx_ISHT" id="Td09_ddhdxx_ISHT" style="margin-left: 16px;">
+					<select name="Td09_ddhdxx.ISHT" style="margin-left:44px;">
+					<option value="前进"></option>
+					<option value="后退施工">后退施工</option>
+					<option value="后退设计">后退设计</option>
+					</select>
 				</p>
+				</c:if>
 				<div style="height:0px;"></div>
 				<p>
 					<label>回单备注&nbsp;&nbsp;&nbsp;&nbsp;：</label>
@@ -111,7 +104,6 @@
 				 	<c:when test="${param.node_id==11403}">value='施工单位'</c:when>
 				 	<c:otherwise></c:otherwise>
 				 </c:choose> /> 
-				 <input type="hidden" name="Td09_ddhdxx.ISHT" value="前进" >
 				</td>
 			</tr>
 			<tr>
