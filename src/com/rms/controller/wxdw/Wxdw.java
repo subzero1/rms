@@ -2684,4 +2684,10 @@ public class Wxdw {
 		
 		return new ModelAndView(view); 
 	}
+	
+	@RequestMapping("/wxdw/sgfezb.do")
+	public ModelAndView sgfezb(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/wxdw/sgdwfezb.jsp";
+		return new ModelAndView(view);
+	}
 }
