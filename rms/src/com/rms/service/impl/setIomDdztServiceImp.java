@@ -31,6 +31,8 @@ public class setIomDdztServiceImp {
 			String hdgw  = "";
 			String isht = "";
 			String ddzt = "";
+			String sjdw = "";
+			String sgdw = "";
 			
 			sql.delete(0, sql.length());
 			sql.append("select hdgw,isht from Td09_ddhdxx where project_id = ");
@@ -44,6 +46,9 @@ public class setIomDdztServiceImp {
 			
 			Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,project_id);
 			ddzt = convertUtil.toString(td00.getDdzt());
+			sjdw = convertUtil.toString(td00.getSjdw());
+			sgdw = convertUtil.toString(td00.getSgdw());
+			
 			if(hdgw.equals("设计单位") && !ddzt.equals("工单已回复")){
 				ddzt = "设计已回复";
 			}
@@ -51,13 +56,13 @@ public class setIomDdztServiceImp {
 				ddzt = "施工已回复";
 			}
 			else if(hdgw.equals("项目管理员")){
-				if(isht.equals("")){
+				if(isht.equals("") || isht.equals("前进")){
 					ddzt = "项目管理员已回复";
 				}
-				else if(isht.equals("回退设计")){
+				else if(isht.indexOf("退设计") != -1 && !sjdw.equals("")){
 					ddzt = "设计已派发";
 				}
-				else if(isht.equals("回退施工")){
+				else if(isht.indexOf("退施工") != -1 && !sgdw.equals("")){
 					ddzt = "施工已派发";
 				}
 			}

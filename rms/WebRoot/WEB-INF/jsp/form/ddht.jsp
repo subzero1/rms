@@ -75,8 +75,8 @@
 				<p>
 					<select name="Td09_ddhdxx.ISHT" style="margin-left:44px;">
 					<option value="前进"></option>
-					<option value="后退施工">后退施工</option>
-					<option value="后退设计">后退设计</option>
+					<option value="回退设计">回退设计</option>
+					<option value="回退施工">回退施工</option>
 					</select>
 				</p>
 				</c:if>
