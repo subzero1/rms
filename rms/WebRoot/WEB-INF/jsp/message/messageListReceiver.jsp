@@ -67,17 +67,8 @@
 		<table class="table" width="100%" layouth="128">
 			<thead>
 			<tr>
-				<th width="30" title="未读邮件" orderField="te04.read_flag"><img src='Images/message/email.png' style="margin:4px;"></img></th>
-				<c:choose>
-					<c:when test="${param.messageState==3||param.messageState==2}">
-					<th width="60" orderField="te04.reader_name" style="cursor:hand">收件人</th>
-					</c:when>
-					<c:otherwise>
-					<th width="60" orderField="ta03.name" style="cursor:hand">发件人</th>
-					</c:otherwise>
-				</c:choose>
-				<th width="60" orderField="ta03.login_id">工号</th>
-				<th width="90" orderField="ta03.mobile_tel">手机号</th>	
+				<th width="20">&nbsp;</th>
+				<th width="100" orderField="te04.reader_name" style="cursor:hand">收件人</th>	
 				<th orderField="te04.title">主题</th>
 				<th width="40" orderField="te04.fujian_flag">附件</th>
 				<th width="120" orderField="te04.send_date">时间</th>
@@ -87,21 +78,11 @@
 			<c:forEach var="message_list" items="${message_list}">
 				<tr target="form_param" rel="${message_list['te04.id']}">
 				    <c:set var="offset" scope="page" value="${offset + 1}"/>
-					<td class="t-center">
-						<c:if test="${param.messageState==1||param.messageState==4}">
-							<c:if test="${message_list['te11.read_flag']==0}"><img src='Images/message/email.png' title="未读邮件"/></c:if>
-							<c:if test="${message_list['te11.read_flag']=='1'&&message_list['te04.repeat_flag']==1}"><img src='Images/message/forwarded.gif' title="需要回复"/></c:if>
-							<c:if test="${message_list['te11.read_flag']=='1'&&message_list['te04.repeat_flag']==2}"><img src='Images/message/replied.gif' title="已经回复"/></c:if>
-							<c:if test="${message_list['te11.read_flag']==1&&message_list['te04.repeat_flag']==0}"><img src='Images/message/email_open.png' title="已读邮件"/></c:if>
-					     </c:if>
-					     <c:if test="${param.messageState==3}">
-					     	<c:if test="${message_list['te11.read_flag']==0}"><img src="Images/online_time.gif" title="尚未读"/></c:if>
-							<c:if test="${message_list['te11.read_flag']==1}"><img src="Images/online_ok.gif" title="已接收"/></c:if>
-					     </c:if>
-					</td>
-					<td>${message_list["ta03.name"]}</td>
-					<td>${message_list["ta03.login_id"]}</td>
-					<td>${message_list["ta03.mobile_tel"]}</td>
+					<td class="t-center">&nbsp;</td>
+					<td><c:if test="${message_list['a.nums']>1}"><a href="message/messageReaderList.do?msg_id=${message_list['te04.id']}" target="dialog" rel="messageReaderList" width="600" height="300" title="收件人"> 收件人...</a></c:if><c:if test="${message_list['a.nums']==1}">
+					 ${message_list['receiver'][0][0]}
+					     	<c:if test="${message_list['receiver'][0][1]==0}"><img src="Images/online_time.gif" title="尚未读"/></c:if>
+							<c:if test="${message_list['receiver'][0][1]==1}"><img src="Images/online_ok.gif" title="已读邮件"/></c:if></c:if></td>
 					<td title="${message_list["te04.title"]}"><a class="edit"	href="MessageRead.do?message_id=${message_list['te04.id']}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="600" height="371">${message_list["te04.title"]}</a></td>
 					<td><c:if test="${message_list['te04.fujian_flag']>0}"><img src='Images/message/icon09.gif' title="有${message_list['te04.fujian_flag']}个附件"></img></c:if></td>
 					<td><fmt:formatDate value="${message_list['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
@@ -114,8 +95,6 @@
 					<td>&nbsp;</td>	
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>	
-					<td>&nbsp;</td>	
-					<td>&nbsp;</td>
 				</tr>	
 			</c:forEach>
 		</table>	

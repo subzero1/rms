@@ -26,6 +26,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rms.dataObjects.base.Tc02_area;
+import com.rms.dataObjects.wxdw.V_message_receiver;
+import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
@@ -120,10 +122,11 @@ public class Message {
 				message_title = "草稿箱";
 				break;
 			case 3:
-				hsql.append("from Te04_message te04 ");
+				hsql.append("from Te04_message te04,V_message_receiver a ");
 				hsql.append(" where send_flag=1 ");
 				hsql.append(" and delete_flag is null ");
-				hsql.append(" and sender_id=" + user_id + "");
+				hsql.append(" and sender_id=" + user_id + " ");
+				hsql.append(" and a.id=te04.id ");
 				if(orderField.equals("")){
 					orderField = " te04.id ";
 				}
@@ -181,16 +184,31 @@ public class Message {
 				tmp_sql = "select te04.id,ta03.name,ta03.login_id,ta03.mobile_tel,te04.title,te04.send_date,"
 					    + "te11.read_flag,te04.fujian_flag,te04.repeat_flag,te11.reader_name "+hsql.toString();
 				view = "messagelist.jsp";
-			}
-			else{
+			}else if(hsql.indexOf("V_message_receiver")!=-1){
+				tmp_sql = "select te04.id,te04.title,te04.send_date,te04.fujian_flag,te04.repeat_flag,a.nums "
+				    + hsql.toString();
+				view="messageListReceiver.jsp";
+			}else{
 				tmp_sql = "select te04.id,te04.title,te04.send_date,te04.fujian_flag,te04.repeat_flag "
 					    + hsql.toString();
 				view = "messagelistNoUser.jsp";
 			}
 			rs = queryService.searchByPage(tmp_sql,pageNum, numPerPage);
 			List message_list = new ArrayList();
+			
+			StringBuffer hql=new StringBuffer();
+			Long nums;
 			while (rs.next()) {
 				Map<String, Object> mo = rs.getMap();
+				hql.delete(0, hql.length());
+				hql.append("select a.reader_name,a.read_flag from Te11_message_receiver a where a.msg_id=");
+				hql.append(mo.get("te04.id"));
+				nums=convertUtil.toLong(mo.get("a.nums"));
+				List receiver = null;
+				if (nums==1) {
+					receiver=queryService.searchList(hql.toString());
+					mo.put("receiver", receiver);
+				}
 				message_list.add(mo);
 			}
 			modelMap.put("message_list", message_list);
