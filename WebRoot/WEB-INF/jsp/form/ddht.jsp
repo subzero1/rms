@@ -38,11 +38,15 @@
 
 	<form  id="ddhtForm" action="save.do" enctype="multipart/form-data" method="post" onsubmit="return iframeCallback(this, dialogAjaxDone);">
 		<div style="float:left;padding:5px !important;display:inline; overflow-x:hidden;overflow-y:auto;" layoutH="25">
-		 <input type="hidden" name="tableInfomation"
-		value="noFatherTable:com.rms.dataObjects.form.Td00_gcxx" />
-			 <input type="hidden" name="tableInfomation" value="Td00_gcxx,id,project_id:com.rms.dataObjects.form.Td09_ddhdxx" />
+		 <input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.form.Td00_gcxx" />
+		 <input type="hidden" name="tableInfomation" value="Td00_gcxx,id,project_id:com.rms.dataObjects.form.Td09_ddhdxx" />
 		 <input type="hidden" name="slaveTable" value="com.netsky.base.dataObjects.Te01_slave"/>
 		 <input type="hidden" name="slaveType" value="ftp"/>
+		 
+		 <input type="hidden" name="ServiceName" value="setIomDdztService"/>
+		 <input type="hidden" name="ServiceFunction" value="load"/>
+		 <input type="hidden" name="ServicePerproty" value="Td00_gcxx.ID"/> 
+			
 		 <input type="hidden" name="_callbackType" value="forward" />
 		 <input type="hidden" name="_message" value="保存" />
 		 <input type="hidden" name="_forwardUrl" value="openForm.do?project_id=${param.project_id }&module_id=114&doc_id=${param.doc_id }&user_id=${user.id }&limit=&node_id=${param.node_id }" />
