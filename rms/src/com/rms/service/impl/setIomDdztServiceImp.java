@@ -33,7 +33,7 @@ public class setIomDdztServiceImp {
 			String ddzt = "";
 			
 			sql.delete(0, sql.length());
-			sql.append("select hdgw,isht from td09_ddhdxx where project_id = ");
+			sql.append("select hdgw,isht from Td09_ddhdxx where project_id = ");
 			sql.append(project_id);
 			sql.append(" order by id desc ");
 			ResultObject ro = queryService.search(sql.toString());
