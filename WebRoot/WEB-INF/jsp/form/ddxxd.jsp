@@ -143,6 +143,7 @@
 	<div style="height:0px;"></div>
 	
 	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
+	<div style="width:780px;">
 		<table class="table" width="60%">
 		<thead>
 			<tr>
@@ -169,7 +170,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
-
-
-	
+	<br/><br/>
+	</div>
