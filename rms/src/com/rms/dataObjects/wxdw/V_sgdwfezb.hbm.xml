@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.wxdw.V_sgdwfezb"  table="V_sgdwfezb">
+
+            <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Vc1_sgpftst.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+  <property
+  name="wxdw_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="wxdw_id"
+  />
+  <property
+  name="zy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zy"
+  />
+  <property
+  name="dq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dq"
+  />
+  
+  <property
+  name="nd"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="nd"
+  />
+  
+  <property
+  name="v1"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="v1"
+  />
+    </class>
+
+</hibernate-mapping>

@@ -58,6 +58,7 @@ import com.rms.dataObjects.wxdw.Tf08_clmxb;
 import com.rms.dataObjects.wxdw.Tf10_gzltb;
 import com.rms.dataObjects.wxdw.Tf14_jlrj;
 import com.rms.dataObjects.wxdw.Tf30_wxry;
+import com.rms.dataObjects.wxdw.V_sgdwfezb;
 
 @Controller
 public class Wxdw {
@@ -2713,37 +2714,35 @@ public class Wxdw {
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
 		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
 
-		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
-				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id + " order by zy,dq");
+		List<V_sgdwfezb> sgdwfezbList = (List<V_sgdwfezb>) queryService
+				.searchList("from V_sgdwfezb where  wxdw_id=" + wxdw_id + " order by zy,dq");
 		String zy = "";
-		Map<String, Map<String, Tf05_wxdw_dygx>> dygxMap = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
-		Map<String, Tf05_wxdw_dygx> dqMap = new HashMap<String, Tf05_wxdw_dygx>();
-		for (Tf05_wxdw_dygx tf05 : tf05List) {
-			if (!zy.equals(tf05.getZy())) {
+		Map<String, Map<String, V_sgdwfezb>> sgdwfezbMap = new HashMap<String, Map<String, V_sgdwfezb>>();
+		Map<String, V_sgdwfezb> dqMap = new HashMap<String, V_sgdwfezb>();
+		for (V_sgdwfezb vs : sgdwfezbList) {
+			if (!zy.equals(vs.getZy())) {
 				if (!dqMap.isEmpty()) {
-					dygxMap.put(zy, dqMap);
-					dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+					sgdwfezbMap.put(zy, dqMap);
+					dqMap = new HashMap<String, V_sgdwfezb>();
 				}
-				zy = tf05.getZy();
+				zy = vs.getZy();
 			}
-			dqMap.put(tf05.getDq(), tf05);
+			dqMap.put(vs.getDq(), vs);
 		}
 		if (!dqMap.isEmpty()) {
-			dygxMap.put(zy, dqMap);
+			sgdwfezbMap.put(zy, dqMap);
 		}
-		modelMap.put("dygxMap", dygxMap);
-		tf05List = (List<Tf05_wxdw_dygx>) queryService.searchList("from Tf05_wxdw_dygx where lb='fezb' and wxdw_id="
-				+ wxdw_id + " and nd=" + nd + " order by zy,dq");
-		System.out.println("from Tf05_wxdw_dygx where lb='fezb' and wxdw_id="
+		modelMap.put("dygxMap", sgdwfezbMap);
+		sgdwfezbList = (List<V_sgdwfezb>) queryService.searchList("from V_sgdwfezb where  wxdw_id="
 				+ wxdw_id + " and nd=" + nd + " order by zy,dq");
 		zy = "";
-		Map<String, Map<String, Tf05_wxdw_dygx>> fezbMap = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
-		dqMap = new HashMap<String, Tf05_wxdw_dygx>();
-		for (Tf05_wxdw_dygx tf05 : tf05List) {
+		Map<String, Map<String, V_sgdwfezb>> fezbMap = new HashMap<String, Map<String, V_sgdwfezb>>();
+		dqMap = new HashMap<String, V_sgdwfezb>();
+		for (V_sgdwfezb tf05 : sgdwfezbList) {
 			if (!zy.equals(tf05.getZy())) {
 				if (!dqMap.isEmpty()) {
 					fezbMap.put(zy, dqMap);
-					dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+					dqMap = new HashMap<String, V_sgdwfezb>();
 				}
 				zy = tf05.getZy();
 			}
@@ -2753,7 +2752,7 @@ public class Wxdw {
 			fezbMap.put(zy, dqMap);
 		}
 		modelMap.put("fezbMap", fezbMap);
-		return new ModelAndView("/WEB-INF/jsp/wxdw/sgdwFezbEdit.jsp", modelMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/sgdwFezb.jsp", modelMap);
 	
 	}
 }
