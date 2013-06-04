@@ -2686,8 +2686,74 @@ public class Wxdw {
 	}
 	
 	@RequestMapping("/wxdw/sgfezb.do")
-	public ModelAndView sgfezb(HttpServletRequest request,HttpServletResponse response) {
-		String view="/WEB-INF/jsp/wxdw/sgdwfezb.jsp";
-		return new ModelAndView(view);
+	public ModelAndView sgfezb(HttpServletRequest request,HttpServletResponse response,HttpSession session) {
+	 
+		ModelMap modelMap = new ModelMap();
+		StringBuffer hql=new StringBuffer();
+		Long wxdw_id = new Long(-1) ;
+		Ta03_user user=(Ta03_user) session.getAttribute("user");
+		hql.append("select c.id from Ta03_user a,Tf04_wxdw_user b ,Tf01_wxdw c where a.id=b.user_id and b.wxdw_id=c.id ");
+		hql.append(" and a.id=");
+		hql.append(user.getId());
+		List wxdw_user=queryService.searchList(hql.toString());
+		for (Object object : wxdw_user) {
+			wxdw_id=convertUtil.toLong(object.toString());
+		}
+		
+		int startyear = 2012;
+		Calendar now = Calendar.getInstance();
+		int currentyear = now.get(Calendar.YEAR) + 1;
+		List<String> years = new ArrayList<String>();
+		while (startyear <= currentyear) {
+			years.add("" + startyear++);
+		}
+		modelMap.put("years", years);
+		Long nd = convertUtil.toLong(request.getParameter("nd"), new Long(currentyear - 1));
+		modelMap.put("nd", nd);
+		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
+		modelMap.put("zyList", queryService.searchList("from Tc01_property where type='工程类别'"));
+
+		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
+				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id=" + wxdw_id + " order by zy,dq");
+		String zy = "";
+		Map<String, Map<String, Tf05_wxdw_dygx>> dygxMap = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
+		Map<String, Tf05_wxdw_dygx> dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+		for (Tf05_wxdw_dygx tf05 : tf05List) {
+			if (!zy.equals(tf05.getZy())) {
+				if (!dqMap.isEmpty()) {
+					dygxMap.put(zy, dqMap);
+					dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+				}
+				zy = tf05.getZy();
+			}
+			dqMap.put(tf05.getDq(), tf05);
+		}
+		if (!dqMap.isEmpty()) {
+			dygxMap.put(zy, dqMap);
+		}
+		modelMap.put("dygxMap", dygxMap);
+		tf05List = (List<Tf05_wxdw_dygx>) queryService.searchList("from Tf05_wxdw_dygx where lb='fezb' and wxdw_id="
+				+ wxdw_id + " and nd=" + nd + " order by zy,dq");
+		System.out.println("from Tf05_wxdw_dygx where lb='fezb' and wxdw_id="
+				+ wxdw_id + " and nd=" + nd + " order by zy,dq");
+		zy = "";
+		Map<String, Map<String, Tf05_wxdw_dygx>> fezbMap = new HashMap<String, Map<String, Tf05_wxdw_dygx>>();
+		dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+		for (Tf05_wxdw_dygx tf05 : tf05List) {
+			if (!zy.equals(tf05.getZy())) {
+				if (!dqMap.isEmpty()) {
+					fezbMap.put(zy, dqMap);
+					dqMap = new HashMap<String, Tf05_wxdw_dygx>();
+				}
+				zy = tf05.getZy();
+			}
+			dqMap.put(tf05.getDq(), tf05);
+		}
+		if (!dqMap.isEmpty()) {
+			fezbMap.put(zy, dqMap);
+		}
+		modelMap.put("fezbMap", fezbMap);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/sgdwFezbEdit.jsp", modelMap);
+	
 	}
 }
