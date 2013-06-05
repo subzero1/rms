@@ -337,6 +337,8 @@ public class SysUseSearch {
 		return new ModelAndView(view,modelMap);
 	}
 
+	
+	
 	@RequestMapping("/search/xmglyDownAndTimeout.do")
 	public ModelAndView xmglyDownAndTimeout(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
@@ -555,6 +557,68 @@ public class SysUseSearch {
 				modelMap);
 
 	}
+	
+	@RequestMapping("/search/xmglyDownAndTimeout2.do")
+	public ModelAndView xmglyDownAndTimeout2(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		Ta03_user user = null;
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		String lxsj1 = convertUtil.toString(request.getParameter("lxsj1"), "");
+		String lxsj2 = convertUtil.toString(request.getParameter("lxsj2"), "");
+		String pdsj1 = convertUtil.toString(request.getParameter("pdsj1"), "");
+		String pdsj2 = convertUtil.toString(request.getParameter("pdsj2"), "");
+		String dwlb = convertUtil.toString(request.getParameter("dwlb"), "sg");
+		String ywxm = convertUtil.toString(request.getParameter("ywxm"), "");
+		String s_dwlb=null;
+
+		StringBuffer sql = new StringBuffer();
+		ResultObject ro = null;
+		ResultObject ro2 = null;
+		List list = new LinkedList();
+		ModelMap modelMap = new ModelMap();
+		try { 
+			if(dwlb.equals("sg")){
+				s_dwlb = "1";
+			}
+			else if(dwlb.equals("sj")){
+				s_dwlb = "2";
+			}
+			else{
+				s_dwlb = "3";
+			}
+			
+			Connection con = jdbcSupport.getConnection();
+			con.setAutoCommit(false);
+			String procedure = "{call xmglyDownAndTimeout(?,?,?,?,?,?,?)}";
+			CallableStatement cstmt = con.prepareCall(procedure);
+			cstmt.setString(1, lxsj1);
+			cstmt.setString(2, lxsj2);
+			cstmt.setString(3, pdsj1);
+			cstmt.setString(4, pdsj2);
+			cstmt.setString(5, s_dwlb);
+			cstmt.setString(6, ywxm);
+			cstmt.setLong(7, user.getDept_id());
+			cstmt.executeUpdate(); 
+			cstmt.close();
+			con.commit();
+			con.close();
+			sql.append("select a from Tf43_temp a order by a.c1");
+			list=queryService.searchList(sql.toString());
+			modelMap.put("pdcqList", list);
+		} catch (Exception e) {
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"系统出错，请联系管理员", new Exception(e + e.getMessage()));
+		}
+
+		return new ModelAndView("/WEB-INF/jsp/search/xmglyDownAndTimeout2.jsp",
+				modelMap);
+
+	}
+	
 
 	@RequestMapping("/search/userLogin.do")
 	public ModelAndView userLogin(HttpServletRequest request,

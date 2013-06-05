@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.rms.dataObjects.wxdw.Tf43_temp"  table="Tf43_temp">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned"> 
+            </generator>
+        </id>
+
+   <property
+  name="c1"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c1"
+  />
+
+  <property
+  name="c2"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c2"
+  />
+
+  <property
+  name="c3"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c3"
+  />
+
+  <property
+  name="c4"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c4"
+  />
+
+  <property
+  name="c5"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c5"
+  />
+
+  <property
+  name="c6"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c6"
+  />
+
+  <property
+  name="c7"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c7"
+  />
+
+  <property
+  name="c8"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c8"
+  />
+
+  <property
+  name="c9"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c9"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
