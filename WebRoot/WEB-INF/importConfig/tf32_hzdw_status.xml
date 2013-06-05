@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Tf32_hzdw_status</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow>
+			<column>
+				<columnName>ID</columnName>
+				<index />
+				<name>序号</name>
+				<colName>序号</colName>
+			</column>
+			<column>
+				<columnName>MC</columnName>
+				<index />
+				<name>合作单位</name>
+				<colName>合作单位</colName>
+			</column>
+			<column>
+				<columnName>PDS</columnName>
+				<index />
+				<name>派单数</name>
+				<colName>派单数</colName>
+			</column>
+			<column>
+				<columnName>JDS</columnName>
+				<index />
+				<name>接单数</name>
+				<colName>接单数</colName>
+			</column>
+			<column>
+				<columnName>SJXZS</columnName>
+				<index />
+				<name>实际选择数</name>
+				<colName>实际选择数</colName>
+			</column>
+			<column>
+				<columnName>XTXZS</columnName>
+				<index />
+				<name>系统选择数</name>
+				<colName>系统选择数</colName>
+			</column>
+			<column>
+				<columnName>CQS</columnName>
+				<index />
+				<name>超期数</name>
+				<colName>超期数</colName>
+			</column>
+			<column>
+				<columnName>CQL</columnName>
+				<index />
+				<name>超期率</name>
+				<colName>超期率</colName>
+			</column>
+			<column>
+				<columnName>JSS</columnName>
+				<index />
+				<name>决算数</name>
+				<colName>决算数</colName>
+			</column>
+			<column>
+				<columnName>JSL</columnName>
+				<index />
+				<name>决算率</name>
+				<colName>决算率</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>
