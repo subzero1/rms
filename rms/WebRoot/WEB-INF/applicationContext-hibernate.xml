@@ -234,6 +234,7 @@
 				<value>com/rms/dataObjects/wxdw/Tf30_wxry.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf31_zytl.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/Tf32_hzdw_status.hbm.xml</value>
+				<value>com/rms/dataObjects/wxdw/Tf43_temp.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/V_message_receiver.hbm.xml</value>
 				<value>com/rms/dataObjects/wxdw/V_sgdwfezb.hbm.xml</value>
 				
