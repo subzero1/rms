@@ -41,4 +41,9 @@
   	<fileName>/importConfig/td00_gcxx.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>tf32_hzdw_status</name>
+  	<fileName>/importConfig/tf32_hzdw_status.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>

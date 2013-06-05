@@ -42,6 +42,8 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.baseObject.PropertyInject;
 
+import com.rms.base.util.ConfigXML;
+import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
@@ -2344,5 +2346,50 @@ public class AuxFunction {
 			out.print("{\"statusCode\":\"300\", \"message\":\"fail!\"}");
 		}
 
+	}
+	
+	@RequestMapping("/aux/hzdwStatusToExcel.do")
+	public ModelAndView	 hzdwStatusToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception {
+
+		String config = convertUtil.toString(request.getParameter("config"));
+
+		int k = 0;
+		ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
+		ResultObject ro = null;
+		StringBuffer hql = new StringBuffer("");
+		List mbkTitleList = new LinkedList(); // 标题列表
+		List mbkColList = new LinkedList();// 列的字段值
+		List mbkDocList = new LinkedList();// 表单数据
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+
+		// 读取配置文件的标题列表
+		String webinfpath = request.getSession().getServletContext()
+				.getRealPath("WEB-INF");
+		mbkTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+		mbkColList = configXML.getTagListByConfig(config, webinfpath,
+				"columnName");
+		Iterator it = mbkColList.iterator();
+		Object mbk = null;
+		hql.append("select ");
+		while (it.hasNext()) {
+			if (k == 0)
+				hql.append(" a." + ((it.next().toString()).toLowerCase()));
+			else
+				hql.append(" ,a." + ((it.next().toString()).toLowerCase()));
+			k++;
+		}
+		hql.append(" from Tf32_hzdw_status a ");
+
+		mbkDocList = queryService.searchList(hql.toString());
+
+		sheetList.add(mbkTitleList);
+		sheetList.add(mbkDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "目标库信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+
+	
 	}
 }

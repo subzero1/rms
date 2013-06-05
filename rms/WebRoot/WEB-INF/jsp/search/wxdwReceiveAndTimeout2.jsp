@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript">
+function searchListExport(){ 
+	window.location.href="aux/hzdwStatusToExcel.do?config=tf32_hzdw_status";
+} 
+</script>
 <form id="pagerForm" method="post" action="search/wxdwReceiveAndTimeout.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
@@ -28,7 +33,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'aux/wxdwReceiveAndTimeout2.do',navTabSearch);">检 索</button></div> <div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'aux/wxdwReceiveAndTimeout2.do',navTabSearch);">检 索</button></div> <div class="buttonContent"><button type="button" onClick="javascript:searchListExport();">Excel导出</button></div></div></li>
 					</ul>
 				</div>
 			</div>
