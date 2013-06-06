@@ -1748,7 +1748,7 @@ public class Wxdw {
 		modelMap.put("orderDirection", orderDirection);
 		boolean allproject = request.getParameter("allproject") != null;
 		StringBuffer hsql = new StringBuffer();
-		hsql.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(jhjgsj-sgpfsj)) as a3 from Vc2_gcxx_gzltb gcxx where ");
+		hsql.append("select distinct(gcxx) as gcxx,sysdate-(case when tbrq is null then sjkgsj else tbrq end)-(case when sgjdtbzq is null then 3 else sgjdtbzq end) as a1,((case when tbrq is null then sjkgsj else tbrq end)+(case when sgjdtbzq is null then 3 else sgjdtbzq end)) as a2,((sysdate-sgpfsj)/(yqgq)) as a3 from Vc2_gcxx_gzltb gcxx where ");
 		if (!"".equals(gcmc)) {
 			hsql.append("(gcxx.gcmc like '%" + gcmc + "%') and ");
 		}
@@ -1771,7 +1771,10 @@ public class Wxdw {
 			o[1] = d >= convertUtil.toLong(((Vc2_gcxx_gzltb) o[0]).getSgjdtbzq(), 3L) ? "#cd0005"
 					: d.equals(0L) ? "#8db92e" : d > 0L ? "#ffd34e" : "";
 			o[2] = ro.get("a2");
-			o[3] = ro.get("a3");
+			Double jhjd = convertUtil.toDouble(ro.get("a3"),0d);
+			if(jhjd > 1)
+				jhjd = 1d;
+			o[3] = jhjd;
 			gcxxList.add(o);
 		}
 		modelMap.put("gcxxList", gcxxList);
