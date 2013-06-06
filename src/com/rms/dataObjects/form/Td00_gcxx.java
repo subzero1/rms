@@ -1919,5 +1919,17 @@ public class Td00_gcxx implements Serializable {
 		this.sfcq = sfcq;
 	}
 	
-	
+	/**
+	 * @hibernate.property column="yqgq"
+	 * @return Returns the yqgq.
+	 */
+	private Long yqgq;
+
+	public Long getYqgq() {
+		return yqgq;
+	}
+
+	public void setYqgq(Long yqgq) {
+		this.yqgq = yqgq;
+	}
 }
