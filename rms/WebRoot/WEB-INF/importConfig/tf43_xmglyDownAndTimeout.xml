@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Tf43_temp</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow>
+			<column>
+				<columnName>ID</columnName>
+				<index />
+				<name>序号</name>
+				<colName>序号</colName>
+			</column>
+			<column>
+				<columnName>C1</columnName>
+				<index />
+				<name>项目管理员</name>
+				<colName>项目管理员</colName>
+			</column>
+			<column>
+				<columnName>C2</columnName>
+				<index />
+				<name>项目数</name>
+				<colName>项目数</colName>
+			</column>
+			<column>
+				<columnName>C3</columnName>
+				<index />
+				<name>派设计数</name>
+				<colName>派设计数</colName>
+			</column>
+			<column>
+				<columnName>C4</columnName>
+				<index />
+				<name>派施工数</name>
+				<colName>派施工数</colName>
+			</column>
+			<column>
+				<columnName>C5</columnName>
+				<index />
+				<name>派监理数</name>
+				<colName>派监理数</colName>
+			</column>
+			<column>
+				<columnName>C6</columnName>
+				<index />
+				<name>施工超期数</name>
+				<colName>施工超期数</colName>
+			</column>
+			<column>
+				<columnName>C7</columnName>
+				<index />
+				<name>施工超期率</name>
+				<colName>施工超期率</colName>
+			</column>
+			<column>
+				<columnName>C8</columnName>
+				<index />
+				<name>决算数</name>
+				<colName>决算数</colName>
+			</column>
+			<column>
+				<columnName>C9</columnName>
+				<index />
+				<name>决算率</name>
+				<colName>决算率</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>
