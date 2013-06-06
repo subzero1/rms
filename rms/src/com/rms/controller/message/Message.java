@@ -26,8 +26,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rms.dataObjects.base.Tc02_area;
-import com.rms.dataObjects.wxdw.V_message_receiver;
-import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
