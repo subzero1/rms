@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript">
+function searchListExport(){ 
+	window.location.href="aux/xmglyDownAndTimeoutToExcel.do?config=tf43_xmglyDownAndTimeout";
+} 
+</script>
 <form id="pagerForm" method="post" action="search/xmglyDownAndTimeout.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
@@ -27,7 +32,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/xmglyDownAndTimeout.do',navTabSearch);">检 索</button></div><div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/xmglyDownAndTimeout.do',navTabSearch);">检 索</button></div><div class="buttonContent"><button type="button" onClick="javascript:searchListExport();">Excel导出</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -63,9 +68,9 @@
 						<td><a href="aux/xmmxList.do?xmgly=${obj.c1 }&op=3&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.c1 }[${obj.c4 }]">${obj.c4 }</a></td>
 						<td><a href="aux/xmmxList.do?xmgly=${obj.c1 }&op=4&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.c1 }[${obj.c5 }]">${obj.c5}</a></td>
 						<td><a href="aux/xmmxList.do?xmgly=${obj.c1 }&op=9&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.c1 }[${obj.c6 }]">${obj.c6}</a></td>
-						<td><fmt:formatNumber pattern="0.00" value="${obj.c7 }"/></td>
+						<td>${obj.c7 }</td>
 						<td><a href="aux/xmmxList.do?xmgly=${obj.c1 }&op=10&lxsj1=${param.lxsj1 }&lxsj2=${param.lxsj2 }&pdsj1=${param.pdsj1 }&pdsj2=${param.pdsj2 }&ywxm=${param.ywxm}" target="navTab" rel="xmmxList" title="${obj.c1 }[${obj.c8 }]">${obj.c8 }</a></td>
-						<td><fmt:formatNumber pattern="0.00" value="${obj.c9 }"/></td>
+						<td>${obj.c9 }</td>
 						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
