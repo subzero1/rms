@@ -1659,4 +1659,17 @@ public class Vc2_gcxx_gzltb implements Serializable {
 		this.gzltb_id = gzltb_id;
 	}
 
+	/**
+	 * @hibernate.property column="yqgq"
+	 * @return Returns the yqgq.
+	 */
+	private Long yqgq;
+
+	public Long getYqgq() {
+		return yqgq;
+	}
+
+	public void setYqgq(Long yqgq) {
+		this.yqgq = yqgq;
+	}
 }
