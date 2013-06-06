@@ -953,6 +953,14 @@
         />
         
         <property
+            name="yqgq"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="yqgq"
+        />
+        
+        <property
             name="wcsj"
             type="java.util.Date"
             update="true"
