@@ -1793,7 +1793,7 @@ public class Wxdw {
 	public ModelAndView jdfk(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class, project_id);
+		Td01_xmxx gcxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
 		modelMap.put("gcxx", gcxx);
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		if (!id.equals(-1L)) {
