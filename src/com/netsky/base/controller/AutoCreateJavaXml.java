@@ -1,4 +1,5 @@
 package com.netsky.base.controller;
+import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -51,7 +52,10 @@ public class AutoCreateJavaXml{
 			Tz07_dataobject_cfg tz07 = (Tz07_dataobject_cfg)ro.get("tz07");
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("tz07_id", tz07.getId());
-			paramMap.put("appPath", "D:\\workspace\\eclipseWorkspace\\rms");
+			File file=new File(Thread.currentThread().getContextClassLoader().getResource("").getPath());
+			String pathString=file.getParent();
+			System.out.println(pathString);
+			paramMap.put("appPath", "D:\\workspace\\rms");
 			paramMap.put("owner", "PSS_NJ");
 			createDoService.createJavaAndXml(paramMap);
 		}
