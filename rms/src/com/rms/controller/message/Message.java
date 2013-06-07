@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rms.base.util.MobileMessage;
+import com.rms.base.util.MobileMessageImpl;
 import com.rms.dataObjects.base.Tc02_area;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -744,6 +746,87 @@ public class Message {
 		}
 		response.getWriter().print(json);
 	}
+	
+	
+	/**
+	 * 短消发送到移動設備 
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/MessageToMobile.do")
+	public void messagetomobile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String json = "";
+		response.setCharacterEncoding("UTF-8");
+		String content = null;
+		String reader_name = null;
+		String reader_tel = null;
+		StringBuffer message_phone = new StringBuffer();
+		try {
+			// 设置当前时间
+
+			Ta03_user ta03 = (Ta03_user) request.getSession().getAttribute("user");
+
+			content = request.getParameter("content");
+			reader_name =request.getParameter("reader_name");
+			reader_tel = request.getParameter("reader_tel");
+			String fsr = ta03.getName() + "";
+			message_phone.append("发自：" + fsr + "[rms系统]");
+			message_phone.append("\n");
+			message_phone.append("内容：");
+			message_phone.append(content);
+			MobileMessage message=new MobileMessageImpl();
+			
+			String failed = "";
+			if (!"".equals(reader_tel)) {
+				String[] reader_names = reader_name.split("；");
+				String[] readers = reader_tel.split(",");
+				for (int i = 0; i < readers.length; i++) {
+
+					if (NumberFormatUtil.isNumeric(readers[i]) && readers[i].length() == 11) {
+						String state=message.sendMsg(message_phone.toString(), reader_tel);
+						this.saveMessage(fsr, reader_names[i], "手机短信", content, state);// 短信发送记录
+						if (!state.endsWith("001")){
+							failed += reader_names[i]+";";
+						}
+					} else {
+						failed += reader_names[i]+"(非11位数字);";
+					}
+				}
+			}
+			if (request.getParameter("additionTels")!=null && request.getParameter("additionTels").length()!=0){
+				String tmp = request.getParameter("additionTels");
+				tmp = tmp.replaceAll(",", ";");
+				tmp = tmp.replaceAll("，", ";");
+				tmp = tmp.replaceAll(" ", ";");
+				tmp = tmp.replaceAll(" ", ";");
+				tmp = tmp.replaceAll("；", ";");
+				String[] additionTels = tmp.split(";");
+				for (String string : additionTels) {
+					if(!"".equals(string)){
+						if (NumberFormatUtil.isNumeric(string) && string.length() == 11) {
+							String state=message.sendMsg(message_phone.toString(), string);
+							this.saveMessage(fsr, string, "手机短信", content, state);// 短信发送记录
+							if (!state.endsWith("001")){
+								failed += string+";";
+							}
+						} else {
+							failed += string+"(非11位数字);";
+						}
+					}
+				}
+			}
+			message.close();
+			if (failed.length()!=0){
+				failed = failed.substring(0,failed.length()-1);
+			}
+			json = "{\"statusCode\":\"200\", \"message\":\"发送完毕!" +
+					(failed.length()==0?"":"其中"+failed+"没有发送成功") +
+					"\", \"navTabId\":\"_current\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
+		} catch (Exception e) {
+			e.printStackTrace();
+			json = "{\"statusCode\":\"300\", \"message\":\"操作失败\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
+		}
+		response.getWriter().print(json);
+	}
 
 	/**
 	 * 短消息删除
@@ -1310,5 +1393,16 @@ public class Message {
 		List messageReaderList=queryService.searchList(hql.toString());
 		modelMap.put("messageReaderList", messageReaderList);
 		return new ModelAndView(view,modelMap);
+	}
+	
+	public void saveMessage(String fsr,String jsr,String title,String content,String state){
+		Te08_message te08=new Te08_message();
+		te08.setFsr(fsr);
+		te08.setJsr(jsr);
+		te08.setFssj(new Date());
+		te08.setTitle(title);
+		te08.setContent(content);
+		te08.setState(state);
+		saveService.save(te08);
 	}
 }

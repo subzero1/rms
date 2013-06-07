@@ -52,7 +52,7 @@
 
 <div class="page">
 	<div class="pageContent">
-		<form name="messagewrite" id="messagewrite" action="MessageToPhone.do" class="pageForm required-validate" method="post" onsubmit="return validateCallback(messagewrite, dialogAjaxDone);">
+		<form name="messagewrite" id="messagewrite" action="MessageToMobile.do" class="pageForm required-validate" method="post" onsubmit="return validateCallback(messagewrite, dialogAjaxDone);">
 			<input type="hidden" id="send_flag" name="send_flag"/>
 			<input type="hidden" name="_callbackType" value=""/>
 			<input type="hidden" name="_navTabId" value=""/>
