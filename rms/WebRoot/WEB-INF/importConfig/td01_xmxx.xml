@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Td01_xmxx</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow> 
+			<column>
+				<columnName>XMMC</columnName>
+				<index />
+				<name>项目名称</name>
+				<colName>项目名称</colName>
+			</column>
+			<column>
+				<columnName>XMBH</columnName>
+				<index />
+				<name>项目编号</name>
+				<colName>项目编号</colName>
+			</column>
+			<column>
+				<columnName>SSDQ</columnName>
+				<index />
+				<name>所属地区</name>
+				<colName>所属地区</colName>
+			</column>
+			<column>
+				<columnName>GCLB</columnName>
+				<index />
+				<name>工程类别</name>
+				<colName>工程类别</colName>
+			</column> 
+			<column>
+				<columnName>SGDW</columnName>
+				<index />
+				<name>施工单位</name>
+				<colName>施工单位</colName>
+			</column>
+			<column>
+				<columnName>SGHTBH</columnName>
+				<index />
+				<name>施工合同编号</name>
+				<colName>施工合同编号</colName>
+			</column> 
+			<column>
+				<columnName>LXJE</columnName>
+				<index />
+				<name>立项金额</name>
+				<colName>立项金额</colName>
+			</column> 
+		</columns>
+	</tableInfo>
+</excel>
