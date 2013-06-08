@@ -5,8 +5,7 @@
 <script type="text/javascript">
 function searchListExport(){
    var $pagerForm=$("#pagerForm",navTab.getCurrentPanel());
-   $pagerForm.attr("action","form/xmxxToExcel.do");
-   alert($pagerForm.attr("action"));
+   $pagerForm.attr("action","form/xmxxToExcel.do"); 
    $pagerForm.submit();
 }
 </script>
