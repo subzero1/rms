@@ -2,13 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-
+<script type="text/javascript">
+function searchListExport(){
+   var $pagerForm=$("#pagerForm",navTab.getCurrentPanel());
+   $pagerForm.attr("action","form/xmxxToExcel.do");
+   alert($pagerForm.attr("action"));
+   $pagerForm.submit();
+}
+</script>
 <form id="pagerForm" method="post" action="form/xmxxList.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<input type="hidden" name="config" value="td01_xmxx" />
 </form>
 
 <div class="page">
@@ -43,10 +51,10 @@
 					<li> <a class="exportexcel" href="dispath.do?url=form/xlsImport.jsp?config=batch_update_xm" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li>
 				</c:if>
-					<!-- 
+					
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
 					<li class="line">line</li>
-					
+					<!-- 
 					<li><a class="helponline"	href="javascript:enterHelp('xmxx')"><span>在线2帮助</span></a></li>
 					<li class="line">line</li>
 					-->

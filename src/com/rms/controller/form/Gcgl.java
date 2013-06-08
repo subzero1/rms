@@ -1108,4 +1108,119 @@ public class Gcgl {
 		return new ModelAndView("/export/toExcelWhithList.do");
 
 	}
+	
+	@RequestMapping("/form/xmxxToExcel.do")
+	public ModelAndView xmxxToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		String config = convertUtil.toString(request.getParameter("config"));
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+
+		String limit = "";
+		Long node_id = -1L;
+		
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String user_name = user.getName();
+		String user_dept = user.getDept_name();
+		String user_zy = user.getZys();
+
+		
+		int k = 0;
+		ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
+		ResultObject ro = null;
+		StringBuffer hsql = new StringBuffer();
+		List orderTitleList = new LinkedList(); // 标题列表
+		List orderColList = new LinkedList();// 列的字段值
+		List orderDocList = new LinkedList();// 表单数据
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+
+		// 读取配置文件的标题列表
+		String webinfpath = request.getSession().getServletContext()
+				.getRealPath("WEB-INF");
+		orderTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+		orderColList = configXML.getTagListByConfig(config, webinfpath,
+				"columnName");
+		Iterator it = orderColList.iterator();
+		Object order = null;
+		
+		
+		
+		// 查询条件
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		String login_id = convertUtil.toString(user.getLogin_id());
+		if (rolesMap.get("100107") != null) {
+			limit = "htgly";
+			node_id = 10105L;
+		}
+		else if(login_id.substring(0,1).equals("7")){
+			limit = "sjdw";
+			node_id = 10102L;
+		}
+		else if(login_id.substring(0,1).equals("8")){
+			limit = "sgdw";
+			node_id = 10103L;
+		}
+		else if(login_id.substring(0,1).equals("9")){
+			limit = "jldw";
+			node_id = 10104L;
+		}
+		else {
+			limit = "xmgly";
+			node_id = 10101L;
+		} 
+		hsql.delete(0, hsql.length());
+		
+		hsql.append("select ");
+		while (it.hasNext()) {
+			if (k == 0)
+				hsql.append(" a." + ((it.next().toString()).toLowerCase()));
+			else
+				hsql.append(" ,a." + ((it.next().toString()).toLowerCase()));
+			k++;
+		}
+		hsql.append(" from Td01_xmxx a where 1=1  ");
+		if(limit.equals("xmgly")){
+			hsql.append("and xmgly = '"+user_name+"' ");
+		}
+		else if(limit.equals("sjdw")){
+			hsql.append("and sjdw = '" + user_dept + "' ");
+		}
+		else if(limit.equals("sgdw")){
+			hsql.append("and sgdw = '" + user_dept + "' and gclb in (" + user_zy + ") ");
+		}
+		else if(limit.equals("jldw")){
+			hsql.append("and jldw = '" + user_dept + "' ");
+		}
+		else{//合同管理员
+			hsql.append(" and xmgly in(select name from Ta03_user where send_htgly = 1)");
+		}
+		if (!keyword.equals("")) {
+			hsql.append(" and (xmmc like '%" + keyword + "%' or xmbh like '%"
+					+ keyword + "%')");
+		}
+
+		// order排序
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+		orderDocList = queryService.searchList(hsql.toString());
+
+		sheetList.add(orderTitleList);
+		sheetList.add(orderDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "項目信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+
+	}
+	
+	
 }

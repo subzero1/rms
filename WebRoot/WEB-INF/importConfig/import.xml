@@ -51,4 +51,9 @@
   	<fileName>/importConfig/tf43_xmglyDownAndTimeout.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>td01_xmxx</name>
+  	<fileName>/importConfig/td01_xmxx.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
