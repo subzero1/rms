@@ -49,6 +49,24 @@
 				<colName>施工合同编号</colName>
 			</column> 
 			<column>
+				<columnName>SGHTJE</columnName>
+				<index />
+				<name>施工合同金额</name>
+				<colName>施工合同金额</colName>
+			</column> 
+			<column>
+				<columnName>XMZT</columnName>
+				<index />
+				<name>项目状态</name>
+				<colName>项目状态</colName>
+			</column> 
+			<column>
+				<columnName>XMJL</columnName>
+				<index />
+				<name>项目经理</name>
+				<colName>项目经理</colName>
+			</column> 
+			<column>
 				<columnName>LXJE</columnName>
 				<index />
 				<name>立项金额</name>

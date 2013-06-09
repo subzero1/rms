@@ -69,6 +69,9 @@ function searchListExport(){
 					<th style="width: 65px;" orderField="gclb">工程类别</th>
 					<th style="width: 200px;" orderField="sgdw">施工单位</th>
 					<th style="width: 140px;" orderField="sghtbh">施工合同编号</th>
+					<th style="width: 70px;" orderField="sghtje">施工合同金额</th>
+					<th style="width: 70px;" orderField="xmzt">项目状态</th>
+					<th style="width: 70px;" orderField="xmjl">项目经理</th>
 					<th style="width: 70px;" orderField="lxje">立项金额</th>
 				</tr>
 			</thead>
@@ -87,6 +90,9 @@ function searchListExport(){
 						<td>${obj.gclb }</td>
 						<td>${obj.sgdw }</td>
 						<td>${obj.sghtbh }</td>
+						<td>${obj.sghtje }</td>
+						<td>${obj.xmzt }</td>
+						<td>${obj.xmjl }</td>
 						<td>${obj.lxje }</td>
 					</tr>
 				</c:forEach>

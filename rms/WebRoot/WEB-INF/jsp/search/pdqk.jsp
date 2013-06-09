@@ -41,7 +41,7 @@
 </script>
 
 <div class="pageContent">
-	<table class="table" layoutH="118" targettype="dialog" width="100%">
+	<table class="table" layoutH="75" targettype="dialog" width="100%">
 		<thead>
 			<tr>
 				<th width="200">单位名称</th>
@@ -93,6 +93,13 @@
 			</tr>
 			</c:forEach>
 			</c:if>
+			<tr><td colspan="8" ></td></tr>
+			<tr><td colspan="8" >决算率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已经决算过的工程数/总工程数&nbsp;&nbsp;(年度:<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>,专业:${xmxx.gclb} ,地区:${xmxx.ssdq },项目:${xmxx.xmmc })</td></tr>
+			<tr><td colspan="8" >实际占比:&nbsp;当前单位的合同金额/项目总合同金额&nbsp;&nbsp;(年度:<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>,专业:${xmxx.gclb} ,地区:${xmxx.ssdq },项目:${xmxx.xmmc })</td></tr>
+			<tr><td colspan="8" >偏差率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(计划占比-实际占比)/计划占比&nbsp;&nbsp;(年度:<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>,专业:${xmxx.gclb} ,地区:${xmxx.ssdq },项目:${xmxx.xmmc })</td></tr>
+			<tr><td colspan="8" >偏差等级:&nbsp;<a href="aux/fepcl.do" target="dialog" width="400" height="250">详情</td></tr>
+			<tr ><td colspan="8" style="border: 0px;">项目数:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前单位的项目数(<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>年度,${xmxx.gclb} ,${xmxx.ssdq })</td></tr>
+		
 		</tbody>
 	</table>
 
