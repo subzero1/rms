@@ -1960,7 +1960,8 @@ public class AuxFunction {
 		hql.append("and a.sjxzdw=b.mc ");
 		hql.append("and a.id=");
 		hql.append(id);
-		List sjxzdw = queryService.searchList(hql.toString());
+		List sjxzdw = queryService.searchList(hql.toString()); 
+		Td01_xmxx xmxx=(Td01_xmxx) queryService.searchById(Td01_xmxx.class, xm_id);
 		Integer wxdw_id = 0;
 		for (Object object : sjxzdw) {
 			Object obj[] = (Object[]) object;
@@ -1971,6 +1972,7 @@ public class AuxFunction {
 		modelMap.put("pxsjxzdw", pxsjxzdw);
 		modelMap.put("zdxp", result);
 		modelMap.put("project_id", xm_id);
+		modelMap.put("xmxx", xmxx);
 		return new ModelAndView("/WEB-INF/jsp/search/pdqk.jsp", modelMap);
 	}
 
@@ -2436,5 +2438,14 @@ public class AuxFunction {
 		return new ModelAndView("/export/toExcelWhithList.do");
 
 	
+	}
+	
+	@RequestMapping("/aux/fepcl.do")
+	public ModelAndView fepcl(HttpServletRequest request,HttpServletResponse response){
+		String view="/WEB-INF/jsp/search/fepcl.jsp";
+		ModelMap modelMap=new ModelMap();
+		List fepclList=queryService.searchList("select a from Tf11_fepcl a order by a.dj ");
+		modelMap.put("fepclList", fepclList);
+		return new ModelAndView(view,modelMap);
 	}
 }
