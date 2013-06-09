@@ -175,7 +175,7 @@ public class workList {
 				hsql.append(" and doc.module_id = " + module_id);
 			}
 			if (!"".equals(keyWord)) {
-				hsql.append(" and ( gcxx.xmmc like '%" + keyWord + "%')");
+				hsql.append(" and ( gcxx.xmmc like '%" + keyWord + "%' or gcxx.xmbh like '%"+keyWord+"%' or gcxx.xmjl like '%"+keyWord+"%')");
 			}
 			if (year > 1900 && workState == 5) {
 				hsql.append(" and doc.oper_time like '" + year + "%'");
