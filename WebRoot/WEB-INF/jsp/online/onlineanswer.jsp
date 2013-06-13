@@ -21,6 +21,10 @@
 	<c:set var="web_title" scope="page" value="系统公告"/>
 	<c:set var="new_desc" scope="page" value="评论"/>
 </c:when>
+<c:when test="${online.role_id=='304'}">
+	<c:set var="web_title" scope="page" value="考核培训"/>
+	<c:set var="new_desc" scope="page" value="回复"/>
+</c:when>
 <c:otherwise>
 	<c:set var="web_title" scope="page" value="在线信息"/>
 	<c:set var="new_desc" scope="page" value="评论"/>
