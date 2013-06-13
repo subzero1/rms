@@ -149,7 +149,8 @@ public class Gcgl {
 		// 关键字
 		if (!keyword.equals("")) {
 			hsql.append(" and (xmmc like '%" + keyword + "%' or xmbh like '%"
-					+ keyword + "%')");
+					+ keyword + "%' or xmgly like '%"+keyword+"%')");
+			
 		}
 
 		// order排序
