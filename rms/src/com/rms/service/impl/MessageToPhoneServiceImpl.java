@@ -12,7 +12,7 @@ import com.rms.base.util.MobileMessage;
 import com.rms.base.util.MobileMessageImpl;
 import com.rms.service.MessageToPhoneService;
 
-@Service("MessageToPhoneService")
+@Service("messageToPhoneService")
 public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 		te08.setTitle(title);
 		te08.setContent(content);
 		te08.setState(state);
-		saveService.save(te08);
+		this.saveService.save(te08);
 	}
 
 	public String sendMessageToPhone(String content, String sender_name,

@@ -32,7 +32,7 @@ public class MobileMessageImpl implements MobileMessage{
 		super();
 		this.client =new NetMsgclient();
 		this.receiveMsg=new ReceiveMsgImp(); 
-		this.connect();System.out.println("重練..............");
+		this.connect();
 	}
 	public MobileMessageImpl(ReceiveMsg receiveMsg,NetMsgclient client){
 		super();
