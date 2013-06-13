@@ -19,6 +19,10 @@
 		<c:set var="web_title" scope="page" value="系统公告发布" />
 		<c:set var="name_desc" scope="page" value="发布人" />
 	</c:when>
+	<c:when test="${wtlx=='304'}">
+		<c:set var="web_title" scope="page" value="考核培训信息发布" />
+		<c:set var="new_desc" scope="page" value="发布人" />
+	</c:when>
 	<c:otherwise>
 		<c:set var="web_title" scope="page" value="在线信息" />
 		<c:set var="name_desc" scope="page" value="姓 名" />
