@@ -28,6 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rms.base.util.MobileMessage;
 import com.rms.base.util.MobileMessageImpl;
 import com.rms.dataObjects.base.Tc02_area;
+import com.rms.service.MessageToPhoneService;
+import com.rms.service.impl.MessageToPhoneServiceImpl;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
@@ -759,7 +761,6 @@ public class Message {
 		String content = null;
 		String reader_name = null;
 		String reader_tel = null;
-		StringBuffer message_phone = new StringBuffer();
 		try {
 			// 设置当前时间
 
@@ -769,52 +770,11 @@ public class Message {
 			reader_name =request.getParameter("reader_name");
 			reader_tel = request.getParameter("reader_tel");
 			String fsr = ta03.getName() + "";
-			message_phone.append("发自：" + fsr + "[rms系统]");
-			message_phone.append("\n");
-			message_phone.append("内容：");
-			message_phone.append(content);
-			MobileMessage message=new MobileMessageImpl();
+			MessageToPhoneService phoneService=new MessageToPhoneServiceImpl();
 			
 			String failed = "";
-			if (!"".equals(reader_tel)) {
-				String[] reader_names = reader_name.split("；");
-				String[] readers = reader_tel.split(",");
-				for (int i = 0; i < readers.length; i++) {
-
-					if (NumberFormatUtil.isNumeric(readers[i]) && readers[i].length() == 11) {
-						String state=message.sendMsg(message_phone.toString(), reader_tel);
-						this.saveMessage(fsr, reader_names[i], "手机短信", content, state);// 短信发送记录
-						if (!state.endsWith("001")){
-							failed += reader_names[i]+";";
-						}
-					} else {
-						failed += reader_names[i]+"(非11位数字);";
-					}
-				}
-			}
-			if (request.getParameter("additionTels")!=null && request.getParameter("additionTels").length()!=0){
-				String tmp = request.getParameter("additionTels");
-				tmp = tmp.replaceAll(",", ";");
-				tmp = tmp.replaceAll("，", ";");
-				tmp = tmp.replaceAll(" ", ";");
-				tmp = tmp.replaceAll(" ", ";");
-				tmp = tmp.replaceAll("；", ";");
-				String[] additionTels = tmp.split(";");
-				for (String string : additionTels) {
-					if(!"".equals(string)){
-						if (NumberFormatUtil.isNumeric(string) && string.length() == 11) {
-							String state=message.sendMsg(message_phone.toString(), string);
-							this.saveMessage(fsr, string, "手机短信", content, state);// 短信发送记录
-							if (!state.endsWith("001")){
-								failed += string+";";
-							}
-						} else {
-							failed += string+"(非11位数字);";
-						}
-					}
-				}
-			}
-			message.close();
+			failed=phoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
+			 System.out.println("手否黑白:"+failed);
 			if (failed.length()!=0){
 				failed = failed.substring(0,failed.length()-1);
 			}
