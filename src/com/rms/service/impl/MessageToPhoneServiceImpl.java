@@ -17,6 +17,8 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 	
 	@Autowired
 	private SaveService saveService;
+	
+	private MobileMessage message;
 
 	public void dxjl(String fsr, String jsr, String title, String content,
 			String state) {
@@ -42,7 +44,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 			message_phone.append("\n");
 			message_phone.append("内容：");
 			message_phone.append(content);
-			MobileMessage message=new MobileMessageImpl();
+			this.message=new MobileMessageImpl();
 			if (!"".equals(reader_tel)) {
 				String[] reader_names = reader_name.split("；");
 				String[] readers = reader_tel.split(",");
@@ -51,7 +53,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 					if (NumberFormatUtil.isNumeric(readers[i]) && readers[i].length() == 11) {
 						String state=message.sendMsg(message_phone.toString(), reader_tel);
 						this.dxjl(fsr, reader_names[i], "手机短信", content, state);// 短信发送记录
-						if (!state.endsWith("001")){
+						if (state.endsWith("16")){
 							failed += reader_names[i]+";";
 						}
 					} else {
@@ -81,12 +83,13 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 					}
 				}
 			}
-			message.close();
+			this.message.close();
 			if (failed.length() != 0) {
 				failed = failed.substring(0, failed.length() - 1);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			this.message.close();
 		}
 		return failed;
 	}

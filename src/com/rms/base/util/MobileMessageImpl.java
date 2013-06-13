@@ -9,7 +9,6 @@ import com.linkage.netmsg.NetMsgclient;
 import com.linkage.netmsg.server.ReceiveMsg;
 import com.netsky.base.dataObjects.Te08_message;
 import com.netsky.base.service.SaveService;
-@Service("createMobileMessage")
 public class MobileMessageImpl implements MobileMessage{
 
 	private ReceiveMsg receiveMsg;
@@ -33,7 +32,7 @@ public class MobileMessageImpl implements MobileMessage{
 		super();
 		this.client =new NetMsgclient();
 		this.receiveMsg=new ReceiveMsgImp(); 
-		this.connect();
+		this.connect();System.out.println("重練..............");
 	}
 	public MobileMessageImpl(ReceiveMsg receiveMsg,NetMsgclient client){
 		super();
