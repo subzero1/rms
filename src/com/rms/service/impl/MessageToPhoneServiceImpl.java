@@ -53,7 +53,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 					if (NumberFormatUtil.isNumeric(readers[i]) && readers[i].length() == 11) {
 						String state=message.sendMsg(message_phone.toString(), reader_tel);
 						this.dxjl(fsr, reader_names[i], "手机短信", content, state);// 短信发送记录
-						if (state.endsWith("16")){
+						if (state.equals("16")){
 							failed += reader_names[i]+";";
 						}
 					} else {
@@ -74,7 +74,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 						if (NumberFormatUtil.isNumeric(string) && string.length() == 11) {
 							String state=message.sendMsg(message_phone.toString(), string);
 							this.dxjl(fsr, string, "手机短信", content, state);// 短信发送记录
-							if (!state.endsWith("001")){
+							if (state.equals("16")){
 								failed += string+";";
 							}
 						} else {

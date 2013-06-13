@@ -70,7 +70,13 @@ public class Message {
 	 */
 	@Autowired
 	private SaveService saveService;
-
+	
+	/**
+	 * 短信服務
+	 */
+	@Autowired
+	private MessageToPhoneService messageToPhoneService;
+	
 	/**
 	 * 短消息列表查看
 	 */
@@ -770,10 +776,9 @@ public class Message {
 			reader_name =request.getParameter("reader_name");
 			reader_tel = request.getParameter("reader_tel");
 			String fsr = ta03.getName() + "";
-			MessageToPhoneService phoneService=new MessageToPhoneServiceImpl();
 			
 			String failed = "";
-			failed=phoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
+			failed=messageToPhoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
 			if (failed.length()!=0){
 				failed = failed.substring(0,failed.length()-1);
 			}
