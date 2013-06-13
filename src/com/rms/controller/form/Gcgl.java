@@ -2,6 +2,7 @@ package com.rms.controller.form;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -679,7 +680,7 @@ public class Gcgl {
 
 	@RequestMapping("/search/xmxxList.do")
 	public ModelAndView xmxxList(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		String view = "/WEB-INF/jsp/search/xmxxList.jsp";
 		ModelMap modelMap = new ModelMap();
 		StringBuffer hql = new StringBuffer();
@@ -697,6 +698,8 @@ public class Gcgl {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		keyword=new String(keyword.getBytes("ISO-8859-1"),"gbk");
+		
 		String jssj = convertUtil.toString(request.getParameter("jssj"));
 		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
 		String ssdq=convertUtil.toString(request.getParameter("ssdq"));
@@ -719,6 +722,9 @@ public class Gcgl {
 			hql.append("%' ");
 			hql.append("or x.xmbh like '%");
 			hql.append(keyword);
+			hql.append("%' ");
+			hql.append(" or x.xmgly like '%");
+			hql.append(keyword); 
 			hql.append("%') ");
 		}
 		if (!jssj.equals("")) {
@@ -777,6 +783,7 @@ public class Gcgl {
 		managerHql.append("order by u.name asc");
 		List xmglyList=queryService.searchList(managerHql.toString());
 		
+		modelMap.put("keyword", keyword);
 		modelMap.put("areaList", areaList);
 		modelMap.put("xmxxList", objList);
 		modelMap.put("xmglyList", xmglyList);

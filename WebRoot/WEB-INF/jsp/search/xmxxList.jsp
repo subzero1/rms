@@ -37,7 +37,7 @@
 						<td>
 							<input type="text" style="display: none" />
 							关键字：
-							<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+							<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" />
 								决算时间
 							<input id="jssj" name="jssj" value="${param.jssj}"
 								type="text"  class="date" size="10"/>
