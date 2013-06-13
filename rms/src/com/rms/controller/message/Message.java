@@ -774,7 +774,6 @@ public class Message {
 			
 			String failed = "";
 			failed=phoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
-			 System.out.println("手否黑白:"+failed);
 			if (failed.length()!=0){
 				failed = failed.substring(0,failed.length()-1);
 			}
