@@ -1,6 +1,8 @@
 package com.rms.base.util;
 
 
+import org.apache.log4j.Logger;
+
 import com.linkage.netmsg.NetMsgclient;
 import com.linkage.netmsg.server.ReceiveMsg;
 public class MobileMessageImpl implements MobileMessage{
@@ -11,6 +13,9 @@ public class MobileMessageImpl implements MobileMessage{
 	private String username;
 	private String password;
 	private int portNum;
+	
+	private Logger log = Logger.getLogger(this.getClass());
+
  
 	
 	public void close() {
@@ -39,6 +44,7 @@ public class MobileMessageImpl implements MobileMessage{
 	            } 
 	        } catch (Exception e1) {
 	            e1.printStackTrace();
+	            log.error(e1.getMessage());
 	        }
 	
 	}

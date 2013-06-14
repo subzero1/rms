@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,9 @@ public class Message {
 	 */
 	@Autowired
 	private MessageToPhoneService messageToPhoneService;
+	
+	private Logger log = Logger.getLogger(this.getClass());
+
 	
 	/**
 	 * 短消息列表查看
@@ -784,6 +788,8 @@ public class Message {
 					"\", \"navTabId\":\"_current\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error(e.getMessage());
+			
 			json = "{\"statusCode\":\"300\", \"message\":\"操作失败\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
 		}
 		response.getWriter().print(json);

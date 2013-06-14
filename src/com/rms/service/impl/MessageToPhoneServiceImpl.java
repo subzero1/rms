@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.apache.log4j.Logger;
 import com.netsky.base.dataObjects.Te08_message;
 import com.netsky.base.dataObjects.interfaces.ThreadServiceInterface;
 import com.netsky.base.service.SaveService;
@@ -27,6 +27,8 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService,ThreadSe
 	private SaveService saveService;
 	
 	private MobileMessage message;
+	
+	private Logger log = Logger.getLogger(this.getClass());
 
 	public void dxjl(String fsr, String jsr, String title, String content,
 			String state) {
@@ -98,6 +100,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService,ThreadSe
 		} catch (Exception e) {
 			// TODO: handle exception
 			this.message.close();
+			log.error("短信服务器已断开连接,错误信息:"+e.getMessage());
 		}
 		return failed;
 	}
