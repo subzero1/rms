@@ -1,6 +1,8 @@
 package com.rms.service;
 
-public interface MessageToPhoneService {
+import java.util.Map;
+
+public interface MessageToPhoneService  {
 	/**
 	 * 
 	 * @param content 短信內容
@@ -10,7 +12,7 @@ public interface MessageToPhoneService {
 	 * @param reader_name   收信人姓名
 	 * @return String     返回值
 	 */
-	public String handle(String content,String sender_name,String additionTel, String reader_tel,String reader_name);
+	public String sendMessageToPhone(String content,String sender_name,String additionTel, String reader_tel,String reader_name);
 	/**
 	 * 
 	 * @param fsr     發送人
@@ -20,4 +22,11 @@ public interface MessageToPhoneService {
 	 * @param state void
 	 */
 	public void dxjl(String fsr,String jsr,String title,String content,String state);
+	
+	/**
+	 * 
+	 * @param paramMap 參數列表
+	 * @return String
+	 */
+	public void handle(Map<String, String> paramMap) throws Exception;
 }
