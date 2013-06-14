@@ -45,7 +45,7 @@
 					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xm_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 				</c:if>
-				<li> <a class="exportexcel" href="form/orderInfoToExcel.do?config=td00_gcxx" ><span>导出</span></a></li>
+				<li> <a class="exportexcel" href="form/orderInfoToExcel.do?config=td00_order" ><span>导出</span></a></li>
 				</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
