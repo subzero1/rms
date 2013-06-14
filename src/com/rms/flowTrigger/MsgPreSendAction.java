@@ -60,7 +60,6 @@ public class MsgPreSendAction extends com.netsky.base.flow.trigger.Trigger imple
 			if(user_id != -1L) {
 				Ta06_module ta06 = (Ta06_module)queryService.searchById(Ta06_module.class, module_id);
 				
-				
 				Tz05_thread_queue thread = new Tz05_thread_queue();
 				thread.setInserttime(new Date());
 				thread.setServicename("messageToPhoneService");
