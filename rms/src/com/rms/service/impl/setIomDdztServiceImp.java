@@ -125,7 +125,7 @@ public class setIomDdztServiceImp {
 					thread.setServicename("messageToPhoneService");
 					JSONObject jo = new JSONObject();
 					
-					jo.put("content", "您好，定单《"+td00.getGcmc()+"》项目管理员已经回复，请及时处理  【RMS系统】");
+					jo.put("content", "您好，定单《"+td00.getGcmc()+"》项目管理员已经回复，请及时处理。");
 					jo.put("sender_name", "管理员");
 					jo.put("additionTel", "");
 					jo.put("reader_tel", tel);
