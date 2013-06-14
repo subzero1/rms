@@ -56,4 +56,9 @@
   	<fileName>/importConfig/td01_xmxx.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>td00_order</name>
+  	<fileName>/importConfig/td00_order.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
