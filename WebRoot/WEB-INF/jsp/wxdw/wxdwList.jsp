@@ -52,6 +52,8 @@
 				<li class="line">line</li>
 				<li><a class="exportexcel"	href="wxdw/wxryToExcel.do?config=wxry_tmp" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
+				<li><a class="delete" href="wxdw/ajaxWxdwDel.do?id={wxdw_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+				<li class="line">line</li>
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
