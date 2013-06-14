@@ -12,6 +12,12 @@ import com.rms.base.util.MobileMessage;
 import com.rms.base.util.MobileMessageImpl;
 import com.rms.service.MessageToPhoneService;
 
+/**
+ * @description:
+ * 
+ * @class name:com.rms.service.impl.MessageToPhoneServiceImpl
+ * @author net Jun 14, 2013
+ */
 @Service("messageToPhoneService")
 public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 	
