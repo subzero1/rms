@@ -1111,7 +1111,7 @@ public class Gcgl {
 		sheetList.add(orderTitleList);
 		sheetList.add(orderDocList);
 		sheetMap.put("form_title", sheetList);
-		request.setAttribute("ExcelName", "目标库信息.xls");
+		request.setAttribute("ExcelName", "订单信息.xls");
 		request.setAttribute("sheetMap", sheetMap);
 		return new ModelAndView("/export/toExcelWhithList.do");
 
