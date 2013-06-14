@@ -65,7 +65,7 @@ public class MsgPreSendAction extends com.netsky.base.flow.trigger.Trigger imple
 				thread.setServicename("messageToPhoneService");
 				JSONObject jo = new JSONObject();
 				
-				jo.put("content", "您好，一条"+ta06.getName()+"已发至您的待办事宜，请及时处理  【RMS系统】");
+				jo.put("content", "您好，一条"+ta06.getName()+"已发至您的待办事宜，请及时处理。");
 				jo.put("sender_name", "管理员");
 				jo.put("additionTel", "");
 				jo.put("reader_tel", user_tel);
