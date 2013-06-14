@@ -32,7 +32,7 @@ public class MessageToPhoneServiceImpl implements MessageToPhoneService {
 		this.saveService.save(te08);
 	}
 
-	public String sendMessageToPhone(String content, String sender_name,
+	public String handle(String content, String sender_name,
 			String additionTel, String reader_tel, String reader_name) {
 		String failed = "";
 		StringBuffer message_phone = new StringBuffer();
