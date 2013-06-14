@@ -13,7 +13,6 @@ public class ReceiveMsgImp extends ReceiveMsg{
 	
 	public void getAnswer(AnswerBean answerBean) {
 		super.getAnswer(answerBean);
-		System.out.println(answerBean.getStatus());
 	}
 
 	/*接收上行短信的方法*/
