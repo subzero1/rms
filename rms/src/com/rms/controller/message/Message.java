@@ -775,7 +775,7 @@ public class Message {
 			String fsr = ta03.getName() + "";
 			
 			String failed = "";
-			failed=messageToPhoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
+			failed=messageToPhoneService.handle(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
 			if (failed.length()!=0){
 				failed = failed.substring(0,failed.length()-1);
 			}
