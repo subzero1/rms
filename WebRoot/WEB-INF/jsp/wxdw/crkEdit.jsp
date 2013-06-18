@@ -15,7 +15,7 @@ function act(){
 			okCall:function(){
 				$.ajax({
 						type: 'POST',
-						url:"wxdw/crkEditAjax.do?project_id=${gcxx.id}&dz=${dz}",
+						url:"wxdw/crkEditAjax.do?project_id=${xmxx.id}&dz=${dz}",
 						dataType:"json",
 						cache: false,
 						success: function(json){
@@ -110,7 +110,7 @@ function autoSelectClxx(inputObj){
 	
 	<div class="panelBar">
 		<ul class="toolBar" id="_flowButton">
-		 	<li><a class="save"	href="javascript:checkandsave();"><span>保 存</span></a></li>
+		 	<li><a class="save"	href="javascript:checkandsave();"><span>保存</span></a></li>
 			<li class="line">line</li>
 		 	<li><a class="icon"	href="javascript:act();"><span>${type }</span></a></li>
 			<li class="line">line</li>
@@ -125,8 +125,8 @@ function autoSelectClxx(inputObj){
 			<input type="hidden" name="_navTabId" value="" keep="true"/>
 			<input type="hidden" name="_message" value="数据保存" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
-				<span style="float:left">工程名称：${gcxx.gcmc}</span>
-				<span style="float:left;margin-left:20px;">工程编号：${gcxx.gcbh}</span>
+				<span style="float:left">工程名称：${xmxx.xmmc}</span>
+				<span style="float:left;margin-left:20px;">工程编号：${xmxx.xmbh}</span>
 			<div class="divider" style="height:1px;"></div>
 			<div style="text-align:left;color:blue;"><h3>待${type }材料&nbsp;</h3></div>
 			<table width="100%" class="list  itemDetail" width="100%">
@@ -134,7 +134,7 @@ function autoSelectClxx(inputObj){
 					<tr>
 						<th type="lookup" style="width:180px;" id="clxxDetail[#index#].clxxLookup.CLBM" lookupGroup="clxxDetail[#index#].clxxLookup" name="Tf08_clmxb.CLBM"  hideName="Tf08_clmxb.ID" lookupName="clxxLookup" lookupUrl="selectClxx.do" suggestUrl="ajaxAutocompleteClxx.do" suggestFields="CLBM,CLMC,XH,GG,DW" autocomplete="off">材料编码</th>
 						<th type="text" style="width:320px;" id="clxxDetail[#index#].clxxLookup.CLMC" name="Tf08_clmxb.CLMC"  hideName="Tf08_clmxb.FLAG" hideValue="0">材料名称</th>
-						<th type="text" style="width:120px;" id="clxxDetail[#index#].clxxLookup.GG" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${gcxx.id }">规格</th>
+						<th type="text" style="width:120px;" id="clxxDetail[#index#].clxxLookup.GG" name="Tf08_clmxb.GG" hideName="Tf08_clmxb.ZHXX_ID" hideValue="${xmxx.id }">规格</th>
 						<th type="text" style="width:120px;" id="clxxDetail[#index#].clxxLookup.XH" name="Tf08_clmxb.XH" hideName="Tf08_clmxb.DZ" hideValue="${dz }">型号</th>
 						<th type="text" style="width:60px;" id="clxxDetail[#index#].clxxLookup.DW" name="Tf08_clmxb.DW" hideName="Tf08_clmxb.CZSJ" hideValue="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>">单位</th>
 						<th type="text" class="" style="width:60px;" name="Tf08_clmxb.SL" hideName="Tf08_clmxb.SGDW_ID" hideValue="${sgdw_id }">数量</th>
