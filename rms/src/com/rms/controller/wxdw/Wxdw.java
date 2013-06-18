@@ -1108,10 +1108,10 @@ public class Wxdw {
 		Integer numPerPage = convertUtil.toInteger(request
 				.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request
-				.getParameter("orderField"), "gcmc");
+				.getParameter("orderField"), "xmmc");
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		if (orderField.equals("")) {
-			orderField = "gcmc";
+			orderField = "xmmc";
 		}
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "desc");
@@ -1123,18 +1123,18 @@ public class Wxdw {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		// 查询条件
-		String gcmc = convertUtil.toString(request.getParameter("gcmc"));
+		String xmmc = convertUtil.toString(request.getParameter("xmmc"));
 
 		StringBuffer hsql = new StringBuffer();
 		hsql
-				.append("select distinct(gcxx) as gcxx from Td00_gcxx gcxx where (xmgly = '"
+				.append("select distinct(xmxx) as xmxx from Td01_xmxx xmxx where (xmgly = '"
 						+ user.getName()
 						+ "' or sgdw = '"
 						+ user.getDept_name() + "')");
 		// where条件
 		// 名称
-		if (!gcmc.equals("")) {
-			hsql.append(" and gcxx.gcmc like '%" + gcmc + "%'");
+		if (!xmmc.equals("")) {
+			hsql.append(" and xmxx.xmmc like '%" + xmmc + "%'");
 		}
 		// order排序
 		// orderField
@@ -1144,11 +1144,11 @@ public class Wxdw {
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
 				numPerPage);
 		// 获取结果集
-		List<Td00_gcxx> gcxxList = new ArrayList<Td00_gcxx>();
+		List<Td01_xmxx> xmxxList = new ArrayList<Td01_xmxx>();
 		while (ro.next()) {
-			gcxxList.add((Td00_gcxx) ro.get("gcxx"));
+			xmxxList.add((Td01_xmxx) ro.get("xmxx"));
 		}
-		modelMap.put("gcxxList", gcxxList);
+		modelMap.put("xmxxList", xmxxList);
 		// 获取总条数和总页数
 		totalPages = ro.getTotalPages();
 		totalCount = ro.getTotalRows();
@@ -1170,13 +1170,13 @@ public class Wxdw {
 		modelMap.put("sgdw_id", tf04.getWxdw_id());
 		Long project_id = convertUtil
 				.toLong(request.getParameter("project_id"));
-		Td00_gcxx gcxx = (Td00_gcxx) queryService.searchById(Td00_gcxx.class,
+		Td01_xmxx xmxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class,
 				project_id);
-		if (gcxx == null) {
-			gcxx = new Td00_gcxx();
-			gcxx.setGcmc("预领料工程");
-			gcxx.setId(-1L);
-			gcxx.setGcbh("--");
+		if (xmxx == null) {
+			xmxx = new Td01_xmxx();
+			xmxx.setXmmc("预领料工程");
+			xmxx.setId(-1L);
+			xmxx.setXmbh("--");
 		}
 		Long dz = convertUtil.toLong(request.getParameter("dz"));
 		String type = "";
@@ -1189,7 +1189,7 @@ public class Wxdw {
 		}
 		modelMap.put("type", type);
 		modelMap.put("dz", dz);
-		modelMap.put("gcxx", gcxx);
+		modelMap.put("xmxx", xmxx);
 		List<Tf08_clmxb> tf08List = (List<Tf08_clmxb>) queryService
 				.searchList("from Tf08_clmxb where zhxx_id=" + project_id
 						+ " and dz=" + dz
@@ -1634,9 +1634,7 @@ public class Wxdw {
 							+ tf04.getWxdw_id());
 			for (Tf08_clmxb tf08 : tf08List) {
 				List<Tf07_kcb> tmpList = (List<Tf07_kcb>) session.createQuery(
-						"from Tf07_kcb where cllx='"
-								+ tf08.getCllx()
-								+ "' and clmc='"
+						"from Tf07_kcb where clmc='"
 								+ tf08.getClmc()
 								+ "' and dw"
 								+ (tf08.getDw() == null ? " is null" : ("='"
@@ -1654,7 +1652,7 @@ public class Wxdw {
 					tf07 = tmpList.get(0);
 				} else {
 					tf07 = new Tf07_kcb();
-					tf07.setCllx(tf08.getCllx());
+					//tf07.setCllx(tf08.getCllx());
 					tf07.setClmc(tf08.getClmc());
 					tf07.setDw(tf08.getDw());
 					tf07.setGg(tf08.getGg());
@@ -2596,7 +2594,7 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		Long project_id = convertUtil
 				.toLong(request.getParameter("project_id"));
-		modelMap.put("gcxx", queryService.searchById(Td00_gcxx.class,
+		modelMap.put("xmxx", queryService.searchById(Td01_xmxx.class,
 				project_id));
 		// 分页
 		Integer totalPages = 1;

@@ -20,7 +20,7 @@
 	<input type="hidden" name="project_id" value="${param.project}">
 			<input type="hidden" id="selectedId_demo" />
 			<div class="searchBar">
-				<h1>工程名称：${gcxx.gcmc } 工程编号：${gcxx.gcbh }</h1>
+				<h1>工程名称：${xmxx.xmmc } 工程编号：${xmxx.xmbh }</h1>
 				<div class="subBar">
 				</div>
 			</div>

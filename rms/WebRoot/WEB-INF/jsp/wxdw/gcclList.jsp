@@ -28,7 +28,7 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>名称：<input id="gcmc" name="gcmc" value="${param.gcmc}" type="text" size="25" />
+						<td>名称2：<input id="gcmc" name="gcmc" value="${param.gcmc}" type="text" size="25" />
 						<input type="text" style="display:none;"/>
 						</td>
 					</tr>
@@ -75,11 +75,11 @@
 						</td>
 					</tr>
 			</c:if>
-				<c:forEach var="obj" items="${gcxxList}">
+				<c:forEach var="obj" items="${xmxxList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
-						<td>${obj.gcmc }</td>
-						<td>${obj.gcbh }</td>
+						<td>${obj.xmmc }</td>
+						<td>${obj.xmbh }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj.sjkgsj }"/></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj.sjjgsj }"/></td>
 						<td>
