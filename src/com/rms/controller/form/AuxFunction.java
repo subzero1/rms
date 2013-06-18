@@ -2477,7 +2477,7 @@ public class AuxFunction {
 		cst.close();
 		con.commit();
 		con.close();
-		hql.append("select a from Tf43_temp a order by a.c1");
+		hql.append("select a from Tf43_temp a order by a.id");
 		List list=queryService.searchList(hql.toString());
 		
 		//取年度
