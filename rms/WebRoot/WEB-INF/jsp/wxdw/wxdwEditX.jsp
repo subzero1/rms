@@ -95,7 +95,7 @@ $(function(){
 		<div class="tabsHeaderContent">
 			<ul>
 				<li>
-					<a href="javascript:void(0)"><span>帐 户</span> </a>
+					<a href="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }" target="navTab" rel="wxzhList"><span>帐 户</span> </a>
 				</li>
 				<li>
 					<a href="javascript:void(0)"><span>区域专业</span> </a>
@@ -113,7 +113,7 @@ $(function(){
 					<a href="javascript:void(0)"><span>施工队</span> </a>
 				</li>
 				<li>
-					<a href="javascript:void(0)"><span>外协人员</span> </a>
+					<a href="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }" target="navTab" rel="wxryList"><span>外协人员</span> </a>
 				</li>
 			</ul>
 		</div>
@@ -137,7 +137,7 @@ $(function(){
 		<div id="sgd_tab" class="loadFileArea" loadfile="wxdw/sgdEdit.do?lb=sgd&wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
 
 		</div>
-		<div id="glyh_tab" class="loadFileArea" loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }">
+		<div id="glyh_tab" class="loadFileArea" loadfile="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }" >
 
 		</div>
 	</div>
