@@ -88,8 +88,8 @@
 							<c:if test="${obj[0].dz == 1 }">出库</c:if>
 							<c:if test="${obj[0].dz == 2 }">缴料</c:if></td>
 						<td>${obj[0].sl }</td>
-						<td>${obj[1].gcmc }</td>
-						<td>${obj[1].gcbh }</td>
+						<td>${obj[1].xmmc }</td>
+						<td>${obj[1].xmbh }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[0].czsj }"/></td>
 					</tr>
 				</c:forEach>

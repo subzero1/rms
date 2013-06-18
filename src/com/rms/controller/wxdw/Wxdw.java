@@ -2421,7 +2421,7 @@ public class Wxdw {
 		String dw = convertUtil.toString(request.getParameter("dw"));
 		StringBuffer hsql = new StringBuffer();
 		hsql
-				.append("select gcxx,kcb,(select max(czsj) as cjsj from Tf08_clmxb clmxb where clmxb.zhxx_id=kcb.project_id and kcb.clmc=clmxb.clmc and kcb.gg=clmxb.gg and kcb.cllx=clmxb.cllx and kcb.cllx=clmxb.cllx and kcb.dw=clmxb.dw and dz=0) as cjsj from Tf07_kcb kcb,Td00_gcxx gcxx where gcxx.id=kcb.project_id and sgdw_id="
+				.append("select xmxx,kcb,(select max(czsj) as cjsj from Tf08_clmxb clmxb where clmxb.zhxx_id=kcb.project_id and kcb.clmc=clmxb.clmc and kcb.gg=clmxb.gg and kcb.cllx=clmxb.cllx and kcb.cllx=clmxb.cllx and kcb.dw=clmxb.dw and dz=0) as cjsj from Tf07_kcb kcb,Td01_xmxx xmxx where xmxx.id=kcb.project_id and sgdw_id="
 						+ wxdw_id);
 		// where条件
 		// 材料名称
@@ -2462,7 +2462,7 @@ public class Wxdw {
 			Object[] o = new Object[3];
 			o[0] = ro.get("kcb");
 			o[1] = ro.get("cjsj");
-			o[2] = ro.get("gcxx");
+			o[2] = ro.get("xmxx");
 			kcbList.add(o);
 		}
 		modelMap.put("kcbList", kcbList);
@@ -2535,7 +2535,7 @@ public class Wxdw {
 
 		StringBuffer hsql = new StringBuffer();
 		hsql
-				.append("select clmxb,gcxx from Tf08_clmxb clmxb,Td00_gcxx gcxx where gcxx.id=clmxb.zhxx_id and sgdw_id="
+				.append("select clmxb,xmxx from Tf08_clmxb clmxb,Td01_xmxx xmxx where xmxx.id=clmxb.zhxx_id and sgdw_id="
 						+ wxdw_id);
 		// where条件
 		// 材料名称
@@ -2567,7 +2567,7 @@ public class Wxdw {
 		while (ro.next()) {
 			Object[] o = new Object[2];
 			o[0] = ro.get("clmxb");
-			o[1] = ro.get("gcxx");
+			o[1] = ro.get("xmxx");
 			clmxbList.add(o);
 		}
 		modelMap.put("clmxbList", clmxbList);
