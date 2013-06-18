@@ -109,7 +109,7 @@ $(function(){
 		<div class="tabsHeaderContent">
 			<ul>
 				<li>
-					<a href="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}" target="navTab" rel="wxryList"><span>帐 户</span> </a>
+					<a href="wxdw/wxdwUserList.do?wxdw_id=${Tf01_wxdw.id}" target="navTab" rel="wxzhList"><span>帐 户</span> </a>
 				</li>
 				<li>
 					<a href="javascript:void(0)"><span>区域专业</span> </a>
