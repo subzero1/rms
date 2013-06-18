@@ -1165,19 +1165,21 @@ public class Wxdw {
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-		Tf04_wxdw_user tf04 = (Tf04_wxdw_user) queryService.searchList(
-				"from Tf04_wxdw_user where user_id=" + user.getId()).get(0);
-		modelMap.put("sgdw_id", tf04.getWxdw_id());
-		Long project_id = convertUtil
-				.toLong(request.getParameter("project_id"));
-		Td01_xmxx xmxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class,
-				project_id);
+//		Tf04_wxdw_user tf04 = (Tf04_wxdw_user) queryService.searchList(
+//				"from Tf04_wxdw_user where user_id=" + user.getId()).get(0);
+		
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		Td01_xmxx xmxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class,project_id);
 		if (xmxx == null) {
 			xmxx = new Td01_xmxx();
 			xmxx.setXmmc("预领料工程");
 			xmxx.setId(-1L);
 			xmxx.setXmbh("--");
 		}
+		String sgdw = xmxx.getSgdw();
+		Tf01_wxdw tf01 = (Tf01_wxdw)queryService.searchList("select tf01 from Tf01_wxdw tf01 where mc = '"+sgdw+"'").get(0);
+		modelMap.put("sgdw_id", tf01.getId());
+		
 		Long dz = convertUtil.toLong(request.getParameter("dz"));
 		String type = "";
 		if (dz == 0L) {
@@ -1194,7 +1196,7 @@ public class Wxdw {
 				.searchList("from Tf08_clmxb where zhxx_id=" + project_id
 						+ " and dz=" + dz
 						+ " and (flag is null or flag<>1) and sgdw_id="
-						+ tf04.getWxdw_id());
+						+ tf01.getId());
 		modelMap.put("tf08List", tf08List);
 		List<String> cllxList = null;
 		if (dz == 0L) {
@@ -2492,7 +2494,7 @@ public class Wxdw {
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		if ("xmgly".equals(type)) {
 			List<Tf01_wxdw> tf01List = (List<Tf01_wxdw>) queryService
-					.searchList("from Tf01_wxdw where lb='施工'");
+					.searchList("from Tf01_wxdw where lb='施工' order by mc ");
 			modelMap.put("tf01List", tf01List);
 			if (tf01List != null && !tf01List.isEmpty() && wxdw_id == -1L) {
 				wxdw_id = tf01List.get(0).getId();
