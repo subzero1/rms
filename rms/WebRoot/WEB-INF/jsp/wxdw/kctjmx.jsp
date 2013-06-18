@@ -66,8 +66,8 @@
 				<c:set var="offset" value="${offset+1}"/>
 					<tr>
 						<td>${offset }</td>
-						<td>${obj[2].gcmc }</td>
-						<td>${obj[2].gcbh }</td>
+						<td>${obj[2].xmmc }</td>
+						<td>${obj[2].xmbh }</td>
 						<td>${obj[0].kcsl }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${obj[1] }" /></td>
 					</tr>
