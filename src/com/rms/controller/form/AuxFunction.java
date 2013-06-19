@@ -2485,7 +2485,7 @@ public class AuxFunction {
 		
 		//取年度
 		hql.delete(0, hql.length());
-		hql.append("select to_char(a.jhjgsj,'yyyy') from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null ");
+		hql.append("select distinct(to_char(a.jhjgsj,'yyyy')) from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null ");
 		List years=queryService.searchList(hql.toString());
 		
 		modelMap.put("gdsjhzList", list);
@@ -2524,7 +2524,7 @@ public class AuxFunction {
 		
 		//取年度
 		hql.delete(0, hql.length());
-		hql.append("select to_char(a.jhjgsj,'yyyy') from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null ");
+		hql.append("select distinct(to_char(a.jhjgsj,'yyyy')) from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null ");
 		List years=queryService.searchList(hql.toString());
 		
 		modelMap.put("gdcqtjList", list);
