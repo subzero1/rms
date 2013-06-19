@@ -90,6 +90,60 @@
   />
 
 
+  <property
+  name="c10"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c10"
+  />
+
+
+  <property
+  name="c11"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c11"
+  />
+
+
+  <property
+  name="c12"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c12"
+  />
+
+
+  <property
+  name="c13"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c13"
+  />
+
+
+  <property
+  name="c14"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c14"
+  />
+
+
+  <property
+  name="c15"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c15"
+  />
+
+
     </class>
 
 </hibernate-mapping>

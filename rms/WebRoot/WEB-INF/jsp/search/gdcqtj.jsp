@@ -18,34 +18,34 @@
 				<tr>
 					<th style="width: 80px;">&nbsp;</th>
 					<c:forEach begin="1" end="12" var="month">
-						<th style="width: 80px;">${month }月</th>
+						<th style="width: 50px;">${month }月</th>
 					</c:forEach>
+					<th style="width: 70px;">小计</th>
+					<th style="width: 70px;">区域工单量</th>
+					<th style="width: 70px;">区域占比</th>
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${gdcqtjList}" var="gdcqtj">
 				<tr>
-					<td style="width: 80px;">总工单量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c1 }</td>
+					<c:forEach begin="1" end="13" var="i">
+						<td style="width: 70px; text-align: center">${gdcqtj[i] }</td>
 					</c:forEach>
+					<td style="width: 70px; text-align: center"> 
+						${gdcqtj[2]+gdcqtj[3] +gdcqtj[4] +gdcqtj[5] +gdcqtj[6] +gdcqtj[7] +gdcqtj[8] 
+						+gdcqtj[9] +gdcqtj[10] +gdcqtj[11] +gdcqtj[12] +gdcqtj[13]} 
+					</td>
+					<td style="width: 70px; text-align: center"></td>
+					<td style="width: 70px; text-align: center"></td>
 				</tr>
+			</c:forEach>	
 				<tr>
-					<td style="width: 80px;">日均工单量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c2 }</td>
+						<td style="width: 70px; text-align: center">小计</td>
+					<c:forEach begin="2" end="13" var="i">
+						<td style="width: 70px; text-align: center">
+						0
+						</td>
 					</c:forEach>
-				</tr>
-				<tr>
-					<td style="width: 80px;">超期量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c3 }</td>
-					</c:forEach>
-				</tr>
-				<tr>
-					<td style="width: 80px;">涉及投诉量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c4 }</td>
-					</c:forEach>
-				</tr>
+				</tr> 
 			</tbody>
 		</table>
