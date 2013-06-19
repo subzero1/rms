@@ -130,6 +130,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/wstx-asl-3.2.9.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xalan-2.7.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xml-resolver-1.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/sendMsg_jdk1.6_130203.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/sendMsg_jdk1.5_130203.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
