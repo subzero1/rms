@@ -116,6 +116,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 			// 获取工程类别：Tc01_property type="工程类别"
 			queryBuilder = new HibernateQueryBuilder(Tc01_property.class);
 			queryBuilder.eq("type", "工程类别");
+			queryBuilder.like("flag","[2]",MatchMode.ANYWHERE);
 			queryBuilder.addOrderBy(Order.asc("name"));
 			tmpList = queryService.searchList(queryBuilder);
 			if (tmpList != null) {

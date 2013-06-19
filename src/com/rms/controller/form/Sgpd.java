@@ -58,10 +58,12 @@ public class Sgpd {
 		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
 		Td01_xmxx td01 = (Td01_xmxx) dao.getObject(Td01_xmxx.class, xm_id);
 		String gclb = "";
+		String t_gclb = "";
 		String dq = "";
 		int ssnd = -1;
 		if (td00 != null) {
 			gclb = td00.getGclb();
+			t_gclb = convertUtil.toString(td00.getP_gclb());
 			dq = td00.getSsdq();
 			Date lxsj = td00.getCjrq();
 			if (lxsj == null) {
@@ -71,6 +73,7 @@ public class Sgpd {
 			}
 		} else if (td01 != null) {
 			gclb = td01.getGclb();
+			t_gclb = convertUtil.toString(td01.getP_gclb());
 			dq = td01.getSsdq();
 			Date lxsj = td01.getLxsj();
 			if (lxsj == null) {
@@ -85,7 +88,7 @@ public class Sgpd {
 		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
 		List<Object[]> wxdwList = (List<Object[]>) dao
 				.search("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='"
-						+ gclb
+						+ t_gclb
 						+ "' and tf05.dq='"
 						+ dq
 						+ "' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd='"
@@ -113,8 +116,8 @@ public class Sgpd {
 								.search(
 										"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw is not null and ssdq='"
 												+ dq
-												+ "' and gclb='"
-												+ gclb
+												+ "' and p_gclb='"
+												+ t_gclb
 												+ "' and to_char(lxsj,'yyyy') = '"
 												+ ssnd
 												+ "'").get(0), 0D);
@@ -129,7 +132,7 @@ public class Sgpd {
 			if (zgr != 0) {
 				double gr = convertUtil.toDouble(dao.search(
 						"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
-								+ tf01.getMc() + "' and ssdq='" + dq + "' and gclb='" + gclb
+								+ tf01.getMc() + "' and ssdq='" + dq + "' and p_gclb='" + t_gclb
 								+ "' and to_char(lxsj,'yyyy') = '" + ssnd + "'").get(0), 0D);
 				fezb = gr / zgr;
 			}
@@ -160,7 +163,7 @@ public class Sgpd {
 			// 最大工程数
 			Double zdgcs = 0D;
 			List<Double> zdgcsList = (List<Double>) dao.search("select v1 from Tf05_wxdw_dygx tf05 where tf05.wxdw_id="
-					+ ((Tf01_wxdw) objects[0]).getId() + " and tf05.zy='" + gclb
+					+ ((Tf01_wxdw) objects[0]).getId() + " and tf05.zy='" + t_gclb
 					+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd='" + ssnd + "'");
 			if (zdgcsList != null && !zdgcsList.isEmpty()) {
 				zdgcs = convertUtil.toDouble(zdgcsList.get(0), 0D);
