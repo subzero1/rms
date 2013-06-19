@@ -546,7 +546,7 @@ public class Wxdw {
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
 		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别'"));
+				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id="
 						+ wxdw_id + " order by zy,dq");
@@ -660,7 +660,7 @@ public class Wxdw {
 		modelMap.put("nd", nd);
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
 		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别'"));
+				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%' "));
 
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id="
@@ -727,7 +727,7 @@ public class Wxdw {
 		modelMap.put("nd", nd);
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别'"));
+				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id="
 						+ wxdw_id + " and nd='" + nd + "' order by zy");
