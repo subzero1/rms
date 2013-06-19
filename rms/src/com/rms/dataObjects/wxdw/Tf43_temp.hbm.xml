@@ -142,6 +142,41 @@
   insert="true"
   column="c15"
   />
+  <property
+  name="c16"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c16"
+  />
+  <property
+  name="c17"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c17"
+  />
+  <property
+  name="c18"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c18"
+  />
+  <property
+  name="c19"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c19"
+  />
+  <property
+  name="c20"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c20"
+  />
 
 
     </class>

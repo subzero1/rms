@@ -195,6 +195,11 @@ public class Tf43_temp implements Serializable {
 	private String c13;
 	private String c14;
 	private String c15;
+	private String c16;
+	private String c17;
+	private String c18;
+	private String c19;
+	private String c20;
 
 	public String getC10() {
 		return c10;
@@ -243,5 +248,46 @@ public class Tf43_temp implements Serializable {
 	public void setC15(String c15) {
 		this.c15 = c15;
 	}
+
+	public String getC16() {
+		return c16;
+	}
+
+	public void setC16(String c16) {
+		this.c16 = c16;
+	}
+
+	public String getC17() {
+		return c17;
+	}
+
+	public void setC17(String c17) {
+		this.c17 = c17;
+	}
+
+	public String getC18() {
+		return c18;
+	}
+
+	public void setC18(String c18) {
+		this.c18 = c18;
+	}
+
+	public String getC19() {
+		return c19;
+	}
+
+	public void setC19(String c19) {
+		this.c19 = c19;
+	}
+
+	public String getC20() {
+		return c20;
+	}
+
+	public void setC20(String c20) {
+		this.c20 = c20;
+	}
+	
 
 }
