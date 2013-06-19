@@ -87,5 +87,13 @@ public class Tc01_property implements Serializable{
     this.flag = flag;
   }
 
+ private String ext_col;
 
+public String getExt_col() {
+	return ext_col;
+}
+
+public void setExt_col(String ext_col) {
+	this.ext_col = ext_col;
+}
 }

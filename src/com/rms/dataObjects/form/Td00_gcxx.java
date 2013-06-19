@@ -1932,4 +1932,14 @@ public class Td00_gcxx implements Serializable {
 	public void setYqgq(Long yqgq) {
 		this.yqgq = yqgq;
 	}
+	
+	private String p_gclb;
+
+	public String getP_gclb() {
+		return p_gclb;
+	}
+
+	public void setP_gclb(String p_gclb) {
+		this.p_gclb = p_gclb;
+	}
 }
