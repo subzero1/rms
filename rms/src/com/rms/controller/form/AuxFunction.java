@@ -1641,10 +1641,12 @@ public class AuxFunction {
 		Integer id = convertUtil.toInteger(request.getParameter("id"));
 		StringBuffer hql = new StringBuffer();
 		String gclb = "";
+		String t_gclb = "";
 		String dq = "";
 		int ssnd = -1;
 		if (td00 != null) {
 			gclb = td00.getGclb();
+			t_gclb = td00.getP_gclb();
 			dq = td00.getSsdq();
 			Date lxsj = td00.getCjrq();
 			if (lxsj == null) {
@@ -1654,6 +1656,7 @@ public class AuxFunction {
 			}
 		} else if (td01 != null) {
 			gclb = td01.getGclb();
+			t_gclb = td01.getP_gclb();
 			dq = td01.getSsdq();
 			Date lxsj = td01.getLxsj();
 			if (lxsj == null) {
@@ -1669,7 +1672,7 @@ public class AuxFunction {
 		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
 		hql
 				.append("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='");
-		hql.append(gclb);
+		hql.append(t_gclb);
 		hql.append("' and tf05.dq='");
 		hql.append(dq);
 		hql.append("' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd='");
@@ -1699,8 +1702,8 @@ public class AuxFunction {
 								.search(
 										"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw is not null and ssdq='"
 												+ dq
-												+ "' and gclb='"
-												+ gclb
+												+ "' and p_gclb='"
+												+ t_gclb
 												+ "' and to_char(lxsj,'yyyy') = '"
 												+ ssnd + "'").get(0), 0D);
 		// flag:未通过检测的个数
@@ -1731,8 +1734,8 @@ public class AuxFunction {
 								+ tf01.getMc()
 								+ "' and ssdq='"
 								+ dq
-								+ "' and gclb='"
-								+ gclb
+								+ "' and p_gclb='"
+								+ t_gclb
 								+ "' and to_char(lxsj,'yyyy') = '"
 								+ ssnd + "'");
 				double gr = convertUtil.toDouble(((Object[])(tmp_list.get(0)))[1],0d);
@@ -1771,7 +1774,7 @@ public class AuxFunction {
 					.search("select v1 from Tf05_wxdw_dygx tf05 where tf05.wxdw_id="
 							+ ((Tf01_wxdw) objects[0]).getId()
 							+ " and tf05.zy='"
-							+ gclb
+							+ t_gclb
 							+ "' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd='"
 							+ ssnd + "'");
 			if (zdgcsList != null && !zdgcsList.isEmpty()) {
