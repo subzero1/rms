@@ -41,6 +41,14 @@
   insert="true"
   column="flag"
   />
+  
+  <property
+  name="ext_col"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ext_col"
+  />
 
 
     </class>
