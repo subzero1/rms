@@ -16,36 +16,20 @@
 	<table class="report" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 			<thead>
 				<tr>
-					<th style="width: 80px;">&nbsp;</th>
+					<th style="width: 80px;">类别\月份</th>
 					<c:forEach begin="1" end="12" var="month">
 						<th style="width: 80px;">${month }月</th>
 					</c:forEach>
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach begin="1" end="4" var="i">
 				<tr>
-					<td style="width: 80px;">总工单量</td>
 					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c1 }</td>
+						<td style="width: 80px; text-align: center">${gdsjhz[i] }</td>
 					</c:forEach>
 				</tr>
-				<tr>
-					<td style="width: 80px;">日均工单量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c2 }</td>
-					</c:forEach>
-				</tr>
-				<tr>
-					<td style="width: 80px;">超期量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c3 }</td>
-					</c:forEach>
-				</tr>
-				<tr>
-					<td style="width: 80px;">涉及投诉量</td>
-					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz.c4 }</td>
-					</c:forEach>
-				</tr>
+			</c:forEach>	
+				 
 			</tbody>
 		</table>
