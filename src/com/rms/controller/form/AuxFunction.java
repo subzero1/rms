@@ -2491,8 +2491,40 @@ public class AuxFunction {
 		return new ModelAndView(view,modelMap);
 	}
 	@RequestMapping("/aux/gdcqtj.do")
-	public ModelAndView gdcqtj(HttpServletRequest request,HttpServletResponse response) {
-		return new ModelAndView();
-
+	public ModelAndView gdcqtj(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws SQLException {
+		String view="/WEB-INF/jsp/search/gdcqtj.jsp";
+		ModelMap modelMap=new ModelMap();
+		Ta03_user user = null;
+		StringBuffer hql=new StringBuffer();
+		Calendar c =Calendar.getInstance();
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		Integer nd =convertUtil.toInteger(request.getParameter("nd"),c.get(Calendar.YEAR));
+		
+		
+		Connection con = jdbcSupport.getConnection();
+		con.setAutoCommit(false);
+		CallableStatement cst=con.prepareCall("{call Gcxxtj(?,?)}");
+		cst.setLong(1, nd);
+		cst.setString(2, user.getName());
+		cst.executeUpdate(); 
+		cst.close();
+		con.commit();
+		con.close();
+		hql.append("select a.id,a.c1,a.c2,a.c3,a.c4,a.c5,a.c6,a.c7,a.c8,a.c9,a.c10,a.c11,a.c12,a.c13 from Tf43_temp a order by a.id");
+		List list=queryService.searchList(hql.toString());
+		
+		//取年度
+		hql.delete(0, hql.length());
+		hql.append("select to_char(a.jhjgsj,'yyyy') from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null ");
+		List years=queryService.searchList(hql.toString());
+		
+		modelMap.put("gdcqtjList", list);
+		modelMap.put("nd", nd);
+		modelMap.put("years", years);
+		return new ModelAndView(view,modelMap);
 	}
 }
