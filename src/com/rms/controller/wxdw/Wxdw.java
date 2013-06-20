@@ -3042,7 +3042,7 @@ public class Wxdw {
 		modelMap.put("nd", nd);
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
 		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别'"));
+				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 
 		List<V_sgdwfezb> sgdwfezbList = (List<V_sgdwfezb>) queryService
 				.searchList("from V_sgdwfezb where  wxdw_id=" + wxdw_id
