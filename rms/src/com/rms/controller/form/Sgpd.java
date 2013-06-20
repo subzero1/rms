@@ -394,7 +394,7 @@ public class Sgpd {
 		modelMap.put("totalCount", totalCount);
 		// 页面所需内容
 		modelMap.put("dqList", dao.search("from Tc02_area"));
-		modelMap.put("zyList", dao.search("from Tc01_property where type='工程类别'"));
+		modelMap.put("zyList", dao.search("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 		return new ModelAndView("/WEB-INF/jsp/form/sgpftst.jsp", modelMap);
 	}
 
