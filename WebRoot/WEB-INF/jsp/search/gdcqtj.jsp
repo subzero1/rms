@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
-
- 
+<div class="page">
+ <div class="pageContent" style="overflow: scroll;">
 	<div class="panelBar">
 		<ul class="toolBar">
 		</ul>
@@ -32,14 +32,8 @@
 						<td style="width: 70px; text-align: center">${gdcqtj[i] }</td>
 					</c:forEach>  
 				</tr>
-			</c:forEach>	
-				<tr>
-						<td style="width: 70px; text-align: center">小计</td>
-					<c:forEach begin="2" end="13" var="i">
-						<td style="width: 70px; text-align: center">
-						0
-						</td>
-					</c:forEach>
-				</tr> 
+			</c:forEach> 
 			</tbody>
 		</table>
+</div>
+</div>
