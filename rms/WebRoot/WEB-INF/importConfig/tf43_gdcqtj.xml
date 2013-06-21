@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Tf43_temp</tableName>
+		<tableNameShow />
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow> 
+			<title>工单超期情况统计</title>
+			<column>
+				<columnName>C1</columnName>
+				<index />
+				<name></name>
+				<colName>区域\月份</colName>
+			</column>
+			<column>
+				<columnName>C2</columnName>
+				<index />
+				<name>1月</name>
+				<colName>1月</colName>
+			</column>
+			<column>
+				<columnName>C3</columnName>
+				<index />
+				<name>2月</name>
+				<colName>2月</colName>
+			</column>
+			<column>
+				<columnName>C4</columnName>
+				<index />
+				<name>3月</name>
+				<colName>3月</colName>
+			</column>
+			<column>
+				<columnName>C5</columnName>
+				<index />
+				<name>4月</name>
+				<colName>4月</colName>
+			</column>
+			<column>
+				<columnName>C6</columnName>
+				<index />
+				<name>5月</name>
+				<colName>5月</colName>
+			</column>
+			<column>
+				<columnName>C7</columnName>
+				<index />
+				<name>6月</name>
+				<colName>6月</colName>
+			</column>
+			<column>
+				<columnName>C8</columnName>
+				<index />
+				<name>7月</name>
+				<colName>7月</colName>
+			</column>
+			<column>
+				<columnName>C9</columnName>
+				<index />
+				<name>8月</name>
+				<colName>8月</colName>
+			</column>
+			<column>
+				<columnName>C10</columnName>
+				<index />
+				<name>9月</name>
+				<colName>9月</colName>
+			</column>
+			<column>
+				<columnName>C11</columnName>
+				<index />
+				<name>10月</name>
+				<colName>10月</colName>
+			</column>
+			<column>
+				<columnName>C12</columnName>
+				<index />
+				<name>11月</name>
+				<colName>11月</colName>
+			</column>
+			<column>
+				<columnName>C13</columnName>
+				<index />
+				<name>12月</name>
+				<colName>12月</colName>
+			</column>
+			<column>
+				<columnName>C14</columnName>
+				<index />
+				<name>小计</name>
+				<colName>小计</colName>
+			</column>
+			<column>
+				<columnName>C15</columnName>
+				<index />
+				<name>区域工单量</name>
+				<colName>区域工单量</colName>
+			</column>
+			<column>
+				<columnName>C16</columnName>
+				<index />
+				<name>区域占比</name>
+				<colName>区域占比</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>

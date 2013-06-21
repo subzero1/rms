@@ -61,4 +61,9 @@
   	<fileName>/importConfig/td00_order.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>tf43_gdcqtj</name>
+  	<fileName>/importConfig/tf43_gdcqtj.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
