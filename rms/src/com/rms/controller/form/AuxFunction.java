@@ -2494,7 +2494,7 @@ public class AuxFunction {
 		return new ModelAndView(view,modelMap);
 	}
 	@RequestMapping("/aux/gdcqtj.do")
-	public ModelAndView gdcqtj(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws SQLException {
+	public ModelAndView gdcqtj(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws SQLException, UnsupportedEncodingException {
 		String view="/WEB-INF/jsp/search/gdcqtj.jsp";
 		ModelMap modelMap=new ModelMap();
 		Ta03_user user = null;
@@ -2507,12 +2507,20 @@ public class AuxFunction {
 		}
 		Integer nd =convertUtil.toInteger(request.getParameter("nd"),c.get(Calendar.YEAR));
 		
-		
+		String xmgly=convertUtil.toString( request.getParameter("xmgly"));
+		if (xmgly.equals("")) {
+			xmgly=user.getName();
+		}else if (xmgly.equals("1")) {
+			xmgly=null;
+		}else {
+			xmgly=new String(xmgly.getBytes("iso8859-1"),"gb2312");
+		}
+		System.out.println(xmgly);
 		Connection con = jdbcSupport.getConnection();
 		con.setAutoCommit(false);
 		CallableStatement cst=con.prepareCall("{call Gcxxtj(?,?)}");
 		cst.setLong(1, nd);
-		cst.setString(2, user.getName());
+		cst.setString(2, xmgly);
 		cst.executeUpdate(); 
 		cst.close();
 		con.commit();
@@ -2526,7 +2534,12 @@ public class AuxFunction {
 		hql.delete(0, hql.length());
 		hql.append("select distinct(to_char(a.jhjgsj,'yyyy')) from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null order by to_char(a.jhjgsj,'yyyy')");
 		List years=queryService.searchList(hql.toString());
-		
+		//取項目管理員
+		hql.delete(0, hql.length());
+		hql.append("select distinct(a.xmgly) from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and a.xmgly is not null order by a.xmgly");
+		List xmglys=queryService.searchList(hql.toString());
+		modelMap.put("xmglys", xmglys);
+		modelMap.put("xmgly", xmgly);
 		modelMap.put("gdcqtjList", list);
 		modelMap.put("nd", nd);
 		modelMap.put("years", years);
