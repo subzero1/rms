@@ -14,16 +14,25 @@ $(function(){
 	navTab.openTab('gdcqtj', 'aux/gdcqtj.do?xmgly='+$(this).val()+'&nd='+nd, {title:'项目信息'});
 	});
 });
+function searchListExport(){
+	var $fezb_form=$("#fezb_form",navTab.getCurrentPanel());
+	$fezb_form.attr("action","aux/gdcqtjToExcel.do");
+	$fezb_form.submit();
+	$fezb_form.attr("action","aux/gdcqtj.do");
+}
 </script>
 <div class="page">
  <div class="pageContent" style="overflow: scroll;">
 	<div class="panelBar">
 		<ul class="toolBar">
-		</ul>
+					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
+					<li class="line">line</li>
+				</ul>
 	</div>
 	<form id="fezb_form" action="aux/gdcqtj.do">
 	年度：<netsky:htmlSelect id="nd" name="nd" objectForOption="years" style="width:70px" valueForOption="" showForOption="" value="${nd}"/>
 	项目管理员：<netsky:htmlSelect id="xmgly" name="xmgly" objectForOption="xmglys" style="width:70px" valueForOption="" extend="---------,1" extendPrefix="true" showForOption="" value="${xmgly}"/>
+	<input type="hidden" name="config" value="tf43_gdcqtj"/>
 	</form>
 	<table class="table" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 			<thead>
