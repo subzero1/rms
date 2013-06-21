@@ -2653,4 +2653,14 @@ public class Td01_xmxx implements Serializable {
 	public void setP_gclb(String p_gclb) {
 		this.p_gclb = p_gclb;
 	}
+	
+	private String glbm;
+
+	public String getGlbm() {
+		return glbm;
+	}
+
+	public void setGlbm(String glbm) {
+		this.glbm = glbm;
+	}
 }
