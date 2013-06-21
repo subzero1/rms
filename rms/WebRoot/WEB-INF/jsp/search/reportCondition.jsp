@@ -191,7 +191,7 @@ function creatHiddenCondition(c_form){
 													<c:forEach var="obj" items="${selectList}">
 													<tr>
 														<td	width="90" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-														<td width="210"><input name="${obj.id }" class="td-input" <c:if test="${obj.comments=='需求部门'&&admin!='true' }">value="${xqbms }"</c:if>  style="width:220px;" title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400});"/></td>			
+														<td width="210"><input name="${obj.id }" class="td-input" <c:if test="${obj.comments=='需求部门'&&user.login_id!='admin' }">value="${xqbms }"</c:if>  style="width:220px;" <c:if test="${(user.login_id=='admin'&&obj.comments=='需求部门')||obj.comments!='需求部门' }"> title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400});</c:if>"/></td>			
 													</tr>
 													</c:forEach>
 												</table>
