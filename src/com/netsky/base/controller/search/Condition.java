@@ -205,6 +205,25 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 				queryBuilder.addOrderBy(Order.asc("ord"));
 				fieldList = queryService.searchList(queryBuilder);
 			}
+			
+			/**
+			 * 取默認部門:當前部門+下屬一級部門
+			 */
+			StringBuffer hql=new StringBuffer();
+			hql.append("select distinct(a.name) from Ta01_dept a where a.id=");
+			hql.append(user.getDept_id());
+			hql.append(" or a.parent_dept=");
+			hql.append(user.getDept_id());
+			List xqbmList=queryService.searchList(hql.toString());
+			String xqbms = null;
+			for (int i = 0; i < xqbmList.size(); i++) {
+				if (i==0) {
+					xqbms=(String) xqbmList.get(i).toString();
+				}else {
+					xqbms+=","+xqbmList.get(i).toString();
+				}
+			}
+			request.setAttribute("xqbms", xqbms);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl("ProjectReport", "获取报表选项错误", e);
 		}
