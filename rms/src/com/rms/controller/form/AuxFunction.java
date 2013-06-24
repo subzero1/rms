@@ -2483,6 +2483,7 @@ public class AuxFunction {
 		hql.append("select a.id,a.c1,a.c2,a.c3,a.c4 from Tf43_temp a order by a.id");
 		List list=queryService.searchList(hql.toString());
 		
+
 		//取年度
 		hql.delete(0, hql.length());
 		hql.append("select distinct(to_char(a.jhjgsj,'yyyy')) from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id and jhjgsj is not null order by to_char(a.jhjgsj,'yyyy')");
@@ -2594,8 +2595,70 @@ public class AuxFunction {
 	sheetMap.put("form_title", sheetList);
 	request.setAttribute("ExcelName", excelName+".xls");
 	request.setAttribute("sheetMap", sheetMap);
-	return new ModelAndView("/export/toExcelWhithList.do");
+	return new ModelAndView("/export/toExcelWhithList.do"); 
+}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception ModelAndView
+	 */
+	@RequestMapping("/aux/gdsjhzToExcel.do")
+	public ModelAndView	 gdcqhzToExcel(HttpServletRequest request,HttpServletResponse response) throws Exception {
 
+	String config = convertUtil.toString(request.getParameter("config"));
 
+	int k = 0;
+	ConfigXML configXML = new ConfigXMLImpl(); // 读取mbk配置文档
+	ResultObject ro = null;
+	StringBuffer hql = new StringBuffer("");
+	List mbkTitleList = new LinkedList(); // 标题列表
+	List mbkColList = new LinkedList();// 列的字段值
+	List mbkDocList = new LinkedList();// 表单数据
+	Map<String, List> sheetMap = new HashMap<String, List>();
+	List sheetList = new LinkedList();
+
+	// 读取配置文件的标题列表
+	String webinfpath = request.getSession().getServletContext()
+			.getRealPath("WEB-INF");
+	mbkTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+	mbkColList = configXML.getTagListByConfig(config, webinfpath,
+			"columnName");
+	String excelName=(String) configXML.getElementsByName(webinfpath+configXML.getConfigFilePath(config, webinfpath), "title").get(0);
+	Iterator it = mbkColList.iterator();
+	Object mbk = null;
+	hql.append("select ");
+	while (it.hasNext()) {
+		if (k == 0)
+			hql.append(" a." + ((it.next().toString()).toLowerCase()));
+		else
+			hql.append(" ,a." + ((it.next().toString()).toLowerCase()));
+		k++;
+	}
+	hql.append(" from Tf43_temp a order by a.id");
+
+	mbkDocList = queryService.searchList(hql.toString());
+
+	
+	List list2=new ArrayList();
+	Object[]obj=new Object[4];
+	for (int i = 0; i < obj.length; i++) { 
+		Object []obj1=new Object[14];
+		Object[]objs = null;
+		for (int j = 0; j < mbkDocList.size(); j++) {
+			objs=(Object[]) mbkDocList.get(j); 
+			obj1[j]=objs[i];
+		}	  
+		list2.add(obj1);
+	}
+	
+	sheetList.add(mbkTitleList);
+	sheetList.add(list2);
+	sheetMap.put("form_title", sheetList);
+	request.setAttribute("ExcelName", excelName+".xls");
+	request.setAttribute("sheetMap", sheetMap);
+	return new ModelAndView("/export/toExcelWhithList.do"); 
 }
 }

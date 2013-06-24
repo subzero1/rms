@@ -66,4 +66,9 @@
   	<fileName>/importConfig/tf43_gdcqtj.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>tf43_gdsjhz</name>
+  	<fileName>/importConfig/tf43_gdsjhz.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>
