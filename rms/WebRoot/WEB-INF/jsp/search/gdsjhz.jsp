@@ -4,7 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
- 
+ $(function(){ 
+	var nd=$("#nd",navTab.getCurrentPanel()).val();
+	$("#nd").change(function(){ 
+		navTab.openTab('gdsjhz', 'aux/gdsjhz.do?nd='+$(this).val(), {title:'工单数据汇总表'});
+	}); 
+});
 
  function searchListExport(){
 	var $fezb_form=$("#fezb_form",navTab.getCurrentPanel());
