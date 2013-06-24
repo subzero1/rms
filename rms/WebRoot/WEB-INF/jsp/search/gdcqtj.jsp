@@ -22,7 +22,7 @@ function searchListExport(){
 }
 </script>
 <div class="page">
- <div class="pageContent" style="overflow: scroll;">
+ <div class="pageContent" style="overflow: hidden">
 	<div class="panelBar">
 		<ul class="toolBar">
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
