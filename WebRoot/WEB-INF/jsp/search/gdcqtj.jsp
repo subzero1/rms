@@ -52,7 +52,8 @@ function searchListExport(){
 					<c:set var="offset" value="-1"/>
 					<c:forEach begin="1" end="15" var="i">
 					<c:set var="offset" value="${offset+1}"/>
-						<td style="width: 70px; text-align: center"><a href="aux/gdxxList.do?type=q1&xmgly=${ xmgly}&nd=${nd}&mh=${offset }&ssdq=${gdcqtj[1] }" target="navTab" rel="gdxxList">${gdcqtj[i] }</a></td>
+						<td style="width: 70px; text-align: center"><a href="aux/gdxxList.do?type=q1&xmgly=${ xmgly}&nd=${nd}&mh=${offset }&ssdq=${gdcqtj[1] }" target="navTab" rel="gdxxList"
+						 <c:if test="${offset>0&&offset<13 }"> title="${offset }月超期量"</c:if>>${gdcqtj[i] }</a></td>
 					</c:forEach>  
 					<td style="width: 70px; text-align: center">
 					<c:if test="${gdcqtj[16]=='00.00'||gdcqtj[16]=='0' }">0</c:if>
