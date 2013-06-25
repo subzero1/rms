@@ -2661,4 +2661,105 @@ public class AuxFunction {
 	request.setAttribute("sheetMap", sheetMap);
 	return new ModelAndView("/export/toExcelWhithList.do"); 
 }
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/aux/gdxxList.do")
+	public ModelAndView gdxxList(HttpServletRequest request,HttpServletResponse response,HttpSession session) {
+
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "a.id");
+		if (orderField.equals("")) {
+			orderField = "a.id";
+		}
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection); 		
+		
+		Ta03_user user = null; 
+		Calendar c =Calendar.getInstance();
+		user = (Ta03_user) session.getAttribute("user");
+		if (user == null) {
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"用户未登录或登录超时", new Exception("用户未登录"));
+		}
+		// 查询条件
+		Integer nd =convertUtil.toInteger(request.getParameter("nd"),c.get(Calendar.YEAR));
+		String keyword = convertUtil.toString(request.getParameter("keyword")); 
+		Integer mh=convertUtil.toInteger(request.getParameter("mh"));
+		String type= convertUtil.toString(request.getParameter("type"));
+
+		String dates="";//日期
+		if (mh<10) {
+			dates=nd+"-"+"0"+mh;
+		}else {
+			dates=nd+"-"+mh;
+		}
+		
+		StringBuffer hsql = new StringBuffer();
+		
+		hsql.append("select a from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id ");
+ 
+		if (mh!=0&&!dates.equals("")) {
+			hsql.append(" and to_char(a.jhjgsj,'yyyy-MM')='");
+			hsql.append(dates);
+			hsql.append("'");	
+		} 
+		if (user!=null) {
+			hsql.append(" and a.xmgly='");
+			hsql.append(user.getName());
+			hsql.append("'");
+		}
+		
+		if (type.equals("3")) {
+			hsql.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate))");
+		}
+		if (type.equals("4")) {
+			hsql.append(" and a.sfts='是'");	
+		}
+		// order排序
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
+		List<Td00_gcxx> gcxxList = new ArrayList<Td00_gcxx>();
+	 
+		while (ro.next()) {
+			Td00_gcxx gcxx=(Td00_gcxx) ro.get("a");
+			gcxxList.add(gcxx);
+		}
+		modelMap.put("gcxxList", gcxxList);
+
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("xmgly", "xmgly");
+		modelMap.put("nd", nd);
+		modelMap.put("mh", mh);
+		modelMap.put("type", type);
+
+		return new ModelAndView("/WEB-INF/jsp/form/gdxxList.jsp", modelMap);
+
+	
+	}
 }

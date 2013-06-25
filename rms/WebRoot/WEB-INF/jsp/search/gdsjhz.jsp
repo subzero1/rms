@@ -37,14 +37,36 @@
 					</c:forEach>
 				</tr>
 			</thead>
-			<tbody>
-			<c:forEach begin="1" end="4" var="i">
+			<tbody> 
 				<tr>
+					<c:set var="offset" value="-1"/>
 					<c:forEach items="${gdsjhzList}" var="gdsjhz">
-						<td style="width: 80px; text-align: center">${gdsjhz[i] }</td>
+						<c:set var="offset" value="${offset+1}"/>
+						<td style="width: 80px; text-align: center;height: 35px;"><a href="aux/gdxxList.do?type=1&nd=${nd }&mh=${offset }" target="navTab" rel="gdxxList" 
+					    <c:if test="${offset>0 }">title="${offset}月工单量"</c:if> >${gdsjhz[1] }</a></td>
 					</c:forEach>
 				</tr>
-			</c:forEach>	
+				<tr>
+					<c:forEach items="${gdsjhzList}" var="gdsjhz">
+						<td style="width: 80px; text-align: center;height: 35px;">${gdsjhz[2] }</td>
+					</c:forEach>
+				</tr>
+				<tr>
+					<c:set var="offset" value="-1"/>
+					<c:forEach items="${gdsjhzList}" var="gdsjhz">
+					<c:set var="offset" value="${offset+1}"/>
+						<td style="width: 80px; text-align: center;height: 35px;"><a href="aux/gdxxList.do?type=3&nd=${nd }&mh=${offset }" target="navTab" rel="gdxxList"
+					    <c:if test="${offset>0 }">title="${offset}月超期量"</c:if> >${gdsjhz[3] }</a></td>
+					</c:forEach>
+				</tr>
+				<tr>
+				<c:set var="offset" value="-1"/>
+					<c:forEach items="${gdsjhzList}" var="gdsjhz">
+					<c:set var="offset" value="${offset+1}"/>
+						<td style="width: 80px; text-align: center;height: 35px;"><a href="aux/gdxxList.do?type=4&nd=${nd }&mh=${offset }" target="navTab" rel="gdxxList" 
+						<c:if test="${offset>0 }">title="${offset}月超期量"</c:if>>${gdsjhz[4] }</a></td>
+					</c:forEach>
+				</tr>
 				 
 			</tbody>
 		</table>
