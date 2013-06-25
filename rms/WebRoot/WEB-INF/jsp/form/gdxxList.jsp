@@ -15,6 +15,7 @@
 </form>
 
 <div class="page">
+<!-- 
 	<div class="pageHeader">
 		<form action="form/xmxxList.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
@@ -27,12 +28,13 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'form/xmxxList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'aux/gdxxList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
 		</form>
 	</div>
+	 -->
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
