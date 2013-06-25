@@ -49,8 +49,10 @@ function searchListExport(){
 			<tbody>
 			<c:forEach items="${gdcqtjList}" var="gdcqtj">
 				<tr>
+					<c:set var="offset" value="-1"/>
 					<c:forEach begin="1" end="15" var="i">
-						<td style="width: 70px; text-align: center">${gdcqtj[i] }</td>
+					<c:set var="offset" value="${offset+1}"/>
+						<td style="width: 70px; text-align: center"><a href="aux/gdxxList.do?type=q1&xmgly=${ xmgly}&nd=${nd}&mh=${offset }&ssdq=${gdcqtj[1] }" target="navTab" rel="gdxxList">${gdcqtj[i] }</a></td>
 					</c:forEach>  
 					<td style="width: 70px; text-align: center">
 					<c:if test="${gdcqtj[16]=='00.00'||gdcqtj[16]=='0' }">0</c:if>

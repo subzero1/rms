@@ -2666,9 +2666,10 @@ public class AuxFunction {
 	 * @param request
 	 * @param response
 	 * @return ModelAndView
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/aux/gdxxList.do")
-	public ModelAndView gdxxList(HttpServletRequest request,HttpServletResponse response,HttpSession session) {
+	public ModelAndView gdxxList(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException {
 
 		ModelMap modelMap = new ModelMap();
 		// 分页
@@ -2705,6 +2706,10 @@ public class AuxFunction {
 		String keyword = convertUtil.toString(request.getParameter("keyword")); 
 		Integer mh=convertUtil.toInteger(request.getParameter("mh"));
 		String type= convertUtil.toString(request.getParameter("type"));
+		String ssdq= convertUtil.toString(request.getParameter("ssdq"));
+		if (!ssdq.equals("")) {
+			ssdq=new String(ssdq.getBytes("iso-8859-1"),"gb2312");
+		}
 
 		String dates="";//日期
 		if (mh<10) {
@@ -2717,7 +2722,7 @@ public class AuxFunction {
 		
 		hsql.append("select a from Td00_gcxx a,Ti03_xqly b where a.id=b.project_id ");
  
-		if (mh!=0&&!dates.equals("")) {
+		if (mh>0&&mh<13&&!dates.equals("")) {
 			hsql.append(" and to_char(a.jhjgsj,'yyyy-MM')='");
 			hsql.append(dates);
 			hsql.append("'");	
@@ -2728,7 +2733,13 @@ public class AuxFunction {
 			hsql.append("'");
 		}
 		
-		if (type.equals("3")) {
+		if (type.equals("q1")&&!ssdq.equals("")) {
+			hsql.append(" and a.ssdq='");
+			hsql.append(ssdq);
+			hsql.append("'");
+		} 
+		
+		if ((type.equals("3")||mh==13)&&mh!=14) {
 			hsql.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate))");
 		}
 		if (type.equals("4")) {
@@ -2757,6 +2768,7 @@ public class AuxFunction {
 		modelMap.put("nd", nd);
 		modelMap.put("mh", mh);
 		modelMap.put("type", type);
+		modelMap.put("ssdq", ssdq);
 
 		return new ModelAndView("/WEB-INF/jsp/form/gdxxList.jsp", modelMap);
 

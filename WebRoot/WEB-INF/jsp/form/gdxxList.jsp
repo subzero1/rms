@@ -12,6 +12,7 @@
 	<input type="hidden" name="nd" value="${param.nd}" />
 	<input type="hidden" name="mh" value="${param.mh}" />
 	<input type="hidden" name="type" value="${param.type}" />
+	<input type="hidden" name="ssdq" value="${param.ssdq}" />
 </form>
 
 <div class="page">
