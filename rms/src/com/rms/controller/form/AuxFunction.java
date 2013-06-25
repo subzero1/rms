@@ -2739,7 +2739,7 @@ public class AuxFunction {
 			hsql.append("'");
 		} 
 		
-		if ((type.equals("3")||mh==13)&&mh!=14) {
+		if ((type.equals("3")||mh==13)&&mh!=14&&!type.equals("5")) {
 			hsql.append(" and (sjkgsj + yqgq < sjjgsj or (sjjgsj is null and sjkgsj + yqgq < sysdate))");
 		}
 		if (type.equals("4")) {
