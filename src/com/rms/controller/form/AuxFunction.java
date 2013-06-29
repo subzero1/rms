@@ -37,6 +37,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseDao.JdbcSupport;
 import com.netsky.base.baseObject.ResultObject;
+import com.netsky.base.utils.ConfigXML;
+import com.netsky.base.utils.ConfigXMLImpl;
 import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
@@ -46,8 +48,6 @@ import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.baseObject.PropertyInject;
 
-import com.rms.base.util.ConfigXML;
-import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;

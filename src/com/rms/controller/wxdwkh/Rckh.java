@@ -24,12 +24,12 @@ import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.utils.ConfigXML;
+import com.netsky.base.utils.ConfigXMLImpl;
 import com.netsky.base.utils.DateGetUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
-import com.rms.base.util.ConfigXML;
-import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.wxdw.Tf04_wxdw_user;
 import com.rms.dataObjects.wxdw.Tf17_rckh;
 
