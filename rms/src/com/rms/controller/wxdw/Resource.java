@@ -23,10 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.utils.ConfigXML;
+import com.netsky.base.utils.ConfigXMLImpl;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.QueryService;
-import com.rms.base.util.ConfigXML;
-import com.rms.base.util.ConfigXMLImpl;
 import com.rms.dataObjects.wxdw.Tf31_zytl;
 
 /**
