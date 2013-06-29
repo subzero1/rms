@@ -2707,8 +2707,12 @@ public class AuxFunction {
 		Integer mh=convertUtil.toInteger(request.getParameter("mh"));
 		String type= convertUtil.toString(request.getParameter("type"));
 		String ssdq= convertUtil.toString(request.getParameter("ssdq"));
+		String xmgly= convertUtil.toString(request.getParameter("xmgly"));
 		if (!ssdq.equals("")) {
 			ssdq=new String(ssdq.getBytes("iso-8859-1"),"gb2312");
+		}
+		if (!xmgly.equals("")) {
+			xmgly=new String(xmgly.getBytes("iso-8859-1"),"gb2312");
 		}
 
 		String dates="";//日期
@@ -2727,9 +2731,12 @@ public class AuxFunction {
 			hsql.append(dates);
 			hsql.append("'");	
 		} 
-		if (user!=null) {
+		else{ 
+			hsql.append(" and a.jhjgsj is not  null ");
+		}
+		if (!xmgly.equals("")) {
 			hsql.append(" and a.xmgly='");
-			hsql.append(user.getName());
+			hsql.append(xmgly);
 			hsql.append("'");
 		}
 		
