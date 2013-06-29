@@ -16,26 +16,23 @@
 </form>
 
 <div class="page">
-<!-- 
+ 
 	<div class="pageHeader">
 		<form action="form/xmxxList.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>
-						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						<td></td>
 					</tr>
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'aux/gdxxList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
 		</form>
 	</div>
-	 -->
+	 
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
