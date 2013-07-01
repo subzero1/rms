@@ -155,11 +155,11 @@ public class RmsCcatsida {
 				td00.setGcbh(projectcode);
 				String gcmc = projectrow.getAttribute("ORDER_TITLE");
 				td00.setGcmc(gcmc);
-				String ssdq = new RegExp().pickup("市(.+区)", gcmc);
+				String ssdq = new RegExp().pickup("市([^区]{2,3}区)", gcmc);
 				if(ssdq == null || ssdq.trim().equals("")){
-					ssdq = new RegExp().pickup("市(.+区)", projectrow.getAttribute("INSTALLADDRESSA"));
+					ssdq = new RegExp().pickup("市([^区]{2,3}区)", projectrow.getAttribute("INSTALLADDRESSA"));
 				}
-				td00.setSsdq(ssdq);
+				td00.setSsdq(convertUtil.toString(ssdq));
 				td00.setGcsm(projectrow.getAttribute("REMARK"));
 				td00.setCjr("管理员");
 				td00.setCjrq(new Date());

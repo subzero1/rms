@@ -83,7 +83,7 @@
 				</table>
 			</div>
 			<!-- right -->
-			<div style="width:200px;text-align:right;padding:5px; 5px;">
+			<div style="width:200px;float:right;padding:5px; 5px;">
 					 <select name="area" id="area" style="width:80px;">
 				    	<c:forEach var="area" items="${areaList}">
 							<c:choose>
