@@ -61,83 +61,83 @@ public class setIomDdztServiceImp {
 			if(hdgw.equals("设计单位") && !ddzt.equals("工单已回复")){
 				ddzt = "设计已回复";
 				
-				sql.delete(0, sql.length());
-				sql.append("select name,mobile_tel from Ta03_user where name = '"+xmgly+"'");
-				ro = queryService.search(sql.toString());
-				if(ro.next()){
-					tel = convertUtil.toString(ro.get("mobile_tel"));
-				}
-				Tz05_thread_queue thread = new Tz05_thread_queue();
-				thread.setInserttime(new Date());
-				thread.setServicename("messageToPhoneService");
-				JSONObject jo = new JSONObject();
-				
-				//jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  【RMS系统】");
-				jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  ");
-				jo.put("sender_name", "管理员");
-				jo.put("additionTel", "");
-				jo.put("reader_tel", tel);
-				jo.put("reader_name", xmgly);
-				
-				thread.setRemark("设计已回复定单");
-				thread.setStatus("未处理");
-				thread.setType("sendTelMsg");
-				thread.setParameters(jo.toString());
-				dao.saveObject(thread);
+//				sql.delete(0, sql.length());
+//				sql.append("select name,mobile_tel from Ta03_user where name = '"+xmgly+"'");
+//				ro = queryService.search(sql.toString());
+//				if(ro.next()){
+//					tel = convertUtil.toString(ro.get("mobile_tel"));
+//				}
+//				Tz05_thread_queue thread = new Tz05_thread_queue();
+//				thread.setInserttime(new Date());
+//				thread.setServicename("messageToPhoneService");
+//				JSONObject jo = new JSONObject();
+//				
+//				//jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  【RMS系统】");
+//				jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  ");
+//				jo.put("sender_name", "管理员");
+//				jo.put("additionTel", "");
+//				jo.put("reader_tel", tel);
+//				jo.put("reader_name", xmgly);
+//				
+//				thread.setRemark("设计已回复定单");
+//				thread.setStatus("未处理");
+//				thread.setType("sendTelMsg");
+//				thread.setParameters(jo.toString());
+//				dao.saveObject(thread);
 			}
 			else if(hdgw.equals("施工单位") && !ddzt.equals("工单已回复")){
 				ddzt = "施工已回复";
 				
-				sql.delete(0, sql.length());
-				sql.append("select name,mobile_tel from Ta03_user where name = '"+xmgly+"'");
-				ro = queryService.search(sql.toString());
-				if(ro.next()){
-					tel = convertUtil.toString(ro.get("mobile_tel"));
-				}
-				Tz05_thread_queue thread = new Tz05_thread_queue();
-				thread.setInserttime(new Date());
-				thread.setServicename("messageToPhoneService");
-				JSONObject jo = new JSONObject();
-				
-				//jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  【RMS系统】");
-				jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  ");
-				jo.put("sender_name", "管理员");
-				jo.put("additionTel", "");
-				jo.put("reader_tel", tel);
-				jo.put("reader_name", xmgly);
-				
-				thread.setRemark("施工已回复定单");
-				thread.setStatus("未处理");
-				thread.setType("sendTelMsg");
-				thread.setParameters(jo.toString());
-				dao.saveObject(thread);
+//				sql.delete(0, sql.length());
+//				sql.append("select name,mobile_tel from Ta03_user where name = '"+xmgly+"'");
+//				ro = queryService.search(sql.toString());
+//				if(ro.next()){
+//					tel = convertUtil.toString(ro.get("mobile_tel"));
+//				}
+//				Tz05_thread_queue thread = new Tz05_thread_queue();
+//				thread.setInserttime(new Date());
+//				thread.setServicename("messageToPhoneService");
+//				JSONObject jo = new JSONObject();
+//				
+//				//jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  【RMS系统】");
+//				jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  ");
+//				jo.put("sender_name", "管理员");
+//				jo.put("additionTel", "");
+//				jo.put("reader_tel", tel);
+//				jo.put("reader_name", xmgly);
+//				
+//				thread.setRemark("施工已回复定单");
+//				thread.setStatus("未处理");
+//				thread.setType("sendTelMsg");
+//				thread.setParameters(jo.toString());
+//				dao.saveObject(thread);
 			}
 			else if(hdgw.equals("项目管理员")){
 				if(isht.equals("") || isht.equals("前进")){
 					ddzt = "项目管理员已回复";
 					
-					sql.delete(0, sql.length());
-					sql.append("select name,mobile_tel from Ta03_user where name = '"+ddgly+"'");
-					ro = queryService.search(sql.toString());
-					if(ro.next()){
-						tel = convertUtil.toString(ro.get("mobile_tel"));
-					}
-					Tz05_thread_queue thread = new Tz05_thread_queue();
-					thread.setInserttime(new Date());
-					thread.setServicename("messageToPhoneService");
-					JSONObject jo = new JSONObject();
-					
-					jo.put("content", "您好，定单《"+td00.getGcmc()+"》项目管理员已经回复，请及时处理。");
-					jo.put("sender_name", "管理员");
-					jo.put("additionTel", "");
-					jo.put("reader_tel", tel);
-					jo.put("reader_name", ddgly);
-					
-					thread.setRemark("施工已回复定单");
-					thread.setStatus("未处理");
-					thread.setType("sendTelMsg");
-					thread.setParameters(jo.toString());
-					dao.saveObject(thread);
+//					sql.delete(0, sql.length());
+//					sql.append("select name,mobile_tel from Ta03_user where name = '"+ddgly+"'");
+//					ro = queryService.search(sql.toString());
+//					if(ro.next()){
+//						tel = convertUtil.toString(ro.get("mobile_tel"));
+//					}
+//					Tz05_thread_queue thread = new Tz05_thread_queue();
+//					thread.setInserttime(new Date());
+//					thread.setServicename("messageToPhoneService");
+//					JSONObject jo = new JSONObject();
+//					
+//					jo.put("content", "您好，定单《"+td00.getGcmc()+"》项目管理员已经回复，请及时处理。");
+//					jo.put("sender_name", "管理员");
+//					jo.put("additionTel", "");
+//					jo.put("reader_tel", tel);
+//					jo.put("reader_name", ddgly);
+//					
+//					thread.setRemark("施工已回复定单");
+//					thread.setStatus("未处理");
+//					thread.setType("sendTelMsg");
+//					thread.setParameters(jo.toString());
+//					dao.saveObject(thread);
 				}
 				else if(isht.indexOf("退设计") != -1 && !sjdw.equals("")){
 					ddzt = "设计已派发";
