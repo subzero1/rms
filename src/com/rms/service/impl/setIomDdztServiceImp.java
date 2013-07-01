@@ -72,7 +72,8 @@ public class setIomDdztServiceImp {
 				thread.setServicename("messageToPhoneService");
 				JSONObject jo = new JSONObject();
 				
-				jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  【RMS系统】");
+				//jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  【RMS系统】");
+				jo.put("content", "您好，定单《"+td00.getGcmc()+"》设计已经回复，请及时处理  ");
 				jo.put("sender_name", "管理员");
 				jo.put("additionTel", "");
 				jo.put("reader_tel", tel);
@@ -98,7 +99,8 @@ public class setIomDdztServiceImp {
 				thread.setServicename("messageToPhoneService");
 				JSONObject jo = new JSONObject();
 				
-				jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  【RMS系统】");
+				//jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  【RMS系统】");
+				jo.put("content", "您好，定单《"+td00.getGcmc()+"》施工已经回复，请及时处理  ");
 				jo.put("sender_name", "管理员");
 				jo.put("additionTel", "");
 				jo.put("reader_tel", tel);

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,6 +38,7 @@ import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.dataObjects.Te04_message;
 import com.netsky.base.dataObjects.Te11_message_receiver;
 import com.netsky.base.dataObjects.Te08_message;
+import com.netsky.base.dataObjects.Tz05_thread_queue;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.imagecut.FtpService;
 import com.netsky.base.service.ExceptionService;
@@ -778,14 +780,30 @@ public class Message {
 			reader_tel = request.getParameter("reader_tel");
 			String fsr = ta03.getName() + "";
 			
-			String failed = "";
-			failed=messageToPhoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
-			if (failed.length()!=0){
-				failed = failed.substring(0,failed.length()-1);
-			}
-			json = "{\"statusCode\":\"200\", \"message\":\"发送完毕!" +
-					(failed.length()==0?"":"其中"+failed+"没有发送成功") +
-					"\", \"navTabId\":\"_current\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
+			Tz05_thread_queue thread = new Tz05_thread_queue();
+			thread.setInserttime(new Date());
+			thread.setServicename("messageToPhoneService");
+			JSONObject jo = new JSONObject();
+			
+			jo.put("content", content);
+			jo.put("sender_name", fsr);
+			jo.put("additionTel", request.getParameter("additionTels"));
+			jo.put("reader_tel", reader_tel);
+			jo.put("reader_name", reader_name);
+			
+			thread.setRemark("短信发送");
+			thread.setStatus("未处理");
+			thread.setType("sendTelMsg");
+			thread.setParameters(jo.toString());
+			saveService.save(thread);
+			
+			
+//			String failed = "";
+//			failed=messageToPhoneService.sendMessageToPhone(content, fsr, request.getParameter("additionTels"), reader_tel, reader_name);
+//			if (failed.length()!=0){
+//				failed = failed.substring(0,failed.length()-1);
+//			}
+			json = "{\"statusCode\":\"200\", \"message\":\"发送完毕!\", \"navTabId\":\"_current\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
