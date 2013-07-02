@@ -99,14 +99,15 @@ public class RmsCcatsida {
 		Long project_id = 0L;
 		List tmpList = null;
 
-		tmpList = queryService.searchList("select 'x' from Ti03_xqly where xqbs ='" + projectcode + "'");
+		tmpList = queryService.searchList("select project_id from Ti03_xqly where xqbs ='" + projectcode + "'");
 		if (tmpList.size() > 0) {
-			out.println("<script language=\"javascript\">");
-			out.println("alert(\"工单已发送！\");");
-			out.println("window.opener=window.self;");
-			out.println("window.close();");
-			out.println("</script>");
-			return;
+//			out.println("<script language=\"javascript\">");
+//			out.println("alert(\"工单已发送！\");");
+//			out.println("window.opener=window.self;");
+//			out.println("window.close();");
+//			out.println("</script>");
+//			return;
+			project_id = convertUtil.toLong(tmpList.get(0),0L);
 		}
 		/**
 		 * 获得接口数据
@@ -146,36 +147,64 @@ public class RmsCcatsida {
 				session = saveService.getHiberbateSession();
 				tx = session.beginTransaction();
 				tx.begin(); // 开始事务
-				System.out.println(convertUtil.toString(projectrow.getAttribute("CUSTOMERMANAGENAME")));
+				
 				/**
 				 * 获取客户端提出数据。构建td00 并保存到数据库中
 				 */
-				
-				td00 = new Td00_gcxx();
-				td00.setGcbh(projectcode);
-				String gcmc = projectrow.getAttribute("ORDER_TITLE");
-				td00.setGcmc(gcmc);
-				String ssdq = new RegExp().pickup("市([^区]{2,3}区)", gcmc);
-				if(ssdq == null || ssdq.trim().equals("")){
-					ssdq = new RegExp().pickup("市([^区]{2,3}区)", projectrow.getAttribute("INSTALLADDRESSA"));
+				if(project_id == 0L){
+					td00 = new Td00_gcxx();
+					td00.setGcbh(projectcode);
+					String gcmc = projectrow.getAttribute("ORDER_TITLE");
+					td00.setGcmc(gcmc);
+					String ssdq = new RegExp().pickup("市([^区]{2,3}区)", gcmc);
+					if(ssdq == null || ssdq.trim().equals("")){
+						ssdq = new RegExp().pickup("市([^区]{2,3}区)", projectrow.getAttribute("INSTALLADDRESSA"));
+					}
+					td00.setSsdq(convertUtil.toString(ssdq));
+					td00.setGcsm(projectrow.getAttribute("REMARK"));
+					td00.setCjr("管理员");
+					td00.setCjrq(new Date());
+					td00.setLxxx(projectrow.getAttribute("CONTACT"));
+					td00.setA_adress(projectrow.getAttribute("INSTALLADDRESSA"));
+					td00.setZ_adress(projectrow.getAttribute("INSTALLADDRESSB"));
+					td00.setDdzt("工单到岗");
+					saveService.save(td00);
+					
+					Ti03_xqly ti03 = new Ti03_xqly();
+					ti03.setXqbs(projectcode);
+					ti03.setProject_id(td00.getId());
+					ti03.setBz("综合调度系统定单");
+					ti03.setLyxt("江苏省综合调度系统");
+					ti03.setUrl("http://132.228.176.109/IOMPROJ/yccustorder/szOrderDetailJudge.htm?order_code=" + projectcode);
+					saveService.save(ti03);
 				}
-				td00.setSsdq(convertUtil.toString(ssdq));
-				td00.setGcsm(projectrow.getAttribute("REMARK"));
-				td00.setCjr("管理员");
-				td00.setCjrq(new Date());
-				td00.setLxxx(projectrow.getAttribute("CONTACT"));
-				td00.setA_adress(projectrow.getAttribute("INSTALLADDRESSA"));
-				td00.setZ_adress(projectrow.getAttribute("INSTALLADDRESSB"));
-				td00.setDdzt("工单到岗");
-				saveService.save(td00);
-				
-				Ti03_xqly ti03 = new Ti03_xqly();
-				ti03.setXqbs(projectcode);
-				ti03.setProject_id(td00.getId());
-				ti03.setBz("综合调度系统定单");
-				ti03.setLyxt("江苏省综合调度系统");
-				ti03.setUrl("http://132.228.176.109/IOMPROJ/yccustorder/szOrderDetailJudge.htm?order_code=" + projectcode);
-				saveService.save(ti03);
+				else{
+					td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
+					StringBuffer msgBox = new StringBuffer();
+					if(!"".equals(convertUtil.toString(td00.getXmgly()))){
+						msgBox.append("原项目管理员：");
+						msgBox.append(td00.getXmgly());
+						msgBox.append(";");
+					}
+					if(!"".equals(convertUtil.toString(td00.getSjdw()))){
+						msgBox.append("设计单位：");
+						msgBox.append(td00.getSjdw());
+						msgBox.append(";");
+					}
+					if(!"".equals(convertUtil.toString(td00.getSgdw()))){
+						msgBox.append("施工单位：");
+						msgBox.append(td00.getSgdw());
+						msgBox.append(";");
+					}
+					td00.setGcsm(convertUtil.toString(td00.getGcsm()) + "\n\r" + msgBox);
+					td00.setXmgly(null);
+					td00.setSjdw(null);
+					td00.setSgdw(null);
+					td00.setLxxx(projectrow.getAttribute("CONTACT"));
+					td00.setA_adress(projectrow.getAttribute("INSTALLADDRESSA"));
+					td00.setZ_adress(projectrow.getAttribute("INSTALLADDRESSB"));
+					td00.setDdzt("工单到岗");
+				}
 				session.flush();
 				tx.commit(); // 提交事务;
 			} catch (Exception e) {
