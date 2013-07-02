@@ -151,6 +151,7 @@ public class RmsCcatsida {
 				/**
 				 * 获取客户端提出数据。构建td00 并保存到数据库中
 				 */
+				
 				if(project_id == 0L){
 					td00 = new Td00_gcxx();
 					td00.setGcbh(projectcode);
@@ -204,6 +205,7 @@ public class RmsCcatsida {
 					td00.setA_adress(projectrow.getAttribute("INSTALLADDRESSA"));
 					td00.setZ_adress(projectrow.getAttribute("INSTALLADDRESSB"));
 					td00.setDdzt("工单到岗");
+					saveService.save(td00);
 				}
 				session.flush();
 				tx.commit(); // 提交事务;
