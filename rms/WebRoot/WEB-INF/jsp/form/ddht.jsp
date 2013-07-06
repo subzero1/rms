@@ -64,7 +64,7 @@
 				</p>
 				<div style="height:0px;"></div>
 				<p>
-					<label>是否投诉&nbsp;&nbsp;&nbsp;&nbsp;：</label>
+					<label>二次来单&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<select   style="width:200px;" name="Td00_gcxx.SFTS" value="${Td00_gcxx.sfts}" >
 						<option value="否" <c:if test="${Td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
 						<option value="是" <c:if test="${Td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
