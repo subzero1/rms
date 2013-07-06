@@ -90,7 +90,7 @@
 		<input type="text" style="width:150px;" name="Td00_gcxx.WCFGQBM" value="${td00_gcxx.wcfgqbm}" />
 	</p>
 	<p>
-		<label>是否投诉：</label>
+		<label>二次来单：</label>
 		<select   style="width:157px;" name="Td00_gcxx.SFTS" value="${td00_gcxx.sfts}" >
 			<option value="否" <c:if test="${td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
 			<option value="是" <c:if test="${td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
