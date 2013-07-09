@@ -1952,4 +1952,24 @@ public class Td00_gcxx implements Serializable {
 	public void setGlbm(String glbm) {
 		this.glbm = glbm;
 	}
+	
+	private Long dxtzhzdw;
+
+	public Long getDxtzhzdw() {
+		return dxtzhzdw;
+	}
+
+	public void setDxtzhzdw(Long dxtzhzdw) {
+		this.dxtzhzdw = dxtzhzdw;
+	}
+	
+	private Long dxtzhzdwwc;
+
+	public Long getDxtzhzdwwc() {
+		return dxtzhzdwwc;
+	}
+
+	public void setDxtzhzdwwc(Long dxtzhzdwwc) {
+		this.dxtzhzdwwc = dxtzhzdwwc;
+	}
 }
