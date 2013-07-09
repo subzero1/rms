@@ -16,6 +16,7 @@
 	else{
 		$("#BG_JE").val(bg_je);
 	}
+	 
 </script>
 
 <input type="hidden" name="configType" value="byxml"/>
@@ -141,6 +142,12 @@
 		<input type="text"  name="Td00_gcxx.SGPFSJ" value="<fmt:formatDate value="${td00_gcxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
+	<p>
+		<label>短信通知：</label>
+		<input type="radio" id="dxtz" value="1" name="Td00_gcxx.DXTZHZDW" <c:if test="${td00_gcxx.dxtzhzdw == '1'}">checked</c:if>>是   <input type="radio" id="dxtz" value="0" name="Td00_gcxx.DXTZHZDW" <c:if test="${td00_gcxx.dxtzhzdw == '0' || empty td00_gcxx.dxtzhzdw}">checked</c:if>/>否
+		
+	</p>
+	<div style="height:0px;"></div>
 	
 	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
 	<div style="width:780px;">
@@ -172,3 +179,6 @@
 	</table>
 	<br/><br/>
 	</div>
+	<script type="">
+        //alert($("#dxtz").attr("name"));
+	</script>
