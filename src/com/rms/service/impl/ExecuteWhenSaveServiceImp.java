@@ -46,7 +46,7 @@ public class ExecuteWhenSaveServiceImp{
 					 */
 					if(!sjdw.equals("") && dxtzhzdw == 1 && dxtzsjdwwc == 0){
 						sql.delete(0, sql.length());
-						sql.append("select ta03.name as jsr,ta03.mobile_tel as mobile_tel");
+						sql.append("select ta03.name as jsr,ta03.mobile_tel as mobile_tel ");
 						sql.append("from Tf01_wxdw tf01,Tf04_wxdw_user tf04,Ta03_user ta03 ");
 						sql.append("where tf01.id = tf04.wxdw_id ");
 						sql.append("and tf04.user_id = ta03.id ");
@@ -85,7 +85,7 @@ public class ExecuteWhenSaveServiceImp{
 					if(!sgdw.equals("") && dxtzhzdw == 1 && dxtzsgdwwc == 0){
 
 						sql.delete(0, sql.length());
-						sql.append("select ta03.name as jsr,ta03.mobile_tel as mobile_tel");
+						sql.append("select ta03.name as jsr,ta03.mobile_tel as mobile_tel ");
 						sql.append("from Tf01_wxdw tf01,Tf04_wxdw_user tf04,Ta03_user ta03 ");
 						sql.append("where tf01.id = tf04.wxdw_id ");
 						sql.append("and tf04.user_id = ta03.id ");
