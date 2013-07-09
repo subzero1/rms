@@ -993,11 +993,19 @@
         />
         
         <property
-            name="dxtzhzdwwc"
+            name="dxtzsjdwwc"
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="dxtzhzdwwc"
+            column="dxtzsjdwwc"
+        />
+        
+        <property
+            name="dxtzsgdwwc"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="dxtzsgdwwc"
         />
         <!--
             To add non XDoclet property mappings, create a file named

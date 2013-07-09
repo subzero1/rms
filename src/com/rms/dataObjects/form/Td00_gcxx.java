@@ -1963,13 +1963,23 @@ public class Td00_gcxx implements Serializable {
 		this.dxtzhzdw = dxtzhzdw;
 	}
 	
-	private Long dxtzhzdwwc;
+	private Long dxtzsjdwwc;
 
-	public Long getDxtzhzdwwc() {
-		return dxtzhzdwwc;
+	public Long getDxtzsjdwwc() {
+		return dxtzsjdwwc;
 	}
 
-	public void setDxtzhzdwwc(Long dxtzhzdwwc) {
-		this.dxtzhzdwwc = dxtzhzdwwc;
+	public void setDxtzsjdwwc(Long dxtzsjdwwc) {
+		this.dxtzsjdwwc = dxtzsjdwwc;
+	}
+	
+	private Long dxtzsgdwwc;
+
+	public Long getDxtzsgdwwc() {
+		return dxtzsgdwwc;
+	}
+
+	public void setDxtzsgdwwc(Long dxtzsgdwwc) {
+		this.dxtzsgdwwc = dxtzsgdwwc;
 	}
 }
