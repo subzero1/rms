@@ -84,5 +84,42 @@
 				</property>
 			</propertise>
 		</bean>
+		<bean>
+			<type>service</type>
+			<beanName>executeWhenSaveService</beanName>
+			<method>exec</method>
+			<propertise>
+				<property>
+					<type>table</type>
+					<tableName>Td00_gcxx</tableName>
+					<column>id</column>
+				</property>
+				<property>
+					<type>table</type>
+					<tableName>Td00_gcxx</tableName>
+					<column>id</column>
+				</property>
+				<property>
+					<type>request</type>
+					<tableName/>
+					<column>module_id</column>
+				</property>
+				<property>
+					<type>request</type>
+					<tableName/>
+					<column>node_id</column>
+				</property>
+				<property>
+					<type>request</type>
+					<tableName/>
+					<column>user_id</column>
+				</property>
+				<property>
+					<type>request</type>
+					<tableName/>
+					<column>user_name</column>
+				</property>
+			</propertise>
+		</bean>
 	</beans>
 </form>
