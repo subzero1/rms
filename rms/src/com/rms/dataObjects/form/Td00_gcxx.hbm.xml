@@ -983,6 +983,22 @@
             insert="true"
             column="glbm"
         />
+        
+        <property
+            name="dxtzhzdw"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="dxtzhzdw"
+        />
+        
+        <property
+            name="dxtzhzdwwc"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="dxtzhzdwwc"
+        />
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-Td00_gcxx.xml
