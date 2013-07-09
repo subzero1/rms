@@ -541,16 +541,17 @@ public class Message {
 		Long msg_id = null;
 		Long message_id=null;
 		String sendType=null;
-
+		log.error("this is 0");
 		String zffjid[] = request.getParameterValues("zffjid");
 		String msg = "";
 		String repeat_flag = StringFormatUtil.format(request.getParameter("repeat_flag"), "0");
 		try {
+			log.error("this is 2");
 			// 设置当前时间
 			Date time = new Date();
 			Ta03_user ta03 = (Ta03_user) request.getSession().getAttribute("user");
 			HttpServletRequest Crequest = (MultipartHttpServletRequest) request;
-
+			log.error("this is 3");
 			title = request.getParameter("title");
 			content = request.getParameter("content");
 			reader_id = request.getParameter("reader_id");
@@ -558,7 +559,7 @@ public class Message {
 			send_flag = request.getParameter("send_flag");
 			message_id=convertUtil.toLong(request.getParameter("message_id"));
 			sendType=convertUtil.toString(request.getParameter("sendType"));
-
+			log.error("this is 4");
 			// 保存数据
 			String[] readers_id = reader_id.split(",");
 			String[] readers_name = reader_name.split(",");
@@ -569,6 +570,7 @@ public class Message {
 			te04.setContent(content); // 内容
 			te04.setSend_date(time); // 发送时间
 			te04.setSender_id(ta03.getId()); // 发件人id
+			log.error("this is 1");
 			//te04.setRead_flag("0"); // 阅读标示 0 未读；1 已读；
 			//te04.setReader_id(readers_id[i]); // 收件人id
 			//te04.setReader_name(readers_name[i]); // 收件人姓名
@@ -578,12 +580,13 @@ public class Message {
 			if (sendType.equals("huifu")) {
 				te04.setParent_id(message_id);
 			}
-			
+			log.error("this is 5");
 			saveService.save(te04);
-			
+			log.error("this is 6");
 			queryBuilder = new HibernateQueryBuilder(Te04_message.class);
 			MultipartHttpServletRequest Mrequest = (MultipartHttpServletRequest) request;
 			Iterator<?> it = Mrequest.getFileNames();
+			log.error("this is 7");
 			while (it.hasNext()) {
 				String fileDispath = (String) it.next();
 				MultipartFile file = Mrequest.getFile(fileDispath);
@@ -594,6 +597,7 @@ public class Message {
 						extends_name = file.getOriginalFilename().substring(
 								file.getOriginalFilename().lastIndexOf("."));
 					}
+					log.error("this is 8");
 					Te01_slave te01 = new Te01_slave();
 					te01.setProject_id(te04.getId());
 					te01.setDoc_id(te04.getId());
@@ -606,21 +610,24 @@ public class Message {
 					te01.setFtp_date(time);
 					te01.setModule_id(new Long(9002));
 					saveService.save(te01);
+					log.error("this is 9");
 					queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
 					StringBuffer ftp_url = new StringBuffer();
 					ftp_url.append(te01.getId());
 					ftp_url.append("Slave");
 					ftp_url.append(te01.getExt_name());
-
+					log.error("this is 10");
 					// ftp 上传
 					FtpService ftp = new FtpService();
 					String save_url = ftp.FileFtpUpload(request, file, ftp_url.toString(), te01.getSlave_type());
 					te01.setFtp_url(save_url);
 					saveService.save(te01);
+					log.error("this is 11");
 					fj_num++;
 				}
 			}
 			if (zffjid != null && !"".equals(zffjid)) {
+				log.error("this is 12");
 				for (int j = 0; j < zffjid.length; j++) {
 					queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
 					queryBuilder.eq("id", new Long(zffjid[j]));
@@ -639,6 +646,7 @@ public class Message {
 					}
 				}
 			}
+			log.error("this is 14");
 			te04.setFujian_flag(new Long(fj_num));
 			saveService.save(te04);
 			msg_id = te04.getId();
