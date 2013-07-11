@@ -31,6 +31,12 @@
 			}
 		});
 	});
+	
+	function remindSecond(obj){
+		if(obj.value == '是'){
+			alertMsg.info("请在<font color=red><b>回单备注</b></font>中填写二次回单原因!");	
+		}
+	}
 	</script>
 	</head>
 
@@ -52,7 +58,11 @@
 		 <input type="hidden" name="_forwardUrl" value="openForm.do?project_id=${param.project_id }&module_id=114&doc_id=${param.doc_id }&user_id=${user.id }&limit=&node_id=${param.node_id }" />
 		 <input type="hidden" name="_navTabId" value="ddxx" />
 		 <input type="hidden" name="Td00_gcxx.ID" value="${param.project_id }" />
-		 <input  type="hidden" style="width:200px;" name="Td00_gcxx.WCSJ" value="<fmt:formatDate value="${now }" pattern="yyyy-MM-dd"/>" />
+		 <c:if test="${param.node_id==11401}">
+		 	<input  type="hidden" name="Td00_gcxx.WCSJ" value="<fmt:formatDate value="${now }" pattern="yyyy-MM-dd"/>" />
+		 	<input type="hidden" name="Td00_gcxx.SFCQ" id="sfcq" value="${Td00_gcxx.sfcq}" readonly/>
+		 </c:if>
+		 <input  type="hidden" name="cq_flag" id="cq_flag" value="${cq_flag }" />
 		 	<div class="pageFormContent" style="border: 0px;">
 				<p>
 					<label>分光器编码：</label>
@@ -65,11 +75,10 @@
 				<div style="height:0px;"></div>
 				<p>
 					<label>二次来单&nbsp;&nbsp;&nbsp;&nbsp;：</label>
-					<select   style="width:200px;" name="Td00_gcxx.SFTS" value="${Td00_gcxx.sfts}" >
-						<option value="否" <c:if test="${Td00_gcxx.sfts=='否' }">selected</c:if>>否</option>
-						<option value="是" <c:if test="${Td00_gcxx.sfts=='是' }">selected</c:if>>是</option>
+					<select   style="width:200px;" name="Td00_gcxx.SFTS" value="${Td00_gcxx.sfts}" onchange="javascript:remindSecond(this)">
+						<option value="否">否</option>
+						<option value="是">是</option>
 					</select>
-					<input type="hidden" name="Td00_gcxx.SFCQ" style="width:120px;" value="${Td00_gcxx.sfcq}" readonly/>
 				</p>
 				<c:if test="${param.node_id==11401}">
 				<p>
@@ -83,8 +92,8 @@
 				<div style="height:0px;"></div>
 				<p>
 					<label>回单备注&nbsp;&nbsp;&nbsp;&nbsp;：</label>
-					<textarea name="Td00_gcxx.HDBZ" id="nr"
-						style='width: 425px; height: 40px'>${Td00_gcxx.hdbz }</textarea>
+					<textarea name="Td00_gcxx.HDBZ" id="bz"
+						style='width: 425px; height: 40px' >${Td00_gcxx.hdbz }</textarea>
 				</p>
 	</div>
 		 <table   id="ddhd" style="margin-left: 30px;">
@@ -160,3 +169,9 @@
 		</form>
 	</body>
 </html>
+<script type="">
+	var sfcq = $("#sfcq");
+	if(sfcq.size() > 0 && sfcq.val() == '是'){
+		alertMsg.info("本次回单已超期，请在<font color=red><b>回单备注</b></font>中填写超期原因!");
+	}	
+</script>

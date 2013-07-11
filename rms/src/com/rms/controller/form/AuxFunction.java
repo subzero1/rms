@@ -2321,16 +2321,19 @@ public class AuxFunction {
 			HttpServletResponse response) {
 		String view = "/WEB-INF/jsp/form/ddht.jsp";
 		ModelMap modelMap = new ModelMap();
-		Long project_id = convertUtil
-				.toLong(request.getParameter("project_id"));
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		Long node_id = convertUtil.toLong(request.getParameter("node_id"));
 
 		Td00_gcxx gcxx = (Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
-		if (gcxx.getJhjgsj() != null && gcxx.getWcsj() != null) {
-			if (gcxx.getJhjgsj().after(gcxx.getWcsj())) {
-				gcxx.setSfcq("否");
-			}
-			if (gcxx.getWcsj().after(gcxx.getJhjgsj())) {
-				gcxx.setSfcq("是");
+		Date now = new Date();
+		if(node_id == 11401){
+			if (gcxx.getJhjgsj() != null) {
+				if (gcxx.getJhjgsj().after(now)) {
+					gcxx.setSfcq("否");
+				}
+				if (now.after(gcxx.getJhjgsj())) {
+					gcxx.setSfcq("是");
+				}
 			}
 		}
 		List gdztztList = queryService
