@@ -73,6 +73,8 @@
 					<netsky:htmlSelect name="Td00_gcxx.GDZTZT" objectForOption="gdztztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${Td00_gcxx.gdztzt}" htmlClass="td-select"/>
 				</p>
 				<div style="height:0px;"></div>
+				
+				<c:if test="${param.node_id==11401}">
 				<p>
 					<label>二次来单&nbsp;&nbsp;&nbsp;&nbsp;：</label>
 					<select   style="width:200px;" name="Td00_gcxx.SFTS" value="${Td00_gcxx.sfts}" onchange="javascript:remindSecond(this)">
@@ -80,7 +82,6 @@
 						<option value="是">是</option>
 					</select>
 				</p>
-				<c:if test="${param.node_id==11401}">
 				<p>
 					<select name="Td09_ddhdxx.ISHT" style="margin-left:44px;">
 					<option value="前进"></option>
