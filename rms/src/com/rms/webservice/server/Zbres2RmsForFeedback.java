@@ -64,6 +64,7 @@ public class Zbres2RmsForFeedback {
 			}
 			
 			String checkResult = convertUtil.toString(root.getChild("ysjg").getText());
+			String checkType = convertUtil.toString(root.getChild("yslx").getText());
 			String remark = convertUtil.toString(root.getChild("bz").getText());
 			QueryBuilder queryBuilder = new HibernateQueryBuilder(Td01_xmxx.class);
 			queryBuilder.eq("xmbh", xmbh);
@@ -71,9 +72,18 @@ public class Zbres2RmsForFeedback {
 			if(ro.next()){
 				Td01_xmxx td01 = (Td01_xmxx)ro.get(Td01_xmxx.class.getName());
 				if(checkResult.equals("success")){
-					td01.setYczyyssj(new Date());
-					td01.setYssj(new Date());
-					td01.setXmzt("资源验收完成");
+					if(checkType.equals("1")){
+						td01.setYssj(new Date());
+						td01.setXmzt("现场验收完成");
+					}
+					else if(checkType.equals("2")){
+						td01.setYczyyssj(new Date());
+						td01.setXmzt("资源验收完成");
+					}
+					else if(checkType.equals("3")){
+						td01.setYssj(new Date());
+						td01.setXmzt("终验完成");
+					}
 				}
 				if(!remark.equals("")){
 					td01.setXmsm(td01.getXmsm() + " 验收结果：" + remark);
