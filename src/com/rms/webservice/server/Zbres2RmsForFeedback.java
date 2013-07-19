@@ -2,6 +2,7 @@ package com.rms.webservice.server;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
@@ -40,7 +41,7 @@ public class Zbres2RmsForFeedback {
 			if(inParam == null){
 				throw new Exception ("not find inParam");
 			}
-			
+			System.out.println(inParam);
 			// 分析入参
 			SAXBuilder builder = null;
 			Document doc = null;
@@ -61,21 +62,21 @@ public class Zbres2RmsForFeedback {
 			if(xmbh == null){
 				throw new Exception ("not find xmbh node in inParam");
 			}
-			String checkType = root.getChild("yslx").getText();
-			String checkResult = root.getChild("ysjg").getText();
-			String checkDate = root.getChild("yssj").getText();
+			
+			String checkResult = convertUtil.toString(root.getChild("ysjg").getText());
+			String remark = convertUtil.toString(root.getChild("bz").getText());
 			QueryBuilder queryBuilder = new HibernateQueryBuilder(Td01_xmxx.class);
 			queryBuilder.eq("xmbh", xmbh);
 			ResultObject ro = queryService.search(queryBuilder);
 			if(ro.next()){
 				Td01_xmxx td01 = (Td01_xmxx)ro.get(Td01_xmxx.class.getName());
-				if(checkType.equals("zyys")){
-					td01.setYczyyssj(DateFormatUtil.ForamteString(checkDate, "yyyy-MM-dd"));
+				if(checkResult.equals("success")){
+					td01.setYczyyssj(new Date());
+					td01.setYssj(new Date());
 					td01.setXmzt("资源验收完成");
 				}
-				else{
-					td01.setYssj(DateFormatUtil.ForamteString(checkDate, "yyyy-MM-dd"));
-					td01.setXmzt("现场验收完成");
+				if(!remark.equals("")){
+					td01.setXmsm(td01.getXmsm() + " 验收结果：" + remark);
 				}
 				saveService.save(td01);
 			}
