@@ -24,7 +24,14 @@
 			<input type="hidden" id="selectedId_demo" />
 			<div class="searchBar">
 				<div style="font-size:14px;font-weight:bold;">${message_title }</div>
-				
+				<table class="searchContent">
+					<tr>
+						<td>
+						    <input type="text" style="display:none"/>
+							<input type="text" name="title" id="title" value="${param.title }" onkeypress="javascript:if(event.keyCode==13) searchOrExcelExport(this,'MessageList.do?messageState=${param.messageState}',navTabSearch);" size="30" class="td-input-nowidth"/>
+						</td>
+					</tr>						
+				</table>
 				<div class="subBar">
 					<ul>
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=2',navTabSearch);">草稿箱</button></div></div></li>
@@ -64,7 +71,7 @@
 				 -->
 			</ul>
 		</div>
-		<table class="table" width="100%" layouth="128">
+		<table class="table" width="100%" layouth="155">
 			<thead>
 			<tr>
 				<th width="20">&nbsp;</th>

@@ -90,6 +90,7 @@ public class Message {
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
 		Integer messageState = convertUtil.toInteger(request.getParameter("messageState"));
 		String orderField = StringFormatUtil.format(request.getParameter("orderField"), "");
+		String title = StringFormatUtil.format(request.getParameter("title"), "");
 		String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"), "desc");
 		StringBuffer hsql = new StringBuffer();
 		String view = null;
@@ -166,6 +167,9 @@ public class Message {
 				message_title = "收件箱";
 				messageState = 1;
 			}
+			if(!title.equals("")){
+				hsql.append(" and te04.title like '%"+title+"%'");
+			}
 			// 设置排序
 			StringBuffer order = new StringBuffer();
 			order.append(" order by ");
@@ -204,6 +208,7 @@ public class Message {
 					    + hsql.toString();
 				view = "messagelistNoUser.jsp";
 			}
+			
 			rs = queryService.searchByPage(tmp_sql,pageNum, numPerPage);
 			List message_list = new ArrayList();
 			
