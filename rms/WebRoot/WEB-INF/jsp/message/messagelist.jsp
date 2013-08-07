@@ -8,7 +8,7 @@
 		var url = 'MessageRead.do?message_id='+id+'&messageState=${param.messageState}';
 		$.pdialog.open(url,'xtdxx', '内部邮件',{mask:true, width:600, height:320});
 	}
-
+	
 </script>
 <form id="pagerForm" method="post" action="MessageList.do?messageState=${param.messageState}">
 	<input type="hidden" name="keyWord" value="${param.keyWord}" />
@@ -16,6 +16,7 @@
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	
 </form>
 
 <div class="page">
@@ -24,7 +25,14 @@
 			<input type="hidden" id="selectedId_demo" />
 			<div class="searchBar">
 				<div style="font-size:14px;font-weight:bold;">${message_title }</div>
-				
+				<table class="searchContent">
+					<tr>
+						<td>
+						    <input type="text" style="display:none"/>
+							<input type="text" name="title" id="title" onkeypress="javascript:if(event.keyCode==13) searchOrExcelExport(this,'MessageList.do?messageState=${param.messageState}',navTabSearch);" value="${param.title }" size="30" class="td-input-nowidth" />
+						</td>
+					</tr>						
+				</table>
 				<div class="subBar">
 					<ul>
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=2',navTabSearch);">草稿箱</button></div></div></li>
@@ -64,7 +72,7 @@
 				 -->
 			</ul>
 		</div>
-		<table class="table" width="100%" layouth="128">
+		<table class="table" width="100%" layouth="155">
 			<thead>
 			<tr>
 				<th width="30" title="未读邮件" orderField="te04.read_flag"><img src='Images/message/email.png' style="margin:4px;"></img></th>
