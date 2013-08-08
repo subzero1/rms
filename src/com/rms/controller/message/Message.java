@@ -90,7 +90,7 @@ public class Message {
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
 		Integer messageState = convertUtil.toInteger(request.getParameter("messageState"));
 		String orderField = StringFormatUtil.format(request.getParameter("orderField"), "");
-		String title = StringFormatUtil.format(request.getParameter("title"), "");
+		String keyword = StringFormatUtil.format(request.getParameter("keyword"), "");
 		String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"), "desc");
 		StringBuffer hsql = new StringBuffer();
 		String view = null;
@@ -167,8 +167,8 @@ public class Message {
 				message_title = "收件箱";
 				messageState = 1;
 			}
-			if(!title.equals("")){
-				hsql.append(" and te04.title like '%"+title+"%'");
+			if(!keyword.equals("")){
+				hsql.append(" and te04.title like '%"+keyword+"%'");
 			}
 			// 设置排序
 			StringBuffer order = new StringBuffer();

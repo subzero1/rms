@@ -28,7 +28,7 @@
 					<tr>
 						<td>
 						    <input type="text" style="display:none"/>
-							<input type="text" name="title" id="title" value="${param.title }" onkeypress="javascript:if(event.keyCode==13) searchOrExcelExport(this,'MessageList.do?messageState=${param.messageState}',navTabSearch);" size="30" class="td-input-nowidth"/>
+							<input type="text" name="keyword" id="keyword" value="${param.keyword }" onkeypress="javascript:if(event.keyCode==13) searchOrExcelExport(this,'MessageList.do?messageState=${param.messageState}',navTabSearch);" size="30" class="td-input-nowidth"/>
 						</td>
 					</tr>						
 				</table>
