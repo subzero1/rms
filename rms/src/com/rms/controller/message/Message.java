@@ -118,7 +118,7 @@ public class Message {
 				hsql.append(" and te11.delete_flag is null ");
 				hsql.append(" and te11.reader_id='" + user_id + "' ");
 				if(orderField.equals("")){
-					orderField = " te11.read_flag,te04.id ";
+					orderField = " te04.id ";
 				}
 				message_title = "收件箱";
 				break;
@@ -150,7 +150,7 @@ public class Message {
 				hsql.append(" and te04.sender_id=ta03.id ");
 				hsql.append(" and te11.delete_flag = 0 and te04.reader_id='" + user_id + "'");
 				if(orderField.equals("")){
-					orderField = " te11.read_flag,te04.id ";
+					orderField = " te04.id ";
 				}
 				message_title = "垃圾箱";
 				break;
@@ -162,7 +162,7 @@ public class Message {
 				hsql.append(" and te11.delete_flag is null ");
 				hsql.append(" and te11.reader_id='" + user_id + "' ");
 				if(orderField.equals("")){
-					orderField = " te11.read_flag,te04.id ";
+					orderField = " te04.id ";
 				}
 				message_title = "收件箱";
 				messageState = 1;
