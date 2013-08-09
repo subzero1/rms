@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * 作者：李翔宇
+ * 作者：李翔宇2
  * 
  * 日期：2010-03-31
  * 
