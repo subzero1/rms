@@ -216,6 +216,7 @@ public class HtmlCheckbox extends BodyTagSupport {
 	/**
 	 * 标记打印
 	 */
+	@SuppressWarnings("unchecked")
 	public void printSelect() throws Exception {
 
 		Object obj = null;
