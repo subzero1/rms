@@ -55,7 +55,7 @@
 					<th orderField="gcbh" style="width: 80px;">订单编码</th>
 					<th style="width: 200px;" orderField="gcmc">标题</th>
 					<th style="width: 200px;" orderField="lxxx">联系信息</th>
-					<th style="width: 200px;" orderField="a_address">A端装机地址</th>
+					<th style="width: 200px;" orderField="a_adress">A端装机地址</th>
 					<th ></th> 
 				</tr>
 			</thead>
