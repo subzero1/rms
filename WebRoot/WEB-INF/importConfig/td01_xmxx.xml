@@ -61,10 +61,10 @@
 				<colName>项目状态</colName>
 			</column> 
 			<column>
-				<columnName>XMJL</columnName>
+				<columnName>XMGLY</columnName>
 				<index />
-				<name>项目经理</name>
-				<colName>项目经理</colName>
+				<name>项目管理员</name>
+				<colName>项目管理员</colName>
 			</column> 
 			<column>
 				<columnName>LXJE</columnName>
