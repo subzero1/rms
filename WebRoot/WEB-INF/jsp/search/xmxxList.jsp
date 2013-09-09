@@ -3,6 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
+	function searchListExport(){
+	   var $pagerForm=$("#pagerForm",navTab.getCurrentPanel());
+	   $pagerForm.attr("action","search/xmxxListExport.do"); 
+	   $pagerForm.submit();
+	}
+
  	function searchSubmit(){
  		var $keyword=$("#keyword",navTab.getCurrentPanel());
  		navTab.openTab('xmxxList', 'search/xmxxList.do?keyword='+$keyword.val(), {title:'项目信息列表'});
@@ -25,6 +31,9 @@
 	<input type="hidden" name="jssj" value="${param.jssj }"/>
 	<input type="hidden" name="xmzt" value="${param.xmzt }"/>
 	<input type="hidden" name="xmgly" value="${param.xmgly }"/>
+	<input type="hidden" name="ssdq" value="${param.ssdq }"/>
+	<input type="hidden" name="sjjgsj" value="${param.sjjgsj }"/>
+	<input type="hidden" name="config" value="td01_xmxxList" />
 </form>
 
 <div class="page">
@@ -111,10 +120,10 @@
 						line
 					</li>
 				</c:if>
-				<!-- 
+				 
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
 					<li class="line">line</li>
-					
+					<!--
 					<li><a class="helponline"	href="javascript:enterHelp('xmxx')"><span>在线2帮助</span></a></li>
 					<li class="line">line</li>
 					-->
