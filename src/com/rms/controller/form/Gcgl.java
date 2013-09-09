@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jxl.Workbook;
+import jxl.write.WriteException;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
@@ -29,6 +32,8 @@ import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
+import com.netsky.base.dataObjects.Ta08_reportfield;
+import com.netsky.base.export.ExportExcel;
 import com.netsky.base.utils.ConfigXML;
 import com.netsky.base.utils.ConfigXMLImpl;
 import com.netsky.base.utils.convertUtil;
@@ -799,6 +804,111 @@ public class Gcgl {
 		return new ModelAndView(view, modelMap);
 	}
 	
+	/**
+	 * 导出项目信息列表
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 * @throws WriteException
+	 */
+	@RequestMapping("/search/xmxxListExport.do")
+	public ModelAndView xmxxListExport(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+			StringBuffer hql = new StringBuffer();
+	Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
+	String orderField = convertUtil.toString(request
+			.getParameter("orderField"), "xmmc");
+	String orderDirection = convertUtil.toString(request
+			.getParameter("orderDirection"), "asc");
+	String keyword = convertUtil.toString(request.getParameter("keyword"));
+	keyword=new String(keyword.getBytes("ISO-8859-1"),"gbk");
+	
+	String jssj = convertUtil.toString(request.getParameter("jssj"));
+	String xmzt = convertUtil.toString(request.getParameter("xmzt"));
+	String ssdq=convertUtil.toString(request.getParameter("ssdq"));
+	String xmgly=convertUtil.toString(request.getParameter("xmgly"));
+	String sjjgsj=convertUtil.toString(request.getParameter("sjjgsj"));
+	String config = convertUtil.toString(request.getParameter("config"));
+	
+	ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
+	StringBuffer hsql = new StringBuffer();
+	List orderTitleList = new LinkedList(); // 标题列表
+	List orderColList = new LinkedList();// 列的字段值
+	List orderDocList = new LinkedList();// 表单数据
+	Map<String, List> sheetMap = new HashMap<String, List>();
+	List sheetList = new LinkedList();
+	// 读取配置文件的标题列表
+	String webinfpath = request.getSession().getServletContext()
+			.getRealPath("WEB-INF");
+	orderTitleList = configXML.getTagListByConfig(config, webinfpath, "name");
+	orderColList = configXML.getTagListByConfig(config, webinfpath,
+			"columnName");
+	
+	Iterator it = orderColList.iterator();
+	Object order = null;
+	hql.append("select x.xmmc,x.xmbh,x.ssdq,x.xmgly,x.sgdw,x.sjjgsj,x.jssj,x.xmzt from Td01_xmxx x,Ta01_dept d,Ta03_user u ");
+	hql.append("where 1=1 ");
+	hql.append("and d.id=u.dept_id "); 
+	hql.append("and u.name=x.xmgly ");
+	hql.append("and (u.dept_id=");
+	hql.append(user.getDept_id());
+	hql.append(" or d.parent_dept=");
+	hql.append(user.getDept_id());
+	hql.append(")");
+	if (!keyword.equals("")) {
+		hql.append("and (x.xmmc like '%");
+		hql.append(keyword);
+		hql.append("%' ");
+		hql.append("or x.xmbh like '%");
+		hql.append(keyword);
+		hql.append("%' ");
+		hql.append(" or x.xmgly like '%");
+		hql.append(keyword); 
+		hql.append("%') ");
+	}
+	if (!jssj.equals("")) {
+		hql.append("and x.jssj=to_date('");
+		hql.append(jssj); 
+		hql.append("','yyyy-mm-dd'");
+		hql.append(") ");
+	}
+	if (!xmzt.equals("")) {
+		hql.append("and x.xmzt='");
+		hql.append(xmzt);
+		hql.append("' ");
+	}
+	if (!ssdq.equals("")) {
+		hql.append("and x.ssdq='");
+		hql.append(ssdq);
+		hql.append("' ");
+	}
+	if (!xmgly.equals("")) {
+		hql.append("and x.xmgly='");
+		hql.append(xmgly); 
+		hql.append("' ");
+	}
+	if (!sjjgsj.equals("")) {
+		hql.append("and x.sjjgsj=to_date('");
+		hql.append(sjjgsj);
+		hql.append("','yyyy-mm-dd') ");
+	}
+	hql.append("order by x.");
+	hql.append(orderField);
+	hql.append(" ");
+	hql.append(orderDirection);
+
+	orderDocList = queryService.searchList(hql.toString());
+	sheetList.add(orderTitleList);
+	sheetList.add(orderDocList);
+	sheetMap.put("form_title", sheetList);
+	request.setAttribute("ExcelName", "項目信息.xls");
+	request.setAttribute("sheetMap", sheetMap);
+	return new ModelAndView("/export/toExcelWhithList.do");
+	
+	}
+	
 	@RequestMapping("/form/orderList.do")
 	public ModelAndView  orderList(HttpServletRequest request,HttpServletResponse response) {
 		String view="/WEB-INF/jsp/form/orderList.jsp";
@@ -1230,5 +1340,6 @@ public class Gcgl {
 
 	}
 	
+
 	
 }
