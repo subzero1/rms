@@ -50,30 +50,30 @@
 						<td>
 							<input type="text" style="display: none" />
 							关键字：
-							<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" />
-								决算时间
+							<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;
+								决算时间：
 							<input id="beginjssj" name="beginjssj" value="${beginjssj}" type="text"  class="date" size="10"/>
-							至<input id="endjssj" name="endjssj" value="${endjssj}" type="text"  class="date" size="10"/>
-								状态
+							至<input id="endjssj" name="endjssj" value="${endjssj}" type="text"  class="date" size="10"/>&nbsp;&nbsp;&nbsp;&nbsp;
+								状态:
 							<select id="xmzt" name="xmzt" value="${param.xmzt}">
 							<option value="" >-----------</option>
 							<option value="立项完成" <c:if test="${param.xmzt=='立项完成'}">selected</c:if>>立项完成</option>
 							<option value="施工开始" <c:if test="${param.xmzt=='施工开始'}">selected</c:if>>施工开始</option>
 							<option value="施工完成" <c:if test="${param.xmzt=='施工完成'}">selected</c:if>>施工完成</option>
-							</select>
-							所属地区
+							</select>&nbsp;&nbsp;&nbsp;&nbsp;
+							所属地区：
 							<netsky:htmlSelect name="ssdq" objectForOption="areaList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.ssdq}" htmlClass="td-select"/>
-
-							项目经理
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							项目经理：
 							<netsky:htmlSelect name="xmgly" objectForOption="xmglyList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.xmgly}" htmlClass="td-select"/>
 						</td>
 					</tr>
 				</table>
 				<div class="subBar">
-							竣工时间
+							竣工时间：
 							<input id="beginsjjgsj" name="beginsjjgsj" value="${beginsjjgsj }" class="date" size="10"/>
-							至<input id="endsjjgsj" name="endsjjgsj" value="${endsjjgsj}" type="text"  class="date" size="10"/>
-							立项时间<input id="beginlxsj" name="beginlxsj" value="${beginlxsj }" class="date" size="10"/>
+							至<input id="endsjjgsj" name="endsjjgsj" value="${endsjjgsj}" type="text"  class="date" size="10"/>&nbsp;&nbsp;&nbsp;&nbsp;
+							立项时间：<input id="beginlxsj" name="beginlxsj" value="${beginlxsj }" class="date" size="10"/>
 							至<input id="endlxsj" name="endlxsj" value="${endlxsj}" type="text"  class="date" size="10"/>
 					<ul>
 						<li>
