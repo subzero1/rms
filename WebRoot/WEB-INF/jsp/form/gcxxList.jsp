@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 
-<form id="pagerForm" method="post" action="form/xmxxList.do">
+<form id="pagerForm" method="post" action="form/gcxxList.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
@@ -13,7 +13,7 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="form/xmxxList.do" method="post"onsubmit="return navTabSearch(this);">
+		<form action="form/gcxxList.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
@@ -24,7 +24,7 @@
 				</table>
 				<div class="subBar">
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'form/xmxxList.do',navTabSearch);">检 索</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'form/gcxxList.do',navTabSearch);">检 索</button></div></div></li>
 					</ul>
 				</div>
 			</div>
