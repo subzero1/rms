@@ -724,18 +724,6 @@ public class Gcgl {
 	     //获取当前月最后一天
 	     Date date  = new  Date();
 	     String last = format.format(date);
-		if(beginjssj ==""){
-			beginjssj=first;
-		}
-		if(endjssj ==""){
-			endjssj=last;
-		}
-		if(beginsjjgsj ==""){
-			beginsjjgsj=first;
-		}
-		if(endsjjgsj ==""){
-			endsjjgsj=last;
-		}
 		if(beginlxsj ==""){
 			beginlxsj=first;
 		}
@@ -877,19 +865,6 @@ public class Gcgl {
      //获取当前月最后一天
      Date date  = new  Date();
      String last = format.format(date);
-	if(beginjssj ==""){
-		beginjssj=first;
-	}
-	if(endjssj ==""){
-		endjssj=last;
-	}
-	if(beginsjjgsj ==""){
-		beginsjjgsj=first;
-	}
-	if(endsjjgsj ==""){
-		endsjjgsj=last;
-	}
-	
 	ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
 	StringBuffer hsql = new StringBuffer();
 	List orderTitleList = new LinkedList(); // 标题列表
