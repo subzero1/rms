@@ -28,11 +28,15 @@
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection"
 		value="${param.orderDirection}" />
-	<input type="hidden" name="jssj" value="${param.jssj }"/>
-	<input type="hidden" name="xmzt" value="${param.xmzt }"/>
+	<input type="hidden" name="xmzt" value="${xmzt }"/>
 	<input type="hidden" name="xmgly" value="${param.xmgly }"/>
 	<input type="hidden" name="ssdq" value="${param.ssdq }"/>
-	<input type="hidden" name="sjjgsj" value="${param.sjjgsj }"/>
+	<input type="hidden" name="beginjssj" value="${beginjssj }"/>
+	<input type="hidden" name="endjssj" value="${endjssj }"/>
+	<input type="hidden" name="beginsjjgsj" value="${beginsjjgsj }"/>
+	<input type="hidden" name="endsjjgsj" value="${endsjjgsj }"/>
+	<input type="hidden" name="beginlxsj" value="${beginlxsj }"/>
+	<input type="hidden" name="endlxsj" value="${endlxsj }"/>
 	<input type="hidden" name="config" value="td01_xmxxList" />
 </form>
 
@@ -48,8 +52,8 @@
 							关键字：
 							<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" />
 								决算时间
-							<input id="jssj" name="jssj" value="${param.jssj}"
-								type="text"  class="date" size="10"/>
+							<input id="beginjssj" name="beginjssj" value="${beginjssj}" type="text"  class="date" size="10"/>
+							至<input id="endjssj" name="endjssj" value="${endjssj}" type="text"  class="date" size="10"/>
 								状态
 							<select id="xmzt" name="xmzt" value="${param.xmzt}">
 							<option value="" >-----------</option>
@@ -62,13 +66,15 @@
 
 							项目经理
 							<netsky:htmlSelect name="xmgly" objectForOption="xmglyList" style="width:92px;" valueForOption="name"  extend=""  extendPrefix="true"  showForOption="name" value="${param.xmgly}" htmlClass="td-select"/>
-							竣工时间
-							<input id="sjjgsj" name="sjjgsj" value="${param.sjjgsj }" class="date" size="10"/>
 						</td>
-
 					</tr>
 				</table>
 				<div class="subBar">
+							竣工时间
+							<input id="beginsjjgsj" name="beginsjjgsj" value="${beginsjjgsj }" class="date" size="10"/>
+							至<input id="endsjjgsj" name="endsjjgsj" value="${endsjjgsj}" type="text"  class="date" size="10"/>
+							立项时间<input id="beginlxsj" name="beginlxsj" value="${beginlxsj }" class="date" size="10"/>
+							至<input id="endlxsj" name="endlxsj" value="${endlxsj}" type="text"  class="date" size="10"/>
 					<ul>
 						<li>
 							<div class="buttonActive">
