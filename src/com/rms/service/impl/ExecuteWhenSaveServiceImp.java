@@ -1,6 +1,7 @@
 package com.rms.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Tz05_thread_queue;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.DateGetUtil;
+import com.netsky.base.utils.StringFormatUtil;
 import com.netsky.base.utils.convertUtil;
 import com.rms.dataObjects.form.Td00_gcxx;
 
@@ -117,6 +120,34 @@ public class ExecuteWhenSaveServiceImp{
 						td00.setDxtzsgdwwc(1L);
 						saveService.save(td00);
 					}
+				}
+			}
+			if(module_id == 102){
+				
+				String y4 = DateGetUtil.getYear() + "";
+				String m2 = StringFormatUtil.getCompleteString(DateGetUtil.getMonth() + "",2);
+				String d2 = StringFormatUtil.getCompleteString(DateGetUtil.getDay() + "",2);
+				String gcbh = "" + y4 + m2 + d2;
+				
+				sql.delete(0, sql.length());
+				sql.append("select gcbh from Td00_gcxx where id = ");
+				sql.append(project_id);
+				List list = queryService.searchList(sql.toString());
+				String bdbh = (String)list.get(0);
+				if(bdbh == null){
+					sql.delete(0, sql.length());
+					sql.append("select max(gcbh) from Td00_gcxx where gcbh like 'LS"+y4+"%' "); 
+					list = queryService.searchList(sql.toString());
+					String max_bdbh = (String)list.get(0);
+					if(max_bdbh == null){
+						gcbh = "LS" + gcbh + "0001";
+					}
+					else{
+						max_bdbh = max_bdbh.substring(max_bdbh.length() - 4,max_bdbh.length());
+						Long tmpSerialCode = new Long(max_bdbh) + 1;
+						gcbh = "LS" + gcbh + StringFormatUtil.getCompleteString(tmpSerialCode.toString(),4);
+					}
+					saveService.updateByHSql("update Td00_gcxx set gcbh = '"+gcbh+"' where id = "+project_id);
 				}
 			}
 		}
