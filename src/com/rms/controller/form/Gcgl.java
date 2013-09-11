@@ -3,7 +3,10 @@ package com.rms.controller.form;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -703,14 +706,42 @@ public class Gcgl {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "asc");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
-		keyword=new String(keyword.getBytes("ISO-8859-1"),"gbk");
-		
-		String jssj = convertUtil.toString(request.getParameter("jssj"));
+		String beginjssj = convertUtil.toString(request.getParameter("beginjssj"));
+		String endjssj = convertUtil.toString(request.getParameter("endjssj"));
+		String beginsjjgsj=convertUtil.toString(request.getParameter("beginsjjgsj"));
+		String endsjjgsj = convertUtil.toString(request.getParameter("endsjjgsj"));
+		String beginlxsj = convertUtil.toString(request.getParameter("beginlxsj"));
+		String endlxsj = convertUtil.toString(request.getParameter("endlxsj"));
 		String xmzt = convertUtil.toString(request.getParameter("xmzt"));
 		String ssdq=convertUtil.toString(request.getParameter("ssdq"));
 		String xmgly=convertUtil.toString(request.getParameter("xmgly"));
-		String sjjgsj=convertUtil.toString(request.getParameter("sjjgsj"));
-
+		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+	     //获取当前月第一天：
+	     Calendar c = Calendar.getInstance();    
+	     c.add(Calendar.MONTH, 0);
+	     c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天 
+	     String first = format.format(c.getTime());
+	     //获取当前月最后一天
+	     Date date  = new  Date();
+	     String last = format.format(date);
+		if(beginjssj ==""){
+			beginjssj=first;
+		}
+		if(endjssj ==""){
+			endjssj=last;
+		}
+		if(beginsjjgsj ==""){
+			beginsjjgsj=first;
+		}
+		if(endsjjgsj ==""){
+			endsjjgsj=last;
+		}
+		if(beginlxsj ==""){
+			beginlxsj=first;
+		}
+		if(endlxsj ==""){
+			endlxsj=last;
+		}
 		hql.append("select x from Td01_xmxx x,Ta01_dept d,Ta03_user u ");
 
 		hql.append("where 1=1 ");
@@ -732,11 +763,8 @@ public class Gcgl {
 			hql.append(keyword); 
 			hql.append("%') ");
 		}
-		if (!jssj.equals("")) {
-			hql.append("and x.jssj=to_date('");
-			hql.append(jssj); 
-			hql.append("','yyyy-mm-dd'");
-			hql.append(") ");
+		if(!"".equals(beginjssj)&&!"".equals(endjssj)){
+			hql.append(" and ( x.jssj between to_date('"+beginjssj+"','yyyy-mm-dd') and to_date('"+endjssj+"','yyyy-mm-dd'))  ");
 		}
 		if (!xmzt.equals("")) {
 			hql.append("and x.xmzt='");
@@ -753,16 +781,17 @@ public class Gcgl {
 			hql.append(xmgly); 
 			hql.append("' ");
 		}
-		if (!sjjgsj.equals("")) {
-			hql.append("and x.sjjgsj=to_date('");
-			hql.append(sjjgsj);
-			hql.append("','yyyy-mm-dd') ");
+		if(!"".equals(beginsjjgsj)&&!"".equals(endsjjgsj)){
+			hql.append(" and ( x.sjjgsj between to_date('"+beginsjjgsj+"','yyyy-mm-dd') and to_date('"+endsjjgsj+"','yyyy-mm-dd'))  ");
+		}
+		if(!"".equals(beginlxsj)&&!"".equals(endlxsj)){
+			hql.append(" and ( x.lxsj between to_date('"+beginlxsj+"','yyyy-mm-dd') and to_date('"+endlxsj+"','yyyy-mm-dd'))  ");
 		}
 		hql.append("order by x.");
 		hql.append(orderField);
 		hql.append(" ");
 		hql.append(orderDirection);
-
+		System.out.println(hql);
 		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		while (ro.next()) {
 			objList.add(ro.get("x"));
@@ -786,6 +815,7 @@ public class Gcgl {
 		managerHql.append(") ");
 		managerHql.append(" and s.name like '%项目管理岗%' ");
 		managerHql.append("order by u.name asc");
+		
 		List xmglyList=queryService.searchList(managerHql.toString());
 		
 		modelMap.put("keyword", keyword);
@@ -793,10 +823,14 @@ public class Gcgl {
 		modelMap.put("xmxxList", objList);
 		modelMap.put("xmglyList", xmglyList);
 		modelMap.put("xmgly", xmgly);
-		modelMap.put("jssj", jssj);
+//		modelMap.put("beginjssj", beginjssj);
+//		modelMap.put("endjssj", endjssj);
 		modelMap.put("xmzt", xmzt);
 		modelMap.put("ssdq", ssdq);
-		modelMap.put("sjjgsj", sjjgsj);
+//		modelMap.put("beginsjjgsj", beginsjjgsj);
+//		modelMap.put("endsjjgsj", endsjjgsj);
+		modelMap.put("beginlxsj", beginlxsj);
+		modelMap.put("endlxsj", endlxsj);
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("totalCount", totalCount);
@@ -823,14 +857,38 @@ public class Gcgl {
 	String orderDirection = convertUtil.toString(request
 			.getParameter("orderDirection"), "asc");
 	String keyword = convertUtil.toString(request.getParameter("keyword"));
-	keyword=new String(keyword.getBytes("ISO-8859-1"),"gbk");
-	
-	String jssj = convertUtil.toString(request.getParameter("jssj"));
 	String xmzt = convertUtil.toString(request.getParameter("xmzt"));
 	String ssdq=convertUtil.toString(request.getParameter("ssdq"));
 	String xmgly=convertUtil.toString(request.getParameter("xmgly"));
-	String sjjgsj=convertUtil.toString(request.getParameter("sjjgsj"));
+	String beginjssj = convertUtil.toString(request.getParameter("beginjssj"));
+	String endjssj = convertUtil.toString(request.getParameter("endjssj"));
+	String beginsjjgsj=convertUtil.toString(request.getParameter("beginsjjgsj"));
+	String endsjjgsj = convertUtil.toString(request.getParameter("endsjjgsj"));
+	String beginlxsj = convertUtil.toString(request.getParameter("beginlxsj"));
+	String endlxsj = convertUtil.toString(request.getParameter("endlxsj"));
 	String config = convertUtil.toString(request.getParameter("config"));
+	
+	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+     //获取当前月第一天：
+     Calendar c = Calendar.getInstance();    
+     c.add(Calendar.MONTH, 0);
+     c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天 
+     String first = format.format(c.getTime());
+     //获取当前月最后一天
+     Date date  = new  Date();
+     String last = format.format(date);
+	if(beginjssj ==""){
+		beginjssj=first;
+	}
+	if(endjssj ==""){
+		endjssj=last;
+	}
+	if(beginsjjgsj ==""){
+		beginsjjgsj=first;
+	}
+	if(endsjjgsj ==""){
+		endsjjgsj=last;
+	}
 	
 	ConfigXML configXML = new ConfigXMLImpl();// 读取mbk配置文档
 	StringBuffer hsql = new StringBuffer();
@@ -868,11 +926,8 @@ public class Gcgl {
 		hql.append(keyword); 
 		hql.append("%') ");
 	}
-	if (!jssj.equals("")) {
-		hql.append("and x.jssj=to_date('");
-		hql.append(jssj); 
-		hql.append("','yyyy-mm-dd'");
-		hql.append(") ");
+	if(!"".equals(beginjssj)&&!"".equals(endjssj)){
+		hql.append(" and ( x.jssj between to_date('"+beginjssj+"','yyyy-mm-dd') and to_date('"+endjssj+"','yyyy-mm-dd'))  ");
 	}
 	if (!xmzt.equals("")) {
 		hql.append("and x.xmzt='");
@@ -889,10 +944,11 @@ public class Gcgl {
 		hql.append(xmgly); 
 		hql.append("' ");
 	}
-	if (!sjjgsj.equals("")) {
-		hql.append("and x.sjjgsj=to_date('");
-		hql.append(sjjgsj);
-		hql.append("','yyyy-mm-dd') ");
+	if(!"".equals(beginsjjgsj)&&!"".equals(endsjjgsj)){
+		hql.append(" and ( x.sjjgsj between to_date('"+beginsjjgsj+"','yyyy-mm-dd') and to_date('"+endsjjgsj+"','yyyy-mm-dd'))  ");
+	}
+	if(!"".equals(beginlxsj)&&!"".equals(endlxsj)){
+		hql.append(" and ( x.lxsj between to_date('"+beginlxsj+"','yyyy-mm-dd') and to_date('"+endlxsj+"','yyyy-mm-dd'))  ");
 	}
 	hql.append("order by x.");
 	hql.append(orderField);
