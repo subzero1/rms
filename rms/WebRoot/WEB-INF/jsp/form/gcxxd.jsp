@@ -63,7 +63,7 @@ $(function(){
 	</p>
 	<p>
 		<label>工程编号：</label>
-		<input type="text" name="Td00_gcxx.GCBH" value="${td00_gcxx.gcbh}" style="width:120px;"/>
+		<input type="text" name="Td00_gcxx.GCBH" readOnly value="${td00_gcxx.gcbh}" style="width:120px;"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
