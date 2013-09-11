@@ -779,7 +779,6 @@ public class Gcgl {
 		hql.append(orderField);
 		hql.append(" ");
 		hql.append(orderDirection);
-		System.out.println(hql);
 		ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 		while (ro.next()) {
 			objList.add(ro.get("x"));
@@ -811,12 +810,12 @@ public class Gcgl {
 		modelMap.put("xmxxList", objList);
 		modelMap.put("xmglyList", xmglyList);
 		modelMap.put("xmgly", xmgly);
-//		modelMap.put("beginjssj", beginjssj);
-//		modelMap.put("endjssj", endjssj);
+		modelMap.put("beginjssj", beginjssj);
+		modelMap.put("endjssj", endjssj);
 		modelMap.put("xmzt", xmzt);
 		modelMap.put("ssdq", ssdq);
-//		modelMap.put("beginsjjgsj", beginsjjgsj);
-//		modelMap.put("endsjjgsj", endsjjgsj);
+		modelMap.put("beginsjjgsj", beginsjjgsj);
+		modelMap.put("endsjjgsj", endsjjgsj);
 		modelMap.put("beginlxsj", beginlxsj);
 		modelMap.put("endlxsj", endlxsj);
 		modelMap.put("numPerPage", numPerPage);
@@ -929,7 +928,6 @@ public class Gcgl {
 	hql.append(orderField);
 	hql.append(" ");
 	hql.append(orderDirection);
-
 	orderDocList = queryService.searchList(hql.toString());
 	sheetList.add(orderTitleList);
 	sheetList.add(orderDocList);
