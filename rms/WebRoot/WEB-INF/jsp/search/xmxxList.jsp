@@ -54,7 +54,7 @@
 								决算时间：
 							<input id="beginjssj" name="beginjssj" value="${beginjssj}" type="text"  class="date" size="10"/>
 							至<input id="endjssj" name="endjssj" value="${endjssj}" type="text"  class="date" size="10"/>&nbsp;&nbsp;&nbsp;&nbsp;
-								状态:
+								状态：
 							<select id="xmzt" name="xmzt" value="${param.xmzt}">
 							<option value="" >-----------</option>
 							<option value="立项完成" <c:if test="${param.xmzt=='立项完成'}">selected</c:if>>立项完成</option>
