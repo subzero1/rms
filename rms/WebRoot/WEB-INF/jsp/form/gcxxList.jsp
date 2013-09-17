@@ -59,6 +59,7 @@
 					<th style="width: 70px;" orderField="gclb">工程类别</th>
 					<th style="width: 200px;" orderField="sgdw">施工单位</th>
 					<th style="width: 150px;" orderField="xqbm">需求部门</th>
+					<th style="width: 80px;" orderField="xmgly">项目管理员</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -76,11 +77,13 @@
 						<td>${obj.gclb }</td>
 						<td>${obj.sgdw }</td>
 						<td>${obj.xqbm }</td>
+						<td>${obj.xmgly }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
