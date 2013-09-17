@@ -325,6 +325,134 @@ public class Gcgl {
 	}
 
 	/**
+	 * 项目信息列表
+	 */
+	/**
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/form/gcxxList.do")
+	public ModelAndView gcxxList(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+		ModelMap modelMap = new ModelMap();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "desc";
+		}
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+
+		String limit = "";
+		Long node_id = -1L;
+		
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		String user_name = user.getName();
+		String user_dept = user.getDept_name();
+		String user_zy = user.getZys();
+
+		// 查询条件
+		String keyword = convertUtil.toString(request.getParameter("keyword"));
+		StringBuffer hsql = new StringBuffer();
+
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		String login_id = convertUtil.toString(user.getLogin_id());
+		if (rolesMap.get("100107") != null) {
+			limit = "htgly";
+			node_id = 10205L;
+		}
+		else if(login_id.substring(0,1).equals("7")){
+			limit = "sjdw";
+			node_id = 10202L;
+		}
+		else if(login_id.substring(0,1).equals("8")){
+			limit = "sgdw";
+			node_id = 10203L;
+		}
+		else if(login_id.substring(0,1).equals("9")){
+			limit = "jldw";
+			node_id = 10204L;
+		}
+		else {
+			limit = "xmgly";
+			node_id = 10201L;
+		}
+
+		hsql.delete(0, hsql.length());
+		hsql.append("select gcxx from Td00_gcxx gcxx where not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
+		if(limit.equals("xmgly")){
+			hsql.append("and xmgly = '"+user_name+"' ");
+		}
+		else if(limit.equals("sjdw")){
+			hsql.append("and sjdw = '" + user_dept + "' ");
+		}
+		else if(limit.equals("sgdw")){
+			hsql.append("and sgdw = '" + user_dept + "' and gclb in (" + user_zy + ") ");
+		}
+		else if(limit.equals("jldw")){
+			hsql.append("and jldw = '" + user_dept + "' ");
+		}
+		else{//合同管理员
+			hsql.append(" and xmgly in(select name from Ta03_user where send_htgly = 1)  ");
+		}
+
+		// 关键字
+		if (!keyword.equals("")) {
+			hsql.append(" and (gcmc like '%" + keyword + "%' or gcbh like '%"
+					+ keyword + "%' or xmgly like '%"+keyword+"%')");
+		}
+
+		// order排序
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,numPerPage);
+
+		// 获取结果集
+		List<Td00_gcxx> gcxxList = new ArrayList<Td00_gcxx>();
+		
+		while (ro.next()) {
+			Td00_gcxx td00 = (Td00_gcxx) ro.get("gcxx");
+			gcxxList.add(td00);
+		}
+
+		hsql.delete(0, hsql.length());
+		hsql.append("from Ta11_sta_user ta11,Ta13_sta_node ta13 ");
+		hsql.append("where ta11.station_id = ta13.station_id ");
+		hsql.append("and ta13.node_id = 10101 ");
+		hsql.append("and ta11.user_id =");
+		hsql.append(user.getId());
+		List nodeList = queryService.searchList(hsql.toString());
+		if (nodeList != null && nodeList.size() > 0) {
+			node_id = 10201L;
+		}
+
+		modelMap.put("node_id", node_id);
+		modelMap.put("limit", limit);
+		modelMap.put("gcxxList", gcxxList);
+
+		// 获取总条数和总页数
+		totalPages = ro.getTotalPages();
+		totalCount = ro.getTotalRows();
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+
+		return new ModelAndView("/WEB-INF/jsp/form/gcxxList.jsp", modelMap);
+	}
+	
+	/**
 	 * 工程信息列表
 	 */
 
@@ -336,8 +464,8 @@ public class Gcgl {
 	 * @return ModelAndView
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/form/gcxxList.do")
-	public ModelAndView gcxxList(HttpServletRequest request,
+	@RequestMapping("/form/gcxxList2.do")
+	public ModelAndView gcxxList2(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
 		// 分页

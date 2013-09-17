@@ -219,7 +219,7 @@ public class AuxFunction {
 		try {
 			// 获取岗位的对象
 			StringBuffer sql = new StringBuffer();
-			String ids = "";
+			String ids = "-1";
 			// 对配置的角色进行保存
 			if (groups != null) {
 				for (int i = 0; i < groups.length; i++) {
