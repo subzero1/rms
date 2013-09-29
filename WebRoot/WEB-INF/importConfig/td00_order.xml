@@ -90,6 +90,12 @@
 				<name>是否超期</name>
 				<colName>是否超期</colName>
 			</column>  
+			<column>
+				<columnName>XMGLY</columnName>
+				<index />
+				<name>项目管理员</name>
+				<colName>项目管理员</colName>
+			</column>  
 		</columns>
 	</tableInfo>
 </excel>
