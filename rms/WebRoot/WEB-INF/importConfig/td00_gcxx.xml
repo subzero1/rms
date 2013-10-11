@@ -92,6 +92,12 @@
 				<name>订单编号</name>
 				<colName>订单编号</colName>
 			</column> 
+			<column>
+				<columnName>XMGLY</columnName>
+				<index />
+				<name>项目管理员</name>
+				<colName>项目管理员</colName>
+			</column>
 		</columns>
 	</tableInfo>
 </excel>
