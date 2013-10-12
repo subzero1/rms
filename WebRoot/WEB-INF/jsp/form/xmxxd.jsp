@@ -98,7 +98,8 @@ $(function(){
 			dataType:'html',
 			async:false,
 			success:function(msg){ 
-			  if(msg.indexOf('[1]') != -1){
+			  //if(msg.indexOf('[1]') != -1){
+			  if(msg=='[1]'){
 			  	$sgdw.attr("href","sgpd/sgpfCompany.do?xm_id="+param1);
 			  }else {
 			    $sgdw.attr("href","sgpd.do?xm_id="+param1);

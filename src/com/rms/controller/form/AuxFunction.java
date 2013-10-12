@@ -135,6 +135,8 @@ public class AuxFunction {
 		String forwardUrl = "-1";
 
 		try {
+			Td01_xmxx td01 = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, xm_id);
+			String sgdw = convertUtil.toString(td01.getSgdw());
 			// 获取岗位的对象
 			StringBuffer sql = new StringBuffer();
 			sql.delete(0, sql.length());
@@ -152,8 +154,17 @@ public class AuxFunction {
 					sql.append(groups[i]);
 					saveService.updateByHSql(sql.toString());
 				}
+				
+				sql.delete(0, sql.length());
+				sql.append("update Td00_gcxx set sgdw = '");
+				sql.append(sgdw);
+				sql.append("' where sgdw is null and xm_id = ");
+				sql.append(xm_id);
+				saveService.updateByHSql(sql.toString());
+				
 			}
 
+			
 			/*
 			 * 同步预算金额及工日
 			 */
@@ -171,8 +182,7 @@ public class AuxFunction {
 			sql.append(xm_id);
 			ResultObject ro = queryService.search(sql.toString());
 			if (ro.next()) {
-				Td01_xmxx td01 = (Td01_xmxx) queryService.searchById(
-						Td01_xmxx.class, xm_id);
+				
 				td01.setYs_je(convertUtil.toDouble(ro.get("ys_je"), 0d));
 				td01.setYs_jaf(convertUtil.toDouble(ro.get("ys_jaf"), 0d));
 				td01.setYs_clf(convertUtil.toDouble(ro.get("ys_clf"), 0d));
