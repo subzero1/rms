@@ -1094,16 +1094,29 @@ public class AuxFunction {
 		Map splbMap = new HashMap();
 		splbMap.put("gghte", "更改合同额");
 		splbMap.put("xmpg", "项目派工");
+		splbMap.put("gcpg", "工程派工");
 
 		/*
 		 * 如果没有得到外协单位，从项目信息中重新获得
 		 */
-		if(sys_wxdw_id == -1){
+		if(sys_wxdw_id == -1 && module_id==112){
 			sql.delete(0, sql.length());
 			sql.append("select tf01.id as sgdw_id ");
 			sql.append("from Td01_xmxx td01,Tf01_wxdw tf01 ");
 			sql.append("where td01.sgdw = tf01.mc ");
 			sql.append("and td01.id = ");
+			sql.append(project_id);
+			ResultObject ro = queryService.search(sql.toString());
+			if(ro.next()){
+				sys_wxdw_id = convertUtil.toLong(ro.get("sgdw_id"));
+			}
+		}
+		else if(sys_wxdw_id == -1 && module_id==113){
+			sql.delete(0, sql.length());
+			sql.append("select tf01.id as sgdw_id ");
+			sql.append("from Td00_gcxx td00,Tf01_wxdw tf01 ");
+			sql.append("where td00.sgdw = tf01.mc ");
+			sql.append("and td00.id = ");
 			sql.append(project_id);
 			ResultObject ro = queryService.search(sql.toString());
 			if(ro.next()){
@@ -2320,7 +2333,7 @@ public class AuxFunction {
 				break;
 			}
 		}
-		if (result == null) {
+		if (result == null && objectsList.size() > 0) {
 			result = (Tf01_wxdw) objectsList.get(0)[0];
 		}
 		return allList;
