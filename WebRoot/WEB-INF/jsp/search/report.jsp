@@ -16,9 +16,14 @@ function mainReportExport(){
 	var butt = $("#" + module_id + " button[name=reportToExcel]" , $("#mainReportCondition"));
 	var y_way = $("#" + module_id + " #y_way tr" , $("#mainReportCondition"));
 	var x_way = $("#" + module_id + " #x_way tr" , $("#mainReportCondition"));
-	if(butt.size() > 0 && (y_way.size()>2 || x_way.size()>1))
+	if(butt.size() > 0 && (y_way.size()>2 || x_way.size()>1)){
+		//选中X坐标
+		$("option",x_way).each(function(){
+			if($(this).val()=="X") $(this).attr("selected",true);
+		});
+		//执行统计
 		butt[0].click();
-	else
+	}else
 		alertMsg.warn("没有可输出信息!");
 }
 

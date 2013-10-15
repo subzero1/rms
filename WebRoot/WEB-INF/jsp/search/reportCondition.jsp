@@ -11,6 +11,11 @@ $(function(){
 	var condition = $("#" + module_id , $("#mainReportCondition"));
 	if(condition.length>0 && condition.html()!="") $("#reportConditionDiv form").replaceWith(condition.find("form"));
 	else	$("#mainReportCondition").empty();
+	
+	$("#x_way option").each(function(){
+		if($(this).val()=="X") $(this).attr("selected",true);
+	});
+	
 	$("#template_sel",$.pdialog.getCurrent()).change();
 });
 
