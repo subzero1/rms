@@ -202,8 +202,7 @@ public class AuxFunction {
 			}
 			
 			response.getWriter().print(
-					"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"autoform101"
-							+ xm_id
+					"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"xmxx"
 							+ "\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			log.error("saveXzgcForDblx.do[com.rms.controller.form.AuxFunction]"
