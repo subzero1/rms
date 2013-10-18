@@ -136,7 +136,7 @@ public class AuxFunction {
 
 		try {
 			Td01_xmxx td01 = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, xm_id);
-			String sgdw = convertUtil.toString(td01.getSgdw());
+			
 			// 获取岗位的对象
 			StringBuffer sql = new StringBuffer();
 			sql.delete(0, sql.length());
@@ -156,14 +156,18 @@ public class AuxFunction {
 				}
 				
 				sql.delete(0, sql.length());
-				sql.append("update Td00_gcxx set sgdw = '");
-				sql.append(sgdw);
-				sql.append("' where sgdw is null and xm_id = ");
+				sql.append("select distinct sgdw from  Td00_gcxx ");
+				sql.append(" where sgdw is not null and xm_id = ");
 				sql.append(xm_id);
-				saveService.updateByHSql(sql.toString());
-				
+				List t_list = queryService.searchList(sql.toString());
+				if(t_list != null && t_list.size() == 1){
+					String sgdw = convertUtil.toString(t_list.get(0));
+					if(!sgdw.equals("")){
+						td01.setSgdw(sgdw);
+						saveService.save(td01);
+					}
+				}
 			}
-
 			
 			/*
 			 * 同步预算金额及工日
@@ -182,7 +186,6 @@ public class AuxFunction {
 			sql.append(xm_id);
 			ResultObject ro = queryService.search(sql.toString());
 			if (ro.next()) {
-				
 				td01.setYs_je(convertUtil.toDouble(ro.get("ys_je"), 0d));
 				td01.setYs_jaf(convertUtil.toDouble(ro.get("ys_jaf"), 0d));
 				td01.setYs_clf(convertUtil.toDouble(ro.get("ys_clf"), 0d));
@@ -197,7 +200,7 @@ public class AuxFunction {
 				td01.setYs_qtf(convertUtil.toDouble(ro.get("ys_qtf"), 0d));
 				saveService.save(td01);
 			}
-
+			
 			response.getWriter().print(
 					"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"autoform101"
 							+ xm_id
