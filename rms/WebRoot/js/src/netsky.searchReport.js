@@ -158,11 +158,11 @@ function saveTempCallback(json){
 			
 		} else if("update" == json.act) {
 			//更新模板
-			$("#template_sel option[value="+ json.template_id +"]").text(json.template_name);
+			$("#template_sel").find("option[value="+ json.template_id +"]").text(json.template_name);
 			
 		}else{
 			//删除模板
-			$("#template_sel option:selected").remove();
+			$("#template_sel").find("option:selected").remove();
 			$("#template_name").val("");
 		}
 	}
@@ -173,7 +173,7 @@ function saveTempCallback(json){
  * @param {Object} callback
  */
 function changeTemplate(callback){
-	var template_id = $("#template_sel option:selected");
+	var template_id = $("#template_sel").find("option:selected");
 	$("#template_name").val(template_id.text());
 	if(template_id.val() != ""){
 		$.ajax({
@@ -186,7 +186,7 @@ function changeTemplate(callback){
 			error: DWZ.ajaxError
 		});
 	}else{
-		$("#template_sel option:selected").text("");
+		$("#template_sel").find("option:selected").text("");
 	}
 }
 
@@ -219,7 +219,7 @@ function reportCtCallback(xml){
 			//y坐标
 			var temp_v = $(this).find("value").text().split(",");
 			$(temp_v).each(function(){
-				$("#statisticList option[value="+this+"]").attr("selected",true);
+				$("#statisticList").find("option[value="+this+"]").attr("selected",true);
 				selectStatistic($("#statisticList"),"y_way");
 			});
 			
@@ -227,7 +227,7 @@ function reportCtCallback(xml){
 			//x坐标
 			var temp_v = $(this).find("value").text().split(",");
 			$(temp_v).each(function(){
-				$("#statisticList option[value="+this+"]").attr("selected",true);
+				$("#statisticList").find("option[value="+this+"]").attr("selected",true);
 				selectStatistic($("#statisticList"),"x_way");
 			});
 		
@@ -278,9 +278,9 @@ function searchCtCallback(xml){
 	}
 	
 	//初始化数据
-	$("#conditionForm #fields_select option").each(function(){$(this).attr("selected",true);});
+	$("#conditionForm #fields_select").find("option").each(function(){$(this).attr("selected",true);});
 	moveAct('fields_select','fields');
-	$("#conditionForm #fields option").each(function(){$(this).attr("selected",false);});
+	$("#conditionForm #fields").find("option").each(function(){$(this).attr("selected",false);});
 		
 	//设置模板信息
 	$(xml).find("template").each(function(){
@@ -315,7 +315,7 @@ function searchCtCallback(xml){
 			if($(this).find("value").text() != ""){
 				var temp_v = $(this).find("value").text().split(",");
 				$(temp_v).each(function(){
-					$("#conditionForm #fields option[value="+this+"]").attr("selected",true);
+					$("#conditionForm #fields").find("option[value="+this+"]").attr("selected",true);
 					moveAct('fields','fields_select');
 				});
 			}
