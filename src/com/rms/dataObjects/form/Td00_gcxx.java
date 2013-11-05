@@ -1982,4 +1982,14 @@ public class Td00_gcxx implements Serializable {
 	public void setDxtzsgdwwc(Long dxtzsgdwwc) {
 		this.dxtzsgdwwc = dxtzsgdwwc;
 	}
+	
+	private Double sghtje;
+
+	public Double getSghtje() {
+		return sghtje;
+	}
+
+	public void setSghtje(Double sghtje) {
+		this.sghtje = sghtje;
+	}
 }

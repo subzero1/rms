@@ -217,6 +217,14 @@
             insert="true"
             column="ys_jaf"
         />
+        
+        <property
+            name="sghtje"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sghtje"
+        />
 
         <property
             name="ys_clf"
