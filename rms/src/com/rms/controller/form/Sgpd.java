@@ -109,18 +109,31 @@ public class Sgpd {
 		}
 		// 判断计划份额占比与实际份额占比
 		// 相关地区相关工程类别的所有工程的总工日 zgr 默认为0
-		// 黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.ys_sgf 为计算依据
+		// 黄钢强修改：占比暂由td00.(ys_pggr + ys_jggr)改td01.sghtje+td00.sghtje(xm_id is null) 为计算依据
 		double zgr = convertUtil
 				.toDouble(
 						dao
 								.search(
-										"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw is not null and ssdq='"
+										"select sum(sghtje) from Td01_xmxx where sgdw is not null and ssdq='"
 												+ dq
 												+ "' and p_gclb='"
 												+ t_gclb
 												+ "' and to_char(lxsj,'yyyy') = '"
 												+ ssnd
 												+ "'").get(0), 0D);
+		
+		zgr += convertUtil
+			.toDouble(
+					dao
+						.search(
+								"select sum(sghtje) from Td00_gcxx where xm_id is null and sgdw is not null and ssdq='"
+										+ dq
+										+ "' and p_gclb='"
+										+ t_gclb
+										+ "' and to_char(sgpfsj,'yyyy') = '"
+										+ ssnd
+										+ "'").get(0), 0D);
+		
 		// flag:未通过检测的个数
 		int flag = 0;
 		// passedList 通过条件的合作单位 暂存入该LIST
@@ -131,9 +144,13 @@ public class Sgpd {
 			Double fezb = 0D;
 			if (zgr != 0) {
 				double gr = convertUtil.toDouble(dao.search(
-						"select sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
+						"select sum(sghtje) from Td01_xmxx where sgdw='"
 								+ tf01.getMc() + "' and ssdq='" + dq + "' and p_gclb='" + t_gclb
 								+ "' and to_char(lxsj,'yyyy') = '" + ssnd + "'").get(0), 0D);
+				gr += convertUtil.toDouble(dao.search(
+						"select sum(sghtje) from Td00_gcxx where xm_id is null and sgdw='"
+								+ tf01.getMc() + "' and ssdq='" + dq + "' and p_gclb='" + t_gclb
+								+ "' and to_char(sgpfsj,'yyyy') = '" + ssnd + "'").get(0), 0D);
 				fezb = gr / zgr;
 			}
 			// tf05.getV1():预定份额占比
@@ -159,6 +176,9 @@ public class Sgpd {
 			// 在建工程数
 			Long zjgcs = convertUtil.toLong(dao.search(
 					"select count(*) from Td01_xmxx where sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
+							+ "' and sjjgsj is null").get(0));
+			zjgcs += convertUtil.toLong(dao.search(
+					"select count(*) from Td00_gcxx where xm_id is null and sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
 							+ "' and sjjgsj is null").get(0));
 			// 最大工程数
 			Double zdgcs = 0D;
