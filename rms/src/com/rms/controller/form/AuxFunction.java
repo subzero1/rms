@@ -174,13 +174,10 @@ public class AuxFunction {
 			 */
 			sql.delete(0, sql.length());
 			sql.append("select ");
-			sql
-					.append("sum(ys_je) as ys_je,sum(ys_jaf) as ys_jaf,sum(ys_clf) as ys_clf,sum(ys_rgf) as ys_rgf,");
-			sql
-					.append("sum(ys_jggr) as ys_jggr,sum(ys_pggr) as ys_pggr,sum(ys_sbf) as ys_sbf,");
-			sql
-					.append("sum(ys_jxf) as ys_jxf,sum(ys_ybf) as ys_ybf,sum(ys_sjf) as ys_sjf,");
-			sql.append("sum(ys_jlf) as ys_jlf,sum(ys_qtf) as ys_qtf ");
+			sql.append("sum(ys_je) as ys_je,sum(ys_jaf) as ys_jaf,sum(ys_clf) as ys_clf,sum(ys_rgf) as ys_rgf,");
+			sql.append("sum(ys_jggr) as ys_jggr,sum(ys_pggr) as ys_pggr,sum(ys_sbf) as ys_sbf,");
+			sql.append("sum(ys_jxf) as ys_jxf,sum(ys_ybf) as ys_ybf,sum(ys_sjf) as ys_sjf,");
+			sql.append("sum(ys_jlf) as ys_jlf,sum(ys_qtf) as ys_qtf,sum(sghtje) as sghtje ");
 			sql.append("from Td00_gcxx ");
 			sql.append("where xm_id = ");
 			sql.append(xm_id);
@@ -198,6 +195,7 @@ public class AuxFunction {
 				td01.setYs_sjf(convertUtil.toDouble(ro.get("ys_sjf"), 0d));
 				td01.setYs_jlf(convertUtil.toDouble(ro.get("ys_jlf"), 0d));
 				td01.setYs_qtf(convertUtil.toDouble(ro.get("ys_qtf"), 0d));
+				td01.setSghtje(convertUtil.toDouble(ro.get("sghtje"), 0d));
 				saveService.save(td01);
 			}
 			
