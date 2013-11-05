@@ -25,6 +25,10 @@
 					<label>扩展标识：</label>
 					<input type="text" name="Tc01_property.FLAG" value="${property_type.flag}"  style="width:146px;"/>
 				</p>
+				<p>
+					<label>上级类别：</label>
+					<input type="text" name="Tc01_property.EXT_COL" value="${property_type.ext_col}"  style="width:146px;"/>
+				</p>
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">
 				【注】：属性分类系统定制；<br>

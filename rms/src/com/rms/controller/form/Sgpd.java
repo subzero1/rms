@@ -490,8 +490,12 @@ public class Sgpd {
 		PrintWriter out = response.getWriter();
 		String projectFlag = null;
 		String name = convertUtil.toString(request.getParameter("name"));
-		hql.append("select p.flag from Tc01_property p where type='工程类别' ");
-		hql.append("and p.name='");
+		hql.append("select p2.flag ");
+		hql.append("from Tc01_property p1,Tc01_property p2 ");
+		hql.append("where p1.type='工程类别' ");
+		hql.append("and p2.type='工程类别' ");
+		hql.append("and p2.name = p1.ext_col ");
+		hql.append("and p1.name='");
 		hql.append(name);
 		hql.append("' ");
 		if (!(name.equals("") || name == null)) {
