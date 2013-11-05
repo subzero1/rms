@@ -18,17 +18,19 @@
 				</p>
 				<p>
 					<label>属性分类：</label>
-					<dms:htmlSelect name="Tc01_property.TYPE" objectForOption="sxfl" showForOption="" valueForOption=""  value="${property_type.type}" />
+					<dms:htmlSelect name="Tc01_property.TYPE" onChange="javascript:selectType(this)" objectForOption="sxfl" showForOption="" valueForOption=""  value="${property_type.type}" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>扩展标识：</label>
 					<input type="text" name="Tc01_property.FLAG" value="${property_type.flag}"  style="width:146px;"/>
 				</p>
-				<p>
+				<c:if test="${property_type.type=='工程类别'}">
+				<p id="id1">
 					<label>上级类别：</label>
-					<input type="text" name="Tc01_property.EXT_COL" value="${property_type.ext_col}"  style="width:146px;"/>
+					<input type="text" id="ext_col" name="Tc01_property.EXT_COL" value="${property_type.ext_col}"  style="width:100px;"/>
 				</p>
+				</c:if>
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">
 				【注】：属性分类系统定制；<br>
@@ -50,3 +52,15 @@
 		</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function selectType(obj){
+			if(obj.value=='工程类别'){
+				$("#id1").show();
+				//$("#ext_col").attr("class","required");
+			}
+			else{
+				$("#id1").hide();
+			}	
+		}
+
+	</script>
