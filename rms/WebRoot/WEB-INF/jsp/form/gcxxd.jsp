@@ -145,6 +145,11 @@ $(function(){
 		<input type="text"  name="Td00_gcxx.JLRJTBZQ" value="${td00_gcxx.jlrjtbzq}" style="width:115px;"/>
 		<span>（天）</span>
 	</p>
+	<p>
+		<label>施工合同额：</label>
+		<input type="text"  name="Td00_gcxx.SGHTJE" value="${td00_gcxx.sghtje}" style="width:120px;"/>
+	
+	</p>
 	<div style="height:0px;"></div>
 	<p>
 		<label>设计派发时间：</label>
