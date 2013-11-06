@@ -64,15 +64,13 @@ function searchListExport(){
 				<tr>
 					<th style="width:50px;"></th>
 					<th orderField="xmmc">项目名称</th>
-					<th style="width: 120px;" orderField="xmbh">项目编号</th>
-					<th style="width: 65px;" orderField="ssdq">所属地区</th>
-					<th style="width: 65px;" orderField="gclb">工程类别</th>
-					<th style="width: 200px;" orderField="sgdw">施工单位</th>
+					<th style="width: 60px;" orderField="xmbh">项目编号</th>
+					<th style="width: 60px;" orderField="ssdq">所属地区</th>
+					<th style="width: 60px;" orderField="gclb">工程类别</th>
+					<th style="width: 180px;" orderField="sgdw">施工单位</th>
 					<th style="width: 140px;" orderField="sghtbh">施工合同编号</th>
-					<th style="width: 70px;" orderField="sghtje">施工合同金额</th>
-					<th style="width: 70px;" orderField="xmzt">项目状态</th>
+					<th style="width: 60px;" orderField="xmzt">项目状态</th>
 					<th style="width: 70px;" orderField="xmgly">项目管理员</th>
-					<th style="width: 70px;" orderField="lxje">立项金额</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -90,17 +88,13 @@ function searchListExport(){
 						<td>${obj.gclb }</td>
 						<td>${obj.sgdw }</td>
 						<td>${obj.sghtbh }</td>
-						<td>${obj.sghtje }</td>
 						<td>${obj.xmzt }</td>
 						<td>${obj.xmgly }</td>
-						<td>${obj.lxje }</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
-						<td></td>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
