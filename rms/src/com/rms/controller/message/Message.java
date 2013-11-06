@@ -262,7 +262,26 @@ public class Message {
 			HSql.append(message_id);
 			ResultObject rs = queryService.search(HSql.toString());
 			if (rs.next()) {
+				/*
+				 * 获得接收人
+				 */
 				Map<String, Object> mo = rs.getMap();
+				HSql.delete(0, HSql.length());
+				HSql.append("select reader_name ");
+				HSql.append("from Te11_message_receiver ");
+				HSql.append("where msg_id =");
+				HSql.append(message_id);
+				ResultObject ro = queryService.search(HSql.toString());
+				String receiver = "";
+				while(ro.next()){
+					receiver += ro.get("reader_name") + "，";
+				}
+				if(receiver .length() > 0){
+					receiver = receiver.substring(0,receiver.length() - 1);
+				}
+				mo.put("receiver", receiver);
+				
+				
 				modelMap.put("singlemessage", mo);
 				if (Integer.parseInt(mo.get("te04.fujian_flag").toString()) > 0) {
 					QueryBuilder queryBuilder = new HibernateQueryBuilder(Te01_slave.class);

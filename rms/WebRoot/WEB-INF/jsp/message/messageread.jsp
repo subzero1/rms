@@ -62,17 +62,21 @@
 					<c:when test="${messageState == 3}">
 						<tr>
 							<th>收件人：</th>
-							<td >${singlemessage["te04.reader_name"]}</td>
+							<td class="t-left" colspan="3">${singlemessage["receiver"]}</td>
+						</tr>
+						<tr>
 							<th >发送时间：</th>
-							<td class="t-left"><fmt:formatDate value="${singlemessage['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
+							<td class="t-left" colspan="3"><fmt:formatDate value="${singlemessage['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
 							<th>收件人：</th>
-							<td class="t-left">${singlemessage["te04.reader_name"]}</td>
+							<td class="t-left" colspan="3">${singlemessage["receiver"]}</td>
+						</tr>
+						<tr>
 							<th >发送时间：</th>
-							<td class="t-left"><fmt:formatDate value="${singlemessage['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
+							<td class="t-left" colspan="3"><fmt:formatDate value="${singlemessage['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
