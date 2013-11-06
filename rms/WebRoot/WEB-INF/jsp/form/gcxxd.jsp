@@ -6,6 +6,8 @@
 
 <script type="text/javascript">
 $(function(){
+	   		var $Td00_gcxx_GCLB=$("select[name='Td00_gcxx\.GCLB']");
+			var $Td00_gcxx_ID=$("input[name='Td00_gcxx\.ID']");
 	   		$("#zydl_select",navTab.getCurrentPanel()).cascade({
 				childSelect:$("#zyxx_select",navTab.getCurrentPanel()),
 				tableName:'Tc04_zyxx',
@@ -17,6 +19,11 @@ $(function(){
 								pattern:'[mc]',
 								mc:'mc'
 				}
+			});	
+			
+			checkProject($Td00_gcxx_GCLB.val(),$Td00_gcxx_ID.val());
+			$Td00_gcxx_GCLB.change(function(){
+				checkProject($(this).val(),$Td00_gcxx_ID.val()); 
 			});	
 	   	});
 	   	
@@ -41,6 +48,25 @@ $(function(){
 	}
 	else{
 		$("#BG_JE").val(bg_je);
+	}
+	
+	function checkProject(param0,param1){
+		var $sgdw=$("#sgdw");
+		$.ajax({
+			type:'post',
+			url:'sgdw/checkProject.do',
+			data:{name:param0},
+			dataType:'html',
+			async:false,
+			success:function(msg){ 
+			  if(msg.indexOf('[3]') == -1){
+			  	$sgdw.attr("href","sgpd/sgpfCompany.do?xm_id="+param1);
+			  }else {
+			    $sgdw.attr("href","sgpd.do?project_id="+param1);
+			  }
+			}
+			
+		});
 	}
 </script>
 
@@ -116,7 +142,7 @@ $(function(){
 		<label>
 			<c:choose>
 				<c:when test="${(param.node_id == 10201 && empty user.send_htgly && empty td00_gcxx.sgdw) || param.node_id == 10205}">
-					<a href="sgpd.do?project_id=${td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;">施工单位</a>：
+					<a href="sgpd.do?project_id=${td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">施工单位</a>：
 				</c:when>
 				<c:otherwise>
 					施工单位：
