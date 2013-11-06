@@ -565,6 +565,9 @@ public class Message {
 		Long msg_id = null;
 		Long message_id=null;
 		String sendType=null;
+		String msg_remind = null;
+		ResultObject ro = null;
+		
 		String zffjid[] = request.getParameterValues("zffjid");
 		String msg = "";
 		String repeat_flag = StringFormatUtil.format(request.getParameter("repeat_flag"), "0");
@@ -577,7 +580,9 @@ public class Message {
 			content = request.getParameter("content");
 			reader_id = request.getParameter("reader_id");
 			reader_name = request.getParameter("reader_name");
+			msg_remind = request.getParameter("msg_remind");
 			send_flag = request.getParameter("send_flag");
+			
 			message_id=convertUtil.toLong(request.getParameter("message_id"));
 			sendType=convertUtil.toString(request.getParameter("sendType"));
 			// 保存数据
@@ -642,7 +647,7 @@ public class Message {
 				for (int j = 0; j < zffjid.length; j++) {
 					queryBuilder = new HibernateQueryBuilder(Te01_slave.class);
 					queryBuilder.eq("id", new Long(zffjid[j]));
-					ResultObject ro = queryService.search(queryBuilder);
+					ro = queryService.search(queryBuilder);
 					if (ro.next()) {
 						Te01_slave te01 = (Te01_slave) ro.get(Te01_slave.class.getName());
 						te01.setDoc_id(te04.getId());
@@ -667,8 +672,30 @@ public class Message {
 				te11.setReader_id(convertUtil.toLong(readers_id[i]));
 				te11.setReader_name(readers_name[i]);
 				te11.setRead_flag(0L);
-				//te11.setRepeat_flag(0L);
 				saveService.save(te11);
+				
+				/*
+				 * 短信发送
+				 */
+				if(msg_remind != null){
+					ro = queryService.search("select mobile_tel from Ta03_user where id="+readers_id[i]);
+					if(ro.next()){
+						Tz05_thread_queue thread = new Tz05_thread_queue();
+						thread.setInserttime(new Date());
+						thread.setServicename("messageToPhoneService");
+						JSONObject jo = new JSONObject();
+						jo.put("content", "您有一封新邮件《"+title+"》");
+						jo.put("sender_name", ta03.getName());
+						jo.put("additionTel", "");
+						jo.put("reader_tel", ro.get("mobile_tel"));
+						jo.put("reader_name", readers_name[i]);
+						thread.setRemark("短信发送");
+						thread.setStatus("未处理");
+						thread.setType("sendTelMsg");
+						thread.setParameters(jo.toString());
+						saveService.save(thread);
+					}
+				}
 			}
 		} catch (Exception e) {
 			msg = "{\"statusCode\":\"301\", \"message\":\"操作失败\", \"navTabId\":\"\", \"forwardUrl\":\"\", \"callbackType\":\"\"}";
