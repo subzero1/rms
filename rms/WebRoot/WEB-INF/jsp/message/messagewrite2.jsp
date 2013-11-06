@@ -264,6 +264,10 @@
 							<input type="checkbox" value="1" id="repeat_flag"
 								name="repeat_flag" />
 							&nbsp;需要回复
+							&nbsp;&nbsp;
+							<input type="checkbox" value="1" id="msg_remind"
+								name="msg_remind" />
+							&nbsp;短信提醒
 						</td>
 					</tr>
 					<tr>
