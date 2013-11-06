@@ -25,17 +25,15 @@
 					<label>扩展标识：</label>
 					<input type="text" name="Tc01_property.FLAG" value="${property_type.flag}"  style="width:146px;"/>
 				</p>
-				<c:if test="${property_type.type=='工程类别'}">
 				<p id="id1">
 					<label>上级类别：</label>
-					<input type="text" id="ext_col" name="Tc01_property.EXT_COL" value="${property_type.ext_col}"  style="width:100px;"/>
+					<input type="text" id="ext_col1" name="Tc01_property.EXT_COL" value="${property_type.ext_col}"  style="width:100px;"/>
 				</p>
-				</c:if>
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">
 				【注】：属性分类系统定制；<br>
 				&nbsp;勘察反馈内容：扩展标识为[1]时，反馈时不需要录入个数， 为[2]时，需要录入个数<br>
-				&nbsp;工程类别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩展标识为[1]时，不参与自动派工
+				&nbsp;工程类别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩展标识为[2]时，可以在“项目信息单”中选择；为[3]时，参与自动派工
 				</div>
 			</div>
 			<div class="formBar">
@@ -56,11 +54,22 @@
 		function selectType(obj){
 			if(obj.value=='工程类别'){
 				$("#id1").show();
-				//$("#ext_col").attr("class","required");
+				$("#ext_col1").attr("class","required");
 			}
 			else{
 				$("#id1").hide();
 			}	
 		}
+		
+		if('${property_type.type}'=='工程类别'){
+			$("#id1").show();
+			$("#ext_col1").attr("class","required");
+		}
+		else{
+			$("#ext_col1").attr("class","norequired");
+			$("#id1").hide();
+		}
+		
+		
 
 	</script>

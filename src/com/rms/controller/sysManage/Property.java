@@ -95,7 +95,7 @@ public class Property {
 		Long id = convertUtil.toLong(request.getParameter("id"),-1L);
 		ModelMap modelMap = new ModelMap();
 		Tc01_property property_type = null;
-		request.setAttribute("sxfl", dao.search("select distinct type from Tc01_property "));
+		request.setAttribute("sxfl", dao.search("select distinct type from Tc01_property order by type "));
 		
 		//获取属性对象
 		property_type = (Tc01_property) dao.getObject(Tc01_property.class, id);
