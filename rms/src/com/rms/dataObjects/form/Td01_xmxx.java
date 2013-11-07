@@ -2534,6 +2534,8 @@ public class Td01_xmxx implements Serializable {
 	private Integer sgysl;
 	
 	private Integer jlysl;
+	
+	private Integer sgypf;
 
 	/**
 	 * @hibernate.property column="sjysl"
@@ -2662,5 +2664,13 @@ public class Td01_xmxx implements Serializable {
 
 	public void setGlbm(String glbm) {
 		this.glbm = glbm;
+	}
+
+	public Integer getSgypf() {
+		return sgypf;
+	}
+
+	public void setSgypf(Integer sgypf) {
+		this.sgypf = sgypf;
 	}
 }

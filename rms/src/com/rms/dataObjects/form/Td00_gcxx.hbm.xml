@@ -856,6 +856,14 @@
             column="jlysl"
         />
         
+        <property
+            name="sgypf"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sgypf"
+        />
+        
          <property
             name="zytjsj"
             type="java.util.Date"

@@ -1282,6 +1282,14 @@
         />
         
         <property
+            name="sgypf"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sgypf"
+        />
+        
+        <property
             name="glbm"
             type="java.lang.String"
             update="true"

@@ -1727,6 +1727,8 @@ public class Td00_gcxx implements Serializable {
 	private Integer sgysl;
 	
 	private Integer jlysl;
+	
+	private Integer sgypf;
 
 	/**
 	 * @hibernate.property column="sjysl"
@@ -1992,4 +1994,13 @@ public class Td00_gcxx implements Serializable {
 	public void setSghtje(Double sghtje) {
 		this.sghtje = sghtje;
 	}
+
+	public Integer getSgypf() {
+		return sgypf;
+	}
+
+	public void setSgypf(Integer sgypf) {
+		this.sgypf = sgypf;
+	}
+	
 }

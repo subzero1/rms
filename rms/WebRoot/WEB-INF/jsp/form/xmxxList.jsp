@@ -71,6 +71,9 @@ function searchListExport(){
 					<th style="width: 140px;" orderField="sghtbh">施工合同编号</th>
 					<th style="width: 60px;" orderField="xmzt">项目状态</th>
 					<th style="width: 70px;" orderField="xmgly">项目管理员</th>
+					<c:if test="${node_id == '10101'}">
+						<th style="width:20px;"></th>
+					</c:if>
 				</tr>
 			</thead>
 			<tbody>
@@ -90,6 +93,18 @@ function searchListExport(){
 						<td>${obj.sghtbh }</td>
 						<td>${obj.xmzt }</td>
 						<td>${obj.xmgly }</td>
+						<c:if test="${node_id == '10101'}">
+							<td style="text-align:center;">
+								<c:choose>
+									<c:when test="${empty obj.sgypf}">
+										<a class="add"><img border="0" src="Images/online_time.gif" title="施工未派发" style="cursor:pointer"/></a>&nbsp;&nbsp;
+									</c:when>
+									<c:otherwise>
+										&nbsp;&nbsp;
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
@@ -104,6 +119,9 @@ function searchListExport(){
 						<td></td>
 						<td></td>
 						<td></td>
+						<c:if test="${node_id == '10101'}">
+							<td></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				</c:if>

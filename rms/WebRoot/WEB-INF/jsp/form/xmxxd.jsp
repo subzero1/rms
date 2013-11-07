@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
@@ -41,25 +41,25 @@ $(function(){
 	   	});
 	   	
 	function xzdbgc(){
-		//选择打包工程
+		//ѡ��������
 		var url = 'form/xzgcForDblx.do?xm_id=${td01_xmxx.id}';
-		$.pdialog.open(url,'_xzgcForDblx','选择打包工程',{width:800,height:520});
+		$.pdialog.open(url,'_xzgcForDblx','ѡ��������',{width:800,height:520});
 	}
 	
 	function yssc(){
-		//预算上传
+		//Ԥ���ϴ�
 		var url = 'dispath.do?url=gysImport.jsp?module_id=101&project_id=${td01_xmxx.id}';
-		$.pdialog.open(url,'_yssc','预算上传',{width:400,height:180});
+		$.pdialog.open(url,'_yssc','Ԥ���ϴ�',{width:400,height:180});
 	}
 	
 	function gcdf(project_id,lb){
-		//选择打包工程
+		//ѡ��������
 		var url = 'wxdwkh/gcdf.do?project_id='+project_id+'&lb='+lb;
-		$.pdialog.open(url,'_gcdf','工程考核',{width:700,height:433});
+		$.pdialog.open(url,'_gcdf','���̿���',{width:700,height:433});
 	}
 	
 	/*
-	*防止将工程误删除
+	*��ֹ��������ɾ��
 	*/
 	var bg_je = '${td01_xmxx.bg_je}';
 	if(bg_je == null || bg_je == ''){
@@ -71,9 +71,9 @@ $(function(){
 	
 	
 	/**
-		sObj:需要修改的对象
-		dObj:级联更新的对象
-		hObj:辅助对象，隐藏域
+		sObj:��Ҫ�޸ĵĶ���
+		dObj:�������µĶ���
+		hObj:��������������
 	*/
 	function computeZje(sObj,dObj,hObj){		 	
 		var svar = sObj.value;
@@ -107,8 +107,23 @@ $(function(){
 			
 		});
 	}
+	
+	function sgpf_for_xm(v1,v2){
+		$.ajax({
+			type:'post',
+			url:'form/ajaxForSgpf.do',
+			data:{project_id:v1,module_id:v2},
+			dataType:"json",
+			success: function(json){
+				if(json.statusCode == DWZ.statusCode.ok){
+					alertMsg.correct(json.message);
+					return false;
+				}
+			},
+			error: DWZ.ajaxError
+		});
+	}
 </script>
-
 
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmxxd.xml"/>
@@ -120,127 +135,127 @@ $(function(){
 <input type="hidden" name="Td01_xmxx.XQS_ID" value="${td01_xmxx.xqs_id }"/>
 
 <p>
-	<label>项目名称：</label>
+	<label>��Ŀ���ƣ�</label>
 	<input type="text" name="Td01_xmxx.XMMC" value="${td01_xmxx.xmmc}" style="width:407px;"/>
 </p>
 <p>
-	<label>项目编号：</label>
+	<label>��Ŀ��ţ�</label>
 	<input type="text" name="Td01_xmxx.XMBH" value="${td01_xmxx.xmbh}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>项目类型：</label>
+	<label>��Ŀ���ͣ�</label>
 	<netsky:htmlSelect name="Td01_xmxx.XMLX" objectForOption="xmlxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xmlx}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>预算类型：</label>
+	<label>Ԥ�����ͣ�</label>
 	<netsky:htmlSelect name="Td01_xmxx.YSLX" objectForOption="yslxList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.yslx}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>所属区域：</label>
+	<label>��������</label>
 	<netsky:htmlSelect name="Td01_xmxx.SSDQ" objectForOption="ssdqList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.ssdq}" htmlClass="td-select"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>项目类别：</label>
+	<label>��Ŀ���</label>
 	<netsky:htmlSelect name="Td01_xmxx.GCLB" objectForOption="gclbList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.gclb}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>工程专业：</label>
+	<label>����רҵ��</label>
 		<netsky:htmlSelect id="zydl_select" name="Td01_xmxx.ZYDL" objectForOption="zydlList" style="width:157px;" valueForOption="zymc" showForOption="zymc" valueForExtend="{'id':'[id]','yxnd':'[yxnd]'}" extend="" extendPrefix="true" value="${td01_xmxx.zydl}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>专业细项：</label>
+	<label>רҵϸ�</label>
 	<netsky:htmlSelect id="zyxx_select" name="Td01_xmxx.ZYXX" objectForOption="zyxxList" style="width:125px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.zyxx}" htmlClass="td-select"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>投资切块：</label>
+	<label>Ͷ���п飺</label>
 	<netsky:htmlSelect id="qkdl_select" name="Td01_xmxx.QKDL" objectForOption="qkdlList" style="width:157px;" valueForOption="qkmc" showForOption="qkmc" valueForExtend="{'id':'[id]','nd':'[nd]'}" extend="" extendPrefix="true"  value="${td01_xmxx.qkdl}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>切块细项：</label>
+	<label>�п�ϸ�</label>
 	<netsky:htmlSelect id="qkxl_select" name="Td01_xmxx.QKXL" objectForOption="qkxlList" style="width:157px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true"  value="${td01_xmxx.qkxl}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>项目状态：</label>
+	<label>��Ŀ״̬��</label>
 	<netsky:htmlSelect name="Td01_xmxx.XMZT" objectForOption="xmztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xmzt}" htmlClass="td-select"/>
 </p>
 <div class="divider"></div>
-<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">预算情况（元）</p>
+<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">Ԥ�������Ԫ��</p>
 <div style="height:0px;"></div>
 <p>
-	<label>总投资：</label>
+	<label>��Ͷ�ʣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_JE" value="${td01_xmxx.ys_je}" style="width:150px;"/>
 </p>
 <p>
-	<label>建安费：</label>
+	<label>�����ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_JAF" value="${td01_xmxx.ys_jaf}" style="width:150px;"/>
 </p>
 <p>
-	<label>设备费：</label>
+	<label>�豸�ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_SBF" value="${td01_xmxx.ys_sbf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>人工费：</label>
+	<label>�˹��ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_RGF" value="${td01_xmxx.ys_rgf}" style="width:150px;"/>
 </p>
 <p>
-	<label>普工工日：</label>
+	<label>�չ����գ�</label>
 	<input type="text"  name="Td01_xmxx.YS_PGGR" value="${td01_xmxx.ys_pggr}" style="width:150px;"/>
 </p>
 <p>
-	<label>技工工日：</label>
+	<label>�������գ�</label>
 	<input type="text"  name="Td01_xmxx.YS_JGGR" value="${td01_xmxx.ys_jggr}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>材料费：</label>
+	<label>���Ϸѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_CLF" value="${td01_xmxx.ys_clf}" style="width:150px;"/>
 </p>
 <p>
-	<label>机械费：</label>
+	<label>��е�ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_JXF" value="${td01_xmxx.ys_jxf}" style="width:150px;"/>
 </p>
 <p>
-	<label>仪表费：</label>
+	<label>�Ǳ��ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_YBF" value="${td01_xmxx.ys_ybf}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>设计费：</label>
+	<label>��Ʒѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_SJF" value="${td01_xmxx.ys_sjf}" style="width:150px;"/>
 </p>
 <p>
-	<label>监理费：</label>
+	<label>�����ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_JLF" value="${td01_xmxx.ys_jlf}" style="width:150px;"/>
 </p>
 <p>
-	<label>其它费：</label>
+	<label>�����ѣ�</label>
 	<input type="text"  name="Td01_xmxx.YS_QTF" value="${td01_xmxx.ys_qtf}" style="width:120px;"/>
 </p>	
 <div class="divider"></div>
 <p>
-	<label>需求部门：</label>
+	<label>�����ţ�</label>
 	<netsky:htmlSelect name="Td01_xmxx.XQBM" objectForOption="deptList" style="width:157px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td01_xmxx.xqbm}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>立项金额：</label>
+	<label>�����</label>
 	<input type="text"  name="Td01_xmxx.LXJE" value="${td01_xmxx.lxje}" style="width:115px;"/>
-	<span>（元）</span>
+	<span>��Ԫ��</span>
 </p>
 <p>
-	<label>立项时间：</label>
+	<label>����ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.LXSJ" value="<fmt:formatDate value="${td01_xmxx.lxsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>设计单位：</label>
+	<label>��Ƶ�λ��</label>
 	<netsky:htmlSelect name="Td01_xmxx.SJDW" objectForOption="sjdwList" style="width:412px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.sjdw}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>设计派发时间：</label>
+	<label>����ɷ�ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.SJPGSJ" value="<fmt:formatDate value="${td01_xmxx.sjpgsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
@@ -248,10 +263,10 @@ $(function(){
 	<label>
 		<c:choose>
 			<c:when test="${(param.node_id == 10101 && empty user.send_htgly && empty td01_xmxx.sgdw) || param.node_id == 10105}">
-				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">施工单位</a>：
+				<a href="sgpd.do?xm_id=${td01_xmxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">ʩ����λ</a>��
 			</c:when>
 			<c:otherwise>
-				施工单位：
+				ʩ����λ��
 			</c:otherwise>
 		</c:choose>
 	</label>
@@ -260,149 +275,149 @@ $(function(){
 	
 </p>
 <p>
-	<label>施工派发时间：</label>
+	<label>ʩ���ɷ�ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.SGPFSJ" value="<fmt:formatDate value="${td01_xmxx.sgpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>监理单位：</label>
+	<label>������λ��</label>
 	<netsky:htmlSelect name="Td01_xmxx.JLDW" objectForOption="jldwList" style="width:412px;" valueForOption="mc" showForOption="mc" extend="" extendPrefix="true" value="${td01_xmxx.jldw}" htmlClass="td-select"/>
 </p>
 <p>
-	<label>监理派发时间：</label>
+	<label>�����ɷ�ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.JLPFSJ" value="<fmt:formatDate value="${td01_xmxx.jlpfsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>设计勘察时限：</label>
+	<label>��ƿ���ʱ�ޣ�</label>
 	<input type="text"  name="Td01_xmxx.KCFKZQ" value="${td01_xmxx.kcfkzq}" style="width:115px;"/>
-	<span>（天）</span>
+	<span>���죩</span>
 </p>
 <p>
-	<label>施工填报周期：</label>
+	<label>ʩ������ڣ�</label>
 	<input type="text"  name="Td01_xmxx.SGJDTBZQ" value="${td01_xmxx.sgjdtbzq}" style="width:115px;"/>
-	<span>（天）</span>
+	<span>���죩</span>
 </p>
 <p>
-	<label>监理反馈周期：</label>
+	<label>�����������ڣ�</label>
 	<input type="text"  name="Td01_xmxx.JLRJTBZQ" value="${td01_xmxx.jlrjtbzq}" style="width:80px;"/>
-	<span>（天）</span>
+	<span>���죩</span>
 </p>
 <div class="divider"></div>
 <p>
-	<label>项目管理员：</label>
+	<label>��Ŀ����Ա��</label>
 	<input type="text"  name="Td01_xmxx.XMGLY" value="<c:out value="${td01_xmxx.xmgly}" default="${user.name}" />" style="width:150px;"/>
 </p>
 <p>
-	<label>施工管理员：</label>
+	<label>ʩ������Ա��</label>
 	<input type="text"  name="Td01_xmxx.SGFZR" value="${td01_xmxx.sgfzr}" style="width:150px;"/>
 </p>
 <p>
-	<label>监理工程师：</label>
+	<label>��������ʦ��</label>
 	<input type="text"  name="Td01_xmxx.JLGCS" value="${td01_xmxx.jlgcs}" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>设计人员：</label>
+	<label>�����Ա��</label>
 	<input type="text"  name="Td01_xmxx.SJRY" value="${td01_xmxx.sjry}" style="width:150px;"/>
 </p>
 <p>
-	<label>立项管理员：</label>
+	<label>�������Ա��</label>
 	<input type="text"  name="Td01_xmxx.LXGLY" value="${td01_xmxx.lxgly}" style="width:150px;"/>
 </p>
 <p>
-	<label>施工要求工期：</label>
+	<label>ʩ��Ҫ���ڣ�</label>
 	<input type="text"  name="Td01_xmxx.YQGQ" value="${td01_xmxx.yqgq}" style="width:85px;"/>
-	<span>（天）</span>
+	<span>���죩</span>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>实际开工时间：</label>
+	<label>ʵ�ʿ���ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.SJKGSJ" value="<fmt:formatDate value="${td01_xmxx.sjkgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 </p>
 <p>
-	<label>实际竣工时间：</label>
+	<label>ʵ�ʿ���ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.SJJGSJ" value="<fmt:formatDate value="${td01_xmxx.sjjgsj}" pattern="yyyy-MM-dd"/>" style="width:150px;"/>
 </p>
 <p>
-	<label>验收时间：</label>
+	<label>����ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.YSSJ" value="<fmt:formatDate value="${td01_xmxx.yssj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>资源录入人：</label>
+	<label>��Դ¼���ˣ�</label>
 	<input type="text"  name="Td01_xmxx.ZYLRY" value="${td01_xmxx.zylry}" style="width:150px;"/>
 </p>
 <p>
-	<label>资源管理员：</label>
+	<label>��Դ����Ա��</label>
 	<input type="text"  name="Td01_xmxx.ZYGLY" value="${td01_xmxx.zygly}" style="width:150px;"/>
 </p>
 <p>
-	<label>资源确认时间：</label>
+	<label>��Դȷ��ʱ�䣺</label>
 	<input type="text"  name="Td01_xmxx.ZYQRSJ" value="<fmt:formatDate value="${td01_xmxx.zyqrsj}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
 <p>
-	<label>项目说明：</label>
+	<label>��Ŀ˵����</label>
 	<textarea class="td-textarea" style="width:630px;height:60px;" type="text" name="Td01_xmxx.XMSM">${td01_xmxx.xmsm}</textarea>
 </p>
 
 <div class="divider"></div>
-<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">合同信息</p>
+<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">��ͬ��Ϣ</p>
 <div style="height:0px;"></div>	
 <p>
-	<label>设计合同编号：</label>
+	<label>��ƺ�ͬ��ţ�</label>
 	<input type="text"  name="Td01_xmxx.SJHTBH" value="${td01_xmxx.sjhtbh}" style="width:150px;"/>
 </p>
 <p>
-	<label>金额：</label>
+	<label>��</label>
 	<input type="text"  name="Td01_xmxx.SJHTJE" value="${td01_xmxx.sjhtje}" style="width:115px;"/>
-	<span>（元）</span>
+	<span>��Ԫ��</span>
 </p>
 <p>
-	<label>签订日期：</label>
+	<label>ǩ�����ڣ�</label>
 	<input type="text"  name="Td01_xmxx.SJHTQDRQ" value="<fmt:formatDate value="${td01_xmxx.sjhtqdrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p>
-	<label>施工合同编号：</label>
+	<label>ʩ����ͬ��ţ�</label>
 	<input type="text"  name="Td01_xmxx.SGHTBH" value="${td01_xmxx.sghtbh}" style="width:150px;"/>
 </p>
 <p>
-	<label>金额：</label>
+	<label>��</label>
 	<input type="text"  name="Td01_xmxx.SGHTJE" value="${td01_xmxx.sghtje}" style="width:115px;"/>
-	<span>（元）</span>
+	<span>��Ԫ��</span>
 </p>
 <p>
-	<label>签订日期：</label>
+	<label>ǩ�����ڣ�</label>
 	<input type="text"  name="Td01_xmxx.SGHTQDRQ" value="<fmt:formatDate value="${td01_xmxx.sghtqdrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
 <p>
-	<label>监理合同编号：</label>
+	<label>������ͬ��ţ�</label>
 	<input type="text"  name="Td01_xmxx.JLHTBH" value="${td01_xmxx.jlhtbh}" style="width:150px;"/>
 </p>
 <p>
-	<label>金额：</label>
+	<label>��</label>
 	<input type="text"  name="Td01_xmxx.JLHTJE" value="${td01_xmxx.jlhtje}" style="width:115px;"/>
-	<span>（元）</span>
+	<span>��Ԫ��</span>
 </p>
 <p>
-	<label>签订日期：</label>
+	<label>ǩ�����ڣ�</label>
 	<input type="text"  name="Td01_xmxx.JLHTQDRQ" value="<fmt:formatDate value="${td01_xmxx.jlhtqdrq}" pattern="yyyy-MM-dd"/>" style="width:120px;"/>
 </p>
 
 <div class="divider"></div>
-<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">结算情况（元）</p>
+<p style="color:#ccc;font-weight:bold;width:700px;text-align:center;">���������Ԫ��</p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">费用</p>
-<p style="width:120px;text-align:center;">结算</p>
-<p style="width:120px;text-align:center;">初审</p>
-<p style="width:120px;text-align:center;">审计</p>
-<p style="width:120px;text-align:center;">核减额</p>
-<p style="width:120px;text-align:center;">核减率</p>
+<p style="width:105px;text-align:center;">����</p>
+<p style="width:120px;text-align:center;">����</p>
+<p style="width:120px;text-align:center;">����</p>
+<p style="width:120px;text-align:center;">���</p>
+<p style="width:120px;text-align:center;">�˼���</p>
+<p style="width:120px;text-align:center;">�˼���</p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">技工工日</p>
+<p style="width:105px;text-align:center;">��������</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_JGGR" value="<fmt:formatNumber value="${td01_xmxx.ss_jggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -419,7 +434,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_JGGR" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">普工工日</p>
+<p style="width:105px;text-align:center;">�չ�����</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_PGGR" value="<fmt:formatNumber value="${td01_xmxx.ss_pggr}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -436,7 +451,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_PGGR" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">材料费</p>
+<p style="width:105px;text-align:center;">���Ϸ�</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_CLF" value="<fmt:formatNumber value="${td01_xmxx.ss_clf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -453,7 +468,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_CLF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">机械仪表费</p>
+<p style="width:105px;text-align:center;">��е�Ǳ���</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_JXF" value="<fmt:formatNumber value="${td01_xmxx.ss_jxf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -470,7 +485,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_JXF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">其它费</p>
+<p style="width:105px;text-align:center;">������</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_QTF" value="<fmt:formatNumber value="${td01_xmxx.ss_qtf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -487,7 +502,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_QTF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">施工总费用</p>
+<p style="width:105px;text-align:center;">ʩ���ܷ���</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_SGF" value="<fmt:formatNumber value="${td01_xmxx.ss_sgf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -504,7 +519,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_SGF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>	
-<p style="width:105px;text-align:center;">监理费</p>
+<p style="width:105px;text-align:center;">������</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_JLF" value="<fmt:formatNumber value="${td01_xmxx.ss_jlf}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -521,7 +536,7 @@ $(function(){
 	<input type="text"  name="Td01_xmxx.HJL_JLF" value="" style="width:120px;"/>
 </p>
 <div style="height:0px;"></div>
-<p style="width:105px;text-align:center;">结算总费用</p>
+<p style="width:105px;text-align:center;">�����ܷ���</p>
 <p>
 	<input type="text"  name="Td01_xmxx.SS_JE" value="<fmt:formatNumber value="${td01_xmxx.ss_je}" pattern="##0.00"/>" style="width:120px;"/>
 </p>
@@ -539,14 +554,14 @@ $(function(){
 </p>	
 
 <div style="height:10px;"></div>
-<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;打包工程列表</h3></div><div class="divider" style="height:1px;"></div>
+<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;��������б�</h3></div><div class="divider" style="height:1px;"></div>
 <div style="width:780px;">
 	<table class="table" width="100%">
 		<thead>
 			<tr>
-				<th style="width: 30px;">序号</th>
-				<th style="width: 120px;">工程编号</th>
-				<th >工程名称</th>
+				<th style="width: 30px;">���</th>
+				<th style="width: 120px;">���̱��</th>
+				<th >��������</th>
 			</tr>
 		</thead>
 		<tbody>

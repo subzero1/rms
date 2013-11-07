@@ -2804,7 +2804,31 @@ public class AuxFunction {
 		modelMap.put("ssdq", ssdq);
 
 		return new ModelAndView("/WEB-INF/jsp/form/gdxxList.jsp", modelMap);
-
+	}
 	
+	@RequestMapping("/form/ajaxForSgpf.do")
+	public void ajaxForSgpf(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		response.setCharacterEncoding("UTF-8");
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
+		try {
+			if(module_id == 101){
+				Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class,project_id);
+				td01.setSgypf(new Integer(1));
+				saveService.save(td01);
+			}
+			else{
+				Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,project_id);
+				td00.setSgypf(new Integer(1));
+				saveService.save(td00);
+			}
+			out.print("{\"statusCode\":\"200\", \"message\":\"派发成功!\", \"callbackType\":\"forward\"}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			out.print("{\"statusCode\":\"300\", \"message\":\"fail!\"}");
+		}
+
 	}
 }
