@@ -2810,21 +2810,26 @@ public class AuxFunction {
 	public void ajaxForSgpf(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
+		String navTabId = null;
 		try {
 			if(module_id == 101){
 				Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class,project_id);
 				td01.setSgypf(new Integer(1));
 				saveService.save(td01);
+				navTabId = "xmxxList";
 			}
 			else{
 				Td00_gcxx td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class,project_id);
 				td00.setSgypf(new Integer(1));
 				saveService.save(td00);
+				navTabId = "gcxxList";
 			}
-			out.print("{\"statusCode\":\"200\", \"message\":\"派发成功!\", \"callbackType\":\"forward\"}");
+			//out.print("{\"statusCode\":\"200\", \"message\":\"派发成功!\", \"callbackType\":\"forward\"}");
+			out.print("{\"statusCode\":\"200\", \"message\":\"&#x6D3E;&#x53D1;&#x6210;&#x529F;!\", \"callbackType\":\"\",\"navTabId\":\""+navTabId+"\"}");
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.print("{\"statusCode\":\"300\", \"message\":\"fail!\"}");
