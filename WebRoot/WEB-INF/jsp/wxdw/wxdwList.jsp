@@ -50,7 +50,7 @@
 				<li class="line">line</li>
 				<li><a class="edit" href="wxdw/wxdwEdit.do?id={wxdw_id}" target="navTab" rel="wxdw" title="合作单位维护"><span>修改</span></a></li>
 				<li class="line">line</li>
-				<li><a class="exportexcel"	href="wxdw/wxryToExcel.do?config=wxry_tmp" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
+				<li><a class="exportexcel"	href="wxdw/wxdwToExcel.do?config=tf01_wxdw" target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
 				<li><a class="delete" href="wxdw/ajaxWxdwDel.do?id={wxdw_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 				<li class="line">line</li>
