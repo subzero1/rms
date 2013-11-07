@@ -60,6 +60,9 @@
 					<th style="width: 200px;" orderField="sgdw">施工单位</th>
 					<th style="width: 150px;" orderField="xqbm">需求部门</th>
 					<th style="width: 80px;" orderField="xmgly">项目管理员</th>
+					<c:if test="${node_id == '10201'}">
+						<th style="width:20px;"></th>
+					</c:if>
 				</tr>
 			</thead>
 			<tbody>
@@ -78,6 +81,18 @@
 						<td>${obj.sgdw }</td>
 						<td>${obj.xqbm }</td>
 						<td>${obj.xmgly }</td>
+						<c:if test="${node_id == '10201'}">
+							<td style="text-align:center;">
+								<c:choose>
+									<c:when test="${empty obj.sgypf}">
+										<a class="add"><img border="0" src="Images/online_time.gif" title="施工未派发" style="cursor:pointer"/></a>&nbsp;&nbsp;
+									</c:when>
+									<c:otherwise>
+										&nbsp;&nbsp;
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
@@ -91,6 +106,9 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<c:if test="${node_id == '10201'}">
+							<td></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				</c:if>

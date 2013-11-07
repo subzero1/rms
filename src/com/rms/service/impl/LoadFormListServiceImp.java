@@ -228,6 +228,33 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						buttonList.add(btn);
 						
 						/*
+						 * 施工派发动作
+						 */
+						if(node_id==10101 || node_id==10201){
+							List list = null;
+							if(node_id == 10101){
+								list = queryService.searchList("select id from Td01_xmxx where sgdw is not null and sgypf is null and id = "+project_id);
+								if(list != null && list.size() > 0){
+									btn = new Button("施工派发");
+									btn.url = "javascript:sgpf_for_xm('"+project_id+"','101');";
+									btn.comment = "施工派发";
+									btn.picUri = "send";
+									buttonList.add(btn);
+								}
+							}
+							else if(node_id == 10201){
+								list = queryService.searchList("select id from Td00_gcxx where sgdw is not null and sgypf is null and id="+project_id);
+								if(list != null && list.size() > 0){
+									btn = new Button("施工派发");
+									btn.url = "javascript:sgpf_for_gc('"+project_id+"','102');";
+									btn.comment = "施工派发";
+									btn.picUri = "send";
+									buttonList.add(btn);
+								}
+							}
+						}
+						
+						/*
 						 * 资源不确认不能起草验收单
 						 */
 						boolean isAlreadyZyConfirm = false;
