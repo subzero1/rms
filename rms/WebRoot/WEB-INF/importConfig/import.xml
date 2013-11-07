@@ -76,4 +76,9 @@
   	<fileName>/importConfig/tf43_gdsjhz.xml</fileName>
   	<user>default</user>
   </config>
+  <config>
+  	<name>tf01_wxdw</name>
+  	<fileName>/importConfig/tf01_wxdw.xml</fileName>
+  	<user>default</user>
+  </config>
 </configs>

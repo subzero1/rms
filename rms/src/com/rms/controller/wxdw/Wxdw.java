@@ -2864,6 +2864,59 @@ public class Wxdw {
 
 		return new ModelAndView("/export/toExcelWhithList.do");
 	}
+	
+	/**
+	 * 外协人员导出
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/wxdwToExcel.do")
+	public ModelAndView wxdwToExcel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("GBK");
+		String webinfpath = request.getSession().getServletContext()
+				.getRealPath("WEB-INF");
+		String config = convertUtil.toString(request.getParameter("config"), "");
+		Integer wxdw_id = convertUtil.toInteger(request.getParameter("wxdw_id"));
+		List wxryDocList = null;// 外协人员列表
+		List wxryColList = null;// 外协人员需导出的字段
+		List wxryTitleList = null;// 外协人员列表标题
+		StringBuffer hql = new StringBuffer("");
+		ConfigXML configXML = new ConfigXMLImpl();
+		Map sheetMap = new HashMap();
+		List sheetList = new LinkedList();
+
+		wxryTitleList = configXML
+				.getTagListByConfig(config, webinfpath, "name");
+		wxryColList = configXML.getTagListByConfig(config, webinfpath,
+				"columnName");
+
+		Iterator it = wxryColList.iterator();
+		int k = 0;
+		hql.append("select ");
+		while (it.hasNext()) {
+			if (k == 0) {
+				hql.append("wxdw. " + it.next().toString().toLowerCase());
+			} else {
+				hql.append(" ,wxdw." + it.next().toString().toLowerCase());
+			}
+			k++;
+		}
+		hql.append(" from Tf01_wxdw wxdw where 1=1 ");
+		wxryDocList = queryService.searchList(hql.toString());
+
+		sheetList.add(wxryTitleList);
+		sheetList.add(wxryDocList);
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", "外协单位信息.xls");
+		request.setAttribute("sheetMap", sheetMap);
+
+		return new ModelAndView("/export/toExcelWhithList.do");
+	}
 
 	/**
 	 * 编辑和添加外协人员

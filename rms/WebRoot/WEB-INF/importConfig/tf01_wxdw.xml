@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.tjnetsky.com.cn excel-imp.xsd"><!--定义导入文件中表格信息-->
+	<tableInfo><!--表格信息所在sheet位于excel文件中位置-->
+		<sheetNum>0</sheetNum>
+		<startRow>1</startRow>
+		<endRow />
+		<endFlag />
+		<tableName>Tf01_wxdw</tableName>
+		<tableNameShow>Tf01_wxdw</tableNameShow>
+		<fatherTables />
+		<columns><!--当前表字段信息-->
+			<type>byName</type>
+			<titleRow>0</titleRow> 
+			<column>
+				<columnName>MC</columnName>
+				<index />
+				<name>名称</name>
+				<colName>名称</colName>
+			</column>
+			<column>
+				<columnName>DWDZ</columnName>
+				<index />
+				<name>地址</name>
+				<colName>地址</colName>
+			</column>
+			<column>
+				<columnName>ZZDJ</columnName>
+				<index />
+				<name>资质等级</name>
+				<colName>资质等级</colName>
+			</column>
+			<column>
+				<columnName>FR</columnName>
+				<index />
+				<name>法人</name>
+				<colName>法人</colName>
+			</column>
+			<column>
+				<columnName>LB</columnName>
+				<index />
+				<name>类别</name>
+				<colName>类别</colName>
+			</column>  
+			<column>
+				<columnName>QY</columnName>
+				<index />
+				<name>区域</name>
+				<colName>区域</colName>
+			</column>
+			<column>
+				<columnName>ZY</columnName>
+				<index />
+				<name>专业</name>
+				<colName>专业</colName>
+			</column>
+			<column>
+				<columnName>BZ</columnName>
+				<index />
+				<name>备注</name>
+				<colName>备注</colName>
+			</column>
+		</columns>
+	</tableInfo>
+</excel>
