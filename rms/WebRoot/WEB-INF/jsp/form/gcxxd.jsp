@@ -68,6 +68,22 @@ $(function(){
 			
 		});
 	}
+	
+	function sgpf_for_gc(v1,v2){
+		$.ajax({
+			type:'post',
+			url:'form/ajaxForSgpf.do',
+			data:{project_id:v1,module_id:v2},
+			dataType:"json",
+			success: function(json){
+				if(json.statusCode == DWZ.statusCode.ok){
+					navTabAjaxDone(json);
+					return false;
+				}
+			},
+			error: DWZ.ajaxError
+		});
+	}
 </script>
 
 
