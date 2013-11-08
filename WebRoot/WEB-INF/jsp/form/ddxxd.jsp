@@ -150,7 +150,7 @@
 	<div style="height:0px;"></div>
 	
 	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;目标库流转记录</h3></div><div class="divider" style="height:1px;"></div>
-	<div style="width:780px;">
+	<div style="width:1250px;">
 		<table class="table" width="60%">
 		<thead>
 			<tr>
@@ -159,7 +159,7 @@
 				<th style="width: 110px;">回单时间</th>
 				<th style="width: 80px;">回单岗位</th>
 				<th>回单内容</th>
-				<th>操作</th>
+				<th style="width: 40px;">操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -171,7 +171,7 @@
 					<td>${obj.hdr }</td>
 					<td><fmt:formatDate value="${obj.hdsj }" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${obj.hdgw }</td>
-					<td title="${obj.nr }">${obj.nr }</td>
+					<td title="${obj.nr }" onclick="javascript:alertMsg.info('${obj.nr }')">${obj.nr }</td>
 					<td><c:if test="${user.name==obj.hdr }"><a class="delete" href="aux/ddhdAjaxDelete.do?id=${obj.id }" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></c:if></td>
 				</tr>
 			</c:forEach>
@@ -179,6 +179,10 @@
 	</table>
 	<br/><br/>
 	</div>
-	<script type="">
+	<script type="text/javascript">
         //alert($("#dxtz").attr("name"));
+        function openNr(param){
+        	
+        }
+	
 	</script>
