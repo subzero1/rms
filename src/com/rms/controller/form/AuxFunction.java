@@ -1652,6 +1652,17 @@ public class AuxFunction {
 	 * @param response
 	 * @return ModelAndView
 	 */
+	@RequestMapping("/aux/show_pdqk.do")
+	public ModelAndView show_pdqk(HttpServletRequest request,HttpServletResponse response) {
+		
+		return null;
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
 	@RequestMapping("/aux/pdqk.do")
 	public ModelAndView pdqk(HttpServletRequest request,
 			HttpServletResponse response) {

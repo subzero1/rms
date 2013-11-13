@@ -61,6 +61,7 @@ public class Sgpd {
 		String t_gclb = "";
 		String dq = "";
 		int ssnd = -1;
+		
 		if (td00 != null) {
 			gclb = td00.getGclb();
 			t_gclb = convertUtil.toString(td00.getP_gclb());
@@ -81,8 +82,8 @@ public class Sgpd {
 			} else {
 				ssnd = DateGetUtil.getYear(lxsj);
 			}
+			project_id = xm_id;
 		} else {
-			// System.out.println("找不到工程或项目");
 			return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp?errormsg=tdnotfound");
 		}
 		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
@@ -98,11 +99,14 @@ public class Sgpd {
 			// System.out.println("没有符合的合作单位");
 			return new ModelAndView("/WEB-INF/jsp/form/selectSgdw.jsp?errormsg=tfnotfound");
 		}
-		// 建立数组o[11]
-		// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+		// 建立数组o[15]
+		/*
+		 * o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+		 * o[10]:标志位，计划份额<实际份额 = 1  在建工程数>最大在建工程数 = 2； o[11]：决算项目数 o[12]:项目总数 o[13]:在建项目数 o[14]:最大项目数
+		 */
 		List<Object[]> objectsList = new ArrayList<Object[]>();
 		for (Object[] objects : wxdwList) {
-			Object[] o = new Object[11];
+			Object[] o = new Object[15];
 			o[0] = objects[0];
 			o[1] = objects[1];
 			objectsList.add(o);
@@ -168,7 +172,7 @@ public class Sgpd {
 			flag = 0;
 		}
 		// 判断在建工程数和最大工程数
-		int flag2 = 0;
+		//int flag2 = 0;
 		for (Object[] objects : objectsList) {
 			if (objects[10] != null) {
 				continue;
@@ -188,12 +192,15 @@ public class Sgpd {
 			if (zdgcsList != null && !zdgcsList.isEmpty()) {
 				zdgcs = convertUtil.toDouble(zdgcsList.get(0), 0D);
 			}
+			objects[13] = zjgcs;
+			objects[14] = zdgcs;
+			
 			if (zjgcs >= zdgcs) {
 				objects[10] = 2;
 				flag++;
 			}
 		}
-		if (flag2 == objectsList.size() - flag) {
+		if (flag == objectsList.size()) {
 			for (Object[] objects : objectsList) {
 				if ((Integer) objects[10] == 2)
 					objects[10] = null;
@@ -221,6 +228,8 @@ public class Sgpd {
 						+ tf01.getMc() + "'")).get(0);
 				// 决算率=决算数/总数
 				objects[3] = (double) jssl / (double) xmsl;
+				objects[11] = jssl;
+				objects[12] = xmsl;
 			}
 		}
 		// 置偏差率和偏差率档级
@@ -275,13 +284,14 @@ public class Sgpd {
 				objectsList.get(i - 1)[5] = objectsList.get(i - 2)[5];
 			}
 		}
+		
 		// 利用数据库做排序
+		dao.update("delete from Tmp_zdxp where project_id=" + project_id);
 		Session session = dao.getHibernateSession();
 		Transaction tx = session.beginTransaction();
 		Long nextval = -1L;
 		try {
-
-			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
+			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级 o[10]:标志位，计划份额<实际份额 = 1  在建工程数>最大在建工程数 = 2； o[11]：决算项目数 o[12]:项目总数 o[13]:在建项目数 o[14]:最大项目数 
 			tx.begin();
 			nextval = ((BigDecimal) (session.createSQLQuery("select batch_num.nextval from dual").uniqueResult()))
 					.longValue();
@@ -294,6 +304,16 @@ public class Sgpd {
 				zdxp.setJhfezb((Double) o[6]);
 				zdxp.setWxdw_id((Long) ((Tf01_wxdw) o[0]).getId());
 				zdxp.setBatch_no(nextval);
+				
+				zdxp.setProject_id(project_id);
+				zdxp.setJssl((Long) o[11]);
+				zdxp.setXmsl((Long) o[12]);
+				zdxp.setZhdfpm(((Integer)o[4]).longValue());
+				zdxp.setJslpm(((Integer) o[5]).longValue());
+				zdxp.setSjfezb((Double) o[7]);
+				zdxp.setFepcl((Double) o[8]);
+				zdxp.setZjgcs((Long)o[13]);
+				zdxp.setZdgcs(((Double)o[14]).longValue());
 				session.save(zdxp);
 			}
 			session.flush();
@@ -307,7 +327,6 @@ public class Sgpd {
 		}
 		List<Long> wxdw_ids = (List<Long>) dao.search("select wxdw_id from Tmp_zdxp where batch_no=" + nextval
 				+ " order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
-		// dao.update("delete from Tmp_zdxp where batch_no=" + nextval);
 		List<Object[]> tmpList = new ArrayList<Object[]>();
 		int i = 0;
 		// 只保留前3名

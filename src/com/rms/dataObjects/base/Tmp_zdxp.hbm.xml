@@ -81,6 +81,78 @@
             insert="true"
             column="batch_no"
         />
+        
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+        
+        <property
+            name="jssl"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="jssl"
+        />
+        
+        <property
+            name="xmsl"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="xmsl"
+        />
+        
+        <property
+            name="zhdfpm"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zhdfpm"
+        />
+        
+        <property
+            name="jslpm"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="jslpm"
+        />
+        
+        <property
+            name="sjfezb"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sjfezb"
+        />
+        
+        <property
+            name="fepcl"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="fepcl"
+        />
+        
+        <property
+            name="zjgcs"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zjgcs"
+        />
+        
+        <property
+            name="zdgcs"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zdgcs"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
