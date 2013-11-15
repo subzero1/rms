@@ -51,6 +51,7 @@ import com.netsky.base.baseObject.PropertyInject;
 import com.rms.dataObjects.gcjs.Te03_gcgys_zhxx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.wxdw.Tf05_wxdw_dygx;
+import com.rms.dataObjects.wxdw.Tf27_wxdwzhpf;
 import com.rms.dataObjects.base.Tmp_zdxp;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
@@ -1655,7 +1656,45 @@ public class AuxFunction {
 	@RequestMapping("/aux/show_pdqk.do")
 	public ModelAndView show_pdqk(HttpServletRequest request,HttpServletResponse response) {
 		
-		return null;
+		ModelMap modelMap = new ModelMap();
+		ResultObject ro = null;
+		Long project_id = convertUtil.toLong(request.getParameter("project_id"), -10L);
+		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
+		Long id = convertUtil.toLong(request.getParameter("id"), -10L);
+		StringBuffer sql = new StringBuffer("");
+		sql.delete(0, sql.length());
+		sql.append("from Tmp_zdxp where project_id = ");
+		sql.append(project_id);
+		List detail_list = queryService.searchList(sql.toString());
+
+		//查找实际选择单位
+		Long wxdw_id = null;
+		String sjxzdw = null;
+		sql.delete(0, sql.length());
+		sql.append("select tf01.id as wxdw_id,td08.sjxzdw as sjxzdw ");
+		sql.append("from Td08_pgspd td08,Tf01_wxdw tf01 ");
+		sql.append("where td08.sjxzdw = tf01.mc ");
+		sql.append("and td08.id = ");
+		sql.append(id);
+		ro = queryService.search(sql.toString());
+		if(ro.next()){
+			wxdw_id = convertUtil.toLong(ro.get("wxdw_id"));
+			sjxzdw = convertUtil.toString(ro.get("sjxzdw"));
+		}
+		
+		Map paraMap = new HashMap();
+		paraMap.put("project_id", project_id);
+		paraMap.put("wxdw_id", wxdw_id);
+		paraMap.put("wxdw", sjxzdw);
+		List pxsjxzdw = this.getSjxzdw2(paraMap);
+		
+		Td01_xmxx xmxx=(Td01_xmxx) queryService.searchById(Td01_xmxx.class, xm_id);
+		modelMap.put("sjxzdw", sjxzdw);
+		modelMap.put("pxsjxzdw", pxsjxzdw);
+		modelMap.put("zdxp", detail_list);
+		modelMap.put("project_id", xm_id);
+		modelMap.put("xmxx", xmxx);
+		return new ModelAndView("/WEB-INF/jsp/search/pdqk.jsp", modelMap);
 	}
 	/**
 	 * 
@@ -1750,19 +1789,6 @@ public class AuxFunction {
 			Double fezb = 0D;
 			Long xms = 0L;
 			if (zgr != 0) {
-//				double gr = convertUtil
-//						.toDouble(
-//								dao
-//										.search(
-//												"select count(id),sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
-//														+ tf01.getMc()
-//														+ "' and ssdq='"
-//														+ dq
-//														+ "' and gclb='"
-//														+ gclb
-//														+ "' and to_char(lxsj,'yyyy') = '"
-//														+ ssnd + "'").get(0),
-//								0D);
 				List tmp_list = dao.search(
 						"select count(id),sum(case when sghtje is null then nvl(ys_rgf,0) else sghtje end ) from Td01_xmxx where sgdw='"
 								+ tf01.getMc()
@@ -2057,8 +2083,7 @@ public class AuxFunction {
 			}
 		}
 		// 获得 所有相关地区专业 未停工 类别为施工的合作单位
-		hql
-				.append("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='");
+		hql.append("select tf01,tf05 from Tf01_wxdw tf01,Tf05_wxdw_dygx tf05 where tf01.id=tf05.wxdw_id and tf05.zy='");
 		hql.append(gclb);
 		hql.append("' and tf05.dq='");
 		hql.append(dq);
@@ -2348,6 +2373,205 @@ public class AuxFunction {
 			result = (Tf01_wxdw) objectsList.get(0)[0];
 		}
 		return allList;
+	}
+	
+	/**
+	 * 实际选择单位
+	 * 
+	 * @param request
+	 * @param response
+	 * @return List
+	 */
+	public Tmp_zdxp getSjxzdw2(Map paraMap) {
+		ModelMap modelMap = new ModelMap();
+		Long project_id = convertUtil.toLong(paraMap.get("project_id"));
+		Long wxdw_id = convertUtil.toLong(paraMap.get("wxdw_id"));
+		String wxdw = convertUtil.toString(paraMap.get("wxdw"));
+		Td00_gcxx td00 = (Td00_gcxx) dao.getObject(Td00_gcxx.class, project_id);
+		Td01_xmxx td01 = (Td01_xmxx) dao.getObject(Td01_xmxx.class, project_id);
+		StringBuffer hql = new StringBuffer();
+		String gclb = "";
+		String dq = "";
+		int ssnd = -1;
+		if (td00 != null) {
+			gclb = td00.getP_gclb();
+			dq = td00.getSsdq();
+			Date lxsj = td00.getCjrq();
+			if (lxsj == null) {
+				ssnd = DateGetUtil.getYear();
+			} else {
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
+		} else if (td01 != null) {
+			gclb = td01.getP_gclb();
+			dq = td01.getSsdq();
+			Date lxsj = td01.getLxsj();
+			if (lxsj == null) {
+				ssnd = DateGetUtil.getYear();
+			} else {
+				ssnd = DateGetUtil.getYear(lxsj);
+			}
+		}
+		
+		
+		Tmp_zdxp zdxp = new Tmp_zdxp();
+		zdxp.setWxdw_id(wxdw_id);
+		zdxp.setProject_id(project_id);
+		
+		// 获得计划份额占比
+		Tf05_wxdw_dygx tf05 = null;
+		Double jhfezb = null;
+		hql.delete(0, hql.length());
+		hql.append("select tf05 from Tf05_wxdw_dygx tf05 ");
+		hql.append("where tf05.zy='");
+		hql.append(gclb);
+		hql.append("' and tf05.dq='");
+		hql.append(dq);
+		hql.append("' and tf05.lb='fezb' and tf05.v1>0 and tf05.nd='");
+		hql.append(ssnd);
+		hql.append("' ");
+		hql.append("and tf05.wxdw_id=");
+		hql.append(wxdw_id);
+		ResultObject ro = queryService.search(hql.toString());
+		if(ro.next()){
+			tf05 = (Tf05_wxdw_dygx)ro.get("tf05");
+			jhfezb = tf05.getV1();
+			zdxp.setJhfezb(jhfezb);//计划份额占比
+		}
+		
+		// 获得最大工程数
+		hql.delete(0, hql.length());
+		hql.append("select tf05 from Tf05_wxdw_dygx tf05 ");
+		hql.append("where tf05.zy='");
+		hql.append(gclb);
+		hql.append("' and tf05.dq='");
+		hql.append(dq);
+		hql.append("' and tf05.lb='zdgcs' and tf05.v1>0 and tf05.nd='");
+		hql.append(ssnd);
+		hql.append("' ");
+		hql.append("and tf05.wxdw_id=");
+		hql.append(wxdw_id);
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			tf05 = (Tf05_wxdw_dygx)ro.get("tf05");
+			zdxp.setZdgcs(tf05.getV1().longValue());//最大工程数
+		}
+		
+		// 获得综合得分
+		Tf27_wxdwzhpf tf27 = null;
+		hql.delete(0, hql.length());
+		hql.append("select tf27 from Tf27_wxdwzhpf tf27 where tf27.wxdw_id=");
+		hql.append(wxdw_id);
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			tf27 = (Tf27_wxdwzhpf)ro.get("tf27");
+			zdxp.setZdgcs(tf27.getZhdf());//综合得分
+		}
+		
+		// 获得决算项目数
+		Long jssl = null;
+		hql.delete(0, hql.length());
+		hql.append("select count(id) as jssl from Td01_xmxx td01 where jssj is not null and td01.sgdw='");
+		hql.append(wxdw);
+		hql.append("'");
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			jssl = convertUtil.toLong(ro.get("jssl"));
+			zdxp.setJssl(jssl);//决算数量
+		}
+		
+		// 获得项目数、决算率
+		Long xmsl = null;
+		hql.delete(0, hql.length());
+		hql.append("select count(id) as xmsl from Td01_xmxx td01 where td01.sgdw='");
+		hql.append(wxdw);
+		hql.append("'");
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			xmsl = convertUtil.toLong(ro.get("xmsl"));
+			zdxp.setXmsl(xmsl);//决算数量
+			if(xmsl != null && xmsl != 0){
+				double jsl = jssl.doubleValue() / xmsl.doubleValue() * 100;
+				zdxp.setJsl(jsl);
+			}
+		}
+		
+		//实际份额占比
+		//当前施工单位项目数
+		Double sghtje = null;
+		hql.delete(0, hql.length());
+		hql.append("select sum(sghtje) as sghtje from Td01_xmxx where sgdw='");
+		hql.append(wxdw);
+		hql.append("' and ssdq='");
+		hql.append(dq);
+		hql.append("' and gclb='");
+		hql.append(gclb);
+		hql.append("' and to_char(lxsj,'yyyy') = '");
+		hql.append(ssnd);
+		hql.append("'");
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			sghtje = convertUtil.toDouble(ro.get("sghtje"));
+		}
+		
+		//所有施工单位项目数、实际份额占比
+		Double sjfezb = null;
+		Double sghtje_all = null;
+		hql.delete(0, hql.length());
+		hql.append("select sum(sghtje) as sghtje from Td01_xmxx where ssdq='");
+		hql.append(dq);
+		hql.append("' and gclb='");
+		hql.append(gclb);
+		hql.append("' and to_char(lxsj,'yyyy') = '");
+		hql.append(ssnd);
+		hql.append("'");
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			sghtje_all = convertUtil.toDouble(ro.get("sghtje"));
+			if(sghtje_all != null && sghtje_all != 0){
+				sjfezb = sghtje / sghtje_all * 100;
+				zdxp.setSjfezb(sjfezb);
+			}
+		}
+		
+		//份额偏差率
+		Double fepcl = null;
+		if(jhfezb != null && jhfezb != 0){
+			fepcl = (jhfezb - sjfezb) / jhfezb * 100;
+			zdxp.setFepcl(fepcl);
+		}
+		
+		//在建工程数
+		Long zjxms = null;
+		hql.delete(0, hql.length());
+		hql.append("select count(id) as zjxms from Td01_xmxx where sgdw='");
+		hql.append(wxdw);
+		hql.append("' and ssdq='");
+		hql.append(dq);
+		hql.append("' and gclb='");
+		hql.append(gclb);
+		hql.append("' and sjjgsj is null ");
+		ro = queryService.search(hql.toString());
+		if(ro.next()){
+			zjxms = convertUtil.toLong(ro.get("zjxms"));
+			zdxp.setZjgcs(zjxms);
+		}
+		
+		//偏差等级
+		Long pcdj = null;
+		if(fepcl != null){
+			hql.delete(0, hql.length());
+			hql.append("select dj as pcdj from Tf11_fepcl where (qzxx is null or qzxx < ");
+			hql.append(fepcl);
+			hql.append(") and qzsx >= ");
+			hql.append(fepcl);
+			ro = queryService.search(hql.toString());
+			if(ro.next()){
+				zjxms = convertUtil.toLong(ro.get("zjxms"));
+				zdxp.setZjgcs(zjxms);
+			}
+		}
+		return zdxp;
 	}
 
 	@RequestMapping("/aux/ddhdEdit.do")
