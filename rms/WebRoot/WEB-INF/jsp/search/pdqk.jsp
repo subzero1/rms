@@ -87,7 +87,7 @@
 			</c:forEach> 
 			<tr><td colspan="13" ></td></tr>
 			<tr><td colspan="13" ><b>决算率:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;决算项目数/项目总数*100%&nbsp;&nbsp;</td></tr>
-			<tr><td colspan="13" ><b>偏差率:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(计划占比-实际占比)/计划占比&nbsp;&nbsp;</td></tr>
+			<tr><td colspan="13" ><b>偏差率:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(计划占比-实际占比)/计划占比*100%&nbsp;&nbsp;</td></tr>
 			<tr><td colspan="13" ><b>偏差档级:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="aux/fepcl.do" target="dialog" width="400" height="250"><font color="blue">点此处查看</font></a></td></tr>
 			<tr><td colspan="13" ><b>排名加权:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;综合得分排名*0.6+决算率排名*0.4</td></tr>
 			<tr><td colspan="13" ><b>排名优先级:</b>&nbsp;偏差档级（升序）、排名加权（升序）、综合得分（降序）、决算率（降序）、计划份额占比（降序）</td></tr>

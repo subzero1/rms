@@ -169,10 +169,10 @@ public class Sgpd {
 			}
 			// 在建工程数
 			Long zjgcs = convertUtil.toLong(dao.search(
-					"select count(*) from Td01_xmxx where sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
+					"select count(*) from Td01_xmxx where p_gclb='"+t_gclb+"' and sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
 							+ "' and sjjgsj is null").get(0));
 			zjgcs += convertUtil.toLong(dao.search(
-					"select count(*) from Td00_gcxx where xm_id is null and sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
+					"select count(*) from Td00_gcxx where p_gclb='"+t_gclb+"' and xm_id is null and sgdw='" + ((Tf01_wxdw) objects[0]).getMc()
 							+ "' and sjjgsj is null").get(0));
 			// 最大工程数
 			Double zdgcs = 0D;
