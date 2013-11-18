@@ -62,7 +62,7 @@
 				<th width="60">决算率</th>
 				<th width="80">决算率排名</th>
 				<th width="70">综合得分</th>
-				<th width="70">综合得分</th>
+				<th width="80">得分排名</th>
 				<th width="70">计划占比</th>
 				<th width="70">实际占比</th>
 				<th width="60">偏差率</th>
