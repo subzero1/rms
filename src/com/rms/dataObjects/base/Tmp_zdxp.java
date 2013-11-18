@@ -266,4 +266,24 @@ public class Tmp_zdxp implements Serializable {
 	public void setZdgcs(Long zdgcs) {
 		this.zdgcs = zdgcs;
 	}
+	
+	private Integer xtxzbz;
+
+	public Integer getXtxzbz() {
+		return xtxzbz;
+	}
+
+	public void setXtxzbz(Integer xtxzbz) {
+		this.xtxzbz = xtxzbz;
+	}
+	
+	private Integer cgzdxms;
+
+	public Integer getCgzdxms() {
+		return cgzdxms;
+	}
+
+	public void setCgzdxms(Integer cgzdxms) {
+		this.cgzdxms = cgzdxms;
+	}
 }

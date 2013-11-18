@@ -134,16 +134,20 @@ public class RegExp {
 //					bb3));
 			
 			//if(t_content.length() == 8 && t_content.indexOf("201") == 0 && t_content.indexOf(".") != -1){
-			String a = "20131212";
+			//String a = "20131212";
 			//System.out.println(a.length());
 			//System.out.println(a.indexOf("201"));
 			//System.out.println(a.indexOf("."));
-			System.out.println(a.substring(0,4)+"-"+a.substring(4,6)+"-"+a.substring(6,8));
+			//System.out.println(a.substring(0,4)+"-"+a.substring(4,6)+"-"+a.substring(6,8));
 			
-			System.out.println(new RegExp().match("\\d+\\.?\\d*", "12.58"));
+			//System.out.println(new RegExp().match("\\d+\\.?\\d*", "12.58"));
 			
-			String b = "南京电信_";
-			System.out.println(b.substring(b.indexOf("_")+1,b.length())+"2");
+			//String b = "南京电信_";
+			//System.out.println(b.substring(b.indexOf("_")+1,b.length())+"2");
+			
+			Integer a = 2147483647;
+			Long b = 1111111111111111111L;
+			System.out.print(a instanceof Integer);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

@@ -102,7 +102,7 @@ public class Sgpd {
 		// 建立数组o[15]
 		/*
 		 * o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级
-		 * o[10]:标志位，计划份额<实际份额 = 1  在建工程数>最大在建工程数 = 2； o[11]：决算项目数 o[12]:项目总数 o[13]:在建项目数 o[14]:最大项目数
+		 * o[10]:标志位 在建工程数>最大在建工程数 = 1 在建工程数<最大在建工程数=0； o[11]：决算项目数 o[12]:项目总数 o[13]:在建项目数 o[14]:最大项目数
 		 */
 		List<Object[]> objectsList = new ArrayList<Object[]>();
 		for (Object[] objects : wxdwList) {
@@ -139,7 +139,6 @@ public class Sgpd {
 										+ "'").get(0), 0D);
 		
 		// flag:未通过检测的个数
-		int flag = 0;
 		// passedList 通过条件的合作单位 暂存入该LIST
 		for (Object[] objects : objectsList) {
 			Tf01_wxdw tf01 = (Tf01_wxdw) objects[0];
@@ -160,19 +159,10 @@ public class Sgpd {
 			// tf05.getV1():预定份额占比
 			objects[6] = tf05.getV1();
 			objects[7] = fezb * 100;
-			if (tf05.getV1() <= fezb * 100) {
-				objects[10] = 1;
-				flag++;
-			}
 		}
-		if (flag == objectsList.size()) {
-			for (Object[] objects : objectsList) {
-				objects[10] = null;
-			}
-			flag = 0;
-		}
+		
 		// 判断在建工程数和最大工程数
-		//int flag2 = 0;
+		int flag = 0;
 		for (Object[] objects : objectsList) {
 			if (objects[10] != null) {
 				continue;
@@ -196,14 +186,14 @@ public class Sgpd {
 			objects[14] = zdgcs;
 			
 			if (zjgcs >= zdgcs) {
-				objects[10] = 2;
-				flag++;
+				objects[10] = 1;
+				flag ++;
 			}
 		}
 		if (flag == objectsList.size()) {
 			for (Object[] objects : objectsList) {
-				if ((Integer) objects[10] == 2)
-					objects[10] = null;
+				if ((Integer) objects[10] == 1)
+					objects[10] = 0;
 			}
 		}
 		// 置施工单位综合评分和决算率
@@ -232,6 +222,7 @@ public class Sgpd {
 				objects[12] = xmsl;
 			}
 		}
+		
 		// 置偏差率和偏差率档级
 		for (Object[] o : objectsList) {
 			o[8] = ((Double) o[6] - (Double) o[7]) / (Double) o[6] * 100;
@@ -241,11 +232,7 @@ public class Sgpd {
 		}
 		List<Object[]> allList = new ArrayList<Object[]>(objectsList);
 		modelMap.put("allList", allList);
-		for (int i = objectsList.size() - 1; i >= 0; i--) {
-			if (objectsList.get(i)[10] != null) {
-				objectsList.remove(i);
-			}
-		}
+
 		// 将objs[2]objs[3]分别冒泡排序
 		// 先按objs[2]排 从低到高
 		Object[] temp;
@@ -308,12 +295,12 @@ public class Sgpd {
 				zdxp.setProject_id(project_id);
 				zdxp.setJssl((Long) o[11]);
 				zdxp.setXmsl((Long) o[12]);
-				zdxp.setZhdfpm(((Integer)o[4]).longValue());
-				zdxp.setJslpm(((Integer) o[5]).longValue());
+				zdxp.setZhdfpm((convertUtil.toInteger(o[4],0)).longValue());
+				zdxp.setJslpm((convertUtil.toInteger(o[5],0)).longValue());
 				zdxp.setSjfezb((Double) o[7]);
 				zdxp.setFepcl((Double) o[8]);
 				zdxp.setZjgcs((Long)o[13]);
-				zdxp.setZdgcs(((Double)o[14]).longValue());
+				zdxp.setZdgcs((convertUtil.toInteger(o[14],0)).longValue());
 				session.save(zdxp);
 			}
 			session.flush();
@@ -326,7 +313,7 @@ public class Sgpd {
 			session.close();
 		}
 		List<Long> wxdw_ids = (List<Long>) dao.search("select wxdw_id from Tmp_zdxp where batch_no=" + nextval
-				+ " order by dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
+				+ " order by cgzdxms asc,dj asc,pm asc,zhdf desc,jsl desc,jhfezb desc");
 		List<Object[]> tmpList = new ArrayList<Object[]>();
 		int i = 0;
 		// 只保留前3名
@@ -368,6 +355,7 @@ public class Sgpd {
 		}
 		if (result == null) {
 			result = (Tf01_wxdw) objectsList.get(0)[0];
+			dao.update("update Tmp_zdxp set xtxzbz = 1 where wxdw_id = "+result.getId()+" and project_id=" + project_id);
 		}
 		modelMap.put("zdxp", result);
 		modelMap.put("project_id", xm_id);
