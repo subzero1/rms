@@ -2401,6 +2401,7 @@ public class AuxFunction {
 		StringBuffer hql = new StringBuffer();
 		String gclb = "";
 		String dq = "";
+		String table_name = "";
 		int ssnd = -1;
 		if (td00 != null) {
 			gclb = td00.getP_gclb();
@@ -2411,6 +2412,7 @@ public class AuxFunction {
 			} else {
 				ssnd = DateGetUtil.getYear(lxsj);
 			}
+			table_name = "Td00_gcxx";
 		} else if (td01 != null) {
 			gclb = td01.getP_gclb();
 			dq = td01.getSsdq();
@@ -2420,6 +2422,7 @@ public class AuxFunction {
 			} else {
 				ssnd = DateGetUtil.getYear(lxsj);
 			}
+			table_name = "Td01_xmxx";
 		}
 		
 		Tmp_zdxp zdxp = new Tmp_zdxp();
@@ -2428,7 +2431,7 @@ public class AuxFunction {
 		
 		// 获得计划份额占比
 		Tf05_wxdw_dygx tf05 = null;
-		Double jhfezb = null;
+		Double jhfezb = 0D;
 		hql.delete(0, hql.length());
 		hql.append("select tf05 from Tf05_wxdw_dygx tf05 ");
 		hql.append("where tf05.zy='");
@@ -2444,8 +2447,8 @@ public class AuxFunction {
 		if(ro.next()){
 			tf05 = (Tf05_wxdw_dygx)ro.get("tf05");
 			jhfezb = tf05.getV1();
-			zdxp.setJhfezb(jhfezb);//计划份额占比
 		}
+		zdxp.setJhfezb(jhfezb);//计划份额占比
 		
 		// 获得最大工程数
 		hql.delete(0, hql.length());
@@ -2479,7 +2482,7 @@ public class AuxFunction {
 		// 获得决算项目数
 		Long jssl = null;
 		hql.delete(0, hql.length());
-		hql.append("select count(id) as jssl from Td01_xmxx td01 where jssj is not null and td01.sgdw='");
+		hql.append("select count(id) as jssl from "+table_name+" td01 where jssj is not null and td01.sgdw='");
 		hql.append(wxdw);
 		hql.append("'");
 		ro = queryService.search(hql.toString());
@@ -2491,7 +2494,7 @@ public class AuxFunction {
 		// 获得项目数、决算率
 		Long xmsl = null;
 		hql.delete(0, hql.length());
-		hql.append("select count(id) as xmsl from Td01_xmxx td01 where td01.sgdw='");
+		hql.append("select count(id) as xmsl from "+table_name+" where sgdw='");
 		hql.append(wxdw);
 		hql.append("'");
 		ro = queryService.search(hql.toString());
@@ -2508,7 +2511,7 @@ public class AuxFunction {
 		//当前施工单位项目数
 		Double sghtje = null;
 		hql.delete(0, hql.length());
-		hql.append("select sum(sghtje) as sghtje from Td01_xmxx where sgdw='");
+		hql.append("select sum(sghtje) as sghtje from "+table_name+" where sgdw='");
 		hql.append(wxdw);
 		hql.append("' and ssdq='");
 		hql.append(dq);
@@ -2526,7 +2529,7 @@ public class AuxFunction {
 		Double sjfezb = null;
 		Double sghtje_all = null;
 		hql.delete(0, hql.length());
-		hql.append("select sum(sghtje) as sghtje from Td01_xmxx where ssdq='");
+		hql.append("select sum(sghtje) as sghtje from "+table_name+" where ssdq='");
 		hql.append(dq);
 		hql.append("' and gclb='");
 		hql.append(gclb);
@@ -2552,10 +2555,8 @@ public class AuxFunction {
 		//在建工程数
 		Long zjxms = null;
 		hql.delete(0, hql.length());
-		hql.append("select count(id) as zjxms from Td01_xmxx where sgdw='");
+		hql.append("select count(id) as zjxms from "+table_name+" where sgdw='");
 		hql.append(wxdw);
-		hql.append("' and ssdq='");
-		hql.append(dq);
 		hql.append("' and gclb='");
 		hql.append(gclb);
 		hql.append("' and sjjgsj is null ");
