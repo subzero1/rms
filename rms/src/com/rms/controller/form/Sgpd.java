@@ -189,6 +189,9 @@ public class Sgpd {
 				objects[10] = 1;
 				flag ++;
 			}
+			else{
+				objects[10] = 0;
+			}
 		}
 		if (flag == objectsList.size()) {
 			for (Object[] objects : objectsList) {
@@ -278,7 +281,7 @@ public class Sgpd {
 		Transaction tx = session.beginTransaction();
 		Long nextval = -1L;
 		try {
-			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级 o[10]:标志位，计划份额<实际份额 = 1  在建工程数>最大在建工程数 = 2； o[11]：决算项目数 o[12]:项目总数 o[13]:在建项目数 o[14]:最大项目数 
+			// o[0]:tf01;o[1]:tf05;o[2]:zhdf(综合得分);o[3]:决算率;o[4]:综合得分排名;o[5]:决算率排名;o[6]:计划份额;o[7]:实际份额;o[8]:份额偏差率;o[9]:份额偏差率档级 o[10]:标志位， 在建工程数>最大在建工程数 = 1； o[11]：决算项目数 o[12]:项目总数 o[13]:在建项目数 o[14]:最大项目数 
 			tx.begin();
 			nextval = ((BigDecimal) (session.createSQLQuery("select batch_num.nextval from dual").uniqueResult()))
 					.longValue();
@@ -301,6 +304,7 @@ public class Sgpd {
 				zdxp.setFepcl((Double) o[8]);
 				zdxp.setZjgcs((Long)o[13]);
 				zdxp.setZdgcs((convertUtil.toInteger(o[14],0)).longValue());
+				zdxp.setCgzdxms((Integer)o[10]);
 				session.save(zdxp);
 			}
 			session.flush();
