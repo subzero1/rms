@@ -153,6 +153,22 @@
             insert="true"
             column="zdgcs"
         />
+        
+        <property
+            name="xtxzbz"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="xtxzbz"
+        />
+        
+         <property
+            name="cgzdxms"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="cgzdxms"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named

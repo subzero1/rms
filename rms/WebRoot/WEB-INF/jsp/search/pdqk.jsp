@@ -36,7 +36,6 @@
 		}else{
 			navTab.openTab('pgsp', url, {title:'手动选派原因'});
 		}
-		
 	}
 </script>
 
@@ -45,61 +44,54 @@
 		<thead>
 			<tr>
 				<th width="200">单位名称</th>
-				<th width="70">决算率</th>
+				<th width="60">决算数</th>
+				<th width="70">项目总数</th>
+				<th width="60">决算率</th>
+				<th width="80">决算率排名</th>
 				<th width="70">综合得分</th>
+				<th width="70">得分排名</th>
 				<th width="70">计划占比</th>
 				<th width="70">实际占比</th>
-				<th width="50">偏差率</th>
+				<th width="60">偏差率</th>
 				<th width="70">偏差档级</th>
-				<th width="50">项目数</th>
+				<th width="80">在建项目数</th>
+				<th width="80">最大项目数</th>
 			</tr>
 		</thead>				
 		<tbody>
-			<c:forEach items="${allList }" var="o">
-			<tr>
-				<td title="${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if>" style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>" >${o[0].mc }<c:if test="${o[0].mc == zdxp.mc}">（系统选择）</c:if></td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[3] }"/></td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0" value="${o[2] }"/></td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[6]/100 }"/></td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>"><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[9] }</td>
-				<td style="<c:if test="${o[0].mc == zdxp.mc}">color:red</c:if>">${o[11] }</td>
+			<c:forEach items="${detail_list }" var="o">
+			<tr 
+				<c:choose>
+					<c:when test="${o[1].xtxzbz == 1}">
+					style="color:red" title="系统选择"
+					</c:when>
+					<c:when test="${o[2]==1 }">
+					style=color:green  title="实际选择"
+					</c:when>
+				</c:choose>
+			>
+				<td>${o[0].mc }</td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].jssl}"/></td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].xmsl }"/></td>
+				<td><fmt:formatNumber pattern="0.00" value="${o[1].jsl }"/>%</td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].jslpm }"/></td>
+				<td><fmt:formatNumber pattern="0.00" value="${o[1].zhdf }"/></td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].zhdfpm }"/></td>
+				<td><fmt:formatNumber pattern="0.00" value="${o[1].jhfezb }"/>%</td>
+				<td><fmt:formatNumber pattern="0.00" value="${o[1].sjfezb }"/>%</td>
+				<td><fmt:formatNumber pattern="0.00" value="${o[1].fepcl }"/>%</td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].dj }"/></td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].zjgcs }"/></td>
+				<td><fmt:formatNumber pattern="0" value="${o[1].zdgcs }"/></td>
 			</tr>
 			</c:forEach> 
-			<c:forEach items="${pxsjxzdw}" var="o">
-			<tr title="${o[0].mc }(实际选择)" style="color:green;">
-				<td>${o[0].mc }(实际选择)</td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[3] }"/></td>
-				<td><fmt:formatNumber pattern="0" value="${o[2] }"/></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[6]/100 }"/></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[7]/100 }"/></td>
-				<td><fmt:formatNumber pattern="0.00%" value="${o[8]/100 }"/></td>
-				<td>${o[9] }</td>
-				<td>${o[11] }</td>
-			</tr>
-			</c:forEach>
-			<c:if test="">
-			<c:forEach items="${empty sjxzdw}" var="o">
-			<tr style="color:green;">
-				<td>${o[1]}</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-			</tr>
-			</c:forEach>
-			</c:if>
-			<tr><td colspan="8" ></td></tr>
-			<tr><td colspan="8" >决算率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已经决算过的工程数/总工程数&nbsp;&nbsp;(年度:<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>,专业:${xmxx.gclb} ,地区:${xmxx.ssdq },项目:${xmxx.xmmc })</td></tr>
-			<tr><td colspan="8" >实际占比:&nbsp;当前单位的合同金额/项目总合同金额&nbsp;&nbsp;(年度:<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>,专业:${xmxx.gclb} ,地区:${xmxx.ssdq },项目:${xmxx.xmmc })</td></tr>
-			<tr><td colspan="8" >偏差率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(计划占比-实际占比)/计划占比&nbsp;&nbsp;(年度:<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>,专业:${xmxx.gclb} ,地区:${xmxx.ssdq },项目:${xmxx.xmmc })</td></tr>
-			<tr><td colspan="8" >偏差等级:&nbsp;<a href="aux/fepcl.do" target="dialog" width="400" height="250">详情</td></tr>
-			<tr ><td colspan="8" style="border: 0px;">项目数:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前单位的项目数(<fmt:formatDate value="${xmxx.lxsj}" pattern="yyyy"/>年度,${xmxx.gclb} ,${xmxx.ssdq })</td></tr>
-		
+			<tr><td colspan="13" ></td></tr>
+			<tr><td colspan="13" ><b>决算率:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;决算项目数/项目总数*100%&nbsp;&nbsp;</td></tr>
+			<tr><td colspan="13" ><b>偏差率:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(计划占比-实际占比)/计划占比&nbsp;&nbsp;</td></tr>
+			<tr><td colspan="13" ><b>偏差档级:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="aux/fepcl.do" target="dialog" width="400" height="250"><font color="blue">点此处查看</font></a></td></tr>
+			<tr><td colspan="13" ><b>排名加权:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;综合得分排名*0.6+决算率排名*0.4</td></tr>
+			<tr><td colspan="13" ><b>排名优先级:</b>&nbsp;偏差档级（升序）、排名加权（升序）、综合得分（降序）、决算率（降序）、计划份额占比（降序）</td></tr>
+			
 		</tbody>
 	</table>
 

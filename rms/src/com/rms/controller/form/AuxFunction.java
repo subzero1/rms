@@ -56,6 +56,7 @@ import com.rms.dataObjects.base.Tmp_zdxp;
 import com.rms.dataObjects.form.Td00_gcxx;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.rms.dataObjects.form.Td09_ddhdxx;
+import com.rms.dataObjects.form.Td08_pgspd;
 
 @Controller
 public class AuxFunction {
@@ -1659,41 +1660,49 @@ public class AuxFunction {
 		ModelMap modelMap = new ModelMap();
 		ResultObject ro = null;
 		Long project_id = convertUtil.toLong(request.getParameter("project_id"), -10L);
-		Long xm_id = convertUtil.toLong(request.getParameter("xm_id"));
+		Long module_id = convertUtil.toLong(request.getParameter("module_id"), -10L);
 		Long id = convertUtil.toLong(request.getParameter("id"), -10L);
 		StringBuffer sql = new StringBuffer("");
 		sql.delete(0, sql.length());
-		sql.append("from Tmp_zdxp where project_id = ");
+		sql.append("select tf01,zdxp from Tf01_wxdw tf01,Tmp_zdxp zdxp ");
+		sql.append("where tf01.id = zdxp.wxdw_id ");
+		sql.append(" and project_id = ");
 		sql.append(project_id);
 		List detail_list = queryService.searchList(sql.toString());
 
 		//查找实际选择单位
+		Object[] o = new Object[3];
 		Long wxdw_id = null;
 		String sjxzdw = null;
 		sql.delete(0, sql.length());
-		sql.append("select tf01.id as wxdw_id,td08.sjxzdw as sjxzdw ");
+		sql.append("select tf01,td08 ");
 		sql.append("from Td08_pgspd td08,Tf01_wxdw tf01 ");
 		sql.append("where td08.sjxzdw = tf01.mc ");
+		sql.append("and not exists(select 'x' from Tmp_zdxp t1 where t1.project_id = td08.project_id and tf01.id = t1.wxdw_id) ");
 		sql.append("and td08.id = ");
 		sql.append(id);
 		ro = queryService.search(sql.toString());
 		if(ro.next()){
-			wxdw_id = convertUtil.toLong(ro.get("wxdw_id"));
-			sjxzdw = convertUtil.toString(ro.get("sjxzdw"));
+			Tf01_wxdw tf01 = (Tf01_wxdw)ro.get("tf01");
+			o[0] = tf01;
+			
+			Td08_pgspd td08 = (Td08_pgspd)ro.get("td08");
+			wxdw_id = convertUtil.toLong(tf01.getId());
+			sjxzdw = convertUtil.toString(td08.getSjxzdw());
+			
+			Map paraMap = new HashMap();
+			paraMap.put("project_id", project_id);
+			paraMap.put("wxdw_id", wxdw_id);
+			paraMap.put("wxdw", sjxzdw);
+			Tmp_zdxp zdxp = this.getSjxzdw2(paraMap);
+			o[1] = zdxp;
+			o[2] = 1;
+			detail_list.add(o);
 		}
-		
-		Map paraMap = new HashMap();
-		paraMap.put("project_id", project_id);
-		paraMap.put("wxdw_id", wxdw_id);
-		paraMap.put("wxdw", sjxzdw);
-		List pxsjxzdw = this.getSjxzdw2(paraMap);
-		
-		Td01_xmxx xmxx=(Td01_xmxx) queryService.searchById(Td01_xmxx.class, xm_id);
+		//Td01_xmxx xmxx=(Td01_xmxx) queryService.searchById(Td01_xmxx.class, xm_id);
 		modelMap.put("sjxzdw", sjxzdw);
-		modelMap.put("pxsjxzdw", pxsjxzdw);
-		modelMap.put("zdxp", detail_list);
-		modelMap.put("project_id", xm_id);
-		modelMap.put("xmxx", xmxx);
+		modelMap.put("detail_list", detail_list);
+		//modelMap.put("xmxx", xmxx);
 		return new ModelAndView("/WEB-INF/jsp/search/pdqk.jsp", modelMap);
 	}
 	/**
@@ -2412,7 +2421,6 @@ public class AuxFunction {
 				ssnd = DateGetUtil.getYear(lxsj);
 			}
 		}
-		
 		
 		Tmp_zdxp zdxp = new Tmp_zdxp();
 		zdxp.setWxdw_id(wxdw_id);
