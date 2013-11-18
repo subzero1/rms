@@ -158,7 +158,7 @@ $(function(){
 		<label>
 			<c:choose>
 				<c:when test="${(param.node_id == 10201 && empty user.send_htgly && empty td00_gcxx.sgdw) || param.node_id == 10205}">
-					<a href="sgpd.do?project_id=${td00_gcxx.id}" lookupGroup="sgdwOrg" width="700" height="380" style="color:red;" id="sgdw">施工单位</a>：
+					<a href="sgpd.do?project_id=${td00_gcxx.id}" lookupGroup="sgdwOrg" width="980" height="380" style="color:red;" id="sgdw">施工单位</a>：
 				</c:when>
 				<c:otherwise>
 					施工单位：
