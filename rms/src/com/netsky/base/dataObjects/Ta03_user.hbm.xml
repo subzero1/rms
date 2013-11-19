@@ -145,6 +145,22 @@
             insert="true"
             column="new_flag"
         />
+        
+        <property
+            name="workgroup"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="workgroup"
+        />
+        
+        <property
+            name="groupleader"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="groupleader"
+        />
 
         <!--
             To add non XDoclet property mappings, create a file named
