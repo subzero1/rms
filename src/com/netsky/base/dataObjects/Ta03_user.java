@@ -323,4 +323,24 @@ public class Ta03_user implements Serializable{
 	public void setSend_htgly(Long send_htgly) {
 		this.send_htgly = send_htgly;
 	}
+	
+	private String workgroup;
+	
+	private String groupleader;
+
+	public String getWorkgroup() {
+		return workgroup;
+	}
+
+	public void setWorkgroup(String workgroup) {
+		this.workgroup = workgroup;
+	}
+
+	public String getGroupleader() {
+		return groupleader;
+	}
+
+	public void setGroupleader(String groupleader) {
+		this.groupleader = groupleader;
+	}
 }
