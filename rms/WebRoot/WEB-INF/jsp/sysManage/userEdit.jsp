@@ -78,8 +78,8 @@ $(function(){
 					<input  type="text" name="Ta03_user.MOBILE_TEL" value="${userObj.mobile_tel }" style="width:90px;" class="required" />
 				</p>
 				<p>
-					<label>固定电话：</label>
-					<input type="text" name="Ta03_user.FIX_TEL" value="${userObj.fix_tel }"  style="width:110px;"/>
+					<label>电子邮件：</label>
+					<input type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:110px;"/>
 				</p>
 				<p>
 					<label>性别：</label>
@@ -90,8 +90,12 @@ $(function(){
 				</p>
 				<div style="height:0px;"></div>
 				<p>
-					<label>电子邮件：</label>
-					<input  type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:306px;"/>
+					<label>工作组：</label>
+					<input  type="text" name="Ta03_user.WORKGROUP" value="${userObj.workgroup }" style="width:90px;"  />
+				</p>
+				<p>
+					<label>是否组长：</label>
+					<input type="text" name="Ta03_user.GROUPLEADER" value="${userObj.groupleader }"  style="width:110px;"/>
 				</p>
 				<p>
 					<label>是否可用：</label>
