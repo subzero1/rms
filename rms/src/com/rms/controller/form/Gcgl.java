@@ -98,6 +98,7 @@ public class Gcgl {
 		
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name = user.getName();
+		String workgroup = user.getWorkgroup();
 		String user_dept = user.getDept_name();
 		String user_zy = user.getZys();
 
@@ -126,11 +127,17 @@ public class Gcgl {
 		else {
 			limit = "xmgly";
 			node_id = 10101L;
+			if (rolesMap.get("60102") != null && workgroup != null){
+				limit = "groupManager";
+			}
 		}
 
 		hsql.delete(0, hsql.length());
 		hsql.append("select xmxx from Td01_xmxx xmxx where 1=1 ");
-		if(limit.equals("xmgly")){
+		if(limit.equals("groupManager")){
+			hsql.append("and exists(select 'x' from Ta03_user ta03 where xmxx.xmgly=ta03.name and ta03.workgroup = '"+workgroup+"') ");
+		}
+		else if(limit.equals("xmgly")){
 			hsql.append("and xmgly = '"+user_name+"' ");
 		}
 		else if(limit.equals("sjdw")){
@@ -145,21 +152,11 @@ public class Gcgl {
 		else{//合同管理员
 			hsql.append(" and xmgly in(select name from Ta03_user where send_htgly = 1)");
 		}
-		// 工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
-//		hsql.append("(");
-//		hsql.append("xmgly = '" + user_name + "'");
-//		hsql.append(" or xmjl = '" + user_name + "'");
-//		hsql.append(" or (sgdw = '" + user_dept + "' and gclb in (" + user_zy
-//				+ "))");
-//		hsql.append(" or sjdw = '" + user_dept + "'");
-//		hsql.append(" or jldw = '" + user_dept + "'");
-//		hsql.append(")");
 
 		// 关键字
 		if (!keyword.equals("")) {
 			hsql.append(" and (xmmc like '%" + keyword + "%' or xmbh like '%"
 					+ keyword + "%' or xmgly like '%"+keyword+"%')");
-			
 		}
 
 		// order排序
@@ -169,26 +166,8 @@ public class Gcgl {
 
 		// 获取结果集
 		List<Td01_xmxx> xmxxList = new ArrayList<Td01_xmxx>();
-		
 		while (ro.next()) {
 			Td01_xmxx td01 = (Td01_xmxx) ro.get("xmxx");
-
-//			if ("".equals(limit)) {
-//				if (user_dept.equals(td01.getSgdw())) {
-//					limit = "sgdw";
-//					node_id = 10103L;
-//				} else if (user_dept.equals(td01.getJldw())) {
-//					limit = "jldw";
-//					node_id = 10104L;
-//				} else if (user_dept.equals(td01.getSjdw())) {
-//					limit = "sjdw";
-//					node_id = 10102L;
-//				} else {
-//					limit = "xmgly";
-//					node_id = 10101L;
-//				}
-//			}
-
 			xmxxList.add(td01);
 		}
 
@@ -212,9 +191,7 @@ public class Gcgl {
 		totalCount = ro.getTotalRows();
 		modelMap.put("totalPages", totalPages);
 		modelMap.put("totalCount", totalCount);
-
 		return new ModelAndView("/WEB-INF/jsp/form/xmxxList.jsp", modelMap);
-
 	}
 
 	/**
@@ -361,6 +338,7 @@ public class Gcgl {
 		
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name = user.getName();
+		String workgroup = user.getWorkgroup();
 		String user_dept = user.getDept_name();
 		String user_zy = user.getZys();
 
@@ -389,11 +367,18 @@ public class Gcgl {
 		else {
 			limit = "xmgly";
 			node_id = 10201L;
+			if (rolesMap.get("60103") != null && workgroup != null){
+				limit = "groupManager";
+			}
 		}
 
 		hsql.delete(0, hsql.length());
 		hsql.append("select gcxx from Td00_gcxx gcxx where not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
-		if(limit.equals("xmgly")){
+		
+		if(limit.equals("groupManager")){
+			hsql.append("and exists(select 'x' from Ta03_user ta03 where gcxx.xmgly=ta03.name and ta03.workgroup = '"+workgroup+"') ");
+		}
+		else if(limit.equals("xmgly")){
 			hsql.append("and xmgly = '"+user_name+"' ");
 		}
 		else if(limit.equals("sjdw")){
