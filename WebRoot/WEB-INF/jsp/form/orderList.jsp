@@ -53,9 +53,10 @@
 				<tr>
 					<th style="width:20px;"></th>
 					<th orderField="gcbh" style="width: 80px;">订单编码</th>
-					<th style="width: 200px;" orderField="gcmc">标题</th>
+					<th style="width: 250px;" orderField="gcmc">标题</th>
 					<th style="width: 200px;" orderField="lxxx">联系信息</th>
-					<th style="width: 200px;" orderField="a_adress">A端装机地址</th>
+					<th style="width: 250px;" orderField="a_adress">A端装机地址</th>
+					<th style="width: 80px;" orderField="xmgly">项目管理员</th>
 					<th ></th> 
 				</tr>
 			</thead>
@@ -69,12 +70,14 @@
 						<td><a href="openForm.do?project_id=${obj.id }&module_id=114&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }" target="navTab" rel="ddxx" title="定单信息">${obj.gcmc }</a></td>
 						<td>${obj.lxxx }</td>
 						<td>${obj.a_adress}</td>
+						<td>${obj.xmgly}</td>
 						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
