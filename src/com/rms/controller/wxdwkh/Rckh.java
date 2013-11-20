@@ -70,15 +70,26 @@ public class Rckh {
 		Ta03_user user = null;
 		Integer totalPages = 1;
 		Integer totalCount = 0;
-		boolean isManager = false;
+		//boolean isManager = false;
+		String roles = null;
 		user = (Ta03_user) request.getSession().getAttribute("user");
 		Map rolesMap = (Map)request.getSession().getAttribute("rolesMap");
-		if(rolesMap.get("50100") == null){
-			isManager = false;
+		String workgroup = null;
+		/*
+		 * 区分三种角色
+		 */
+		if(rolesMap.get("50100") != null){
+			roles = "manager";  //考核管理员
+		}
+		else if(user.getWorkgroup() != null && convertUtil.toString(user.getGroupleader()).equals("是")){
+			roles = "groupManager"; //组长
+			workgroup = user.getWorkgroup();
 		}
 		else{
-			isManager = true;
+			roles = "khry"; //一般考核人员
 		}
+		modelMap.put("rckhRole", roles);
+		
 		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
 		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
 		String orderField = convertUtil.toString(request.getParameter("orderField"), "khsj");
@@ -128,10 +139,17 @@ public class Rckh {
 		if (type.equals("khry")) {
 			String wxdw_lb = convertUtil.toString(request.getParameter("wxdw_lb"), "");
 			String wxdw_mc = convertUtil.toString(request.getParameter("wxdw_mc"));
-			if(!isManager){
+			if(roles.equals("khry")){
 				whereClause += " and khry_name='" + user.getName() + "'";
 			}
-			else{
+			else if(roles.equals("groupManager")){
+				// 考核人员
+				if (!khry.equals("")) {
+					hsql.append(" and khry_name='" + khry + "'");
+				}
+				hsql.append(" and exists(select 'x' from Ta03_user ta03 where rckh.khry_name = ta03.name and ta03.workgroup = '"+workgroup+"') ");
+			}
+			else if(roles.equals("manager")){
 				// 考核人员
 				if (!khry.equals("")) {
 					hsql.append(" and khry_name='" + khry + "'");
@@ -209,6 +227,16 @@ public class Rckh {
 		hsql.append("order by ta03.name");
 		List khryList = queryService.searchList(hsql.toString());
 		modelMap.put("khryList", khryList);
+		
+		hsql.delete(0, hsql.length());
+		hsql.append("select ta03 from Ta03_user ta03,Ta11_sta_user ta11 ");
+		hsql.append("where ta03.id = ta11.user_id ");
+		hsql.append("and ta11.station_id = 6 ");
+		hsql.append("and ta03.workgroup = '");
+		hsql.append(workgroup);
+		hsql.append("' order by ta03.name");
+		List khryListForWorkGroup = queryService.searchList(hsql.toString());
+		modelMap.put("khryListForWorkGroup", khryListForWorkGroup);
 		
 		//考核年份、月份
 		LinkedList nfList = new LinkedList();

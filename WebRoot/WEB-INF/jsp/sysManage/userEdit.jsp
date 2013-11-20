@@ -91,15 +91,21 @@ $(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>工作组：</label>
-					<input  type="text" name="Ta03_user.WORKGROUP" value="${userObj.workgroup }" style="width:90px;"  />
+					<netsky:htmlSelect id="Ta03_user.WORKGROUP" style="width:96px;"
+						name="Ta03_user.WORKGROUP" objectForOption="workgroups"
+						valueForOption="name" showForOption="name"
+						value="${userObj.workgroup}" extend="" extendPrefix="true"  />
 				</p>
 				<p>
 					<label>是否组长：</label>
-					<input type="text" name="Ta03_user.GROUPLEADER" value="${userObj.groupleader }"  style="width:110px;"/>
+					<input type="radio" name="Ta03_user.GROUPLEADER" value="是" style="width:35px;" <c:if test="${userObj.groupleader=='是' }">checked</c:if> />
+					是
+					<input type="radio" name="Ta03_user.GROUPLEADER" value="否" style="width:35px;" <c:if test="${userObj.groupleader=='否' || empty userObj.groupleader || empty userObj}">checked</c:if> />
+					否
 				</p>
 				<p>
 					<label>是否可用：</label>
-					<input type="radio" name="Ta03_user.USEFLAG" value="1" <c:if test="${userObj.useflag=='1'||empty dept }">checked</c:if> />
+					<input type="radio" name="Ta03_user.USEFLAG" value="1" <c:if test="${userObj.useflag=='1'||empty userObj }">checked</c:if> />
 					是
 					<input type="radio" name="Ta03_user.USEFLAG" value="0" <c:if test="${userObj.useflag=='0' }">checked</c:if> />
 					否

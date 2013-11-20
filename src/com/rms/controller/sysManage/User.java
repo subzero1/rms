@@ -157,25 +157,30 @@ public class User {
 										+ "(select area_name from Ta03_user user where user.id="
 										+ id + ")"));
 		// 获取地区列表
-		modelMap.put("areaList", dao
-				.search("from Tc02_area where type like '%[3]%' order by id"));
+		modelMap.put("areaList", dao.search("from Tc02_area where type like '%[3]%' order by id"));
 		modelMap.put("userObj", user);
 		StringBuffer group_rsql = new StringBuffer();
-		group_rsql
-				.append(" select ta05 from Ta14_group_user ta14,Ta05_group ta05 ");
-		group_rsql
-				.append(" where ta14.group_id = ta05.id  and ta14.user_id = ");
+		group_rsql.append(" select ta05 from Ta14_group_user ta14,Ta05_group ta05 ");
+		group_rsql.append(" where ta14.group_id = ta05.id  and ta14.user_id = ");
 		group_rsql.append(id);
 		List groups = dao.search(group_rsql.toString() + " order by ta05.name");
 		modelMap.put("groups", groups);
 		StringBuffer sta_rsql = new StringBuffer();
-		sta_rsql
-				.append(" select ta02 from Ta11_sta_user ta11,Ta02_station ta02 ");
-		sta_rsql
-				.append(" where ta11.station_id = ta02.id  and ta11.user_id = ");
+		sta_rsql.append(" select ta02 from Ta11_sta_user ta11,Ta02_station ta02 ");
+		sta_rsql.append(" where ta11.station_id = ta02.id  and ta11.user_id = ");
 		sta_rsql.append(id);
 		List roles = dao.search(sta_rsql.toString() + " order by ta02.name");
 		modelMap.put("stas", roles);
+		
+		/*
+		 * 获取工作组列表
+		 */
+		StringBuffer sql = new StringBuffer("");
+		sql.delete(0, sql.length());
+		sql.append("select tc01 from Tc01_property tc01 where type = '工作组' order by name ");
+		List workgroups = dao.search(sql.toString());
+		modelMap.put("workgroups", workgroups);
+		
 		return new ModelAndView("/WEB-INF/jsp/sysManage/userEdit.jsp", modelMap);
 	}
 

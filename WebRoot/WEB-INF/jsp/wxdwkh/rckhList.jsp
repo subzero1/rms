@@ -57,9 +57,15 @@
 						 <netsky:htmlSelect id="khnf" name="khnf" objectForOption="nfList"  valueForOption="" showForOption="" extend="年," extendPrefix="true" value="${param.khnf}" htmlClass="td-select"/>
 						 <netsky:htmlSelect id="khyf" name="khyf" objectForOption="yfList"  valueForOption="" showForOption="" extend="月," extendPrefix="true" value="${param.khyf}" htmlClass="td-select"/>
 						</td>
-						<c:if test="${not empty rolesMap['50100']}">
-							<td><netsky:htmlSelect name="khry" id="khry" objectForOption="khryList" valueForOption="name" showForOption="name" value="${param.khry}" extend="全部,"  extendPrefix="true" /></td>
-						</c:if>
+						<c:choose>
+							<c:when test="${rckhRole=='manager'}">
+								<td><netsky:htmlSelect name="khry" id="khry" objectForOption="khryList" valueForOption="name" showForOption="name" value="${param.khry}" extend="全部,"  extendPrefix="true" /></td>
+							</c:when>
+							<c:when test="${rckhRole=='groupManager'}">
+								<td><netsky:htmlSelect name="khry" id="khry" objectForOption="khryListForWorkGroup" valueForOption="name" showForOption="name" value="${param.khry}" extend="全部,"  extendPrefix="true" /></td>
+							</c:when>
+							<c:otherwise></c:otherwise>
+						</c:choose>
 						<!--  
 						<td>确认状态：<netsky:htmlSelect name="qrzt" id="qrzt" objectForOption="qrztList" valueForOption="" showForOption="" value="${param.qrzt}" extend=""  extendPrefix="true" /></td>
 						-->
@@ -83,7 +89,7 @@
 				<li class="line">line</li>
 				<li><a class="delete" href="wxdwkh/ajaxDelRckh.do?id={rckh_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 				<li class="line">line</li>
-				<c:if test="${not empty rolesMap['50100']}">
+				<c:if test="${rckhRole=='manager'}">
 					<li> <a class="exportexcel" href="dispath.do?url=wxdwkh/rckhImport.jsp" target="dialog" width="400" height="200"><span>导入</span></a></li>
 					<li class="line">line</li>
 					<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
