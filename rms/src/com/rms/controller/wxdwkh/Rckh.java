@@ -70,18 +70,18 @@ public class Rckh {
 		Ta03_user user = null;
 		Integer totalPages = 1;
 		Integer totalCount = 0;
-		//boolean isManager = false;
 		String roles = null;
 		user = (Ta03_user) request.getSession().getAttribute("user");
 		Map rolesMap = (Map)request.getSession().getAttribute("rolesMap");
 		String workgroup = null;
+		
 		/*
 		 * 区分三种角色
 		 */
 		if(rolesMap.get("50100") != null){
 			roles = "manager";  //考核管理员
 		}
-		else if(user.getWorkgroup() != null && convertUtil.toString(user.getGroupleader()).equals("是")){
+		else if(rolesMap.get("60101") != null && user.getWorkgroup() != null){
 			roles = "groupManager"; //组长
 			workgroup = user.getWorkgroup();
 		}
