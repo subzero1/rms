@@ -1077,6 +1077,7 @@ public class Gcgl {
 		
 		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
 		String login_id = convertUtil.toString(user.getLogin_id());
+		String workgroup = user.getWorkgroup();
 		if (rolesMap.get("100106") != null) {
 			curRole = "ddgly";
 			node_id = 11404L;
@@ -1104,12 +1105,18 @@ public class Gcgl {
 			if(ddzt.equals("")){
 				ddzt = "工单已派发";
 			}
+			if (rolesMap.get("60104") != null && workgroup != null){
+				curRole = "groupManager";
+			}
 		}
 
 		hql.append("select td00 ");
 		hql.append("from Td00_gcxx td00,Ti03_xqly ti03 ");
 		hql.append("where td00.id = ti03.project_id "); 
-		if (curRole.equals("ddgly")) {
+		if(curRole.equals("groupManager")){
+			hql.append("and exists(select 'x' from Ta03_user ta03 where td00.xmgly=ta03.name and ta03.workgroup = '"+workgroup+"') ");
+		}
+		else if (curRole.equals("ddgly")) {
 			hql.append("and ddgly = '");
 			hql.append(user.getName());
 			hql.append("' ");
