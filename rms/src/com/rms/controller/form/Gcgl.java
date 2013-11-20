@@ -1394,6 +1394,7 @@ public class Gcgl {
 		
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name = user.getName();
+		String workgroup = user.getWorkgroup();
 		String user_dept = user.getDept_name();
 		String user_zy = user.getZys();
 
@@ -1417,11 +1418,8 @@ public class Gcgl {
 		Iterator it = orderColList.iterator();
 		Object order = null;
 		
-		
-		
 		// 查询条件
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
-
 		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
 		String login_id = convertUtil.toString(user.getLogin_id());
 		if (rolesMap.get("100107") != null) {
@@ -1443,9 +1441,11 @@ public class Gcgl {
 		else {
 			limit = "xmgly";
 			node_id = 10101L;
+			if (rolesMap.get("60102") != null && workgroup != null){
+				limit = "groupManager";
+			}
 		} 
 		hsql.delete(0, hsql.length());
-		
 		hsql.append("select ");
 		while (it.hasNext()) {
 			if (k == 0)
@@ -1455,7 +1455,10 @@ public class Gcgl {
 			k++;
 		}
 		hsql.append(" from Td01_xmxx a where 1=1  ");
-		if(limit.equals("xmgly")){
+		if(limit.equals("groupManager")){
+			hsql.append("and exists(select 'x' from Ta03_user ta03 where a.xmgly=ta03.name and ta03.workgroup = '"+workgroup+"') ");
+		}
+		else if(limit.equals("xmgly")){
 			hsql.append("and xmgly = '"+user_name+"' ");
 		}
 		else if(limit.equals("sjdw")){
@@ -1488,7 +1491,4 @@ public class Gcgl {
 		return new ModelAndView("/export/toExcelWhithList.do");
 
 	}
-	
-
-	
 }
