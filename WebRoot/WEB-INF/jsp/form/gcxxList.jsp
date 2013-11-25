@@ -19,7 +19,16 @@
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" /></td>
+						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+						<c:choose>
+							<c:when test="${limit=='groupManager'}">
+								<netsky:htmlSelect name="xmgly" id="xmgly" objectForOption="listForWorkGroup" valueForOption="name" showForOption="name" value="${param.xmgly}" extend="全部,"  extendPrefix="true" />
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="xmgly" value="${param.xmgly }"/>
+							</c:otherwise>
+						</c:choose>
+						</td>
 					</tr>
 				</table>
 				<div class="subBar">
