@@ -20,13 +20,15 @@
 					<tr>
 						<td>
 							<input type="text" style="display:none"/>
-							关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
-							<!-- 
-							<c:if test="${not empty rolesMap['100106'] }">
-							
-							</c:if>
-							-->
-							<netsky:htmlSelect name="ddzt" objectForOption="ddztList"  valueForOption="name" showForOption="name" extend="全部,全部" extendPrefix="true" value="${ddzt}" htmlClass="td-select"/>
+							关键字：
+							<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+							<netsky:htmlSelect name="ddzt" objectForOption="ddztList"  valueForOption="name" showForOption="name" extend="全部,全部" extendPrefix="true" value="${ddzt}" htmlClass="td-select"/>&nbsp;
+							<c:choose>
+								<c:when test="${curRole=='groupManager'}">
+									<td><netsky:htmlSelect name="xmgly" id="xmgly" objectForOption="listForWorkGroup" valueForOption="name" showForOption="name" value="${param.xmgly}" extend="全部,"  extendPrefix="true" /></td>
+								</c:when>
+							<c:otherwise></c:otherwise>
+						</c:choose>
 						</td>
 					</tr>
 				</table>

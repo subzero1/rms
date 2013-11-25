@@ -84,6 +84,7 @@ public class Gcgl {
 		if (orderField.equals("")) {
 			orderField = "id";
 		}
+		String xmgly = convertUtil.toString(request.getParameter("xmgly"), "");
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
 			orderDirection = "desc";
@@ -158,6 +159,11 @@ public class Gcgl {
 			hsql.append(" and (xmmc like '%" + keyword + "%' or xmbh like '%"
 					+ keyword + "%' or xmgly like '%"+keyword+"%')");
 		}
+		
+		// 项目管理员
+		if (!xmgly.equals("")) {
+			hsql.append(" and xmgly = '" + xmgly + "' ");
+		}
 
 		// order排序
 		hsql.append(" order by " + orderField);
@@ -182,6 +188,21 @@ public class Gcgl {
 			node_id = 10101L;
 		}
 
+		/*
+		 * 获取群组成员
+		 */
+		if(convertUtil.toString(limit).equals("groupManager")){
+			hsql.delete(0, hsql.length());
+			hsql.append("select ta03 from Ta03_user ta03,Ta11_sta_user ta11 ");
+			hsql.append("where ta03.id = ta11.user_id ");
+			hsql.append("and ta11.station_id = 6 ");
+			hsql.append("and ta03.workgroup = '");
+			hsql.append(workgroup);
+			hsql.append("' order by ta03.name");
+			List khryListForWorkGroup = queryService.searchList(hsql.toString());
+			modelMap.put("listForWorkGroup", khryListForWorkGroup);
+		}
+		
 		modelMap.put("node_id", node_id);
 		modelMap.put("limit", limit);
 		modelMap.put("xmxxList", xmxxList);
@@ -324,6 +345,8 @@ public class Gcgl {
 		if (orderField.equals("")) {
 			orderField = "id";
 		}
+		
+		String xmgly = convertUtil.toString(request.getParameter("xmgly"), "");
 		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
 			orderDirection = "desc";
@@ -399,6 +422,11 @@ public class Gcgl {
 			hsql.append(" and (gcmc like '%" + keyword + "%' or gcbh like '%"
 					+ keyword + "%' or xmgly like '%"+keyword+"%')");
 		}
+		
+		// 项目管理员
+		if (!xmgly.equals("")) {
+			hsql.append(" and xmgly = '" + xmgly + "' ");
+		}
 
 		// order排序
 		hsql.append(" order by " + orderField);
@@ -424,6 +452,21 @@ public class Gcgl {
 			node_id = 10201L;
 		}
 
+		/*
+		 * 获取群组成员
+		 */
+		if(convertUtil.toString(limit).equals("groupManager")){
+			hsql.delete(0, hsql.length());
+			hsql.append("select ta03 from Ta03_user ta03,Ta11_sta_user ta11 ");
+			hsql.append("where ta03.id = ta11.user_id ");
+			hsql.append("and ta11.station_id = 6 ");
+			hsql.append("and ta03.workgroup = '");
+			hsql.append(workgroup);
+			hsql.append("' order by ta03.name");
+			List khryListForWorkGroup = queryService.searchList(hsql.toString());
+			modelMap.put("listForWorkGroup", khryListForWorkGroup);
+		}
+		
 		modelMap.put("node_id", node_id);
 		modelMap.put("limit", limit);
 		modelMap.put("gcxxList", gcxxList);
@@ -1060,17 +1103,14 @@ public class Gcgl {
 		ResultObject ro = null; 
 		Integer totalCount = 0;
 		Integer totalPages = 0;
-		Integer pageNum = convertUtil.toInteger(
-				request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request
-				.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request
-				.getParameter("orderField"), "td00.id");
-		String orderDirection = convertUtil.toString(request
-				.getParameter("orderDirection"), "asc");
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "td00.id");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "asc");
 		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		String ddzt = convertUtil.toString(request.getParameter("ddzt"));
+		String xmgly = convertUtil.toString(request.getParameter("xmgly"));
 		
 		String curRole = null;
 		Long node_id = -1L;
@@ -1115,6 +1155,11 @@ public class Gcgl {
 		hql.append("where td00.id = ti03.project_id "); 
 		if(curRole.equals("groupManager")){
 			hql.append("and exists(select 'x' from Ta03_user ta03 where td00.xmgly=ta03.name and ta03.workgroup = '"+workgroup+"') ");
+			if(!xmgly.equals("")){
+				hql.append("and xmgly='");
+				hql.append(xmgly);
+				hql.append("'");
+			}
 		}
 		else if (curRole.equals("ddgly")) {
 			hql.append("and ddgly = '");
@@ -1191,7 +1236,7 @@ public class Gcgl {
 			hql.append(workgroup);
 			hql.append("' order by ta03.name");
 			List khryListForWorkGroup = queryService.searchList(hql.toString());
-			modelMap.put("khryListForWorkGroup", khryListForWorkGroup);
+			modelMap.put("listForWorkGroup", khryListForWorkGroup);
 		}
 		
 		modelMap.put("curRole", curRole);
