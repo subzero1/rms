@@ -1179,6 +1179,22 @@ public class Gcgl {
 			request.setAttribute("ddztList", ddztList);
 		}
 		
+		/*
+		 * 获取群组成员
+		 */
+		if(convertUtil.toString(curRole).equals("groupManager")){
+			hql.delete(0, hql.length());
+			hql.append("select ta03 from Ta03_user ta03,Ta11_sta_user ta11 ");
+			hql.append("where ta03.id = ta11.user_id ");
+			hql.append("and ta11.station_id = 6 ");
+			hql.append("and ta03.workgroup = '");
+			hql.append(workgroup);
+			hql.append("' order by ta03.name");
+			List khryListForWorkGroup = queryService.searchList(hql.toString());
+			modelMap.put("khryListForWorkGroup", khryListForWorkGroup);
+		}
+		
+		modelMap.put("curRole", curRole);
 		modelMap.put("node_id", node_id);
 		modelMap.put("ddzt", ddzt);
 		modelMap.put("objList", objList);
