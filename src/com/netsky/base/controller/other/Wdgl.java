@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -33,6 +35,7 @@ import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.dataObjects.Te10_wdml;
 import com.netsky.base.dataObjects.WdView;
+import com.netsky.base.dataObjects.Te12_wdcs;
 
 @Controller
 public class Wdgl {
@@ -40,6 +43,8 @@ public class Wdgl {
 	private Dao dao;
 	@Autowired
 	private ExceptionService exceptionService;
+	
+	private  Logger log = Logger.getLogger(this.getClass());
 	/**
 	 * 默认ftp配置文件路径
 	 */
@@ -405,5 +410,32 @@ public class Wdgl {
 			modelMap.put("ta01AllList", dao.search("from Ta01_dept where showflag is null order by id"));
 		}
 		return new ModelAndView("/WEB-INF/jsp/other/getCyfw.jsp", modelMap);
+	}
+	
+	@RequestMapping("/other/wdcs.do")
+	public void wdcs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String czlx = convertUtil.toString(request.getParameter("czlx"));
+		Long doc_id = convertUtil.toLong(request.getParameter("doc_id"));
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		if(czlx.equals("view")){
+			czlx = "查看";
+		}
+		else{
+			czlx = "下载";
+		}
+		try {
+			Te12_wdcs te12 = new Te12_wdcs();
+			te12.setDoc_id(doc_id);
+			te12.setCzr(user.getName());
+			te12.setCzsj(new Date());
+			te12.setCzlx(czlx);
+			dao.saveObject(te12);
+			out.print("{\"statusCode\":\"200\", \"message\":\"操作成功\"}");
+		} catch (Exception e) {
+			log.error("error in [wdcs.do]:"+e+e.getMessage());
+			out.print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+		}
 	}
 }
