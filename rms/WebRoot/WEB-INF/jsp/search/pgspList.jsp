@@ -8,6 +8,9 @@
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<input type="hidden" name="keyword" value="${param.keyword}" />
+	<input type="hidden" name="czsj1" value="${param.czsj1}" />
+	<input type="hidden" name="czsj2" value="${param.czsj2}" />
 </form>
 
 <div class="page">
@@ -33,8 +36,13 @@
 		</form>
 	</div>
 	<div class="pageContent">
-		 
-		<table class="table" width="100%" layouth="116">
+		 <div class="panelBar">
+			<ul class="toolBar">
+				<li> <a class="exportexcel" href="javascript:searchListExport();" ><span>导出</span></a></li>
+				<li class="line">line</li>
+			</ul>
+		</div>
+		<table class="table" width="100%" layouth="140">
 			<thead>
 				<tr> 
 					<th style="width: 30px;">序号</th>
@@ -92,3 +100,10 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function searchListExport(){
+   var $pagerForm=$("#pagerForm",navTab.getCurrentPanel());
+   $pagerForm.attr("action","search/pgspListToExcel.do"); 
+   $pagerForm.submit();
+}
+</script>
