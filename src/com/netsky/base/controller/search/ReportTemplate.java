@@ -1,5 +1,6 @@
 package com.netsky.base.controller.search;
  
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,8 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import jxl.Workbook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta08_reportfield;
 import com.netsky.base.dataObjects.Ta29_report_template;
 import com.netsky.base.dataObjects.Ta30_template_list;
+import com.netsky.base.export.ExportExcel;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -672,5 +676,60 @@ public class ReportTemplate {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		return new ModelAndView(view, modelMap);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/search/pgspListToExcel.do")
+	public void pgspListToExcel(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		
+		boolean haveCondition = false;
+		StringBuffer hql=new StringBuffer();
+		ResultObject ro=null;
+		
+		String keyword=convertUtil.toString(request.getParameter("keyword"));
+		String czsj1=convertUtil.toString(request.getParameter("czsj1"));
+		String czsj2=convertUtil.toString(request.getParameter("czsj2"));
+		hql.append("select td01.xmmc as 项目名称,td01.xmbh as 项目编号,td01.xmgly as 项目管理员,");
+		hql.append("td08.cjrq as 操作时间,td01.xmzt as 项目状态,td08.xtxzdw as 系统选择单位,td08.sjxzdw as 实际选择单位 ");
+		hql.append("from Td01_xmxx td01,Td08_pgspd td08 "); 
+		hql.append("where td01.id = td08.project_id ");
+		hql.append("and sp_flag = 1 ");
+		if (!keyword.equals("")) {
+			haveCondition = true;
+			hql.append("and (td01.xmbh like '%");
+			hql.append(keyword);
+			hql.append("%' or td01.xmmc like '%");
+			hql.append(keyword);
+			hql.append("%' or td01.xmgly like '%");
+			hql.append(keyword);
+			hql.append("%') ");
+		} 
+		if (!czsj1.equals("")) {
+			haveCondition = true;
+			hql.append("and td08.cjrq >= to_date('");
+			hql.append(czsj1);
+			hql.append("','yyyy-mm-dd') ");
+		} 
+		if (!czsj2.equals("")) {
+			haveCondition = true;
+			hql.append("and td08.cjrq <= to_date('");
+			hql.append(czsj2);
+			hql.append("','yyyy-mm-dd') ");
+		} 
+		if(!haveCondition){
+			hql.append(" and 1 > 2 ");
+		}
+		hql.append("order by td08.cjrq desc ");
+		ro=queryService.search(hql.toString());
+		
+		response.reset();
+		response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("派工审批列表.xls", "UTF-8"));
+		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
+		jxl.write.WritableSheet ws0 = wwb.createSheet("sheet1", 0);
+		ExportExcel.Ro2Excel(ro, ws0);
+		wwb.write();
+		wwb.close();
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
 	}
 }
