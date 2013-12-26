@@ -2,6 +2,8 @@ package com.netsky.base.controller.search;
  
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -578,6 +580,85 @@ public class ReportTemplate {
 			while (ro.next()) {
 				Object object=ro.get("tc13");
 				objectList.add(object);
+			}
+			totalCount=ro.getTotalRows();
+			totalPages=ro.getTotalPages();
+		}
+		modelMap.put("keyword", keyword);
+		modelMap.put("objectList", objectList);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		return new ModelAndView(view, modelMap);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/search/pgspList.do")
+	public ModelAndView pgspList(HttpServletRequest request,HttpServletResponse response){
+		String view ="/WEB-INF/jsp/search/pgspList.jsp";
+		boolean haveCondition = false;
+		ModelMap modelMap=new ModelMap();
+		StringBuffer hql=new StringBuffer();
+		ResultObject ro=null;
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		List objectList=new ArrayList();
+		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request.getParameter("orderField"), "td08.cjrq");
+		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		String keyword=convertUtil.toString(request.getParameter("keyword"));
+		String czsj1=convertUtil.toString(request.getParameter("czsj1"));
+		String czsj2=convertUtil.toString(request.getParameter("czsj2"));
+		hql.append("select td01.xmmc as xmmc,td01.xmbh as xmbh,td01.xmgly as xmgly,");
+		hql.append("td08.cjrq as cjrq,td01.xmzt as xmzt,td08.xtxzdw as xtxzdw,td08.sjxzdw as sjxzdw ");
+		hql.append("from Td01_xmxx td01,Td08_pgspd td08 "); 
+		hql.append("where td01.id = td08.project_id ");
+		hql.append("and sp_flag = 1 ");
+		if (!keyword.equals("")) {
+			haveCondition = true;
+			hql.append("and (td01.xmbh like '%");
+			hql.append(keyword);
+			hql.append("%' or td01.xmmc like '%");
+			hql.append(keyword);
+			hql.append("%' or td01.xmgly like '%");
+			hql.append(keyword);
+			hql.append("%') ");
+		} 
+		if (!czsj1.equals("")) {
+			haveCondition = true;
+			hql.append("and td08.cjrq >= to_date('");
+			hql.append(czsj1);
+			hql.append("','yyyy-mm-dd') ");
+		} 
+		if (!czsj2.equals("")) {
+			haveCondition = true;
+			hql.append("and td08.cjrq <= to_date('");
+			hql.append(czsj2);
+			hql.append("','yyyy-mm-dd') ");
+		} 
+		if(!haveCondition){
+			hql.append(" and 1 > 2 ");
+		}
+		hql.append("order by ");
+		hql.append(orderField);
+		hql.append(" ");
+		hql.append(orderDirection);
+		ro=queryService.searchByPage(hql.toString(), pageNum, numPerPage);
+		if (ro!=null) {
+			while (ro.next()) {
+				Map map = new HashMap();
+				map.put("xmbh", ro.get("xmbh"));
+				map.put("xmmc", ro.get("xmmc"));
+				map.put("xmgly", ro.get("xmgly"));
+				map.put("cjrq", ro.get("cjrq"));
+				map.put("xmzt", ro.get("xmzt"));
+				map.put("xtxzdw", ro.get("xtxzdw"));
+				map.put("sjxzdw", ro.get("sjxzdw"));
+				objectList.add(map);
 			}
 			totalCount=ro.getTotalRows();
 			totalPages=ro.getTotalPages();

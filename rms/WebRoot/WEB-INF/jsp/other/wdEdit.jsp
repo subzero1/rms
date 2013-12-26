@@ -40,6 +40,28 @@ $(function(){
 if ("${te10.id == 1}"=="true"){
 	$("#wdForm",navTab.getCurrentPanel()).find(":input").attr("readonly","readonly");
 }
+	
+	function wdcs(doc_id,czlx){
+			$.ajax({
+			type: 'POST',
+			url:'other/wdcs.do',
+			data:{doc_id:doc_id,czlx:czlx},
+			dataType:"json",
+		 	async:false,
+			success: function(json){
+				var _url;
+				if(czlx == 'view'){
+					_url = "show_slave.do?slave_id="+doc_id;
+					$.pdialog.open(_url, '', '附件查看', {mask:true,width:800,height:600});
+				}
+				else{
+					_url = "download.do?slave_id="+doc_id;
+					$.pdialog.open(_url, '', '附件下载', {mask:true,width:100,height:100});
+				}
+			},
+			error: DWZ.ajaxError
+		});
+	}
 </script>
 <div class="tabs"  <c:if test="${param.new_dir==1 }">currentIndex="0"</c:if><c:if test="${param.new_dir!=1 }">currentIndex="1"</c:if> eventType="click">
 		<div class="tabsHeader">
@@ -126,8 +148,8 @@ if ("${te10.id == 1}"=="true"){
 		<c:forEach var="obj" items="${uploadslave}">
 			<p class="slaveList" title="${obj.remark }">
 				${obj.file_name}&nbsp;&nbsp;
-				<a href="show_slave.do?slave_id=${obj.id}" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
-				<a href="download.do?slave_id=${obj.id}" title="下载"><font color="red">下载</font></a>
+				<a href="javascript:wdcs(${obj.id},'view')" target="dialog" width="1000" height="600" title="查看"><font color=blue>查看</font></a>
+				<a href="javascript:wdcs(${obj.id},'download')" title="下载"><font color="red">下载</font></a>
 				<c:if test="${empty te05.fbsj}"><a href="#" class="delFile" slave_id="${obj.id }"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 			</p>
 		</c:forEach>

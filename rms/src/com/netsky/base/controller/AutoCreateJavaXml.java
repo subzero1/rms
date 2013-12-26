@@ -55,7 +55,7 @@ public class AutoCreateJavaXml{
 			File file=new File(Thread.currentThread().getContextClassLoader().getResource("").getPath());
 			String pathString=file.getParent();
 			System.out.println(pathString);
-			paramMap.put("appPath", "D:\\workspace\\rms");
+			paramMap.put("appPath", "D:\\workspace\\eclipseWorkspace\\rms");
 			paramMap.put("owner", "PSS_NJ");
 			createDoService.createJavaAndXml(paramMap);
 		}

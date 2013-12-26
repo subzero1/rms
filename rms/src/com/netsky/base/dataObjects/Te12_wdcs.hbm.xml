@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te12_wdcs"  table="Te12_wdcs">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te12_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="doc_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="doc_id"
+  />
+
+  <property
+  name="czr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="czr"
+  />
+
+  <property
+  name="czsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="czsj"
+  />
+
+  <property
+  name="czlx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="czlx"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
