@@ -9,6 +9,27 @@ $(function(){
 	initSysManageWeb();
 });
 
+function wdcs2(doc_id,czlx){
+			$.ajax({
+			type: 'POST',
+			url:'other/wdcs.do',
+			data:{doc_id:doc_id,czlx:czlx},
+			dataType:"json",
+		 	async:false,
+			success: function(json){
+				var _url;
+				if(czlx == 'view'){
+					_url = "show_slave.do?slave_id="+doc_id;
+					$.pdialog.open(_url, '', '附件查看', {mask:true,width:800,height:600});
+				}
+				else{
+					_url = "download.do?slave_id="+doc_id;
+					window.open(_url);
+				}
+			},
+			error: DWZ.ajaxError
+		});
+	}
 </script>
 
 <div class="panel sysmanage_max" style="width: 96%; float: left; margin: 10px; overflow-y: hidden">
@@ -26,8 +47,8 @@ $(function(){
 					<div style="text-align: right;margin:10px 10px 2px 10px;">
 						<span style="float:left">
 						<b>[ ${obj.file_name} ]</b>&nbsp;&nbsp;
-						<a href="show_slave.do?slave_id=${obj.id}" target="dialog" width="1000" height="600" title="查看"><span style="vertical-align:bottom;"><img alt="查看" src="Images/form.gif"/></span>&nbsp;<font>查看</font></a>
-						<a href="download.do?slave_id=${obj.id}" title="下载"><span style="vertical-align:bottom;"><img alt="下载" src="Images/download.png"/></span>&nbsp;<font color="red">下载</font></a>
+						<a href="javascript:wdcs2(${obj.id},'view')"  title="查看"><span style="vertical-align:bottom;"><img alt="查看" src="Images/form.gif"/></span>&nbsp;<font>查看</font></a>
+						<a href="javascript:wdcs2(${obj.id},'download')" title="下载"><span style="vertical-align:bottom;"><img alt="下载" src="Images/download.png"/></span>&nbsp;<font color="red">下载</font></a>
 						</span>
 						<span>[创建人：${obj.user_name }&nbsp;&nbsp;<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${obj.ftp_date}"/> ]</span>
 					</div>

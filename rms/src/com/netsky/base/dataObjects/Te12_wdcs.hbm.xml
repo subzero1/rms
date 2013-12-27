@@ -49,6 +49,14 @@
   insert="true"
   column="czlx"
   />
+  
+  <property
+  name="doc_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="doc_name"
+  />
 
 
     </class>
