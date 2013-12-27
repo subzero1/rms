@@ -619,7 +619,7 @@ public class ReportTemplate {
 		String czsj2=convertUtil.toString(request.getParameter("czsj2"));
 		hql.append("select td01.xmmc as xmmc,td01.xmbh as xmbh,td01.xmgly as xmgly,");
 		hql.append("td08.cjrq as cjrq,td01.xmzt as xmzt,td08.xtxzdw as xtxzdw,td08.sjxzdw as sjxzdw ");
-		hql.append("from Td01_xmxx td01,Td08_pgspd td08 "); 
+		hql.append("from ProjectInf td01,Td08_pgspd td08 "); 
 		hql.append("where td01.id = td08.project_id ");
 		hql.append("and sp_flag = 1 ");
 		if (!keyword.equals("")) {
