@@ -154,7 +154,7 @@ if ("${te10.id == 1}"=="true"){
 				<a href="javascript:wdcs(${obj[0].id},'download')" title="下载"><font color="red">下载</font></a>
 				<c:if test="${empty te05.fbsj}"><a href="#" class="delFile" slave_id="${obj[0].id }"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 			</p>
-			<p class="slaveList">查看次数（<font color="red">${obj[1] }</font>）下载次数（<font color="red">${obj[2]}</font>）</p>
+			<p class="slaveList">查看次数（<a title="查看次数" href="other/showWdcs.do?doc_id=${obj[0].id }&czlx=view" target="dialog" width="250" height="300"><font color="red"><b>${obj[1] }</b></font></a>）下载次数（<a title="查看次数" href="other/showWdcs.do?doc_id=${obj[0].id }&czlx=download" target="dialog" width="250" height="300"><font color="red"><b>${obj[2]}</b></font></a>）</p>
 		</c:forEach>
 		</div> 
 </c:if>
