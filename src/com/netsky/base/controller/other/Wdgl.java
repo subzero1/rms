@@ -33,6 +33,7 @@ import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Te01_slave;
 import com.netsky.base.flow.utils.convertUtil;
 import com.netsky.base.service.ExceptionService;
+import com.netsky.base.service.QueryService;
 import com.netsky.base.dataObjects.Te10_wdml;
 import com.netsky.base.dataObjects.WdView;
 import com.netsky.base.dataObjects.Te12_wdcs;
@@ -41,8 +42,12 @@ import com.netsky.base.dataObjects.Te12_wdcs;
 public class Wdgl {
 	@Autowired
 	private Dao dao;
+	
 	@Autowired
 	private ExceptionService exceptionService;
+	
+	@Autowired
+	private QueryService queryService;
 	
 	private  Logger log = Logger.getLogger(this.getClass());
 	/**
@@ -422,12 +427,23 @@ public class Wdgl {
 		if(czlx.equals("view")){
 			czlx = "查看";
 		}
-		else{
+		else if(czlx.equals("download")){
 			czlx = "下载";
 		}
+		else{
+			czlx = "删除";
+		}
+		
 		try {
+			String doc_name = null;
+			Te01_slave te01 = (Te01_slave)queryService.searchById(Te01_slave.class, doc_id);
+			if(te01 != null){
+				doc_name = te01.getFile_name();
+			}
+			
 			Te12_wdcs te12 = new Te12_wdcs();
 			te12.setDoc_id(doc_id);
+			te12.setDoc_name(doc_name);
 			te12.setCzr(user.getName());
 			te12.setCzsj(new Date());
 			te12.setCzlx(czlx);
