@@ -471,4 +471,25 @@ public class Wdgl {
 			out.print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
 		}
 	}
+	
+	@RequestMapping("/other/showWdcs.do")
+	public ModelAndView showWdcs(HttpServletRequest request, HttpServletResponse response) {
+		ModelMap modelMap = new ModelMap();
+		String czlx = convertUtil.toString(request.getParameter("czlx"));
+		Long doc_id = convertUtil.toLong(request.getParameter("doc_id"));
+		if(czlx.equals("view")){
+			czlx = "查看";
+		}
+		else if(czlx.equals("download")){
+			czlx = "下载";
+		}
+		
+		try {
+			List list = queryService.searchList("from Te12_wdcs where czlx='"+czlx+"' and doc_id="+doc_id);
+			modelMap.put("wdcsList", list);
+		} catch (Exception e) {
+			log.error("error in [showWdcs.do]:"+e+e.getMessage());
+		}
+		return new ModelAndView("/WEB-INF/jsp/other/showWdcs.jsp", modelMap);
+	}
 }
