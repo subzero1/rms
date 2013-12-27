@@ -104,5 +104,18 @@ public class Te12_wdcs implements Serializable{
     this.czlx = czlx;
   }
 
+private String doc_name;
+
+/**
+ * @hibernate.property column="doc_name"
+ * @return Returns the doc_name.
+ */
+public String getDoc_name() {
+	return doc_name;
+}
+
+public void setDoc_name(String doc_name) {
+	this.doc_name = doc_name;
+}
 
 }
