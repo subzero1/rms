@@ -146,14 +146,15 @@ if ("${te10.id == 1}"=="true"){
 		</form>
 	</div> 
 <c:if test="${not empty te10 }">
-		<div >
+		<div style="text-align: right;">
 		<c:forEach var="obj" items="${uploadslave}">
-			<p class="slaveList" title="${obj.remark }">
-				${obj.file_name}&nbsp;&nbsp;
-				<a href="javascript:wdcs(${obj.id},'view')" title="查看"><font color=blue>查看</font></a>
-				<a href="javascript:wdcs(${obj.id},'download')" title="下载"><font color="red">下载</font></a>
-				<c:if test="${empty te05.fbsj}"><a href="#" class="delFile" slave_id="${obj.id }"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
+			<p class="slaveList" title="${obj[0].remark }" style="float:left">
+				${obj[0].file_name}&nbsp;&nbsp;
+				<a href="javascript:wdcs(${obj[0].id},'view')" title="查看"><font color=blue>查看</font></a>
+				<a href="javascript:wdcs(${obj[0].id},'download')" title="下载"><font color="red">下载</font></a>
+				<c:if test="${empty te05.fbsj}"><a href="#" class="delFile" slave_id="${obj[0].id }"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
 			</p>
+			<p class="slaveList">查看次数（<font color="red">${obj[1] }</font>）下载次数（<font color="red">${obj[2]}</font>）</p>
 		</c:forEach>
 		</div> 
 </c:if>

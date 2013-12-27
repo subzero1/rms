@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Date;
 
@@ -103,6 +104,7 @@ public class Wdgl {
 		return new ModelAndView("/WEB-INF/jsp/other/wdList.jsp", modelMap);
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/other/wdEdit.do")
 	public ModelAndView wdEdit(HttpServletRequest request, HttpServletResponse response) {
 		ModelMap modelMap = new ModelMap();
@@ -116,19 +118,34 @@ public class Wdgl {
 			modelMap.put("parent_te10", dao.getObject(Te10_wdml.class, te10.getUp_id()));
 		}
 		// 获取部门列表 管理员列出所有部门，非管理员列出所在部门
-		{
-			StringBuffer hsql = new StringBuffer();
-			Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-			hsql.append("from Ta01_dept");
-			if (request.getSession().getAttribute("admin") == null
-					|| !"true".equals(request.getSession().getAttribute("admin"))) {
-				hsql.append(" where id=" + user.getDept_id());
-			}
-			hsql.append(" order by id");
-			modelMap.put("deptList", dao.search(hsql.toString()));
+		
+		StringBuffer hsql = new StringBuffer();
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		hsql.append("from Ta01_dept");
+		if (request.getSession().getAttribute("admin") == null
+				|| !"true".equals(request.getSession().getAttribute("admin"))) {
+			hsql.append(" where id=" + user.getDept_id());
 		}
+		hsql.append(" order by id");
+		modelMap.put("deptList", dao.search(hsql.toString()));
+		
 		// 文件
-		modelMap.put("uploadslave", dao.search("from Te01_slave where module_id=92 and doc_id=" + id));
+		List<Object[]> list = new LinkedList<Object[]>();
+		hsql.delete(0, hsql.length());
+		hsql.append("select te01 from Te01_slave te01 where module_id=92 and doc_id=");
+		hsql.append(id);
+		ResultObject ro = queryService.search(hsql.toString());
+		while(ro.next()){
+			Object[] o = new Object[3];
+			Te01_slave te01 = (Te01_slave)ro.get("te01");
+			o[0] = te01;
+			List list0 = queryService.searchList("select id from Te12_wdcs where czlx='查看' and doc_id = "+te01.getId());
+			o[1] = list0.size();
+			list0 = queryService.searchList("select id from Te12_wdcs where czlx='下载' and doc_id = "+te01.getId());
+			o[2] = list0.size();
+			list.add(o);
+		}
+		modelMap.put("uploadslave", list);
 		return new ModelAndView("/WEB-INF/jsp/other/wdEdit.jsp", modelMap);
 	}
 
