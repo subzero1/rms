@@ -398,7 +398,10 @@ public class Gcgl {
 		hsql.delete(0, hsql.length());
 		hsql.append("select gcxx from Td00_gcxx gcxx where not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
 		
-		if(limit.equals("groupManager")){
+		if(limit.equals("htgly")){
+			hsql.append(" and xmgly in(select name from Ta03_user where send_htgly = 1)  ");
+		}
+		else if(limit.equals("groupManager")){
 			hsql.append("and exists(select 'x' from Ta03_user ta03 where gcxx.xmgly=ta03.name and ta03.workgroup = '"+workgroup+"') ");
 		}
 		else if(limit.equals("xmgly")){
@@ -413,9 +416,7 @@ public class Gcgl {
 		else if(limit.equals("jldw")){
 			hsql.append("and jldw = '" + user_dept + "' ");
 		}
-		else{//合同管理员
-			hsql.append(" and xmgly in(select name from Ta03_user where send_htgly = 1)  ");
-		}
+		
 
 		// 关键字
 		if (!keyword.equals("")) {
@@ -439,17 +440,6 @@ public class Gcgl {
 		while (ro.next()) {
 			Td00_gcxx td00 = (Td00_gcxx) ro.get("gcxx");
 			gcxxList.add(td00);
-		}
-
-		hsql.delete(0, hsql.length());
-		hsql.append("from Ta11_sta_user ta11,Ta13_sta_node ta13 ");
-		hsql.append("where ta11.station_id = ta13.station_id ");
-		hsql.append("and ta13.node_id = 10101 ");
-		hsql.append("and ta11.user_id =");
-		hsql.append(user.getId());
-		List nodeList = queryService.searchList(hsql.toString());
-		if (nodeList != null && nodeList.size() > 0) {
-			node_id = 10201L;
 		}
 
 		/*
