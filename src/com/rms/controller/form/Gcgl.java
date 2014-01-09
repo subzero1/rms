@@ -726,6 +726,33 @@ public class Gcgl {
 			session.close();
 		}
 	}
+	
+	@RequestMapping("/form/ajaxDdxxDel.do")
+	public void ajaxDdxxDel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		PrintWriter out = null;
+
+		response.setContentType("text/html;charset=UTF-8");
+		Session session = saveService.getHiberbateSession();
+		Transaction tx = session.beginTransaction();
+		tx.begin();
+		// 获取用户对象
+		try {
+			out = response.getWriter();
+			session.createQuery("delete from Td00_gcxx where id=" + id).executeUpdate();
+			session.createQuery("delete from Ti03_xqly where project_id=" + id).executeUpdate();
+			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"forward\"}");
+			session.flush();
+			tx.commit();
+		} catch (IOException e) {
+			tx.rollback();
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+		} finally {
+			session.close();
+		}
+	}
+
 
 	@RequestMapping("/form/ajaxXmxxDel.do")
 	public void ajaxXmxxDel(HttpServletRequest request,
