@@ -34,6 +34,7 @@
 
 <input type="hidden" name="Ti03_xqly.ID" value="${ti03_xqly.id }"/>
 <input type="hidden" name="Ti03_xqly.LYXT" value="江苏省综合调度系统"/>
+<input type="hidden" name="Ti03_xqly.URL" value="<c:out value="${ti03_xqly.url }" default="XXX"/>"/>
 <input type="hidden" name="Td00_gcxx.DDGLY" value="<c:out value="${td00_gcxx.ddgly }" default="XXX"/>"/>
 
 	<p>
