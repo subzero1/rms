@@ -43,7 +43,11 @@
 	<div class="pageContent">
 		<div class="panelBar">
 			<ul class="toolBar">
-			<c:if test="${node_id == '11401'}">
+				<c:if test="${node_id == '11401' || node_id == '11404'}">
+					<li><a class="add" href="flowForm.do?module_id=114&node_id=11401&flow_id=114" target="navTab" rel="ddxx" title="定单信息单"><span>添加</span></a></li>
+					<li class="line">line</li>
+				</c:if>
+				<c:if test="${node_id == '11401'}">
 					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xm_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 				</c:if>
