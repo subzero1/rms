@@ -48,7 +48,7 @@
 					<li class="line">line</li>
 				</c:if>
 				<c:if test="${node_id == '11401'}">
-					<li><a class="delete" href="form/ajaxXmxxDel.do?id={xm_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
+					<li><a class="delete" href="form/ajaxDdxxDel.do?id={xm_id}" target="ajaxTodo" title="确认删除吗？"><span>删除</span></a></li>
 					<li class="line">line</li>
 				</c:if>
 				<li> <a class="exportexcel" href="form/orderInfoToExcel.do?config=td00_order" ><span>导出</span></a></li>
