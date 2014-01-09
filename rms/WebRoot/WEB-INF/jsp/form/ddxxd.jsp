@@ -20,7 +20,7 @@
 </script>
 
 <input type="hidden" name="configType" value="byxml"/>
-<input type="hidden" name="profile" value="gcxxd.xml"/>
+<input type="hidden" name="profile" value="ddxxd.xml"/>
 <input type="hidden" name="Td00_gcxx.ID" value="${param.doc_id}">
 <input type="hidden" name="XM_ID" value="${td00_gcxx.xm_id}">
 <input type="hidden" name="GLGC_ID" value="${td00_gcxx.glgc_id}">
@@ -31,6 +31,11 @@
 <input type="hidden" name="Td00_gcxx.XMGLYDH" value="<c:out value="${td00_gcxx.xmglydh}" default="${user.mobile_tel}"/>">
 <input type="hidden" name="Td00_gcxx.CJRQ" style="width:120px;" value="<c:choose><c:when test="${empty param.doc_id}"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm"/></c:when><c:otherwise><fmt:formatDate value="${td00_gcxx.cjrq}" pattern="yyyy-MM-dd HH:mm"/></c:otherwise></c:choose>"/>
 <input type="hidden" name="Td00_gcxx.XQS_ID" value="${td00_gcxx.xqs_id }"/>
+
+<input type="hidden" name="Ti03_xqly.ID" value="${ti03_xqly.id }"/>
+<input type="hidden" name="Ti03_xqly.LYXT" value="江苏省综合调度系统"/>
+<input type="hidden" name="Td00_gcxx.DDGLY" value="<c:out value="${td00_gcxx.ddgly }" default="XXX"/>"/>
+
 	<p>
 		<label>工程名称：</label>
 		<input type="text" name="Td00_gcxx.GCMC" value="<c:out value="${td00_gcxx.gcmc}" default="${mbk.zymc }"/>" style="width:407px;"/>
@@ -61,7 +66,7 @@
 	-->
 	<p>
 		<label>定单状态：</label>
-		<netsky:htmlSelect name="Td00_gcxx.DDZT" objectForOption="ddztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.ddzt}" htmlClass="td-select"/>
+		<netsky:htmlSelect name="Td00_gcxx.DDZT" id="ddzt" objectForOption="ddztList" style="width:127px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true"  value="${td00_gcxx.ddzt}" htmlClass="td-select"/>
 	</p>
 	<div style="height:0px;"></div>
 	<p>
@@ -76,7 +81,7 @@
 		</c:when>
 		<c:otherwise>
 			<label>项目管理员：</label>
-			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" />" style="width:120px;"/>
+			<input type="text" readOnly name="Td00_gcxx.XMGLY" value="<c:out value="${td00_gcxx.xmgly}" default="${user.name }"/>" style="width:120px;"/>
 		</c:otherwise>
 	</c:choose>
 	</p>
@@ -180,9 +185,9 @@
 	<br/><br/>
 	</div>
 	<script type="text/javascript">
-        //alert($("#dxtz").attr("name"));
-        function openNr(param){
-        	
+        var t_doc_id='${param.doc_id}';
+        if(t_doc_id == null || t_doc_id == ''){
+        	$("#ddzt").val("工单已派发");
         }
 	
 	</script>

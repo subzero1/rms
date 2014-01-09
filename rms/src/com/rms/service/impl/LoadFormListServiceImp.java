@@ -1019,6 +1019,11 @@ public class LoadFormListServiceImp implements LoadFormListService {
 						break;
 					}
 				}	
+				
+				ro = queryService.search("select ti03 from Ti03_xqly ti03 where project_id = "+project_id);
+				if(ro.next()){
+					request.setAttribute("ti03_xqly", ro.get("ti03"));
+				}
 			}
 			
 			/**
