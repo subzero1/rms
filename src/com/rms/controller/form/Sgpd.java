@@ -229,8 +229,9 @@ public class Sgpd {
 		// 置偏差率和偏差率档级
 		for (Object[] o : objectsList) {
 			o[8] = ((Double) o[6] - (Double) o[7]) / (Double) o[6] * 100;
+			
 			o[9] = convertUtil.toString(dao.search(
-					"select dj from Tf11_fepcl where (qzsx>" + o[8] + " and (qzxx<" + o[8]
+					"select dj from Tf11_fepcl where (qzsx>" + o[8] + " and (qzxx<=" + o[8]
 							+ " or qzxx is null) or (qzsx=" + o[8] + " and qzxx=" + o[8] + "))").get(0));
 		}
 		List<Object[]> allList = new ArrayList<Object[]>(objectsList);
