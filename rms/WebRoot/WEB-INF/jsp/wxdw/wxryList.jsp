@@ -47,31 +47,51 @@
 		<div class="panelBar">
 			<ul class="toolBar">
 				<li>
-				<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }"
-					target="navTab" rel="wxry"
-					title="外协人员信息"><span>添加</span>
-				</a>
-			</li>
-			<li class="line">
-				line
-			</li>
-			<li>
-				<a class="edit"
-					href="wxdw/wxryEdit.do?wxry_id={wxry_id}&wxdw_id=${param.wxdw_id}"
-					target="navTab" rel="wxry"
-					title="修改外协人员信息"><span>修改</span>
-				</a>
-			</li>
-			<li class="line">
-				line
-			</li>
+					<a class="add" href="wxdw/wxryEdit.do?wxdw_id=${param.wxdw_id }"
+						target="navTab" rel="wxry"
+						title="外协人员信息"><span>添加</span>
+					</a>
+				</li>
+				<li class="line">
+					line
+				</li>
+				<li>
+					<a class="edit"
+						href="wxdw/wxryEdit.do?wxry_id={wxry_id}&wxdw_id=${param.wxdw_id}"
+						target="navTab" rel="wxry"
+						title="修改外协人员信息"><span>修改</span>
+					</a>
+				</li>
+				<li class="line">
+					line
+				</li>
+				<li>
+					<a class="delete"
+						href="wxdw/wxryAjaxDelete.do?wxry_id={wxry_id}"
+						target="ajaxTodo" 
+						title="确认删除吗？"><span>删除</span>
+					</a>
+				</li>
+				<li class="line">
+					line
+				</li>
+				<li>
+					<a class="delete"
+						href="wxdw/wxryAjaxDeleteToSingle.do?wxdw_id=${param.wxdw_id}"
+						target="ajaxTodo" 
+						title="确认删除吗？"><span>删除重复</span>
+					</a>
+				</li>
+				<li class="line">
+					line
+				</li>
 				<li><a class="exportexcel"	
-				href="dispath.do?url=form/wxryImport.jsp?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 
-				target="dialog" width="400" height="247"><span>导入</span></a></li>
+					href="dispath.do?url=form/wxryImport.jsp?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 
+					target="dialog" width="400" height="247"><span>导入</span></a></li>
 				<li class="line">line</li>
 				<li><a class="exportexcel"	
-				href="wxdw/wxryToExcel.do?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 
-				target="dwzExport" targetType="navTab"><span>导出</span></a></li>
+					href="wxdw/wxryToExcel.do?config=tf30_wxry&wxdw_id=${param.wxdw_id }" 
+					target="dwzExport" targetType="navTab"><span>导出</span></a></li>
 				<li class="line">line</li>
 			</ul>
 		</div>

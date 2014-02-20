@@ -64,7 +64,7 @@
 			if(dialog != 'undefined' && dialog != null){
 				$.pdialog.close(dialog);
 			}
-			navTab.openTab('wxryEdit',"wxdw/wxryEdit.do?wxry_id="+${param.wxry_id},{title:'外协人员信息'});
+			navTab.openTab('wxryEdit',"wxdw/wxryEdit.do?wxry_id="+${param.wxry_id}+"&wxdw_id=${param.wxdw_id}",{title:'外协人员信息'});
 		}
 		else{
 			alertMsg.info(json.message);
