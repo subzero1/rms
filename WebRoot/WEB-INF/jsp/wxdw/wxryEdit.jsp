@@ -4,8 +4,8 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <jsp:useBean id="now" class="java.util.Date" /> 
 <script language="javascript">
-	function upPic(wxry_id){
-		$.pdialog.open("wxdw/upWxryHead.do?wxry_id="+wxry_id,'_upPic','上传头像',{width:600,height:380});
+	function upPic(wxry_id,wxdw_id){
+		$.pdialog.open("wxdw/upWxryHead.do?wxry_id="+wxry_id+'&wxdw_id='+wxdw_id,'_upPic','上传头像',{width:600,height:380});
 		var dialog = $("body").data('_upPic');
 		setTimeout(function(){$.pdialog.switchDialog(dialog);}, 100);
 	}
@@ -32,7 +32,7 @@
 				<li class="line">line</li>
 				<c:if test="${not empty wxry}">
 					<li>
-						<a class="delete" href="javascript:upPic(${wxry.id });"  title="外协人员信息保存"><span>上传照片</span></a>
+						<a class="delete" href="javascript:upPic(${wxry.id },${wxdw_id });"  title="外协人员信息保存"><span>上传照片</span></a>
 					</li>
 					<li class="line">line</li>
 				</c:if>
@@ -41,9 +41,9 @@
 		<form method="post" action="save.do" id="wxyr_form" class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.rms.dataObjects.wxdw.Tf30_wxry" />
 			<input type="hidden" name="Tf30_wxry.ID" value="${wxry.id}" />
-			<input type="hidden" name="Tf30_wxry.WXDW_ID" value="${param.wxdw_id}" />
+			<input type="hidden" name="Tf30_wxry.WXDW_ID" value="${wxdw_id}" />
 			<input type="hidden" name="_callbackType" value="closeCurrent" />
-			<input type="hidden" name="_forwardUrl" value="wxdw/wxryList.do?wxdw_id=${param.wxdw_id}" />
+			<input type="hidden" name="_forwardUrl" value="wxdw/wxryList.do?wxdw_id=${wxdw_id}" />
 			<input type="hidden" name="_navTabId" value="wxryList" />
 			<div class="pageFormContent" layoutH="53">
 				<p>
@@ -84,7 +84,7 @@
 				</p>
 				<p>
 					<label>安全员证：</label>
-					<input type="text" name="Tf30_wxry.AQYZ" style="width:165px;" value="${wxry.gysz }" />
+					<input type="text" name="Tf30_wxry.AQYZ" style="width:165px;" value="${wxry.aqyz }" />
 				</p>
 				<p>
 					<label>监&nbsp;&nbsp;理&nbsp;&nbsp;证：</label>

@@ -35,7 +35,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta02_station;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta11_sta_user;
-import com.netsky.base.flow.utils.convertUtil;
+import com.netsky.base.utils.convertUtil;
 import com.netsky.base.flow.vo.Vc2_gcxx_gzltb;
 import com.netsky.base.flow.vo.Vc3_gcxx_jlrj;
 import com.netsky.base.service.ExceptionService;
@@ -3166,5 +3166,84 @@ public class Wxdw {
 		} finally {
 			session.close();
 		}
+	}
+	
+	/**
+	 * 删除外协人员信息
+	 * 
+	 * @param request
+	 * @param response
+	 *            void
+	 * @throws IOException
+	 */
+	@RequestMapping("/wxdw/wxryAjaxDelete.do")
+	public void wxryAjaxDelete(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		Long wxry_id = convertUtil.toLong(request.getParameter("wxry_id"));
+		PrintWriter out = null;
+
+		response.setContentType("text/html;charset=utf-8");
+		Session session = saveService.getHiberbateSession();
+		Transaction tx = session.beginTransaction();
+		tx.begin();
+		// 获取用户对象
+		try {
+			out = response.getWriter();
+			session.createQuery("delete from Tf30_wxry where id=" + wxry_id).executeUpdate();
+			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
+			session.flush();
+			tx.commit();
+		} catch (IOException e) {
+			tx.rollback();
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+		} finally {
+			session.close();
+		}
+	}
+	
+	/**
+	 * 删除外协人员重复记录
+	 * 
+	 * @param request
+	 * @param response
+	 *            void
+	 * @throws IOException
+	 */
+	@RequestMapping("/wxdw/wxryAjaxDeleteToSingle.do")
+	public void wxryAjaxDeleteToSingle(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
+		PrintWriter out = null;
+		
+		// 获取用户对象
+		try {
+			out = response.getWriter();
+			StringBuffer sql = new StringBuffer("");
+			sql.append("select name,count(id) as nums ");
+			sql.append("from Tf30_wxry ");
+			sql.append("where wxdw_id= ");
+			sql.append(wxdw_id);
+			sql.append(" group by name having count(id)>1 ");
+			ResultObject ro = queryService.search(sql.toString());
+			while(ro.next()){
+				sql.delete(0, sql.length());
+				sql.append("select id ");
+				sql.append("from Tf30_wxry ");
+				sql.append("where wxdw_id= ");
+				sql.append(wxdw_id);
+				sql.append(" and name = '");
+				sql.append(ro.get("name"));
+				sql.append("'");
+				List list = queryService.searchList(sql.toString());
+				for(int i = 1;i < list.size();i++){
+					saveService.updateByHSql("delete from Tf30_wxry where id="+list.get(i));
+				}
+			}
+			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
+			
+		} catch (IOException e) {
+			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
+		} 
 	}
 }
