@@ -2806,6 +2806,7 @@ public class Wxdw {
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("wxdw_id", wxdw_id);
 		modelMap.put("wxryList", wxryList);
+		modelMap.put("wxryCount", wxryList.size());
 		return new ModelAndView(view, modelMap);
 	}
 
