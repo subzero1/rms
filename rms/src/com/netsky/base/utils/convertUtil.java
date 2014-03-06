@@ -140,7 +140,7 @@ public class convertUtil {
 			return (Double) arg;
 		} else if (arg instanceof String) {
 			String tmpStr = (String) arg;
-			if (tmpStr != null && tmpStr.matches("^0|[+,-]?[1-9][0-9]{0,17}$")) {
+			if (tmpStr != null && tmpStr.matches("^0|[+,-]?[1-9][0-9]{0,17}(\\.)*\\d*$")) {
 				return new Double(tmpStr);
 			}
 		} else if(arg instanceof Integer){
