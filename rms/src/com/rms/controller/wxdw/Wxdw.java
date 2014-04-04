@@ -2882,23 +2882,38 @@ public class Wxdw {
 			hsql.append(sfz);
 			hsql.append("%'");
 		}
-		wxryList = queryService.searchList(hsql.toString());
+		hsql.append(" order by ");
+		hsql.append(orderField);
+		hsql.append(" "+orderDirection);
+//		wxryList = queryService.searchList(hsql.toString());
 		List wxrylbList = new ArrayList();
-		for (int i = 0; i < wxryList.size(); i++) {
-			Object[] wxry = (Object[]) wxryList.get(i);
+//		for (int i = 0; i < wxryList.size(); i++) {
+//			Object[] wxry = (Object[]) wxryList.get(i);
+//			wxrylbList.add(wxry);
+//		}
+		
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+//		int i = 0;
+		while(ro.next()){
+			Object[] key = ro.getResultArray();
+			Object[] wxry = new Object[18];
+			for(int i=0;i<key.length;i++){
+				String wx =  (String) ro.get((String)key[i]);
+				wxry[i] = wx;
+			}
 			wxrylbList.add(wxry);
 		}
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 		modelMap.put("pageNum", pageNum);
 		modelMap.put("numPerPage", numPerPage);
-		modelMap.put("wxryCount", wxrylbList.size());
+		modelMap.put("wxryCount", ro.getTotalRows());
 		modelMap.put("wxryList1", wxrylbList);
 		return new ModelAndView("/WEB-INF/jsp/wxdw/wxrylbList.jsp", modelMap);
 	}
 
 	/**
-	 * 外协人员导出（在用）
+	 * 外协人员列表导出（在用）
 	 */
 	@RequestMapping("/wxry/wxryExportList.do")
 	public void wxryExport(HttpServletRequest request,

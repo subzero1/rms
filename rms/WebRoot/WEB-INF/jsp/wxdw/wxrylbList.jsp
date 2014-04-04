@@ -173,7 +173,7 @@
 				</td>
 			</tr>
 		</c:forEach>
-			<c:if test="${offset<numPerPage}">
+		<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
 						<c:forEach begin="0" end="17" >
@@ -196,7 +196,7 @@
 				<span>共${wxryCount}条 </span>
 			</div>
 
-			<div class="pagination" targetType="navTab"	totalCount="${totalCount}" numPerPage="${numPerPage}" currentPage="${param.pageNum}"></div>
+			<div class="pagination" targetType="navTab"	totalCount="${wxryCount}" numPerPage="${numPerPage}" currentPage="${param.pageNum}"></div>
 		</div>
 	</div>
 </div>
