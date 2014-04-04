@@ -3,6 +3,7 @@ package com.rms.controller.wxdw;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +17,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import jxl.Workbook;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -35,6 +38,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta02_station;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta11_sta_user;
+import com.netsky.base.export.ExportExcel;
 import com.netsky.base.utils.convertUtil;
 import com.netsky.base.flow.vo.Vc2_gcxx_gzltb;
 import com.netsky.base.flow.vo.Vc3_gcxx_jlrj;
@@ -545,8 +549,11 @@ public class Wxdw {
 		ModelMap modelMap = new ModelMap();
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
-		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
+		modelMap
+				.put(
+						"zyList",
+						queryService
+								.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id="
 						+ wxdw_id + " order by zy,dq");
@@ -659,8 +666,11 @@ public class Wxdw {
 				currentyear - 1));
 		modelMap.put("nd", nd);
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
-		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%' "));
+		modelMap
+				.put(
+						"zyList",
+						queryService
+								.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%' "));
 
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='qyzy' and wxdw_id="
@@ -726,8 +736,11 @@ public class Wxdw {
 				currentyear - 1));
 		modelMap.put("nd", nd);
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
-		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
+		modelMap
+				.put(
+						"zyList",
+						queryService
+								.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 		List<Tf05_wxdw_dygx> tf05List = (List<Tf05_wxdw_dygx>) queryService
 				.searchList("from Tf05_wxdw_dygx where lb='zdgcs' and wxdw_id="
 						+ wxdw_id + " and nd='" + nd + "' order by zy");
@@ -1165,11 +1178,13 @@ public class Wxdw {
 			HttpServletResponse response) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-//		Tf04_wxdw_user tf04 = (Tf04_wxdw_user) queryService.searchList(
-//				"from Tf04_wxdw_user where user_id=" + user.getId()).get(0);
-		
-		Long project_id = convertUtil.toLong(request.getParameter("project_id"));
-		Td01_xmxx xmxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class,project_id);
+		// Tf04_wxdw_user tf04 = (Tf04_wxdw_user) queryService.searchList(
+		// "from Tf04_wxdw_user where user_id=" + user.getId()).get(0);
+
+		Long project_id = convertUtil
+				.toLong(request.getParameter("project_id"));
+		Td01_xmxx xmxx = (Td01_xmxx) queryService.searchById(Td01_xmxx.class,
+				project_id);
 		if (xmxx == null) {
 			xmxx = new Td01_xmxx();
 			xmxx.setXmmc("预领料工程");
@@ -1177,9 +1192,11 @@ public class Wxdw {
 			xmxx.setXmbh("--");
 		}
 		String sgdw = xmxx.getSgdw();
-		Tf01_wxdw tf01 = (Tf01_wxdw)queryService.searchList("select tf01 from Tf01_wxdw tf01 where mc = '"+sgdw+"'").get(0);
+		Tf01_wxdw tf01 = (Tf01_wxdw) queryService.searchList(
+				"select tf01 from Tf01_wxdw tf01 where mc = '" + sgdw + "'")
+				.get(0);
 		modelMap.put("sgdw_id", tf01.getId());
-		
+
 		Long dz = convertUtil.toLong(request.getParameter("dz"));
 		String type = "";
 		if (dz == 0L) {
@@ -1654,7 +1671,7 @@ public class Wxdw {
 					tf07 = tmpList.get(0);
 				} else {
 					tf07 = new Tf07_kcb();
-					//tf07.setCllx(tf08.getCllx());
+					// tf07.setCllx(tf08.getCllx());
 					tf07.setClmc(tf08.getClmc());
 					tf07.setDw(tf08.getDw());
 					tf07.setGg(tf08.getGg());
@@ -2811,6 +2828,152 @@ public class Wxdw {
 	}
 
 	/**
+	 * 外协人员列表,(在用)
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 *             ModelAndView
+	 */
+	@RequestMapping("/wxdw/wxrylbList.do")
+	public ModelAndView wxrylbList(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelMap modelMap = new ModelMap();
+		request.setCharacterEncoding("UTF-8");
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "name");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+
+		// 检索条件
+		String mc = convertUtil.toString(request.getParameter("wxry_mc"));
+		String name = convertUtil.toString(request.getParameter("wxry_name"));
+		String sfz = convertUtil.toString(request.getParameter("wxry_sfz"));
+
+		request.setAttribute("mc", mc);
+		request.setAttribute("name", name);
+		request.setAttribute("sfz", sfz);
+		List wxryList = new ArrayList();
+		StringBuffer hsql = new StringBuffer();
+
+		hsql
+				.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
+						+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
+						+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
+						+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
+						+ "where tf30.wxdw_id = tf01.id");
+		// 如果有检索条件
+		if (mc != null) {
+			hsql.append(" and tf01.mc like '%");
+			hsql.append(mc);
+			hsql.append("%'");
+		}
+		if (name != null) {
+			hsql.append(" and tf30.name like '%");
+			hsql.append(name);
+			hsql.append("%'");
+		}
+		if (sfz != null) {
+			hsql.append(" and tf30.sfz like '%");
+			hsql.append(sfz);
+			hsql.append("%'");
+		}
+		wxryList = queryService.searchList(hsql.toString());
+		List wxrylbList = new ArrayList();
+		for (int i = 0; i < wxryList.size(); i++) {
+			Object[] wxry = (Object[]) wxryList.get(i);
+			wxrylbList.add(wxry);
+		}
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("wxryCount", wxrylbList.size());
+		modelMap.put("wxryList1", wxrylbList);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/wxrylbList.jsp", modelMap);
+	}
+
+	/**
+	 * 外协人员导出（在用）
+	 */
+	@RequestMapping("/wxry/wxryExportList.do")
+	public void wxryExport(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// 检索条件
+		String mc = convertUtil.toString(request.getParameter("wxry_mc"));
+		String name = convertUtil.toString(request.getParameter("wxry_name"));
+		String sfz = convertUtil.toString(request.getParameter("wxry_sfz"));
+
+		List wxryList = new ArrayList();
+		StringBuffer hsql = new StringBuffer();
+
+		hsql
+				.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
+						+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
+						+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
+						+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
+						+ "where tf30.wxdw_id = tf01.id");
+		// 如果有检索条件
+		if (mc != null) {
+			hsql.append(" and tf01.mc like '%");
+			hsql.append(mc);
+			hsql.append("%'");
+		}
+		if (name != null) {
+			hsql.append(" and tf30.name like '%");
+			hsql.append(name);
+			hsql.append("%'");
+		}
+		if (sfz != null) {
+			hsql.append(" and tf30.sfz like '%");
+			hsql.append(sfz);
+			hsql.append("%'");
+		}
+		wxryList = queryService.searchList(hsql.toString());
+		String fileName = "外协人员列表.xls";
+
+		response.reset();
+		response.setHeader("Content-Disposition", "attachment;filename="
+				+ URLEncoder.encode(fileName, "UTF-8"));
+		//创建表单列
+		List wxrybdlList = new ArrayList();
+		wxrybdlList.add(0, "单位名称");
+		wxrybdlList.add(1, "姓名");
+		wxrybdlList.add(2, "性别");
+		wxrybdlList.add(3, "电话");
+		wxrybdlList.add(4, "身份证");
+		wxrybdlList.add(5, "地址");
+		wxrybdlList.add(6, "备注");
+		wxrybdlList.add(7, "状态");
+		wxrybdlList.add(8, "概预算证");
+		wxrybdlList.add(9, "安全员证");
+		wxrybdlList.add(10, "监理证");
+		wxrybdlList.add(11, "登高证");
+		wxrybdlList.add(12, "电工证");
+		wxrybdlList.add(13, "下挂单位");
+		wxrybdlList.add(14, "专业");
+		wxrybdlList.add(15, "是否签订劳动合同");
+		wxrybdlList.add(16, "是否上保险");
+		wxrybdlList.add(17, "派发安全用品");
+		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response
+				.getOutputStream());
+		for(int i=0;i<wxrybdlList.size();i++){
+			String sheetName = (String) wxrybdlList.get(i);
+			jxl.write.WritableSheet ws0 = wwb.createSheet(sheetName, i++);
+			ExportExcel.List2Excel(wxrybdlList,wxryList,ws0);
+		}
+		wwb.write();
+		wwb.close();// 关闭后跳转到了import.do？为嘛呢
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+
+	/**
 	 * 外协人员导出
 	 * 
 	 * @param request
@@ -2865,7 +3028,7 @@ public class Wxdw {
 
 		return new ModelAndView("/export/toExcelWhithList.do");
 	}
-	
+
 	/**
 	 * 外协人员导出
 	 * 
@@ -2881,8 +3044,10 @@ public class Wxdw {
 		request.setCharacterEncoding("GBK");
 		String webinfpath = request.getSession().getServletContext()
 				.getRealPath("WEB-INF");
-		String config = convertUtil.toString(request.getParameter("config"), "");
-		Integer wxdw_id = convertUtil.toInteger(request.getParameter("wxdw_id"));
+		String config = convertUtil
+				.toString(request.getParameter("config"), "");
+		Integer wxdw_id = convertUtil
+				.toInteger(request.getParameter("wxdw_id"));
 		List wxryDocList = null;// 外协人员列表
 		List wxryColList = null;// 外协人员需导出的字段
 		List wxryTitleList = null;// 外协人员列表标题
@@ -3095,8 +3260,11 @@ public class Wxdw {
 				currentyear - 1));
 		modelMap.put("nd", nd);
 		modelMap.put("qyList", queryService.searchList(Tc02_area.class));
-		modelMap.put("zyList", queryService
-				.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
+		modelMap
+				.put(
+						"zyList",
+						queryService
+								.searchList("from Tc01_property where type='工程类别' and flag like '%[3]%'"));
 
 		List<V_sgdwfezb> sgdwfezbList = (List<V_sgdwfezb>) queryService
 				.searchList("from V_sgdwfezb where  wxdw_id=" + wxdw_id
@@ -3168,7 +3336,7 @@ public class Wxdw {
 			session.close();
 		}
 	}
-	
+
 	/**
 	 * 删除外协人员信息
 	 * 
@@ -3190,8 +3358,10 @@ public class Wxdw {
 		// 获取用户对象
 		try {
 			out = response.getWriter();
-			session.createQuery("delete from Tf30_wxry where id=" + wxry_id).executeUpdate();
-			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
+			session.createQuery("delete from Tf30_wxry where id=" + wxry_id)
+					.executeUpdate();
+			out
+					.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
 			session.flush();
 			tx.commit();
 		} catch (IOException e) {
@@ -3201,7 +3371,7 @@ public class Wxdw {
 			session.close();
 		}
 	}
-	
+
 	/**
 	 * 删除外协人员重复记录
 	 * 
@@ -3216,7 +3386,7 @@ public class Wxdw {
 		response.setContentType("text/html;charset=utf-8");
 		Long wxdw_id = convertUtil.toLong(request.getParameter("wxdw_id"));
 		PrintWriter out = null;
-		
+
 		// 获取用户对象
 		try {
 			out = response.getWriter();
@@ -3227,7 +3397,7 @@ public class Wxdw {
 			sql.append(wxdw_id);
 			sql.append(" group by name having count(id)>1 ");
 			ResultObject ro = queryService.search(sql.toString());
-			while(ro.next()){
+			while (ro.next()) {
 				sql.delete(0, sql.length());
 				sql.append("select id ");
 				sql.append("from Tf30_wxry ");
@@ -3237,14 +3407,16 @@ public class Wxdw {
 				sql.append(ro.get("name"));
 				sql.append("'");
 				List list = queryService.searchList(sql.toString());
-				for(int i = 1;i < list.size();i++){
-					saveService.updateByHSql("delete from Tf30_wxry where id="+list.get(i));
+				for (int i = 1; i < list.size(); i++) {
+					saveService.updateByHSql("delete from Tf30_wxry where id="
+							+ list.get(i));
 				}
 			}
-			out.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
-			
+			out
+					.print("{\"statusCode\":\"200\", \"message\":\"删除成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
+
 		} catch (IOException e) {
 			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
-		} 
+		}
 	}
 }
