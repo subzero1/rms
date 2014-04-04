@@ -27,7 +27,7 @@
 <script src="js/jquery/jquery.messager.js" type="text/javascript"></script>
 <script src="xheditor-1.1.13/xheditor-1.1.13-zh-cn.min.js" type="text/javascript"></script>
 <script src="uploadify/scripts/swfobject.js" type="text/javascript"></script>
-<script src="uploadify/scripts/jquery.uploadify.v2.1.0.js" type="text/javascript"></script>
+<script src="uploadify/scripts/jquery.uploadify.v2.1.4.js" type="text/javascript"></script>
 <script src="js/jquery/jquery-ui-1.8.15.custom.min.js" type="text/javascript"></script>
 		
 <!-- svg图表  supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+ -->
