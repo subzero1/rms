@@ -173,7 +173,7 @@
 				</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${offset<numPerPage}">
+			<c:if test="${offset<numPerPage}">
 				<c:forEach begin="${offset}" end="${numPerPage-1}">
 					<tr>
 						<c:forEach begin="0" end="17" >
@@ -181,8 +181,8 @@
 						</c:forEach>
 					</tr>
 				</c:forEach>
-				</c:if>
-			</tbody>
+			</c:if>
+		</tbody>
 		</table>
 		<div class="panelBar">
 			<div class="pages">
