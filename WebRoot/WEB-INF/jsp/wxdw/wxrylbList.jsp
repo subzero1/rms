@@ -30,7 +30,7 @@
 						<td>
 						单位名称：<input id="wxry_mc" name="wxry_mc" value="${mc}" type="text" size="25" /></td>
 						<td>
-						姓名：<input id="wxry_name" name="wxry_name" value="${name}" type="text" size="25" /></td>
+						姓名：<input id="wxry_name" name="wxry_name" value="${name}" type="text" size="15" /></td>
 						<td>
 						身份证号：<input id="wxry_sfz" name="wxry_sfz" value="${sfz}" type="text" size="25" /></td>
 					</tr>

@@ -2885,15 +2885,8 @@ public class Wxdw {
 		hsql.append(" order by ");
 		hsql.append(orderField);
 		hsql.append(" "+orderDirection);
-//		wxryList = queryService.searchList(hsql.toString());
 		List wxrylbList = new ArrayList();
-//		for (int i = 0; i < wxryList.size(); i++) {
-//			Object[] wxry = (Object[]) wxryList.get(i);
-//			wxrylbList.add(wxry);
-//		}
-		
 		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
-//		int i = 0;
 		while(ro.next()){
 			Object[] key = ro.getResultArray();
 			Object[] wxry = new Object[18];
@@ -2918,37 +2911,59 @@ public class Wxdw {
 	@RequestMapping("/wxry/wxryExportList.do")
 	public void wxryExport(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("UTF-8");
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "name");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "asc");
+
 		// 检索条件
 		String mc = convertUtil.toString(request.getParameter("wxry_mc"));
 		String name = convertUtil.toString(request.getParameter("wxry_name"));
 		String sfz = convertUtil.toString(request.getParameter("wxry_sfz"));
-
-		List wxryList = new ArrayList();
 		StringBuffer hsql = new StringBuffer();
 
-		hsql
-				.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
-						+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
-						+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
-						+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
-						+ "where tf30.wxdw_id = tf01.id");
+
+		hsql.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
+				+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
+				+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
+				+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
+				+ "where tf30.wxdw_id = tf01.id");
 		// 如果有检索条件
-		if (mc != null) {
+		if (mc != "") {
 			hsql.append(" and tf01.mc like '%");
 			hsql.append(mc);
 			hsql.append("%'");
 		}
-		if (name != null) {
+		if (name != "") {
 			hsql.append(" and tf30.name like '%");
 			hsql.append(name);
 			hsql.append("%'");
 		}
-		if (sfz != null) {
+		if (sfz != "") {
 			hsql.append(" and tf30.sfz like '%");
 			hsql.append(sfz);
 			hsql.append("%'");
 		}
-		wxryList = queryService.searchList(hsql.toString());
+		hsql.append(" order by ");
+		hsql.append(orderField);
+		hsql.append(" "+orderDirection);
+		List wxrylbList = new ArrayList();
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		while(ro.next()){
+			Object[] key = ro.getResultArray();
+			Object[] wxry = new Object[18];
+			for(int i=0;i<key.length;i++){
+				String wx =  (String) ro.get((String)key[i]);
+				wxry[i] = wx;
+			}
+			wxrylbList.add(wxry);
+		}
 		String fileName = "外协人员列表.xls";
 
 		response.reset();
@@ -2979,7 +2994,7 @@ public class Wxdw {
 		for(int i=0;i<wxrybdlList.size();i++){
 			String sheetName = (String) wxrybdlList.get(i);
 			jxl.write.WritableSheet ws0 = wwb.createSheet(sheetName, i++);
-			ExportExcel.List2Excel(wxrybdlList,wxryList,ws0);
+			ExportExcel.List2Excel(wxrybdlList,wxrylbList,ws0);
 		}
 		wwb.write();
 		wwb.close();// 关闭后跳转到了import.do？为嘛呢
