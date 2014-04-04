@@ -46,7 +46,7 @@
 				</p>
 				<p>
 					<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
-					<input type="text" name="Ta03_user.NAME" style="width:120px;" value="${user.name }" class="required" />
+					<input type="text" readonly="readonly" name="Ta03_user.NAME" style="width:120px;" value="${user.name }" class="required" />
 				</p>
 				<!-- 
 				<p>
@@ -89,7 +89,7 @@
 					<netsky:htmlSelect style="width:125" id="DEPT_ID"
 						name="Ta03_user.DEPT_ID" objectForOption="deptList"
 						valueForOption="id" showForOption="name"
-						value="${user.dept_id}" extend="" extendPrefix="true" htmlClass="required"/>
+						value="${user.dept_id}" isDisabled="true" extend="" extendPrefix="true" htmlClass="required"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
