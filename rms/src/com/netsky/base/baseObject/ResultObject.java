@@ -220,10 +220,11 @@ public class ResultObject {
 	 * @param key
 	 *            列名或对象名
 	 */
-	public Object get(String key) {
+	public Object get(String key){
 		if (placeIndex < length && bottom) {
 			return map[placeIndex].get(key);
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
