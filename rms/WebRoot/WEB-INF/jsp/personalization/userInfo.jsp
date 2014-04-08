@@ -38,6 +38,7 @@
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Ta03_user" />
 			<input type="hidden" id="pwddate" name="Ta03_user.LAST_PWD_DATE" value="${user.last_pwd_date }"/>
 			<input type="hidden" name="Ta03_user.ID" value="${user.id}" />
+			<input type="hidden" name="Ta03_user.DEPT_ID" value="${user.dept_id}"/>
 			
 			<div class="pageFormContent" layoutH="53">
 				<p>
