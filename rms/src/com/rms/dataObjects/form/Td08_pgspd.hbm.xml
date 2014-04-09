@@ -168,6 +168,14 @@
   insert="true"
   column="splb"
   />  
+  
+  <property
+  name="spsylb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="spsylb"
+  />  
 
 
     </class>
