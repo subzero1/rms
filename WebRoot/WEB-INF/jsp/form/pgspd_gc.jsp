@@ -66,11 +66,15 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>审批类别： </label>
-		<select class="required" name="Td08_pgspd.SPLB" >
+		<select class="required" name="Td08_pgspd.SPLB" style="width:157px;">
 			<option value="工程派工" <c:if test="${td08_pgspd.splb=='工程派工' }">selected</c:if>>工程派工</option>
 			<!-- <option value="更改合同额" <c:if test="${td08_pgspd.splb=='更改合同额'||param.splb=='gghte' }">selected</c:if>>更改合同额</option> -->
 		</select>
 	</p> 
+	<p>
+		<label>审批事由类别：</label>
+		<netsky:htmlSelect name="Td08_pgspd.SPSYLB" objectForOption="spsyList" style="width:155px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td08_pgspd.spsylb}" htmlClass="td-select"/>
+	</p>
 	<div class="divider"></div>  
 	<div class="hte">
 	<p>

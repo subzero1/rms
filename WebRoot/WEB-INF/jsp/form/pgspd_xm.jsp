@@ -43,7 +43,7 @@
 	</p>
 	<div style="height:0px;"></div>
 	<p>
-		<label>起 草 人：</label> 
+		<label>起 草 人：</label>
 		<input type="text" readOnly name="Td08_pgspd.CJR" value="<c:out value="${td08_pgspd.cjr}" default="${user.name}"/>" style="width:150px;"/>
 	</p>
 	<p>
@@ -66,11 +66,15 @@
 	<div style="height:0px;"></div>
 	<p>
 		<label>审批类别： </label>
-		<select class="required" name="Td08_pgspd.SPLB" >
+		<select class="required" name="Td08_pgspd.SPLB" style="width:157px;">
 			<option value="项目派工" <c:if test="${td08_pgspd.splb=='项目派工' }">selected</c:if>>项目派工</option>
 			<option value="更改合同额" <c:if test="${td08_pgspd.splb=='更改合同额'||param.splb=='gghte' }">selected</c:if>>更改合同额</option>
 		</select>
-	</p> 
+	</p>
+	<p>
+		<label>审批事由类别：</label>
+		<netsky:htmlSelect name="Td08_pgspd.SPSYLB" objectForOption="spsyList" style="width:155px;" valueForOption="name" showForOption="name" extend="" extendPrefix="true" value="${td08_pgspd.spsylb}" htmlClass="required"/>
+	</p>
 	<div class="divider"></div>  
 	<div class="hte">
 	<p>

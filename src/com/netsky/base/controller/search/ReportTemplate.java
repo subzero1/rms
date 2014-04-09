@@ -690,7 +690,8 @@ public class ReportTemplate {
 		String czsj1=convertUtil.toString(request.getParameter("czsj1"));
 		String czsj2=convertUtil.toString(request.getParameter("czsj2"));
 		hql.append("select td01.xmmc as 项目名称,td01.xmbh as 项目编号,td01.xmgly as 项目管理员,");
-		hql.append("td08.cjrq as 操作时间,td01.xmzt as 项目状态,td08.xtxzdw as 系统选择单位,td08.sjxzdw as 实际选择单位 ");
+		hql.append("td08.cjrq as 操作时间,td01.xmzt as 项目状态,td08.xtxzdw as 系统选择单位,td08.sjxzdw as 实际选择单位, ");
+		hql.append("td08.sdxpyy as 原因,td08.spsylb as 审批事由类别 ");
 		hql.append("from ProjectInf td01,Td08_pgspd td08 "); 
 		hql.append("where td01.id = td08.project_id ");
 		hql.append("and sp_flag = 1 ");

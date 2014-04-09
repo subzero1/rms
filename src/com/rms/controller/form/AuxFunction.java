@@ -1151,6 +1151,12 @@ public class AuxFunction {
 		sql.append(user_name);
 		sql.append("' order by id desc ");
 		List list = queryService.searchList(sql.toString());
+		
+		sql.delete(0, sql.length());
+		sql.append("select name from Tc01_property where type='审批事由类别'");
+		List spsylbList = queryService.searchList(sql.toString());
+		request.setAttribute("spsylbList", spsylbList);
+		
 		if (list != null && list.size() > 0) {
 			Long opernode_id = -1L;
 			sql.delete(0, sql.length());

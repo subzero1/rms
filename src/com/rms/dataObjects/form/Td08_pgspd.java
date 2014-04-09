@@ -270,6 +270,19 @@ public class Td08_pgspd implements Serializable {
 	 */
 	private String splb;
 
+	/**
+	 * 审批事由类别
+	 */
+	private String spsylb;
+	
+	public String getSpsylb() {
+		return spsylb;
+	}
+
+	public void setSpsylb(String spsylb) {
+		this.spsylb = spsylb;
+	}
+
 	public Double getYsjhte() {
 		return ysjhte;
 	}
