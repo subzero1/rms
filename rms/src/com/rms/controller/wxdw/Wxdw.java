@@ -2797,7 +2797,7 @@ public class Wxdw {
 			}
 			hql.append(" order by wxry." + orderField);
 			hql.append(" " + orderDirection);
-			ro = queryService.search(hql.toString());
+			ro = queryService.searchByPage(hql.toString(), pageNum, numPerPage);
 			while (ro.next()) {
 				Object[] o = new Object[2];
 				wxry = (Tf30_wxry) ro.get("wxry");
@@ -2815,6 +2815,8 @@ public class Wxdw {
 				o[1] = map;
 				wxryList.add(o);
 			}
+
+			modelMap.put("totalCount", ro.getTotalRows());
 		}
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
@@ -2823,8 +2825,50 @@ public class Wxdw {
 		modelMap.put("numPerPage", numPerPage);
 		modelMap.put("wxdw_id", wxdw_id);
 		modelMap.put("wxryList", wxryList);
-		modelMap.put("wxryCount", wxryList.size());
 		return new ModelAndView(view, modelMap);
+	}
+
+	/**
+	 * 单位资料（附件）查询列表
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/wxdw/dwzlList.do")
+	public ModelAndView dwzlList(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelMap modelMap = new ModelMap();
+		String wxdw_id = convertUtil.toString(request.getParameter("wxdw_id"));
+		StringBuffer hsql = new StringBuffer();
+		ResultObject ro = null;
+		List te01List = null;
+		List total = null;
+		if(!wxdw_id.equals("")){
+			te01List = new LinkedList();
+			/**
+			 * 查询project_id为外协单位id的单位资料附件
+			 */
+			hsql.append("select id,file_name,user_name,ftp_date,remark,ftp_url from Te01_slave where project_id=");
+			hsql.append(wxdw_id);
+			hsql.append(" and doc_id=");
+			hsql.append(wxdw_id);
+			hsql.append(" and module_id=93");
+			ro = queryService.search(hsql.toString());
+			while(ro.next()){
+				Object[] o = new Object[6];
+				o[0] = ro.get("id");
+				o[1] = ro.get("file_name");
+				o[2] = ro.get("user_name");
+				o[3] = ro.get("ftp_date");
+				o[4] = ro.get("remark");
+				o[5] = ro.get("ftp_url");
+				te01List.add(o);
+			}
+			modelMap.put("te01List", te01List);
+		}
+		modelMap.put("wxdw_id", wxdw_id);
+		return new ModelAndView("/WEB-INF/jsp/wxdw/dwzlList.jsp",modelMap);
 	}
 
 	/**
@@ -2861,11 +2905,12 @@ public class Wxdw {
 		List wxryList = new ArrayList();
 		StringBuffer hsql = new StringBuffer();
 
-		hsql.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
-				+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
-				+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
-				+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
-				+ "where tf30.wxdw_id = tf01.id");
+		hsql
+				.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
+						+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
+						+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
+						+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
+						+ "where tf30.wxdw_id = tf01.id");
 		// 如果有检索条件
 		if (mc != "") {
 			hsql.append(" and tf01.mc like '%");
@@ -2884,14 +2929,15 @@ public class Wxdw {
 		}
 		hsql.append(" order by ");
 		hsql.append(orderField);
-		hsql.append(" "+orderDirection);
+		hsql.append(" " + orderDirection);
 		List wxrylbList = new ArrayList();
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
-		while(ro.next()){
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
+		while (ro.next()) {
 			Object[] key = ro.getResultArray();
 			Object[] wxry = new Object[18];
-			for(int i=0;i<key.length;i++){
-				String wx =  (String) ro.get((String)key[i]);
+			for (int i = 0; i < key.length; i++) {
+				String wx = (String) ro.get((String) key[i]);
 				wxry[i] = wx;
 			}
 			wxrylbList.add(wxry);
@@ -2911,7 +2957,7 @@ public class Wxdw {
 	@RequestMapping("/wxry/wxryExportList.do")
 	public void wxryExport(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
+
 		request.setCharacterEncoding("UTF-8");
 		Integer pageNum = convertUtil.toInteger(
 				request.getParameter("pageNum"), 1);
@@ -2928,12 +2974,12 @@ public class Wxdw {
 		String sfz = convertUtil.toString(request.getParameter("wxry_sfz"));
 		StringBuffer hsql = new StringBuffer();
 
-
-		hsql.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
-				+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
-				+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
-				+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
-				+ "where tf30.wxdw_id = tf01.id");
+		hsql
+				.append("select tf01.mc,tf30.name,tf30.sex,tf30.mobile,tf30.sfz,"
+						+ "tf30.address,tf30.bz,tf30.status,tf30.gysz,tf30.aqyz,tf30.jlz,"
+						+ "tf30.dgz,tf30.ec,tf30.bx,tf30.major,tf30.contract,tf30.insure,"
+						+ "tf30.safety from Tf30_wxry tf30,Tf01_wxdw tf01 "
+						+ "where tf30.wxdw_id = tf01.id");
 		// 如果有检索条件
 		if (mc != "") {
 			hsql.append(" and tf01.mc like '%");
@@ -2952,14 +2998,15 @@ public class Wxdw {
 		}
 		hsql.append(" order by ");
 		hsql.append(orderField);
-		hsql.append(" "+orderDirection);
+		hsql.append(" " + orderDirection);
 		List wxrylbList = new ArrayList();
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
-		while(ro.next()){
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
+		while (ro.next()) {
 			Object[] key = ro.getResultArray();
 			Object[] wxry = new Object[18];
-			for(int i=0;i<key.length;i++){
-				String wx =  (String) ro.get((String)key[i]);
+			for (int i = 0; i < key.length; i++) {
+				String wx = (String) ro.get((String) key[i]);
 				wxry[i] = wx;
 			}
 			wxrylbList.add(wxry);
@@ -2969,7 +3016,7 @@ public class Wxdw {
 		response.reset();
 		response.setHeader("Content-Disposition", "attachment;filename="
 				+ URLEncoder.encode(fileName, "UTF-8"));
-		//创建表单列
+		// 创建表单列
 		List wxrybdlList = new ArrayList();
 		wxrybdlList.add(0, "单位名称");
 		wxrybdlList.add(1, "姓名");
@@ -2991,10 +3038,10 @@ public class Wxdw {
 		wxrybdlList.add(17, "派发安全用品");
 		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response
 				.getOutputStream());
-		for(int i=0;i<wxrybdlList.size();i++){
+		for (int i = 0; i < wxrybdlList.size(); i++) {
 			String sheetName = (String) wxrybdlList.get(i);
 			jxl.write.WritableSheet ws0 = wwb.createSheet(sheetName, i++);
-			ExportExcel.List2Excel(wxrybdlList,wxrylbList,ws0);
+			ExportExcel.List2Excel(wxrybdlList, wxrylbList, ws0);
 		}
 		wwb.write();
 		wwb.close();// 关闭后跳转到了import.do？为嘛呢
@@ -3447,5 +3494,11 @@ public class Wxdw {
 		} catch (IOException e) {
 			out.print("{\"statusCode\":\"300\", \"message\":\"删除失败\"}");
 		}
+	}
+	
+	@RequestMapping("/wxdw/dwzlAjaxDelete.do")
+	public void dwzlDel(HttpServletRequest request,HttpServletResponse response){
+		Integer id = convertUtil.toInteger(request.getParameter("id"));
+		
 	}
 }

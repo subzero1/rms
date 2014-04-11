@@ -39,6 +39,9 @@ function uploadSlave(butt){
 	<c:when test="${param.slave_type==9}">
 		<c:set var="slave_type" value="勘察反馈"/>
 	</c:when>
+	<c:when test="${param.slave_type==10}">
+		<c:set var="slave_type" value="单位资料"/>
+	</c:when>
 </c:choose>
 
 <div class="page">
