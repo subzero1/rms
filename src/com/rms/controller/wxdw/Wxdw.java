@@ -22,7 +22,6 @@ import jxl.Workbook;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,6 @@ import com.netsky.base.dataObjects.Ta02_station;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.export.ExportExcel;
-import com.netsky.base.utils.convertUtil;
 import com.netsky.base.flow.vo.Vc2_gcxx_gzltb;
 import com.netsky.base.flow.vo.Vc3_gcxx_jlrj;
 import com.netsky.base.service.ExceptionService;
@@ -47,6 +45,7 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.ConfigXML;
 import com.netsky.base.utils.ConfigXMLImpl;
+import com.netsky.base.utils.convertUtil;
 import com.rms.controller.base.ExcelRead;
 import com.rms.dataObjects.base.Tc01_property;
 import com.rms.dataObjects.base.Tc02_area;
@@ -2857,12 +2856,13 @@ public class Wxdw {
 			ro = queryService.search(hsql.toString());
 			while(ro.next()){
 				Object[] o = new Object[6];
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				Date date = (Date) ro.get("ftp_date");
 				o[0] = ro.get("id");
 				o[1] = ro.get("file_name");
 				o[2] = ro.get("user_name");
-				o[3] = ro.get("ftp_date");
+				o[3] = sdf.format(date);
 				o[4] = ro.get("remark");
-				o[5] = ro.get("ftp_url");
 				te01List.add(o);
 			}
 			modelMap.put("te01List", te01List);

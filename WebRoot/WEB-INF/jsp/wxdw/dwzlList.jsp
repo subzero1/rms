@@ -26,11 +26,10 @@
 		<table class="table" width="100%" layouth="138">
 			<thead>
 				<tr>
-					<th style="width: 120px;">附件名</th>
-					<th style="width: 80px;">用户</th>
+					<th style="width: 120px;">名称</th>
+					<th style="width: 80px;">上传人</th>
 					<th style="width: 150px;">上传时间</th>
 					<th style="width: 80px;">标记</th>
-					<th style="width: 250px;">上传地址</th>
 					<th style="width: 80px;"></th>
 				</tr>
 			</thead>
@@ -50,9 +49,6 @@
 						</td>
 						<td style="width: 80px;">
 							${obj[4] }
-						</td>
-						<td style="width: 250px;">
-							${obj[5] }
 						</td>
 						<td style="width: 80px;">
 							<a href="javascript:del_slave(${obj[0] }, ${offset - 1})"><img border="0" src="Images/trash.gif" style="cursor:pointer" alt="删除"></a>
