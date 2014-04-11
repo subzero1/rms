@@ -228,7 +228,7 @@
 					<option value="100">100</option>
 					<option value="200">200</option>
 				</select>
-				<span>共${wxryCount}条 </span>
+				<span>共${totalCount}条 </span>
 			</div>
 
 			<div class="pagination" targetType="navTab"	totalCount="${totalCount}" numPerPage="${numPerPage}" currentPage="${param.pageNum}"></div>
