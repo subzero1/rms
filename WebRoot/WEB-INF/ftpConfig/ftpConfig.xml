@@ -38,4 +38,8 @@
 		<type>其他附件</type>
 		<folder>rmsSlaveData/kcfk</folder>
 	</typeFolder>
+	<typeFolder>
+		<type>单位资料</type>
+		<folder>rmsSlaveData/dwzl</folder>
+	</typeFolder>
 </root>
