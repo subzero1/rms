@@ -3086,4 +3086,45 @@ public class AuxFunction {
 		}
 
 	}
+	
+		
+	@RequestMapping("/form/setZhhsg.do")
+	public void setZhhsg(HttpServletRequest request,
+				HttpServletResponse response) throws IOException {
+			PrintWriter out = response.getWriter();
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			Long project_id = convertUtil.toLong(request.getParameter("project_id"));
+			String sgdw = convertUtil.toString(request.getParameter("sgdw"));
+			String navTab_id = null;
+			try {
+				Long module_id = null;
+				Long doc_id = null;
+				
+				Td00_gcxx td00 = null;
+				Td01_xmxx td01 = (Td01_xmxx)queryService.searchById(Td01_xmxx.class, project_id);
+				
+				if(td01 == null){
+					td00 = (Td00_gcxx)queryService.searchById(Td00_gcxx.class, project_id);
+					module_id = 102L;
+					doc_id = td00.getId();
+					navTab_id = "gcxx";
+					td00.setSgdw(sgdw);
+					saveService.save(td00);
+				}
+				else{
+					navTab_id = "xmxx";
+					module_id = 101L;
+					doc_id = td01.getId();
+					td01.setSgdw(sgdw);
+					saveService.save(td01);
+				}
+				
+				out.print("{\"statusCode\":\"200\", \"message\":\"&#x6D3E;&#x53D1;&#x6210;&#x529F;!\", \"callbackType\":\"\",\"navTabId\":\""+navTab_id+"\"}");
+			} catch (Exception e) {
+				e.printStackTrace();
+				out.print("{\"statusCode\":\"300\", \"message\":\"fail!\"}");
+			}
+
+		}
 }

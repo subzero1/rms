@@ -40,6 +40,8 @@ import com.rms.dataObjects.form.Td54_gzjdx;
 import com.rms.dataObjects.wxdw.Tf01_wxdw;
 import com.rms.dataObjects.mbk.Td21_mbk;
 import com.netsky.base.flow.utils.MapUtil;
+import com.netsky.base.baseObject.PropertyInject;
+
 
 @Service("loadFormListService")
 public class LoadFormListServiceImp implements LoadFormListService {
@@ -511,9 +513,13 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				
 				//获得综合化施工单位和份额占比
 				Tf01_wxdw tf01 = new Tf01_wxdw();
-				Td01_xmxx td01 = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
-				String ssdq0 = convertUtil.toString(td01.getSsdq(),"xxx");
-				String gclb0 = convertUtil.toString(td01.getGclb(),"yyy");
+				Object o0 = queryService.searchById(Td01_xmxx.class, project_id);
+				if(o0 == null){
+					o0 = queryService.searchById(Td00_gcxx.class, project_id);
+				}
+				
+				String ssdq0 = convertUtil.toString(PropertyInject.getProperty(o0, "ssdq"),"xxx");
+				String gclb0 = convertUtil.toString(PropertyInject.getProperty(o0, "gclb"),"yyy");
 				hsql.delete(0, hsql.length());
 				hsql.append("select tf01 from Tf01_wxdw tf01 where bz like '%综合化施工%' and bz like '%");
 				hsql.append(ssdq0);
