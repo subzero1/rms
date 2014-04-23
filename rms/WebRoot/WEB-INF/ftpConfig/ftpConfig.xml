@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="GBK"?>
 <root>
 	<!-- 默认路径 -->
-	<folder>rms/default</folder>
+	<folder>rmsSlaveData/default</folder>
 	<!--  -->
 	<address>132.229.154.215</address>
 	<username>tomcat</username>
