@@ -126,7 +126,7 @@ $(function(){
 
 	function zhhsg(project_id){
 		var data = 'project_id='+project_id;
-		var input_info = "<p><label>施工单位： </label><input type=\"text\" size=\"30\" value=\"${zhhsgSgdw.mc}\" id=\"_sgdw\"></p><p><label>份额占比： </label>${zhhsgFezb0}%</p>";
+		var input_info = "<p><label>施工单位： </label><input type=\"text\" size=\"30\" value=\"${zhhsgSgdw.mc}\" readOnly id=\"_sgdw\"></p><p><label>份额占比： </label>${zhhsgFezb0}%</p>";
 			alertMsg.confirm(input_info, {			
 				okCall: function(){
 					var sgdw = $("#_sgdw").val();
