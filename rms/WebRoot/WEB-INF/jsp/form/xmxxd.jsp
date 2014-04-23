@@ -123,8 +123,34 @@ $(function(){
 			error: DWZ.ajaxError
 		});
 	}
-</script>
 
+	function zhhsg(project_id){
+		var data = 'project_id='+project_id;
+		var input_info = "<p><label>施工单位： </label><input type=\"text\" size=\"30\" value=\"${zhhsgSgdw.mc}\" id=\"_sgdw\"></p><p><label>份额占比： </label>${zhhsgFezb0}%</p>";
+			alertMsg.confirm(input_info, {			
+				okCall: function(){
+					var sgdw = $("#_sgdw").val();
+					if(sgdw == ''){
+						alertMsg.info('施工单位必填');
+						return false;
+					}
+					data = data + '&sgdw=' + $("#_sgdw").val();
+					$.ajax({
+					url:'form/setZhhsg.do',
+					type:'post',
+					data:data,
+					dataType:"json",
+					cache: false,
+					success: function(json){
+						navTabAjaxDone(json);
+					},
+					error: DWZ.ajaxError
+				 });
+				}
+			});
+	}
+	
+</script>
 <input type="hidden" name="configType" value="byxml"/>
 <input type="hidden" name="profile" value="xmxxd.xml"/>
 <input type="hidden" name="Td01_xmxx.ID" value="${param.doc_id}">

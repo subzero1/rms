@@ -26,6 +26,7 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.LoadFormListService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.StringFormatUtil;
+import com.netsky.base.utils.NumberFormatUtil;
 import com.netsky.base.utils.DateGetUtil;
 import com.rms.dataObjects.form.Td01_xmxx;
 import com.netsky.base.dataObjects.Ta01_dept;
@@ -413,8 +414,7 @@ public class LoadFormListServiceImp implements LoadFormListService {
 
 				// 获取设计单位和监理单位列表
 				hsql.delete(0, hsql.length());
-				hsql
-						.append("select tf01.id,tf01.mc,tf01.lb from Tf01_wxdw tf01 where lb='设计' or lb='监理' order by id");
+				hsql.append("select tf01.id,tf01.mc,tf01.lb from Tf01_wxdw tf01 where lb='设计' or lb='监理' order by id");
 				ro = queryService.search(hsql.toString());
 				List<Tf01_wxdw> sjdwList = new LinkedList<Tf01_wxdw>();
 				List<Tf01_wxdw> jldwList = new LinkedList<Tf01_wxdw>();
@@ -508,6 +508,76 @@ public class LoadFormListServiceImp implements LoadFormListService {
 					break;
 				}
 				}
+				
+				//获得综合化施工单位和份额占比
+				Tf01_wxdw tf01 = new Tf01_wxdw();
+				Td01_xmxx td01 = (Td01_xmxx) queryService.searchById(Td01_xmxx.class, project_id);
+				String ssdq0 = convertUtil.toString(td01.getSsdq(),"xxx");
+				String gclb0 = convertUtil.toString(td01.getGclb(),"yyy");
+				hsql.delete(0, hsql.length());
+				hsql.append("select tf01 from Tf01_wxdw tf01 where bz like '%综合化施工%' and bz like '%");
+				hsql.append(ssdq0);
+				hsql.append("%' and bz like '%");
+				hsql.append(gclb0);
+				hsql.append("%'");
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					tf01 = (Tf01_wxdw)ro.get("tf01");
+					request.setAttribute("zhhsgSgdw", tf01);
+				}
+				
+				Double zje0 = 1d;
+				hsql.delete(0, hsql.length());
+				hsql.append("select sum(sghtje) as zje from Td01_xmxx where ssdq = '");
+				hsql.append(ssdq0);
+				hsql.append("' and gclb = '");
+				hsql.append(gclb0);
+				hsql.append("'");
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					zje0 = convertUtil.toDouble(ro.get("zje"));
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select sum(sghtje) as zje from Td00_gcxx where xm_id is null and ssdq = '");
+				hsql.append(ssdq0);
+				hsql.append("' and gclb = '");
+				hsql.append(gclb0);
+				hsql.append("'");
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					zje0 += convertUtil.toDouble(ro.get("zje"));
+				}
+				
+				Double sghte0 = 0d;
+				hsql.delete(0, hsql.length());
+				hsql.append("select sum(sghtje) as sghte from Td01_xmxx where ssdq = '");
+				hsql.append(ssdq0);
+				hsql.append("' and gclb = '");
+				hsql.append(gclb0);
+				hsql.append("' and sgdw = '");
+				hsql.append(tf01.getMc());
+				hsql.append("'");
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					sghte0 = convertUtil.toDouble(ro.get("sghte"));
+				}
+				
+				hsql.delete(0, hsql.length());
+				hsql.append("select sum(sghtje) as sghte from Td00_gcxx where xm_id is null and ssdq = '");
+				hsql.append(ssdq0);
+				hsql.append("' and gclb = '");
+				hsql.append(gclb0);
+				hsql.append("' and sgdw = '");
+				hsql.append(tf01.getMc());
+				hsql.append("'");
+				ro = queryService.search(hsql.toString());
+				if(ro.next()){
+					sghte0 += convertUtil.toDouble(ro.get("sghte"));
+				}
+				
+				Double fezb0 = NumberFormatUtil.divToDouble(sghte0*100, zje0,2);
+				request.setAttribute("zhhsgFezb0", fezb0);
 			}
 
 			// 获取变更类别、变更种类
@@ -549,7 +619,6 @@ public class LoadFormListServiceImp implements LoadFormListService {
 				if (tmpList != null) {
 					request.setAttribute("bgList", tmpList);
 				}
-
 			}
 
 			if (module_id == 101) {
