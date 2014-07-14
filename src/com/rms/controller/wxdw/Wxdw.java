@@ -2937,7 +2937,7 @@ public class Wxdw {
 			Object[] key = ro.getResultArray();
 			Object[] wxry = new Object[18];
 			for (int i = 0; i < key.length; i++) {
-				String wx = (String) ro.get((String) key[i]);
+				String wx = convertUtil.toString(ro.get((String) key[i]));
 				wxry[i] = wx;
 			}
 			wxrylbList.add(wxry);
@@ -3000,13 +3000,12 @@ public class Wxdw {
 		hsql.append(orderField);
 		hsql.append(" " + orderDirection);
 		List wxrylbList = new ArrayList();
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
-				numPerPage);
+		ResultObject ro = queryService.search(hsql.toString());
 		while (ro.next()) {
 			Object[] key = ro.getResultArray();
 			Object[] wxry = new Object[18];
 			for (int i = 0; i < key.length; i++) {
-				String wx = (String) ro.get((String) key[i]);
+				String wx = convertUtil.toString(ro.get((String) key[i]));
 				wxry[i] = wx;
 			}
 			wxrylbList.add(wxry);
