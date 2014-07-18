@@ -148,7 +148,7 @@ public class Gcgl {
 			hsql.append("and sjdw = '" + user_dept + "' ");
 		}
 		else if(limit.equals("sgdw")){
-			hsql.append("and sgypf = 1 and sgdw = '" + user_dept + "' and gclb in (" + user_zy + ") ");
+			hsql.append("and sgypf = 1 and sgdw = '" + user_dept + "' and p_gclb in (" + user_zy + ") ");
 		}
 		else if(limit.equals("jldw")){
 			hsql.append("and jldw = '" + user_dept + "' ");
@@ -263,7 +263,7 @@ public class Gcgl {
 
 		// 工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
 		hsql.append("(");
-		hsql.append(" (sgdw = '" + user_dept + "' and gclb in (" + user_zy
+		hsql.append(" (sgdw = '" + user_dept + "' and p_gclb in (" + user_zy
 				+ ") and sgysl is null and sgypf = 1)");
 		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl is null)");
 		hsql.append(" or (jldw = '" + user_dept + "' and jlysl is null)");
@@ -411,7 +411,7 @@ public class Gcgl {
 			hsql.append("and sjdw = '" + user_dept + "' ");
 		}
 		else if(limit.equals("sgdw")){
-			hsql.append("and sgypf = 1 and sgdw = '" + user_dept + "' and gclb in (" + user_zy + ") ");
+			hsql.append("and sgypf = 1 and sgdw = '" + user_dept + "' and p_gclb in (" + user_zy + ") ");
 		}
 		else if(limit.equals("jldw")){
 			hsql.append("and jldw = '" + user_dept + "' ");
@@ -523,7 +523,7 @@ public class Gcgl {
 		hsql.append("not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
 		hsql.append("and (");
 		hsql.append("xmgly = '" + user_name + "'");
-		hsql.append(" or (sgdw = '" + user_dept + "' and gclb in (" + user_zy
+		hsql.append(" or (sgdw = '" + user_dept + "' and p_gclb in (" + user_zy
 				+ "))");
 		hsql.append(" or sjdw = '" + user_dept + "'");
 		hsql.append(" or jldw = '" + user_dept + "'");
@@ -640,7 +640,7 @@ public class Gcgl {
 		// 工程和项目显示条件，【项目管理员=自己 或 施工单位=自己单位 或 监理单位=自己单位 或 设计单位=自己单位】
 		hsql.append("not exists(select 'x' from Ti03_xqly ti03 where gcxx.id = ti03.project_id) ");
 		hsql.append("and (");
-		hsql.append(" (sgypf=1 and sgdw = '" + user_dept + "' and gclb in (" + user_zy
+		hsql.append(" (sgypf=1 and sgdw = '" + user_dept + "' and p_gclb in (" + user_zy
 				+ ") and sgysl is null)");
 		hsql.append(" or (sjdw = '" + user_dept + "' and sjysl is null)");
 		hsql.append(" or (jldw = '" + user_dept + "' and jlysl is null)");
@@ -1543,7 +1543,7 @@ public class Gcgl {
 			hsql.append("and sjdw = '" + user_dept + "' ");
 		}
 		else if(limit.equals("sgdw")){
-			hsql.append("and sgdw = '" + user_dept + "' and gclb in (" + user_zy + ") ");
+			hsql.append("and sgdw = '" + user_dept + "' and p_gclb in (" + user_zy + ") ");
 		}
 		else if(limit.equals("jldw")){
 			hsql.append("and jldw = '" + user_dept + "' ");
