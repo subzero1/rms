@@ -115,6 +115,9 @@ $(function(){
 				<li>
 					<a href="wxdw/wxryList.do?wxdw_id=${Tf01_wxdw.id}&role=${param.role }" target="navTab" rel="wxryList"><span>外协人员</span> </a>
 				</li>
+				<li>
+					<a href="wxdw/dwzlList.do?wxdw_id=${Tf01_wxdw.id}" target="navTab" rel="dwzlList"><span>单位资料</span></a>
+				</li>
 			</ul>
 		</div>
 	</div>
