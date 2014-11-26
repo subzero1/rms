@@ -1128,6 +1128,9 @@ public class Gcgl {
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		String ddzt = convertUtil.toString(request.getParameter("ddzt"));
 		String xmgly = convertUtil.toString(request.getParameter("xmgly"));
+		String sjmc = convertUtil.toString(request.getParameter("sjmc"),"cjrq");
+		String date1 = convertUtil.toString(request.getParameter("date1"));
+		String date2 = convertUtil.toString(request.getParameter("date2"));
 		
 		String curRole = null;
 		Long node_id = -1L;
@@ -1214,6 +1217,16 @@ public class Gcgl {
 			hql.append(ddzt);
 			hql.append("' ");
 		}
+		
+		if(!sjmc.equals("")){
+		    if(!date1.equals("")){
+		        hql.append(" and td00." + sjmc + " >= to_date('"+date1+"','yyyy-mm-dd')" );
+		    }
+		    if(!date2.equals("")){
+                hql.append(" and td00." + sjmc + " <= to_date('"+date2+"','yyyy-mm-dd')" );
+            }
+		}
+		
 		hql.append("order by ");
 		hql.append(orderField);
 		hql.append(" ");
@@ -1241,6 +1254,26 @@ public class Gcgl {
 			request.setAttribute("ddztList", ddztList);
 		}
 		
+		//时间类别
+        List<Object> sjmcList = new LinkedList<Object>();
+        Properties p = new Properties();
+        p.setProperty("show", "生成时间");
+        p.setProperty("value", "cjrq");
+        sjmcList.add(p);
+        p = new Properties();
+        p.setProperty("show", "设计派发时间");
+        p.setProperty("value", "sjpgsj");
+        sjmcList.add(p);
+        p = new Properties();
+        p.setProperty("show", "施工派发时间");
+        p.setProperty("value", "sgpfsj");
+        sjmcList.add(p);
+        p = new Properties();
+        p.setProperty("show", "完成时间");
+        p.setProperty("value", "wcsj");
+        sjmcList.add(p);
+        modelMap.put("sjmcList", sjmcList);
+		
 		/*
 		 * 获取群组成员
 		 */
@@ -1256,6 +1289,9 @@ public class Gcgl {
 			modelMap.put("listForWorkGroup", khryListForWorkGroup);
 		}
 		
+		modelMap.put("sjmc", sjmc);
+		modelMap.put("date1", date1);
+		modelMap.put("date2", date2);
 		modelMap.put("curRole", curRole);
 		modelMap.put("node_id", node_id);
 		modelMap.put("ddzt", ddzt);
