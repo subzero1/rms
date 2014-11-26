@@ -21,14 +21,17 @@
 						<td>
 							<input type="text" style="display:none"/>
 							关键字：
-							<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
-							<netsky:htmlSelect name="ddzt" objectForOption="ddztList"  valueForOption="name" showForOption="name" extend="全部,全部" extendPrefix="true" value="${ddzt}" htmlClass="td-select"/>&nbsp;
+							<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />；
+							<netsky:htmlSelect name="ddzt" objectForOption="ddztList"  valueForOption="name" showForOption="name" extend="全部,全部" extendPrefix="true" value="${ddzt}" htmlClass="td-select"/>；&nbsp;
 							<c:choose>
 								<c:when test="${curRole=='groupManager'}">
 									<td><netsky:htmlSelect name="xmgly" id="xmgly" objectForOption="listForWorkGroup" valueForOption="name" showForOption="name" value="${param.xmgly}" extend="全部,"  extendPrefix="true" /></td>
 								</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>
+						<netsky:htmlSelect name="sjmc" objectForOption="sjmcList"  extend="---选择时间---," extendPrefix="true" value="${sjmc}" htmlClass="td-select"/>
+						<input id="date1" name="date1" value="${param.date1}" type="text" size="10" class="date"/>至
+						<input id="date2" name="date2" value="${param.date2}" type="text" size="10" class="date"/>
 						</td>
 					</tr>
 				</table>
